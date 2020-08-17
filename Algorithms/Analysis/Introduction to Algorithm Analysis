@@ -1,0 +1,61 @@
+What is Algorithm Analysis?
+A method to estimate the resources required by an algorithm
+
+Why use Algorithm Analysis?
+It allows us to measure and compare efficiency between algorithm implementations.
+
+What does efficiency measure?
+An implementation that uses less resources, for example run time or storage space, during execution, is said to be more efficient.
+
+Why measure algorithm efficiency?
+The most common reason for measuring the efficiency of an algorithm is so that it can be optimized. Without a measure of efficiency we cannot determine whether a change made to an implementation, or choice between different implementations, is actually an optimization or a pessimization.
+
+How do we measure algorithm efficiency?
+Algorithm efficiency can be analyzed at two different stages:
+
+Before Implementation
+Known as A Priori, Theoretical, or Algorithm Analysis
+Efficiency is measured by counting the basic mathematical steps or computational operations performed by the algorithm. The count of operations grows relative to the problem's input size, known as a rate of growth, which is contrasted between implementations.
+
+After implementation
+Known as A Posterior, Empirical, or Profile Analysis
+The algorithm is implemented using a programming language. This is then executed on a target platform. During this method of analysis, empirical data, like running time and space required, is collected by the system to be contrasted between implementations.
+
+The documents in this series deal extensively with Algorithm Analysis, the method of theoretical analysis typically performed before implementation
+
+How does Algorithm Analysis measure efficiency?
+By providing a rate of growth that is relative to input size. An algorithm is said to be efficient when the increase of resources used remains small, or grows slowly, compared to a growth in it's input size.
+
+What is input size?
+Input size informally means the number of instances in the input, or number of things processed during the algorithm's execution.
+For example, during sorting, the input size references the number of items to be sorted.
+
+
+What is Profile Analysis?
+The most intuitive approach might be to implement an algorithm and execute it with test input, recording empirical data such as the resulting runtime and memory space usage, a process called  "profiling". These statistics comprise the implementation's "profile", which may then be compared to the profile of another implementation.
+
+
+Why should we do theoretical comparison when we can use empirical profiling data?
+
+This approach has problems:
+1.  To compare the algorithms, you must implement them both.
+      This is both cost and time prohibitive
+
+2.  The results might depend on what kind of computer you use.
+      An algorithm might seem efficient on a specialized machine, yet be inefficient in general.
+
+3.  The results might depend on the size of the input data.
+      A less efficient algorithm might run more quickly if the input size is not sufficiently large
+
+4.  Execution time depends on specific input.
+      Consider, for example, linear search and binary search. If an element to be searched happens to be the first in the list, linear search will find the element quicker than binary search.
+
+5.  Many tasks run concurrently on a computer.
+      The execution time of a particular program depends on the system load.
+
+
+How do we address the problems of Profile Analysis?
+We can address some of these problems using Algorithm Analysis as it is a theoretical approach developed to analyze algorithms independent of a computational platform and specific input.
+
+How does Algorithm Analysis
+Algorithm Analysis approximates the effect of a change on the size of the input, no matter the specific input or platform used. Using this approximation we may predict how fast an algorithm’s resource usage increases as a problem instance's input size increases, called a rate of growth. These predictions allow for the comparison of algorithms by examining the upper and lower bounds of their respective growth rates.
