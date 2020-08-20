@@ -3,11 +3,13 @@ This topic focuses on the fundamentals of Algorithms
 Table of Contents
 
 1. Analysis
-...a.Introduction to Analysis  
-...b.Asymptotic Complexity
-...c.Profiling
-...d.NP-Completeness
+...1.Introduction to Analysis  
+...2.Asymptotic Complexity
+...3.Profiling
+...4.NP-Completeness
+
 2. Design
+
 3. Implementation
 
 
