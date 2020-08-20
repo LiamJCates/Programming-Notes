@@ -1,7 +1,3 @@
-TODO:
-https://www.interviewcake.com/article/python/big-o-notation-time-and-space-complexity?course=dsa
-
-
 What is Algorithm Analysis?
 A method to estimate the resources required by an algorithm
 
@@ -16,19 +12,18 @@ The most common reason for measuring the efficiency of an algorithm is so that i
 
 How do we measure algorithm efficiency?
 Algorithm efficiency can be analyzed at two different stages:
+Before or after implementation
 
-Before Implementation
-Known as A Priori, Theoretical, or Algorithm Analysis
+Analysis before implementation is known as A Priori, Theoretical, or Algorithm Analysis
 Efficiency is measured by counting the basic mathematical steps or computational operations performed by the algorithm. The count of operations grows relative to the problem's input size, known as a rate of growth, which is contrasted between implementations.
 
-After implementation
-Known as A Posterior, Empirical, or Profile Analysis
+Analysis after implementation is known as A Posterior, Empirical, or Profile Analysis
 The algorithm is implemented using a programming language. This is then executed on a target platform. During this method of analysis, empirical data, like running time and space required, is collected by the system to be contrasted between implementations.
 
-The documents in this series deal extensively with Algorithm Analysis, the method of theoretical analysis typically performed before implementation
+
 
 How does Algorithm Analysis measure efficiency?
-By providing a rate of growth that is relative to input size. An algorithm is said to be efficient when the increase of resources used remains small, or grows slowly, compared to a growth in it's input size.
+By providing a rate of growth that is relative to input size. An algorithm is said to be efficient when increase of resource usage remains small, or grows slowly, compared to a growth in its input size.
 
 What is input size?
 Input size informally means the number of instances in the input, or number of things processed during the algorithm's execution.
@@ -157,14 +152,14 @@ procedure getC( A, B )
   return C
 end procedure
 
-Here we have three variables A, B, and C and one constant, 10.
+Here we have three variables A, B, and C as well as one constant, 10.
 Hence S(P) = 1 + 3.
 
 A complete summation of required space then depends on the size required by the data types of given variables and constants, and should be multiplied with each occurrence accordingly.
 
 We define three functions, used by an algorithm on input of size N
-Savg (P)        average-case running time
-Sworst (P)        worst-case running time
-Sbest (P)        best case running time
+Savg (P)      average-case running time
+Sworst (P)    worst-case running time
+Sbest (P)     best case running time
 
 Sbest (P) ≤ Savg (P) ≤ Sworst (P)
