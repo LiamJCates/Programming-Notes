@@ -1,4 +1,4 @@
-This topic focuses on the fundamentals of Algorithms
+#Fundamentals of Algorithms
 
 Table of Contents
 
