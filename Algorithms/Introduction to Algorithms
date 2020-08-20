@@ -3,8 +3,12 @@ In general terms, an Algorithm is a well-defined, step-by-step procedure consist
 
 While this description may sound restrictive, what defines a given algorithmic process, or may be achieved by one, is hypothetically limitless...
 
+
+
 Informal Examples
 Anything, from how an individual person might use a pencil and paper to perform arithmetic addition, to the circumstances we experience as reality, could be described algorithmically. In the first case, a step-by-step process used to calculate a summation might be translated into a mathematics lesson, interpretable and executed by a pupil assuming the role of the processing unit. In the later case, the phenomena of reality are understood to arise from the principles characterized by scientific law, processed by the fabric of spacetime. Indeed scientists have derived many computational models to do much the same in experimental simulations.
+
+
 
 Recognizing an Algorithm
 While no formal definition of "algorithm" is agreed to exist, typical components include:
@@ -13,8 +17,12 @@ While no formal definition of "algorithm" is agreed to exist, typical components
   accepted configuration of input data
   accepted configuration of output data
 
+
+
 Modern Algorithms
 The concept of an algorithmic process has existed since antiquity. In recent history, the term algorithm most commonly references a set of programming language instructions interpreted and executed by a microprocessor. In the course of its execution, the computational unit the algorithm manipulates transforms input data to arrive at a desired output result, such that each algorithm is said to create an input/output relationship which solves the problem the algorithm is stated to address.
+
+
 
 Not all procedures can be considered an algorithm.
 
