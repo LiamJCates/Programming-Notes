@@ -2,14 +2,14 @@ List
 
 A list is an ordered, nonunique, linear collection of dynamic size containing values of a certain type
 
-List indexing is of the general form A0, A1, A2, ..., AN−1
+List indexing is of the general form A<sub>0</sub>, A<sub>1</sub>, A<sub>2</sub>, ..., A<sub>N-1</sub>
 The size of this list is N.
 A list of size 0 is the empty list.
 
 For any list except the empty list, we say
-A0 is the first list element
-AN−1 is the last list element
-i is the position of the A<sub>i</sub> th element.
+A<sub>0</sub> is the first list element
+A<sub>N-1</sub> is the last list element
+i is the position of the A<sub>i</sub>th element.
 
 A<sub>i</sub> follows (or succeeds) A<sub>i−1</sub>     
 A<sub>i−1</sub> precedes A<sub>i</sub>        
@@ -19,9 +19,6 @@ for 0 ≤ i < N
 
 
 General List Operations
-Creation        
-printList            O(n)    Traverse and print the contents of the list
-
 clear               O(1)    returns an empty list
 
 contains/find/search    O(n)    Traverse and returns the position of the first occurrence of an item;
