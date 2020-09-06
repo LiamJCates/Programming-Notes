@@ -19,32 +19,34 @@ for 0 ≤ i < N
 
 
 General List Operations
-clear               O(1)    returns an empty list
+clear                 returns an empty list
 
-contains/find/search    O(n)    Traverse and returns the position of the first occurrence of an item;
+contains/find/search  Traverse and return the position of the first occurrence of an item;
 
-findKth/get           returns the element in some position (specified as an argument).
+find/get              returns the element in some position, K.
 
 insert/add            insert some element from some position in the list
 (pushing subsequent items one position higher).
-        add at position 0 is adding at the front
-add at position size() is adding an item as the new last item.
+  add at position 0 is adding at the front
+  add at position size-1 is adding an item at the end
 
-remove/delete        remove some element from some position in the list
+delete/remove         remove some element from some position in the list
 
-update/set            O(n)    Traverse list to replace an item at specific index
+update/set            Traverse list to replace an item at specific index
 
+Iterator
 We could also add operations such as next and previous, which would take a position as argument and return the position of the successor and predecessor, respectively.
 
 The time and space complexity of these operations depends on the implementation
 There are two popular list implementations: ArrayList and LinkedList
 
-                                  Linked list       Array       ArrayList    Balanced tree
+                            Linked   Array   ArrayList    B-Tree
+Index/access                Θ(n)     Θ(1)    Θ(1)         Θ(log n)
+Search                      Θ(n)     Θ(n)    Θ(n)         Θ(log n)
+Insert/delete beginning     Θ(n)     N/A     Θ(n)         Θ(log n)
+Insert/delete at end        Θ(1)     N/A     Θ(1)**       Θ(log n)
 
-Indexing                              Θ(n)        Θ(1)       Θ(1)        Θ(log n)
-Insert/delete at beginning        Θ(1)        N/A    Θ(n)        Θ(log n)
-Insert/delete at end              Θ(1)        N/A        Θ(1) amortized    Θ(log n)
-Insert/delete in middle         search time
-                                    + Θ(1)        N/A    Θ(n)             Θ(log n)
+Wasted space (average)      Θ(n)     0       Θ(n)         Θ(n)
 
-Wasted space (average)            Θ(n)        0         Θ(n)        Θ(n)
+*
+** Amortized
