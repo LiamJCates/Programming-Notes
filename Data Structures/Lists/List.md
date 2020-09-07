@@ -14,21 +14,20 @@ i is the position of the A<sub>i</sub>th element.<br/>
 A<sub>i</sub> follows (or succeeds) A<sub>i−1</sub>     
 A<sub>i−1</sub> precedes A<sub>i</sub>        
 for 0 ≤ i < N
+<br/><br/>
 
+General List Operations<br/>
 
-
-
-General List Operations
 clear                 returns an empty list
 
 contains/find/search  Traverse and return the position of the first occurrence of an item;
 
 find/get              returns the element in some position, K.
 
-insert/add            insert some element from some position in the list
-(pushing subsequent items one position higher).
-  add at position 0 is adding at the front
-  add at position size-1 is adding an item at the end
+insert/add            insert some element into some position in the list<br/>
+(pushing subsequent items one position higher)<br/>
+  adding at position 0 is adding at the front<br/>
+  adding at position size-1 is adding an item at the end<br/>
 
 delete/remove         remove some element from some position in the list
 
