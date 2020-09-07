@@ -2,7 +2,7 @@ LinkedList
 A linked list is a recursive data structure implementing the List data type
 
 A linked list is a linear collection of data elements whose order is not given by their physical placement in memory. Instead, each element points to the next. It is a data structure consisting of a collection of nodes which together represent a sequence.
-
+<br/><br/>
 
 Singly LinkedList
 The most basic LinkedList implementation is a singly linked list
@@ -40,30 +40,13 @@ Therefore a complete traversal of the list must begin with the first element.
 You need a pointer or reference to the first element of a list to locate all the elements in the list. When adding at the end of the list, if a reference to the tail element is maintained, the tail reference can be used to negate the need for traversing the entire list.
 
 More complex variants add additional links, allowing more efficient insertion or removal of nodes at arbitrary positions. A drawback of linked lists is that access time is linear (and difficult to pipeline). Faster access, such as random access, is not feasible. Arrays have better cache locality compared to linked lists.
-
-
+<br/><br/>
 
 Doubly Linked List
 In a doubly linked list, each element has a link to the previous element in the list as well as to the next element in the list. This additional link makes it possible to traverse the list in either direction. The entire list can be traversed starting from any element. A doubly linked list has head and tail elements just like a singly linked list. The head of the list has an empty or null previous link, just as the tail of the list has a null or empty next link.
 
 Circular Linked List
 The final common variation on the linked list theme is the circular linked list, which comes in singly and doubly linked varieties. Circular linked lists have no ends — no head or tail. Each element in a circular linked list has non-null next (and previous, if it’s also doubly linked) pointers or references. A list with one element merely points to itself. The primary traversal problem for these lists is cycle avoidance — if you don’t track where you start, you’ll cycle infinitely through the list.
-public class Node<T> {
-  private T data;
-  private Node<T> prev;
-  private Node<T> next;
-
-  public Node( T value ) { data = value; }
-
-  public T getValue() { return data; }
-  public void setValue( T value ) { data = value; }
-
-  public Node<T> getPrev() { return prev; }
-  public void setPrev( Node<T> elem ) { prev = elem; }
-
-  public Node<T> getNext() { return next; }
-  public void setNext( Node<T> elem ) { next = elem; }
-}
 
 Considerations:
 The head element of a singly linked list must always be tracked; otherwise, the list will be lost — either garbage collected or leaked, depending on the language. This means that the pointer or reference to the head of the list must be updated when a new element is inserted ahead of the first element or when the existing first element is removed from the list.
