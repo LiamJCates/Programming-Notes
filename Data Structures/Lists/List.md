@@ -18,33 +18,40 @@ for 0 ≤ i < N
 
 General List Operations<br/>
 
-clear                 returns an empty list
-
-contains/find/search  Traverse and return the position of the first occurrence of an item;
-
-find/get              returns the element in some position, K.
-
-insert/add            insert some element into some position in the list<br/>
+add/insert: insert some element into some position in the list<br/>
 (pushing subsequent items one position higher)<br/>
   adding at position 0 is adding at the front<br/>
   adding at position size-1 is adding an item at the end<br/>
 
-delete/remove         remove some element from some position in the list
+clear: returns an empty list
 
-update/set            Traverse list to replace an item at specific index
+contains/find/search: return the position of the first occurrence of an item;
 
-Iterator
-We could also add operations such as next and previous, which would take a position as argument and return the position of the successor and predecessor, respectively.
+get/find: returns the element in some position, K.
+
+remove/delete: remove some element from some position in the list
+
+set/update: replace an item at specific index
+
+
+Complexity
 
 The time and space complexity of these operations depends on the implementation
-There are two popular list implementations: ArrayList and LinkedList
+There are two popular list implementations: LinkedLists and ArrayLists
+The time and space complexity of these implementations are often compared to (static) Arrays and a Self-Balancing Tree (B-Tree)
 
     Operation             Linked   Array   ArrayList    B-Tree
-    Index/access          Θ(n)     Θ(1)    Θ(1)         Θ(log n)
-    Search                Θ(n)     Θ(n)    Θ(n)         Θ(log n)
     Insert/delete at end  Θ(1)     N/A     Θ(1)**       Θ(log n)
     Insert/delete not end Θ(1)     N/A     Θ(n)         Θ(log n)
+
+    Index/access          Θ(n)     Θ(1)    Θ(1)         Θ(log n)
+    Search                Θ(n)     Θ(n)    Θ(n)         Θ(log n)
+
     Wasted space          Θ(n)     0       Θ(n)         Θ(n)
 
 Search Time O(n)
 ** Amortized
+
+
+Iterator
+We could also add operations such as next and previous, which would take a position as argument and return the position of the successor and predecessor, respectively.
