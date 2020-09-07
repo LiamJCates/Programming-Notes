@@ -31,6 +31,7 @@ If so, we halve its length by
   copying over each element to the new array,
   setting the list instance variable to reference the new array.
 
-We then perform the removal.
+We then perform the removal 
+(TODO: at end + anywhere else (shift))
 
 In this way, after the array is halved, it will be about half full and can accommodate a substantial number of operations before having to change the length again.
