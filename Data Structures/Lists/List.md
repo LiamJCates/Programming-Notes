@@ -40,13 +40,12 @@ We could also add operations such as next and previous, which would take a posit
 The time and space complexity of these operations depends on the implementation
 There are two popular list implementations: ArrayList and LinkedList
 
-      Operation             Linked   Array   ArrayList    B-Tree
-      Index/access          Θ(n)     Θ(1)    Θ(1)         Θ(log n)
-      Search                Θ(n)     Θ(n)    Θ(n)         Θ(log n)
-      Insert/delete at end  Θ(1)     N/A     Θ(1)**       Θ(log n)
-      Insert/delete not end Θ(1)     N/A     Θ(n)         Θ(log n)
-
-Wasted space (average)      Θ(n)     0       Θ(n)         Θ(n)
+    Operation             Linked   Array   ArrayList    B-Tree
+    Index/access          Θ(n)     Θ(1)    Θ(1)         Θ(log n)
+    Search                Θ(n)     Θ(n)    Θ(n)         Θ(log n)
+    Insert/delete at end  Θ(1)     N/A     Θ(1)**       Θ(log n)
+    Insert/delete not end Θ(1)     N/A     Θ(n)         Θ(log n)
+    Wasted space          Θ(n)     0       Θ(n)         Θ(n)
 
 +   Search Time O(n)
 ** Amortized
