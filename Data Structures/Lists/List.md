@@ -2,14 +2,14 @@ List
 
 A list is an ordered, nonunique, linear collection of dynamic size containing values of a certain type
 
-List indexing is of the general form A<sub>0</sub>, A<sub>1</sub>, A<sub>2</sub>, ..., A<sub>N-1</sub>
-The size of this list is N.
-A list of size 0 is the empty list.
+List indexing is of the general form: A<sub>0</sub>, A<sub>1</sub>, A<sub>2</sub>, ..., A<sub>N-1</sub><br/>
+The size of this list is N.<br/>
+A list of size 0 is the empty list.<br/>
 
-For any list except the empty list, we say
-A<sub>0</sub> is the first list element
-A<sub>N-1</sub> is the last list element
-i is the position of the A<sub>i</sub>th element.
+For any list except the empty list, we say<br/>
+A<sub>0</sub> is the first list element<br/>
+A<sub>N-1</sub> is the last list element<br/>
+i is the position of the A<sub>i</sub>th element.<br/>
 
 A<sub>i</sub> follows (or succeeds) A<sub>i−1</sub>     
 A<sub>i−1</sub> precedes A<sub>i</sub>        
@@ -47,5 +47,5 @@ There are two popular list implementations: ArrayList and LinkedList
     Insert/delete not end Θ(1)     N/A     Θ(n)         Θ(log n)
     Wasted space          Θ(n)     0       Θ(n)         Θ(n)
 
-+   Search Time O(n)
+Search Time O(n)
 ** Amortized
