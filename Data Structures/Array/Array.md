@@ -37,7 +37,7 @@ When removing items, if the number of items stored in the array is equal to capa
 
 ## Array Amortized Analysis
 
-A dynamic array automatically grows when you try to make an insertion and there is no more space left for the new item. Usually, the array doubles in size.
+A dynamic array automatically grows when you try to make an insertion and there is no more space left for the new item. Most typically, the array doubles in size.
 
 This additional functionality often comes with a cost. When we don't have any space for a new item, we have to allocate a bigger array and copy over all of the elements from the array we've outgrown before we can finally append our item.
 
