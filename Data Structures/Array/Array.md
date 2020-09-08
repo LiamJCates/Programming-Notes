@@ -10,31 +10,29 @@ Properties of arrays are its capacity, type, and size:
 * Type specifies the type of items stored by an array, the type of these items determines the memory space needed by each individual array member
 * Array size is the size of an array in memory and it determined by the capacity * item memory size
 <br/><br/>
+
 A basic array has a fixed capacity that must be known at time of array instantiation and are thus known as fixed-capacity or fixed-size arrays.
 <br/><br/>
 
 ## Dynamic Array
 
-When using arrays as underlying storage for more complex data structures techniques are used to allow the array to resize
-
+When using arrays as underlying storage for more complex data structures techniques are used to allow the array to resize or have a dynamic capacity.
+<br/><br/>
 dynamic arrays (also called resizable, growable, or extensible) are array variables whose index ranges may be expanded at any time after creation, without changing the values of its current elements.
-
-An extensible array can be implemented as a fixed-size array, with a counter that records how many elements are actually in use. The append operation merely increments the counter; until the whole array is used, the append operation may then re-allocate the underlying array with a larger size, and copy the old elements to the new area.
-
-
-Generally:
-When inserting items
-if the number of items stored in the array is equal to the capacity
-create another array of the same type and double capacity
-copy the members from the old to the new array
-
-When removing items
-if the number of items stored in the array is equal to capacity/4
-create another array of the same type and half the capacity
-copy the members from the old to the new array
-
-
-
+<br/><br/>
+A dynamic array can be implemented as a fixed-size array, with a counter that records how many elements are actually in use. The add/remove operations merely increments or decrement the counter accordingly, along with altering the collection itself. Once a threshold size is achieved, these operations then allocate a new array with a larger or smaller size, and copy the old elements to the new array then reassign the old arrays reference to point to the new array.
+<br/><br/>
+Generally:<br/>
+When inserting, if the number of items stored in the array is equal to the capacity<br/>
+* create another array of the same type and double capacity
+* copy the members from the old to the new array
+* reassign the reference
+<br/><br/>
+When removing items, if the number of items stored in the array is equal to capacity/4<br/>
+* create another array of the same type and half the capacity
+* copy the members from the old to the new array
+* reassign the reference
+<br/><br/>
 
 ## Array Amortized Analysis
 
