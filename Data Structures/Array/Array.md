@@ -69,8 +69,10 @@ m/4 is half that:<br/>
 And so on:<br/>
 ![A/8](https://github.com/LiamJCates/Programming-Notes/blob/master/Data%20Structures/Array/images/Array_m8.png)<br/>
 
-We see that the whole right side ends up being another square of size m, making the sum 2m.
-For m appends, the appends themselves cost m, and the doubling costs 2m. This is a cost of 3m, which is O(m).
-So on average, each individual append is O(1) and m appends cost us O(m).
+We see that the whole right side ends up being another square of size m, making the sum 2m.<br/><br/>
 
+For m appends, the appends themselves cost m, and the doubling costs 2m.<br/> This is a total cost of 3m, which is O(m).
+<br/><br/>
+Therefore, on average, each individual append is O(1) and m appends cost us O(m).
+<br/><br/>
 Remember, even though the amortized cost of an append is O(1), the worst case cost is still O(n). Some appends will take a long time.
