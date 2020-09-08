@@ -1,4 +1,6 @@
-Array
+# Array
+
+## Simple Array
 
 An array is a contiguous collection of same typed data
 The members of an array collection are called elements
@@ -14,7 +16,8 @@ Known as a fixed-capacity or fixed-size array
 
 
 
-Dynamic Array
+## Dynamic Array
+
 When using arrays as underlying storage for more complex data structures techniques are used to allow the array to resize
 
 dynamic arrays (also called resizable, growable, or extensible) are array variables whose index ranges may be expanded at any time after creation, without changing the values of its current elements.
@@ -36,7 +39,7 @@ copy the members from the old to the new array
 
 
 
-Dynamic Array Amortized Analysis
+## Array Amortized Analysis
 
 A dynamic array automatically grows when you try to make an insertion and there is no more space left for the new item. Usually, the array doubles in size.
 
