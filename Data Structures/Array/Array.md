@@ -28,6 +28,7 @@ When inserting, if the number of items stored in the array is equal to the capac
 * copy the members from the old to the new array
 * reassign the reference
 <br/><br/>
+
 When removing items, if the number of items stored in the array is equal to capacity/4<br/>
 * create another array of the same type and half the capacity
 * copy the members from the old to the new array
