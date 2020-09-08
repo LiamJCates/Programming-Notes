@@ -60,14 +60,14 @@ So, the cost we're looking at is:        Or from right to left:
 
 We can see a trend when we represent this diagrammatically:
 
-If this is m:            
-![A](https://github.com/LiamJCates/Programming-Notes/blob/master/Data%20Structures/Array/images/Array_m.png)
-m/2​ is half the size:        
-![A/2](https://github.com/LiamJCates/Programming-Notes/blob/master/Data%20Structures/Array/images/Array_m2.png)
-m/4 is half that:
-![A/4](https://github.com/LiamJCates/Programming-Notes/blob/master/Data%20Structures/Array/images/Array_m4.png)
-And so on:     
-![A/8](https://github.com/LiamJCates/Programming-Notes/blob/master/Data%20Structures/Array/images/Array_m8.png)
+If this is m:<br/>
+![A](https://github.com/LiamJCates/Programming-Notes/blob/master/Data%20Structures/Array/images/Array_m.png)<br/>
+m/2​ is half the size:<br/>
+![A/2](https://github.com/LiamJCates/Programming-Notes/blob/master/Data%20Structures/Array/images/Array_m2.png)<br/>
+m/4 is half that:<br/>
+![A/4](https://github.com/LiamJCates/Programming-Notes/blob/master/Data%20Structures/Array/images/Array_m4.png)<br/>
+And so on:<br/>
+![A/8](https://github.com/LiamJCates/Programming-Notes/blob/master/Data%20Structures/Array/images/Array_m8.png)<br/>
 
 We see that the whole right side ends up being another square of size m, making the sum 2m.
 For m appends, the appends themselves cost m, and the doubling costs 2m. This is a cost of 3m, which is O(m).
