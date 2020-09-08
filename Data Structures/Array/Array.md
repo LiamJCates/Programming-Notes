@@ -1,20 +1,17 @@
-# Array
+# Arrays
 
 ## Simple Array
 
-An array is a contiguous collection of same typed data
+An array is a contiguous collection of same typed data<br/>
 The members of an array collection are called elements
-
+<br/><br/>
 Properties of arrays are its capacity, type, and size:
 * Capacity is generally the number of items that the array can potentially store
 * Type specifies the type of items stored by an array, the type of these items determines the memory space needed by each individual array member
 * Array size is the size of an array in memory and it determined by the capacity * item memory size
-
-A basic array has a fixed capacity that must be known at time of array instantiation
-
-Known as a fixed-capacity or fixed-size array
-
-
+<br/><br/>
+A basic array has a fixed capacity that must be known at time of array instantiation and are thus known as fixed-capacity or fixed-size arrays.
+<br/><br/>
 
 ## Dynamic Array
 
