@@ -28,10 +28,10 @@ the next field to point the subsequent node in the order of the list collection.
 
 We can then dynamically resize the LinkedList through the creation and deletion of nodes
 
-This linked structure allows for efficient insertion or removal of elements from any position in the sequence during iteration.
+This linked structure allows for efficient insertion or removal of elements from any position in the sequence.
 
 
-It’s common to store the initial pointer or reference to the first node in a separate data structure and potentially the last node as well.
+It’s common for the LinkedList data structure to store the initial pointer or reference to the first node and potentially the last node as well.
 The first node is called the head and is the only node with nothing linking to it
 The last node is called the tail and is the only node with pointing to a null value
 
