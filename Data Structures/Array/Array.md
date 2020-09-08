@@ -3,13 +3,13 @@ Array
 An array is a contiguous collection of same typed data
 The members of an array collection are called elements
 
-Properties of arrays are its capacity, type, and size
-
-Capacity is generally the number of items that the array can potentially store
-Type specifies the type of items stored by an array, the type of these items determines the memory space needed by each individual array member
-Array size is the size of an array in memory and it determined by the capacity * item memory size
+Properties of arrays are its capacity, type, and size:
+* Capacity is generally the number of items that the array can potentially store
+* Type specifies the type of items stored by an array, the type of these items determines the memory space needed by each individual array member
+* Array size is the size of an array in memory and it determined by the capacity * item memory size
 
 A basic array has a fixed capacity that must be known at time of array instantiation
+
 Known as a fixed-capacity or fixed-size array
 
 
