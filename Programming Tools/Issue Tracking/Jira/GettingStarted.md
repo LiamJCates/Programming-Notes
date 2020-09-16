@@ -1,6 +1,6 @@
 # Jira: Getting Started
 
-## Course Overview
+## Overview
 
 Jira is one of the most widely used project planning and status tracking tools in the world.
 
@@ -16,6 +16,7 @@ This document is focused entirely on getting you up to speed quickly, covering:
 * Using and customizing dashboards
 * Using Jira with a code repository
 * Basic project creation
+<br/><br/><br/>
 
 ## What Is Jira?
 
@@ -129,7 +130,7 @@ Project administrators create version numbers for that particular project, and v
 
 ### Summary
 These grouping concepts are not either-or. They could all apply to a single issue.
-For example, an issue named Allow User to Provide Healthcare Cost might 
+For example, an issue named Allow User to Provide Healthcare Cost might
 * be part of a deductions epic.
 * belong to the tax component
 * be included in version one of a product
