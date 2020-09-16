@@ -1,7 +1,8 @@
 ## LinkedList
+
 A linked list is a recursive data structure implementing the List data type
 
-The linked list data structure is a linear collection of data elements represented by a linked sequence of nodes.
+The data structure is a linear collection of data elements represented by a linked sequence of nodes.
 
 Unlike an array, sequence order is not given by physical placement in memory but by following references that link to each subsequent node.
 
@@ -13,9 +14,14 @@ Each node thus, at minimum, contains a list value and a reference to a location 
 A Singly LinkedList is the most basic LinkedList implementation
 
 The Singly LinkedList structure is either
-A pointer refencing an empty list (null)
-A reference to a List
-node having a generic item a list element and a reference to subsequent members in the list collection (the link).
+An empty list, a null reference
+A reference to the first list node
+
+The LinkedList data structure stores a reference to the first node and potentially the last node as well.
+The first node is called the head and is designated by being the only node with nothing linking to it.
+The last node is called the tail and is designated by being the only node that points to a value of null.
+A list with a single element has one node that is both the head and the tail of that list.
+
 
 In this form, each node contains:
 data of a given type consistent with the reset of the list,
@@ -34,24 +40,21 @@ the next field to point the subsequent node in the order of the list collection.
 
 We can then dynamically resize the LinkedList through the creation and deletion of nodes
 
-This linked structure allows for efficient insertion or removal of elements from any position in the sequence.
+An advantage of this linked structure is that it allows for efficient insertion or removal of elements from any position in the sequence.
 
-
-It’s common for the LinkedList data structure to store the initial pointer or reference to the first node and potentially the last node as well.
-The first node is called the head and is designated by being the only node with nothing linking to it.
-The last node is called the tail and is designated by being the only node that points to a value of null.
-A list with a single element has one node that is both the head and the tail of that list.
-
+A drawback of linked lists is that access time is linear (and difficult to pipeline). Faster access, such as random access, is not feasible. Arrays have better cache locality compared to linked lists.
 
 Because the links in a singly linked list consist only of next pointers (or references), the list can be traversed only in the forward direction.
 Therefore a complete traversal of the list must begin with the first element, the head.
 You need a pointer or reference to the first element of a list to locate all the elements in the list. When adding at the end of the list, if a reference to the tail element is maintained, the tail reference can be used to negate the need for traversing the entire list.
 
-More complex variants add additional links, allowing more efficient insertion or removal of nodes at arbitrary positions. A drawback of linked lists is that access time is linear (and difficult to pipeline). Faster access, such as random access, is not feasible. Arrays have better cache locality compared to linked lists.
+More complex variants add additional links, allowing more efficient insertion or removal of nodes at arbitrary positions.
 <br/><br/>
 
 ## Doubly Linked List
+
 In a doubly linked list, each element has a link to the previous element in the list as well as to the next element in the list. This additional link makes it possible to traverse the list in either direction. The entire list can be traversed starting from any element. A doubly linked list has head and tail elements just like a singly linked list. The head of the list has an empty or null previous link, just as the tail of the list has a null or empty next link.
+<br/><br/>
 
 ## Circular Linked List
 The final common variation on the linked list theme is the circular linked list, which comes in singly and doubly linked varieties. Circular linked lists have no ends — no head or tail. Each element in a circular linked list has non-null next (and previous, if it’s also doubly linked) pointers or references. A list with one element merely points to itself. The primary traversal problem for these lists is cycle avoidance — if you don’t track where you start, you’ll cycle infinitely through the list.
