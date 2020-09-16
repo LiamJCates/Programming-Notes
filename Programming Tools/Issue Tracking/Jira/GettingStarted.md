@@ -28,7 +28,7 @@ The low-tech competitor of status tracking software tools is really just a white
 
 Jira contains four packages:
 * Jira Core is intended as generic project management
-* Jira Software includes the base software, including agile project management features (previously a separate product: Jira Agile)
+* Jira Software includes the base software, including agile project management features (previously Jira Agile)
 * Jira Service Desk is intended for use by IT or business service desks.
 * Jira Ops is intended as incident management
 
@@ -129,8 +129,9 @@ Project administrators create version numbers for that particular project, and v
 <br/>
 
 ### Summary
-These grouping concepts are not either-or. They could all apply to a single issue.
-For example, an issue named Allow User to Provide Healthcare Cost might
+These grouping concepts are not either-or. They could all apply to a single issue.<br/>
+
+For example, an issue named Allow User to Provide Healthcare Cost might:
 * be part of a deductions epic.
 * belong to the tax component
 * be included in version one of a product
@@ -143,7 +144,7 @@ How and if different projects and teams use these grouping concepts will vary.
 
 Someone who can log into your Jira instance is, obviously, a user.
 
-###Groups
+### Groups
 A user is assigned to one or more Jira groups.
 These groups are not project specific. They are high-level groups that give users global permissions in Jira, permissions that will cross projects.
 Groups can be customized, but Jira has defaults.
