@@ -43,6 +43,7 @@ Jira Service Desk is an optimized version of Jira for those organizations that o
 This document is not going to focus too much on the differences between these products as so much of what we'll cover will apply to all three of them, but it's good to be aware of which one you're using at your workplace and where it fits with respect to the others.
 
 The Jira installation you're using could be installed at your company either at an internal data center or private cloud, that product is called Jira Server, or it could be hosted by Atlassian on Jira Cloud, a Software as a Service offering. Currently, the two products have very similar functionality, obviously, but they appear a bit different. We'll primarily use Jira Server during this course, but we will spend some time, as needed, on Jira Cloud as well where there are significant functional differences or where navigation is different.
+<br/><br/><br/>
 
 ## Understanding Key Jira Concepts
 
@@ -93,7 +94,7 @@ Dashboards in Jira are similar to boards in that they don't own issues, but they
 
 ### Filters
 The last primary issue-related concept is filters. Filters are saved searches on issues. If you have a search you need to execute to display certain issues frequently, you can save it as a filter. Boards and gadgets on dashboards use filters behind the scenes as well to determine what issues they're displaying or gathering data from. You can have personal filters or share them with a team.
-<br/><br/>
+<br/><br/><br/>
 
 
 ## Understanding Grouping and Categorizing Concepts
@@ -117,7 +118,8 @@ A label value, once created, may be used on any project in Jira.
 
 ### Components
 Each project can have a number of components
-Components are conceptually just some subset or part of a single project, for instance, database or user interface. A component can be set with a lead, a user responsible for that component so that issues assigned to that component will default assignment to that user.
+Components are a field on an issue that conceptually group some subset or part of a single project, for instance, database or user interface.
+A component can be set with a lead, a user responsible for that component so that issues assigned to that component will default assignment to that user.
 <br/>
 
 ### Versions
@@ -126,23 +128,33 @@ Project administrators create version numbers for that particular project, and v
 <br/>
 
 ### Summary
-These grouping concepts are not either-or. They could all apply to a single issue. An issue named Allow User to Provide Healthcare Cost, for example, might be part of a deductions epic. It might belong to the tax component and be included in version one of a product and have the labels user input and financial data. How and if different projects and teams use these grouping concepts will vary.
-<br/><br/>
+These grouping concepts are not either-or. They could all apply to a single issue.
+For example, an issue named Allow User to Provide Healthcare Cost might 
+* be part of a deductions epic.
+* belong to the tax component
+* be included in version one of a product
+* have the labels user input and financial data.
+
+How and if different projects and teams use these grouping concepts will vary.
+<br/><br/><br/>
+
 ## Understanding Users, Groups, and Roles
 
 Someone who can log into your Jira instance is, obviously, a user.
 
-Groups
+###Groups
 A user is assigned to one or more Jira groups.
 These groups are not project specific. They are high-level groups that give users global permissions in Jira, permissions that will cross projects.
 Groups can be customized, but Jira has defaults.
 Administrator, Jira administrator, and Jira software user are all default examples.
 A user's groups are displayed on their profile page in Jira.
+<br/>
 
-Roles
+### Roles
 Last, users have roles on projects, and that will affect what permissions they have on that specific project. A user in the administrator role on a particular project has full rights to maintain that project, not the entire Jira instance, just that one project. Other roles on the project can vary by installation of Jira, so what you see on your own site may vary. You may have developers and testers and customers, or you may have some other set of project roles that have been set up.
+<br/><br/><br/>
 
-Introducing Our Carved Rock Fitness Sample Projects
+## Introducing Our Carved Rock Fitness Sample Projects
 
 We'll have two projects we are tracking in Jira for Carved Rock. The first of these is Fitness Tracker, a mobile application the company is trying to get ready before their grand opening. This app will allow their members to track their fitness progression in various ways over the course of their gym membership. The application will be integrated via Bluetooth with many of the fitness machines, tracking a member's use of that machine automatically. The second is the Grand Opening project, which is where all the tasks necessary for the gym and store to be ready to open are being planned and tracked, so we'll have one software development project and one task-oriented project. We have a few employees already hired who will be doing all of this work to get the store ready and tracking their efforts in Jira. This is Rachel. Rachel is the owner, so she will be the person primarily creating and assigning issues for both the software and non-software projects and administering the two Jira projects. And this is Anne. She's a software developer, and she will be primarily updating the status of the issues as she works on features for the Fitness Tracker application. And this is Bob. Bob is also a software developer, so we have a team of two programmers working on Fitness Tracker. Last but not least, this is Jake. He'll be a shift manager, and before the opening, he's the one doing most of the non-software development tasks needed to get the gym and store ready, so he'll be the one primarily updating the status of issues in the Grand Opening project. That's a small group of people, but we just need enough to demonstrate some of Jira's features. So that's it for Carved Rock Fitness. Maybe after the end of this course we'll not only understand Jira, but be inspired to go out and start a business. Now let's take a quick, high-level tour of Jira before we start digging in on these projects and learning features.
 Demo: Finding Your Way around Jira Server
