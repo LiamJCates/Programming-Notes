@@ -23,31 +23,32 @@ dynamic arrays (also called resizable, growable, or extensible) are array variab
 A dynamic array can be implemented as a fixed-size array, with a counter that records how many elements are actually in use. The add/remove operations merely increments or decrement the counter accordingly, along with altering the collection by adding or removing an item, respectively. Once a threshold size is achieved, these operations then allocate a new array with a larger or smaller size, and copy the old elements to the new array then reassign the old arrays reference to point to the new array.
 <br/><br/>
 Generally:<br/>
-When inserting, if the number of items stored in the array is equal to the capacity<br/>
+When inserting, if, before the insertion, the number of items stored in the array is equal to the capacity<br/>
 * create another array of the same type and double capacity
 * copy the members from the old to the new array
-* reassign the reference
+* reassign the old array reference
+* perform the intended addition
 <br/><br/>
 
-When removing items, if the number of items stored in the array is equal to capacity/4<br/>
+When removing items, if, after the removal, the number of items stored in the array is equal to capacity/4<br/>
 * create another array of the same type and half the capacity
 * copy the members from the old to the new array
-* reassign the reference
+* reassign the old array reference
 <br/><br/>
 
 ## Array Amortized Analysis
 
-A dynamic array automatically grows when you try to make an insertion and there is no more space left for the new item. Most typically, the array doubles in size.
+A dynamic array dynamically adjusts capacity during insertion and deletion. Most typically, the array doubles or haves in size.
 
-This additional functionality often comes with a cost. When we don't have any space for a new item, we have to allocate a bigger array and copy over all of the elements from the array we've outgrown before we can finally append our item.
+This additional functionality often comes with a cost. We have to allocate a new array and copy over all of the elements.
 
-Doing all that copying takes O(n) time, where n is the number of elements in our array.
-Oof. That's an expensive cost for an append. In a fixed-length array, appends only take O(1) time!
+Doing all that copying takes O(n) time, where n is the number of elements in our array. __Oof__ That's an expensive cost for an append. In a fixed-length array, appends only take O(1) time!
 
-But appends take O(n) time only when we insert into a full array. And that's pretty rare, especially if we double the size of the array every time we run out of space.
+But appends take O(n) time only when we insert into either a full or quarter full array. And that's pretty rare, especially if we double or half the size of the array every time we adjust the capacity.
 
 So in most cases appending is still O(1) time, and sometimes it's O(n) time.
-Amortized analysis looks at the cost of a single append averaged over a large number of appends.
+
+Amortized analysis looks at the cost of appending averaged over a large number of appends.
 
 "Amortize" is a fancy verb used in finance that refers to paying off the cost of something gradually. With dynamic arrays, every expensive append where we have to grow the array "buys" us many cheap appends in the future. Conceptually, we can spread the cost of the expensive append over all those cheap appends.
 Here, instead of looking at the worst case for an append individually, let's look at the overall cost of doing many appends—let's say m appends.
