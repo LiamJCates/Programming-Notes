@@ -2,10 +2,11 @@
 
 ## High Level Overview
 
-Maven is a build tool.
-Maven always produces one output that is called an artifact, a component  JAR, ZIP file, etc...
+Maven is a build tool<br/>
+Maven always produces one output that is called an artifact<br/>
+The artifact might be a component, a JAR, a ZIP file, etc...<br/>
 
-Maven helps up manage our dependencies.
+Maven helps up manage our dependencies.<br/>
 Dependency management is probably the number one reason that people get into using Maven
 
 At a macro level, Maven can be used as a project management tool
@@ -394,55 +395,54 @@ goals are always tied to a phase
 
 ### Phases
 
-validate phase
+#### validate phase
 validates the project structure and necessary information.
 It has all the plugins that it needs, it has all the artifacts downloaded, all of our structure is in place. It has permissions to create these directories or do things like that.
 
-compile phase.
+#### compile phase
 where we compile our source code out. It should be of note though that this is not where testing code gets compiled
 
-test phase
+#### test phase
 Testing tests the compiled source code and actually compiles our test source code and makes sure all of the resources are in line with our test package, so our src/test/java directory.
 
-package phase.
+#### package phase
 The package phase packages all of our code in its defined <packaging>
 It doesn't do anything with it once it is packaged, but it allows us to test to make sure that everything's in its proper order that it should be. A lot of people will tie generating resources or Javadocs or stuff like that to this phase, which we're going to talk about here in just a second.
 
-integration-test phase.
+#### integration-test phase
 This will allow us to deploy and run integration tests. A lot of people don't use this yet because it's still a newer phase to the Maven lifecycle.
 
-verify phase.
+#### verify phase
 This runs checks against our project to verify that it's good and meets all the requirements that it should before we install it in our local repository or we deploy it to a remote repository.
 
 
-install phase
+#### install phase
 package it and put it in our local repo
 
-deploy phase
+#### deploy phase
 will copy up to a remote repository.
 
-The Compiler Plugin
 
 
+### The Compiler Plugin
 
 The Compiler Plugin is exactly what it sounds like, it's the plugin that we use to compile both our source code and our test code, although it does run in different phases for each.
 
-The Compiler Plugin
-invokes javac
-builds our classpath based off of our dependencies and their classification of scope.
+The compiler plugin
+* invokes javac
+* builds our classpath based off of our dependencies and their classification of scope.
 
-it defaults to an older version of Java, Java 1.7, regardless of what JDK you have installed.
+The compiler plugin defaults to an older version of Java, Java 1.7, regardless of what JDK you have installed.
 
 For this reason alone, the Compiler Plugin is the most overwritten plugin
 We can customize this plugin by defining the <configuration> section.
 In the configuration section we can specify a handful of things.
 We can tell it that we want it to fork, which means to spin off on its own thread. We can set the min and max memory. So if you've ever run into compilation problems where you haven't had enough memory on the heap or whatever, you can specify those memory settings here inside your configuration. We also have our source and target directories, which is mainly the two features that people overwrite the most to tell it to use a different target than what we're compiling to.
 
-Demo: Compiler Plugin
+### Demo: Compiler Plugin
 
-Inside of our <build> element, again, we have a <plugins> element, that houses <plugin> elements
+Inside of our <build> element, we have a <plugins> element, that houses <plugin> elements
 <plugin> elements require <groupId> <artifactId> <version> and <configuration> elements
-
 inside <configuration> we specify the <release>
 
 Now I want to show you one small change for the sake of an example.
@@ -452,15 +452,15 @@ We resolve that by right-click in Project Explorer > Maven > Update Project
 It should go through, rebuild our application, and you'll notice that it has now configured our project to be a JavaSE-9 application.
 
 
-The Jar Plugin
+### The Jar Plugin
 
 The JAR Plugin is used to package our code into a JAR file
 usually tied to the package phase of our build lifecycle.
 Now the configuration section will
-allow us to change the includes and excludes.
-build our manifest for us.
+* allow us to change the includes and excludes.
+* build our manifest for us.
 
-Demo: Jar Plugin
+### Demo: Jar Plugin
 
 The JAR plugin is already configured by default as part of the packaging phase
 to configure it we add that plugin to our POM <plugins> inside the <build> section
@@ -480,11 +480,11 @@ The double asterisk says go through all the directories and look for anything na
 So, this is a basic configuration for the JAR Plugin, and you can run that inside of your application or we can go ahead and go to our command line and do mvn package
 
 
-The Source Plugin
+### The Source Plugin
 
 The Source Plugin can often be confusing to people because they think it's doing more than what it actually does for our application. All it does is package up our source code for us so that we can distribute it for context-sensitive help inside our IDE or to make some more code intensive Javadocs. It's by default also tied to the package phase, just like we saw with the JAR Plugin, and it's frequently even overridden to a later phase than that. If you're running package a lot and you don't want to sit there and wait for it, people will just tie it to the install phase or even the deploy phase just because it's slowing their build down.
 
-Demo: Source Plugin
+### Demo: Source Plugin
 
 To configure the Source Plugin, we add that plugin to our POM <plugins> inside the <build> section
 <plugin>
@@ -505,7 +505,7 @@ To tie this to a later phase we added a specific execution that's tied to the go
 
 
 
-The Javadoc Plugin
+### The Javadoc Plugin
 
 The Javadoc Plugin is almost identical to the Source Plugin in the sense that we're going to take our Javadocs and package them into a JAR file when we upload them to our repository.
 you can browse the Javadoc Plugin's website to see any other additional information or goals that are available there.
@@ -514,7 +514,7 @@ We typically tie it to our package phase, but if we're running package a lot we 
 
 Usually we just use the defaults, but if you have customized Javadocs for your company, maybe throw in your company logo or change colors or whatever, you can customize all this inside the Javadoc Plugin configuration.
 
-Demo: Javadoc Plugin
+### Demo: Javadoc Plugin
 
 <plugin>
     <groupId>org.apache.maven.plugins</groupId>
@@ -535,16 +535,16 @@ command line and run mvn install again. And it will go through, and this will ta
 navigate down into the target directory to see the folder apidoc that wasn't there before.
 
 
-IDE Integration
+## IDE Integration
 
-Installation
+### Installation
 
 Java and Maven are installed the same way regardless of using the IDE.
 So I have to have Java installed, my Java home variable set, and I have to have Maven installed.
 
 I personally prefer to install Maven outside of the IDE because it's where it finds settings and that type of stuff from. I don't want to have to configure it in multiple places. It can often be confusing and lead to errors down the road.
 
-Demo: Importing Projects
+### Demo: Importing Projects
 
 File > Import > Maven > Existing Maven Projects
 Select a Maven project and the IDE will identify our POM.
@@ -552,14 +552,14 @@ Click Finish
 
 You'll see that the lower right-hand section, it's building our project this first time, so it will show you the success as it goes through and adds those dependencies, configures our classpath, etc…
 
-Converting Existing Projects
+### Converting Existing Projects
 
 right-click on a project containing a POM file > Configure > Convert to Maven Project
 Once your project has been converted, the classpath will automatically be set and will build the project and let you know of any of errors that it may encounter or whether it builds successfully or not.
 
 
 
-Dependencies Viewer
+### Dependencies Viewer
 
 Dependencies are much more easily added in the IDE.
 The Dependencies tab will show us which dependencies we have installed and allow us to manipulate those dependencies as well.
@@ -573,6 +573,6 @@ And once I do that, you'll notice it blows up my Dependency Hierarchy screen her
 
 Another useful feature though is if you've got a JAR inside of your application and you're wondering where it came from,, you can click on that and it'll tell you exactly where it came through your hierarchy
 
-Effective Pom
+### Effective Pom
 
 The effective POM can be a very wordy document. It is actually what our POM is underneath the hood of everything. It's our complete POM with everything that's inherited from our project POM if we're using a parent POM and the default Super POM. So it's three, possibly even four, POM files combined into one. It's more of a debugging tool to see what the POM is doing and what versions of things we're using. Not a lot of people spend much time in here, but it is important to know about because you can find specific things inside your application in the effective POM.
