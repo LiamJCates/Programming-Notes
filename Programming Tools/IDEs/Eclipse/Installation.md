@@ -14,11 +14,14 @@ I'm going to assume you have either already downloaded the Java JDK or you know 
 Let's quickly take a look at some important areas of the Eclipse site.<br/>
 https://www.eclipse.org/getting_started/
 <br/><br/>
-You can see there are easy navigation aids to get you more plug-ins, documentation for both the IDE User Guide and specific documentation on Java Development, and additional options for getting help.<br/>
-IDE Documentation:    https://help.eclipse.org/2020-03/index.jsp?nav=%2F0
-<br/><br/>
-Java Documentation:    https://help.eclipse.org/2020-03/index.jsp?nav=%2F1
-<br/><br/>
+You will find navigation aids to help you locate
+* Plug-Ins: https://marketplace.eclipse.org/
+* A User Guide:    https://help.eclipse.org/2020-03/index.jsp?nav=%2F0
+* Java Setup:    https://help.eclipse.org/2020-03/index.jsp?nav=%2F1
+<br/>
+As well as additional options for getting help.
+
+
 Download Eclipse: https://www.eclipse.org/downloads/packages/<br/>
 Download and install the Eclipse IDE for Java Developers option
 
