@@ -7,12 +7,12 @@ Eclipse by default doesn't include a toolchain. That may strike you as odd until
 For Java, this means downloading the JDK for your platform.
 <br/>
 Download JDK    https://www.oracle.com/java/technologies
-<br/>
+<br/><br/>
 I'm going to assume you have either already downloaded the Java JDK or you know how to do that.<br/>
 <br/><br/>
 
 Let's quickly take a look at some important areas of the Eclipse site.<br/>
-You can find these neatly organized by a helpful getting started page:
+You can find these neatly organized by a helpful getting started page:<br/>
 https://www.eclipse.org/getting_started/
 <br/><br/>
 You will find navigation aids to help you locate
@@ -23,7 +23,7 @@ You will find navigation aids to help you locate
 As well as additional options for getting help.
 <br/><br/>
 
-Now, instead of following the download and install option on the getting started page, we want to navigate to a specific package found here.<br/>
+Now, instead of following the download and install option on the getting started page, we want to navigate to a specific package.<br/>
 Download Eclipse: https://www.eclipse.org/downloads/packages/
 <br/>
 Eclipse IDE for Java Developers
