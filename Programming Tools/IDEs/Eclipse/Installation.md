@@ -1,7 +1,10 @@
 # Installation
 
 ## Setting up a Java SE Development Environment with Eclipse
-Eclipse by default doesn't include a toolchain. That may strike you as odd until you remember how many different languages Eclipse can support, and if you only ever want to work in Java, you wouldn't want it installing the C++ toolchains for you. For Java, this means downloading the JDK for your platform. I'm going to assume you have either already downloaded the Java JDK or you know how to do that.
+
+Eclipse by default doesn't include a toolchain. That may strike you as odd until you remember how many different languages Eclipse can support, and if you only ever want to work in Java, you wouldn't want it installing the C++ toolchains for you.
+
+For Java, this means downloading the JDK for your platform. I'm going to assume you have either already downloaded the Java JDK or you know how to do that.
 Download JDK    https://www.oracle.com/java/technologies
 
 
@@ -27,8 +30,12 @@ The workspace is the directory in which Eclipse is going to create our project.
 ## Demo: Setting the Right Version of Java to Launch Eclipse
 
 Java virtual machine version 1.8 or greater is required.
-If you are on a machine on which you cannot change that version, then you need to do something else. Let us visit the Eclipse Neon directory and check for this eclipe ini configuration file.
-Open it and just before the -vmargs option, we can type in this option, -VM, with a path to the javaw.exe executable file from within the Java installation.
+If you are on a machine on which you cannot change that version, then you need to do something else. Navigate to your Eclipse installation's top directory and find the eclipe.ini configuration file.
+
+Open it and just before the -vmargs option, type
+-VM
+and the path to the desired javaw.exe executable file
+![javaw file path](https://raw.githubusercontent.com/LiamJCates/Programming-Notes/master/Programming%20Tools/IDEs/Eclipse/Images/configuration.png)
 
 Here we are declaring the jdk1.8 144 subversion. Let us save this file, close this. Relaunch Eclipse Neon, and now we are good to go. Eclipse Neon is launching properly.
 
