@@ -4,21 +4,22 @@
 
 Eclipse by default doesn't include a toolchain. That may strike you as odd until you remember how many different languages Eclipse can support, and if you only ever want to work in Java, you wouldn't want it installing the C++ toolchains for you.
 
-For Java, this means downloading the JDK for your platform. I'm going to assume you have either already downloaded the Java JDK or you know how to do that.<br/>
+For Java, this means downloading the JDK for your platform.
+<br/>
 Download JDK    https://www.oracle.com/java/technologies
+<br/>
+I'm going to assume you have either already downloaded the Java JDK or you know how to do that.<br/>
 <br/><br/>
 
 Let's quickly take a look at some important areas of the Eclipse site.<br/>
 https://www.eclipse.org/getting_started/
-<br/>
-You can see there are easy navigation aids to get you more plug-ins, documentation for both the IDE User Guide and specific documentation on Java Development, and additional options for getting help.
-<br/>
+<br/><br/>
+You can see there are easy navigation aids to get you more plug-ins, documentation for both the IDE User Guide and specific documentation on Java Development, and additional options for getting help.<br/>
 IDE Documentation:    https://help.eclipse.org/2020-03/index.jsp?nav=%2F0
-<br/>
+<br/><br/>
 Java Documentation:    https://help.eclipse.org/2020-03/index.jsp?nav=%2F1
-<br/>
-Download Eclipse: https://www.eclipse.org/downloads/packages/
-<br/>
+<br/><br/>
+Download Eclipse: https://www.eclipse.org/downloads/packages/<br/>
 Download and install the Eclipse IDE for Java Developers option
 
 ## Demo: First Launching of Eclipse
