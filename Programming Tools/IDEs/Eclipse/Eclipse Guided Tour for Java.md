@@ -1,276 +1,57 @@
-# Eclipse Guided Tour for Java
 
-## Folder Structure
 
-Eclipse is a software written in Java, so look and feel vary by platform but UI organization is the same.
 
-Eclipse knows at least one Java installation from your machine, this is the Java it will use by default to handle your projects.
-Of course it can be [overridden](https://github.com/LiamJCates/Programming-Notes/blob/master/Programming%20Tools/IDEs/Eclipse/Installation.md#demo-setting-the-right-version-of-java-to-launch-eclipse)
 
-### Workspace
-A workspace is a collection of projects that you want to work with when you launch Eclipse.
 
-In a nutshell, a workspace is a directory on your disk.
-There can be as many workspaces as you want.
-At a given time, only one instance of Eclipse works in a workspace, and one instance of Eclipse can only work in a single workspace.
-A workspace can contain and can handle several projects, and those projects are going to share common properties defined at the workspace level.
+## Digging Deep into the Project/Package Explorer
 
-### Understanding the Workspace Folder Organization
-So one workspace is one folder, and one project is one subfolder in a workspace.
+### Top Bar Icons
+Icons from left to rights
 
-Inside each workspace, there is
-* a hidden subdirectory called. metadata, which contains
-* a version.ini configuration file
-* a .log file, with Eclipse error messages
-* a .lock file
-* other subdirectories created by Eclipse itself or plugins.
-subdirectories for the projects, Project 1, Project 2, etc…
+#### Collapse All
+When you've got a bunch of things open, you can click, and all levels of the package/project tree are closed.
 
+#### Link with Editor
+When a file is active in the editor view, it is also highlighted in the Explorer views.
 
 
-### Project
-A project can take any number of forms from a desktop executable, a library, a set of web pages, and more.
+#### View Menu
+The farthest right
 
-Not all projects in a workspace have to be related.
-You can take any approach you like to creating a workspace.
-You can create a single workspace, and create every programming project under that workspace.
-Eclipse is actually geared toward this approach.
-It has some additional tools like working sets, which we will talk about in more depth later, but working sets allow for convenient grouping to make it easy to work with a subset of your projects.
+#### View Menu > Package Presentation
+Under this menu item are two options flat view, and you can see that JUnit is repeated for each package, and no nesting of packages is shown. If I change the Hierarchical, we nest deeper and don't repeat the project name everywhere. I'll set it back to Flat.
 
-You can also create any number of workspaces.
-If you want, you can have one for every project or group of related projects.
-You can do something in between.
 
-One thing that you don't want to do is create your workspace inside any directory that might get updated by a vendor when they upgrade their toolset.
 
-### Understanding the Project Folder Organization
-Inside each Project subdirectory, there is
-a hidden subdirectory called the .settings subdirectory
-and two files, .classpath and .project.
+### Context Menus
+Each level of the Explorers has their own context-sensitive menu. Though they look very similar, each is different.
 
-Those elements contain project-level configuration. We are not going to open them. Usually you do not need to change or edit those files or subdirectories by hand.
+I most often use this on the project level itself, because project properties is really the project preferences.
+This is opposed to Window > Preferences, which changes to Eclipse for either all projects or the entire workspace.
 
+There are settings on each level that are typically a subset of the project level features, but you get finer-grain control as you go all the way down to a file.
 
+#### Go Into
+We can right-click a project, package, or folder, and select Go Into
+This option slightly reduces the view complexity, and takes us just to this single project. It reduces our whole view to just an item. If you're working on a single item, it's nice to reduce the complexity.
 
+* The back button works just like a browser, only it's faster and reverses your steps.
+* The forward button takes you back in.
+* The up arrow just jumps you up the hierarchy, so depending on how you navigated down to a certain level, this can be a faster way to go back.
+If you hover over the buttons, they tell you where the navigation will end up.
 
-
-
-
-## Exploring the Eclipse Workbench
-
-The Workbench is what loads when you run the Eclipse  application.
-The Workbench provides the user interface structure for Eclipse.
-
-Two of the basic building blocks of Eclipse are views and perspectives.
-
-#### View
-A view is the Eclipse name for a unique content area that accomplishes a given task.
-Package Explorer, Outline, and the Console are examples of three views.
-
-#### Perspective
-A perspective is just the layout of a particular collection of views.
-
-
-Depending on which IDEs you've used, this layout might look familiar to you.
-
-As soon as we open Eclipse, we are in a particular perspective. There are some useful built-in perspectives including a default, one for browsing code, one for debugging, and one for source code management with Git. There are other preexisting perspectives, and you can create more and customize the existing ones.
-
-
-### Java Default Perspective
-If Eclipse for Java Developers was downloaded, the default perspective will have:
-* Explorer section on the left,
-* Task List for Mylyn and an Outline section for whatever code we're looking at on the right
-* axillary windows on the bottom
-* A central editor tabs
-
-We see an empty workspace with the default Java perspective.
-
-### Opening Perspectives
-The icon in the upper-right indicates your current perspective.
-
-You can open other perspectives using
-* the icon with the plus in the top right
-* Window > Perspective
-
-Open the Java Browse perspective, so we can see this in action.
-
-Now you can see there's a new icon, and the addition of the magnifying glass indicates it's the browse perspective.
-Click between the icons to switch perspectives.
-
-When you no longer need a perspective, just right-click and select Close.
-
-### Opening views
-Add another view to the perspective: Window > Show View
-select the Project Explorer view
-this view can look quite similar to the Package Explorer view.
-
-I will point out that I find the Project Explorer view a little more capable when you start working with additional tools like Spring or Web Development. It's good to know it's there, although right now we're just going to use it to have an additional tab.
-
-Each view has a minimize / maximize icon
-
-use the Restore icon in the view's top bar to reanchor the view to its previous location.
-or the icon below restore to bring back any given tab temporarily, until it is clicked off again.
-If more than one view is minimized the view's order from top to bottom in the order you minimize them.
-You can take a tab and put it where ever you like. When you click and start to drag, Eclipse will give you some highlighting lines to indicate where it's going to put the tab.
-Notice when I get a single vertical bar next to the tabs in a view, eclipse will make the selected view one of the tabs in that view.
-
-
-### Saving Perspectives
-We can save a new arrangement as its own perspective.
-use the Window > Perspective > Save Perspective As...
-
-You can hover over the icon, and you'll get the name of the perspective after a short delay.
-To delete a perspective go to Preferences at the bottom of the Window menu, open up the general area, and scan down for perspectives, then we can select the perspective we want to delete, click Delete, and finally Apply and Close.
-
-When you double-click a tab, it maximizes to take up the whole screen. Double-click it again, and it goes back to where it was.
-
-For fine-grained control over your perspective there are even more options if you go into the Window menu and select Customized Perspective. We're not going to get into that much detail right now, but you can change what toolbars are showing, the menu visibility, and more, and all of that will save with your perspective as well.
-
-### Templates
-Eclipse has templates that can save you some typing. The system out print line method is available by just typing syso, and hitting Ctrl+Space. We can then select the match from the list, and then just hit Save.
-
-###
-By default, Eclipse is set up to build when you hit Save.
-
-We can also prettify our code.
-Under the Source menu is the Format command
-
-In Preferences under General, we can go down to Workspace, and you can see Build automatically is checked, and that's what's complying in our code for us as we save.
-By default, Save automatically before build is unchecked, check this if you like.
-
-
-
-
-
-
-
-## Demo: Creating a First Java SE Project
-
-We have several methods for creating a project:
-* right click the Project Explorer and then New > Project
-* the New Project button on the toolbar
-* the New panel in the File Menu
-
-Choose a method and select the Java project.
-Give a name to our project.
-Choose a JDK to run our project. By default, Eclipse will use the JDK it is using itself
-Choose a project layout.
-Finish.
-
-Eclipse is asking us if we want to switch to the Java perspective, which is a little simpler than the Java EE perspective, so let us do that. And you see that we have a simpler toolbar and an arrangement of views, which is slightly different. And on the top-right of this UI, we can choose to go back to the Java EE perspective or to stay on the Java SE perspective.
-
-Demo: Creating a First Class
-
-To create a class, we can right-click src folder, New, and Class from the pop-up menu.
-Put our class in a package because using the default package or the empty package is not recommended in Java.
-
-Demo: Setting the Characters Encoding for Java Source Files
-
-Before we go any further
-right-click select this class and open the properties at the bottom.
-or can use the shortcut, Alt+Enter, to open the property panel for this class.
-
-By default, the text file encoding for Java source code in Eclipse is, in fact, wrong.
-It is inherited from the OS you are using. On my Windows machine, this is Cp1252
-it should be UTF-8.
-To do this for all Java source code, go to the Window menu > Preferences.
-filter for encoding.
-General > Content Types
-select the Text option in the Content types region
-then, at the bottom, enter into the "Default encoding" textbox  "UTF-8"
-It will be inherited by all the text generated by Eclipse
-select Update, then Apply and Close.
-. java files are UTF-8 is in the specification of the language.
-
-Demo: Customizing the Format of the Java Source Files
-
-To customize the way Eclipse formats your Java code. Window > Preferences
-filter by "format"  to find  Java > Code Style > Formatter.
-
-Edit the Eclipse built-in format.
-Rename it
-there are many options, one edit we can make is the selection of the Spaces only Tab policy
-4 is a nice default
-Apply and click OK. Apply and Close.
-
-
-
-
-
-
-
-### About Eclipse
-On Windows and Linux, Help Menu > About Eclipse
-Under the About, you'll see the installation details section.
-So normally you just get information in an About, right? In an Eclipse, you can actually get quite a bit of information by clicking on things, but this is also where you uninstall things from. If you click on an item, you'll notice the Uninstall button enables. When you uninstall a feature, Eclipse will prompt you to restart, and it's a good idea to do so. We're going to look at some other ways to uninstall, but remember this is here, as it's one of the finest grained ways to uninstall items that Eclipse offers. You can also see your Installation History, Features that have installed, Plug-ins, and Configuration information.
-
-Help menu
-This is where you check for updates and install new software.
-Let's start with the older method, and use the Install New Software item.
-You'll see "Work with" a site pop-up, and there are quite a few that are from eclipse. org.
-A lot of those things that we saw when we were on the website, you can download here now, and you can also get additional tooling. I'll select the All Available Sites option, which is the slowest choice. This presents a long list of packages I can update. The package filter is right below
-
-The more modern way to install features to Eclipse is through the Marketplace item on the Help menu.
-You'll see by default, there are three Marketplaces available, and after a few seconds, the featured items will populate. Again we have a convenient search area.
-There are other tabs you can explore in the Marketplace, but let's look at the Installed tab.
-This is the other way of finding out what's installed. It turns out only two items were actually installed using the Marketplace mechanism. What's nice is if you did use the Marketplace to install something, you can both update and uninstall it from this tab. I like Git, so I'm going to leave it here.
-
-
-
-
-
-Quick Access
-
-You'll notice up in the toolbar, there's a text-entry box that says Quick Access in light gray.
-It was a little bit controversial, because one thing Quick Access can allow is a reduce dependence on your mouse, but they wanted to increase the affordability of the feature, so they gave it prime real estate on the toolbar.
-
-There is a hide feature. Just right-click on the border and select Hide from the context menu if you don't want to lose the screen real estate.
-
-The historical way to get to Quick Access is to use the keyboard shortcut is Ctrl+3
-On Windows, it's obvious that this window resizes as when you hover over the border, the cursor will change into a two-headed arrow.
-
-Once you select an option, Eclipse moves it up to the Previous Choices section, so that your most recently used items are close at hand. The more you use Quick Access, the more useful it becomes.
-So if you know a little bit about Eclipse, you can do some easy fuzzy searching.
-
-This isn't 100% accurate, some text on checkboxes or radio buttons sometimes is not part of the search. So if you're pretty sure there's a feature, and you don't see it doing this, don't give up. You can still look and go find it, but most of the time this is going to get you what you want with a quick search.
-
-I use the Quick Access feature quite frequently, and I use it so much that I actually like to assign that keyboard shortcut from Command+3 to something more convenient.
-Let's use Quick Access, and type pref key, and we can jump to the Preferences. We're in General under Keys, and you can see right here is another is another search box. This is going to let us search for all the commands that we can reassign the shortcuts for. Let's just look for Quick Access, and there it is. And as expected, it's Command+3. We can come down here and set the Binding. Now I'm just going to hit 0 on my numeric keypad. You can see it puts in Numpad_0. You can set When this is used, so any time you're in a window is a good choice. And I just find this really convenient, I just reach over with my right hand, hit 0, and I'm automatically in the Quick Access box, and I'm ready to do a search. That's it for the Quick Access feature, use it while you're learning Eclipse, and it'll help increase your productivity. Keep your hands on the keyboard and off of the mouse.
-
-
-Digging Deep into the Project/Package Explorer
-
-
-The Link with Editor item.
-Now when I click on a file, notice that the Explorer panel scrolled up and highlighted that file.
-
-The collapse all button.
-When you've got a bunch of things open, you can click, and you're right back down to your project level. It doesn't remember what you had though, so you'll have to go do everything by hand again.
-
-The View menu.
-Right now we are in the flat view, and you can see that JUnit is repeated for each package, and no nesting of packages is shown. If I change the Hierarchical, we nest deeper and don't repeat the project name everywhere. I'll set it back to Flat.
-
-Let's take a look at the context menus. Each level of the Project Explorer has its own context-sensitive menu. They look very similar.
-I most often use this on the project level itself, because project properties is really the project preferences, as opposed to when you went to Windows Preferences, you made changes to Eclipse for either all projects or the entire workspace.
-There are some settings on the other levels as well. These are much more reduced and typically a subset of the features, but you get finer-grain control if you want to go all the way down to a file.
-
-Go Into
-At the project JUnit, we can right-click, and select Go Into, and it'll slightly reduce our complexity, and take us just to this single project. Same thing if we go down to a particular package, and we right-click, and select Go Into. It's reduced our whole view to just that package. If you're working on a single package, it's nice to reduce the complexity.
-
-The back button works just like a browser, only it's faster and reverses your steps. The forward button takes you back in. If you hover over the buttons, they tell you where the navigation will end up. The up arrow just jumps you up the hierarchy, so depending on how you navigated down to a certain level, this can be a faster way to go back.
-
-Open Type Hierarchy
+#### Open Type Hierarchy
 When you want to see some information about the hierarchy of your classes, you can use the Open Type hierarchy. So let's go down to a package level just to make it of a medium complexity, and select Open Type Hierarchy, and you can see the shortcut is F4, and it opens up two panes over here. Clicking on an item up above updates the more detailed information down below. These panes can be individually resized. When the cursor changes to the double-headed arrow, you can click and drag. The buttons at the top provide a lot of control over what you hide and what you show in these views. Type Hierarchy works at multiple levels. We can go all the way down to a file.
 
-Local History
 
+### Local History
 Let's take a look at a feature that I think a lot of developers overlook at first, Local History.
 If you use this feature just one time to recover you from broken code, you're going to love it forever.
-Local History is a baked-in limited form of source code management. It's not a replacement for a full source code management tool, but it can come in handy, especially between commits.
+Local History is a limited form of source code management. It's not a replacement for a full source code management tool, but it can come in handy, especially between commits.
 It can automatically keep snapshots of your editing history, it's available from varying levels, but I typically find it the most useful at the file level.
 right click a file in the project explorer and select
-
-down at the bottom, it opened up a History tab.
+Compare With > Local History...
+to opened up a History tab.
 
 We can see the original version and the version we just modified.
 That opens up the Compare Editor.
@@ -292,14 +73,14 @@ We can now do the Replace again, this time selecting the Local History option, n
 Local History settings are under Preferences in the General workspace, Local History Area.
 Local History by default is limiting the history size to 7 days. And then the Maximum entries per an individual file will be 50. The max size of the entire Local History file is set to just 1 MB, so you may want to increase this. If you're committing to Git or another repo fairly frequently like you should, you likely won't need very much space, but I usually set to this to be more like 10 MB. You can use whatever settings make sense for you. Some people have run into problems when they unclick this Limit history size. The history files can get really large, and then backing things up, and copying your entire workspace, or the entire project around can get quite big. I think it's a good idea to limit it.
 
-Discovering the Navigator View
 
+### Discovering the Navigator View
 The Navigator view can show you some files you otherwise can't see.
 The long way to get to it is to use the Window menu, Show View, and there's a Navigator view
 It is similar to the Project Explorer, but you can see the files under .[folder] types.
 Your source folder is still there, and it also lets you have a quick look and see at the. class path and the. project data files, which you can even double-click and edit here, although I don't recommend it unless you really know what you're doing, but sometimes it can be useful.
 
-The Convenience of Working Sets
+## Working Sets
 
 Working sets are a convenient grouping mechanism inside Eclipse.
 You can groups parts of a project, you can group multiple projects.
@@ -309,7 +90,7 @@ There are multiple features in Eclipse that will take advantage of existing work
 One of the most important is building.
 You can group multiple projects together, and then with a single command, you can build them all.
 
-One of the most convenient uses of working sets is searching. If you want to limit your searches to just a few projects or even to just some packages, you can do that as well. And as we progress further into this course, you'll see where working sets show up in many dialogs.
+One of the most convenient uses of working sets is searching. If you want to limit your searches to just a few projects or even to just some packages, you can do that as well.
 
 Let's get started with a demo of how to create, delete, and use some working sets.
 
@@ -321,9 +102,23 @@ Let's do something with our working set. One of the convenient things to do and 
 
 Another way to get to the working set functionality is through the View menu. And from here I just use Select working Set.
 
-Editing Code
 
-Editor Tabs
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Editing Code
+
+### Editor Tabs
 
 It used to be that double-clicking tabs in separate panes still supported maximizing the tab. Double-clicking works when you haven't split the editor panel, but once it's split, it no longer works.
 
@@ -334,7 +129,7 @@ It's now quite easy and intuitive to get multiple views on a single tab. Use the
 Let me toggle this split back, and let's try the clone option. Now I have two tabs showing the same view. If I wanted to see different areas of this file, I can of course just drag this tab into its own area. Cloning, by the way, does work along with a split view. So if you have a view split and then clone it, you can have three views on the same file. You can also clone more than once.
 
 
-Code Folding
+### Code Folding
 
 The Marker bar is this area all the way over to the left.
 Just to the right of that is the Code Folding region.
@@ -346,28 +141,32 @@ When you hover over a collapsed area, a pop-up window will open to show you the 
 
 IN preferences Folding can be enabled and disabled, and you can also initially tell Eclipse which areas you want folded, and you can see which areas are capable of being folded.
 
-Tasks, Bookmarks, and Breakpoints
+### Tasks, Bookmarks, and Breakpoints
 
-Adding tasks.
+#### Adding Tasks
 If you add a task, and you're on a line of code, it'll automatically put in the code that was on that line, or you can just enter something manually if it is a blank line. You can click OK. You'll notice it put the task icon in the Marker Bar. It also added the task to the task view.
 
 In previous versions of Eclipse, the task window would open automatically, but now we need to ask for it. Using Quick Access, type svt, arrow down, and the task view opens down below. I can come down to the task view, and I can double-click that line, and that will jump me right back into the code. So when you have a lot of tasks, this is very convenient.
 
+#### Removing Tasks
 If you want to remove a task, you can do it down here by right-clicking and selecting Delete, and you can also do it right in the code by clicking the Marker Bar again, and selecting Remove Task.
 
+#### TODO
 The TODO keyword is recognized by the Java environment. Once we save and then build, it does show up, and it's a full-fledged task. Though  you can't right-click and remove the task, because the comment is still here, it would just come back. So you can either remove the whole comment, or you can just get rid of the keyword that it's triggering on. Then save and build again, and you'll see it goes away everywhere.
 
+#### Bookmarks
 Bookmarks are very similar to tasks. You can right-click in the Marker Bar, and you can just select Add Bookmark. And again, if you're on a line of code, it gives you the code in the dialog for the name, or you can type your own text.
 
 The bookmark view also isn't showing by default. We could use Quick Access, and that would work, but since this view is a little buried, I want to drill down and show it to you. It's still under the Window menu, Show View, this time come down to Other, and at the top of the General folder is Bookmarks.
 
+#### Breakpoints
 I find one of the most convenient things about the Marker Bar is that you can set breakpoints for the debugger right here. In the Marker Bar, you can use the context-sensitive menu to toggle a breakpoint, but even more convenient is to use double-clicking. To set a breakpoint, all you have to do is double-click, and a breakpoint shows up. Double-click again, and it goes away. I'll recreate it with the menu. If I right-click on the breakpoint, notice that the bottom, the breakpoint properties option. Also notice it has a shortcut of Command+double-clicking. In this dialog, you get some nice options for controlling your breakpoints.
 
-Show Source of Selected Element
+### Show Source of Selected Element
 
 Eclipse has the ability to eliminate distractions and show you the source for the selected element only. Eclipse's definition of the source of the selected element is what the blue highlighting is showing you. In this release of Eclipse, the icon for this feature is off by default, so let's go turn it on. It is in the Window menu, Perspective, Customize Perspective area. Then we just need the Editor Presentation option, and there is Show Source of Selected Element Only. I'll enable that. Since the highlighting is on the create method, when I click the button, I bring my focus to bear on just that method. When I need the rest of the class, another click, and it all comes back. That concludes our tour of the Marker Bar area.
 
-Content Assist
+### Content Assist
 
 Content Assist requires a trigger.
 hold down the Ctrl key and hit Space, and I get a list of everything Eclipse thinks I might be looking for.
@@ -378,7 +177,7 @@ The period always acts like a trigger key, and all the methods show up on the ri
 
 Content Assist also works with code templates. So if we just type syso, and hit Ctrl+Space, we can see the template match at the top. Also note that you can continue to press Ctrl+Space and toggle through various panes of Content Assist. Each time the status bar will show you what the next press of Ctrl+Space will display.
 
-Advanced Content Assist
+### Advanced Content Assist
 
 In a Java doc a @ tag has Content Assist suggestions
 Create a sample method. I'll type a parameter type of int, and Content Assist offers a default parameter name it offers me for an int is i. Not the most descriptive name, but let's just accept that.
@@ -402,7 +201,7 @@ There's a Favorites section.  You can see there are a number of entries here, I 
 One final thing, when you delete over typed characters with Content Assist open, it keeps trying to match, even when you have nothing left to match. If you want to get rid of the dialog, just hit the Esc key.
 
 
-Code Analysis
+### Code Analysis
 
 It's time to talk about one of the other great contributions to programmer productivity, the tool that takes all the fun and mystery of compiling our code, code analysis. The JDT supports both code analysis and quick-fix capabilities. Eclipse uses the term code analysis instead of static analysis, and I prefer to stick with code analysis as well. Plus I'm old school when I think of static analysis as a separate analysis step, and code analysis in Eclipse happens as you type, and that can really increase your productivity.
 
@@ -423,7 +222,7 @@ make your settings as aggressive as possible. I prefer to have false positives r
 Once you're done, we can click Apply, and it's offering to rebuild. Let's allow it. Huh, I would've expected to see an error now. Let me verify my change saved. It looks good, but I'll hit both Apply buttons. Let's just do the build manually. Well there we go. So the setting and feature are working, good to know the first time you change the settings, you may need to manually trigger the build.
 
 
-Other Editor Features
+### Other Editor Features
 
 I want to talk about just a few more additional editor features. Two of them relate to hiding and showing information, whitespace characters and line numbers. There are a lot of tricks for doing things efficiently in the editor, but I wanted to touch on one that I really like, the block editing mode. It can be very useful in certain circumstances, especially when you have a lot of similar code on multiple lines.
 
@@ -440,64 +239,57 @@ The cursor changes to this crosshair icon, so you know you're in block mode.
 Now you can select the rectangular area on the screen and as I start typing, it will replace everything on every line in the block. I don't actually have to select anything, I'll insert some space between both equal signs and the number on these two lines. I'll drag down. It's a little precise to drag exactly down, but if you get a rectangle, you can just adjust your aim until you have only a vertical bar and not the rectangle like this. Let go and type. I'll do it again to fix the alignment, and one final time to change the comments.
 
 
-Customizing Eclipse
-
-Perspectives
-
-When you customize Eclipse, you're really customizing a perspective.
-You can start out by modifying the current perspective, or you can create a new one.
-It isn't dangerous to modify the current one, because you can always get back to the original.
-use the Window menu, Perspective, then select the Reset Perspective item.
-
-It's nice not to lose all your customizations by having to reset a perspective. So I recommend creating a new perspective
-using the Window menu > Perspective > Save Perspective As.
-In the preferences section is Perspectives-General we can
-set the default that Eclipse will open to
-delete unneeded perspectives
 
 
-Toolbars and Menus
-
-create a new perspective for experimenting.
-reset perspective doesn't do a complete job
 
 
-We modify the toolbar in Window > Customize Perspective.
-
-If you go to a separator bar and you hover, you'll get a crosshairs icon. And then you can click and drag to move the toolbar that was just to the right of that separator bar.
-If you don't want to have toolbar sections moved around, you can lock it down. Using Quick Access, just type lock, and then select the Toggle Lock Toolbars option.
-Now the little separator bars are gone. Also since the toolbar uses the mouse anyway, you can just right-click on the toolbar and select the option to lock or unlock the toolbar depending on its current state.
-
-Finally if you don't want the toolbar at all, you can use the Windows menu, Appearance submenu, and select Hide Toolbar. Sometimes this also disables Quick Access on me, but I've discovered that sometimes it works, and changing other visual elements like opening up a file via the Package Explorer will wake it back up sometimes.
-
-Shortcuts (Key Bindings)
-
-keyboard shortcuts are customized from the preferences window > General > Keys
-Starting at the top, we have Schemes that we can pick. We have just choices for Default and Emacs,
-
-Good Bindings to set include
-Open Declaration which jumps right to the declaration of the class or methods.
-The References command shows me everywhere a method or class is referenced.
-
-If you ever want to get a single command's original binding back, you can just use the Restore Command button
-If you want to wipe out all your hard one customizations in a single click, the Restore Defaults button will do that.
-You can export bindings as a CVS file
-
-You can have more than one binding for a command, but you can't just enter a second one in the binding box. What you do is select the command, and click the Copy button. It gives you a copy without a shortcut, and we can assign a second shortcut to this command now.
-
-Eclipse supports key sequences for shortcuts.
-
-To back up bingings, use the File menu, select Export, open the General section, select Preferences. By default, it's going to save all preferences, and that isn't a bad idea, but you can also save just the keys preferences, click Browse. You'll navigate to a folder of your choosing, provide a name for the key prefs export, click Save, and Finish, and you're done. Well, almost. You do want to be able to import them, but it's almost the same process. File, Import this time, General, and Preferences, click Next, navigate to your saved prefs, click the file, click Open. If you saved multiple prefs, you can elect to Import them all, or import a single section. Click Finish, and you'll have them back.
 
 
-Additional Views
 
-Let's start with a look at Eclipse's Template view, that's down here. Templates is the term Eclipse uses for code shortcuts. Sometimes you'll also hear terms like code snippets.
-If you're just learning Eclipse, and you're just learning the templates, I would suggest you position this in some free space on your monitor or on your second monitor, and it'll serve as a good reminder of the various templates that are available.
 
-No demo is complete without a trip to the Preferences pane, and there is a useful technique I would like to show you. Depending on what you're doing, you can end up with a lot of different console views, and it's easy to lose track of your run/debug console. Let's type console, click on the Run/Debug choice that shows up, select the Background color swatch, and let's set the background to a muted yellow. Let me run, and now it's pretty obvious when our run/debug console window comes to the front.
 
-The final thing to look at is the New Console View. I can select that, and now I get two console tabs. They both contain the same content; however, we can use the display selected console icon, and select the Java Trace in one console, and the run/debug console view in the other. And now it's a little more convenient to switch between the two views.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 Navigating Code
@@ -568,7 +360,10 @@ Breadcrumb.
 I can right-click on the editor and select Show in Breadcrumb. But there's also a toolbar icon for this. Once I click it, you can see the breadcrumb that opened up at the top of the window, and unlike breadcrumbs you may have used in browsers where you can just navigate back along the path you came, you can actually use this breadcrumb to get to anywhere in your project. If you click at the lowest level, it lets you navigate anywhere within this class, not just to the locations we visited. If you go up a level, it lets you navigate within this package to other classes. We only have two files, but if we had a dozen, they would all be here. We can also navigate to other packages if we had any, and the same thing applies to the source folder, and then all the way up at the workspace level.
 
 
-Searching and Navigating with More Power
+
+
+
+## Searching and Navigating with More Power
 
 Call Hierarchy
 The call hierarchy works with methods, classes, fields, or initializer.
@@ -745,7 +540,38 @@ If we want to navigate through the various warnings and errors in this file, all
 
 
 
-Making the IDE Work Harder for You
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Making the IDE Work Harder for You
 
 Shortcuts
 
@@ -800,7 +626,45 @@ Source > Sort Members
 Preferences/Java/Appearance/Members Sort Order
 
 
+## Tips
 
+### Templates
+Eclipse has templates that can save you some typing.
+
+Let's start with a look at Eclipse's Template view, that's down here. Templates is the term Eclipse uses for code shortcuts. Sometimes you'll also hear terms like code snippets.
+If you're just learning Eclipse, and you're just learning the templates, I would suggest you position this in some free space on your monitor or on your second monitor, and it'll serve as a good reminder of the various templates that are available.
+
+The system out print line method is available by just typing syso, and hitting Ctrl+Space. We can then select the match from the list, and then just hit Save.
+
+### Building
+By default, Eclipse is set up to build when you hit Save.
+
+Additionally we can have it save when you build a project.
+Window > Preferences > General > Workspace > Build
+You see Build automatically is checked, and that's what's complying in our code for us as we save.
+By default, Save automatically before build is unchecked, I actually prefer to have that checked.
+
+### Quick Access
+
+In the top right of the toolbar, just left of the Perspective icons, there's a magnifying glass.
+This brings up the Quick Access text-entry box
+It was a little bit controversial, because one thing Quick Access can allow is a reduce dependence on your mouse, but they wanted to increase the affordability of the feature, so they gave it prime real estate on the toolbar.
+
+Quick Access keyboard shortcut is Ctrl+3
+
+Once you select an option, Eclipse moves it up to the Previous Choices section, so that your most recently used items are close at hand. The more you use Quick Access, the more useful it becomes.
+
+If you know a little bit about Eclipse, you can do some easy fuzzy searching.
+
+This isn't 100% accurate, some text on checkboxes or radio buttons sometimes is not part of the search. So if you're pretty sure there's a feature, and you don't see it doing this, don't give up. You can still look and go find it, but most of the time this is going to get you what you want with a quick search.
+
+I use the Quick Access feature quite frequently, and I use it so much that I actually like to assign that keyboard shortcut from Command+3 to something more convenient.
+Let's use Quick Access, and type  "pref key", and we can jump to the Preferences. We're in General under Keys, and you can see right here is another is another search box. This is going to let us search for all the commands that we can reassign the shortcuts for. Let's just look for Quick Access, and there it is. And as expected, it's Command+3. We can come down here and set the Binding. Now I'm just going to hit 0 on my numeric keypad. You can see it puts in Numpad_0. You can set When this is used, so any time you're in a window is a good choice. And I just find this really convenient, I just reach over with my right hand, hit 0, and I'm automatically in the Quick Access box, and I'm ready to do a search. That's it for the Quick Access feature, use it while you're learning Eclipse, and it'll help increase your productivity. Keep your hands on the keyboard and off of the mouse.
+
+### Multiple Console Views
+No demo is complete without a trip to the Preferences pane, and there is a useful technique I would like to show you. Depending on what you're doing, you can end up with a lot of different console views, and it's easy to lose track of your run/debug console. Let's type console, click on the Run/Debug choice that shows up, select the Background color swatch, and let's set the background to a muted yellow. Let me run, and now it's pretty obvious when our run/debug console window comes to the front.
+
+The final thing to look at is the New Console View. I can select that, and now I get two console tabs. They both contain the same content; however, we can use the display selected console icon, and select the Java Trace in one console, and the run/debug console view in the other. And now it's a little more convenient to switch between the two views.
 
 Help!
 
