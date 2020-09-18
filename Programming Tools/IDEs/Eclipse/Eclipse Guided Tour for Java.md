@@ -116,9 +116,9 @@ Another way to get to the working set functionality is through the View menu. An
 
 
 
-## Editing Code
+# Editing Code
 
-### Editor Tabs
+## Editor Tabs
 
 It used to be that double-clicking tabs in separate panes still supported maximizing the tab. Double-clicking works when you haven't split the editor panel, but once it's split, it no longer works.
 
@@ -129,7 +129,7 @@ It's now quite easy and intuitive to get multiple views on a single tab. Use the
 Let me toggle this split back, and let's try the clone option. Now I have two tabs showing the same view. If I wanted to see different areas of this file, I can of course just drag this tab into its own area. Cloning, by the way, does work along with a split view. So if you have a view split and then clone it, you can have three views on the same file. You can also clone more than once.
 
 
-### Code Folding
+## Code Folding
 
 The Marker bar is this area all the way over to the left.
 Just to the right of that is the Code Folding region.
@@ -292,7 +292,7 @@ Now you can select the rectangular area on the screen and as I start typing, it 
 
 
 
-Navigating Code
+# Navigating Code
 
 Navigate Menu
 
