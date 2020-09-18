@@ -1,6 +1,15 @@
 # Eclipse Guided Tour for Java
 
+<<<<<<< HEAD
 ## Folder Structure
+=======
+
+
+
+
+
+## Presenting the Eclipse Key Concepts
+>>>>>>> 2b7df4a68d7afb30776f083e652d19508b9f0ede
 
 Eclipse is a software written in Java, so look and feel vary by platform but UI organization is the same.
 
@@ -53,9 +62,12 @@ Those elements contain project-level configuration. We are not going to open the
 
 
 
+<<<<<<< HEAD
 
 
 
+=======
+>>>>>>> 2b7df4a68d7afb30776f083e652d19508b9f0ede
 ## Exploring the Eclipse Workbench
 
 The Workbench is what loads when you run the Eclipse  application.
@@ -70,6 +82,13 @@ Package Explorer, Outline, and the Console are examples of three views.
 #### Perspective
 A perspective is just the layout of a particular collection of views.
 
+<<<<<<< HEAD
+=======
+
+Depending on which IDEs you've used, this layout might look familiar to you.
+
+As soon as we open Eclipse, we are in a particular perspective. There are some useful built-in perspectives including a default, one for browsing code, one for debugging, and one for source code management with Git. There are other preexisting perspectives, and you can create more and customize the existing ones.
+>>>>>>> 2b7df4a68d7afb30776f083e652d19508b9f0ede
 
 Depending on which IDEs you've used, this layout might look familiar to you.
 
@@ -83,17 +102,35 @@ If Eclipse for Java Developers was downloaded, the default perspective will have
 * axillary windows on the bottom
 * A central editor tabs
 
+<<<<<<< HEAD
 We see an empty workspace with the default Java perspective.
 
+=======
+### Java Default Perspective
+If Eclipse for Java Developers was downloaded, the default perspective will have:
+* Explorer section on the left,
+* Task List for Mylyn and an Outline section for whatever code we're looking at on the right
+* axillary windows on the bottom
+* A central editor tabs
+
+We see an empty workspace with the default Java perspective.
+
+>>>>>>> 2b7df4a68d7afb30776f083e652d19508b9f0ede
 ### Opening Perspectives
 The icon in the upper-right indicates your current perspective.
 
 You can open other perspectives using
 * the icon with the plus in the top right
 * Window > Perspective
+<<<<<<< HEAD
 
 Open the Java Browse perspective, so we can see this in action.
 
+=======
+
+Open the Java Browse perspective, so we can see this in action.
+
+>>>>>>> 2b7df4a68d7afb30776f083e652d19508b9f0ede
 Now you can see there's a new icon, and the addition of the magnifying glass indicates it's the browse perspective.
 Click between the icons to switch perspectives.
 
