@@ -126,14 +126,17 @@ When you double-click a tab, it maximizes to take up the whole screen. Double-cl
 
 For fine-grained control over your perspective there are even more options if you go into the Window menu and select Customized Perspective. We're not going to get into that much detail right now, but you can change what toolbars are showing, the menu visibility, and more, and all of that will save with your perspective as well.
 
-
+### Templates
 Eclipse has templates that can save you some typing. The system out print line method is available by just typing syso, and hitting Ctrl+Space. We can then select the match from the list, and then just hit Save.
 
+###
 By default, Eclipse is set up to build when you hit Save.
 
-We can also prettify our code. Under the Source menu is the Format command
+We can also prettify our code.
+Under the Source menu is the Format command
 
-In Preferences under General, we can go down to Workspace, and you can see Build automatically is checked, and that's what's complying in our code for us as we save. And I don't know why, but by default, Save automatically before build is unchecked, I actually prefer to have that checked.
+In Preferences under General, we can go down to Workspace, and you can see Build automatically is checked, and that's what's complying in our code for us as we save.
+By default, Save automatically before build is unchecked, check this if you like.
 
 
 
