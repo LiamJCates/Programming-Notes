@@ -1,44 +1,16 @@
 # Eclipse Guided Tour for Java
 
-## Introduction
-
-This document is designed to make you quickly productive in the Eclipse integrated development environment. Eclipse is a very capable and sometimes complex product. For flexibility, it's designed on a plug-in architecture. This makes it extremely useful for software development for a wide variety of languages and target platforms. So even though you're learning it for Java, your investment here can pay off many times over.
-
-### What Are the Most Popular IDEs?
-
-The Java IDE offer is not that big in the Java space, but we still have three tools to choose from
-
-#### NetBeans
-used to be developed by Sun Microsystems
-Oracle bought the Sun Company and then given to the Apache Foundation by Oracle.
-NetBeans is freely available. It is an open source software, very high quality, great tool to build Java applications.
-
-#### IntelliJ
-developed by a company called JetBrains. There is a free open source Apache 2. 0 licensed Community Edition of this tool and a payed "Ultimate Version" with more features, more elements in it
-
-#### Eclipse
-flagship software of the Eclipse Foundation.
-Eclipse used to be developed by the IBM Company and then has been given to the Eclipse Foundation
-Currently, the most widely used is with no doubt Eclipse, used by more than half of the Java developers, which is currently more than 6 million people in the world.
-NetBeans is used by probably something like 10 to 12% of the Java developers.
-JetBrains has a share of about 30 to 35%.
 
 
-## Why Use Eclipse?
 
-Somewhat like Java itself, Eclipse holds promise for a learn once, use everywhere.
-It's open source, so it constantly evolves with a major regular release scheduled every year.
-It's cross platform.
-It's plug-in based, and there are a lot of plug-ins. Most tools that benefit from IDE integration have a plug-in. Once you've learned Eclipse, you'll be up to speed on several other IDEs automatically.
+
 
 ## Presenting the Eclipse Key Concepts
 
 Eclipse is a software written in Java, so look and feel vary by platform but UI organization is the same.
+
 Eclipse knows at least one Java installation from your machine, this is the Java it will use by default to handle your projects.
-Of course it can be overridden
-
-
-
+Of course it can be [overridden](https://github.com/LiamJCates/Programming-Notes/blob/master/Programming%20Tools/IDEs/Eclipse/Installation.md#demo-setting-the-right-version-of-java-to-launch-eclipse)
 
 ### Workspace
 A workspace is a collection of projects that you want to work with when you launch Eclipse.
@@ -52,11 +24,11 @@ A workspace can contain and can handle several projects, and those projects are 
 So one workspace is one folder, and one project is one subfolder in a workspace.
 
 Inside each workspace, there is
-a hidden subdirectory called. metadata, which contains
-a version.ini configuration file
-.log file, with the messages Eclipse writes in case of errors.
-.lock file.
-other subdirectories created by Eclipse itself or by one of its many plugins.
+* a hidden subdirectory called. metadata, which contains
+* a version.ini configuration file
+* a .log file, with Eclipse error messages
+* a .lock file
+* other subdirectories created by Eclipse itself or plugins.
 subdirectories for the projects, Project 1, Project 2, etc…
 
 
@@ -84,17 +56,147 @@ and two files, .classpath and .project.
 Those elements contain project-level configuration. We are not going to open them. Usually you do not need to change or edit those files or subdirectories by hand.
 
 
-## IDE Basics
 
-Eclipse doesn't install itself like most applications.
-In the Users folder, you'll see the eclipse folder, which contains the application.
 
+## Exploring the Eclipse Workbench
+
+The Workbench is what loads when you run the Eclipse  application.
 The Workbench provides the user interface structure for Eclipse.
+
+Two of the basic building blocks of Eclipse are views and perspectives.
+
+#### View
+A view is the Eclipse name for a unique content area that accomplishes a given task.
+Package Explorer, Outline, and the Console are examples of three views.
+
+#### Perspective
+A perspective is just the layout of a particular collection of views.
+
+
 Depending on which IDEs you've used, this layout might look familiar to you.
-Explorer section on the left,
-Task List for Mylyn and an Outline section for whatever code we're looking at on the right
-axillary windows on the bottom
-center is our editor tabs
+
+As soon as we open Eclipse, we are in a particular perspective. There are some useful built-in perspectives including a default, one for browsing code, one for debugging, and one for source code management with Git. There are other preexisting perspectives, and you can create more and customize the existing ones.
+
+
+### Java Default Perspective
+If Eclipse for Java Developers was downloaded, the default perspective will have:
+* Explorer section on the left,
+* Task List for Mylyn and an Outline section for whatever code we're looking at on the right
+* axillary windows on the bottom
+* A central editor tabs
+
+We see an empty workspace with the default Java perspective.
+
+### Opening Perspectives
+The icon in the upper-right indicates your current perspective.
+
+You can open other perspectives using
+* the icon with the plus in the top right
+* Window > Perspective
+
+Open the Java Browse perspective, so we can see this in action.
+
+Now you can see there's a new icon, and the addition of the magnifying glass indicates it's the browse perspective.
+Click between the icons to switch perspectives.
+
+When you no longer need a perspective, just right-click and select Close.
+
+### Opening views
+Add another view to the perspective: Window > Show View
+select the Project Explorer view
+this view can look quite similar to the Package Explorer view.
+
+I will point out that I find the Project Explorer view a little more capable when you start working with additional tools like Spring or Web Development. It's good to know it's there, although right now we're just going to use it to have an additional tab.
+
+Each view has a minimize / maximize icon
+
+use the Restore icon in the view's top bar to reanchor the view to its previous location.
+or the icon below restore to bring back any given tab temporarily, until it is clicked off again.
+If more than one view is minimized the view's order from top to bottom in the order you minimize them.
+You can take a tab and put it where ever you like. When you click and start to drag, Eclipse will give you some highlighting lines to indicate where it's going to put the tab.
+Notice when I get a single vertical bar next to the tabs in a view, eclipse will make the selected view one of the tabs in that view.
+
+
+### Saving Perspectives
+We can save a new arrangement as its own perspective.
+use the Window > Perspective > Save Perspective As...
+
+You can hover over the icon, and you'll get the name of the perspective after a short delay.
+To delete a perspective go to Preferences at the bottom of the Window menu, open up the general area, and scan down for perspectives, then we can select the perspective we want to delete, click Delete, and finally Apply and Close.
+
+When you double-click a tab, it maximizes to take up the whole screen. Double-click it again, and it goes back to where it was.
+
+For fine-grained control over your perspective there are even more options if you go into the Window menu and select Customized Perspective. We're not going to get into that much detail right now, but you can change what toolbars are showing, the menu visibility, and more, and all of that will save with your perspective as well.
+
+
+Eclipse has templates that can save you some typing. The system out print line method is available by just typing syso, and hitting Ctrl+Space. We can then select the match from the list, and then just hit Save.
+
+By default, Eclipse is set up to build when you hit Save.
+
+We can also prettify our code. Under the Source menu is the Format command
+
+In Preferences under General, we can go down to Workspace, and you can see Build automatically is checked, and that's what's complying in our code for us as we save. And I don't know why, but by default, Save automatically before build is unchecked, I actually prefer to have that checked.
+
+
+
+
+
+
+
+## Demo: Creating a First Java SE Project
+
+We have several methods for creating a project:
+* right click the Project Explorer and then New > Project
+* the New Project button on the toolbar
+* the New panel in the File Menu
+
+Choose a method and select the Java project.
+Give a name to our project.
+Choose a JDK to run our project. By default, Eclipse will use the JDK it is using itself
+Choose a project layout.
+Finish.
+
+Eclipse is asking us if we want to switch to the Java perspective, which is a little simpler than the Java EE perspective, so let us do that. And you see that we have a simpler toolbar and an arrangement of views, which is slightly different. And on the top-right of this UI, we can choose to go back to the Java EE perspective or to stay on the Java SE perspective.
+
+Demo: Creating a First Class
+
+To create a class, we can right-click src folder, New, and Class from the pop-up menu.
+Put our class in a package because using the default package or the empty package is not recommended in Java.
+
+Demo: Setting the Characters Encoding for Java Source Files
+
+Before we go any further
+right-click select this class and open the properties at the bottom.
+or can use the shortcut, Alt+Enter, to open the property panel for this class.
+
+By default, the text file encoding for Java source code in Eclipse is, in fact, wrong.
+It is inherited from the OS you are using. On my Windows machine, this is Cp1252
+it should be UTF-8.
+To do this for all Java source code, go to the Window menu > Preferences.
+filter for encoding.
+General > Content Types
+select the Text option in the Content types region
+then, at the bottom, enter into the "Default encoding" textbox  "UTF-8"
+It will be inherited by all the text generated by Eclipse
+select Update, then Apply and Close.
+. java files are UTF-8 is in the specification of the language.
+
+Demo: Customizing the Format of the Java Source Files
+
+To customize the way Eclipse formats your Java code. Window > Preferences
+filter by "format"  to find  Java > Code Style > Formatter.
+
+Edit the Eclipse built-in format.
+Rename it
+there are many options, one edit we can make is the selection of the Spaces only Tab policy
+4 is a nice default
+Apply and click OK. Apply and Close.
+
+
+
+
+
+
 
 ### About Eclipse
 On Windows and Linux, Help Menu > About Eclipse
@@ -114,62 +216,6 @@ This is the other way of finding out what's installed. It turns out only two ite
 
 
 
-Exploring the Eclipse Workbench
-
-In this module, we're going to take an in-depth look at the Eclipse Workbench.
-
-Two of the basic building blocks of Eclipse are views and perspectives.
-
-A view is the Eclipse name for a unique content area that accomplishes a given task.
-Package Explorer, Outline, and the Console are examples of three views.
-
-A perspective is just the layout of a particular collection of views.
-
-As soon as we open Eclipse, we are in a particular perspective. There are some useful built-in perspectives including the default that we've already seen, one for browsing code, one for debugging, and one for source code management with Git. There are other preexisting perspectives, and you can create more and customize the existing ones.
-
-
-Views and Perspectives
-
-Here we are in Eclipse, and we're in an empty workspace with the default Java perspective.
-The icon in the upper-right indicates your current perspective.
-You can open other perspectives using the icon just to the left.
-
-I'll open the Java Browse perspective, so we can see this in action.
-
-Now you can see there's a new icon, and the addition of the magnifying glass indicates it's the browse perspective. I can click on the icons to switch perspectives.
-
-When you no longer need a perspective, just right-click and select Close.
-
-Let me add another view to the perspective.
-The Project Explorer view can look quite similar to the Package Explorer view, and I'll add that.
-I will point out that I find the Project Explorer view a little more capable when you start working with additional tools like Spring or Web Development. It's good to know it's there, although right now we're just going to use it to have an additional tab.
-
-Each view has a minimize icon,
-Once minimized we can use
- restore to reanchor the view to its previous location
-or the icon below restore to bring back any given tab temporarily, until it is clicked off again.
-If more than one view is minimized the view's order from top to bottom in the order you minimize them.
-You can take a tab and put it where ever you like. When you click and start to drag, Eclipse will give you some highlighting lines to indicate where it's going to put the tab.
-Notice when I get a single vertical bar next to the tabs in a view, eclipse will make the selected view one of the tabs in that view.
-
-We can save a new arrangement as its own perspective.
-use the Window > Perspective menu, and select Save Perspective As.
-
-You can hover over the icon, and you'll get the name of the perspective after a short delay.
-To delete a perspective go to Preferences at the bottom of the Window menu, open up the general area, and scan down for perspectives, then we can select the perspective we want to delete, click Delete, and finally Apply and Close.
-
-When you double-click a tab, it maximizes to take up the whole screen. Double-click it again, and it goes back to where it was.
-
-For fine-grained control over your perspective there are even more options if you go into the Window menu and select Customized Perspective. We're not going to get into that much detail right now, but you can change what toolbars are showing, the menu visibility, and more, and all of that will save with your perspective as well.
-
-
-Eclipse has templates that can save you some typing. The system out print line method is available by just typing syso, and hitting Ctrl+Space. We can then select the match from the list, and then just hit Save.
-
-By default, Eclipse is set up to build when you hit Save.
-
-We can also prettify our code. Under the Source menu is the Format command
-
-In Preferences under General, we can go down to Workspace, and you can see Build automatically is checked, and that's what's complying in our code for us as we save. And I don't know why, but by default, Save automatically before build is unchecked, I actually prefer to have that checked.
 
 
 Quick Access
