@@ -1,6 +1,6 @@
 JIRA is one of the most widely used Incident Management Tool used for Project Management, Bug Tracking, Issue Tracking and Workflow.
 
-JIRA is based on the following three concepts – Project, Issue and Workflow.
+JIRA is based on three concepts – Project, Issue and Workflow.
 Important Points to Note
 
 The following points explain some interesting details of JIRA.
@@ -15,7 +15,7 @@ The following points explain some interesting details of JIRA.
 
     JIRA supports MySQL, Oracle, PostgreSQL and SQL server in the backend.
 
-    JIRA can be integrated with many other tools − Subversion, GIT, Clearcase, Team Foundation Software, Mercury, Concurrent Version System and many more.
+    JIRA can be integrated with many other tools − Subversion, GIT, Clearcase, Team Foundation Software, Mercury, Concurrent Version System and more.
 
 License and Free Trial
 
@@ -82,12 +82,10 @@ JIRA supports any business team and any project irrespective of size and complex
 
 Add -Ins
 JIRA supports more than 100 add-ins to connect with different software to make work easy.
-Wide range of add-ins makes it as universal across the globe.
+
 
 Multilingual
 JIRA supports more than 10 languages those are widely used as English (US, UK, India), French, German, Portuguese, Spanish, Korean, Japanese and Russian.
 
 Mobile App
-JIRA is available as a Mobile Application as well.
-It is available on Google Play Store and App Store (iTunes) of Apple.
-Easy to stay connected with the team while moving anywhere with notification, comments and project activity.
+JIRA is available as a Mobile Application making it easy to stay connected with the team while moving anywhere with notification, comments and project activity.
