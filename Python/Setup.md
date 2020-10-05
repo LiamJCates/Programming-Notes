@@ -1,4 +1,5 @@
-Before continuing with this tutorial, make sure you are logged in as a user with sudo privileges .
+Before continuing with this tutorial, make sure you are logged in as a user with sudo privileges
+
 Installing pip for Python 3
 
 Ubuntu 18.04 ships with Python 3, as the default Python installation. Complete the following steps to install pip (pip3) for Python 3:
