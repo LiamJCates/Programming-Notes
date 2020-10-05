@@ -1,3 +1,13 @@
+Goal
+
+Defining the goal:
+
+    Given a product name and website, we search through product listings on the given website to determine if the given product exists;
+    If it does, we navigate to the product detail page, and check if it is available;
+    If it is available, add it to our cart;
+    Checkout with pre-configured payment information.
+    Confirm purchase and stop the script
+
 What is Selenium
 
 Selenium allows us to interact with the HTML elements of a website.
@@ -11,32 +21,23 @@ Python allows the creation of scripts that can test all aspects of a web app, an
 In some sense, the shopping bot we will be building is also a form of automated testing: Shopping sites may very well write up the same script, and run it after every new deployment of their web app.
 
 Prerequisites
+Linux command prompt
 
-TODO:
-Linux OS
-Link to win 10 install
+Python
 
 pip
-Link to pip tutorial
 
+Firefox:
+sudo apt-get install firefox
 
 Set Up Selenium
 
 detailed instructions can be found here: https://pypi.org/project/selenium/
 
-Python language bindings for Selenium WebDriver.
 
-The selenium package is used to automate web browser interaction from Python.
-Home: http://www.seleniumhq.org
-Docs: selenium package API
-Dev:  https://github.com/SeleniumHQ/Selenium
-PyPI: https://pypi.org/project/selenium/
-IRC:  #selenium channel on freenode
-
-Several browsers/drivers are supported (Firefox, Chrome, Internet Explorer), as well as the Remote protocol.
 Supported Python Versions
 
-    Python 2.7, 3.4+
+Python 2.7, 3.4+
 
 Installing
 
@@ -44,21 +45,40 @@ If you have pip on your system, you can simply install or upgrade the Python bin
 
 pip install -U selenium
 
+Aside from pip installing the relevant packages, we setup the actual driver for your choice of browser.
+
+Selenium requires a driver to interface with the chosen browser. Firefox, for example, requires geckodriver:
+https://github.com/mozilla/geckodriver/releases
 
 
-Aside from pip installing the relevant packages, one extra step is to download and setup the actual driver for your choice of browser. More detailed instructions can be found here. Once you open the link, scroll down to the “Drivers” section, which would walk you through the process. For my example, I will use the Firefox driver.
+
+Geckodriver Setup
+
+Go to the geckodriver releases page:
+https://github.com/mozilla/geckodriver/releases
+
+    For the following steps use an account with sudo privileges or prepend sudo to each command:
+
+    Find the latest version of the driver for your platform and download it.
+
+    For example:
+    wget https://github.com/mozilla/geckodriver/releases/download/v0.27.0/geckodriver-v0.27.0-linux64.tar.gz
+
+    Extract the file with:
+    tar -xvzf geckodriver*
+
+    Make it executable:
+    chmod +x geckodriver
+
+    Then either add the driver to your PATH so other tools can find it:
+    export PATH=$PATH:/path-to-extracted-file/
+
+    Or download it to any location and move the file to a location on the PATH
+    mv geckodriver /usr/local/bin/
 
 
-Goal
 
-For our example, let’s define our goal as follows:
+Failure to follow these steps will give you an error selenium.common.exceptions.WebDriverException: Message: ‘geckodriver’ executable needs to be in PATH.
 
-    Given a product name, we search through the listings on https://www.supremenewyork.com/shop and determine if it exists;
-    If it does, we navigate to the product detail page, and check if it is available;
-    If it is available, add it to our cart;
-    Checkout with pre-configured payment information.
-    Profit.
 
-To summary: enter a product name, then … profit*!
-
-* Through the mental satisfaction of writing a piece of code that actually runs!
+ that actually runs!
