@@ -1,0 +1,11 @@
+USE `classicmodels`;
+DROP procedure IF EXISTS `listProductsFor`;
+
+DELIMITER $$
+USE `classicmodels`$$
+CREATE PROCEDURE `listProductsFor` (IN prodLine VARCHAR(100))
+BEGIN
+select * from products where productLine = prodLine;
+END$$
+
+DELIMITER ;

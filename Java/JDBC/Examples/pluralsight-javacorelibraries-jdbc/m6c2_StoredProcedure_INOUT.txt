@@ -1,0 +1,14 @@
+USE `classicmodels`;
+DROP procedure IF EXISTS `updateEmail`;
+
+DELIMITER $$
+USE `classicmodels`$$
+CREATE PROCEDURE `updateEmail` (IN emp_num INT, INOUT e_mail VARCHAR(100))
+BEGIN
+DECLARE old_email VARCHAR(100) DEFAULT 'UNKNOWN';
+SELECT email INTO old_email FROM employees WHERE employeeNumber = emp_num;
+UPDATE employees SET email = e_mail WHERE employeeNumber = emp_num;
+SET e_mail = old_email;
+END$$
+
+DELIMITER ;
