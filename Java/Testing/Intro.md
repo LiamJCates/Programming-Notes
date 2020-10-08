@@ -4,7 +4,7 @@ Testing is the cornerstone of any professional software product. Testing itself 
 
 Test Driven Development: by thinking of testing at the start of the development process, the software as a whole becomes easier to test
 
-Plenty of rich, full-featured, complete testing solutions are available for testing code written for Java. One of the most ubiquitous and well-understood libraries for this is JUnit. 
+Plenty of rich, full-featured, complete testing solutions are available for testing code written for Java. One of the most ubiquitous and well-understood libraries for this is JUnit.
 
 By writing tests first and making sure the tests are fully integrated into a build means that the tests will run any time a build is created, such as before code is checked in, or when a release artifact is built. This, in turn, builds confidence that the system is working correctly. Any time a test fails for a seemingly unknown reason; this can often be due to new code introducing bugs elsewhere in the system. This is known as a regression.
 
@@ -24,7 +24,10 @@ The more tests you write, the better you become at reasoning about existing code
 and it also helps to break down code into small, atomic, isolated chunks.
 Any time you are asked to do a small programming assignment as part of an interview, you should always write tests, whether you were asked to or not. It demonstrates that you are disciplined; have mature reasoning for how to understand and
 test code; and also provides a level of documentation, which is an aid to any interviewer to how you were thinking at the time.
-What value do JUnit tests give?
+
+
+
+### What value do JUnit tests give?
 JUnit tests are often used with the development approach known as Test-Driven Development
 (TDD). The process of TDD is to perform short, iterative loops: You write a test based on expectations and assertions about what your code should do. Considering you would not yet have written
 the code for these tests, they should not pass. You then write the code to make the tests pass. Once
@@ -43,7 +46,10 @@ Confidence in your code being correct means you can put increased reliance in au
 For developing server-side architectures, you can move toward a continuous delivery model, where
 fully tested code is automatically released to a production server with no human intervention after
 check-in.
-How are JUnit tests run?
+
+
+
+### How are JUnit tests run?
 while JUnit is well integrated into many build tools, but it is still possible to invoke it manually on the command line.
 
 In the JUnit library, the class JUnitCore contains the main method used for starting the tests from
@@ -61,7 +67,11 @@ only the tests set in that property will be run:
 mvn test –Dtest=SystemTest
 
 The test parameter can take wildcards, so setting the system property to a value such as -Dtest=*IntegrationTest would run any test suffixed with IntegrationTest.
-The JUnit Test Life Cycle
+
+
+
+
+### The JUnit Test Life Cycle
 When you run a test suite, each test follows a prescribed set of steps. These steps can help you
 modularize your tests and reuse as much code as possible.
 
@@ -154,6 +164,10 @@ will be rectified.
 You can also use the @Ignore annotation at the class level, instructing the JUnit runner to skip a
 whole suite of tests.
 
+
+
+
+### Assert
 One of the core classes in the JUnit library is the Assert class. It contains many static methods for
 expressing an assumption, which then verifies that assumption is true. Some of the key methods and
 their function are:
@@ -174,6 +188,13 @@ public static void assertTrue(boolean condition)
 
 This String parameter is a message that is displayed when assertion fails.
 
+
+
+
+
+
+### Exceptions
+
 How can you expect certain exceptions?
 
 If you are testing a failing situation in your code, and you expect an exception to occur, you can notify the test of your expected exception type. If that exception is thrown in the test, it passes. Completion of the test without that exception being thrown is a failure.
@@ -189,6 +210,10 @@ IOException is a checked exception.
 It is advisable to use the expected parameter on the @Test annotation sparingly. The most reliable tests using this parameter have only one line in the method body: the line that should throw the exception. Therefore, it is crystal clear to see how and why a test could start failing
 
 
+
+
+
+### timeout
 How can a test fail if it does not complete quickly enough?
 
 The @Test annotation can take two parameters. One is expected (which you have already seen),
@@ -210,6 +235,10 @@ public void serviceResponseTime() {
 This integration test calls out to a real-world high score service, and if the test does not complete within a second, an exception is thrown with the notification that the test timed out. Of course, this timeout is for the whole test to complete, not the specific long-running method call. Similar to the exception expectation, if you want to explicitly check that a method call took less than a certain amount of time, you can either have that single method call in the test, or run the method call in a separate thread
 
 
+
+
+
+### @RunWith
 How does the @RunWith annotation work?
 
 The @RunWith annotation is a class-level annotation, and it provides a mechanism for changing
@@ -283,6 +312,9 @@ One thing to bear in mind is that for test suites that require many parameters, 
 unclear as to which position in the provided array matches which constructor argument.
 For this listing, the parameters() class method returns a readily constructed instance of an
 ArrayList.
+
+
+
 
 
 
