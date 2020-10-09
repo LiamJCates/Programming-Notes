@@ -2,11 +2,21 @@ Course Overview
 
 JDBC Is the most mature and heavily utilized of all the Java enterprise. APIs. If you do development in Enterprise, Mobile, Cloud or Micro Service is, you're probably going to be using JDBC.
 
+
+Prerequisites
 Before reading this document, you should already be familiar with the Java programming language and SQL, the standard query language for relational databases.
+
+Technology used by the examples will be
+Java 11
+JDBC version 4.3.
+MySQL Community Edition
+MySQL Workbench
+
+
 
 Overview and Setup
 
-The JDBC APIs used to create, read, update and delete data in a relational database using the Java programming language. JDBC is database agnostic, which means it works the same way. Whether you're using MySQL, SQL server, Oracle or some other relational database. Learning JDBC is one of the most important skills for an enterprise developer, and it's a skill that has truly learned once and use everywhere. That's because, regardless of which relational database you used, you employ the same JDBC API to perform updates, inserts, deletes and queries.
+The JDBC APIs used to create, read, update and delete data in a relational database using the Java programming language. JDBC is database agnostic, which means it works the same way whether you're using MySQL, SQL server, Oracle or some other relational database. Learning JDBC is one of the most important skills for an enterprise developer, and it's a skill that has truly learned once and use everywhere. That's because, regardless of which relational database you used, you employ the same JDBC API to perform updates, inserts, deletes and queries.
 
 Knowing how to use JDBC is an essential skill for Enterprise Java developers who want to be at the top of their game. JDBC is used for data access, with every kind of Java application being enterprise mobile, big data, Internet of things, cloud computing or Web development.
 
@@ -19,11 +29,7 @@ Relational databases are used by the vast majority of enterprises deploying appl
 
 The examples we're going to develop in this document are for an example company Global Mantex. Global Mantex sells die cast cars, motorcycles and trucks to scale model enthusiasts and collectors. They have relied on monolithic solutions for last 30 years but are now preparing to re-engineer their business system using modern micro services platforms build on Java and Jakarta EE. They need you to develop components that can query and update products customers orders and other data in the relational database. These components must be self contained and decoupled abstracting crowd operations so that they could be reused by other developers who are developing micro services and Java EE applications.
 
-The examples will be using
-Java 11
-JDBC version 4.3.
-MySQL Community Edition
-MySQL Workbench
+
 
 Installing MySQL and Example Database
 
@@ -52,7 +58,7 @@ File structure src > main > java > com > pluralsite > corejdbc
 
 You can see all of the examples for each video with the final package designator of m then module number and c then video clip number.
 
-You don't have to memorize the schema because with each example, I'll provide a full package and class name that you should be looking at. As an example, opened the m2c1 file and click on the main class. As you can see, I've annotated the video with the name of the class and its package. All the examples for ontology have at least two classes, a component class and a main class. The component class is where your JDBC and Business logic resides. It's here that you'll connect to the MySQL databases and learn about JDBC APIs. The main classes, the one you want to run to see the examples in action it instantiates the component and calls the appropriate method with the parameters needed. You should feel free to change those parameters to experiment on your own. But the ones higher quoted into the main classes are the ones I'll be talking about in this course. To run an example, click on the main class and right click and then select Run main dot name as shown here. Occasionally there will be more than one main class, but you'll be provided with instructions on which one to run for each example. 
+You don't have to memorize the schema because with each example, I'll provide a full package and class name that you should be looking at. As an example, opened the m2c1 file and click on the main class. As you can see, I've annotated the video with the name of the class and its package. All the examples for ontology have at least two classes, a component class and a main class. The component class is where your JDBC and Business logic resides. It's here that you'll connect to the MySQL databases and learn about JDBC APIs. The main classes, the one you want to run to see the examples in action it instantiates the component and calls the appropriate method with the parameters needed. You should feel free to change those parameters to experiment on your own. But the ones higher quoted into the main classes are the ones I'll be talking about in this course. To run an example, click on the main class and right click and then select Run main dot name as shown here. Occasionally there will be more than one main class, but you'll be provided with instructions on which one to run for each example.
 
 
 Assuming everything was done, you'll see output that should tell you that the applications successfully connected to the MySQL database server. This confirms that the example, code and intelligent can run the sample database. I'm using Eclipse Ide ee in the videos, but the process of selecting example and running it is the same. There's been some problems within Tell J lately, so if you get an air like this fun or this one, it means that intelligent is not using the correct J T. K. Remember in the last video you set up J. D. K. 11. We need to make sure that that's reflected in the intelligence settings. Click on the intelligent menu item and select preferences Navigate to build execution deployment, then compiler and then Java compiler. In this window, make sure the project by co version is set to 11. If there's no module shown, click on the plus sign and select a module. If there's nothing to select than just leave it. If there is a module, make sure that the Target byte code version is set to 11 then hit Applying close. Next, right, click on the project in the Project Navigator and go to the menu item named Open Mode Settings. Make sure the language level set toe 11 and click Apply next. Go to the sdk and make sure that set to 11 as well. If not, you may need to add 11 and set it to that. Now apply your changes. Now go back to the Project Navigator. Click on the main class and then right click and select Run Maine, and you should see the following output. If you still don't see the correct output to make sure that your operating system is using J T K 11 and not J. T. K 1.8 or some other version. If you need to go back to the previous video and follow the instructions, do that now.
