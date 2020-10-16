@@ -46,7 +46,7 @@ Libraries and Frameworks
 
 smallest valid program
 
-main() {
+int main() {
   return 0;
 }
 
