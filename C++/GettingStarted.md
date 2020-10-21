@@ -46,9 +46,7 @@ Libraries and Frameworks
 
 smallest valid program
 
-int main() {
-  return 0;
-}
+int main() {}
 
 save to .cpp file extension
 
