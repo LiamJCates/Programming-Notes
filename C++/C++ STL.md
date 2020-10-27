@@ -71,3 +71,12 @@ ISO Standards Committee.
 By telling the compiler that you are using the namespace std, you
 don’t need to explicitly mention the namespace when using std::cout or
 std::endl.
+
+
+using namespace std;
+effect is that, when compiling, for any unrecognized name, the compiler will try prepending std:: to it to see if it exists in the std namespaces can have unintended effects
+
+it is recommended that if you are only using a small number of namespace members, such as cout for instance, instead use
+using std::cout;
+
+this will ensure that you only use what you need from a library and also document what you are using from a given library

@@ -1,5 +1,8 @@
 https://code.visualstudio.com/docs/cpp/config-wsl
 
+
+https://cppreference.com
+
 Compile and linker overview
 
 through programs designated as C++ compilers and linkers text becomes executable

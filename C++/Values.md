@@ -2,31 +2,28 @@ Values are supplied by name (variables, constants) and expressions
 
 Variables are tools that help the programmer temporarily store data for
 a finite amount of time. Constants are tools that help the programmer
-define artifacts that are not allowed to change or make changes.
+define artifacts that are not allowed to change or make changes. An expression is any valid unit of code, a combination of one or more constants, variables, functions, and operators, that the programming language interprets to resolve to a value.
+
 
 
 ## Variables
-When programming in languages like C++, you define variables to store those values.
+When programming in languages like C++, you define variables to store values.
+
+
 Defining a variable is quite simple and follows this pattern:
+
 VariableType VariableName;
 or
 VariableType VariableName = InitialValue;
 
-The variable type attribute tells the compiler the nature of data the variable can store, and
-the compiler reserves the necessary space for it. The name chosen by the programmer is
-a friendly replacement for the address in the memory where the variable’s value is stored.Unless the initial value is assigned, you cannot be sure of the contents of that memory
-location, which can be bad for the program. Therefore, initialization is optional, but
-it’s often a good programming practice
+The variable type attribute tells the compiler the nature of data the variable can store, and the compiler reserves the necessary space for it.
 
-Naming variables appropriately is important for writing good,
-understandable, and maintainable code.
-Variable names in C++ can be alphanumeric, but they cannot
-start with a number. They cannot contain spaces and cannot
-contain arithmetic operators (such as +, –, and so on) within
-them. Variable names also cannot be reserved keywords. For
-example, a variable named return will cause compilation failure.
-Variable names can contain the underscore character_that often
-is used in descriptive variable naming
+The name chosen by the programmer is a friendly replacement for the address in the memory where the variable’s value is stored.
+
+While some user defined types might have a default initialization, built in types do not. Unless the initial value is assigned, you cannot be sure of the contents of that variable's memory location. Therefore, initialization is optional, but it’s often a good programming practice
+
+Naming variables appropriately is important for writing good, understandable, and maintainable code.
+Variable names in C++ can be alphanumeric, but they cannot start with a number. They cannot contain spaces and cannot contain arithmetic operators (such as +, –, and so on) within them. Variable names also cannot be reserved keywords. For example, a variable named return will cause compilation failure. Variable names can contain the underscore character_that often is used in descriptive variable naming.
 
 Keywords You Cannot Use as Variable or Constant Names
 
@@ -51,20 +48,38 @@ and bitor not_eq xor
 and_eq compl or xor_eq
 bitand not or_eq
 
+
+C++ makes it possible to declare multiple variables of a type at once and to declare variables at the beginning of a function.
+
 int firstNumber = 0, secondNumber = 0, multiplicationResult = 0;
-C++ makes it possible to declare multiple
-variables of a type at once and to declare variables at the
-beginning of a function. Yet, declaring a variable when it is first
-needed is often better as it makes the code readable—one
-notices the type of the variable when the declaration is close to
-its point of first use.
+
+Yet, declaring a variable when it is first needed is often better as it makes the code readable—one notices the type of the variable when the declaration is close to its point of first use.
+
+
+## Expressions
+
+Lvalues and Rvalues
+
+There are two kinds of expressions in C++ −
+
+    lvalue − Expressions that refer to a memory location is called "lvalue" expression. An lvalue may appear as either the left-hand or right-hand side of an assignment.
+
+    rvalue − The term rvalue refers to a data value that is stored at some address in memory. An rvalue is an expression that cannot have a value assigned to it which means an rvalue may appear on the right- but not left-hand side of an assignment.
+
+Variables are lvalues and so may appear on the left-hand side of an assignment. Numeric literals are rvalues and so may not be assigned and can not appear on the left-hand side. Following is a valid statement −
+
+int g = 20;
+
+But the following is not a valid statement and would generate compile-time error −
+
+10 = 20;
+
 
 
 ## Types
 Every name and every expression has a type that determines the operations that may be performed on it.
 
-A declaration is a statement that introduces an entity into the program. It specifies a type for
-the entity:
+A declaration is a statement that introduces an entity into the program. It specifies a type for the entity:
 • A type defines a set of possible values and a set of operations (for an object).
 • An object is some memory that holds a value of some type.
 • A value is a set of bits interpreted according to a type.
@@ -76,6 +91,22 @@ char // character, for example, 'a', 'z', and '9'
 int // integer, for example, -273, 42, and 1066
 double // double-precision floating-point number, for example, -273.15, 3.14, and 6.626e-34
 unsigned // non-negative integer, for example, 0, 1, and 999 (use for bitwise logical operations)
+
+C++ allows the char, int, and double data types to have modifiers preceding them. A modifier is used to alter the meaning of the base type so that it more precisely fits the needs of various situations.
+
+The data type modifiers are listed here −
+
+    signed
+    unsigned
+    long
+    short
+
+The modifiers signed, unsigned, long, and short can be applied to integer base types. In addition, signed and unsigned can be applied to char, and long can be applied to double.
+
+The modifiers signed and unsigned can also be used as prefix to long or short modifiers. For example, unsigned long int.
+
+C++ allows a shorthand notation for declaring unsigned, short, or long integers. You can simply use the word unsigned, short, or long, without int. It automatically implies int.
+
 
 Each fundamental type corresponds directly to hardware facilities and has a fixed size that determines the range of values that can be stored in it.
 
@@ -94,34 +125,64 @@ these types, remember to include header
 Numbers can be floating-point or integers.
 • Floating-point numbers are recognized by a decimal point (e.g., 3.14) or by an exponent
 (e.g., 3e−2).
-• Integer literals are by default decimal (e.g., 42 means forty-two). A 0b prefix indicates a
-binary (base 2) integer literal (e.g., 0b10101010). A 0x prefix indicates a hexadecimal (base
-16) integer literal (e.g., 0xBAD1234). A 0 prefix indicates an octal (base 8) integer literal
-(e.g., 0334).
+• Integer literals are by default decimal (e.g., 42 means forty-two).
+A 0b prefix indicates a binary (base 2) integer literal (e.g., 0b10101010).
+A 0x prefix indicates a hexadecimal (base 16) integer literal (e.g., 0xBAD1234).
+A 0 prefix indicates an octal (base 8) integer literal (e.g., 0334).
 To make long literals more readable for humans, we can use a single quote (') as a digit separator.
 For example, π is about 3.14159'26535'89793'23846'26433'83279'50288 or if you prefer hexadecimal
 0x3.243F'6A88'85A3'08D3.
 
 
-bool true or false
-char 256 character values
-unsigned short int 0 to 65,535
-short int –32,768 to 32,767
-unsigned long int 0 to 4,294,967,295
-long int –2,147,483,648 to 2,147,483,647
-unsigned long long 0 to 18,446,744,073,709,551,615
-long long –9,223,372,036,854,775,808 to
-9,223,372,036,854,775,807
-int (16 bit) –32,768 to 32,767
-int (32 bit) –2,147,483,648 to 2,147,483,647
-unsigned int (16 bit) 0 to 65,535
-unsigned int (32 bit) 0 to 4,294,967,295
-float 1.2e–38 to 3.4e38
-double 2.2e–308 to 1.8e308
+85         // decimal
+0213       // octal
+0x4b       // hexadecimal
+30         // int
+30u        // unsigned int
+30l        // long
+30ul       // unsigned long
 
-Data types such as short, int, long, unsigned short, unsigned int, unsigned
-long, and the like have a finite capacity for containing numbers. When you exceed the
-limit imposed by the type chosen in an arithmetic operation, you create an overflow.
+A floating-point literal has an integer part, a decimal point, a fractional part, and an exponent part. You can represent floating point literals either in decimal form or exponential form.
+
+While representing using decimal form, you must include the decimal point, the exponent, or both and while representing using exponential form, you must include the integer part, the fractional part, or both. The signed exponent is introduced by e or E.
+
+3.14159       // Legal
+314159E-5L    // Legal
+
+bool                    true or false
+
+char                    256 character values
+signed char            -127 to 127
+unsigned char          	0 to 255
+wchar_t 	2 or 4 bytes 	1 wide character
+
+short int              –32,768 to 32,767
+unsigned short int      0 to 65,535
+signed short int 	     -32768 to 32767
+
+int (16 bit)           –32,768 to 32,767
+int (32 bit)           –2,147,483,648 to 2,147,483,647
+unsigned int (16 bit)   0 to 65,535
+unsigned int (32 bit)   0 to 4,294,967,295
+
+long int               –2,147,483,648 to 2,147,483,647
+signed long int 	      same as long int
+unsigned long int       0 to 4,294,967,295
+
+
+long long              –9,223,372,036,854,775,808 to
+                        9,223,372,036,854,775,807
+unsigned long long      0 to 18,446,744,073,709,551,615
+unsigned long long int  0 to 18,446,744,073,709,551,615
+
+float                   1.2e–38 to 3.4e38
+double                  2.2e–308 to 1.8e308
+long double
+
+
+
+
+Data types such as short, int, long, etc... have a finite capacity for containing numbers. When you exceed the limit imposed by the type chosen in an arithmetic operation, you create an overflow.
 
 C++14 adds support for chunking separators in the form of a
 single quotation mark. This improves readability of code, as seen
@@ -138,6 +199,25 @@ aggregations (structs, enums, unions, or classes) thereof.
 
 
 
+We call the types that can be built from the fundamental types (§1.4), the const modifier (§1.6), and
+the declarator operators (§1.7) built-in types
+
+Types built out of other types using C++’s abstraction mechanisms
+are called user-defined types. They are referred to as classes and enumerations. User defined types
+can be built out of both built-in types and other user-defined types.
+
+The type qualifiers provide additional information about the variables they precede.
+
+const Objects of type const cannot be changed by your program during execution.
+
+
+volatile tells the compiler that a variable's value may be changed in ways not explicitly specified by the program.
+
+
+restrict  A pointer qualified by restrict is initially the only means by which the object it points to can be accessed. Only C99 adds a new type qualifier called restrict.
+
+
+
 ## initialization
 The = form is traditional and dates back to C, but if in doubt, use the general {}-list form.
 
@@ -149,9 +229,18 @@ Unfortunately, conversions that lose information, narrowing conversions, such as
 
 The problems caused by implicit narrowing conversions are a price paid for C compatibility (§16.3).
 
-A constant (§1.6) cannot be left uninitialized and a variable should only be left uninitialized in
-extremely rare circumstances. Don’t introduce a name until you have a suitable value for it. Userdefined types (such as string, vector, Matrix, Motor_controller, and Orc_warrior) can be defined to be
-implicitly initialized (§4.2.1).
+A constant (§1.6) cannot be left uninitialized and a variable should only be left uninitialized in extremely rare circumstances. Don’t introduce a name until you have a suitable value for it.
+
+Userdefined types (such as string, vector, Matrix, Motor_controller, and Orc_warrior) can be defined to be implicitly initialized (§4.2.1).
+
+
+
+https://en.cppreference.com/w/cpp/language/initialization
+
+
+
+## auto
+
 When defining a variable, you don’t need to state its type explicitly when it can be deduced from the initializer:
 auto b = true; // a bool
 auto ch = 'x'; // a char
@@ -168,6 +257,8 @@ We use auto where we don’t have a specific reason to mention the type explicit
 Using auto, we avoid redundancy and writing long type names. This is especially important in
 generic programming where the exact type of an object can be hard for the programmer to know
 and the type names can be quite long (§12.2).
+
+
 
 
 ##Constants
@@ -200,7 +291,9 @@ const double s1 = sum(v); // OK: sum(v) is evaluated at run time
 
 constexpr double s2 = sum(v); // error : sum(v) is not a constant expression
 
-For a function to be usable in a constant expression, that is, in an expression that will be evaluated by the compiler, it must be defined constexpr. For example:
+For a function to be usable in a constant expression, that is, in an expression that will be evaluated by the compiler, it must be defined constexpr.
+
+For example:
 constexpr double square(double x) { return x∗x; }
 
 constexpr double max1 = 1.4∗square(17); // OK 1.4*square(17) is a constant expression
@@ -234,7 +327,19 @@ usage of constexpr and compile as a regular function.
 To be constexpr, a function must be rather simple and cannot have side effects and can only use information passed to it as arguments. In particular, it cannot modify non-local variables, but it can have loops and use its own local variables.
 
 For example:
-constexpr double nth(double x, int n) // assume 0<=n
+constexpr double nth(double x,zzzz
+
+
+
+
+
+
+
+
+
+
+
+   int n) // assume 0<=n
 {
 double res = 1;
 int i = 0;
@@ -264,26 +369,30 @@ Defining constants using the preprocessor via #define is depreCAUTION cated and 
 ## typedef
 
 C++ allows you to substitute variable types to something that you might find convenient.
-You use the keyword typedef for that. Here is an example where a programmer wants
-to call an unsigned int a descriptive STRICTLY_POSITIVE_INTEGER.
+You use the keyword typedef:
+
+typedef type newname;
+
+Here is an example where a programmer wants to call an unsigned int a descriptive STRICTLY_POSITIVE_INTEGER.
+
 typedef unsigned int STRICTLY_POSITIVE_INTEGER;
 STRICTLY_POSITIVE_INTEGER numEggsInBasket = 4532;
 
-typedef or type substitution is particularly convenient when
-dealing with complex types that can have a cumbersome syntax,
-for example, types that use templates.
-
+typedef or type substitution is particularly convenient when dealing with complex types that can have a cumbersome syntax, for example, types that use templates.
 
 
 ## Enumerations
-There are situations where a particular variable should be allowed to accept only a
-certain set of values. These are situations where you don’t want the colors in the rainbow
-to contain Turquoise or the directions on a compass to contain Left. In both these cases,
-you need a type of variable whose values are restricted to a certain set defined by you.
-Enumerations are exactly the tool you need in this situation and are characterized by the
-keyword enum. Enumerations comprise a set of constants called enumerators.
-In the following example, the enumeration RainbowColors contains individual colors
-such as Violet as enumerators:
+There are situations where a particular variable should be allowed to accept only a certain set of values. These are situations where you don’t want the colors in the rainbow to contain Turquoise or the directions on a compass to contain Left. In both these cases, you need a type of variable whose values are restricted to a certain set defined by you.
+Enumerations are exactly the tool you need in this situation and are characterized by the keyword enum.
+
+enum enum-name { list of names } var-list;
+
+Enumerations comprise a set of constants called enumerators.
+
+enum color { red, green, blue } c;
+c = blue;
+
+In the following example, the enumeration RainbowColors contains individual colors such as Violet as enumerators:
 enum RainbowColors
 {
 Violet = 0,
@@ -296,165 +405,274 @@ Red
 };
 
 
-## Array
-arrays enable you to store data elements of a type in the memory, in a sequential
-and ordered fashion.
-To declare five distinct
-and unique integer variables and use them to store by declaring an array of five
-integers each initialized to zero, like this:
-int myNumbers [5] = {};
-
-  In general, the amount of memory reserved by
-  the compiler for an array in bytes is
-  Bytes consumed by an array = sizeof(element-type) * Number of Elements
-
-You can even declare an array and initialize its contents on a per-element basis, like this integer array where each of the five integers is initialized to five different integer values:
-
-int myNumbers [5] = {34, 56, -21, 5002, 365}
-
-You can also partially initialize elements in an array, like this:
-int myNumbers [5] = {34, 56};
-// initialize first two elements to 34 and 56 and the rest to 0
-
-An array of five characters would be defined as
-char myCharacters [5];
 
 
 
-Such arrays are called static arrays because the number of elements they contain as well
-as the memory the array consumes is fixed at the time of compilation.
-
-ElementType ArrayName [constant_number of elements] = {optional initial values};
-
-You can define the length of an array (that is, the number of elements in one) as a
-constant and use that constant in your array definition:
-const int ARRAY_LENGTH = 5;
-int myNumbers [ARRAY_LENGTH] = {34, 56, -21, 5002, 365};
-This is particularly useful when you need to access and use the length of the array at
-multiple places, such as when iterating elements in one, and then instead of having to
-change the length at each of those places, you just correct the initialization value at the
-const int declaration.
-You can opt to leave out the number of elements in an array if you know the initial values
-of the elements in the array:
-int myNumbers [] = {2016, 2052, -525}; // array of 3 elements
 
 
 
-Arrays declared thus far are called static arrays as the length
-of the array is a constant and fixed by the programmer at
-compile-time. This array cannot take more data than what the
-programmer has specified. It also does not consume any less
-memory if left half-used or unused. Arrays where the length is
-decided at execution-time are called dynamic arrays.
 
 
-Elements in an array can be accessed using their zero-based index. These indexes are
-called zero-based because the first element in an array is at index 0. So, the first integer
-value stored in the array myNumbers is myNumbers[0], the second is myNumbers[1],
-and so on. The fifth is myNumbers[4]. In other words, the index of the last element in
-an array is always (Length of Array – 1).
-When asked to access element at index N, the compiler uses the memory address of the
-first element (positioned at index zero) as the starting point and then skips N elements
-by adding the offset computed as N*sizeof(element) to reach the address containing
-the (N+1)th element. The C++ compiler does not check if the index is within the actual
-defined bounds of the array. You can try fetching the element at index 1001 in an array of
-only 10 elements, putting the security and stability of your program at risk. The onus of
-ensuring that the array is not accessed beyond its bounds lies solely on the programmer.Accessing an array beyond its bounds results in unpredictable
-behavior. In many cases this causes your program to crash.
-Accessing arrays beyond their bounds should be avoided at
-all costs.
-
-C++ enables you to declare multidimensional arrays by indicating the number of
-elements you want to reserve in each dimension.
-
-arrayType arrayName [rows] [columns];
-
-int solarPanels [2][3] = {{0, 1, 2}, {3, 4, 5}};
-
-|0|1|2|
-|3|4|5|
-
-Even though C++ enables us to model multidimensional arrays,
-the memory where the array is contained is one-dimensional. So,
-the compiler maps the multidimensional array into the memory
-space, which expands only in one direction.
-If you wanted to, you could also initialize the array called
-solarPanels like the following, and it would still contain the
-same values in the respective elements:
-int solarPanels [2][3] = {0, 1, 2, 3, 4, 5};
-However, the earlier method makes a better example because
-it’s easier to imagine and understand a multidimensional array
-as an array of arrays.
-
-When you need to access an integer in this array, you would need to use a first subscript
-to address the array where the integer is and the second subscript to address that integer
-in this array.
 
 
-## Dynamic Arrays
-choose
-dynamic arrays that optimize memory consumption and scale up depending on the
-demand for resources and memory at execution-time. C++ provides you with convenient
-and easy-to-use dynamic arrays in the form of std::vector
 
- #include <iostream>
- #include <vector>
 
+
+
+
+
+
+
+
+
+
+
+## Operators new and delete
+new and delete Allocate and Release Memory Dynamically
+You use new to allocate new memory blocks. The most frequently used form of new
+returns a pointer to the requested memory if successful or else throws an exception.
+When using new, you need to specify the data type for which the memory is being
+allocated:
+Type* Pointer = new Type; // request memory for one element
+You can also specify the number of elements you want to allocate that memory for
+(when you need to allocate memory for more than one element):
+Type* Pointer = new Type[numElements]; // request memory for numElements
+Thus, if you need to allocate integers, you use the following syntax:
+int* pointToAnInt = new int; // get a pointer to an integer
+int* pointToNums = new int[10]; // pointer to a block of 10 integers
+
+Note that new indicates a request for memory. There is no
+guarantee that a call for allocation always succeeds because
+this depends on the state of the system and the availability of
+memory resources.
+NOTE
+Every allocation using new needs to be eventually released using an equal and opposite
+de-allocation via delete:
+Type* Pointer = new Type; // allocate memory
+delete Pointer; // release memory allocated above
+This rule also applies when you request memory for multiple elements:
+Type* Pointer = new Type[numElements]; // allocate a block
+delete[] Pointer; // release block allocated above
+Note the usage of delete[] when you allocate a block using
+new[...] and delete when you allocate just an element
+using new.
+
+Such allocations for an array of elements need to be matched by de-allocation using delete[] to free memory when done
+
+
+NOTE
+If you don’t release allocated memory after you stop using it, this memory remains
+reserved and allocated for your application. This in turn reduces the amount of system
+memory available for applications to consume and possibly even makes the execution of
+your application slower. This is called a leak and should be avoided at all costs
+
+Operator delete cannot be invoked on any address contained in
+a pointer, rather only those that have been returned by new and
+only those that have not already been released by a delete.
+
+Operators new and delete allocate memory from the free store.
+The free store is a memory abstraction in the form of a pool of
+memory where your application can allocate (that is, reserve)
+memory from and de-allocate (that is, release) memory to.
+
+
+Effect of Incrementing and Decrementing
+Operators (++ and --) on Pointers
+A pointer contains a memory address. An increment or decrement operation on a pointer is interpreted by the compiler as your
+need to point to the next value in the block of memory, assuming it to be of the same
+type, and not to the next byte (unless the value type is 1 byte large, like a char, for
+instance).
+
+Decrementing pointers using operator (--) demonstrates the same effect—the address value
+contained in the pointer is reduced by the sizeof the data type it is being pointed to.
+
+What Happens When You Increment or Decrement a Pointer?
+The address contained in the pointer is incremented or decremented by the sizeof
+the type being pointed to (and not necessarily a byte). This way, the compiler ensures
+that the pointer never points to the middle or end of data placed in the memory; it
+only points to the beginning.
+If a pointer has been declared as
+Type* pType = Address;
+++pType would mean that pType contains (and hence points to) Address +
+sizeof(Type).
+
+Using the const Keyword on Pointers
+
+declaring a variable as const effectively ensures that value
+of the variable is fixed as the initialization value for the life of the variable. The value of
+a const-variable cannot be changed, and therefore it cannot be used as an l-value.
+Pointers are variables, too, and hence the const keyword that is relevant to variables
+is relevant to pointers as well. However, pointers are a special kind of variable as they
+contain a memory address and are used to modify memory at that address. Thus, when it
+comes to pointers and constants, you have the following combinations:
+■ The address contained in the pointer is constant and cannot be changed, yet the data
+at that address can be changed:
+int daysInMonth = 30;
+int* const pDaysInMonth = &daysInMonth;
+*pDaysInMonth = 31; // OK! Data pointed to can be changed
+int daysInLunarMonth = 28;
+pDaysInMonth = &daysInLunarMonth; // Not OK! Cannot change address!■ Data pointed to is constant and cannot be changed, yet the address contained in the
+pointer can be changed—that is, the pointer can also point elsewhere:
+int hoursInDay = 24;
+const int* pointsToInt = &hoursInDay;
+int monthsInYear = 12;
+pointsToInt = &monthsInYear; // OK!
+*pointsToInt = 13; // Not OK! Cannot change data being pointed to
+int* newPointer = pointsToInt; // Not OK! Cannot assign const to non-const
+■ Both the address contained in the pointer and the value being pointed to are
+constant and cannot be changed (most restrictive variant):
+int hoursInDay = 24;
+const int* const pHoursInDay = &hoursInDay;
+*pHoursInDay = 25; // Not OK! Cannot change data being pointed to
+int daysInMonth = 30;
+pHoursInDay = &daysInMonth; // Not OK! Cannot change address
+These different forms of const are particularly useful when passing pointers to
+functions. Function parameters need to be declared to support the highest possible
+(restrictive) level of const-ness, to ensure that a function does not modify the pointed
+value when it is not supposed to. This will keep programmers of your application from
+making unwanted changes to pointer values or data.
+
+Arrays and Pointers
+an array is a pointer to the first element in it.
+Should you need to access the second element via the expression myNumbers[1], you can
+also access the same using the pointer pointToNums with the syntax *(pointToNums
++ 1). The third element is accessed in the static array using myNumbers[2], whereas the
+third element is accessed in the dynamic array using the syntax *(pointToNums + 2).
+
+
+It is up to you—the programmer—to ensure that all allocated memory is also released
+by your application. Something like this should never be allowed to happen:
+int* pointToNums = new int[5]; // initial allocation
+// use pointToNums
+...
+// forget to release using delete[] pointToNums;
+...
+// make another allocation and overwrite
+pointToNums = new int[10]; // leaks the previously allocated memory
+
+Dangling Pointers (Also Called Stray
+or Wild Pointers)
+Note that any valid pointer is invalid after it has been released using delete.
+To avoid this problem, some programmers follow the convention of assigning NULL to a
+pointer when initializing it or after it has been deleted. They also always check a pointer
+for validity (by comparing against NULL) before dereferencing it using operator (*).
+
+
+Checking Whether Allocation Request
+Using new Succeeded
+In our code to this point, we have assumed that new will return a valid pointer to a block
+of memory. Indeed, new usually succeeds unless the application asks for an unusually
+large amount of memory or if the system is in such a critical state that it has no memory
+to spare. There are applications that need to make requests for large chunks of memory
+(for example, database applications). Additionally, it is good to not simply assume that
+memory allocation requests will always be successful. C++ provides you with two
+possible methods to ensure that your pointer is valid before you use it. The default
+method—one that we have been using thus far—uses exceptions wherein unsuccessful
+allocations result in an exception of the type std::bad_alloc to be thrown. An exception results in the execution of your application being disrupted, and unless you have
+programmed an exception handler, your application ends rather inelegantly with an
+error message “unhandled exception.”
+
+#include <iostream>
 using namespace std;
 
+// remove the try-catch block to see this application crash
 int main()
 {
-vector<int> dynArray (3); // dynamic array of int
-
-dynArray[0] = 365;
-dynArray[1] = -421;
-dynArray[2]= 789;
-
-cout << "Number of integers in array" << dynArray.size() << endl;
-
-cout << "Enter another element to insert" << endl;
-int newValue = 0;
-cin >> newValue;
-dynArray.push_back(newValue);
-
-cout << "Number of integers in array" << dynArray.size() << endl;
-cout << "Last element in array";
-cout << dynArray[dynArray.size() - 1] << endl;
+try
+{
+// Request a LOT of memory!
+int* pointsToManyNums = new int [0x1fffffff];
+// Use the allocated memory
+delete[] pointsToManyNums;
+}
+catch (bad_alloc)
+{
+cout << "Memory allocation failed. Ending program" << endl;
+}
 return 0;
-
 }
 
-To use the dynamic array class std::vector, you need to
-include header vector, which is also shown in Line 1 of Listing 4.4.
- #include <vector>
+The exception handling try-catch construct thus helped the application in making a
+controlled exit after informing the user that a problem in memory allocation hampers
+normal execution.For those who don’t want to rely on exceptions, there is a variant of new called
+new(nothrow). This variant does not throw an exception when allocation requests
+fail, rather it results in the operator new returning NULL. The pointer being assigned,
+therefore, can be checked for validity against NULL before it is used.
+
+#include <iostream>
+using namespace std;
+
+int main() {
+  int* pointsToManyNums = new(nothrow) int [0x1fffffff];
+
+  if (pointsToManyNums) // check pointsToManyNums != NULL
+    delete[] pointsToManyNums;
+
+  else
+    cout << "Memory allocation failed. Ending program" << endl;
+
+  return 0;
+}
 
 
+What Is a Reference?
+A reference is an alias for a variable. When you declare a reference, you need to initialize it to a variable using the reference operator (&):
+VarType original = Value;
+VarType& ReferenceVariable = original;
 
-## Strings
-C-style strings are a special case of an array of characters. You have already seen some
-examples of C-style strings in the form of string literals that you have been writing into
-your code:
-std::cout << "Hello World";
-This is equivalent to using the array declaration:
-char sayHello[] = {'H', 'e', 'l', 'l', 'o', ' ', 'W', 'o', 'r', 'l', 'd',
-'\0'};
-std::cout << sayHello << std::endl;
-Note that the last character in the array is a null character '\0'. This is also called the
-string-terminating character because it tells the compiler that the string has ended. Such
-C-style strings are a special case of character arrays in that the last character always precedes the null-terminator '\0'. When you embed a string literal in your code, the compiler
-does the job of adding a '\0' after it.
+What Makes References Useful?
+References enable you to work with the memory location they are initialized to. This
+makes references particularly useful when programming functions.
 
-Applications programmed in C (or in C++ by programmers who
-have a strong C background) often use string copy functions
-such as strcpy(), concatenation functions such as strcat(),
-and strlen() to determine the length of a string, in addition to
-others of this kind.
-These functions take C-style strings as input and are dangerous
-as they seek the null-terminator and can exceed the boundaries
-of the character array they’re using if the programmer has not
-ensured the presence of the terminating null
+Function DoSomething() is invoked like this:
+ReturnType Result = DoSomething(argument); // function callThe preceding code would result in the argument being copied into Parameter, which is
+then used by the function DoSomething(). This copying step can be quite an overhead if
+the argument in question consumes a lot of memory. Similarly, when DoSomething()
+returns a value, it is copied again into Result. It would be ideal if we could avoid or
+eliminate the copy steps, enabling the function to work directly on the data in the caller’s
+stack. References enable you to do just that.
+A version of the function without the copy step looks like this:
+ReturnType DoSomething(Type& parameter); // note the reference&
+This function would be invoked as the following:
+ReturnType Result = DoSomething(argument);
+As the argument is being passed by reference, Parameter is not a copy of argument
+rather an alias
 
-C++ standard strings are an efficient and safer way to deal with text input—and to
-perform string manipulations like concatenations. std::string is not static in size
-like a char array implementation of a C-style string is and can scale up when more
-data needs to be stored in it.
+#include <iostream>
+ using namespace std;
+
+ void GetSquare(int& number)
+ {
+ number *= number;
+ }
+
+ int main()
+ {
+ cout << "Enter a number you wish to square ";
+ int number = 0;
+ cin >> number;
+
+ GetSquare(number);
+ cout << "Square is " << number << endl;
+
+ return 0;
+ }
+
+ The function that performs the operation of squaring is in Lines 3–6. Note how it accepts
+the number to be squared as a parameter by reference and returns the result in the same.
+Had you forgotten to mark the parameter number as a reference (&), the result would not
+reach the calling function main() as GetSquare() would then perform its operations
+on a local copy of number and that would be destroyed when the function exits. Using
+references, you ensure that GetSquare() is operating in the same address space where
+number in main() is defined. Thus, the result of the operation is available in main()
+even after the function GetSquare() has exited
+
+Using Keyword const on References
+You might need to have references that are not allowed to change the value of the
+original variable being aliased. Using const when declaring such references is the way
+to achieve that:
+int original = 30;
+const int& constRef = original;
+constRef = 40; // Not allowed: constRef can’t change value in original
+int& ref2 = constRef; // Not allowed: ref2 is not const
+const int& constRef2 = constRef; // OK
