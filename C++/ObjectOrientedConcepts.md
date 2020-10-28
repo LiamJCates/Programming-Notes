@@ -1,121 +1,65 @@
-Inheritance allows us to define a class in terms of another class
+Polymorphism
+The word polymorphism means having many forms. Typically, polymorphism occurs when there is a hierarchy of classes and they are related by inheritance.
 
-When creating a class, instead of writing completely new data members and member functions, the programmer can designate that the new class should inherit the members of an existing class. This existing class is called the base class, and the new class is referred to as the derived class.
+polymorphic behavior that can be implemented in C++ via the
+inheritance hierarchy, also known as subtype polymorphism.
 
-The idea of inheritance implements the is a relationship. For example, mammal IS-A animal, dog IS-A mammal hence dog IS-A animal as well and so on.
-Base and Derived Classes
+Need for Polymorphic Behavior
+In Lesson 10, “Implementing Inheritance,” you found out how Tuna and Carp inherit
+public method Swim() from Fish as shown in Listing 10.1. It is, however, possible that
+both Tuna and Carp provide their own Tuna::Swim() and Carp::Swim() methods
+to make Tuna and Carp different swimmers. Yet, as each of them is also a Fish, if a
+user with an instance of Tuna uses the base class type to invoke Fish::Swim(), he ends
+up executing only the generic part Fish::Swim() and not Tuna::Swim(), even though
+that base class instance Fish is a part of a Tuna.
 
-A class can be derived from more than one classes, which means it can inherit data and functions from multiple base classes. To define a derived class, we use a class derivation list to specify the base class(es). A class derivation list names one or more base classes and has the form −
-
-class derived-class: access-specifier base-class
-
-Where access-specifier is one of public, protected, or private, and base-class is the name of a previously defined class. If the access-specifier is not used, then it is private by default.
-
-Access Control and Inheritance
-
-A derived class can access all the non-private members of its base class. Thus base-class members that should not be accessible to the member functions of derived classes should be declared private in the base class.
-
-We can summarize the different access types according to - who can access them in the following way −
-Access 	public 	protected 	private
-Same class 	yes 	yes 	yes
-Derived classes 	yes 	yes 	no
-Outside classes 	yes 	no 	no
-
-A derived class inherits all base class methods with the following exceptions −
-
-    Constructors, destructors and copy constructors of the base class.
-    Overloaded operators of the base class.
-    The friend functions of the base class.
-
-Type of Inheritance
-
-When deriving a class from a base class, the base class may be inherited through public, protected or private inheritance. The type of inheritance is specified by the access-specifier as explained above.
-
-We hardly use protected or private inheritance, but public inheritance is commonly used. While using different type of inheritance, following rules are applied −
-
-    Public Inheritance − When deriving a class from a public base class, public members of the base class become public members of the derived class and protected members of the base class become protected members of the derived class. A base class's private members are never accessible directly from a derived class, but can be accessed through calls to the public and protected members of the base class.
-
-    Protected Inheritance − When deriving from a protected base class, public and protected members of the base class become protected members of the derived class.
-
-    Private Inheritance − When deriving from a private base class, public and protected members of the base class become private members of the derived class.
-
-Multiple Inheritance
-
-A C++ class can inherit members from more than one class and here is the extended syntax −
-
-class derived-class: access baseA, access baseB....
-
-Where access is one of public, protected, or private and would be given for every base class and they will be separated by comma as shown above. Let us try the following example −
-Live Demo
 
 #include <iostream>
-
 using namespace std;
 
-// Base class Shape
-class Shape {
-   public:
-      void setWidth(int w) {
-         width = w;
-      }
-      void setHeight(int h) {
-         height = h;
-      }
-
-   protected:
-      int width;
-      int height;
+class Fish
+{
+public:
+void Swim()
+{
+cout << "Fish swims! " << endl;
+}
+};
+class Tuna:public Fish
+{
+public:
+// override Fish::Swim
+void Swim()
+{
+cout << "Tuna swims!" << endl;
+}
 };
 
-// Base class PaintCost
-class PaintCost {
-   public:
-      int getCost(int area) {
-         return area * 70;
-      }
-};
+void MakeFishSwim(Fish& inputFish)
+{
+// calling Fish::Swim
+inputFish.Swim();
+}
 
-// Derived class
-class Rectangle: public Shape, public PaintCost {
-   public:
-      int getArea() {
-         return (width * height);
-      }
-};
+int main()
+{
+Tuna myDinner;
 
-int main(void) {
-   Rectangle Rect;
-   int area;
+// calling Tuna::Swim
+myDinner.Swim();
 
-   Rect.setWidth(5);
-   Rect.setHeight(7);
+// sending Tuna as Fish
+MakeFishSwim(myDinner);
 
-   area = Rect.getArea();
-
-   // Print the area of the object.
-   cout << "Total area: " << Rect.getArea() << endl;
-
-   // Print the total cost of painting
-   cout << "Total paint cost: $" << Rect.getCost(area) << endl;
-
-   return 0;
+return 0;
 }
 
 
 
 
-
-
-
-
-
-Polymorphism
-The word polymorphism means having many forms. Typically, polymorphism occurs when there is a hierarchy of classes and they are related by inheritance.
-
 C++ polymorphism means that a call to a member function will cause a different function to be executed depending on the type of object that invokes the function.
 
-Consider the following example where a base class has been derived by other two classes −
-Live Demo
+Consider the following example where a base class has been derived by other two classes
 
 #include <iostream>
 using namespace std;
@@ -175,10 +119,6 @@ int main() {
    return 0;
 }
 
-When the above code is compiled and executed, it produces the following result −
-
-Parent class area :
-Parent class area :
 
 The reason for the incorrect output is that the call of the function area() is being set once by the compiler as the version defined in the base class. This is called static resolution of the function call, or static linkage - the function call is fixed before the program is executed. This is also sometimes called early binding because the area() function is set during the compilation of the program.
 
@@ -212,6 +152,8 @@ Virtual Function
 A virtual function is a function in a base class that is declared using the keyword virtual. Defining in a base class a virtual function, with another version in a derived class, signals to the compiler that we don't want static linkage for this function.
 
 What we do want is the selection of the function to be called at any given point in the program to be based on the kind of object for which it is called. This sort of operation is referred to as dynamic linkage, or late binding.
+
+
 Pure Virtual Functions
 
 It is possible that you want to include a virtual function in a base class so that it may be redefined in a derived class to suit the objects of that class, but that there is no meaningful definition you could give for the function in the base class.
@@ -233,6 +175,323 @@ class Shape {
 };
 
 The = 0 tells the compiler that the function has no body and above virtual function will be called pure virtual function.
+
+
+
+
+Polymorphic Behavior Implemented Using Virtual
+Functions
+
+You have access to an object of type Fish, via pointer Fish* or reference Fish&. This
+object could have been instantiated solely as a Fish, or be part of a Tuna or Carp
+that inherits from Fish. You don’t know (and don’t care). You invoke method Swim()
+using this pointer or reference, like this:
+pFish->Swim();
+myFish.Swim();
+What you expect is that the object Fish swims as a Tuna if it is part of a Tuna, as a
+Carp if it is part of a Carp, or an anonymous Fish if it wasn’t instantiated as part of
+a specialized class such as Tuna or Carp. You can ensure this by declaring function
+Swim() in the base class Fish as a virtual function:
+class Base
+{
+virtual ReturnType FunctionName (Parameter List);
+};
+class Derived
+{
+ReturnType FunctionName (Parameter List);
+};
+Use of keyword virtual means that the compiler ensures that any overriding variant
+of the requested base class method is invoked.
+
+Need for Virtual Destructors
+There is a more sinister side to the feature demonstrated by Listing 11.1—unintentionally
+invoking base class functionality of an instance of type derived, when a specialization is
+available. What happens when a function calls operator delete using a pointer of type
+Base* that actually points to an instance of type Derived?
+
+main() creates an instance of Tuna on the free store using new at Line 37 and
+then releases the allocated memory immediately after using service function
+DeleteFishMemory() at Line 39. For the sake of comparison, another instance of
+Tuna is created as a local variable myDinner on the stack at Line 42 and goes out of
+scope when main() ends. The output is created by the cout statements in the constructors and destructors of classes Fish and Tuna. Note that while Tuna and Fish wereboth constructed on the free store due to new, the destructor of Tuna was not invoked
+during delete, rather only that of the Fish. This is in stark contrast to the construction
+and destruction of local member myDinner where all constructors and destructors are
+invoked. Lesson 10 demonstrated in Listing 10.7 the correct order of construction and
+destruction of classes in an inheritance hierarchy, showing that all destructors need to be
+invoked, including ~Tuna(). Clearly, something is amiss.
+This flaw means that the destructor of a deriving class that has been instantiated on the
+free store using new would not be invoked if delete is called using a pointer of type
+Base*. This can result in resources not being released, memory leaks, and so on and is a
+problem that is not to be taken lightly.
+To avoid this problem, you use virtual destructors
+
+the addition of keyword
+virtual at Line 10 where the destructor of base class Fish has been declared. Note
+that this small change resulted in the compiler essentially executing Tuna::~Tuna() in
+addition to Fish::~Fish() when operator delete is invoked on Fish* that actually
+points to a Tuna
+
+Always declare the base class destructor as virtual:
+class Base
+{
+public:
+virtual ~Base() {}; // virtual destructor
+};
+This ensures that one with a pointer Base* cannot invoke
+delete in a way that instances of the deriving classes are not
+correctly destroyed.
+
+
+How Do virtual Functions Work? Understanding the
+Virtual Function Table
+
+The Swim() method that needs
+to be invoked is evidently a decision made at runtime, using a logic that implements
+polymorphism, which is supplied by the compiler at compile-time.
+Consider a class Base that declared N virtual functions:
+class Base
+{
+public:
+virtual void Func1()
+{
+// Func1 implementation
+}
+virtual void Func2()
+{
+// Func2 implementation
+}// .. so on and so forth
+virtual void FuncN()
+{
+// FuncN implementation
+}
+};
+class Derived that inherits from Base overrides Base::Func2(), exposing the other
+virtual functions directly from class Base:
+class Derived: public Base
+{
+public:
+virtual void Func1()
+{
+// Func2 overrides Base::Func2()
+}
+// no implementation for Func2()
+virtual void FuncN()
+{
+// FuncN implementation
+}
+};
+The compiler sees an inheritance hierarchy and understands that the Base defines certain
+virtual functions that have been overridden in Derived. What the compiler now does is
+to create a table called the Virtual Function Table (VFT) for every class that implements
+a virtual function or derived class that overrides it. In other words, classes Base and
+Derived get an instance of their own Virtual Function Table. When an object of these
+classes is instantiated, a hidden pointer (let’s call it VFT*) is initialized to the respective
+VFT. The Virtual Function Table can be visualized as a static array containing function
+pointers, each pointing to the virtual function (or override) of interest
+
+Thus, each table is comprised of function pointers, each pointing to the available implementation of a virtual function. In the case of class Derived, all except one function
+pointer in its VFT point to local implementations of the virtual method in Derived.
+Derived has not overridden Base::Func2(), and hence that function pointer points to
+the implementation in class Base.
+This means that when a user of class Derived calls
+CDerived objDerived;
+objDerived.Func2();
+the compiler ensures a lookup in the VFT of class Derived and ensures that the
+implementation Base::Func2() is invoked. This also applies to calls that use methods
+that have been virtually overridden:
+void DoSomething(Base& objBase)
+{
+objBase.Func1(); // invoke Derived::Func1
+}
+int main()
+{
+Derived objDerived;
+DoSomething(objDerived);
+};In this case, even though objDerived is being interpreted via objBase as an instance
+of class Base, the VFT pointer in this instance is still pointing to the same table
+created for class Derived. Thus, Func1() executed via this VFT is certainly
+Derived::Func1().
+This is how Virtual Function Tables help the implementation of (subtype) polymorphism
+in C++.
+
+This is a sample that has been stripped to the bare minimum. You see two classes,
+SimpleClass and Base, that are identical in the types and number of members,
+yet Base has the function DoSomething() declared as virtual (nonvirtual in
+SimpleClass). The difference in adding this virtual keyword is that the compiler
+generates a virtual function table for class Base and a reserved place for a pointer to the
+same in Base as a hidden member. This pointer consumes the 4 extra bytes in my 32-bit
+system and is the proof of the pudding.
+C++ also allows you to query a pointer Base* if it is of type
+Derived* using casting operator dynamic_cast and then perform conditional execution on the basis of the result of the
+query.
+This is called runtime type identification (RTTI) and should ideally
+be avoided even though it is supported by most C++ compilers.
+This is because needing to know the type of derived class object
+behind a base class pointer is commonly considered poor programming practice.
+RTTI and dynamic_cast are discussed in Lesson 13, “Casting
+Operators.
+
+
+Abstract Base Classes and Pure Virtual Functions
+A base class that cannot be instantiated is called an abstract base class. Such a base
+class fulfills only one purpose, that of being derived from. C++ allows you to create an
+abstract base class using pure virtual functions.
+A virtual method is said to be pure virtual when it has a declaration as shown in the
+following:
+class AbstractBase
+{
+public:
+virtual void DoSomething() = 0; // pure virtual method
+};This declaration essentially tells the compiler that DoSomething() needs to be implemented and by the class that derives from AbstractBase:
+class Derived: public AbstractBase
+{
+public:
+void DoSomething() // pure virtual fn. must be implemented
+{
+cout << "Implemented virtual function" << endl;
+}
+};
+Thus, what class AbstractBase has done is that it has enforced class Derived to supply
+an implementation for virtual method DoSomething(). This functionality where a base
+class can enforce support of methods with a specified name and signature in classes that
+derive from it is that of an interface.
+
+
+Using virtual Inheritance to Solve
+the Diamond Problem
+
+due to multiple inheritance and all three base classes
+of Platypus inheriting in turn from class Animal, you have three instances of
+Animal created automatically for every instance of a Platypus, as shown in Line 38.
+This is ridiculous as Platypus is still one animal that has inherited certain attributes
+from Mammal, Bird, and Reptile. The problem in the number of instances of base
+Animal is not limited to memory consumption alone. Animal has an integer member
+Animal::age (that has been kept public for explanation purposes). When you want
+to access Animal::age via an instance of Platypus, as shown in Line 42, you get a
+compilation error simply because the compiler doesn’t know whether you want to set
+Mammal::Animal::age or Bird::Animal::age or Reptile::Animal::age. It can get
+even more ridiculous—if you so wanted you could set all three:
+duckBilledP.Mammal::Animal::age = 25;
+duckBilledP.Bird::Animal::age = 25;
+duckBilledP.Reptile::Animal::age = 25;
+Clearly, one duck-billed platypus should have only one age. Yet, you want class
+Platypus to be a Mammal, Bird, and Reptile. The solution is in virtual inheritance. If
+you expect a derived class to be used as a base class, it possibly is a good idea to define
+its relationship to the base using the keyword virtual:
+class Derived1: public virtual Base
+{
+// ... members and functions
+};
+class Derived2: public virtual Base
+{
+// ... members and functions
+};
+
+the number of instances of class Animal constructed has fallen to one, which
+is finally reflective of the fact that only one Platypus has been constructed as well.
+This is because of the keyword virtual used in the relationship between classes
+Mammal, Bird, and Reptile ensures that when these classes are grouped together under
+Platypus the common base Animal exists only in a single instance.
+
+Problems caused in an inheritance hierarchy containing two or
+more base classes that inherit from a common base, which
+results in the need for ambiguity resolution in the absence of
+virtual inheritance, is called the Diamond Problem.
+
+The virtual keyword in C++ often is used in different contexts
+for different purposes. (My best guess is that someone wanted
+to save time on inventing an apt keyword.) Here is a summary:
+A function declared virtual means that an existing overriding
+function in a derived class is invoked.
+An inheritance relationship declared using keyword virtual
+between classes Derived1 and Derived2 that inherits from
+class Base means that another class Derived3 that inherits
+from Derived1 and Derived2 still results in the creation of only
+one instance of Base during instantiation of type Derived3.
+Thus the same keyword virtual is used to implement two
+different concepts.
+
+
+
+
+
+Specifier Override to Indicate Intention
+to Override
+Our versions of base class Fish have featured a virtual function called Swim() as seen in
+the following code:
+class Fish
+{
+public:
+virtual void Swim()
+{
+cout << "Fish swims!" << endl;
+}
+};
+Assume that derived class Tuna were to define a function Swim() but with a slightly
+different signature—one using const inserted unintentionally by a programmer who
+wants to override Fish::Swim():
+class Tuna:public Fish
+{
+public:
+void Swim() const
+{
+cout << "Tuna swims!" << endl;
+}
+};
+This function Tuna::Swim() actually does not override Fish::Swim(). The signatures
+are different thanks to the presence of const in Tuna::Swim(). Compilation succeeds,
+however, and the programmer may falsely believe that he has successfully overridden the
+function Swim() in class Tuna. C++11 and beyond give the programmer a specifier
+override that is used to verify whether the function being overridden has been declared
+as virtual by the base class:
+class Tuna:public Fish
+{
+public:
+void Swim() const override // Error: no virtual fn with this sig in Fish
+{
+cout << "Tuna swims!" << endl;
+}
+};Thus, override supplies a powerful way of expressing the explicit intention to override
+a base class virtual function, thereby getting the compiler to check whether
+■ The base class function is virtual.
+■ The signature of the base class virtual function exactly matches the signature of the
+derived class function declared to override.
+
+
+Use final to Prevent Function
+Overriding
+Specifier final, introduced in C++11, was first presented to you in Lesson 10. A class
+declared as final cannot be used as a base class. Similarly, a virtual function
+declared as final cannot be overridden in a derived class.
+Thus, a version of class Tuna that doesn’t allow any further specialization of virtual
+function Swim() would look like this:
+class Tuna:public Fish
+{
+public:
+// override Fish::Swim and make this final
+void Swim() override final
+{
+cout << "Tuna swims!" << endl;
+}
+};
+This version of Tuna can be inherited from, but Swim() cannot be overridden any
+further:
+class BluefinTuna final:public Tuna
+{
+public:
+void Swim() // Error: Swim() was final in Tuna, cannot override
+{
+}
+};
+A demonstration of specifiers override and final is available in Listing 11.9.We used final in the declaration of class BluefinTuna as
+well. This ensures that class BluefinTuna cannot be used as
+a base class. Therefore, the following would result in error:
+class FailedDerivation:public BluefinTuna
+{
+};
+
+
+
 
 
 
@@ -471,7 +730,7 @@ class Shape {
       virtual int getArea() = 0;
       void setWidth(int w) {
          width = w;
-      }
+      }c
 
       void setHeight(int h) {
          height = h;

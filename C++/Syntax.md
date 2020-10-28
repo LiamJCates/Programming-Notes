@@ -1,54 +1,28 @@
 ## Statements
-Languages—spoken or programmed—are composed of statements that are executed one
-after another.
+C++ programs are composed of statements.
+All statements in C++ end with a semicolon (;)
 
-All statements in
-C++ end with a semicolon (;)
+The next statement can start immediately after the semicolon, but for convenience and readability you often program successive statements on successive lines.
 
-The next statement can start
-immediately after the semicolon, but for convenience and readability you often program
-successive statements on successive lines.
+Whitespaces typically are not visible to the compiler. This includes spaces, tabs, line feeds, carriage returns, and so on. Whitespaces within string literals, though, make a difference to the output.
 
-Whitespaces typically are not visible to the compiler. This
-includes spaces, tabs, line feeds, carriage returns, and so on.
-Whitespaces within string literals, though, make a difference to
-the output.
-
-If you need to spread
-a statement over two lines for some reason, you can do it by inserting a backslash (\) at
-the end:
+If you need to spread a statement over two lines by inserting a backslash (\) at the end:
 cout << "Hello \
 World" << endl; // split to two lines is OK
 
-Another way of writing the preceding statement in two lines is to write two string literals
-instead of just one:
+The preceding statement can be written as two string literals:
 cout << "Hello "
 "World" << endl; // two string literals is also OK
-In the preceding example, the compiler notices two adjacent string literals and
-concatenates them for you.
+
+The compiler notices two adjacent string literals and concatenates them.
 
 
-## Compound Statements or Blocks
-When you group statements together within braces {...}, you create a compound
-statement or a block
+When you group statements together within braces {...}, you create a compound statement or a block
 
 
 
 
-## Operators
-int daysInYear = 365;
-The preceding statement uses the assignment operator in initializing the integer to 365.
-The assignment operator replaces the value contained by the operand to the left
-(unimaginatively called l-value) by that on the right (called r-value).
-Understanding L-values and R-values
-L-values often refer to locations in memory. A variable such as daysInYear from the
-preceding example is actually a handle to a memory location and is an l-value. R-values,
-on the other hand, can be the very content of a memory location.So, all l-values can be r-values, but not all r-values can be l-values. To understand it
-better, look at the following example, which doesn’t make any sense and therefore won’t
-compile:
-365 = daysInYear;
-
-
+## increment and decrement
 You often hear of cases where prefix increment or decrement
 operators are preferred on grounds of better performance. That
 is, ++startValue is preferred over startValue++.
@@ -61,6 +35,8 @@ point in this argument. Smart compilers may optimize away the
 differences.
 
 
+
+## short-circuit evaluation
 Yes, the &&, ||  operators in C++ use short-circuit evaluation, in case you want to evaluate all expressions anyway you can use the & and | operators.
 
 Note that evaluation of an expression to true in C++ essentially
@@ -69,28 +45,13 @@ being zero. So, an expression that evaluates to any non-zero
 number—negative or positive—is essentially considered to be
 evaluating to true when used in a conditional statement.
 
-The Precedence of Operators
-Rank Name Operator
-1 Scope resolution ::
-2 Member selection, subscripting, increment, and decrement . -> () ++ --
-3 sizeof, prefix increment and decrement, complement, and,
-not, unary minus and plus, address-of and dereference, new,
-new[], delete, delete[], casting, sizeof()
-++ -- ^ ! - + & * ()
-4 Member selection for pointer .* ->*
-5 Multiply, divide, modulo * / %
-6 Add, subtract + -
-7 Shift (shift left, shift right) << >>
-8 Inequality relational << = >>=
-9 Equality, inequality == !=
-10 Bitwise AND &
-11 Bitwise exclusive OR ^
-12 Bitwise OR |+
-13 Logical AND &&
-14 Logical OR ||
-15 Conditional ?:
-16 Assignment operators = *= /= %= += -= <<= >>= &= |= ^=
-17 Comma ,
+
+
+## The Precedence of Operators
+https://en.cppreference.com/w/cpp/language/operator_precedence
+
+
+
 
 
 ## Controlling Program Flow
@@ -108,3 +69,23 @@ Start: // Called a label
 CodeThatRepeats;
 goto Start;
 }
+
+
+
+
+
+## Preprocessor Directive
+
+As the name suggests, a preprocessor is a tool that runs before the actual compilation
+starts. Preprocessor directives are commands to the preprocessor and always start with
+a pound sign #
+ #include
+Professionally programmed C++ applications include standard
+headers
+if an artifact declared in FileA needs to be used in
+FileB, you need to include the former in the latter. You usually do
+that by inserting the following include statement in FileA:
+ #include "...relative path \FileB"
+We use quotes in this case and not angle brackets in including
+a self-programmed header. <> brackets are typically used when
+including standard headers.

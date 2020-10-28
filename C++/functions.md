@@ -100,7 +100,9 @@ type, containing the area. So, C++ enables you to define two overloaded function
 called Area, both returning double, but one that takes only the radius as input and
 another that takes the height and the radius as input parameters
 
-Passing Arguments by Reference
+
+
+## Passing Arguments by Reference
 
 when you declare a parameter that takes an argument by reference. A form of the function Area() that computes and returns the area as a parameter by reference looks like this:
 // output parameter result by reference
@@ -161,8 +163,11 @@ A function can be a member of a class.
 For such a member function, the name of its class is also part of the function type. For example:
 char& String::operator[](int index); // type: char& String::(int)
 
-How Function Calls Are Handled
-by the Microprocessor
+
+
+
+
+## How Function Calls Are Handled by the Microprocessor
 A function call essentially means that the microprocessor jumps to executing the next
 instruction belonging to the called function at a nonsequential memory location. After it
 is done with executing the instructions in the function, it returns to where it left off. To
@@ -209,7 +214,11 @@ function being inline does a lot of sophisticated processing. Using the inline k
 should be kept to a minimum and reserved for only those functions that do very little and
 need to do it with minimal overhead, as demonstrated earlier.
 
-Automatic Return Type Deduction
+
+
+
+
+## Automatic Return Type Deduction
 
 Starting with C++14, the same
 applies also to functions. Instead of specifying the return type, you would use auto and
@@ -222,7 +231,11 @@ the point where it is used. If such a function has multiple return
 statements, they need to all deduce to the same type. Recursive
 calls need to follow at least one return statement.
 
-Lambda Functions
+
+
+
+
+## Lambda Functions
 
 Lambda functions were introduced in C++11 and help in the usage of STL algorithms to
 sort or process data. Typically, a sort function requires you to supply a binary predicate.

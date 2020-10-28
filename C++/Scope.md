@@ -23,9 +23,6 @@ a team.
 
 Storage Classes in C++
 
-Previous Page
-Next Page  
-
 A storage class defines the scope (visibility) and life-time of variables and/or functions within a C++ Program. These specifiers precede the type that they modify. There are following storage classes, which can be used in a C++ Program
 
     auto
@@ -44,6 +41,8 @@ The auto storage class is the default storage class for all local variables.
 }
 
 The example above defines two variables with the same storage class, auto can only be used within functions, i.e., local variables.
+
+
 The register Storage Class
 
 The register storage class is used to define local variables that should be stored in a register instead of RAM. This means that the variable has a maximum size equal to the register size (usually one word) and can't have the unary '&' operator applied to it (as it does not have a memory location).

@@ -95,6 +95,12 @@ int i3 = pv−>sz; // access through pointer
 
 
 
+
+
+
+
+
+
 Unions
 A union is a special class type where only one of the non-static data members is active at a time.
 
