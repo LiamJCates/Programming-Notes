@@ -17,6 +17,12 @@ needs to be stored in two variables, each containing data separated by a space, 
 can do so using one statement:
 std::cin >> Variable1 >> Variable2;
 
+cin is a stream so if we want to intake a space delimited phrase cin will only read the first word in a space delimited phrase. To get the whole line use:
+getline([stream], [variable]);
+
+string str;
+getline(cin, str);
+
 
 Stream IO
 C++ standard IO includes input from the keyboard and output to the console as well as other sources like files that support streaming

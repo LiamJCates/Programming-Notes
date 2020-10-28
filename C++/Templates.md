@@ -1,0 +1,1 @@
+templates are essentially generics

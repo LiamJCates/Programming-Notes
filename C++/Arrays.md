@@ -88,22 +88,15 @@ in this array.
 
 
 ## Dynamic Arrays
-To program an application that is able to optimally consume memory resources on the
-basis of the needs of the user, you need to use dynamic memory allocation. This enables
-you to allocate more when you need more memory and release memory that you have
-in excess. C++ supplies you two operators, new and delete, to help you better manage
-the memory consumption of your application. Pointers being variables that are used to
-contain memory addresses play a critical role in efficient dynamic memory allocation.
+To program an application that is able to optimally consume memory resources on the basis of the needs of the user, you need to use dynamic memory allocation. This enables you to allocate more when you need more memory and release memory that you have in excess. C++ supplies you two operators, new and delete, to help you better manage the memory consumption of your application. Pointers being variables that are used to contain memory addresses play a critical role in efficient dynamic memory allocation.
 
-choose
-dynamic arrays that optimize memory consumption and scale up depending on the
-demand for resources and memory at execution-time. C++ provides you with convenient
-and easy-to-use dynamic arrays in the form of std::vector
+choose dynamic arrays that optimize memory consumption and scale up depending on the demand for resources and memory at execution-time. C++ provides you with convenient and easy-to-use dynamic arrays in the form of std::vector
 
  #include <iostream>
  #include <vector>
 
 using namespace std;
+//using std::vector;
 
 int main()
 {
@@ -128,5 +121,38 @@ return 0;
 }
 
 To use the dynamic array class std::vector, you need to
-include header vector, which is also shown in Line 1 of Listing 4.4.
+include header vector.
  #include <vector>
+
+[vector].push_back();
+adds element to the end of the collection
+
+ranged for loop useful for vector collection iteration
+
+
+## iterator
+vector<int> nums;
+
+for(auto i=begin(nums); i != end(nums); i++){
+  cout << *i << " ";
+}
+i is an iterator and needs a * to be accessed
+
+
+
+
+
+
+
+## algorithm
+
+#include <algorithm>
+
+algorithm functions are called free functions an work with the vector class and other collection classes
+
+vector<string> strs;
+
+sort(begin(strs), end(strs));
+
+vector<int> ints;
+int threes = count(begin(ints), end(ints), 3);
