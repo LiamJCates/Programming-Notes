@@ -14,6 +14,10 @@ Expressions are any valid unit of code, a combination of one or more constants, 
 ## Variables
 When programming in languages like C++, you define variables to store values.
 
+A Variable Has Three Aspects
+Name: The name you use in your application to refer to the variable
+Type: The type of information that the variable can hold
+Value: The actual thing that the storage bin holds
 
 Defining a variable is quite simple and follows this pattern:
 
@@ -22,9 +26,7 @@ or
 VariableType VariableName = InitialValue;
 
 
-The variable type attribute tells the compiler the nature of data the variable can store, and the compiler reserves the necessary space for it.
-
-The name chosen by the programmer is a friendly replacement for the address in the memory where the variable’s value is stored.
+The variable type attribute tells the compiler the nature of data the variable can store, and the compiler reserves the necessary memory space. The name chosen by the programmer is a friendly replacement for the address in the memory where the variable’s value is stored.
 
 C++ makes it possible to declare multiple variables of a type at once and to declare variables at the beginning of a function.
 
@@ -33,6 +35,7 @@ int firstNumber = 0, secondNumber = 0, multiplicationResult = 0;
 Yet, declaring a variable when it is first needed is often better as it makes the code readable—one notices the type of the variable when the declaration is close to its point of first use.
 
 While some user defined types might have a default initialization, built in types do not. Unless the initial value is assigned, you cannot be sure of the contents of that variable's memory location. Therefore, initialization is optional, but it’s often a good programming practice
+
 
 
 
@@ -456,3 +459,13 @@ Yellow,
 Orange,
 Red
 };
+
+
+
+
+
+Casts
+
+static_cast
+reinterpret_cast
+const_cast

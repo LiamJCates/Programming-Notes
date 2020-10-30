@@ -58,6 +58,19 @@ https://en.cppreference.com/w/cpp/language/operator_precedence
 if, switch, ternary, break, continue statements same as java
 for, for in, while, do while loops same as java
 
+
+for loop:
+✦ The initializer: First portion, sets counter variables.
+✦ The condition: Second portion, condition by which loop continues to run.
+✦ The finalizer: Third portion, happens after each loop cycle.
+
+
+
+
+
+
+
+
 goto
 
 goto instructs execution to continue from a particular, labeled,

@@ -1,5 +1,10 @@
 Structures
-The first step in building a new type is often to organize the elements it needs into a data structure, a struct:
+The first step in building a new type is often to organize the elements it needs into a data structure.
+
+The most basic C++ representations of a data structure is a struct.
+
+
+General struct syntax:
 
 struct [structure tag] {
    member definition;
@@ -9,35 +14,37 @@ struct [structure tag] {
 } [one or more structure variables];  
 
 
+
+
 Pointers to Structures
 
-You can define pointers to structures in very similar way as you define pointer to any other variable as follows −
+You can define pointers to structures in very similar way as you define pointer to any other variable:
 
-struct Books *struct_pointer;
+struct [struct type] *[struct pointer name];
 
 Now, you can store the address of a structure variable in the above defined pointer variable. To find the address of a structure variable, place the & operator before the structure's name as follows −
 
-struct_pointer = &Book1;
+[struct pointer name] = &[struct name];
 
 To access the members of a structure using a pointer to that structure, you must use the -> operator as follows −
 
-struct_pointer->title;
+[struct name]->[struct member];
 
 
 The typedef Keyword
 
-There is an easier way to define structs or you could "alias" types you create. For example −
+To define an "alias" for struct types:
 
 typedef struct {
-   char  title[50];
-   char  author[50];
-   char  subject[100];
-   int   book_id;
-} Books;
+  member definition;
+  member definition;
+  ...
+  member definition;
+} [struct Type name];
 
-Now, you can use Books directly to define variables of Books type without using struct keyword. Following is the example −
+Then use the alias directly to define variables without using the struct keyword:
 
-Books Book1, Book2;
+[struct Type name] struct1, struct2;
 
 
 
@@ -65,6 +72,9 @@ v.sz = s;
 That is, v’s elem member gets a pointer produced by the new operator and v’s sz member gets the number of elements. The & in Vector& indicates that we pass v by non-const reference (§1.7); that way, vector_init() can modify the vector passed to it.
 
 The new operator allocates memory from an area called the free store (also known as dynamic memory and heap). Objects allocated on the free store are independent of the scope from which they are created and ‘‘live’’ until they are destroyed using the delete operator.
+
+
+
 
 A simple use of Vector looks like this:
 double read_and_sum(int s)
@@ -137,12 +147,27 @@ type is used for type conversions or memory reinterpretation—a practice that i
 Classes
 
 Having the data specified separately from the operations on it has advantages, such as the ability to use the data in arbitrary ways. However, a tighter connection between the representation and the
-operations is needed for a user-defined type to have all the properties expected of a ‘‘real type.’’ In
-particular, we often want to keep the representation inaccessible to users so as to ease use, guarantee consistent use of the data, and allow us to later improve the representation. To do that we have
-to distinguish between the interface to a type (to be used by all) and its implementation (which has
-access to the otherwise inaccessible data). The language mechanism for that is called a class. A
-class has a set of members, which can be data, function, or type members. The interface is defined
-by the public members of a class, and private members are accessible only through that interface.
+operations is needed for a user-defined type to have all the properties expected of a ‘‘real type.’’
+
+We often want to keep the representation inaccessible to users so as to ease use, guarantee consistent use of the data, and allow us to later improve the representation. To do that we have to distinguish between the interface to a type (to be used by all) and its implementation (which has access to the otherwise inaccessible data).
+
+The language mechanism for that is called a class.
+
+Concrete Types
+The basic idea of concrete classes is that they behave ‘‘just like built-in types.’’ For example, a complex number type and an infinite-precision integer are much like built-in int, except of course
+that they have their own semantics and sets of operations.
+
+The defining characteristic of a concrete type is that its representation is part of its definition, and that representation is present in each object of a concrete class. That allows
+implementations to be optimally efficient in time and space. In particular, it allows us to:
+• place objects of concrete types on the stack, in statically allocated memory, and in other objects (§1.5);
+• refer to objects directly (and not just through pointers or references);
+• initialize objects immediately and completely (e.g., using constructors; §2.3);
+• copy and move objects (§5.2).
+
+
+
+
+A class has a set of members, which can be data, function, or type members. The interface is defined by the public members of a class, and private members are accessible only through that interface.
 For example:
 class Vector {
 public:
@@ -155,18 +180,8 @@ int sz; // the number of elements
 };
 
 Here, the representation of a Vector (the members elem and sz) is accessible only through the
-interface provided by the public members: Vector(), operator[](), and siz e(). The read_and_sum()
-example from §2.2 simplifies to:
-double read_and_sum(int s)
-{
-Vector v(s); // make a vector of s elements
-for (int i=0; i!=v.siz e(); ++i)
-cin>>v[i]; // read into elements
-double sum = 0;
-for (int i=0; i!=v.siz e(); ++i)
-sum+=v[i]; // take the sum of the elements
-return sum;
-}
+interface provided by the public members: Vector(), operator[](), and siz e().
+
 
 
 
@@ -193,6 +208,11 @@ delete pointsToNum; // de-allocating memory when done using
 Human* firstWoman = new Human(); // dynamically allocated Human
 delete firstWoman; // de-allocating memory
 
+
+
+
+
+
 Access members using the dot operator
 
 If you have a pointer firstWoman to an instance of class Human, you can either use
@@ -213,6 +233,30 @@ What is a better way to access members: using the dot operator (.) or using
 the pointer operator (->)?
 A If you have a pointer to an object, the pointer operator would be best suited. If you
 have instantiated an object as a local variable on the stack, then the dot operator is best suited.
+
+
+
+Steps to Using Objects
+1 Pen *MyPen; Declares the pointer
+2 MyPen = new Pen; Calls new to create the object
+3 MyPen->InkColor = red; Accesses object member through the pointer
+4 delete MyPen; Deletes the object
+5 MyPen = 0; Clears the pointer
+
+
+Member Initializers
+When a data member of a class is defined, we can supply a default initializer called a default member initializer. Consider a revision of complex (§4.2.1):
+class complex {
+double re = 0;
+double im = 0; // representation: two doubles with default value 0.0
+public:
+complex(double r, double i) :re{r}, im{i} {} // constr uct complex from two scalars: {r,i}
+complex(double r) :re{r} {} // constr uct complex from one scalar: {r,0}
+complex() {} // default complex: {0,0}
+// ...
+}
+The default value is used whenever a constructor doesn’t provide a value. This simplifies code and
+helps us to avoid accidentally leaving a member uninitialized.
 
 
 
@@ -244,6 +288,16 @@ int main() {
 
    return 0;
 }
+
+
+
+
+
+The const specifiers on the functions returning the real and imaginary parts indicate that these
+functions do not modify the object for which they are called. A const member function can be
+invoked for both const and non-const objects, but a non-const member function can only be
+invoked for non-const objects.
+
 
 
 
@@ -414,6 +468,87 @@ A destructor cannot be overloaded. A class can have only one
 destructor. If you forget to implement a destructor, the compiler
 creates and invokes a dummy destructor, that is, an empty one
 (that does no cleanup of dynamically allocated memory).
+
+
+
+The technique of acquiring resources in a
+constructor and releasing them in a destructor, known as Resource Acquisition Is Initialization or
+RAII, allows us to eliminate ‘‘naked new operations,’’ that is, to avoid allocations in general code
+and keep them buried inside the implementation of well-behaved abstractions. Similarly, ‘‘naked
+delete operations’’ should be avoided. Avoiding naked new and naked delete makes code far less
+error-prone and far easier to keep free of resource leaks
+
+
+
+
+
+
+Constructors, destructors, and copy and move operations for a type are not logically separate.
+We must define them as a matched set or suffer logical or performance problems. If a class X has a66 Essential Operations Chapter 5
+destructor that performs a nontrivial task, such as free-store deallocation or lock release, the class is
+likely to need the full complement of functions:
+class X {
+public:
+X(Sometype); // ‘‘ordinar y constructor’’: create an object
+X(); // default constructor
+X(const X&); // copy constructor
+X(X&&); // move constructor
+X& operator=(const X&); // copy assignment: clean up target and copy
+X& operator=(X&&); // move assignment: clean up target and move
+˜X(); // destr uctor: clean up
+// ...
+};
+There are five situations in which an object can be copied or moved:
+• As the source of an assignment
+• As an object initializer
+• As a function argument
+• As a function return value
+• As an exception
+An assignment uses a copy or move assignment operator. In principle, the other cases use a copy or
+move constructor. Howev er, a copy or move constructor invocation is often optimized away by
+constructing the object used to initialize right in the target object. For example:
+X make(Sometype);
+X x = make(value);
+Here, a compiler will typically construct the X from make() directly in x; thus eliminating (‘‘eliding’’) a copy.
+In addition to the initialization of named objects and of objects on the free store, constructors
+are used to initialize temporary objects and to implement explicit type conversion.
+Except for the ‘‘ordinary constructor,’’ these special member functions will be generated by the
+compiler as needed. If you want to be explicit about generating default implementations, you can:
+class Y {
+public:
+Y(Sometype);
+Y(const Y&) = default; // I really do want the default copy constr uctor
+Y(Y&&) = default; // and the default move constr uctor
+// ...
+};
+If you are explicit about some defaults, other
+
+A good rule of thumb (sometimes called the rule of zero) is to either define all of the essential
+operations or none (using the default for all). For example:
+struct Z {
+Vector v;
+string s;
+};
+Z z1; // default initialize z1.v and z1.s
+Z z2 = z1; // default copy z1.v and z1.s
+Here, the compiler will synthesize memberwise default construction, copy, move, and destructor as
+needed, and all with the correct semantics.
+To complement =default, we hav e =delete to indicate that an operation is not to be generated. A
+base class in a class hierarchy is the classical example where we don’t want to allow a memberwise
+copy. For example:
+class Shape {
+public:
+Shape(const Shape&) =delete; // no copy operations
+Shape& operator=(const Shape&) =delete;
+// ...
+};
+void copy(Shape& s1, const Shape& s2)
+{
+s1 = s2; // error : Shape copy is deleted
+}
+A =delete makes an attempted use of the deleted function a compile-time error; =delete can be used
+to suppress any function, not just essential member functions.
+
 
 
 
@@ -722,6 +857,27 @@ have access to the private destructor)
 
 Using Constructors to Convert Types
 
+A constructor taking a single argument defines a conversion from its argument type. For example,
+complex (§4.2.1) provides a constructor from a double:
+complex z1 = 3.14; // z1 becomes {3.14,0.0}
+complex z2 = z1∗2; // z2 becomes z1*{2.0,0} == {6.28,0.0}
+This implicit conversion is sometimes ideal, but not always. For example, Vector (§4.2.2) provides
+a constructor from an int:
+Vector v1 = 7; // OK: v1 has 7 elements
+This is typically considered unfortunate, and the standard-library vector does not allow this int-tovector ‘‘conversion.’’
+The way to avoid this problem is to say that only explicit ‘‘conversion’’ is allowed; that is, we
+can define the constructor like this:68 Essential Operations Chapter 5
+class Vector {
+public:
+explicit Vector(int s); // no implicit conversion from int to Vector
+// ...
+};
+That gives us:
+Vector v1(7); // OK: v1 has 7 elements
+Vector v2 = 7; // error : no implicit conversion from int to Vector
+When it comes to conversions, more types are like Vector than are like complex, so use explicit for
+constructors that take a single argument unless there is a good reason not to.
+
 Such converting constructors allow implicit conversions:
 Human anotherKid = 11; // int converted to Human
 DoSomething(10); // 10 converted to Human!
@@ -769,6 +925,27 @@ used to determine the memory requirement of a specific type, in bytes. This oper
 is valid for classes, too, and basically reports the sum of bytes consumed by each data
 attribute contained within the class declaration. Depending on the compiler you use,
 sizeof() might or might not include padding for certain attributes on word boundaries.
+
+
+
+
+
+When you divide the class, you put part in the header file and part in the
+source code file. The following list describes what goes where:
+✦ Header file: Put the class definition in the header file. You can include
+the function code inside the class definition itself if it’s a short function.
+Most people prefer not to put any function code longer than a line or
+two in the header — in fact, many don’t put any function code at all in
+the header. You may want to name the header file the same as the class
+but with an .h or .hpp extension. Thus, the class Pen, for instance,
+might be in the file Pen.h.
+✦ Source file: If your class has member functions, and you did not put the
+code in the class definition, you need to put the code in a source file.
+When you do, precede the function name with the class name and two
+colons. (Do not put any spaces between the two colons, but you can put
+spaces on either side of the pair of colons.) If you named the header file
+the same as the class, you probably want to name the source file the
+same as the class as well but with a .cpp or .cc extension.
 
 
 

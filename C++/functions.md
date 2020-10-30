@@ -1,6 +1,12 @@
 ## Defining Functions
 Functions enable you to divide the content of your application into functional units that can be invoked in a sequence of your choosing.
 
+A function has three main parts:
+✦ Inputs: The function can receive data through its inputs. When you create a function, you can have as many inputs as you want (or even zero, if necessary).
+✦ Processor: The processor is the actions the function takes.
+✦ Output: A function can return something when it has finished processing.
+
+
 A function must be declared before it can be used.
 
 A function declaration or function prototype gives the type of the value returned (if any), the name of the function, and the number and types of the arguments that must be supplied in a call.
@@ -20,6 +26,20 @@ Every C++ program must have exactly one global function named main().
 The program starts by executing that function. The int integer value returned by main(), if any, is the program’s return value to ‘‘the system.’’
 
 If no value is returned, the system will receive a value indicating successful completion, a zero. A nonzero value from main() indicates failure.
+
+
+Accessing the Command-Line Parameters
+#include <iostream>
+#include <stdlib.h>
+int main(int argc, char *argv[])
+{
+for (int index=0; index < argc; index++)
+{
+cout << argv[index] << endl;
+}
+return 0;
+}
+
 
 
 ## Function Composition
@@ -147,6 +167,13 @@ This method copies the reference of an argument into the formal parameter. Insid
 
 By default, C++ uses call by value to pass arguments.
 
+When we care about performance, we usually pass small values by-value and larger ones by-reference. Here ‘‘small’’ means ‘‘something that’s really cheap to copy.’’ Exactly what ‘‘small’’ means
+depends on machine architecture, but ‘‘the size of two or three pointers or less’’ is a good rule of
+thumb.
+
+
+
+
 A function cannot be called unless it has been previously declared.
 
 A function declaration may contain argument names. This can be a help to the reader of a program, but unless the declaration is also a function definition, the compiler simply ignores such names.
@@ -218,6 +245,69 @@ need to do it with minimal overhead, as demonstrated earlier.
 
 
 
+## Value Return
+Once we have computed a result, we need to get it out of the function and back to the caller. Again,
+the default for value return is to copy and for small objects that’s ideal. We return ‘‘by reference’’
+only when we want to grant a caller access to something that is not local to the function. For example:
+class Vector {
+public:
+// ...
+double& operator[](int i) { return elem[i]; } // retur n reference to ith element
+private:
+double∗ elem; // elem points to an array of sz
+// ...
+};
+The ith element of a Vector exists independently of the call of the subscript operator, so we can
+return a reference to it.
+On the other hand, a local variable disappears when the function returns, so we should not
+return a pointer or reference to it:
+int& bad()
+{
+int x;
+// ...
+return x; // bad: return a reference to the local var iable x
+}
+Fortunately, all major C++ compilers will catch the obvious error in bad().
+Returning a reference or a value of a ‘‘small’’ type is efficient, but how do we pass large
+amounts of information out of a function? Consider:44 Modularity Chapter 3
+Matrix operator+(const Matrix& x, const Matrix& y)
+{
+Matrix res;
+// ... for all res[i,j], res[i,j] = x[i,j]+y[i,j] ...
+return res;
+}
+Matrix m1, m2;
+// ...
+Matrix m3 = m1+m2; // no copy
+A Matrix may be very large and expensive to copy even on modern hardware. So we don’t copy, we
+give Matrix a move constructor (§5.2.2) and very cheaply move the Matrix out of operator+(). We do
+not need to regress to using manual memory management:
+Matrix∗ add(const Matrix& x, const Matrix& y) // complicated and error-prone 20th century style
+{
+Matrix∗ p = new Matrix;
+// ... for all *p[i,j], *p[i,j] = x[i,j]+y[i,j] ...
+return p;
+}
+Matrix m1, m2;
+// ...
+Matrix∗ m3 = add(m1,m2); // just copy a pointer
+// ...
+delete m3; // easily forgotten
+Unfortunately, returning large objects by returning a pointer to it is common in older code and a
+major source of hard-to-find errors. Don’t write such code. Note that operator+() is as efficient as
+add(), but far easier to define, easier to use, and less error-prone.
+If a function cannot perform its required task, it can throw an exception (§3.5.1). This can help
+avoid code from being littered with error-code tests for ‘‘exceptional problems.’’
+The return type of a function can be deduced from its return value. For example:
+auto mul(int i, double d) { return i∗d; } // here, "auto" means "deduce the return type"
+This can be convenient, especially for generic functions (function templates; §6.3.1) and lambdas
+(§6.3.3), but should be used carefully because a deduced type does not offer a stable interface: a
+change to the implementation of the function (or lambda) can change the type.
+
+
+
+
+
 ## Automatic Return Type Deduction
 
 Starting with C++14, the same
@@ -230,6 +320,63 @@ because the compiler needs to know a function’s return type at
 the point where it is used. If such a function has multiple return
 statements, they need to all deduce to the same type. Recursive
 calls need to follow at least one return statement.
+
+
+
+
+
+
+
+
+## Structured Binding
+A function can return only a single value, but that value can be a class object with many members.
+This allows us to efficiently return many values. For example:
+struct Entry {
+string name;
+int value;
+};Section 3.6.3 Structured Binding 45
+Entr y read_entry(istream& is) // naive read function (for a better version, see §10.5)
+{
+string s;
+int i;
+is >> s >> i;
+return {s,i};
+}
+auto e = read_entry(cin);
+cout << "{ " << e.name << " , " << e.value << " }\n";
+Here, {s,i} is used to construct the Entr y return value. Similarly, we can ‘‘unpack’’ an
+Entr y’s members into local variables:
+auto [n,v] = read_entry(is);
+cout << "{ " << n << " , " << v << " }\n";
+The auto [n,v] declares two local variables n and v with their types deduced from
+read_entr y()’s return type. This mechanism for giving local names to members of a class
+object is called structured binding.
+Consider another example:
+map<string,int> m;
+// ... fill m ...
+for (const auto [key,value] : m)
+cout << "{" << key "," << value << "}\n";
+As usual, we can decorate auto with const and &. For example:
+void incr(map<string,int>& m) // increment the value of each element of m
+{
+for (auto& [key,value] : m)
+++value;
+}
+When structured binding is used for a class with no private data, it is easy to see how the binding is
+done: there must be the same number of names defined for the binding as there are nonstatic data
+members of the class, and each name introduced in the binding names the corresponding member.
+There will not be any difference in the object code quality compared to explicitly using a composite
+object; the use of structured binding is all about how best to express an idea.
+It is also possible to handle classes where access is through member functions. For example:
+complex<double> z = {1,2};
+auto [re,im] = z+2; // re=3; im=2
+A complex has two data members, but its interface consists of access functions, such as real() and
+imag(). Mapping a complex<double> to two local variables, such as re and im is feasible and efficient, but the technique for doing so is beyond the scope of this book.
+
+
+
+
+
 
 
 

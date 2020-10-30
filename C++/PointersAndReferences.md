@@ -1,3 +1,77 @@
+Heaping and Stacking the Variables
+C++ applications use two kinds of memory: heap and stack. The heap is
+a common area of memory that your application allocates — that is, sets
+aside — for the different functions in your application to use. Global variables
+go in this heap.
+Whenever your application calls a function, however, the function gets its
+own little private area of memory storage in an area of memory known as a
+stack. It is called a stack because it’s treated like a stack of papers: You can
+put something on the top of the stack, and you can take something off the
+top of the stack, but you can’t put anything in the middle or take anything
+from the middle. The computer uses this stack to keep track of all your function calls.
+
+
+Every position in memory has a number associated with it. When your application starts, the computer sets aside a large chunk of memory and then
+works closely with the microprocessor itself to assign a bunch of numbers
+to the memory. Your application’s variables and your application’s code go
+in this memory. And consider this: If your application sits in memory, each
+function sits in a particular place in memory, a place with a number or an
+address associated with it. In other words, each function has an address.
+Each function and each variable in your application has a place where it
+resides in memory. That place has a number associated with it. Therefore,
+each function and each variable has an address.
+
+
+The stack where the computer keeps track of the function calls is just a
+bunch of memory, too. What the computer considers the top of the stack is
+really the next position in memory. And the way the computer puts a function on the stack is by putting on the stack the address of where the computer left off in the preceding function.
+When the computer calls one of your functions, it not only saves the address
+of the return location on the stack but also reserves some space on the stack
+for your local variables.
+This means that your variables can live in two places:
+✦ Heap: The heap is a common area in memory where you can store global
+variables.
+✦ Stack: The stack is the area where the computer stores both the information about the functions being called and the local variables for those
+functions.
+
+
+
+Getting a variable’s address
+Because every variable lives somewhere in memory, every variable has
+an address.
+
+If you want to take the address of (which is computerspeak for find the
+address of) the variable NumberOfPotholes, you simply throw an ampersand (&) in front of it.
+
+
+
+
+
+
+But when you obtain that address, you can
+use it for other purposes. For example, you can use the address to modify
+www.it-ebooks.info150 Heaping and Stacking the Variables
+the variable itself by using what are called pointer variables. A pointer variable is just like any other variable except that it stores the address of another
+variable.
+To declare a pointer variable, you need to specify the type of variable it will
+point to. Then you precede the variable’s name with an asterisk, as in the
+following:
+int *ptr;
+This line declares a variable that points to an integer. In other words, it can
+contain the address of an integer variable. And how do you grab the address
+of an integer variable? Easy! By using the & notation! Thus, you can do something like this:
+ptr = &NumberOfPotholes;
+This line puts the address of the variable NumberOfPotholes in the ptr
+variable. Remember that ptr doesn’t hold the number of potholes; rather, it
+holds the address of the variable called NumberofPotholes.
+
+
+
+
+
+
+
+
 A pointer is a variable that stores an address in memory.
 Like all variables a pointer occupies space in memory.
 
@@ -20,6 +94,14 @@ As is the case with most variables, unless you initialize a pointer it will cont
 Uninitialized pointers can result in your program accessing invalid memory locations, resulting in a crash.
 
 
+When you access the characters of the string through a pointer, you need to
+put parentheses around the asterisk and the pointer variable. Otherwise, the
+compiler gets confused and first tries to access the index in brackets with
+the variable name and afterward applies the asterisk.
+
+(*ptrToString)[i]
+
+
 You don’t want a random memory address to be accessed so you initialize a
 pointer to NULL. NULL is a value that can be checked against and one that cannot be a memory address:
 PointedType * PointerVariableName = NULL; // initializing value
@@ -28,6 +110,10 @@ Thus, declaring a pointer to an integer would be
 int *pointsToInt = NULL;
 
 
+
+If you try to declare multiple pointers on a single line but put an asterisk
+only before the first pointer, only that one will be a pointer. The rest will not
+be.
 
 The Null Pointer
 We try to ensure that a pointer always points to an object so that dereferencing it is valid. When we don’t have an object to point to or if we need to represent the notion of ‘‘no object available’’ (e.g.,
@@ -105,19 +191,46 @@ What Makes References Useful?
 References enable you to work with the memory location they are initialized to. This
 makes references particularly useful when programming functions.
 
+
+
+Passing by Reference
+A reference is
+another way of specifying a parameter in a function whereby the function
+can modify the original variable. Instead of following the parameter type
+with an asterisk (*) to denote a pointer, you follow it with an ampersand (&).
+Then, throughout your function, you can use the parameter just as you normally would, not as a pointer. But every change you make to the parameter
+affects the original variable
+
+void MessMeUp(int &myparam)
+{
+myparam = myparam * 2 + 10;
+}
+
+If you have string parameters, and you use the & to pass them by reference, skip the shortcut -> notation to call the string functions. And don’t
+dereference anything. There are no pointers. Just type the dot (or period)
+and the function. No asterisks needed.
+
+If you write a function that uses a reference and somebody else uses your
+function in code (see Book I, Chapter 6, for information on how to do this),
+you could end up making that other person angry. The other person may not
+realize that, “Hey, man — this thing just messed up my variable!” WHAM! The
+variable gets changed. How do you avoid this? Warn the other person. Make
+it clear to anybody using your function that it uses references and will
+modify variables
+
+
 Function DoSomething() is invoked like this:
-ReturnType Result = DoSomething(argument); // function callThe preceding code would result in the argument being copied into Parameter, which is
-then used by the function DoSomething(). This copying step can be quite an overhead if
-the argument in question consumes a lot of memory. Similarly, when DoSomething()
-returns a value, it is copied again into Result. It would be ideal if we could avoid or
-eliminate the copy steps, enabling the function to work directly on the data in the caller’s
-stack. References enable you to do just that.
+ReturnType Result = DoSomething(argument); // function call
+
+The preceding code would result in the argument being copied into Parameter, which is then used by the function DoSomething(). This copying step can be quite an overhead if the argument in question consumes a lot of memory. Similarly, when DoSomething() returns a value, it is copied again into Result. It would be ideal if we could avoid or eliminate the copy steps, enabling the function to work directly on the data in the caller’s stack. References enable you to do just that.
+
 A version of the function without the copy step looks like this:
 ReturnType DoSomething(Type& parameter); // note the reference&
+
 This function would be invoked as the following:
 ReturnType Result = DoSomething(argument);
-As the argument is being passed by reference, Parameter is not a copy of argument
-rather an alias
+
+As the argument is being passed by reference, Parameter is not a copy of argument, rather it is an alias
 
 #include <iostream>
  using namespace std;
@@ -139,7 +252,7 @@ rather an alias
  return 0;
  }
 
- The function that performs the operation of squaring is in Lines 3–6. Note how it accepts
+ The function that performs the operation of accepts
 the number to be squared as a parameter by reference and returns the result in the same.
 Had you forgotten to mark the parameter number as a reference (&), the result would not
 reach the calling function main() as GetSquare() would then perform its operations
@@ -147,6 +260,8 @@ on a local copy of number and that would be destroyed when the function exits. U
 references, you ensure that GetSquare() is operating in the same address space where
 number in main() is defined. Thus, the result of the operation is available in main()
 even after the function GetSquare() has exited
+
+
 
 Using Keyword const on References
 You might need to have references that are not allowed to change the value of the
@@ -286,6 +401,50 @@ value when it is not supposed to. This will keep programmers of your application
 making unwanted changes to pointer values or data.
 
 
+
+
+
+Never return from a function the address of a local variable in the function.
+The local variables live in the stack space allocated for the function, not in
+the heap. When the function is finished, the computer frees the stack space
+used for the function, making room for the next function call.
+
+Returning a Pointer as a Nonpointer
+You may find it annoying to dereference a pointer returned from a function
+every time you want to use it. Listing 7-14, in the preceding section, is an
+example of how you need to dereference a pointer each time. But you can
+avoid this issue by dereferencing the pointer as soon as it comes cranking
+out of the machine. The ReturnPointer2 example, shown in Listing 7-15,
+demonstrates: You preceded the call to the function with an asterisk, which
+dereferences the result immediately. You then place the result in a local nonpointer variable. After that, you have the value in the variable, and you don’t
+need to dereference the pointer when you want to use the value. Thus, when
+you call cout, you just use the variable directly without the use of asterisks
+and other pointer paraphernalia.
+Listing 7-15: Dereferencing Your Return Value Immediately So You
+Don’t Need to Use It as a Pointer
+#include <iostream>
+using namespace std;
+string *GetNotSoSecretCode()
+{
+string *code = new string("ABCDEF");
+return code;
+}
+int main()
+{
+string newcode;
+int index;
+for (index = 0; index < 10; index++)
+{
+newcode = *GetNotSoSecretCode();
+cout << newcode << endl;
+}
+return 0;
+}
+
+
+
+
+
 Arrays and Pointers
 an array is a pointer to the first element in it.
 Should you need to access the second element via the expression myNumbers[1], you can
@@ -310,3 +469,42 @@ Note that any valid pointer is invalid after it has been released using delete.
 To avoid this problem, some programmers follow the convention of assigning NULL to a
 pointer when initializing it or after it has been deleted. They also always check a pointer
 for validity (by comparing against NULL) before dereferencing it using operator (*).
+
+
+
+
+
+std::unique_ptr
+
+
+
+
+
+
+
+
+Dynamically Allocating with new
+The heap is a special place where you can declare storage. However, to use
+this storage, you take a different approach from simply declaring a variable.
+
+To allocate memory on the heap, you need to do two things: First, declare a
+pointer variable. Second, call a function named new. The new function is a
+little different from other functions in that you don’t put parentheses around
+its parameter. For this reason, it’s actually considered to be an operator.
+
+To use the new function, you specify the type of variable you want to create.
+For example, the following line creates a new integer variable:
+int *somewhere = new int;
+
+int *ptr = new int;
+*ptr = 10;
+cout << *ptr << endl;
+return 0;
+
+When you allocate memory on the heap by calling the new function and you’re
+finished using the memory, you need to let the computer know, whether it’s
+just a little bit of memory or a lot.
+
+The way you free the memory is by calling the delete function and passing
+the name of the pointer:
+delete MyPointer;

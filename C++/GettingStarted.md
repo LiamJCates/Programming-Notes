@@ -130,3 +130,32 @@ g++ -o [executable name] [filename].cpp
 
 run using:
 ./[executable name]
+
+
+
+
+
+
+
+
+
+
+The following list shows some application types:
+✦ GTK+ Project: This is a graphical application that includes, well, a window.
+You know the kind: It usually has a menu across the top and something
+inside it that you can either click or type into. It relies on the Gimp Toolkit
+(GTK), which provides an incredibly flexible interface that runs on a
+number of platforms including Linux, Mac, and Windows systems. Read
+more about GTK in the “What about all of those other projects?” sidebar.
+✦ Console Application: This is an application that gets a paltry Console
+window instead of a graphical window. Console refers to a window with
+a command prompt. (Folks who recall the old days, before Windows, call
+it a DOS box, and you may know it as a terminal window when working
+with operating systems such as the Mac or Linux.)
+✦ Static library: A static library is a set of C++ code that you use later in
+another project. It’s like making a really great marinade that you won’t
+use up today. You’ll use some of it tomorrow and some of it after that.
+Same with a C++ library.
+✦ Dynamic Link Library: A Dynamic Link Library (DLL) is kind of like a
+static library except it is separated from the main application and gets
+its own file with a .DLL extension.

@@ -14,13 +14,17 @@ You can initialize its contents on a per-element basis:
 
 int myNumbers [5] = {34, 56, -21, 5002, 365}
 
-Or partially initialize elements, the rest defaulting to zero:
+Or partially initialize elements:
 int myNumbers [5] = {34, 56};
 
-Such arrays are called static arrays because the number of elements they contain as well
-as the memory the array consumes is fixed at the time of compilation.
+The remaining elements may be default initialized depending on the type of the array but a value should be assigned to them before they are used.
 
+The general format:
 ElementType ArrayName [constant_number of elements] = {optional initial values};
+
+Such arrays are called static arrays because the number of elements they contain as well as the memory the array consumes is fixed at the time of compilation.
+
+
 
 You can define the length of an array as a constant:
 const int ARRAY_LENGTH = 5;
