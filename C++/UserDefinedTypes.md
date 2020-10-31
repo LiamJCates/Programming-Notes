@@ -157,8 +157,9 @@ Concrete Types
 The basic idea of concrete classes is that they behave ‘‘just like built-in types.’’ For example, a complex number type and an infinite-precision integer are much like built-in int, except of course
 that they have their own semantics and sets of operations.
 
-The defining characteristic of a concrete type is that its representation is part of its definition, and that representation is present in each object of a concrete class. That allows
-implementations to be optimally efficient in time and space. In particular, it allows us to:
+The defining characteristic of a concrete type is that its representation is part of its definition, and that representation is present in each object of a concrete class. That allows implementations to be optimally efficient in time and space.
+
+In particular, it allows us to:
 • place objects of concrete types on the stack, in statically allocated memory, and in other objects (§1.5);
 • refer to objects directly (and not just through pointers or references);
 • initialize objects immediately and completely (e.g., using constructors; §2.3);
@@ -167,7 +168,18 @@ implementations to be optimally efficient in time and space. In particular, it a
 
 
 
+The keyword class, creates a data type that encapsulates member attributes and functions
+
+Declaring a Class
+
+class ClassName{
+  type attribute name;
+
+  type methodName(){};
+};
+
 A class has a set of members, which can be data, function, or type members. The interface is defined by the public members of a class, and private members are accessible only through that interface.
+
 For example:
 class Vector {
 public:
@@ -179,24 +191,9 @@ double∗ elem; // pointer to the elements
 int sz; // the number of elements
 };
 
-Here, the representation of a Vector (the members elem and sz) is accessible only through the
-interface provided by the public members: Vector(), operator[](), and siz e().
+Here, the representation of a Vector (the members elem and sz) is accessible only through the interface provided by the public members: Vector(), operator[](), and size().
 
 
-
-
-Declaring a Class
-You declare a class
-
-class ClassName{
-  type attribute name;
-
-  type methodName(){};
-};
-
-class member methods and attributes work much like java
-
-The keyword class, creates a data type that encapsulates member attributes and functions
 
 Creating an object of type class Human is similar to creating an instance of another type, say double:
 double pi= 3.1415; // a variable of type double
@@ -215,37 +212,26 @@ delete firstWoman; // de-allocating memory
 
 Access members using the dot operator
 
-If you have a pointer firstWoman to an instance of class Human, you can either use
-the pointer operator (->) to access members, or use the
-indirection operator (*) to reference the object following the dot operator.
+If you have a pointer firstWoman to an instance of class Human, you can either use the pointer operator (->) to access members, or use the indirection operator (*) to reference the object following the dot operator.
+
 Human* firstWoman = new Human();
 (*firstWoman).IntroduceSelf();
 
-If an object has been instantiated on the free store using new or if you have a pointer
-to an object, then you use the pointer operator (->) to access the member attributes and
-functions:
+If an object has been instantiated on the free store using new or if you have a pointer to an object, then you use the pointer operator (->) to access the member attributes and functions:
 Human* firstWoman = new Human();
 firstWoman->dateOfBirth = "1970";
 firstWoman->IntroduceSelf();
 delete firstWoman;
 
-What is a better way to access members: using the dot operator (.) or using
-the pointer operator (->)?
-A If you have a pointer to an object, the pointer operator would be best suited. If you
-have instantiated an object as a local variable on the stack, then the dot operator is best suited.
+What is a better way to access members: using the dot operator (.) or using the pointer operator (->)?
 
+A If you have a pointer to an object, the pointer operator would be best suited. If you have instantiated an object as a local variable on the stack, then the dot operator is best suited.
 
-
-Steps to Using Objects
-1 Pen *MyPen; Declares the pointer
-2 MyPen = new Pen; Calls new to create the object
-3 MyPen->InkColor = red; Accesses object member through the pointer
-4 delete MyPen; Deletes the object
-5 MyPen = 0; Clears the pointer
 
 
 Member Initializers
 When a data member of a class is defined, we can supply a default initializer called a default member initializer. Consider a revision of complex (§4.2.1):
+
 class complex {
 double re = 0;
 double im = 0; // representation: two doubles with default value 0.0
@@ -255,13 +241,13 @@ complex(double r) :re{r} {} // constr uct complex from one scalar: {r,0}
 complex() {} // default complex: {0,0}
 // ...
 }
-The default value is used whenever a constructor doesn’t provide a value. This simplifies code and
-helps us to avoid accidentally leaving a member uninitialized.
+
+The default value is used whenever a constructor doesn’t provide a value. This simplifies code and helps us to avoid accidentally leaving a member uninitialized.
 
 
 
 
-C++ inline function is powerful concept that is commonly used with classes. If a function is inline, the compiler places a copy of the code of that function at each point where the function is called at compile time.
+C++ inline function is a powerful concept that is commonly used with classes. If a function is inline, the compiler places a copy of the code of that function at each point where the function is called at compile time.
 
 Any change to an inline function could require all clients of the function to be recompiled because compiler would need to replace all the code once again otherwise it will continue with old functionality.
 
@@ -293,20 +279,16 @@ int main() {
 
 
 
-The const specifiers on the functions returning the real and imaginary parts indicate that these
-functions do not modify the object for which they are called. A const member function can be
-invoked for both const and non-const objects, but a non-const member function can only be
-invoked for non-const objects.
+The const specifiers on the functions indicate that these functions do not modify the object for which they are called. A const member function can be invoked for both const and non-const objects, but a non-const member function can only be invoked for non-const objects.
 
 
 
 
 
 Keywords public and private
-Information can be classified into at least two categories: data that we don’t mind the
-public knowing and data that is private.
-C++ enables you to model class attributes and methods as public or private. Public class
-members can be used by anyone in possession of an object of the class. Private classmembers can be used only within the class
+Information can be classified into at least two categories: data that we don’t mind the public knowing and data that is private.
+C++ enables you to model class attributes and methods as public or private.
+Public class members can be used by anyone in possession of an object of the class. Private class members can be used only within the class
 
 class Human
 {
@@ -326,20 +308,21 @@ age = humansAge;
 // ...Other members and declarations
 };
 
+
 Constructors
-A constructor is a special function (or method) invoked during the instantiation of a class
-to construct an object. Just like functions, constructors can also be overloaded.
+A constructor is a special function (or method) invoked during the instantiation of a class to construct an object.
+
 Declaring and Implementing a Constructor
 A constructor is a special function that takes the name of the class and returns no value.
 So, class Human would have a constructor that is declared like this:
+
 class Human
 {
 public:
 Human(); // declaration of a constructor
 };
-This constructor can be implemented either inline within the class or externally outside
-the class declaration. An implementation (also called definition) inside the class looks
-like this:
+This constructor can be implemented either inline within the class or externally outside the class declaration. An implementation (also called definition) inside the class looks like this:
+
 class Human
 {
 public:
@@ -350,29 +333,29 @@ Human()
 };
 
 A variant enabling you to define the constructor outside the class’ declaration:
+
 class Human
 {
 public:
 Human(); // constructor declaration
 };
+
 // constructor implementation (definition)
 Human::Human()
 {
-// constructor code here
+  // constructor code here
 }
-:: is called the scope resolution operator. For example,
-Human::dateOfBirth is referring to variable dateOfBirth
-declared within the scope of class Human. ::dateOfBirth, on
-the other hand would refer to another variable dateOfBirth in a
-global scope.
+
+:: is called the scope resolution operator.
+
+For example, Human::dateOfBirth is referring to variable dateOfBirth
+declared within the scope of class Human.
+::dateOfBirth, on the other hand would refer to another variable dateOfBirth in a global scope.
 
 A constructor that is invoked without arguments is called the
 default constructor. Programming a default constructor is
 optional.
-If you don’t program any constructor the
-compiler creates one for you (that constructs member attributes
-but does not initialize Plain Old Data types such as int to any
-specific non-zero value).
+If you don’t program any constructor the compiler creates one for you (that constructs member attributes but does not initialize Plain Old Data types such as int to any specific non-zero value).
 
 You can choose to not implement the default constructor to
 enforce object instantiation with certain minimal parameters
@@ -386,8 +369,7 @@ parameters. So a constructor with two parameters, both with
 default values, is a default constructor
 
 
-Another
-way to initialize members is by using initialization lists.
+Another way to initialize members is by using initialization lists.
 
 class Human
 {
@@ -406,10 +388,7 @@ cout << ", " << age << " years old" << endl;
 // ... other class members
 };
 
-Thus, the initialization list is characterized by a colon (:) following the parameter
-declaration contained in parentheses (…), followed by an individual member variable
-and the value it is initialized to. This initialization value can be a parameter such as
-humansName or can even be a fixed value. Initialization lists can also be useful in
+Thus, the initialization list is characterized by a colon (:) following the parameter declaration contained in parentheses (…), followed by an individual member variable and the value it is initialized to. This initialization value can be a parameter such as humansName or can even be a fixed value. Initialization lists can also be useful in
 invoking base class constructors with specific arguments.
 
 It is possible to define a constructor as a constant expression
@@ -428,27 +407,28 @@ constexpr Sample(const char* input)
 
 
 Destructor
-A destructor, like a constructor, is a special function, too. A constructor is invoked
-at object instantiation, and a destructor is automatically invoked when an object is
-destroyed.Declaring and Implementing a Destructor
-The destructor looks like a function that takes the name of the class, yet has a tilde (~)
-preceding it. So, class Human would have a destructor that is declared like this:
+A destructor, like a constructor, is a special function, too. A constructor is invoked at object instantiation, and a destructor is automatically invoked when an object is destroyed.
+
+Declaring and Implementing a Destructor
+The destructor looks like a function that takes the name of the class, yet has a tilde (~) preceding it. So, class Human would have a destructor that is declared like this:
+
 class Human
 {
 ~Human(); // declaration of a destructor
 };
-This destructor can either be implemented inline in the class or externally outside the
-class declaration. An implementation or definition inside the class looks like this:
+
+This destructor can either be implemented inline in the class or externally outside the class declaration. An implementation or definition inside the class looks like this:
+
 class Human
 {
 public:
-~Human()
-{
-// destructor code here
-}
+  ~Human()
+  {
+  // destructor code here
+  }
 };
-A variant enabling you to define the destructor outside the class’s declaration looks like
-this:
+
+A variant enabling you to define the destructor outside the class’s declaration looks like this:
 class Human
 {
 public:
@@ -460,107 +440,59 @@ Human::~Human()
 // destructor code here
 }
 
-A destructor is always invoked when an object of a class is destroyed when it goes out of
-scope or is deleted via delete. This property makes a destructor the ideal place to reset
-variables and release dynamically allocated memory and other resources.
+A destructor is always invoked when an object of a class is destroyed when it goes out of scope or is deleted via delete. This property makes a destructor the ideal place to reset variables and release dynamically allocated memory and other resources.
 
-A destructor cannot be overloaded. A class can have only one
-destructor. If you forget to implement a destructor, the compiler
-creates and invokes a dummy destructor, that is, an empty one
-(that does no cleanup of dynamically allocated memory).
+A destructor cannot be overloaded. A class can have only one destructor. If you forget to implement a destructor, the compiler creates and invokes a dummy destructor, that is, an empty one (that does no cleanup of dynamically allocated memory).
 
 
+Steps to Using Objects
+1 Pen *MyPen; Declares the pointer
+2 MyPen = new Pen; Calls new to create the object
+3 MyPen->InkColor = red; Accesses object member through the pointer
+4 delete MyPen; Deletes the object
+5 MyPen = 0; Clears the pointer
 
-The technique of acquiring resources in a
-constructor and releasing them in a destructor, known as Resource Acquisition Is Initialization or
-RAII, allows us to eliminate ‘‘naked new operations,’’ that is, to avoid allocations in general code
-and keep them buried inside the implementation of well-behaved abstractions. Similarly, ‘‘naked
-delete operations’’ should be avoided. Avoiding naked new and naked delete makes code far less
-error-prone and far easier to keep free of resource leaks
+
+The technique of acquiring resources in a constructor and releasing them in a destructor, known as Resource Acquisition Is Initialization or RAII, allows us to eliminate ‘‘naked new operations,’’ that is, to avoid allocations in general code and keep them buried inside the implementation of well-behaved abstractions. Similarly, ‘‘naked delete operations’’ should be avoided. Avoiding naked new and naked delete makes code far less error-prone and far easier to keep free of resource leaks
 
 
 
 
+We might created the two object on the heap by using pointers and calling
+Object *ob1 = new Object;
+Object *ob2 = new Object;
+
+Then delete them
+delete ob1;
+delete ob2;
+
+But we could have made them on the stack by just declaring them without pointers:
+Object ob1;
+Object ob2;
+
+You can do this, and the application will run fine, provided you remove the delete lines.
+You do not delete stack variables. The computer calls the destructor when the function they are contained by ends, and they go out of scope. That’s the general rule with objects on the stack: They are created when you declare them, and they stay until the function ends.
 
 
-Constructors, destructors, and copy and move operations for a type are not logically separate.
-We must define them as a matched set or suffer logical or performance problems. If a class X has a66 Essential Operations Chapter 5
-destructor that performs a nontrivial task, such as free-store deallocation or lock release, the class is
-likely to need the full complement of functions:
-class X {
-public:
-X(Sometype); // ‘‘ordinar y constructor’’: create an object
-X(); // default constructor
-X(const X&); // copy constructor
-X(X&&); // move constructor
-X& operator=(const X&); // copy assignment: clean up target and copy
-X& operator=(X&&); // move assignment: clean up target and move
-˜X(); // destr uctor: clean up
-// ...
-};
-There are five situations in which an object can be copied or moved:
-• As the source of an assignment
-• As an object initializer
-• As a function argument
-• As a function return value
-• As an exception
-An assignment uses a copy or move assignment operator. In principle, the other cases use a copy or
-move constructor. Howev er, a copy or move constructor invocation is often optimized away by
-constructing the object used to initialize right in the target object. For example:
-X make(Sometype);
-X x = make(value);
-Here, a compiler will typically construct the X from make() directly in x; thus eliminating (‘‘eliding’’) a copy.
-In addition to the initialization of named objects and of objects on the free store, constructors
-are used to initialize temporary objects and to implement explicit type conversion.
-Except for the ‘‘ordinary constructor,’’ these special member functions will be generated by the
-compiler as needed. If you want to be explicit about generating default implementations, you can:
-class Y {
-public:
-Y(Sometype);
-Y(const Y&) = default; // I really do want the default copy constr uctor
-Y(Y&&) = default; // and the default move constr uctor
-// ...
-};
-If you are explicit about some defaults, other
 
-A good rule of thumb (sometimes called the rule of zero) is to either define all of the essential
-operations or none (using the default for all). For example:
-struct Z {
-Vector v;
-string s;
-};
-Z z1; // default initialize z1.v and z1.s
-Z z2 = z1; // default copy z1.v and z1.s
-Here, the compiler will synthesize memberwise default construction, copy, move, and destructor as
-needed, and all with the correct semantics.
-To complement =default, we hav e =delete to indicate that an operation is not to be generated. A
-base class in a class hierarchy is the classical example where we don’t want to allow a memberwise
-copy. For example:
-class Shape {
-public:
-Shape(const Shape&) =delete; // no copy operations
-Shape& operator=(const Shape&) =delete;
-// ...
-};
-void copy(Shape& s1, const Shape& s2)
-{
-s1 = s2; // error : Shape copy is deleted
-}
-A =delete makes an attempted use of the deleted function a compile-time error; =delete can be used
-to suppress any function, not just essential member functions.
+
+
+
+
+
+
+
+
 
 
 
 
 Shallow Copying and Associated Problems
-Classes that contain a pointer member buffer that
-points to dynamically allocated memory, allocated in the constructor using new and deallocated in the destructor using delete[].
+Classes that contain a pointer member buffer that points to dynamically allocated memory, allocated in the constructor using new and deallocated in the destructor using delete[].
 
-When an object of this class is copied, the
-pointer member is copied, but not the pointed memory, resulting in two objects pointing
-to the same dynamically allocated buffer in memory. When an object is destructed,
-delete[] deallocates the memory, thereby invalidating the pointer copy held by the
-other object. Such copies are shallow and are a threat to the stability of the program
+When an object of this class is copied, the pointer member is copied, but not the pointed memory, resulting in two objects pointing to the same dynamically allocated buffer in memory. When an object is destructed, delete[] deallocates the memory, thereby invalidating the pointer copy held by the other object.
+
+Such copies are shallow and are a threat to the stability of the program
 
 
 
@@ -681,6 +613,92 @@ President& operator= (const President&); // private copy assignment operator
 There is no need for implementation of the private copy constructor or assignment
 operator. Just declaring them as private is adequate and sufficient toward fulfilling your
 goal of ensuring non-copyable objects of class President
+
+
+
+
+
+
+
+
+
+
+
+Constructors, destructors, and copy and move operations for a type are not logically separate.
+
+We must define them as a matched set or suffer logical or performance problems.
+
+If a class X has a destructor that performs a nontrivial task, such as free-store deallocation or lock release, the class is likely to need the full complement of functions:
+class X {
+public:
+X(Sometype); // ‘‘ordinar y constructor’’: create an object
+X(); // default constructor
+X(const X&); // copy constructor
+X(X&&); // move constructor
+X& operator=(const X&); // copy assignment: clean up target and copy
+X& operator=(X&&); // move assignment: clean up target and move
+˜X(); // destr uctor: clean up
+// ...
+};
+There are five situations in which an object can be copied or moved:
+• As the source of an assignment
+• As an object initializer
+• As a function argument
+• As a function return value
+• As an exception
+
+An assignment uses a copy or move assignment operator. In principle, the other cases use a copy or move constructor. However, a copy or move constructor invocation is often optimized away by constructing the object used to initialize right in the target object.
+
+For example:
+X make(Sometype);
+X x = make(value);
+Here, a compiler will typically construct the X from make() directly in x; thus eliminating (‘‘eliding’’) a copy.
+
+In addition to the initialization of named objects and of objects on the free store, constructors are used to initialize temporary objects and to implement explicit type conversion.
+Except for the ‘‘ordinary constructor,’’ these special member functions will be generated by the compiler as needed. If you want to be explicit about generating default implementations, you can:
+class Y {
+public:
+Y(Sometype);
+Y(const Y&) = default; // I really do want the default copy constr uctor
+Y(Y&&) = default; // and the default move constr uctor
+// ...
+};
+
+If you are explicit about some defaults, other
+
+A good rule of thumb (sometimes called the rule of zero) is to either define all of the essential operations or none (using the default for all). For example:
+
+struct Z {
+Vector v;
+string s;
+};
+
+Z z1; // default initialize z1.v and z1.s
+Z z2 = z1; // default copy z1.v and z1.s
+Here, the compiler will synthesize memberwise default construction, copy, move, and destructor as needed, and all with the correct semantics.
+
+To complement =default, we have =delete to indicate that an operation is not to be generated. A base class in a class hierarchy is the classical example where we don’t want to allow a memberwise copy.
+
+For example:
+class Shape {
+public:
+Shape(const Shape&) =delete; // no copy operations
+Shape& operator=(const Shape&) =delete;
+// ...
+};
+void copy(Shape& s1, const Shape& s2)
+{
+s1 = s2; // error : Shape copy is deleted
+}
+A =delete makes an attempted use of the deleted function a compile-time error; =delete can be used
+to suppress any function, not just essential member functions.
+
+
+
+
+
+
+
 
 
 
@@ -820,6 +838,12 @@ a use case comes up that needs multiple instances of the class.
 
 
 
+
+
+
+
+
+
 Class That Prohibits Instantiation on the Stack
 Space on the stack is often limited. If you are writing a database that may contain terabytes of data in its internal structures, you might want to ensure that a client of this class
 cannot instantiate it on the stack; instead it is forced to create instances only on the free
@@ -852,6 +876,16 @@ If you see a memory leak there, you are not mistaken. As the destructor is not a
 from main, you cannot do a delete, either. What class MonsterDB needs to support is a
 public static member function that would destroy the instance (a class member would
 have access to the private destructor)
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -899,6 +933,14 @@ programming practice. The following sample in Listing 9.12 demonstrates a versio
 conversions.
 
 
+
+
+
+
+
+
+
+
 this Pointer
 An important concept in C++, this is a reserved keyword applicable within the scope
 of a class and contains the address of the object. In other words, the value of this is
@@ -917,6 +959,10 @@ To use an instance variable in a static function, you would explicitly declare a
 
 
 
+
+
+
+
 sizeof() a Class
 You have learned the fundamentals of defining your own type using keyword class
 that enables you to encapsulate data attributes and methods that operate on that data.
@@ -930,6 +976,12 @@ sizeof() might or might not include padding for certain attributes on word bound
 
 
 
+
+
+
+
+
+## Class File Locations
 When you divide the class, you put part in the header file and part in the
 source code file. The following list describes what goes where:
 ✦ Header file: Put the class definition in the header file. You can include
@@ -975,6 +1027,15 @@ MyString name;
 As you can see, a struct Human is similar to class Human, and instantiation of an
 object of type struct would be similar to type class as well:
 Human firstMan("Adam", 25, true); // an instance of struct Human
+
+
+
+
+
+
+
+
+
 
 
 Friend Function
@@ -1129,8 +1190,19 @@ Initialization:
 Aggregate2 a2 {42, {'h', 'e', 'l', 'l', 'o'}, {1998, 2003, 2011, 2014, 2017}};
 
 
+
+
+
+
+
+
+
+
+
+
+
 constexpr with Classes and Objects
-We were introduced to constexpr in Lesson 3, where we learned that it offers a powerful way to improve the performance of your C++ application. By marking functions that
+constexpr offers a powerful way to improve the performance of your C++ application. By marking functions that
 operate on constants or const-expressions as constexpr, we are instructing the compiler to evaluate those functions and insert their result instead of inserting instructions
 that compute the result when the application is executed. This keyword can also be used
 with classes and objects that evaluate as constants as demonstrated by Listing 9.18. Note

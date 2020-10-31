@@ -1,25 +1,113 @@
-A class hierarchy is a set of
-classes ordered in a lattice created by derivation (e.g., : public). We use class hierarchies to represent concepts that have hierarchical relationships, such as ‘‘A fire engine is a kind of a truck which
-is a kind of a vehicle’’
+A class hierarchy is a set of classes related by derivation (e.g., : public). We use class hierarchies to represent concepts that have hierarchical relationships
 
 Benefits from Hierarchies
 A class hierarchy offers two kinds of benefits:
-• Interface inheritance: An object of a derived class can be used wherever an object of a base
-class is required. That is, the base class acts as an interface for the derived class. The Container and Shape classes are examples. Such classes are often abstract classes.
-• Implementation inheritance: A base class provides functions or data that simplifies the
-implementation of derived classes. Smiley’s uses of Circle’s constructor and of Circle::draw()
-are examples. Such base classes often have data members and constructors.
-Concrete classes – especially classes with small representations – are much like built-in types: we
-define them as local variables, access them using their names, copy them around, etc. Classes in
-class hierarchies are different: we tend to allocate them on the free store using new, and we access
-them through pointers or references.
+• Interface inheritance: An object of a derived class can be used wherever an object of a base class is required. That is, the base class acts as an interface for the derived class.
+• Implementation inheritance: A base class provides functions or data that simplifies the implementation of derived classes.
+
+Concrete classes – especially classes with small representations – are much like built-in types: we define them as local variables, access them using their names, copy them around, etc.
+
+Classes in class hierarchies are different: we tend to allocate them on the free store using new, and we access them through pointers or references.
+
+To derive a class from an existing class, you write the new class as you
+would any other class, but you extend the header after the class name with a
+colon, :, the word public, and then the class you’re deriving from, as in the
+following class header line:
+class Derived : public Base {
+}
+
+
+
+Protected
+When you create a class, member functions can access both public and private member variables and functions. Users of the class can access only the
+public member variables and functions. But when you derive a new class,
+the picture changes. The derived class cannot access the private members in
+its own class. Private members are reserved for a class itself and not for any
+derived class.
+When members need to be accessible by derived classes, there’s a specification you can use beyond public and private: protected.
+Protected members and private members work the same way, but derived
+classes can access only protected members, not private members. Users
+can’t access either class.
+
+
+
+
+
+
+Encapsulation
+To encapsulate functionality combine the methods and member variables into a single entity, hiding some of them and making some accessible.
+The accessible ones together make up the interface of the object. And finally
+(this is important!), when you create an object, you create one that can perform on its own. In other words, the users of the class tell it what to do (such
+as perform a sales transaction) by calling its member functions and supplying parameters, and the object does the work. The calling function doesn’t
+care how the object does its thing, just that it can do it.
+
+For example, a cash
+register class knows how to perform a sales transaction. As the designer of
+the class, don’t force users to first call Sale and then call separate functions
+to manually modify the amount of cash in the register and modify the running total. Rather, the Sale function does all the hard work, and users of the
+class don’t have to worry about how that work takes place.
+And now the fundamental question: Why do you need to know the word
+encapsulation? Because it’s a common term that computer scientists like
+to throw around. If they use it, however, they are likely to use it as a verb:
+“Look at me! I am going to encapsulate this information into an object!”
+But the process matters more than the word itself. When you design objects
+and classes, you encapsulate your information into individual objects. If you
+keep the process in mind, you will be better off. Here are the things you need
+to do every time you design a class:
+✦ Encapsulate the information. Combine the information into a single
+entity that becomes the class. This single entity has member variables
+representing its characteristics and member functions representing its
+capabilities.
+✦ Clearly define the public interface of the class. Provide a set of functions that are public (and, possibly, member variables that are public,
+although it’s best to keep them protected or private), and make the rest
+of the members either protected or private.
+✦ Write the class so that it knows how to do its own work. The class’s
+users should need only to call the functions in the public interface, and
+these public functions should be simple to use.
+
+✦ Think of your class as a black box. The object has an interface that
+provides a means so that others can use it. The class includes details of
+how it does its thing; users only care that it does it. In other words, the
+users don’t see into the class.
+✦ Never change the class interface after you publish the class. Many
+application errors occur when a developer changes how methods,
+events, or access methods in the class work after publishing the class.
+If application developers rely on one behavior and the class developer
+introduces a new behavior, all applications that rely on the original
+behavior will break. You can always add to a class interface but never
+subtract from it or modify it. If you find that you must introduce a new
+behavior to Sale(), add the new behavior to a new method, Sale2().
+
+A common saying in object-oriented programming is that you should never
+make your member variables public. The idea is that if users of the object
+can easily make changes to the object’s member variables, a big mess
+could result. (For example, making the cash member variable public in a
+CashRegister class is asking for functions that just modify it directly,
+screwing up the balance.) By allowing users to call only member functions,
+you can put checking code inside to handle bad situations.
+
+
+
+
+const Aliase
+One of the most common reasons to use an alias in C++ is to change the
+manner in which an object is accessed. Moving a pointer to an object is
+always going to be easier than moving the object itself because a pointer is
+simply a number that specifies the address of the object. The object could
+contain complex data and pointers to yet other objects. Moving objects is
+complicated and messy, so developers try to avoid it at all cost.
+However, sending a pointer to someone gives them access to the original
+data. The recipient could modify the data in ways that you don’t want. So,
+you could create an alias of the original object that is a constant. No one can
+modify a constant.
+
 
 
 
 Hierarchy Navigation
-The read_shape() function returns Shape∗ so that we can treat all Shapes alike. However, what can
-we do if we want to use a member function that is only provided by a particular derived class, such
+The read_shape() function returns Shape∗ so that we can treat all Shapes alike. However, what can we do if we want to use a member function that is only provided by a particular derived class, such
 as Smiley’s wink()? We can ask ‘‘is this Shape a kind of Smiley?’’ using the dynamic_cast operator:
+
 Shape∗ ps {read_shape(cin)};
 if (Smiley∗ p = dynamic_cast<Smiley∗>(ps)) { // ... does ps point to a Smiley? ...
 // ... a Smiley; use it
@@ -48,6 +136,14 @@ instance of’’ operations.
 
 Polymorphism
 The word polymorphism means having many forms. Typically, polymorphism occurs when there is a hierarchy of classes and they are related by inheritance.
+
+
+Polymorphism is one of the most powerful aspects of object-oriented programming. The idea is that you can expand and enhance your application by
+simply adding new classes derived from a common base class. Then you
+have to make very few (if any) modifications to the rest of your application.
+Because you used virtual functions and polymorphism, the rest of your application automatically understands the new class you created. In essence, you
+are able to snap in the new class, and the application will run just fine.
+
 
 polymorphic behavior that can be implemented in C++ via the
 inheritance hierarchy, also known as subtype polymorphism.
@@ -195,15 +291,23 @@ Triangle class area
 This time, the compiler looks at the contents of the pointer instead of it's type. Hence, since addresses of objects of tri and rec classes are stored in *shape the respective area() function is called.
 
 As you can see, each of the child classes has a separate implementation for the function area(). This is how polymorphism is generally used. You have different classes with a function of the same name, and even the same parameters, but with different implementations.
-Virtual Function
 
+
+
+
+
+
+
+
+
+
+## Virtual Function
 A virtual function is a function in a base class that is declared using the keyword virtual. Defining in a base class a virtual function, with another version in a derived class, signals to the compiler that we don't want static linkage for this function.
 
 What we do want is the selection of the function to be called at any given point in the program to be based on the kind of object for which it is called. This sort of operation is referred to as dynamic linkage, or late binding.
 
 
-Pure Virtual Functions
-
+## Pure Virtual Functions
 It is possible that you want to include a virtual function in a base class so that it may be redefined in a derived class to suit the objects of that class, but that there is no meaningful definition you could give for the function in the base class.
 
 We can change the virtual function area() in the base class to the following −
@@ -227,8 +331,7 @@ The = 0 tells the compiler that the function has no body and above virtual funct
 
 
 
-Polymorphic Behavior Implemented Using Virtual
-Functions
+Polymorphic Behavior Implemented Using Virtual Functions
 
 You have access to an object of type Fish, via pointer Fish* or reference Fish&. This
 object could have been instantiated solely as a Fish, or be part of a Tuna or Carp
@@ -251,7 +354,11 @@ ReturnType FunctionName (Parameter List);
 Use of keyword virtual means that the compiler ensures that any overriding variant
 of the requested base class method is invoked.
 
-Need for Virtual Destructors
+
+
+
+
+## Need for Virtual Destructors
 There is a more sinister side to the feature demonstrated by Listing 11.1—unintentionally
 invoking base class functionality of an instance of type derived, when a specialization is
 available. What happens when a function calls operator delete using a pointer of type
@@ -290,8 +397,8 @@ delete in a way that instances of the deriving classes are not
 correctly destroyed.
 
 
-How Do virtual Functions Work? Understanding the
-Virtual Function Table
+How Do virtual Functions Work?
+Understanding the Virtual Function Table
 
 The Swim() method that needs
 to be invoked is evidently a decision made at runtime, using a logic that implements
@@ -419,9 +526,25 @@ vir tual double& operator[](int) = 0; // pure virtual function
 vir tual int size() const = 0; // const member function (§4.2.1)
 vir tual ˜Container() {} // destr uctor (§4.2.2)
 };
-This class is a pure interface to specific containers defined later. The word vir tual means ‘‘may be
-redefined later in a class derived from this one.’’ Unsurprisingly, a function declared vir tual is
-called a virtual function. A class derived from Container provides an implementation for the Container interface. The curious =0 syntax says the function is pure virtual; that is, some class derived
+
+
+
+This class is a pure interface to specific containers defined later. The word virtual means ‘‘may be redefined later in a class derived from this one.’’ Unsurprisingly, a function declared virtual is
+called a virtual function.
+
+
+This is the rule for creating an abstract class: You must have at least one
+abstract virtual function in your class. If you don’t, the class will not be
+abstract, and users of the class will be able to create instances of it. But if you
+do have at least one abstract virtual function, the compiler will issue an error
+message when you and other users try to create an instance of the class.
+In your extensive travels throughout the virtual world of C++, you are likely
+to encounter a slightly different term for abstract virtual function. That term
+is pure virtual function. Although the name sounds all pristine and pure, it
+means the same thing. You can use either term.
+
+
+A class derived from Container provides an implementation for the Container interface. The curious =0 syntax says the function is pure virtual; that is, some class derived
 from Container must define the function. Thus, it is not possible to define an object that is just a
 Container. For example:
 Container c; // error : there can be no objects of an abstract class

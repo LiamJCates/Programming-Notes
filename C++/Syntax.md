@@ -102,3 +102,60 @@ that by inserting the following include statement in FileA:
 We use quotes in this case and not angle brackets in including
 a self-programmed header. <> brackets are typically used when
 including standard headers.
+
+
+
+The preprocessor also provides you with a lot of other directives besides #include. One of the more useful ones is the #define directive. Here’s a
+sample #define line:
+
+ #define MYSPECIALNUMBER 42
+
+After the preprocessor sees this line, every time it encounters the word
+MYSPECIALNUMBER, it replaces it with the word 42 (that is, whatever sequence
+of letters, numbers, and other characters follow the definition). But #define
+also lets you create what are called macros:
+
+#define oldmax(x, y) ((x)>(y)?(x):(y))
+After the preprocessor learns this line, every time it sees the word oldmax
+followed by two things in parentheses separated by a comma, it replaces
+it with the form ((x)>(y)?(x):(y)), substituting the thing before the
+comma for x and the thing after the comma for y.
+
+
+At times, you may want to compile one version of your application for one
+situation and compile another for a different situation. For example, you may
+want to have a debug version of your application that has in it some extra
+goodies that spit out special information for you that you can use during the
+development of your application. Then, after your application is ready to
+ship to the masses so that millions of people can use it, you no longer want
+that extra debug information.
+To accomplish this, you can use a conditional compilation. Take a look at
+these lines:
+#ifdef DEBUG
+cout << "The value of j is " << j << endl;
+#else
+cout << j << endl;
+#endif
+The lines that begin with # are preprocessor directives. The preprocessor
+has its own version of if statements. In your code, you can have a line like
+the following, with nothing after it:
+#define DEBUG
+This simply defines a symbol. It works just like the symbols we described
+earlier, except that it’s not set to be replaced by anything.
+
+
+To define the DEBUG symbol
+through a command-line option, you add the following line to your command
+-D DEBUG
+either in the gcc command  when you include this compiler option, the DEBUG
+symbol is defined throughout your application, just as though you had
+included a #define DEBUG line at the beginning
+
+
+Using preprocessor directives, you can have two different versions of your
+application. In the example we gave, we’re gearing up for two versions: a
+debug version and a release version. To tell the compiler which version to
+build, we then modify the command-line options by either removing or
+adding the -D DEBUG line.
+The -D option works either with or without a space after the D. Thus, you
+can either use -DDEBUG or -D DEBUG. They both do the same thing
