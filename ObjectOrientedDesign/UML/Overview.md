@@ -197,190 +197,167 @@ Object-oriented modeling is a form of modeling that obeys the object-oriented pa
 
 
 
-Usage of UML
+##Usage of UML
 
+UML method uses two types of modeling, and thus possesses two classes of diagrams- structural modeling and behavioral modeling.
 
-Diagrams
+UML diagrams represent two different views of a system model:[25]
 
-
-
-
-Two types of modeling- structural modeling and behavioral modeling.
-Thus two classes of UML diagrams—behavioral and structural.
-
-Structural Modeling
-Asks what kind of elements do we need to put together to build the software, to solve the problems we're looking at, and how do they related to each other, how can we combine them to be most functional?
-
-Static Parts of the system
-the parts that's kind of to build a framework. Oftentimes they're the nouns, the things that we deal with.
-
-Structural modeling diagrams include
-Class diagrams        identify the vocabulary, the things that we are building.
-
-Component diagrams     help us structure these things together physically, package them up, and work with them as parts, and then have those parts plugged together.
-
-Package diagrams    logically helps us combine things, nothing physical with Package diagrams, but logically put things together and help us, especially when we're doing modeling of large systems.
-
-Deployment diagrams    map the pieces that we've built will be defined as components often and how they map to the physical deployment, the servers that they run on the hardware that we need.
+    Static (or structural) view: emphasizes the static structure of the system using objects, attributes, operations and relationships.
+    Dynamic (or behavioral) view: emphasizes the dynamic behavior of the system by showing collaborations among objects and changes to the internal states of objects.
 
 
 
-Behavioral Modeling
+
+
+### Structural Modeling
+Structural Modeling emphasizes the things that must be present in the system being modeled.
+
+Structural diagrams illustrate components of a system.
+
+Asks what kind of static elements compose the software that solves a given problem, how do they related to each other, how can we combine them to be most functional?
+
+Since structure diagrams represent the structure, they are used extensively in documenting the software architecture of software systems.
+
+### Structural diagrams
+
+#### Class diagram
+class diagram illustrates class templates and objects in a system, as well as the attributes, operations, and relationships of each class.
+
+defines entities in our system, our nouns, and the
+
+helps us understand and have a common language between all members of the team.
+
+
+
+#### Component diagram
+Component diagrams provide a visual representation of a system's physical components.
+help us structure these things together physically, package them up, and work with them as parts, and then have those parts plugged together.
+A component diagram displays the structural relationship of components of a software system.
+
+#### Composite structure diagram
+The Composite structure UML diagram shows the runtime structure of a system. This
+diagram can be used to show the internal components of a class.
+
+#### Deployment diagram
+A deployment diagram shows the hardware of your system and the software in that hardware.
+map the pieces that we've built will be defined as components often and how they map to the physical deployment, the servers that they run on the hardware that we need.
+
+#### Object diagram
+The object diagram visually communicates a set of class instances.
+
+#### Package diagram
+Package diagrams are used to provide a high-level visual depiction of large systems. These diagrams are simplistic and simply show how a system's components are grouped.
+
+logically helps us combine things, nothing physical with Package diagrams, but logically put things together and help us, especially when we're doing modeling of large systems.
+
+#### Profile diagram
+
+
+
+
+
+
+
+
+
+
+## Behavioral Modeling
+Behavioral Modeling emphasizes what must happen in the system being modeled.
+
 Behavioral diagrams illustrate how system components interact to form a system.
 
 defines the functionality of the system, the processes that occur, the interactions that happen between the structural pieces defined.
 
+Since behavior diagrams illustrate the behavior of a system, they are used extensively to describe the functionality of software systems
+
+
+
+
+
 dynamic parts of the system that implement the functionality that our users are looking for. the verbs or actions system components can take.
 
-Behavioral Modeling Diagrams
-Use Case diagrams    lay out the functionality that we're after, what features, what work needs to happen, and who is interested in those.
+### Behavioral Diagrams
 
-Sequence diagrams     lay out how things process, how the different pieces that we've defined interact, and especially the main focus is on a time sequencing structure. What object calls what other object, what orders are those done in?
+#### Activity diagram
+Activity diagrams illustrate the flow of processes in a system. This type of diagram is used to visually document activities within a system, also referred to as a system's procedures or dynamic components.
 
-State diagrams        take a particular object, look at the different states that that object can be in, and define the transitions that occur. Whether those transitions come from outside stimulus requesting the state change or whether they come from just events that may occur and cause a state to change.
+like flow charts but they have some enhanced functionality.
+Represent workflows in a graphical way. They can be used to describe the business workflow or the operational workflow of any component in a system.
 
-Activity diagrams    like flow charts, if you've ever seen those, but they have some enhanced functionality that we'll be looking at.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Activity diagrams
-Activity diagrams represent workflows in a graphical way. They can be used to describe the business workflow or the operational workflow of any component in a system.
-
-Interaction diagrams
-Interaction diagrams visually document how system components interact with each other.
-    Sequence diagram
-    Sequence diagrams are used to show a specific use case scenario, representative of a typical behavior based on the given use case.
-Communication diagram
-Timing diagram
-
-State machine diagrams
-
-Use case diagrams
-
-
-Structural diagrams illustrate components of a system.
-
-Class diagrams
-
-Component diagrams
-A component diagram displays the structural relationship of components of a software system.
-Composite structure diagrams
-
-Deployment diagrams
-A deployment diagram shows the hardware of your system and the software in that hardware.
-
-Object diagrams
-
-Package diagrams
-
-
-
-
-
-Sequence diagrams
-Sequence diagrams are used to show a specific use case scenario. So, these diagrams are
-representative of a typical behavior based on the given use case.
-
-
-
-Communication diagram
+#### Communication diagram
 Communication diagrams are a special type of interaction diagrams. They focus on how system participants are linked to one another.
 
+#### Interaction diagrams
+visually document how system components interact with each other.
+a subset of behavior diagrams, emphasize the flow of control and data among the things in the system being modeled.
+Includes Communication, Interaction Overview, Sequence, and Timing diagrams
 
-Timing diagrams
+
+#### Interaction overview diagram
+
+
+#### Sequence diagram
+Sequence diagrams are used to show a specific use case scenario, representative of a typical behavior based on the given use case.
+
+lay out how things process, how the different pieces that we've defined interact, and especially the main focus is on a time sequencing structure. What object calls what other object, what orders are those done in?
+
+
+#### State (Machine) diagram
+State machine diagrams are used to visually describe a system's behavior.
+
+take a particular object, look at the different states that that object can be in, and define the transitions that occur. Whether those transitions come from outside stimulus requesting the state change or whether they come from just events that may occur and cause a state to change.
+
+
+
+#### Timing diagram
 Timing UML diagrams provide a visual representation of a system's time constraints.
 
-The following example shows two time constraints in a bank's vault security system. There
-are two objects:
-Bio Security System
-Vault
+#### Use case diagram
+Use case diagrams document the interactions between your users and your system.
 
-Each starts in the Off state. The first time constraint indicates that the vault must be opened
-within 15 seconds of the Bio Security System being activated. The second time constraint is
-that the vault can only be open for 20 minutes or less:
+lay out the functionality that we're after, what features, what work needs to happen, and who is interested in those.
 
 
 
-State machine diagrams
-
-State machine diagrams are used to visually describe a system's behavior. The key
-components of these diagrams include states and transitions. The sample state machine
-provided in the following diagram is for a bank vault. The solid circle is the initial pseudo
-state and indicates entry into the system. There are four states—Wait, Unlock, Enable, and
-Vault.
-In our bank vault example, the vault is enabled when two bank managers place their thumb
-on a thumbprint scanner. The vault is unlocked, contingent on a successful thumbprint
-scan, by entering the correct combination. When these conditions are met, the Vault state is
-reached and the managers can enter it:
 
 
 
-Use case diagrams
-Use case diagrams document the interactions between your users and your system. This is typically done with text, but UML does support use cases.
 
 
-example of a grade book for an online education institution.
-The student logs on to the system and selects their class. The student then selects the assignment and uploads their document. Next, the student enters text and selects the submit button. The instructor logs on to the system and selects their class. The instructor then selects the assignment, and the student. They grade the assignment, enter a grade, and select the submit button.
 
 
-There are several visual components to the UML use case diagram:
-
-Actor: The stick figure is referred to as an actor. In our example, student and instructor were both actors. These are the users that use your system. Often, there are multiple user roles in a system.
-
-Relationship: The solid lines indicate which actors interact with which use case items.
-
-System: The overall system is represented by a rectangle. Actors are placed outside of the system and use case items are placed within the system.
-
-Use Case Item: Use case items are represented in ovals, as seen in our preceding Online Grade Book example. These are the components of your use case.
-
-structural UML diagrams
-
-Structural diagrams illustrate components of a system. The six diagrams listed here are
-structural, and are briefly described in the subsections that follow:
-Class diagrams
-class diagram illustrates class templates and objects
-It shows the classes in a system, attributes, and operations of each class and the relationship between each class.
-
-Component diagrams
-Component diagrams provide a visual representation of a system's physical components.
 
 
-Composite structure diagrams
 
-Deployment diagrams
-Object diagrams
-Package diagrams
-Package diagrams are used to provide a high-level visual depiction of large systems. These diagrams are simplistic and simply show how a system's components are grouped.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
