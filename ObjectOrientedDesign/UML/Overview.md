@@ -1,5 +1,7 @@
 UML is a general purpose method that uses a pictorial language to visualize, specify, model, and document systems.
 
+
+
 Although UML is generally used to model software systems, it may be used on non-software systems as well. For example, the process flow in a manufacturing unit.
 
 The Object Management Group (OMG) created and manages the
@@ -14,9 +16,18 @@ UML has a direct relation with object oriented analysis and design.
 
 UML communicates and documents class structures, objects, and interactions of object-oriented applications and systems.
 
+UML uses symbols that show how all the classes and
+objects fit together in your application, and it shows how they interact and
+collaborate.
+
 This process creates a share vocabulary between developers, customers, and managers without unnecessary detail.
 
 The result of modeling with UML is a graphical model that offers different views of a system in the form of various diagrams.
+
+
+
+
+
 
 
 
@@ -231,13 +242,12 @@ helps us understand and have a common language between all members of the team.
 
 
 #### Component diagram
-Component diagrams provide a visual representation of a system's physical components.
-help us structure these things together physically, package them up, and work with them as parts, and then have those parts plugged together.
 A component diagram displays the structural relationship of components of a software system.
 
+Component diagrams provide a visual representation of a system's physical components which helps us structure these things together physically, package them up, and work with them as parts, and then have those parts plugged together.
+
 #### Composite structure diagram
-The Composite structure UML diagram shows the runtime structure of a system. This
-diagram can be used to show the internal components of a class.
+The Composite structure UML diagram shows the runtime structure of a system. This diagram can be used to show the internal components of a class.
 
 #### Deployment diagram
 A deployment diagram shows the hardware of your system and the software in that hardware.
@@ -245,6 +255,11 @@ map the pieces that we've built will be defined as components often and how they
 
 #### Object diagram
 The object diagram visually communicates a set of class instances.
+
+The reason that the object diagram is considered a
+dynamic diagram rather than a static diagram is because objects themselves are considered dynamic. Objects can change while the application
+is running. Classes, on the other hand, do not change while the application
+is running
 
 #### Package diagram
 Package diagrams are used to provide a high-level visual depiction of large systems. These diagrams are simplistic and simply show how a system's components are grouped.
@@ -317,69 +332,3 @@ Timing UML diagrams provide a visual representation of a system's time constrain
 Use case diagrams document the interactions between your users and your system.
 
 lay out the functionality that we're after, what features, what work needs to happen, and who is interested in those.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Composite structure diagrams
-The Composite structure UML diagram shows the runtime structure of a system. This
-diagram can be used to show the internal components of a class.
-
-
-The following example shows a microwave with four structures:
-
-
-We can also represent a composite structure with a rectangular box, as illustrated in the following diagram:
-
-Object diagrams
-
-Object diagrams have an unfortunate name, as it does not aptly describe this UML
-diagram's purpose. The object diagram visually communicates a set of class instances. In
-fact, the instances have mostly optional components and are often only partially depicted.
-Therefore, a more apt name for this diagram might be a loosely defined instance UML diagram.
-The following example depicts four objects and their hierarchy. Because each object is an
-instance of a class, it is underlined and followed by a colon and the class name:
