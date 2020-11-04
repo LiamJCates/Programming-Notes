@@ -51,6 +51,24 @@ You need a pointer or reference to the first element of a list to locate all the
 More complex variants add additional links, allowing more efficient insertion or removal of nodes at arbitrary positions.
 <br/><br/>
 
+public class Node<T> {
+  private T data;
+  private Node<T> prev;
+  private Node<T> next;
+
+  public Node( T value ) { data = value; }
+
+  public T getValue() { return data; }
+  public void setValue( T value ) { data = value; }
+
+  public Node<T> getPrev() { return prev; }
+  public void setPrev( Node<T> elem ) { prev = elem; }
+
+  public Node<T> getNext() { return next; }
+  public void setNext( Node<T> elem ) { next = elem; }
+}
+
+
 ## Doubly Linked List
 
 In a doubly linked list, each element has a link to the previous element in the list as well as to the next element in the list. This additional link makes it possible to traverse the list in either direction. The entire list can be traversed starting from any element. A doubly linked list has head and tail elements just like a singly linked list. The head of the list has an empty or null previous link, just as the tail of the list has a null or empty next link.
