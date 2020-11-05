@@ -2,18 +2,20 @@
 
 Java provides eight primitive data types for numeric values, characters, and Boolean values.
 
-Type         Bit Depth         Value Range
+Type      Bit Depth         Value Range
 
-boolean     1 (JVM-specific)         true or false
-char         16             (unsigned)2^16-1        0 to 65535
+boolean   1 (JVM-specific)  true or false
+char      16                (unsigned)2^16-1   0 to 65535
 
-byte         8             ((-2^7) to (2^7)-1)        -128 to 127
-short         16             ((-2^15) to (2^15)-1)        -32768 to 32767
-int         32             ((-2^31) to (2^31)-1)        -2147483648 to 2147483647
-long         64             ((-2^63) to (2^63)-1)        -huge to huge
+byte      8                 (-2^7 to 2^7-1)    -128 to 127
+short     16                (-2^15 to 2^15-1)  -32768 to
+                                                32767
+int       32                (-2^31 to 2^31-1)  -2147483648 to
+                                                2147483647
+long      64                (-2^63 to 2^63-1)  -huge to huge
 
-float         32             varies
-double         64             varies
+float     32                varies
+double    64                varies
 
 The compiler allocates memory space for each variable or constant according to its data type.
 Every data type has a range of values.
@@ -52,10 +54,10 @@ One data type outranks another if it can hold a larger number. In assignment sta
 
 This is called a widening conversion.
 
-Conversions that don't incur information loss (such as short to int or float to double) are always legal. Values of type char can be converted to int. All integer types can be converted to float or double, even though some of the conversions (such as long to double) lose precision.
+Widening conversions, those that increase in data type rank, don't incur information loss (such as short to int or float to double) and are always legal. Values of type char can be converted to int. All integer types can be converted to float or double, even though some of the conversions (such as long to double) lose precision.
 
 Casting
-The cast operator lets you manually convert a value, even if it means that a narrowing conversion will take place. Cast operators are unary operators that appear as a data type name enclosed in a set of parentheses. The operator precedes the value being converted.
+The cast operator lets you manually convert a value, even if it means that information loss will take place, a narrowing conversion. Cast operators are unary operators that appear as a data type name enclosed in a set of parentheses. These operators precede the value being converted.
 
 All other conversions require a cast:
 double x = 10.0 / 3.0; / / sets x to 3.3333333333333335

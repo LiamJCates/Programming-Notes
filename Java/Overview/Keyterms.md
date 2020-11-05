@@ -23,9 +23,10 @@ Java doesn’t have to be compiled on each different platform, executing the sam
 
 
 ### Object-oriented
-Object-oriented programming (OOP) is an approach to programming that breaks a programming problem into objects that interact with each other. Objects are created from templates called classes that define class data fields and the code required to use that data
-
-
+Object-oriented programming (OOP): an approach to programming that breaks a programming problem into objects that interact with each other. Objects are created from templates called classes that define class data fields and the code required to use that data
+Encapsulation: Java supports access modifiers to protect data from
+unintended access and modification. Most people consider
+encapsulation to be an aspect of object-oriented languages.
 
 ### Distributed
 Java has an extensive library of routines for coping with TCP/IP protocols like HTTP and FTP. Java applications can open and access objects across the Net via URLs with the same ease as when accessing a local file system.
@@ -35,6 +36,10 @@ Java has an extensive library of routines for coping with TCP/IP protocols like 
 ### Robust
 Java is intended for writing programs that must be reliable in a variety of ways. Java puts a lot of emphasis on early checking for possible problems, later dynamic (runtime) checking, and eliminating situations that are error prone. . . . The single biggest difference between Java and C/C++ is that Java has a pointer model that eliminates the possibility of overwriting memory and corrupting data. The Java compiler detects many problems that in other languages would show up only at runtime. As for the second point, anyone who has spent hours chasing memory corruption caused by a pointer bug will be very happy with this aspect of Java.
 
+One of the major advantages of Java over C++ is that it
+prevents memory leaks. Java manages memory on its own and does
+garbage collection automatically. Bad memory management in C++ is
+a big source of errors in prog
 
 
 ### Secure
@@ -48,9 +53,16 @@ Originally, the Java attitude towards downloaded code was “Bring it on!” Unt
 
 Unfortunately, over time, hackers got quite good at spotting subtle flaws in the implementation of the security architecture. Sun, and then Oracle, had a tough time keeping up with bug fixes. After a number of high-profile attacks, browser vendors and Oracle became increasingly cautious. Java browser plug-ins no longer trust remote code unless it is digitally signed and users have agreed to its execution.
 
-
+Java code runs inside the JVM. This creates a sandbox that
+makes it hard for Java code to do malicious things
 
 ### Architecture Neutral / Platform Independent
+Java is an interpreted language that gets
+compiled to bytecode. A key benefit is that Java code gets compiled
+once rather than needing to be recompiled for different operating
+systems. This is known as “write once, run everywhere.” The
+portability allows you to easily share pre-compiled pieces of software.
+
 The compiler generates an architecture-neutral object file format. The compiled code is executable on any processor, given the presence of the Java runtime system. The Java compiler does this by generating bytecode instructions which have nothing to do with a particular computer architecture. Rather, they are designed to be both easy to interpret on any machine and easy to translate into native machine code on the fly.
 
 
@@ -79,9 +91,22 @@ In the early years of Java, many users disagreed with the statement that the per
 
 
 ### Multithreaded
+Java is designed to allow multiple pieces of code to
+run at the same time.
 [The] benefits of multithreading are better interactive responsiveness and real-time behavior. Nowadays, we care about concurrency because Moore’s law has come to an end. Instead of faster processors, we just get more of them, and we have to keep them busy. Yet when you look at most programming languages, they show a shocking disregard for this problem. Java was well ahead of its time. It was the first mainstream language to support concurrent programming. As you can see from the white paper, its motivation was a little different. At the time, multicore processors were exotic, but web programming had just started, and processors spent a lot of time waiting for a response from the server. Concurrent programming was needed to make sure the user interface didn’t freeze. Concurrent programming is never easy, but Java has done a very good job making it manageable.
 
 
 
 ### Dynamic
 In a number of ways, Java is a more dynamic language than C or C++. It was designed to adapt to an evolving environment. Libraries can freely add new methods and instance variables without any effect on their clients. In Java, finding out runtime type information is straightforward. This is an important feature in situations where code needs to be added to a running program. A prime example is code that is downloaded from the Internet to run in a browser. In C or C++, this is indeed a major challenge, but the Java designers were well aware of dynamic languages that made it easy to evolve a running program. Their achievement was to bring this feature to a mainstream programming language.
+
+
+
+### Backward Compatibility
+The Java language architects pay careful
+attention to making sure old programs will work with later versions of
+Java. While this doesn’t always occur, changes that will break
+backward compatibility occur slowly and with notice. Deprecation is a
+technique to accomplish this where code is flagged to indicate it
+shouldn’t be used. This lets developers know a different approach is
+preferred so they can start changing the code.
