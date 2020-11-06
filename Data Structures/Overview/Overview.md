@@ -155,11 +155,7 @@ https://en.wikipedia.org/wiki/Search_data_structure
 
 |Data Structure | Insert | Delete | Balance | Get at index | Search/Query | Find minimum | Find maximum | Space usage |
 | --------------- | --------------- | --------------- | --------------- | --------------- | --------------- | --------------- | --------------- | --------------- |
-| Unsorted array | O(1)(Unordered)
-O(n) (in place) |
-O(1)(Unordered)
-O(n) (in place)
-N/A
+| Unsorted array | O(1)(Unordered)     O(n) (in place) | O(1)(Unordered)     O(n) (in place) | N/A |
 O(1)
 O(n)
 O(n)
