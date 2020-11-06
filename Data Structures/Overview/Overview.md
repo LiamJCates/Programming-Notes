@@ -58,34 +58,13 @@ Examples of collections include lists, sets, multisets, trees and graphs.
 [DataStructures.png]
 
 
-Characteristic    
-Description
-Example
-
-Linear
-Linear data structure's elements are arranged in a linear sequence.
-Example: Array
-
-Non-Linear
-In Non-Linear data structures elements are not in sequence.
-Example: Tree, Graph
-
-Homogeneous
-In homogeneous data structures,all the elements are of the same type.
-Example: Array
-
-Non-Homogeneous
-In Non-Homogeneous data structure, the elements may or may not be of the same type.
-Example: Structures
-
-Static
-Static data structures are those whose sizes and structures associated memory locations are fixed, at compile time.
-Example: Array
-
-
-Dynamic
-Dynamic structures are those which expand or shrink depending upon the programs need as it executes. Also, their associated memory locations change.
-Example: Linked List created using pointers
+| Characteristic | Description | Example |
+| Linear | Linear data structure's elements are arranged in a linear sequence. | Example: Array |
+| Non-Linear | In Non-Linear data structures elements are not in sequence. | Tree, Graph |
+| Homogeneous | In homogeneous data structures, all the elements are of the same type. | Array |
+| Non-Homogeneous | In Non-Homogeneous data structure, the elements may or may not be of the same type. | Structures |
+| Static | Static data structures are those whose sizes and structures associated memory locations are fixed, at compile time. | Array |
+| Dynamic | Dynamic structures are those which expand or shrink depending upon the programs need as it executes. Also, their associated memory locations change. | Linked List created using pointers |
 
 
 
@@ -150,14 +129,12 @@ Sorting:    Arranging data elements of a data structure in a specified order.
 Merging:    Combining elements of two data structures to form a new data structure of the same type.
 
 
+
+[Complexity.png]
+
+
+
 Data Structure Complexity
-https://en.wikipedia.org/wiki/Search_data_structure
-
-
-
-
-
-
 
 |Data Structure | Insert | Delete |  Balance  | Get at index | Search/Query | Find minimum | Find maximum | Space usage |
 | --------------- | --------------- | --------------- | --------------- | --------------- | --------------- | --------------- | --------------- | --------------- |
@@ -183,8 +160,12 @@ B-tree | O(log n) | O(log n) | O(log n) | N/A | O(log n) | O(log n) | O(log n) |
 | Adj Matrix | Vertex O(V^2) <br /> Edge O(1) | Vertex O(V^2) <br /> Edge O(1) | | | O(1) | | | O(V^2) |
 | Incidence Matrix | Vertex O(V*E) <br /> Edge O(V*E) | Vertex O(V*E) <br /> Edge O(V*E) | | | O(E) | | | O(V*E) |
 
-Note: Insert on an unsorted array is sometimes quoted as being O(n) due to the assumption that the element to be inserted must be inserted at one particular location of the array, which would require shifting all the subsequent elements by one position. However, in a classic array, the array is used to store arbitrary unsorted elements, and hence the exact position of any given element is of no consequence, and insert is carried out by increasing the array size by 1 and storing the element at the end of the array, which is a O(1) operation.[3][4] Likewise, the deletion operation is sometimes quoted as being O(n) due to the assumption that subsequent elements must be shifted, but in a classic unsorted array the order is unimportant (though elements are implicitly ordered by insert-time), so deletion can be carried out by swapping the element to be deleted with the last element in the array and then decrementing the array size by 1, which is a O(1) operation.[5]
+https://en.wikipedia.org/wiki/Search_data_structure
+
 This table is only an approximate summary; for each data structure there are special situations and variants that may lead to different costs. Also two or more data structures can be combined to obtain lower costs.
+
+Note: Insert on an unsorted array is sometimes quoted as being O(n) due to the assumption that the element to be inserted must be inserted at one particular location of the array, which would require shifting all the subsequent elements by one position. However, in a classic array, the array is used to store arbitrary unsorted elements, and hence the exact position of any given element is of no consequence, and insert is carried out by increasing the array size by 1 and storing the element at the end of the array, which is a O(1) operation. Likewise, the deletion operation is sometimes quoted as being O(n) due to the assumption that subsequent elements must be shifted, but in a classic unsorted array the order is unimportant (though elements are implicitly ordered by insert-time), so deletion can be carried out by swapping the element to be deleted with the last element in the array and then decrementing the array size by 1, which is a O(1) operation.
+
 
 Useful Links
 
