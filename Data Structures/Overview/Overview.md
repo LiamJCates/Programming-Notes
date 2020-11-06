@@ -59,6 +59,7 @@ Examples of collections include lists, sets, multisets, trees and graphs.
 
 
 | Characteristic | Description | Example |
+| --------------- | --------------- | --------------- |
 | Linear | Linear data structure's elements are arranged in a linear sequence. | Example: Array |
 | Non-Linear | In Non-Linear data structures elements are not in sequence. | Tree, Graph |
 | Homogeneous | In homogeneous data structures, all the elements are of the same type. | Array |
