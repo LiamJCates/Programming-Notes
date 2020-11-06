@@ -161,51 +161,11 @@ https://en.wikipedia.org/wiki/Search_data_structure
 
 |Data Structure | Insert | Delete | Balance | Get at index | Search/Query | Find minimum | Find maximum | Space usage |
 | --------------- | --------------- | --------------- | --------------- | --------------- | --------------- | --------------- | --------------- | --------------- |
-| Unsorted array | O(1)(Unordered)     O(n) (in place) | O(1)(Unordered)     O(n) (in place) | N/A |
-O(1)
-O(n)
-O(n)
-O(n)
-O(n)
-Sorted array
-O(n)
-O(n)
-N/A
-O(1)
-O(log n)
-O(1)
-O(1)
-O(n)
-Stack
-O(1)
-O(1)
-
-
-
-
-O(n)
-
-
-
-
-O(n)
-Queue
-O(1)
-O(1)
-
-
-
-
-O(n)
-
-
-
-
-O(n)
-Unsorted linked list
-O(1)
-O(1) +
-O(n) search
+| Unsorted array | O(1)(Unordered)     O(n) (in place) | O(1)(Unordered)     O(n) (in place) | N/A | O(1) | O(n) | O(n) | O(n) | O(n) |
+| Sorted array | O(n) | O(n) | N/A | O(1) | O(log n) | O(1) | O(1) | O(n) |
+| Stack | O(1) | O(1) | | | O(n) | | | O(n) |
+| Queue | O(1) | O(1) | | | O(n) | | | O(n) |
+| Unsorted linked list | O(1) | O(1) +    O(n) search |
 N/A
 O(n)
 O(n)
