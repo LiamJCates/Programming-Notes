@@ -165,187 +165,21 @@ https://en.wikipedia.org/wiki/Search_data_structure
 | Sorted array | O(n) | O(n) | N/A | O(1) | O(log n) | O(1) | O(1) | O(n) |
 | Stack | O(1) | O(1) | | | O(n) | | | O(n) |
 | Queue | O(1) | O(1) | | | O(n) | | | O(n) |
-| Unsorted linked list | O(1) | O(1) +    O(n) search |
-N/A
-O(n)
-O(n)
-O(n)
-O(n)
-O(n)
-Sorted linked list
-O(n)
-O(1)[1]
-N/A
-O(n)
-O(n)
-O(1)
-O(1)
-O(n)
-Skip list
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Self-balancing binary search tree
-O(log n)
-O(log n)
-O(log n)
-N/A
-O(log n)
-O(log n)
-O(log n)
-O(n)
-Heap
-O(log n)
-O(log n)
-O(log n)
-N/A
-O(n)
-O(1) min-heap
-O(n) max-heap
-O(1) max-heap
-O(n) min-heap
-O(n)
-Hash table
-O(1)
-O(1)
-O(n)
-N/A
-O(1)
-O(n)
-O(n)
-O(n)
-Trie (k = average length of key)
-O(k)
-O(k)
-N/A
-O(k)
-O(k)
-O(k)
-O(k)
-O(k n)
-Cartesian tree
-O(log n)
-O(log n)
-Θ(log n)
-O(log n)
-N/A
-O(log n)
-O(log n)
-O(log n)
-O(n)
-B-tree
-O(log n)
-O(log n)
-O(log n)
-N/A
-O(log n)
-O(log n)
-O(log n)
-O(n)
-Red-black tree
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Splay tree
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-AVL tree
-O(log n)
-O(log n)
-Θ(log n)
-O(log n)
-N/A
-O(log n)
-O(log n)
-O(log n)
-O(n)
-k-d tree
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Adj List
-Vertex O(1)
-Edge O(1)
-Vertex O(V+E)
-Edge O(E)
-
-
-
-
-O(V)
-
-
-
-
-O(V+E)
-Incidence List
-Vertex O(1)
-Edge O(1)
-Vertex O(E)
-Edge O(E)
-
-
-
-
-O(E)
-
-
-
-
-O(V+E)
+| Unsorted linked list | O(1) | O(1) + O(n) search | N/A | O(n) | O(n) | O(n) | O(n) | O(n) |
+| Sorted linked list | O(n) | O(1) | N/A | O(n) | O(n) | O(1) | O(1) | O(n) |
+| Skip list |  |  |  |  |  |  |  |  |
+| Self-balancing binary search tree | O(log n) | O(log n) | O(log n) | N/A | O(log n) | O(log n) | O(log n) | O(n) |
+| Heap | O(log n) | O(log n) | O(log n) | N/A | O(n) | O(1) min-heap     O(n) max-heap | O(1) max-heap       O(n) min-heap | O(n) |
+| Hash table | O(1) | O(1) | O(n) | N/A | O(1) | O(n) | O(n) | O(n) |
+| Trie (k = average length of key) | O(k) | O(k) | N/A | O(k) | O(k) | O(k) |  O(k n) |
+| Cartesian tree | O(log n) | Θ(log n)    O(log n) | O(log n) | N/A | O(log n) | O(log n) | O(log n) | O(n) |
+B-tree | O(log n) | O(log n) | O(log n) | N/A | O(log n) | O(log n) | O(log n) | O(n) |
+| Red-black tree |  |  |  |  |  |  |  |  |
+| Splay tree |  |  |  |  |  |  |  |  |
+| AVL tree | O(log n) | O(log n)    Θ(log n) | O(log n) | N/A | O(log n) | O(log n) | O(log n) | O(n) |
+| k-d tree | | | | | | | | |
+| Adj List | Vertex O(1)     Edge O(1) | Vertex O(V+E)     Edge O(E)| | | O(V) | | | O(V+E) |
+| Incidence List | Vertex O(1)     Edge O(1) | Vertex O(E)     Edge O(E) | | | O(E) | | | O(V+E) |
 Adj Matrix
 Vertex O(V^2)
 Edge O(1)
