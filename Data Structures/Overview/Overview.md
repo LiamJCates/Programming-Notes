@@ -178,37 +178,11 @@ B-tree | O(log n) | O(log n) | O(log n) | N/A | O(log n) | O(log n) | O(log n) |
 | Splay tree |  |  |  |  |  |  |  |  |
 | AVL tree | O(log n) | O(log n)    Θ(log n) | O(log n) | N/A | O(log n) | O(log n) | O(log n) | O(n) |
 | k-d tree | | | | | | | | |
-| Adj List | Vertex O(1)     Edge O(1) | Vertex O(V+E)     Edge O(E)| | | O(V) | | | O(V+E) |
-| Incidence List | Vertex O(1)     Edge O(1) | Vertex O(E)     Edge O(E) | | | O(E) | | | O(V+E) |
-| Adj MatrixVertex O(V^2)
-Edge O(1)
-Vertex O(V^2)
-Edge O(1)
+| Adj List | Vertex O(1) <br /> Edge O(1) | Vertex O(V+E) <br /> Edge O(E)| | | O(V) | | | O(V+E) |
+| Incidence List | Vertex O(1) <br /> Edge O(1) | Vertex O(E) <br /> Edge O(E) | | | O(E) | | | O(V+E) |
+| Adj Matrix | Vertex O(V^2) <br /> Edge O(1) | Vertex O(V^2) <br /> Edge O(1) | | | O(1) | | | O(V^2) |
+| Incidence Matrix | Vertex O(V*E) <br /> Edge O(V*E) | Vertex O(V*E) <br /> Edge O(V*E) | | | O(E) | | | O(V*E) |
 
-
-
-
-O(1)
-
-
-
-
-O(V^2)
-Incidence Matrix
-Vertex O(V*E)
-Edge O(V*E)
-Vertex O(V*E)
-Edge O(V*E)
-
-
-
-
-O(E)
-
-
-
-
-O(V*E)
 Note: Insert on an unsorted array is sometimes quoted as being O(n) due to the assumption that the element to be inserted must be inserted at one particular location of the array, which would require shifting all the subsequent elements by one position. However, in a classic array, the array is used to store arbitrary unsorted elements, and hence the exact position of any given element is of no consequence, and insert is carried out by increasing the array size by 1 and storing the element at the end of the array, which is a O(1) operation.[3][4] Likewise, the deletion operation is sometimes quoted as being O(n) due to the assumption that subsequent elements must be shifted, but in a classic unsorted array the order is unimportant (though elements are implicitly ordered by insert-time), so deletion can be carried out by swapping the element to be deleted with the last element in the array and then decrementing the array size by 1, which is a O(1) operation.[5]
 This table is only an approximate summary; for each data structure there are special situations and variants that may lead to different costs. Also two or more data structures can be combined to obtain lower costs.
 
