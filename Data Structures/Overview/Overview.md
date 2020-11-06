@@ -136,11 +136,17 @@ Undirected, Directed, Weighted
 
 
 From the data structure point of view, following are some important categories of algorithms
+
 Insertion:    Addition of a new data element in a data structure.
+
 Deletion:     Removal of a data element from a data structure if it is found.
+
 Searching:    Searching for the specified data element in a data structure.
+
 Traversal:    Processing all the data elements present.
+
 Sorting:    Arranging data elements of a data structure in a specified order.
+
 Merging:    Combining elements of two data structures to form a new data structure of the same type.
 
 
