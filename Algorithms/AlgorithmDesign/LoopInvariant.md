@@ -14,9 +14,9 @@ A Loop invariant often is included in pseudocode as a comment following the loop
 Each loop's invariants must show these three things:
 Initialization, Maintenance, termination
 
-Loop Invariant Initialization:         true before each iteration of the loop
-Loop Invariant Maintenance:         remains true through the iteration of the loop
-Loop Invariant Termination:         true upon termination of the loop,
+Loop Invariant Initialization:    true before each iteration of the loop
+Loop Invariant Maintenance:       remains true through the iteration of the loop
+Loop Invariant Termination:       true upon termination of the loop,
 
 
 Termination deals with final state and is therefore the invariant property that helps to prove the correctness of the algorithm
