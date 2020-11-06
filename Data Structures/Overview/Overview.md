@@ -60,12 +60,12 @@ Examples of collections include lists, sets, multisets, trees and graphs.
 
 | Characteristic | Description | Example |
 | --------------- | --------------- | --------------- |
-| Linear | Linear data structure's elements are arranged in a linear sequence. | Example: Array |
+| Linear | Linear data structure's elements are arranged in a linear sequence. | Array |
 | Non-Linear | In Non-Linear data structures elements are not in sequence. | Tree, Graph |
 | Homogeneous | In homogeneous data structures, all the elements are of the same type. | Array |
 | Non-Homogeneous | In Non-Homogeneous data structure, the elements may or may not be of the same type. | Structures |
 | Static | Static data structures are those whose sizes and structures associated memory locations are fixed, at compile time. | Array |
-| Dynamic | Dynamic structures are those which expand or shrink depending upon the programs need as it executes. Also, their associated memory locations change. | Linked List created using pointers |
+| Dynamic | Dynamic structures are those which expand or shrink depending upon the programs need as it executes. Also, their associated memory locations change. | Linked List using pointers |
 
 
 
