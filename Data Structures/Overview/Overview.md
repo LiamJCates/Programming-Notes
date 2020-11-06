@@ -159,7 +159,7 @@ https://en.wikipedia.org/wiki/Search_data_structure
 
 
 
-|Data Structure | Insert | Delete | Balance | Get at index | Search/Query | Find minimum | Find maximum | Space usage |
+|Data Structure | Insert | Delete |  Balance  | Get at index | Search/Query | Find minimum | Find maximum | Space usage |
 | --------------- | --------------- | --------------- | --------------- | --------------- | --------------- | --------------- | --------------- | --------------- |
 | Unsorted array | O(1)(Unordered) <br /> O(n)(in place) | O(1)(Unordered) <br /> O(n)(in place) | N/A | O(1) | O(n) | O(n) | O(n) | O(n) |
 | Sorted array | O(n) | O(n) | N/A | O(1) | O(log n) | O(1) | O(1) | O(n) |
@@ -171,12 +171,12 @@ https://en.wikipedia.org/wiki/Search_data_structure
 | Self-balancing binary search tree | O(log n) | O(log n) | O(log n) | N/A | O(log n) | O(log n) | O(log n) | O(n) |
 | Heap | O(log n) | O(log n) | O(log n) | N/A | O(n) | O(1)minheap <br /> O(n)maxheap | O(1)maxheap <br /> O(n)minheap | O(n) |
 | Hash table | O(1) | O(1) | O(n) | N/A | O(1) | O(n) | O(n) | O(n) |
-| Trie (k = average length of key) | O(k) | O(k) | N/A | O(k) | O(k) | O(k) |  O(k n) |
-| Cartesian tree | O(log n) | Θ(log n)    O(log n) | O(log n) | N/A | O(log n) | O(log n) | O(log n) | O(n) |
+| Trie (k = avg len of key) | O(k) | O(k) | N/A | O(k) | O(k) | O(k) |  O(k n) |
+| Cartesian tree | O(log n) | Θ(log n) <br /> O(log n) | O(log n) | N/A | O(log n) | O(log n) | O(log n) | O(n) |
 B-tree | O(log n) | O(log n) | O(log n) | N/A | O(log n) | O(log n) | O(log n) | O(n) |
 | Red-black tree |  |  |  |  |  |  |  |  |
 | Splay tree |  |  |  |  |  |  |  |  |
-| AVL tree | O(log n) | O(log n)    Θ(log n) | O(log n) | N/A | O(log n) | O(log n) | O(log n) | O(n) |
+| AVL tree | O(log n) | O(log n) <br /> Θ(log n) | O(log n) | N/A | O(log n) | O(log n) | O(log n) | O(n) |
 | k-d tree | | | | | | | | |
 | Adj List | Vertex O(1) <br /> Edge O(1) | Vertex O(V+E) <br /> Edge O(E)| | | O(V) | | | O(V+E) |
 | Incidence List | Vertex O(1) <br /> Edge O(1) | Vertex O(E) <br /> Edge O(E) | | | O(E) | | | O(V+E) |
