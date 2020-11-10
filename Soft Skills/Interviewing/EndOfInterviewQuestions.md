@@ -63,17 +63,15 @@ what is your favorite part about working for this company or this department?
 make sure you're not asking questions that you could Google the answer
 
 I love asking about culture
-what's the culture but I ask it about
-the department not the company because most companies now you can learn about
-their company culture on their LinkedIn page or on their website but you can't
-find out about that department so I tend to ask
+ask it about the department not the company because most companies now you can learn about
+their company culture on their LinkedIn page or on their website
 
 what's the culture of this department
 
 
 Always have at least three questions because inevitably one or more will be answered for you during the interview
 
-I try to have 
+I try to have
 one that's success driven
 one that's culture related
 one that's more connecting

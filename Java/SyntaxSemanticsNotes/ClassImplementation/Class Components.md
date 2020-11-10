@@ -1,4 +1,14 @@
 ### Class
+In Java programs, classes are the basic building blocks. When defining
+a class, you describe all the parts and characteristics of one of those
+building blocks. To use most classes, you have to create objects. An
+object is a runtime instance of a class in memory. An object is often
+referred to as an instance since it represents a single representation of
+the class. All the various objects of all the different classes represent
+the state of your program. A reference is a variable that points to an
+object.
+
+
 In Java, everything goes in it's own class and every Java application has to have at least one class
 Each java source file typically holds one class or interface definition.
 The programs used by clients typically consist of a collection of classes
@@ -31,6 +41,10 @@ A: Classes are object recipes.
 
 A class informs the java virtual machine (JVM) how to make an object of that particular type. Each object made from that class can have its own values for the instance variables of that class.
 For example, you might use the Button class to make dozens of different buttons, and each button might have its own color, size, shape, label, and so on.
+
+
+The simplest Java class you can write looks like this:
+public class Name {}
 
 
 The syntax for declaring a basic class is as follows:
