@@ -1,10 +1,11 @@
 Character Input and Output
 
 Text input or output, regardless of where it originates or where it goes to,
-is dealt with as streams of characters, A text stream is a sequence of characters divided into lines; each line consists of zero or more characters followedby
-a newline character.
+is dealt with as streams of characters, A text stream is a sequence of characters divided into lines; each line consists of zero or more characters followed by a newline character.
 
-The standard library provides several functions .for reading or writing one
+Every text stream has at least one character; a newline with length 1
+
+The standard library provides several functions for reading or writing one
 character at a time, of which getchar and putchar are the simplest.
 
 getchar reads the next input character from a text stream
@@ -119,4 +120,55 @@ main(){
     }
   }
   printf("%d %d %d\n", nl, nw, nc)
+}
+
+
+
+
+
+
+Print Longest Line
+
+#include <stdio.h>
+#define MAXLINE 1000
+
+int getline(char line[], int maxline);
+void copy(char to[], char from[]);
+
+main(){
+  int len;
+  int max;
+  char current_line[MAXLINE];
+  char longest_line[MAXLINE];
+
+  max = 0;
+
+  while((len = getline(current_line)) > 0){
+    if(len > max) {
+      max = len;
+      copy(current_line, longest_line);
+    }
+  }
+  if(max > 0)
+    printf("%s", longest);
+
+  return 0;
+}
+
+getline(char s[]){
+  int c, i;
+
+  for(i = 0; i < MAXLINE-1 && (c = getchar()) != EOF && c != '\n'; i++)
+    s[i] = c;
+  if(c == '\n'){
+    s[i] = c;
+    ++i;
+  }
+  s[i] = '\0';
+  return i;
+}
+
+void copy(char to[], char from[]){
+  int i;
+  for(i = 0;(to[i] = from[i]) != '\0'; ++i);
 }
