@@ -1,10 +1,11 @@
-Similarly structure is another user defined data type available in C that allows to combine data items of different kinds.
-
-Structures are used to represent a record.
+A structure is a collection of one or more variables, possibly of different
+types, grouped together under a single name for convenient handling. (Structures are called "records" in some languages, notably Pascal.) Structures help
+to organize complicated data, particularly in large programs, because they permit a group of related variables to be treated as a unit instead of as separate
+entities.
 
 Defining a Structure
 
-To define a structure, you must use the struct statement. The struct statement defines a new data type, with more than one member. The format of the struct statement is as follows −
+To define a structure, you must use the struct statement. The struct statement defines a new data type, with one or more members:
 
 struct [structure tag] {
 
@@ -12,9 +13,36 @@ struct [structure tag] {
    member definition;
    ...
    member definition;
-} [one or more structure variables];  
+} [structure variables];  
 
-The structure tag is optional and each member definition is a normal variable definition, such as int i; or float f; or any other valid variable definition. At the end of the structure's definition, before the final semicolon, you can specify one or more structure variables but it is optional.
+The structure tag is optional and each member definition is a normal variable definition, such as int i; or float f; or any other valid variable definition. At the end of the structure's definition, before the final semicolon, you can specify one or more structure variables.
+
+The variables named in a structure are called members. A structure
+member or tag and an ordinary (i.e., non-member) variable can have the same
+name without conflict, since they can always be distinguished by context.
+Furthermore, the same member names may occur in different structures,
+although as a matter of style one would normally use the same names only for
+closely related objects.
+
+
+A struct declaration defines a type. The right brace that terminates the
+list of members may be followedby a list of variables, just as for any basic type.
+That is,
+struct { ...} x, y, Z;
+
+is syntactically analogous to
+
+int x, y, Z;
+
+in the sense that each statement declares x, y and z to be variables of the
+named type and causes space to be set aside for them.
+
+
+A structure declaration that is not followed by a list of variables reserves no
+storage; it merely describes a template or the shape of a structure. If the
+declaration is tagged, however, the tag can be used later in definitions of
+instances of the structure.
+
 
 Here is the way you would declare the Book structure −
 
@@ -25,15 +53,96 @@ struct Books {
    int   book_id;
 } book;  
 
+For example, given the declaration above
+
+
+struct Books book1;
+
+defines a variable book1 which is a structure of type struct point.
+
+Initialzing Structures
+A structure can be initialized by following its definition with a list of initializers, each a constant expression, for the members:
+
+struct Books book1 = {"Title", "Author", "Subject", 123};
+
+An automatic structure may also be initialized by assignment or by calling a function that returns a structure of the right type.
+
+
 Accessing Structure Members
 
-To access any member of a structure, we use the member access operator (.). The member access operator is coded as a period between the structure variable name and the structure member that we wish to access. You would use the keyword struct to define variables of structure type.
+To access any member of a structure, we use the member access operator (.). The member access operator is coded as a period between the structure variable name and the structure member that we wish to access.
+
+structure-name.member
+
+
+Structure Operations
+The only legal operations on a structure are copying it or assigning to it as a unit, taking its address with &, and accessing its members. Copy and assignment include passing arguments to functions and returning values from functions as well. Structures may not be compared. A structure may be initialized
+by a list of constant member values; an automatic structure may also be initialized by an assignment.
+
+
+
+Structure Pointers
+
+struct [struct tag] *name;
+
+says that "name" is a pointer to a structure of type "struct tag".
+
+If pp points to a point structure, *pp is the structure, and (*pp). x and (*pp).y are the members
+
+The parentheses are necessary in (*pp).x because the precedence of the structure member operator . is higher than *. The expression *pp. x means * (pp . x) , which is illegal here because x is not a pointer.
+
+Pointers to structures are so frequently used that an alternative notation is provided as a shorthand called arrow notation
+
+If p is a pointer to a structure, use p->member-of-structure to reference a member
+
+So if p is a pointer with memebers x and y, we could write instead
+printf("origin is (%d,%d)\n", p->x, p->y);
+
+IF we have this declaration
+struct rect r, *rp = &r;
+these four expressions are equivalent
+
+r.pt1.x
+rp->pt1.x
+(r. pt 1).x
+(rp->pt1).x
+
+
+The structure operators . and ->, together with () for function calls and [] for subscripts, are at the top of the precedence hierarchy and thus bind very tightly
+
+
+For example, given the declaration
+struct {
+  int len;
+  char *str;
+} *p;
+
+then
+
+++p->len;
+
+increments len, not p, because the implied parenthesization is ++(p->len). Parentheses can be used to alter the binding: (++p)->len increments p before accessing len, and (p++) -> len increments p afterward.
+
+In the same way, *p->str fetches whatever str points to; *p->str++
+increments str after accessing whatever it points to (just like *s++);
+(*p->str )++ increments whatever str points to; and *p++->str increments p after accessing whatever str points to.
+
+
+
+
+
+
+
 
 Structures as Function Arguments
+Functions manipulate through at least three possible approaches:
+pass components separately
+pass an entire structure
+pass a pointer to it.
 
-You can pass a structure as a function argument in the same way as you pass any other variable or pointer.
-Live Demo
+You can pass a structure as a function argument in the same way as you pass any other variable or pointer. If a large structure is to be passed to a function, it is generally more efficient to pass a pointer than to copy the whole structure.
 
+Example
 #include <stdio.h>
 #include <string.h>
 
@@ -93,7 +202,14 @@ Book subject : Telecom Billing Tutorial
 Book book_id : 6495700
 
 
-ointers to Structures
+
+
+
+
+
+
+
+Pointers to Structures
 
 You can define pointers to structures in the same way as you define pointer to any other variable −
 

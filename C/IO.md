@@ -1,12 +1,14 @@
 Character Input and Output
 
-Text input or output, regardless of where it originates or where it goes to,
-is dealt with as streams of characters, A text stream is a sequence of characters divided into lines; each line consists of zero or more characters followed by a newline character.
+Text input or output, regardless of where it originates or where it goes to, is dealt with as streams of characters, A text stream is a sequence of characters divided into lines; each line consists of zero or more characters followed by a newline character.
+
+the library implements a simple model of text input and output. A text stream consists of a sequence of lines; each line ends with a newline character. If the system doesn't operate that way, the library does whatever is necessary to make it appear as if it does. For instance, the library might convert carriage return and linefeed to newline on input and back again on output.
 
 Every text stream has at least one character; a newline with length 1
 
-The standard library provides several functions for reading or writing one
-character at a time, of which getchar and putchar are the simplest.
+The simplest input mechanism is to read one character at a time from the standard input, normally the keyboard
+
+The standard library provides several functions for reading or writing one character at a time, of which getchar and putchar are the simplest.
 
 getchar reads the next input character from a text stream
 and returns that as its value.
@@ -16,6 +18,10 @@ putchar prints a character each time it is called
 char c = getchar();
 
 putchar(c);
+
+
+
+
 
 File Copying
 Given getchar and putchar, you can write a surprising amount of useful code without knowing anything more about input and output.
