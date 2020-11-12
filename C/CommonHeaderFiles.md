@@ -119,3 +119,31 @@ String to long long int : 367587938
 String to long int : 53875.884300
 The first random value : 1804289383
 The second random value : 846930886
+
+
+
+
+
+
+
+
+
+The standard headers <limits.h> and <float.h> contain
+symbolic constants for float, double and long double of all three sizes.
+
+
+
+
+string functions are declared in the standard header
+<string.h>
+
+
+
+
+The standard header <ctype. h>, described in Appendix B, defines a family
+of functions that provide tests and conversionsthat are independent of character
+set.
+
+
+
+In general, mathematical functions like those in <math.h> will use the double precision type

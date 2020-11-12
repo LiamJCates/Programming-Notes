@@ -62,7 +62,7 @@ The standard headers <limits. h> and <float. h> contain symbolic constants for a
 Signed and Unsigned
 The qualifier signed or unsigned may be applied to char or any integer.
 unsiqned numbers are always positive or zero, and obey the laws of arithmetic
-modulo 211, where n is the number of bits in the type.
+modulo 2, where n is the number of bits in the type.
 
 Whether plain chars are signed or unsigned is machine-dependent,
 but printable characters are always positive.
@@ -138,6 +138,19 @@ USHRT_MAX   :   65535
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 Floating-Point Types
 
 The following table provide the details of standard floating-point types with storage sizes and value ranges and their precision −
@@ -188,6 +201,22 @@ Precision value: 6
 
 
 
+
+Arrays
+
+
+
+Arrays a kind of data structure that can store a fixed-size sequential collection of elements of the same type. An array is used to store a collection of data, but it is often more useful to think of an array as a collection of variables of the same type.
+
+A specific element in an array is accessed by an index.
+
+All arrays consist of contiguous memory locations. The lowest address corresponds to the first element and the highest address to the last element.
+
+All arrays have 0 as the index of their first element which is also called the base index and the last index of an array will be total size of the array minus 1
+
+
+
+
 The void Type
 
 The void type specifies that no value is available. It is used in three kinds of situations −
@@ -200,6 +229,17 @@ Function arguments as void
 
 There are various functions in C which do not accept any parameter. A function with no parameter can accept a void. For example, int rand(void);
 The word void must be used for function prototypes with an explicitly empty list.
+
+
+
+
+
+
+
+
+
+
+
 
 Pointers to void
 
