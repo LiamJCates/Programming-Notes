@@ -271,7 +271,17 @@ The latter is an array of characters that contains one character (the letter x)
 and a '\0'.
 
 
+Strings are actually one-dimensional array of characters terminated by a null character '\0'. Thus a null-terminated string contains the characters that comprise the string followed by a null.
 
+The following declaration and initialization create a string consisting of the word "Hello". To hold the null character at the end of the array, the size of the character array containing the string is one more than the number of characters in the word "Hello."
+
+char greeting[6] = {'H', 'e', 'l', 'l', 'o', '\0'};
+
+If you follow the rule of array initialization then you can write the above statement as follows −
+
+char greeting[] = "Hello";
+
+The C compiler automatically places the '\0' at the end of the string when it initializes the array. 
 
 
 
@@ -667,12 +677,29 @@ int main () {
 }
 
 
+Pointer to a Pointer
+A pointer to a pointer is a form of multiple indirection, or a chain of pointers. Normally, a pointer contains the address of a variable. When we define a pointer to a pointer, the first pointer contains the address of the second pointer, which points to the location that contains the actual value
+
+A variable that is a pointer to a pointer must be declared as such. This is done by placing an additional asterisk in front of its name. For example, the following declaration declares a pointer to a pointer of type int −
+
+int **var;
+
+When a target value is indirectly pointed to by a pointer to a pointer, accessing that value requires that the asterisk operator be applied twice
+
+Passing pointers
+C programming allows passing a pointer to a function. To do so, simply declare the function parameter as a pointer type.
 
 
+Returning a Pointer
+C also allows to return a pointer from a function. To do so, you would have to declare a function returning a pointer as in the following example −
 
+int * myFunction() {
+   .
+   .
+   .
+}
 
-
-
+Second point to remember is that, it is not a good idea to return the address of a local variable outside the function, so you would have to define the local variable as static variable.
 
 
 

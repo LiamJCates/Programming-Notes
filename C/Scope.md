@@ -1,4 +1,6 @@
-A scope in any programming is a region of the program where a defined variable can have its existence and beyond that variable it cannot be accessed. There are three places where variables can be declared in C programming language −
+The scope of a name is the part of the program within which the name can be used.
+
+There are three places where variables can be declared in C programming language −
 
     Inside a function or a block which is called local variables.
 
@@ -43,6 +45,50 @@ double 	0
 pointer 	NULL
 
 It is a good programming practice to initialize variables properly, otherwise your program may produce unexpected results, because uninitialized variables will take some garbage value already available at their memory location.
+
+In the absence of explicit initialization, external and static variables are guaranteed to be initialized to zero;
+
+Absent explicit initialization, automatic and register variables have undefined (i.e., garbage)  initial values
+
+
+Scalar variables may be initialized when they are defined, by following the name with an equals sign and an expression:
+
+For external and static variables, the initializer must be a constant expression;
+the initialization is done once, conceptually before the program begins execution.
+
+For automatic and register variables, initialization is done each time
+the block is entered
+
+For automatic and register variables, the initializer is not restricted to being a constant: it may be any expression involving previously defined values, even function calls.
+
+When the size of the array is omitted, the compiler will compute the length by counting the initializers,
+
+
+If there are fewer initializers for an array than the number specified, the missing elements will be zero for external, static, and automatic variables.
+
+It is an error to have more initializers than the array declaration indicates
+
+Character arrays are a special case of initialization; a string may be used instead of
+the braces and commas notation:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -96,15 +142,34 @@ each entry. If they are not set, they will contain garbage.
 
 The register Storage Class
 
+A register declaration advises the compiler that the variable in question
+will be heavily used. The idea is that register variables are to be placed in
+machine registers, which may result in smaller and faster programs. But compilers are free to ignore the advice.
+The register declaration looks like
+register int X;
+register char c;
+
+and so on. The register declaration can only be applied to automatic variables and to the formal parameters of a function
+f{register unsigned m, register long n)
+  {
+     register int  miles;
+  }
+
+
 The register storage class is used to define local variables that should be stored in a register instead of RAM. This means that the variable has a maximum size equal to the register size (usually one word) and can't have the unary '&' operator applied to it (as it does not have a memory location).
 
-{
-   register int  miles;
-}
+
 
 The register should only be used for variables that require quick access such as counters. It should also be noted that defining 'register' does not mean that the variable will be stored in a register. It means that it MIGHT be stored in a register depending on hardware and implementation restrictions.
 
-
+In practice, there are restrictions on register variables, reflecting the realities
+of underlying hardware. Only a few variables in each function may be kept in
+registers, and only certain types are allowed. Excess register declarations are
+harmless, however, since the word register is ignored for excessor disallowed
+declarations. And it is not possible to take the address of a register variable (a
+topic to be covered in Chapter 5), regardless of whether the variable is actually
+placed in a register. The specific restrictions on number and types of register
+variables vary from machine to machine.
 
 
 
@@ -117,6 +182,23 @@ The register should only be used for variables that require quick access such as
 
 
 The static Storage Class
+
+Static storage is specified by prefixing the normal declaration with the word static.
+
+
+Static variables are for the private use of the functions in their respective source files, and are not meant to be accessed by anything else. The static declaration, applied to an external variable or function, limits the scope of that object to the rest of the source file being compiled
+
+External static thus provides a way to hide names
+
+If the two routines and the two variables are compiled in one file then no other routine will be able to access the variables
+and those names will not conflict with the same names in other files of the same program.
+
+The external static declaration is most often used for variables, but it can
+be applied to functions as well.
+
+Normally, function names are global, visible to any part of the entire program. If a function is declared static, however, its name is invisible outside of the file in which it is declared.
+
+The static declaration can also be applied to internal variables. Internal static variables are local to a particular function just as automatic variables are, but unlike automatics, they remain in existence rather than coming and going each time the function is activated. This means that internal static variables provide private, permanent storage within a single function.
 
 The static storage class instructs the compiler to keep a local variable in existence during the life-time of the program instead of creating and destroying it each time it comes into and goes out of scope. Therefore, making local variables static allows them to maintain their values between function calls.
 
@@ -213,6 +295,45 @@ count is 5
 As an alternative to automatic variables, it is possible to define variables that
 are external to all functions, that is, variables that can be accessed by name by
 any function.
+
+
+It is important to distinguish between the declaration of an external variable
+and its definition. A declaration announces the properties of a variable (primarily its type); a definition also causes storage to be set aside. If the lines
+
+int sp;
+double val[MAXVAL];
+
+appear outside of any function, they define the external variables sp and val, cause storage to be set aside, and also serve as the declaration for the rest of
+that source file. On the other hand, the lines
+
+extern int sp;
+extern double vall];
+
+declare for the rest of the source file that sp is an int and that val is a
+double array (whose size is determined elsewhere), but they do not create the
+variables or reserve storage for them.
+There must be only one definition of an external variable among all the files
+that make up the source program; other files may contain extern declarations
+to access it. (There may also be extern declarations in the file containing the
+definition') Array sizes must be specified with the definition, but are optional
+with an extern declaration.
+Initialization of an external variable goes only with the definition.
+
+Although it is not a likely organization for this program, the functions push
+and pop could be defined in one file, and the variables val and sp defined and
+initialized in another. Then these definitions and declarations would be necessary to tie them together:
+
+Infilel:
+  extern int sp;
+  extern double vall];
+
+Infile2:
+  int sp = 0;
+  double val [MAXVAL] ;
+
+
+Because the extern declarations in file} lie ahead of and outside the function definitions, they apply to all functions; one set of declarations suffices for all of file1. This same organization would also be needed if the definitions of sp and val followed their use in one file.
+
 
 Because external variables are globally
 accessible, they can be used instead of argument lists to communicate data

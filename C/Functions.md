@@ -1,6 +1,12 @@
 A function is a group of statements that together perform a task. Every C program has at least one function, which is main(), and all the most trivial programs can define additional functions.
 
-You can divide up your code into separate functions. How you divide up your code among different functions is up to you, but logically the division is such that each function performs a specific task.
+You can divide up your code into separate functions.
+
+Functions break large computing tasks into smaller ones, and enable people to build on what others have done instead of starting over from scratch.
+
+Appropriate functions hide details of operation from parts of the program that don't need to know about them, thus clarifying the whole, and easing the pain of making changes
+
+How you divide up your code among different functions is up to you, but logically the division is such that each function performs a specific task.
 
 Normally you are at liberty to give functions whatever
 names you like, but "main" is special - your program begins executing at the beginning of main. This means that every program must have a main somewhere.
@@ -32,7 +38,7 @@ return-type function-name(parameter declarations)
 
 A function definition in C programming consists of a function header and a function body. Here are all the parts of a function −
 
-Return Type − A function may return a value. The return_type is the data type of the value the function returns. Some functions perform the desired operations without returning a value. In this case, the return_type is the keyword void.
+Return Type − A function may return a value. The return_type is the data type of the value the function returns.
 
 Function Name − This is the actual name of the function. The function name and the parameter list together constitute the function signature.
 
@@ -47,10 +53,33 @@ C functions cannot be split between files
 
 
 
+The declaration
+double sum, atof(char []);
+says that sumis a double variable, and that atof is a function that takes one
+char [ ] argument and returns a double.
+The function atof must be declared and defined consistently. If atof
+itself and the call to it in main have inconsistent types in the same source file,
+the error will be detected by the compiler. But if (as is more likely) atof were
+compiled separately, the mismatch would not be detected, atof would return a
+double that main would treat as an int, and meaningless answers would
+result.
+In the light of what we have said about how declarations must match definitions, this might seem surprising. The reason a mismatch can happen is that if
+there is no function prototype, a function is implicitly declared by its first
+appearance in an expression, such as
+sum += atof(line)
+If a name that has .not been previously declared occurs in an expression and is
+followed by a left parenthesis, it is declared by context to be a function name,
+the function is assumed to return an int, and nothing is assumed about its
+arguments. Furthermore, if a function declaration does not include arguments,
+as in
 
 
+double atof();
+that too is taken to mean that nothing is to be assumed about the arguments of
+atof; all parameter checking is turned off. This special meaning of the empty
 
-
+argument list is intended to permit older C programs to compile with new compilers. But it's a bad idea to use it with new programs. If the function takes
+arguments, declare them; if it takes no arguments, use void.
 
 
 
@@ -78,39 +107,99 @@ the address of the beginning of the array.
 
 Passing Arrays as Function Arguments in C
 
-Previous Page
-Next Page  
-
 If you want to pass a single-dimension array as an argument in a function, you would have to declare a formal parameter in one of following three ways and all three declaration methods produce similar results because each tells the compiler that an integer pointer is going to be received. Similarly, you can pass multi-dimensional arrays as formal parameters.
-Way-1
 
-Formal parameters as a pointer −
+
+1) Formal parameters as a pointer
 
 void myFunction(int *param) {
-   .
-   .
-   .
+
 }
 
-Way-2
-
-Formal parameters as a sized array −
+2) Formal parameters as a sized array
 
 void myFunction(int param[10]) {
-   .
-   .
-   .
+
 }
 
-Way-3
-
-Formal parameters as an unsized array −
+3) Formal parameters as an unsized array
 
 void myFunction(int param[]) {
+
+}
+
+
+
+
+Variable Parameters
+Sometimes, you may come across a situation, when you want to have a function, which can take variable number of arguments, i.e., parameters, instead of predefined number of parameters. The C programming language provides a solution for this situation and you are allowed to define a function which can accept variable number of parameters based on your requirement. The following example shows the definition of such a function.
+
+int func(int, ... ) {
    .
    .
    .
 }
+
+int main() {
+   func(1, 2, 3);
+   func(1, 2, 3, 4);
+}
+
+It should be noted that the function func() has its last argument as ellipses, i.e. three dotes (...) and the one just before the ellipses is always an int which will represent the total number variable arguments passed. To use such functionality, you need to make use of stdarg.h header file which provides the functions and macros to implement the functionality of variable arguments and follow the given steps −
+
+    Define a function with its last parameter as ellipses and the one just before the ellipses is always an int which will represent the number of arguments.
+
+    Create a va_list type variable in the function definition. This type is defined in stdarg.h header file.
+
+    Use int parameter and va_start macro to initialize the va_list variable to an argument list. The macro va_start is defined in stdarg.h header file.
+
+    Use va_arg macro and va_list variable to access each item in argument list.
+
+    Use a macro va_end to clean up the memory assigned to va_list variable.
+
+Now let us follow the above steps and write down a simple function which can take the variable number of parameters and return their average −
+Live Demo
+
+#include <stdio.h>
+#include <stdarg.h>
+
+double average(int num,...) {
+
+   va_list valist;
+   double sum = 0.0;
+   int i;
+
+   /* initialize valist for num number of arguments */
+   va_start(valist, num);
+
+   /* access all the arguments assigned to valist */
+   for (i = 0; i < num; i++) {
+      sum += va_arg(valist, int);
+   }
+
+   /* clean memory reserved for valist */
+   va_end(valist);
+
+   return sum/num;
+}
+
+int main() {
+   printf("Average of 2, 3, 4, 5 = %f\n", average(4, 2,3,4,5));
+   printf("Average of 5, 10, 15 = %f\n", average(3, 5,10,15));
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -134,6 +223,8 @@ However, it is good programming practice to always declare a return type in the 
 
 return statement form:
 return expression;
+
+The expression will be converted to the return type of the function if necessary
 
 The value of expression, if present, is returned to the calling function. If expression is omitted, the return value of the function is undefined. The expression, if present, is evaluated and then converted to the type returned by the function. When a return statement contains an expression in functions that have a void return type, the compiler generates a warning, and the expression isn't evaluated.
 
@@ -194,3 +285,22 @@ prototype.
 The word void must be used for function prototypes with an explicitly empty list.
 
 Parameter names in prototypes and definitions need not agree. Indeed, parameter names are optional in a function prototype
+
+
+
+
+
+Recursion
+Recursion is the process of repeating items in a self-similar way. In programming languages, if a program allows you to call a function inside the same function, then it is called a recursive call of the function.
+
+void recursion() {
+   recursion(); /* function calls itself */
+}
+
+int main() {
+   recursion();
+}
+
+The C programming language supports recursion, i.e., a function to call itself. But while using recursion, programmers need to be careful to define an exit condition from the function, otherwise it will go into an infinite loop.
+
+Recursive functions are very useful to solve many mathematical problems, such as calculating the factorial of a number, generating Fibonacci series, etc.

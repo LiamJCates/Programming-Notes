@@ -11,6 +11,13 @@ Just how to run this program depends on the system you are using. On the UNIX op
 compilation will proceed silently, and make an executable file
 called a.out
 
+for the cc compiler, files ending in .c are
+c source code
+
+for the cc compiler, files ending in .o are
+object code of compiled files
+
+
 In Linux, UNIX and related operating systems
 "." denotes the current directory
 ".." denotes the parent directory
@@ -22,6 +29,16 @@ to run a.out type the command
 ./a.out
 
 
+Suppose that the three functions are stored in three files called main.c, qetline. c, and strindex. c. Then the command
+
+cc main.c getline.c strindex.c
+
+compiles the three files, placing the resulting object code in files main.0,
+qetline.o, and strindex. 0, then loads them all into an executable file
+called a. out. If there is an error, say in main.c, that file can be recompiled
+by itself and the result loaded with the previous object files, with the command
+
+cc main.c qetline.o strindex.o
 
 
 

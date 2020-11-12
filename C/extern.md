@@ -1,4 +1,12 @@
-A variable declaration is useful when you are using multiple files and you define your variable in one of the files which will be available at the time of linking of the program. You will use the keyword extern to declare a variable at any place. Though you can declare a variable multiple times in your C program, it can be defined only once in a file, a function, or a block of code
+A C program consists of a set of external objects, which are either variables
+or functions. The adjective "external" is used in contrast to "internal," which
+describes the arguments and variables defined inside functions. External variables are defined outside of any function, and are thus potentially available to
+many functions. Functions themselves are always external, because C does not
+allow functions to be defined inside other functions. By default, external variables and functions have the property that all references to them by the same
+name, even from functions compiled separately, are references to the same
+thing. (The standard calls this property external linkage.)
+
+An external variable declaration is useful when you are using multiple files and you define your variable in one of the files which will be available at the time of linking of the program. You will use the keyword extern to declare a variable at any place. Though you can declare a variable multiple times in your C program, it can be defined only once in a file, a function, or a block of code
 
 
 Example
@@ -33,7 +41,9 @@ int main () {
 }
 
 
-The extern keyword applies to C variables (data objects) and C functions. Basically, the extern keyword extends the visibility of the C variables and C functions. That’s probably the reason why it was named extern.
+The extern keyword applies to C variables (data objects) and C functions. Basically, the extern keyword extends the visibility of the C variables and C functions.
+
+
 
 Declaration of a variable or function simply declares that the variable or function exists somewhere in the program, but the memory is not allocated for them. The declaration of a variable or function serves an important role–it tells the program what its type is going to be. In case of function declarations, it also tells the program the arguments, their data types, the order of those arguments, and the return type of the function.
 

@@ -1,5 +1,20 @@
 
 
+The control-flow statements of a language specify  the order in which computations are
+performed
+
+In C, the semicolon is implemented as the statement terminator
+An expression such as x = 0 or i++ or printf (...) becomes a statement when  it is followed by a semicolon
+
+A pair of expressions separated by a comma is evaluated left to right
+
+Braces { and }  are used to group declarations and statements together
+Groups of statements are defined as compound statements called a block
+
+Variables can be declared inside any code block
+
+When grouped, statements and declarations are still syntactically equivalent to a single statement
+
 
 
 
@@ -25,6 +40,13 @@ if(boolean_expression) {
 } else {
    /* statement(s) will execute if the boolean expression is false */
 }
+
+an else is associated with the closest "else-less" if in the same code block/ scope
+
+To ensure an else is associated with the proper if use braces
+
+When a multi-way decision has no default action, the final else may be used for
+error checking of impossible values.
 
 
 If...else if...else Statement
@@ -286,15 +308,34 @@ Loop control statements change execution from its normal sequence. When executio
 C supports the following control statements.
 
 break statement
-Terminates the loop or switch statement and transfers execution to the statement immediately following the loop or switch.
+Terminates the innermost enclosing loop or switch statement and transfers execution to the statement immediately following that loop or switch.
 
 
 continue statement
 Causes the loop to skip the remainder of its body and immediately retest its condition prior to reiterating.
+continue;
+
 
 
 goto statement
 Transfers control to the labeled statement.
+
+The syntax for a goto statement in C is as follows −
+
+goto label;
+..
+.
+label: statement;
+
+Here label can be any plain text except C keyword and it can be set anywhere in the C program above or below to goto statement.
+
+Formally, the goto is never necessary, and in practice it is almost always easy to write code without it
+
+The most common use of goto is to abandon processing in some deeply nested structure, such as breaking out of two or more loops at once. The break statement cannot be used directly since it only exits from the innermost loop.
+
+A label has the same form as a variable name, and is followed by a colon. It can be attached to any statement in the same function as the goto. The scope of a label is the entire function.
+
+Code involving a goto can always be written without one, though perhaps at the price of some repeated tests or an extra variable
 
 
 
