@@ -1,3 +1,69 @@
+Declaring and Defining Variables with Extern
+
+Most of the time, when you declare a variable, you are also providing the definition. What does it mean to define a variable, exactly? It means you are telling the compiler where to create the storage for that variable. For example, if you write:
+
+int x;
+int main()
+{
+    x = 3;
+}
+
+The line int x; both declares and defines the variable; it effectively says, "create a variable named x, of type int. Also, the storage for the variable is that it is a global variable defined in the object file associated with this source file." That's kind of weird, isn't it? What is going on is that someone else could actually write a second source file that has this code:
+
+extern int x;
+int func()
+{
+    x = 3;
+}
+
+Now the use of extern is creating a declaration of a variable but NOT defining it; it is saying that the storage for the variable is somewhere else. Technically, you could even write code like this:
+
+extern int x;
+int func()
+{
+    x = 3;
+}
+
+int x;
+
+And now you have a declaration of x at the top of the program and a definition at the bottom. But usually extern is used when you want to access a global variable declared in another source file, as I showed above, and then link the two resulting object files together after compilation. Using extern to declare a global variable is pretty much the same thing as using a function declaration to declare a function in a header file. (In fact, you'd generally put extern in a header file rather than putting it in a source file.)
+
+In fact, if you put a variable into a header file and do not use extern, you will run into the inverse problem of an undefined symbol; you will have a symbol with multiple definitions, with an error like "redefinition of 'foo'". This will happen when the linker goes to link together multiple object files.
+
+
+Declaration vs Definition: In Summary
+
+A declaration provides basic attributes of a symbol: its type and its name. A definition provides all of the details of that symbol--if it's a function, what it does; if it's a class, what fields and methods it has; if it's a variable, where that variable is stored. Often, the compiler only needs to have a declaration for something in order to compile a file into an object file, expecting that the linker can find the definition from another file. If no source file ever defines a symbol, but it is declared, you will get errors at link time complaining about undefined symbols.
+Common Cases
+
+If you want to use a function across multiple source files, you should declare the function in one header file (.h) and then put the function definition in one source file (.c or .cpp). All code that uses the function should include just the .h file, and you should link the resulting object files with the object file from compiling the source file.
+
+If you want to use a class in multiple files, you should put the class definition in a header file and define the class methods in a corresponding source file. (You an also use inline functions for the methods.)
+
+If you want to use a variable in multiple files, you should put the declaration of the variable using the extern keyword in one header file, and then include that header file in all source files that need that variable. Then you should put the definition of that variable in one source file that is linked with all the object files that use that variable.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 A C program consists of a set of external objects, which are either variables
 or functions. The adjective "external" is used in contrast to "internal," which
 describes the arguments and variables defined inside functions. External variables are defined outside of any function, and are thus potentially available to

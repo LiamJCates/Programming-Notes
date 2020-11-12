@@ -35,41 +35,7 @@ Formal parameters, are treated as local variables with-in a function and they ta
 
 
 
-Initializing Local and Global Variables
 
-When a local variable is defined, it is not initialized by the system, you must initialize it yourself. Global variables are initialized automatically by the system when you define them as follows −
-int 	0
-char 	'\0'
-float 	0
-double 	0
-pointer 	NULL
-
-It is a good programming practice to initialize variables properly, otherwise your program may produce unexpected results, because uninitialized variables will take some garbage value already available at their memory location.
-
-In the absence of explicit initialization, external and static variables are guaranteed to be initialized to zero;
-
-Absent explicit initialization, automatic and register variables have undefined (i.e., garbage)  initial values
-
-
-Scalar variables may be initialized when they are defined, by following the name with an equals sign and an expression:
-
-For external and static variables, the initializer must be a constant expression;
-the initialization is done once, conceptually before the program begins execution.
-
-For automatic and register variables, initialization is done each time
-the block is entered
-
-For automatic and register variables, the initializer is not restricted to being a constant: it may be any expression involving previously defined values, even function calls.
-
-When the size of the array is omitted, the compiler will compute the length by counting the initializers,
-
-
-If there are fewer initializers for an array than the number specified, the missing elements will be zero for external, static, and automatic variables.
-
-It is an error to have more initializers than the array declaration indicates
-
-Character arrays are a special case of initialization; a string may be used instead of
-the braces and commas notation:
 
 
 

@@ -240,6 +240,141 @@ A pointer of type void * represents the address of an object, but not its type. 
 
 
 
+
+
+
+
+
+
+
+
+
+
+Type Conversions
+When an operator has operands of different types, they are converted to a
+common type according to a small number of rules.
+
+In general, the only automatic conversions are those that convert a "narrower" operand into a "wider" one without losing information, such as converting an integer to floating point
+
+Expressions that might lose information, like assigning a longer integer type to a shorter, or a floating-point type
+to an integer, may draw a warning, but they are not illegal
+
+float to int causes truncation of the fractional part.
+
+when binary operators manipulate operands of different types, the "lower" type is promoted to the "higher" type before the operation proceeds.
+
+long double > double > float > long > int > (char/short)
+Type promotion hierarchy
+
+
+There is one subtle point about the conversion of characters to integers. The
+language does not specify whether variables of type char are signed or
+unsigned quantities. When a char is converted to an int, can it ever produce
+a negative integer? The answer varies from machine to machine, reflecting differences in architecture. On some machines a char whose leftmost bit is 1
+will be converted to a negative integer ("sign extension"). On others, a char is
+promoted to an int by adding zeros at the left end, and thus is always positive
+
+The definition of C guarantees that any character in the machine's standard
+printing character set will never be negative, so these characters will always be
+positive quantities in expressions. But arbitrary bit patterns stored in 'character
+variables may appear to be negative on some machines, yet positive on others.
+For portability, specify signed or unsigned if non-character data is to be
+stored in char variables.
+
+
+A reason for using float over double in large arrays save storage and are more efficient
+Floats save time on machines where double-precision arithmetic is particularly expensive
+
+Conversion rules are more complicated when unsigned operands are involved.
+
+Comparisons between signed and unsigned values are' machine-dependent" they depend on
+sizes of a given machines integer types
+
+Conversions take place across assignments; the type of the right side is converted to
+the left which is also the type of the result.
+
+
+
+
+
+If there are no unsigned operands, however, the followinginformal set of rules will suffice:
+If either operand is long double, convert the other to long double.
+Otherwise, if either operand is double, convert the other to double.
+Otherwise, if either operand is float, convert the other to float.
+Otherwise, convert char and short to into
+Then, if either operand is long, convert the other to long
+
+
+A character is converted to an integer, either by sign extension or not, as
+described above.
+Longer integers are converted to shorter ones or to chars by dropping the
+excess high-order bits. Thus in
+
+int i;
+char c;
+
+i = c;
+c = i;
+
+the value of c is unchanged. This is true whether or not sign extension is
+involved. Reversing the order of assignments might lose information, however
+
+If x is float and i is int, then x = i and i = x both cause conversions;
+float to int causes truncation of any fractional part. When double is converted to float, whether the value is rounded or truncated is implementation dependent.
+
+
+
+
+Since an argument of a function call is an expression, type conversions also take place when
+arguments are passed to functions.
+
+If arguments are declared by a function prototype, as they normally should
+be, the declaration causes automatic coercion of any arguments when the function is called. Thus, given a function prototype for sqrt:
+double sqrt(double);
+the call
+root2 = sqrt(2);
+coerces the integer 2 into the double value 2.0 without any need for a cast
+
+In the absence of a function prototype, char and short become int, and float becomes double.
+This is why we have declared function arguments to be int and double even
+when the function is called with char and float.
+
+
+
+
+Type Cast
+Explicit type conversions can be forced ("coerced") in any expression, with a
+unary operator "cast".
+(type-name) expression
+
+the expression is converted to the named type by the conversion rules above.
+The precise meaning of a cast is as if the expression were assigned to a variable
+of the specified type, which is then used in place of the whole construction.
+
+Note that when casting a variable, n, the cast produces the value of n in the proper type; n itself is not altered. The cast
+operator has the same high precedence as other unary operators
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 Typedef
 
 The C programming language provides a keyword called typedef, which you can use to give a type a new name. Following is an example to define a term BYTE for one-byte numbers −
