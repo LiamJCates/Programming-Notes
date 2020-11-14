@@ -171,7 +171,7 @@ The length sub-specifier modifies the length of the data type. This is a chart s
 
 Note regarding the c specifier: it takes an int (or wint_t) as argument, but performs the proper conversion to a char value (or a wchar_t) before formatting it for output.
 
-Note: Yellow rows indicate specifiers and sub-specifiers introduced by C99. See <cinttypes> for the specifiers for extended types.
+
 ... (additional arguments)
 Depending on the format string, the function may expect a sequence of additional arguments, each containing a value to be used to replace a format specifier in the format string (or a pointer to a storage location, for n).
 There should be at least as many of these arguments as the number of values specified in the format specifiers. Additional arguments are ignored by the function.
