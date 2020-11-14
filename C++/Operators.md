@@ -25,7 +25,7 @@ The five arithmetical operations supported by C++ are:
 
 
 
-## Bitwise operators ( &, |, ^, ~, <<, >> )
+## Bitwise operators
 Bitwise operators modify variables considering the bit patterns that represent the values they store.
 
 | operator | asm equivalent | description |
@@ -68,7 +68,7 @@ Bitwise operators modify variables considering the bit patterns that represent t
 A peculiarity of this operator is that it can be used both as a prefix and as a suffix. In the case that the increase operator is used as a prefix (++x) of the value, the expression evaluates to the final value of x, once it is already increased. On the other hand, in case that it is used as a suffix (x++), the value is also increased, but the expression evaluates to the value that x had before being increased.
 
 
-## Relational and comparison operators ( ==, !=, >, <, >=, <= )
+## Relational and comparison operators
 
 | operator | description |
 |----------|-------------|
@@ -81,7 +81,7 @@ A peculiarity of this operator is that it can be used both as a prefix and as a 
 
 
 
-## Logical operators ( !, &&, || )
+## Logical operators
 
 | operator | description |
 |----------|-------------|
@@ -95,7 +95,7 @@ This occurs when the first argument of an && expression is false or the first ar
 
 
 
-## Conditional ternary operator ( ? )
+## Conditional ternary operator
 The conditional operator evaluates an expression, returning one value if that expression evaluates to true, and a different one if the expression evaluates as false. Its syntax is:
 
 condition ? result1 : result2
@@ -103,7 +103,7 @@ condition ? result1 : result2
 
 
 
-## Comma operator ( , )
+## Comma operator
 The comma operator (,) is used to separate two or more expressions that are included where only one expression is expected. When the set of expressions has to be evaluated for a value, only the right-most expression is considered.
 
 For example, the following code:
@@ -150,9 +150,9 @@ From greatest to smallest priority, C++ operators are evaluated in the following
 |-------|------------------|----------|-------------|----------|
 | 1 | Scope | :: | scope qualifier | Left-to-right |
 | 2 |	Postfix (unary) | ++ -- | postfix increment / decrement | Left-to-right |
-|  |  | () | functional forms | Left-to-right |
-|  |  | [] | subscript | Left-to-right |
-|  |  | . -> | member access | Left-to-right |
+|  |  | () | functional forms |  |
+|  |  | [] | subscript |  |
+|  |  | . -> | member access |  |
 | 3 |	Prefix (unary) |	++ -- | prefix increment / decrement | Right-to-left |
 |  |  | ~ ! |	bitwise NOT / logical NOT |  |
 |  |  | + - | unary prefix |  |
