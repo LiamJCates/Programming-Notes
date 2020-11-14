@@ -70,7 +70,7 @@ claim that _getch() is compliant with the
 International Standards Organization (ISO), but
 it isn’t. The getch() and _getch() functions are useful, low-level library functions that
 you can use without hesitation, but they don’t
-appear as part of any standard. 
+appear as part of any standard.
 
 
 
@@ -213,3 +213,8 @@ When the above code is compiled and executed, it produces the following result �
 Error message : Unable to read....
 
 You would not be able to see any difference in cout, cerr and clog with these small examples, but while writing and executing big programs the difference becomes obvious. So it is good practice to display error messages using cerr stream and while displaying other log messages then clog should be used.
+
+
+
+
+printf()

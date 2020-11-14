@@ -36,19 +36,8 @@ differences.
 
 
 
-## short-circuit evaluation
-Yes, the &&, ||  operators in C++ use short-circuit evaluation, in case you want to evaluate all expressions anyway you can use the & and | operators.
-
-Note that evaluation of an expression to true in C++ essentially
-means that the expression does not evaluate to false, false
-being zero. So, an expression that evaluates to any non-zero
-number—negative or positive—is essentially considered to be
-evaluating to true when used in a conditional statement.
 
 
-
-## The Precedence of Operators
-https://en.cppreference.com/w/cpp/language/operator_precedence
 
 
 
