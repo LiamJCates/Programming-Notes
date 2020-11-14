@@ -225,3 +225,18 @@ This is a chart showing the types expected for the corresponding arguments where
         </tr>
     </tbody>
 </table>
+
+
+
+... (additional arguments)
+    Depending on the format string, the function may expect a sequence of additional arguments, each containing a pointer to allocated storage where the interpretation of the extracted characters is stored with the appropriate type.
+    There should be at least as many of these arguments as the number of values stored by the format specifiers. Additional arguments are ignored by the function.
+    These arguments are expected to be pointers: to store the result of a scanf operation on a regular variable, its name should be preceded by the reference operator (&) (see example).
+
+
+Return Value
+On success, the function returns the number of items of the argument list successfully filled. This count can match the expected number of items or be less (even zero) due to a matching failure, a reading error, or the reach of the end-of-file.
+
+If a reading error happens or the end-of-file is reached while reading, the proper indicator is set (feof or ferror). And, if either happens before any data could be successfully read, EOF is returned.
+
+If an encoding error happens interpreting wide characters, the function sets errno to EILSEQ.

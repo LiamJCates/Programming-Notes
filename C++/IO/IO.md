@@ -213,8 +213,3 @@ When the above code is compiled and executed, it produces the following result â
 Error message : Unable to read....
 
 You would not be able to see any difference in cout, cerr and clog with these small examples, but while writing and executing big programs the difference becomes obvious. So it is good practice to display error messages using cerr stream and while displaying other log messages then clog should be used.
-
-
-
-
-printf()
