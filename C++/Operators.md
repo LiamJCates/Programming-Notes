@@ -86,7 +86,7 @@ A peculiarity of this operator is that it can be used both as a prefix and as a 
 | operator | description |
 |----------|-------------|
 | && | AND |
-| || | OR |
+| \|\| | OR |
 | ! | NOT |
 
 Short circuit evaluation is the mechanism by which the second argument of a logical express is executed or evaluated only if the first argument does not suffice to determine the value of the expression.
