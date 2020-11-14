@@ -31,7 +31,7 @@ Bitwise operators modify variables considering the bit patterns that represent t
 | operator | asm equivalent | description |
 |----------|----------------|-------------|
 | & | AND | Bitwise AND |
-| | | OR | Bitwise inclusive OR |
+| \| | OR | Bitwise inclusive OR |
 | ^ | XOR | Bitwise exclusive OR |
 | ~ | NOT | Unary complement (bit inversion) |
 | << | SHL | Shift bits left |
