@@ -46,7 +46,7 @@ format
         <tr>
             <td>f,e,g</td>
             <td rowspan="2">Floating point number</td>
-            <tdrowspan="2">A series of decimal digits, optionally containing a decimal point, optionally preceeded by a sign (+ or -) and optionally followed by the e or E character and a decimal integer (or some of the other sequences supported by strtod).
+            <td rowspan="2">A series of decimal digits, optionally containing a decimal point, optionally preceeded by a sign (+ or -) and optionally followed by the e or E character and a decimal integer (or some of the other sequences supported by strtod).
 Implementations complying with C99 also support hexadecimal floating-point format when preceded by 0x or 0X.</td>
         </tr>
         <tr>
