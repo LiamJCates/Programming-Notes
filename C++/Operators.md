@@ -53,7 +53,7 @@ Bitwise operators modify variables considering the bit patterns that represent t
 | x <<= y; | x = x << y; |
 | x &= y; | x = x & y; |
 | x ^= y; | x = x ^ y; |
-| x |= y; | x = x | y; |
+| x \|= y; | x = x \| y; |
 
 
 ## Increment and Decrement
@@ -168,10 +168,10 @@ From greatest to smallest priority, C++ operators are evaluated in the following
 | 9 | Equality | == != | equality / inequality | Left-to-right |
 | 10 | And | & | bitwise AND | Left-to-right |
 | 11 | Exclusive or | ^	| bitwise XOR | Left-to-right |
-| 12 | Inclusive or | | | bitwise OR | Left-to-right |
+| 12 | Inclusive or | \| | bitwise OR | Left-to-right |
 | 13 | Conjunction | && | logical AND | Left-to-right |
-| 14 | Disjunction | ||	| logical OR | Left-to-right |
+| 14 | Disjunction | \|\|	| logical OR | Left-to-right |
 | 15 | Assignment-level expressions | = *= /= %= += -= | assignment / compound assignment | Right-to-left |
-|  |  | >>= <<= &= ^= |= | | |
+|  |  | >>= <<= &= ^= \|= | | |
 | | | ?: | conditional operator | |
 | 16 | Sequencing | , | comma separator | Left-to-right |
