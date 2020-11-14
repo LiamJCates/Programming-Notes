@@ -94,3 +94,134 @@ A dash (-) that is not the first character may produce non-portable behavior in 
         </tr>
     </tbody>
 </table>
+Except for n, at least one character shall be consumed by any specifier. Otherwise the match fails, and the scan ends there.
+
+
+## Sub-Specifiers
+The format specifier can also contain sub-specifiers: asterisk (*), width and length (in that order), which are optional and follow these specifications:
+
+<table>
+    <thead>
+        <tr>
+          <th>sub-specifier</th>
+          <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>*</td>
+          <td>	An optional starting asterisk indicates that the data is to be read from the stream but ignored (i.e. it is not stored in the location pointed by an argument).</td>
+        </tr>
+        <tr>
+          <td>width</td>
+          <td>Specifies the maximum number of characters to be read in the current reading operation (optional).</td>
+        </tr>
+        <tr>
+          <td>length</td>
+          <td>One of hh, h, l, ll, j, z, t, L (optional).
+This alters the expected type of the storage pointed by the corresponding argument (see below).</td>
+        </tr>
+    </tbody>
+</table>
+
+This is a chart showing the types expected for the corresponding arguments where input is stored (both with and without a length sub-specifier):
+<table>
+    <thead>
+        <tr>
+            <th> </th>
+            <th colspan="6">specifiers</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>length</td>
+            <td> d i </td>
+            <td> u o x</td>
+            <td> f e g a </td>
+            <td>c s [] [^]</td>
+            <td>p</td>
+            <td>n</td>
+        </tr>
+        <tr>
+            <td>(none)</td>
+            <td>int*</td>
+            <td>unsigned int*</td>
+            <td>float*</td>
+            <td>char*</td>
+            <td>void**</td>
+            <td>int*</td>
+        </tr>
+        <tr>
+            <td>hh</td>
+            <td>signed char*</td>
+            <td>unsigned char*</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>signed char*</td>
+        </tr>
+        <tr>
+            <td>h</td>
+            <td>short int*</td>
+            <td>unsigned short int*</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>short int*</td>
+        </tr>
+        <tr>
+            <td>l</td>
+            <td>long int*</td>
+            <td>unsigned long int*</td>
+            <td>double*</td>
+            <td>wchar_t*</td>
+            <td></td>
+            <td>long int*</td>
+        </tr>
+        <tr>
+            <td>ll</td>
+            <td>long long int*</td>
+            <td>unsigned long long int*</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>long long int*</td>
+        </tr>
+        <tr>
+            <td>j</td>
+            <td>intmax_t*</td>
+            <td>uintmax_t*</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>intmax_t*</td>
+        </tr>
+        <tr>
+            <td>z</td>
+            <td>size_t*</td>
+            <td>size_t*</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>size_t*</td>
+        </tr>
+        <tr>
+            <td>t</td>
+            <td>ptrdiff_t*</td>
+            <td>ptrdiff_t*</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>ptrdiff_t*</td>
+        </tr>
+        <tr>
+            <td>L</td>
+            <td></td>
+            <td></td>
+            <td>long double*</td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>
