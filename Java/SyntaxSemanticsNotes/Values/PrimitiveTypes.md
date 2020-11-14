@@ -17,8 +17,8 @@ long      64                (-2^63 to 2^63-1)  -huge to huge
 float     32                varies
 double    64                varies
 
-The compiler allocates memory space for each variable or constant according to its data type.
-Every data type has a range of values.
+The compiler allocates memory space for a variable or constant according to its data type.
+
 Under Java, the ranges of the integer types do not depend on the machine on which you will be running the Java code.
 
 
@@ -43,7 +43,11 @@ Java does not support unsigned (positive-only) integers.
 Performing unsigned arithmetic in Java can be tricky, because in most cases, Java only "natively" caters for signed arithmetic: that is, it expects to interpret the top bit of an integer type (int, but also byte, short and long) as the sign bit.
 
 
-Automatic Type Conversions
+
+
+
+
+## Automatic Type Conversions
 Before a value can be stored in a variable, the value’s data type must be compatible with the variable’s data type. Java performs some conversions between data types automatically, but does not automatically perform any conversion that can result in the loss of data.
 
 numeric primitive data types are ranked.
@@ -56,7 +60,14 @@ This is called a widening conversion.
 
 Widening conversions, those that increase in data type rank, don't incur information loss (such as short to int or float to double) and are always legal. Values of type char can be converted to int. All integer types can be converted to float or double, even though some of the conversions (such as long to double) lose precision.
 
-Casting
+
+
+
+
+
+
+
+## Casting
 The cast operator lets you manually convert a value, even if it means that information loss will take place, a narrowing conversion. Cast operators are unary operators that appear as a data type name enclosed in a set of parentheses. These operators precede the value being converted.
 
 All other conversions require a cast:
@@ -66,7 +77,8 @@ float f = (float) x; / / sets f to 3.3333333
 
 If you try to cast a number of one type to another that is out of range for the target type, the result will be a truncated number that has a different value.
 
-One of the nuances of the Java language is the way it internally handles arithmetic operations on int, byte, and short variables. When values of the byte or short data types are used in arithmetic expressions, they are temporarily converted to int values. The result of an arithmetic operation using only a mixture of byte, short, or int values will always be an int.
+NOTE:
+When values of the byte or short data types are used in arithmetic expressions, they are temporarily converted to int values. The result of an arithmetic operation using only a mixture of byte, short, or int values will always be an int.
 
 Q: Why does Java have different data types for integers and floating-point values? That is, why aren’t all numeric values just the same type?
 A: Java supplies different data types so that you can write efficient programs. For example, integer arithmetic is faster than floating point calculations. Thus, if you don’t need fractional values, then you don’t need to incur the overhead associated with types float or double. Second, the amount of memory required for one type of data might be less than that required for another. By supplying different types, Java enables you to make best use of system resources. Finally, some algorithms require (or at least benefit from) the use of a specific type of data. In general, Java supplies a number of built-in types to give you the greatest flexibility.
@@ -232,59 +244,3 @@ immediately tell whether a code unit encodes a single character or it is the fir
 In Java, the char type describes a code unit in the UTF-16 encoding.
 
 Our strong recommendation is not to use the char type in your programs unless you are actually manipulating UTF-16 code units. You are almost always better off treating strings as abstract data types.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-## Literals
-In Java, literals refer to fixed values that are represented in their human readable form.
-A literal is a constant value that appears directly in a program. For example, 34 and 0.305 are literals in the following statements:
-int numberOfYears = 34;
-double weight = 0.305;
-
-Literals are also commonly called constants. For the most part, literals, and their usage, are so intuitive that they have been used in one form or another by all the preceding sample programs. Now the time has come to explain them formally. Java literals can be of any of the primitive data types.
-
-The way each literal is represented depends upon its type:
-character constants are enclosed in single quotes.
-For example, 'a' and ' %'
-Integer literals are specified as numbers without fractional components.
-By default Integer literals are of type int.
-For example, 10 and –100
-Long literals are specified by appending an l or an L. The absence of L implies an int.
-For example, 12 is an int, but 12L is a long.
-Floating-point literals require the use of the decimal point followed by the number’s fractional component.
-By default, floating-point literals are of type double, though a D can be used to specify a double literal.
-For example, 11.123 is a floating-point literal.
-Float literals are specified by appending an F or f to the constant. The absence of f implies a double.
-For example, 10.19F is of type float.
-Java also allows you to use scientific notation for floating-point numbers using E (or e).
-For example, 1.2345 * 10^2 is written as 1.2345E2 or 1.2345E+2 and 1.2345 * 10-2 as 1.2345E-2.
-
-All variable suffixes can be either in upper- or lowercase, but uppercase is always recommended.
-
-Although integer literals create an int value by default, they can still be assigned to variables of type char, byte, or short as long as the value being assigned can be represented by the target type.
-An integer literal can always be assigned to a long variable.
-
-You can embed one or more underscores into an integer or floating point literal. Doing so can make it easier to read values consisting of many digits. The use of underscores is particularly useful when encoding things like part numbers, customer IDs, and status codes that are commonly thought of as consisting of subgroups of digits. When the literal is compiled, the underscores are simply discarded.
-For example 123_45_1234 specifies the value 123,451,234.
-
-Hexadecimal, Octal, and Binary Literals
-Sometimes it is easier to use a number system based on 8 or 16 instead of 10.
-Hexadecimal literals must begin with 0x or 0X (a zero followed by an x or X) and uses the digits 0 through 9 plus the letters A through F
-Octal literals begin with a zero and uses the digits 0 through 8
-Binary literals begin with a 0b or 0B.
-For example
-hex = 0xFF;     //255
-oct = 011;    //9
-bin = 0b1100;    //12
-As a point of interest, Java also allows hexadecimal floating-point literals, but they are seldom used.
