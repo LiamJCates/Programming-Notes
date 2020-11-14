@@ -31,17 +31,20 @@ format
         <tr>
             <td>i</td>
             <td>Integer</td>
-            <td> Any number of digits, optionally preceded by a sign (+ or -). Decimal digits assumed by default (0-9), but a 0 prefix introduces octal digits (0-7), and 0x hexadecimal digits (0-f). Signed argument.</td>
+            <td> Any number of digits, optionally preceded by a sign (+ or -). Decimal digits assumed by default (0-9), but a 0 prefix introduces octal digits (0-7), and 0x hexadecimal digits (0-f).
+            <br>Signed argument.</td>
         </tr>
         <tr>
             <td>o</td>
             <td>Octal integer</td>
-            <td>Any number of octal digits (0-7), optionally preceded by a sign (+ or -). Unsigned argument.</td>
+            <td>Any number of octal digits (0-7), optionally preceded by a sign (+ or -).
+            <br>Unsigned argument.</td>
         </tr>
         <tr>
             <td>x</td>
             <td>Hexadecimal integer</td>
-            <td>Any number of hexadecimal digits (0-9, a-f, A-F), optionally preceded by 0x or 0X, and all optionally preceded by a sign (+ or -). Unsigned argument.</td>
+            <td>Any number of hexadecimal digits (0-9, a-f, A-F), optionally preceded by 0x or 0X, and all optionally preceded by a sign (+ or -).
+            <br>Unsigned argument.</td>
         </tr>
         <tr>
             <td>f,e,g</td>
@@ -82,7 +85,7 @@ A dash (-) that is not the first character may produce non-portable behavior in 
             <td>n</td>
             <td>Count</td>
             <td>No input is consumed.
-The number of characters read so far from stdin is stored in the pointed location.</td>
+            <br>The number of characters read so far from stdin is stored in the pointed location.</td>
         </tr>
         <tr>
             <td>%</td>
