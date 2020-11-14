@@ -57,17 +57,19 @@ The format specifier can also contain sub-specifiers: flags, width, .precision a
 | .* | The precision is not specified in the format string, but as an additional integer value argument preceding the argument that has to be formatted. |
 
 The length sub-specifier modifies the length of the data type. This is a chart showing the types used to interpret the corresponding arguments with and without length specifier (if a different type is used, the proper type promotion or conversion is performed, if allowed):
-	specifiers
-length	d i	u o x X	f F e E g G a A	c	s	p	n
-(none)	int	unsigned int	double	int	char*	void*	int*
-hh	signed char	unsigned char					signed char*
-h	short int	unsigned short int					short int*
-l	long int	unsigned long int		wint_t	wchar_t*		long int*
-ll	long long int	unsigned long long int					long long int*
-j	intmax_t	uintmax_t					intmax_t*
-z	size_t	size_t					size_t*
-t	ptrdiff_t	ptrdiff_t					ptrdiff_t*
-L			long double				
+
+| | specifiers |
+|-|------------|
+| length | d i | u o x X | f F e E g G a A | c | s | p | n |
+| (none) | int | unsigned int | double | int | char* | void* | int* |
+| hh | signed char | unsigned char | | | | | signed char* |
+| h | short int | unsigned short int | | | | | short int* |
+| l | long int | unsigned long int | | wint_t | wchar_t* | | long int* |
+| ll | long long int | unsigned long long int | | | | long long int* |
+| j | intmax_t | uintmax_t | | | | | intmax_t* |
+| z | size_t | size_t | | | | | size_t* |
+| t | ptrdiff_t | ptrdiff_t | | | | | ptrdiff_t* |
+| L | | | long double | | | | |
 Note regarding the c specifier: it takes an int (or wint_t) as argument, but performs the proper conversion to a char value (or a wchar_t) before formatting it for output.
 
 Note: Yellow rows indicate specifiers and sub-specifiers introduced by C99. See <cinttypes> for the specifiers for extended types.
