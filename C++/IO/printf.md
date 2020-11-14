@@ -58,18 +58,117 @@ The format specifier can also contain sub-specifiers: flags, width, .precision a
 
 The length sub-specifier modifies the length of the data type. This is a chart showing the types used to interpret the corresponding arguments with and without length specifier (if a different type is used, the proper type promotion or conversion is performed, if allowed):
 
-| | specifiers |
-|-|------------|
-| length | d i | u o x X | f F e E g G a A | c | s | p | n |
-| (none) | int | unsigned int | double | int | char* | void* | int* |
-| hh | signed char | unsigned char | | | | | signed char* |
-| h | short int | unsigned short int | | | | | short int* |
-| l | long int | unsigned long int | | wint_t | wchar_t* | | long int* |
-| ll | long long int | unsigned long long int | | | | long long int* |
-| j | intmax_t | uintmax_t | | | | | intmax_t* |
-| z | size_t | size_t | | | | | size_t* |
-| t | ptrdiff_t | ptrdiff_t | | | | | ptrdiff_t* |
-| L | | | long double | | | | |
+<table>
+    <thead>
+        <tr>
+            <th> </th>
+            <th colspan="7">specifiers</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>length</td>
+            <td> d i </td>
+            <td> u o x X</td>
+            <td> f F e E g G a A </td>
+            <td>c</td>
+            <td>s</td>
+            <td>p</td>
+            <td>n</td>
+        </tr>
+        <tr>
+            <td>(none)</td>
+            <td>int</td>
+            <td>unsigned int</td>
+            <td>double</td>
+            <td>int</td>
+            <td>char*</td>
+            <td>void*</td>
+            <td>int*</td>
+        </tr>
+        <tr>
+            <td>hh</td>
+            <td>signed char</td>
+            <td>unsigned char</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>signed char*</td>
+        </tr>
+        <tr>
+            <td>h</td>
+            <td>short int</td>
+            <td>unsigned short int</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>short int*</td>
+        </tr>
+        <tr>
+            <td>l</td>
+            <td>long int</td>
+            <td>unsigned long int</td>
+            <td></td>
+            <td>wint_t</td>
+            <td>wchar_t*</td>
+            <td></td>
+            <td>long int*</td>
+        </tr>
+        <tr>
+            <td>ll</td>
+            <td>long long int</td>
+            <td>unsigned long long int</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>long long int*</td>
+        </tr>
+        <tr>
+            <td>j</td>
+            <td>intmax_t</td>
+            <td>uintmax_t</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>intmax_t*</td>
+        </tr>
+        <tr>
+            <td>z</td>
+            <td>size_t</td>
+            <td>size_t</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>size_t*</td>
+        </tr>
+        <tr>
+            <td>t</td>
+            <td>ptrdiff_t</td>
+            <td>ptrdiff_t</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>ptrdiff_t*</td>
+        </tr>
+        <tr>
+            <td>L</td>
+            <td></td>
+            <td></td>
+            <td>long double</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>
+
 Note regarding the c specifier: it takes an int (or wint_t) as argument, but performs the proper conversion to a char value (or a wchar_t) before formatting it for output.
 
 Note: Yellow rows indicate specifiers and sub-specifiers introduced by C99. See <cinttypes> for the specifiers for extended types.
