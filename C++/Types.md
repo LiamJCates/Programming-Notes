@@ -46,7 +46,6 @@ rather than short int, long int, and long long int.
     <thead>
         <tr>
             <th rowspan="3">Type</th>
-            <th rowspan="3">Signed</th>
             <th colspan="4">Bytes</th>
         </tr>
         <tr>
@@ -63,22 +62,56 @@ rather than short int, long int, and long long int.
     <tbody>
         <tr>
           <td>short</td>
-          <td>Yes</td>
           <td>2</td>
           <td>2</td>
           <td>2</td>
           <td>2</td>
         </tr>
+        <tr>
+          <td>unsigned short</td>
+          <td>2</td>
+          <td>2</td>
+          <td>2</td>
+          <td>2</td>
+        </tr><tr>
+          <td>int</td>
+          <td>4</td>
+          <td>4</td>
+          <td>4</td>
+          <td>4</td>
+        </tr><tr>
+          <td>unsigned int</td>
+          <td>4</td>
+          <td>4</td>
+          <td>4</td>
+          <td>4</td>
+        </tr><tr>
+          <td>long</td>
+          <td>4</td>
+          <td>4</td>
+          <td>4</td>
+          <td>8</td>
+        </tr><tr>
+          <td>unsigned long</td>
+          <td>4</td>
+          <td>4</td>
+          <td>4</td>
+          <td>8</td>
+        </tr><tr>
+          <td>long long</td>
+          <td>8</td>
+          <td>8</td>
+          <td>8</td>
+          <td>8</td>
+        </tr><tr>
+          <td>unsigned long long</td>
+          <td>8</td>
+          <td>8</td>
+          <td>8</td>
+          <td>8</td>
+        </tr>
     </tbody>
 </table>
-
-unsigned short No 2 2 2 2 %hu
-int Yes 4 4 4 4 %d
-unsigned int No 4 4 4 4 %u
-long Yes 4 4 4 8 %ld
-unsigned long No 4 4 4 8 %lu
-long long Yes 8 8 8 8 %lld
-unsigned long long No 8 8 8 8 %llu
 
 If you want to enforce guaranteed integer sizes, you can use integer types in the
 <cstdint> library. For example, if you need a signed integer with exactly 8, 16, 32,
