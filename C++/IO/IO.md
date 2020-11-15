@@ -1,12 +1,10 @@
 
 
-You use std::cout (pronounced “standard see-out”) to write simple text data to the
-console and use std::cin (“standard see-in”) to read text and numbers (entered using the
-keyboard) from the console.
+You use std::cout (pronounced “standard see-out”) to write simple text data to the console and use std::cin (“standard see-in”) to read text and numbers (entered using the keyboard) from the console.
 
 std::cout << "Hello World" << std::endl;
 
-insertion operator: << sends to streamb
+insertion operator: << sends to stream
 
 std::cin >> Variable;
 
@@ -21,9 +19,7 @@ be confusing. Second, if you want to read into a number, the user can type
 any characters, not just numbers. The computer then goes through a bizarre
 process that converts any letters into a meaningless number.
 
-If the user input
-needs to be stored in two variables, each containing data separated by a space, then you
-can do so using one statement:
+If the user input needs to be stored in two variables, each containing data separated by a space, then you can do so using one statement:
 std::cin >> Variable1 >> Variable2;
 
 cin is a stream so if we want to intake a space delimited phrase cin will only read the first word in a space delimited phrase. To get the whole line use:
@@ -32,45 +28,6 @@ getline([stream], [variable]);
 string str;
 getline(cin, str);
 
-
-
-conio.h is a non-standerd header file, used mostly by MS Dos compilers like turbo c/c++ to provide console input/output.
-
-There are some functions given below, which are defined in conio.h header file -
-
-clrscr () - used to clear the screen
-
-delline() - used to delete a line
-
-getch() - used to press a character
-
-getch() - used to take a character from keyboard
-
-gotoxy() - used to move cursor
-
-textcolor() - used to change text color
-
-textbackground() - used to change background color
-
-kbhit() - used to determine a key has been pressed or not
-
-wherex() - used to return current cursor horizontal position
-
-wherey() - used to return current cursor vertical position
-
-
-## getch()
-TO intake a single character
-char ch = getch(); // Obtains a single character from the user.
-
-Some compilers complain if you use the
-getch() function. If you want to use it, try
-the _getch() function instead. Both functions perform the same task. Some vendors
-claim that _getch() is compliant with the
-International Standards Organization (ISO), but
-it isn’t. The getch() and _getch() functions are useful, low-level library functions that
-you can use without hesitation, but they don’t
-appear as part of any standard.
 
 
 

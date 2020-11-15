@@ -1,3 +1,13 @@
+### Overview
+
+scanf
+fscanf
+
+functions accessed by #include <stdio.h>
+
+
+
+## scanf
 int scanf ( const char * format, ... );
 
 Read formatted data from stdin
@@ -240,3 +250,61 @@ On success, the function returns the number of items of the argument list succes
 If a reading error happens or the end-of-file is reached while reading, the proper indicator is set (feof or ferror). And, if either happens before any data could be successfully read, EOF is returned.
 
 If an encoding error happens interpreting wide characters, the function sets errno to EILSEQ.
+
+/* scanf example */
+#include <stdio.h>
+
+int main ()
+{
+  char str [80];
+  int i;
+
+  printf ("Enter your family name: ");
+  scanf ("%79s",str);  
+  printf ("Enter your age: ");
+  scanf ("%d",&i);
+  printf ("Mr. %s , %d years old.\n",str,i);
+  printf ("Enter a hexadecimal number: ");
+  scanf ("%x",&i);
+  printf ("You have entered %#x (%d).\n",i,i);
+
+  return 0;
+}
+
+
+
+## fscanf
+
+int fscanf ( FILE * stream, const char * format, ... );
+
+Read formatted data from stream
+Reads data from the stream and stores them according to the parameter format into the locations pointed by the additional arguments.
+
+The additional arguments should point to already allocated objects of the type specified by their corresponding format specifier within the format string.
+
+Parameters
+
+stream
+    Pointer to a FILE object that identifies the input stream to read data from.
+
+
+...Everything else is the same as scanf()
+
+/* fscanf example */
+#include <stdio.h>
+
+int main ()
+{
+  char str [80];
+  float f;
+  FILE * pFile;
+
+  pFile = fopen ("myfile.txt","w+");
+  fprintf (pFile, "%f %s", 3.1416, "PI");
+  rewind (pFile);
+  fscanf (pFile, "%f", &f);
+  fscanf (pFile, "%s", str);
+  fclose (pFile);
+  printf ("I have read: %f and %s \n",f,str);
+  return 0;
+}

@@ -1,3 +1,12 @@
+## Overview
+printf
+fprintf
+
+functions accessed via #include <stdio.h>
+
+
+
+## printf
 int printf ( const char * format, ... );
 
 Print formatted data to stdout
@@ -210,7 +219,10 @@ Some different radices: 100 64 144 0x64 0144
 floats: 3.14 +3e+000 3.141600E+000
 Width trick:    10
 A string
-fprintf
+
+
+
+## fprintf
 
 int fprintf ( FILE * stream, const char * format, ... );
 
@@ -228,7 +240,6 @@ stream
 ...Everything else is the same as printf()
 
 
-/* fprintf example */
 #include <stdio.h>
 
 int main ()
@@ -248,3 +259,8 @@ int main ()
 
    return 0;
 }
+
+output:
+Name 1 [John      ]
+Name 2 [Jean-Franc]
+Name 3 [Yoko      ]
