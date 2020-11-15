@@ -7,9 +7,6 @@ data type.
 
 
 
-
-
-## Types
 Every name and every expression has a type that determines the operations that may be performed on it.
 
 A declaration is a statement that introduces an entity into the program. It specifies a type for the entity:
@@ -18,6 +15,77 @@ A declaration is a statement that introduces an entity into the program. It spec
 • A value is a set of bits interpreted according to a type.
 • A variable is a named object.
 
+
+
+
+
+## Fundamental Types
+Fundamental types are the most basic types of object and include integer,
+floating-point, character, Boolean, byte, size_t, and void. Some refer to fundamental types as primitive or built-in types because they’re part of the core
+language and almost always available to you. These types will work on any
+platform, but their features, such as size and memory layout, depend on
+implementation.
+
+Fundamental types strike a balance. On one hand, they try to map a
+direct relationship from C++ construct to computer hardware; on the other
+hand, they simplify writing cross-platform code by allowing a programmer
+to write code once that works on many platforms.
+
+
+
+
+Integer Types
+Integer types store whole numbers: those that you can write without a fractional component. The four sizes of integer types are short int, int, long int,
+and long long int. Each can be either signed or unsigned. A signed variable can
+be positive, negative, or zero, and an unsigned variable must be non-negative.
+Integer types are signed and int by default, which means you can use the
+following shorthand notations in your programs: short, long, and long long
+rather than short int, long int, and long long int.
+
+<table>
+    <thead>
+        <tr>
+            <th rowspan="3">Type</th>
+            <th rowspan="3">Signed</th>
+            <th colspan="4">Bytes</th>
+        </tr>
+        <tr>
+          <th colspan="2">32-bit OS</th>
+          <th colspan="2">64-bit OS</th>
+        </tr>
+        <tr>
+          <th>Windows</th>
+          <th>Linux/Mac</th>
+          <th>Windows</th>
+          <th>Linux/Mac</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>short</td>
+          <td>Yes</td>
+          <td>2</td>
+          <td>2</td>
+          <td>2</td>
+          <td>2</td>
+        </tr>
+    </tbody>
+</table>
+
+unsigned short No 2 2 2 2 %hu
+int Yes 4 4 4 4 %d
+unsigned int No 4 4 4 4 %u
+long Yes 4 4 4 8 %ld
+unsigned long No 4 4 4 8 %lu
+long long Yes 8 8 8 8 %lld
+unsigned long long No 8 8 8 8 %llu
+
+If you want to enforce guaranteed integer sizes, you can use integer types in the
+<cstdint> library. For example, if you need a signed integer with exactly 8, 16, 32,
+or 64 bits, you could use int8_t, int16_t, int32_t, or int64_t. You’ll find options
+for the fastest, smallest, maximum, signed, and unsigned integer types to meet your
+requirements. But because this header is not always available in every platform,
+you should only use cstdint types when there is no other alternative.
 
 bool // Boolean, possible values are true and false
 char // character, for example, 'a', 'z', and '9'
