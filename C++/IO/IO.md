@@ -1,3 +1,26 @@
+https://www.cplusplus.com/reference/cstdio/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 You use std::cout (pronounced “standard see-out”) to write simple text data to the console and use std::cin (“standard see-in”) to read text and numbers (entered using the keyboard) from the console.
