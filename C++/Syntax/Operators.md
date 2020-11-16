@@ -1,7 +1,26 @@
+Unary operator: An operator that has only one operand.
+Binary operator: An operator that has two operands.
+
+When more than one arithmetic operator is used in an expression, C++ uses the operator precedence rules to evaluate the expression.
+
+When operators have the same level of precedence, the operations are performed in a certain order.
+
+These rules are listed later
+
+To avoid confusion, you can use parentheses to group arithmetic
+expressions.
+
 ## Assignment
 The assignment operator assigns a value to a variable.
 
-x = 5;
+variable = expression;
+
+In an assignment statement, the value of the expression should match the data type of the variable.
+
+int x = 5;
+
+The expression on the right side is evaluated, and its value is assigned to the variable (and thus to a memory location) on the left side.
+A variable is said to be initialized the first time a value is placed in the variable
 
 The following expression is also valid in C++:
 
@@ -67,6 +86,16 @@ Bitwise operators modify variables considering the bit patterns that represent t
 
 A peculiarity of this operator is that it can be used both as a prefix and as a suffix. In the case that the increase operator is used as a prefix (++x) of the value, the expression evaluates to the final value of x, once it is already increased. On the other hand, in case that it is used as a suffix (x++), the value is also increased, but the expression evaluates to the value that x had before being increased.
 
+You often hear of cases where prefix increment or decrement
+operators are preferred on grounds of better performance. That
+is, ++startValue is preferred over startValue++.
+This is true at least theoretically because with the postfix
+operators, the compiler needs to store the initial value
+temporarily in the event of it needing to be assigned. The effect
+on performance in these cases is negligible with respect to
+integers, but in the case of certain classes there might be a
+point in this argument. Smart compilers may optimize away the
+differences.
 
 ## Relational and comparison operators
 
@@ -142,11 +171,13 @@ Both ways of casting types are valid in C++.
 
 
 ## sizeof
-This operator accepts one parameter, which can be either a type or a variable, and returns the size in bytes of that type or object:
+The unary operator sizeof accepts one parameter, which can be either a type or a variable, and returns the size in bytes of that type or object:
 
 x = sizeof (char);
 
 Here, x is assigned the value 1, because char is a type with a size of one byte.
+
+The sizeof operator always returns a size_t.
 
 The value returned by sizeof is a compile-time constant, so it is always determined before program execution.
 

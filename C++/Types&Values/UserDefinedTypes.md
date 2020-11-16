@@ -1,8 +1,35 @@
+User-defined types are types that the user can define:
+
 Structures
-The first step in building a new type is often to organize the elements it needs into a data structure.
+The simplest kind of classes are plain-old-data classes (PODs) often called Structures.
 
-The most basic C++ representations of a data structure is a struct.
+Enumerations The simplest of the user-defined types. The values
+that an enumeration can take are restricted to a set of possible values. Enumerations are excellent for modeling categorical concepts.
 
+Classes More fully featured types that give you flexibility to pair data and functions. Classes that only contain data are called plain-old-data classes
+
+Unions A boutique user-defined type. All members share the same
+memory location. Unions are dangerous and easy to misuse.
+
+
+
+
+
+
+
+
+
+
+
+Plain-Old-Data Classes
+Classes are user-defined types that contain data and functions, and they’re the heart and soul of C++. PODs are simple containers. Think of them as a sort of heterogeneous array of elements of potentially different types.
+
+
+
+PODs are often called Structures.
+
+Every Structure begins with the keyword struct followed by the Structures desired name. Next, you list the members’ types and names.
+Each element of a class is called a member.
 
 General struct syntax:
 
@@ -14,7 +41,35 @@ struct [structure tag] {
 } [one or more structure variables];  
 
 
+Consider the following Book class declaration with four members:
+struct Book {
+  char name[256];
+  int year;
+  int pages;
+  bool hardcover;
+};
 
+
+You declare POD variables just like any other variables: by type and name.
+You can then access members of the variable using the dot operator (.).
+
+#include <cstdio>
+struct Book {
+  char name[256];
+  int year;
+  int pages;
+  bool hardcover;
+};
+int main() {
+  Book neuromancer;
+  neuromancer.pages = 271;
+  printf("Neuromancer has %d pages.", neuromancer.pages);
+}
+
+PODs have some useful low-level features: they’re C compatible, you can employ machine instructions that are highly efficient to copy or move them, and they can be efficiently represented in memory.
+C++ guarantees that members will be sequential in memory, although some implementations require members to be aligned along word boundaries, which depend on
+CPU register length. As a general rule, you should order members from largest to
+smallest within POD definitions.
 
 Pointers to Structures
 
@@ -106,6 +161,68 @@ int i3 = pv−>sz; // access through pointer
 
 
 
+## Enumerations
+Declare enumerations using the keywords enum class followed by the type name and a listing of the values it can take.
+
+These values are arbitrary alphanumeric strings that will represent whatever categories you want to represent. Under the hood, these values are simply integers, but they allow you to write safer, more expressive code by using programmer-defined types rather than integers that could mean anything
+
+There are situations where a particular variable should be allowed to accept only a certain set of values. These are situations where you don’t want the colors in the rainbow to contain Turquoise or the directions on a compass to contain Left.
+
+In both these cases, you need a type of variable whose values are restricted to a certain set defined by you. Enumerations are exactly the tool you need in this situation.
+
+Enumerations comprise a set of constants called enumerators.
+
+Enumeration Classes
+
+enum class RainbowColors {
+Violet,
+Indigo,
+Blue,
+Green,
+Yellow,
+Orange,
+Red
+};
+
+To initialize an enumeration variable to a value, use the name of the
+type followed by two colons :: and the desired value.
+
+RainbowColors color = RainbowColors::Red;
+
+Technically, an enum class is one of two kinds of enumerations: it’s called a scoped enum. For compatibility with C, C++ also supports an unscoped enum, which is declared with enum rather than enum class. The major difference is that scoped enums
+require the enum’s type followed by :: to precede the values, whereas unscoped enums
+don’t. Unscoped enum classes are less safe to use than scoped enums, so shy away from
+them unless absolutely necessary. They’re supported in C++ for mainly historical reasons, especially interoperation with C code.
+
+Syntax:
+enum enum-name { list of names } var-list;
+
+RainbowColors as an unscoped enumeration:
+
+enum RainbowColors
+{
+Violet,
+Indigo,
+Blue,
+Green,
+Yellow,
+Orange,
+Red
+} color;
+
+
+color = Red;
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -117,6 +234,8 @@ A union is a special class type where only one of the non-static data members is
 A union is a struct in which all members are allocated at the same address so that the union occupies only as much space as its largest member. Naturally, a union can hold a value for only one
 member at a time.
 
+The union is a cousin of the POD that puts all of its members in the same place. You can think of unions as different views or interpretations of a block of memory.
+
 Declaring a Union
 A union is declared using keyword union, followed by the name of the union and its data members within braces:
  union UnionName
@@ -125,26 +244,70 @@ A union is declared using keyword union, followed by the name of the union and i
  Type2 member2;
  …
  TypeN memberN;
- };You would instantiate and use a union like this:
+ };
+
+ You would instantiate and use a union like this:
  UnionName unionObject;
  unionObject.member2 = value; // choose member2 as the active member
- Similar to the struct, the members of a union are public by
- default. Unlike a struct, however, unions cannot be used in
- inheritance hierarchies.
- Additionally, the sizeof() a union is always fixed as the size of
- the largest member contained in the union—even if that member were inactive in an instance of the union.
 
- Where Would You Use a union?
-Often a union is used as a member of a struct to model a complex data type. In some
-implementations, the ability of a union to interpret the fixed memory space as another
-type is used for type conversions or memory reinterpretation—a practice that is controversial and not necessary given alternatives.
+Similar to the struct, the members of a union are public by default. Unlike a struct, however, unions cannot be used in inheritance hierarchies.
 
+Additionally, the sizeof() a union is always fixed as the size of the largest member contained in the union—even if that member were inactive in an instance of the union.
+
+Example declare a union: simply use the union keyword instead of struct.
+union Variant {
+  char string[10];
+  int integer;
+  double floating_point;
+};
+
+
+It takes up only as much memory as its largest member (probably string in
+this case).
+You use the dot operator (.) to specify a union’s interpretation.
+Syntactically, this looks like accessing a member of a POD, but it’s completely different under the hood.
+Because all members of a union are in the same place, you can cause
+data corruption very easily.
+
+#include <cstdio>
+union Variant {
+  char string[10];
+  int integer;
+  double floating_point;
+};
+
+int main() {
+  Variant v;
+  v.integer = 42;
+  printf("The ultimate answer: %d\n", v.integer);
+  v.floating_point = 2.7182818284;
+  printf("Euler's number e: %f\n", v.floating_point);
+  printf("A dumpster fire: %d\n", v.integer);
+}
+
+
+Where Would You Use a union?
+the main problem with unions: it’s up to you to keep track of
+which interpretation is appropriate. The compiler won’t help you.
+You should avoid using unions in all but the rarest of cases
+
+Often a union is used as a member of a struct to model a complex data type. In some implementations, the ability of a union to interpret the fixed memory space as another type is used for type conversions or memory reinterpretation—a practice that is controversial and not necessary given alternatives.
+
+They can be useful in some low-level situations, such as when marshalling structures that must be consistent across architectures, dealing with type-checking issues related to C/C++ interoperation, and even when packing bitfields.
 
 
 
 
 
 Classes
+POD classes contain only data members, and sometimes that’s all you want from a class. However, designing a program using only PODs can create a lot of complexity. You can fight such complexity with encapsulation, a design pattern that binds data with the functions that manipulate it. Placing related
+functions and data together helps to simplify code in at least two ways. First,
+you can put related code in one place, which helps you to reason about your
+program. You can understand how a code segment works because it describes
+in one place both program state and how your code modifies that state.
+Second, you can hide some of a class’s code and data from the rest of your
+program using a practice called information hiding.
+In C++, you achieve encapsulation by adding methods and access controls to class definitions.
 
 Having the data specified separately from the operations on it has advantages, such as the ability to use the data in arbitrary ways. However, a tighter connection between the representation and the
 operations is needed for a user-defined type to have all the properties expected of a ‘‘real type.’’
@@ -167,6 +330,8 @@ In particular, it allows us to:
 
 
 
+The class Keyword
+You can replace the struct keyword with the class keyword, which declares members private by default. Aside from default access control, classes declared with the struct and class keywords are the same.
 
 The keyword class, creates a data type that encapsulates member attributes and functions
 
@@ -179,6 +344,15 @@ class ClassName{
 };
 
 A class has a set of members, which can be data, function, or type members. The interface is defined by the public members of a class, and private members are accessible only through that interface.
+
+Attributes
+Attributes are a classes' data members.
+
+Methods
+Methods are a classes' member functions. They create an explicit connection among a class, its data members, and some code. Defining a method is as simple
+as adding a function to a class definition. Methods have access to all of a
+class’s members.
+
 
 For example:
 class Vector {
@@ -284,11 +458,16 @@ The const specifiers on the functions indicate that these functions do not modif
 
 
 
+Access Controls
+Access controls restrict class-member access. Public and private are the two major access controls. Anyone can access a public member, but only a class can access its private members. All struct members are public by default.
+
 
 Keywords public and private
 Information can be classified into at least two categories: data that we don’t mind the public knowing and data that is private.
 C++ enables you to model class attributes and methods as public or private.
 Public class members can be used by anyone in possession of an object of the class. Private class members can be used only within the class
+
+Private members play an important role in encapsulation.
 
 class Human
 {
@@ -309,11 +488,13 @@ age = humansAge;
 };
 
 
-Constructors
-A constructor is a special function (or method) invoked during the instantiation of a class to construct an object.
+
+## Constructors
+A constructor is a special function (or method) with a special declaration, invoked during the instantiation of a class to construct an object.
 
 Declaring and Implementing a Constructor
-A constructor is a special function that takes the name of the class and returns no value.
+Constructor declarations don’t state a return type, and their name matches the class’s name.
+
 So, class Human would have a constructor that is declared like this:
 
 class Human
@@ -352,21 +533,32 @@ For example, Human::dateOfBirth is referring to variable dateOfBirth
 declared within the scope of class Human.
 ::dateOfBirth, on the other hand would refer to another variable dateOfBirth in a global scope.
 
+
+
+### Default Constructor
 A constructor that is invoked without arguments is called the
 default constructor. Programming a default constructor is
-optional.
-If you don’t program any constructor the compiler creates one for you (that constructs member attributes but does not initialize Plain Old Data types such as int to any specific non-zero value).
+optional. If you don’t program any constructor the compiler creates one for you (that constructs member attributes but does not initialize Plain Old Data types such as int to any specific non-zero value).
 
 You can choose to not implement the default constructor to
-enforce object instantiation with certain minimal parameters
+enforce object instantiation with certain minimal parameters.
 
 Constructors can be overloaded just like functions.
+You can implement as many constructors as you’d like, as long as their argument types differ.
+
 Constructor parameters can be given default values.
 
 Note that a default constructor is one that can be instantiated
 without arguments, and not necessarily one that doesn’t take
 parameters. So a constructor with two parameters, both with
 default values, is a default constructor
+
+
+
+
+
+
+
 
 
 Another way to initialize members is by using initialization lists.
@@ -406,8 +598,91 @@ constexpr Sample(const char* input)
 
 
 
-Destructor
-A destructor, like a constructor, is a special function, too. A constructor is invoked at object instantiation, and a destructor is automatically invoked when an object is destroyed.
+
+
+## Supercharging enums with Classes
+When you work with classes, you can use a technique called wrapping, which helps you manage a resource.
+
+An instance where this is useful is printing an enumeration,
+Attempting to do this you don’t see the word, such as red or blue; you see
+a number. The DisplayEnum example, is a simple class that wraps an enum type — essentially, it helps you convert the number into a human readable form, which is a kind of resource management.
+
+You can use this class with enum ColorEnum, as main() demonstrates. When you run this application, you see the single word red in the console.
+
+#include <iostream>
+using namespace std;
+class Colors
+{
+  public:
+  enum ColorEnum {blue, red, green, yellow, black};
+
+  Colors(Colors::ColorEnum value);
+
+  string AsString();
+
+  protected:
+  ColorEnum value;
+};
+Colors::Colors(Colors::ColorEnum initvalue)
+{
+value = initvalue;
+}
+string Colors::AsString()
+{
+switch (value)
+{
+case blue:
+return "blue";
+case red:
+return "red";
+case green:
+return "green";
+case yellow:
+return "yellow";
+case black:
+return "black";
+default:
+return "Not Found";
+}
+}
+int main()
+{
+Colors InkColor = Colors::red;
+cout << InkColor.AsString() << endl;
+return 0;
+}
+
+
+
+In main(), we created the InkColor instance and set it not to a Color
+object but to an enum. We just violated An Important Rule about setting
+things equal to something of the same type. Why? C++ has a neat little
+trick: You can create a constructor that takes a certain type. In this case,
+we have a constructor that takes a ColorEnum. Then when you create
+a stack variable (not a pointer), you can just set it equal to a value of
+that type. The computer will implicitly call the constructor, passing it
+that value.
+
+
+
+
+
+
+
+## Destructor
+A destructor, like a constructor, is a special function. A constructor is invoked at object instantiation, and a destructor is automatically invoked when an object is destroyed.
+
+An object’s destructor is its cleanup function.
+
+Destructors are almost never called explicitly: the compiler will ensure that each object’s destructor is called as appropriate.
+
+Defining a destructor is optional. If you do decide to implement a
+destructor, it must not take any arguments. Examples of actions you might
+want to take in a destructor include releasing file handles, flushing network
+sockets, and freeing dynamic objects.
+If you don’t define a destructor, a default destructor is automatically
+generated. The default destructor’s behavior is to perform no action.
+
 
 Declaring and Implementing a Destructor
 The destructor looks like a function that takes the name of the class, yet has a tilde (~) preceding it. So, class Human would have a destructor that is declared like this:

@@ -1,5 +1,36 @@
-## C-style
+The data type string is a programmer-defined data type. It is not directly available
+for use in a program like the simple data types discussed earlier. To use this data type,
+you need to access program components from the library, which will be discussed
+later in this chapter. The data type string is a feature of ANSI/ISO Standard C++.
+
+Prior to the ANSI/ISO C11 language standard, the standard C11 library did not provide
+a string data type. Compiler vendors often supplied their own programmer-defined
+string type, and the syntax and semantics of string operations often varied from vendor
+to vendor.
+
+
+
+Strings are contiguous blocks of characters.
+
+
+A string is a sequence of zero or more characters. Strings in C++ are enclosed in
+double quotation marks. A string containing no characters is called a null or empty
+string.
+
+Every character in a string has a relative position in the string. The position of the first
+character is 0, the position of the second character is 1, and so on. The length of a
+string is the number of characters in it.
+
+The string type is very powerful and more complex than simple data types. It provides not only the physical space required to store the string, but many operations to
+manipulate strings. For example, it provides operations to find the length of a string,
+extract part of a string, and compare strings.
+
+## C-style Strings
 C-style strings are a special case of an array of characters.
+
+A C-style string or null-terminated string has a zero-byte appended to its end (a null) to indicate the end of the string.
+
+Because array elements are contiguous, you can store strings in arrays of character types.
 
 An example of C-style strings are string literals:
 std::cout << "Hello World";

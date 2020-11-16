@@ -6,20 +6,8 @@ https://www.cplusplus.com/reference/cstdio/
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+ #include <iostream>
+allows us to use (the predefined object) std::cout to generate output and (the manipulator) std::endl.
 
 
 
@@ -32,6 +20,13 @@ insertion operator: << sends to stream
 std::cin >> Variable;
 
 extraction operator: >> reads from stream
+
+
+
+The statement
+using namespace std;
+
+allows you to use cout and endl without the prefix std::.
 
 
 Reading from the console has some catches. First, the console uses spaces

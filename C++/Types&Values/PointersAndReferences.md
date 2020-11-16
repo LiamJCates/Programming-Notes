@@ -1,3 +1,136 @@
+Pointers
+Pointers are the fundamental mechanism used to refer to memory addresses.
+Pointers encode both pieces of information required to interact with another
+object—that is, the object’s address and the object’s type.
+
+
+You can declare a pointer’s type by appending an asterisk (*) to the
+pointed-to type.
+
+Pointers are very low-level objects. Although they play a central role
+in most C programs, C++ offers higher-level, sometimes more efficient,
+constructs that obviate the need to deal with memory addresses directly.
+Nonetheless, pointers are a foundational concept
+
+the opposite operation, which is called dereferencing: given a pointer, you can obtain the object residing at the corresponding address.
+
+Addressing Variables
+You can obtain the address of a variable by prepending the address-of
+operator (&). You might want to use this operator to initialize a pointer so it
+“points to” the corresponding variable.
+
+#include <cstdio>
+int main() {
+  int gettysburg{};
+  printf("gettysburg: %d\n", gettysburg);
+  int *gettysburg_address = &gettysburg;
+  printf("&gettysburg: %p\n", gettysburg_address);
+}
+
+First, you declare the integer gettysburg and print its value.
+Then you declare a pointer, called gettysburg_address, to that integer’s address; notice that the asterisk prepends the pointer and the ampersand prepends gettysburg. Finally, you print the pointer to the screen to reveal the gettysburg integer’s address.
+
+If you run Listing 3-1 on Windows 10 (x86), you should see the following output:
+gettysburg: 0
+&gettysburg: 0053FBA8
+Running the same code on Windows 10 x64 yields the following output:
+gettysburg: 0
+&gettysburg: 0000007DAB53F594
+
+
+gettysburg_address contains 8 hexadecimal digits (4 bytes) for an x86 architecture and 16 hexadecimal digits (8 bytes) for an x64 architecture. This should make some sense because on modern desktop systems, the pointer size is the same as the CPU’s general-purpose register. An x86 architecture has 32-bit (4-byte) general-purpose registers, whereas an x64 architecture has 64-bit (8-byte) general-purpose registers.
+
+Your output should have an identical value for gettysburg, but gettysburg_address should be different each time.
+
+This variation is due to address space layout randomization, which is a security feature that scrambles the base address of important memory regions to hamper exploitation.
+
+## Address Space Layout Randomization
+Why does address space layout randomization hamper exploitation? When a hacker finds an exploitable condition in a program, they can sometimes cram a malicious payload into user-provided input. One of the first security features designed to prevent a hacker from getting this malicious payload to execute is to make all data sections non-executable. If the computer attempts to execute data as code, then the theory is that it knows something’s amiss and should terminate the program with an exception.
+
+Some exceedingly clever hackers figured out how to repurpose executable code instructions in totally unforeseen ways by carefully crafting exploits containing so-called return-oriented programs. These exploits could arrange to invoke the relevant system APIs to mark their payload executable, hence defeating the non-executable-memory mitigation.
+
+Address space layout randomization combats return-oriented programming by randomizing memory addresses, making it difficult to repurpose existing code because the attacker doesn’t know where it resides in memory.
+
+
+Dereferencing Pointers
+The dereference operator (*) is a unary operator that accesses the object to which
+a pointer refers. This is the inverse operation of the address-of operator. Given
+an address, you can obtain the object residing there. Like the address-of
+operator, system programmers use the dereference operator very often. Many
+operating system APIs will return pointers, and if you want to access the
+referred-to object, you’ll use the dereference operator.
+Unfortunately, the dereference operator can cause a lot of notationbased confusion for beginners because the dereference operator, the pointer
+declaration, and multiplication all use asterisks. Remember that you append
+an asterisk to the end of the pointed-to object’s type to declare a pointer;
+however, you prepend the dereference operator—an asterisk—to the pointer,
+like this:
+*gettysburg_address
+After accessing an object by prepending the dereference operator to a
+pointer, you can treat the result like any other object of the pointed-to type.
+For example, because gettysburg is an integer, you can write the value 17325
+into gettysburg using gettysburg_address. The correct syntax is as follows:
+*gettysburg_address = 17325;
+Because the dereferenced pointer—that is, *gettysburg_address—
+appears on the left side of the equal sign, you’re writing to the address
+where gettysburg is stored.
+If a dereferenced pointer appears anywhere except the left side of an
+equal sign, you’re reading from the address. To retrieve the int pointed
+to by gettysburg_address, you just tack on the dereference operator. For
+instance, the following statement will print the value stored in gettysburg:
+printf("%d", *gettysburg_address);
+
+
+#include <cstdio>
+int main() {
+int gettysburg{};
+  int* gettysburg_address = &gettysburg;
+  printf("Value at gettysburg_address: %d\n", *gettysburg_address);
+  printf("Gettysburg Address: %p\n", gettysburg_address);
+  *gettysburg_address = 17325;
+  printf("Value at gettysburg_address: %d\n", *gettysburg_address);
+  printf("Gettysburg Address: %p\n", gettysburg_address);
+}
+Value at gettysburg_address: 0
+Gettysburg Address: 000000B9EEEFFB04
+Value at gettysburg_address: 17325
+Gettysburg Address: 000000B9EEEFFB04
+
+First, gettysburg is initialized to zero. Then, the pointer gettysburg_address is initialized to the address of gettysburg.
+
+Next, the int pointed to by gettysburg_address and the value of gettysburg_address itself is printed.
+
+The value 17325 is written into the memory pointed to by gettysburg
+_address x and then the pointed-to value and address are printed again.
+
+This example would be functionally identical if you assigned the value
+17325 directly to gettysburg instead of to the gettysburg_address pointer,
+
+like this:
+gettysburg = 17325;
+
+This example illustrates the close relationship between a pointed to object (gettysburg) and a dereferenced pointer to that object (*gettysburg_address).
+
+
+The Member-of-Pointer Operator
+The member-of-pointer operator, or arrow operator (->), performs two simultaneous operations:
+•	 It dereferences a pointer.
+•	 It accesses a member of the pointed-to object.
+You can use this operator to reduce notational friction, the resistance a programmer feels in expressing their intent in code, when you’re handling pointers to classes.
+
+You’ll need to handle pointers to classes in a variety of design patterns. For example, you might want to pass a pointer to a class as a function parameter. If the receiving function needs to interact with a member of that class, the member-of-pointer operator is the tool for the job.
+
+
+
+
+
+
+
+
+
+
+
+
+
 Heaping and Stacking the Variables
 C++ applications use two kinds of memory: heap and stack. The heap is
 a common area of memory that your application allocates — that is, sets
@@ -11,23 +144,17 @@ top of the stack, but you can’t put anything in the middle or take anything
 from the middle. The computer uses this stack to keep track of all your function calls.
 
 
-Every position in memory has a number associated with it. When your application starts, the computer sets aside a large chunk of memory and then
-works closely with the microprocessor itself to assign a bunch of numbers
-to the memory. Your application’s variables and your application’s code go
-in this memory. And consider this: If your application sits in memory, each
-function sits in a particular place in memory, a place with a number or an
-address associated with it. In other words, each function has an address.
-Each function and each variable in your application has a place where it
-resides in memory. That place has a number associated with it. Therefore,
-each function and each variable has an address.
+Every position in memory has a number associated with it.
+
+When your application starts, the computer sets aside a large chunk of memory and then works closely with the microprocessor to assign bits to the memory. These bits are your application’s variables and code.
+
+As your application sits in memory, each function and each variable in your application has a place where it resides in memory. That place has a number associated with it, called an address. Therefore, each function and each variable has an address.
 
 
-The stack where the computer keeps track of the function calls is just a
-bunch of memory, too. What the computer considers the top of the stack is
-really the next position in memory. And the way the computer puts a function on the stack is by putting on the stack the address of where the computer left off in the preceding function.
-When the computer calls one of your functions, it not only saves the address
-of the return location on the stack but also reserves some space on the stack
-for your local variables.
+The stack where the computer keeps track of the function calls is just a bunch of memory, too. What the computer considers the top of the stack is really the next position in memory. And the way the computer puts a function on the stack is by putting on the stack the address of where the computer left off in the preceding function.
+
+When the computer calls one of your functions, it not only saves the address of the return location on the stack but also reserves some space on the stack for your local variables.
+
 This means that your variables can live in two places:
 ✦ Heap: The heap is a common area in memory where you can store global
 variables.
@@ -444,8 +571,22 @@ return 0;
 
 
 
+restrict  A pointer qualified by restrict is initially the only means by which the object it points to can be accessed. Only C99 adds a new type qualifier called restrict.
+
+
+
 
 Arrays and Pointers
+Pointers share several characteristics with arrays. Pointers encode object location. Arrays encode the location and length of contiguous objects.
+At the slightest provocation, an array will decay into a pointer. A decayed
+array loses length information and converts to a pointer to the array’s first
+element. For example:
+int key_to_the_universe[]{ 3, 6, 9 };
+int* key_ptr = key_to_the_universe; // Points to 3
+
+After initialization, key_ptr points to the first element of
+key_to_the_universe.
+
 an array is a pointer to the first element in it.
 Should you need to access the second element via the expression myNumbers[1], you can
 also access the same using the pointer pointToNums with the syntax *(pointToNums
@@ -474,7 +615,130 @@ for validity (by comparing against NULL) before dereferencing it using operator 
 
 
 
-std::unique_ptr
+
+Handling Decay
+Often, you pass arrays as two arguments:
+•	 A pointer to the first array element
+•	 The array’s length
+The mechanism that enables this pattern is square brackets ([]), which
+work with pointers just as with arrays. Listing 3-5 employs this technique.
+
+#include <cstdio>
+struct College {
+char name[256];
+};
+
+void print_names(College* collegesu, size_t n_collegesv) {
+  for (size_t i = 0; i < n_colleges; i++)
+    printf("%s College\n", colleges[i]x.namey);
+}
+
+int main() {
+  College oxford[] = { "Magdalen", "Nuffield", "Kellogg" };
+  print_names(oxford, sizeof(oxford) / sizeof(College));
+}
+
+Output:
+Magdalen College
+Nuffield College
+Kellogg College
+
+
+
+Pointer Arithmetic
+To obtain the address of the nth element of an array, you have two options.
+First, you can take the direct approach of obtaining the nth element with
+square brackets ([]) and then use the address-of (&) operator:
+College* third_college_ptr = &oxford[2];
+Pointer arithmetic, the set of rules for addition and subtraction on pointers, provides an alternate approach. When you add or subtract integers to
+pointers, the compiler figures out the correct byte offset using the size of the
+pointed-to type. For example, adding 4 to a uint64_t pointer adds 32 bytes:
+a uint64_t takes up 8 bytes, so 4 of them take up 32 bytes. The following is
+therefore equivalent to the previous option of obtaining the address of the
+nth element of an array:
+College* third_college_ptr = oxford + 2;
+
+
+
+
+
+
+Pointers Are Dangerous
+It’s not possible to convert a pointer to an array, which is a good thing. You
+shouldn’t need to, and besides it wouldn’t be possible in general for a compiler to recover the size of the array from a pointer. But the compiler can’t
+save you from all the dangerous things you might try to do.
+
+
+
+Buffer Overflows
+For arrays and pointers, you can access arbitrary array elements with the
+bracket operator ([]) or with pointer arithmetic. These are very powerful
+tools for low-level programming because you can interact with memory
+more or less without abstraction. This gives you exquisite control over the
+system, which you need in some environments (for example, in system programming contexts like implementing network protocols or with embeddedReference Types 75
+controllers). With great power comes great responsibility, however, and you
+must be very careful.
+Simple mistakes with pointers can have catastrophic and mysterious consequences.
+
+By accessing the element at an index greater than the length of the pointer, we can try to interact with memory locations past the storage allotted, potentially writing out-of-bounds memory.
+As no bounds checking occurs in C++ code that does this compiles without warning.
+At runtime, you get undefined behavior. Undefined behavior means the
+C++ language specification doesn’t prescribe what happens, so your program might crash, open a security vulnerability, or spawn an artificial general intelligence.
+
+
+#include <cstdio>
+int main() {
+char lower[] = "abc?e";
+char upper[] = "ABC?E";
+char* upper_ptr = upper; u // Equivalent: &upper[0]
+lower[3] = 'd'; v // lower now contains a b c d e \0
+upper_ptr[3] = 'D'; // upper now contains A B C D E \0
+char letter_d = lower[3]; w // letter_d equals 'd'
+char letter_D = upper_ptr[3]; // letter_D equals 'D'
+printf("lower: %s\nupper: %s", lower, upper);
+lower[7] = 'g'; y     //Super bad. You must never do this.
+}
+Output
+lower: abcde
+upper: ABCDE
+The time is 2:14 a.m. Eastern time, August 29th. Skynet is now online.
+
+
+
+The Connection Between Brackets and Pointer Arithmetic
+To understand the ramifications of out-of-bounds access, you must understand the connection between bracket operators and pointer arithmetic.
+
+
+Consider that you could have written Listing 3-6 with pointer arithmetic
+and dereference operators rather than bracket operators, as demonstrated
+in Listing 3-7.
+#include <cstdio>
+int main() {
+char lower[] = "abc?e";
+char upper[] = "ABC?E";
+char* upper_ptr = &upper[0];
+*(lower + 3) = 'd';
+*(upper_ptr + 3) = 'D';
+char letter_d = *(lower + 4); // lower decays into a pointer when we add
+char letter_D = *(upper_ptr + 4);
+printf("lower: %s\nupper: %s", lower, upper);
+*(lower + 7) = 'g'; u
+}
+
+The lower array has length 6 (the letters a–e plus a null terminator).
+It should now be clear why assigning lower[7] u is perilous. In this case,
+you’re writing to some memory that doesn’t belong to lower. This can result
+in access violations, program crashes, security vulnerabilities, and corrupted
+data. These kinds of errors can be very insidious, because the point at which
+the bad write occurs might be far removed from the point at which the bug
+manifests.
+
+
+
+
+
+
+## std::unique_ptr
 
 
 

@@ -1,6 +1,9 @@
 Debugging
 One of the most important skills for a software engineer is efficient, effective debugging.
 
+It is best to try to correct the errors in top-down fashion because the first error may
+confuse the compiler and cause it to flag multiple subsequent errors when actually
+there was only one error on an earlier line.
 
 
 ## Visual Studio

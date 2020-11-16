@@ -1,3 +1,13 @@
+In general, a C++ program is a collection of one or more subprograms, called functions. Roughly speaking, a subprogram or a function is a collection of statements, and when it is activated, or executed, it accomplishes something. Some functions, called predefined or standard functions, are already written and are provided as part of the system. But to accomplish most tasks, programmers must learn to write their own functions.
+
+
+Functions are blocks of code that accept input and return output to their callers. input objects called are called parameters or arguments output objects
+
+
+To call (or invoke) a function, you use the name of the desired function, parentheses, and a comma-separated list of the required parameters.
+
+The compiler reads files from top to bottom, so the function’s declaration must appear before its point of first use.
+
 ## Defining Functions
 Functions enable you to divide the content of your application into functional units that can be invoked in a sequence of your choosing.
 
@@ -13,12 +23,12 @@ A function declaration or function prototype gives the type of the value returne
 
 return_type function_name( parameter list );
 
-A function definition includes the function's body
+A function definition includes the function's body:
 
-return_type function_name( parameter list ) {
-   body of the function
+return-type function_name(par-type1 par_name1, ..., par-typeN par_nameN) {
+  //statements
+  return return-value;
 }
-
 
 
 ## main()
