@@ -34,4 +34,26 @@ Since we have data sorted in increasing / decreasing order, we can apply more ef
   · If the value is smaller than the middle value, we search the left half of the array: arr[low, mid -1]
   · If the value is grater then the middle value then we search the right half of the array: arr [mid+1, high]
 
-· Loop termination indicates our value was not in the array so -1 is returned.
+· Loop termination indicates our value was not in the array -1 is returned.
+
+
+
+
+
+Recursive BinarySearch
+
+int BinarySearchRecursive(std::vector<int> &data, int low, int high, int value) {
+  int mid = low + (high - low) / 2; // To avoid the overflow
+  if (data[mid] == value) {
+      return mid;
+  }
+  else if (data[mid] < value) {
+    return BinarySearchRecursive(data, mid + 1, high, value);
+  }
+  else {
+    return BinarySearchRecursive(data, low, mid - 1, value);
+  }
+}
+
+Analysis: Similar iterative solution we had already seen.
+Now let us look into the recursive solution of the same problem in this solution also, we are diving the search space into half and doing the same what we had done in the iterative solution.
