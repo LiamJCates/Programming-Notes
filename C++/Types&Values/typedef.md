@@ -11,3 +11,27 @@ typedef unsigned int STRICTLY_POSITIVE_INTEGER;
 STRICTLY_POSITIVE_INTEGER numEggsInBasket = 4532;
 
 typedef or type substitution is particularly convenient when dealing with complex types that can have a cumbersome syntax, for example, types that use templates.
+
+
+
+
+
+
+
+
+
+
+## typedef Structures
+
+To define an "alias" for struct types:
+
+typedef struct {
+  member definition;
+  member definition;
+  ...
+  member definition;
+} [struct Type name];
+
+Then use the alias directly to define variables without using the struct keyword:
+
+[struct Type name] struct1, struct2;

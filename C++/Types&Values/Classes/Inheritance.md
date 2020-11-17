@@ -99,6 +99,66 @@ Derived(): Base(25) // instantiate Base with argument 25
 }
 };
 
+## Constructor Inheritance
+ #include <iostream>
+class Foo {
+  public:
+  Foo() { std::cout << "Foo's constructor" << std::endl; }
+};
+class Bar : public Foo {
+  public:
+  Bar() { std::cout << "Bar's constructor" << std::endl; }
+};
+
+int main() {
+  Bar bar;
+}
+The object bar is constructed in two stages: first, the Foo constructor is invoked and then the Bar constructor is invoked. The output of the above program will be to indicate that Foo's constructor is called first, followed by Bar's constructor.
+
+Why do this? There are a few reasons. First, each class should need to initialize things that belong to it, not things that belong to other classes. So a child class should hand off the work of constructing the portion of it that belongs to the parent class. Second, the child class may depend on these fields when initializing its own fields; therefore, the constructor needs to be called before the child class's constructor runs. In addition, all of the objects that belong to the class should be initialized so that the constructor can use them if it needs to.
+
+
+
+### Initialization List with Base Class
+Initialization lists are useful in invoking base class constructors with specific arguments allowing a child class to determine which constructor of a parent class should be used during construction
+
+#include <iostream>
+class Foo {
+  public:
+  Foo( int x ) {
+    std::cout << "Foo's constructor called with " << x << std::endl;
+  }
+};
+
+class Bar : public Foo {
+  public:
+  Bar() : Foo( 10 ) {
+    std::cout << "Bar's constructor" << std::endl;
+  }
+};
+
+int main() { Bar stool; }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 Derived Class Overriding Base Class’s Methods
 If a class Derived implements the same functions with the same return values and

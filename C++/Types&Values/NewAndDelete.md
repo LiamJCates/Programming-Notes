@@ -1,5 +1,5 @@
 ## Operators new and delete
-new and delete Allocate and Release Memory Dynamically
+new and delete Allocate and Release memory dynamically
 You use new to allocate new memory blocks. The most frequently used form of new
 returns a pointer to the requested memory if successful or else throws an exception.
 When using new, you need to specify the data type for which the memory is being
