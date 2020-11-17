@@ -15,7 +15,7 @@ Concrete Data Type:        Term referencing the concrete implementation used to 
 
 Data Structure:            Term referencing the implementation of abstractions used by system developers to organize, manage, and format a data unit.
 
-Abstract Data Type:        Term referencing the logical abstraction used by end users to understand the mathematical model that dictates the behavior of a data unit of a given type.
+Abstract Data Type:        Term referencing the logical abstraction used by end users to understand the mathematical model that dictates the behavior of a data unit of a given type. This model defines the possible values of the data and what are interface exposed by it.
 
 
 Provided are outlines of both Concrete Data Typing and Abstract Data Typing to serve as a foundation to explore Data Structures. We begin by outlining a real world example of a type of data.
@@ -106,7 +106,7 @@ The assortment of primitive and composite types a language possesses and how the
 Abstract Data Type
 An abstract data type (ADT) is the mathematical model that serves as the interface visible to the end user of a data type.
 
-While concrete data typing is beneficial in specifying meaningful code which defines how the implementer or programmer intends the compiler or interpreter to enforce data behavior. An abstract data type is defined by its behavior from the point of view of an end user, of the data, specifically in terms of possible values, possible operations on data of this type, and the behavior of these operations. 
+While concrete data typing is beneficial in specifying meaningful code which defines how the implementer or programmer intends the compiler or interpreter to enforce data behavior. An abstract data type is defined by its behavior from the point of view of an end user, of the data, specifically in terms of possible values, possible operations on data of this type, and the behavior of these operations.
 
 Though the mathematical models presented to us since childhood, we have developed a shared intuition regarding the behavior of different types of data. We shall see that the concepts presented by interactions with abstract data types are those closest to our own understanding of the behavior of data and are on the other end of the conceptual spectrum from the concrete data types understood by the computational system.
 

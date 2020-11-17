@@ -1,10 +1,13 @@
+Methods
+Methods are a classes' member functions. They create an explicit connection among a class, its data members, and some code. Defining a method is as simple as adding a function to a class definition. Methods have access to all of a class’s members.
+
 ## Inline
 C++ inline function is a powerful concept that is commonly used with classes. If a function is inline, the compiler places a copy of the code of that function at each point where the function is called at compile time.
 
-A function definition in a class definition is an inline function definition, even without the use of the inline specifier.
+A function definition in a class definition is an inline function definition by default.
 
-
-The const specifiers on the functions indicate that these functions do not modify the object for which they are called. A const member function can be invoked for both const and non-const objects, but a non-const member function can only be invoked for non-const objects.
+## Const
+The const specifiers on the functions indicate that a function does not modify the object for which it is called. A const member function can be invoked for both const and non-const objects, but a non-const member function can only be invoked for non-const objects.
 
 
 

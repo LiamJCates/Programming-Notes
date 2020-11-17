@@ -42,18 +42,22 @@ Since we have data sorted in increasing / decreasing order, we can apply more ef
 
 Recursive BinarySearch
 
-int BinarySearchRecursive(std::vector<int> &data, int low, int high, int value) {
+bool BinarySearchRecursive(std::vector<int> &data, int low, int high, int value) {
+  if (low > high)
+    return false;
+
   int mid = low + (high - low) / 2; // To avoid the overflow
-  if (data[mid] == value) {
-      return mid;
-  }
-  else if (data[mid] < value) {
+
+  if (data[mid] == value)
+    return true;
+  else if (data[mid] < value)
     return BinarySearchRecursive(data, mid + 1, high, value);
-  }
-  else {
+  else
     return BinarySearchRecursive(data, low, mid - 1, value);
-  }
+
 }
+Time Complexity: O(logn). Space Complexity: O(logn) For system stack in
+recursion
 
 Analysis: Similar iterative solution we had already seen.
 Now let us look into the recursive solution of the same problem in this solution also, we are diving the search space into half and doing the same what we had done in the iterative solution.

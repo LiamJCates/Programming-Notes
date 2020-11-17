@@ -1,6 +1,20 @@
 Array
 Arrays are the most basic data structures used to store information. An array is a data structure used to store multiple data elements of the same data type. All the data is stored sequentially. The value stored at any index can be accessed in constant time.
 
+Arrays can store a fixed number of elements, whereas a collection stores object dynamically so there is no size restrictions it grows and shrinks automatically.
+
+Array ADT Operations
+Below is the API of array:
+1. Adds an element at kth position
+    Value can be stored in array at Kth position in O(1) constant time. We just need to store value at arr[k].
+2. Reading the value stored at kth position.
+    Accessing value stored a some location in array is also O(1) constant time.
+    We just need to read value stored at arr[k].
+
+C++ standard arrays are of fixed length. Sometime we do not know how much memory we need so we create a bigger size array. There by wasting space to avoid this situation C++ Collection framework had implemented ArrayList to solve this problem.
+
+
+
 void arrayExample()
 {
   int arr[10];
@@ -40,6 +54,9 @@ the value of arr[2] will be incremented.
 Vector
 Vectors store multiple data elements of same data types in contiguous storage location just like arrays. There elements can also be accessed using offsets and are as efficient as arrays. But unlike arrays the size of vectors can change dynamically. The data storage is handled automatically by the vector.
 
+Vector implementation in C++ Collections
+Vector<E> in by C++ Collections is a collection of similar type of variables.Vector is an implementation as dynamic array that can grow or shrink as needed.
+(Internally array is used when it is full a bigger array is allocated and the old array values are copied to it.)
 
 void vectorExample()
 {
