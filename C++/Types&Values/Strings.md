@@ -81,13 +81,6 @@ cin >> str1;
 
 ## String Member Functions
 
-string greeting = "Hello";
-
-int len = greeting.length();
-string ello = greeting.substr(1,4); //p1 = zeroindex start, p2 = number of characters
-int pos = greeting.find("ell"); //determines if p1 in string and return start location
-
-
 | Expression | Effect |
 |------------|--------|
 |strVar.at(index) | Returns the element at the position specified by index. |
@@ -108,7 +101,5 @@ int pos = greeting.find("ell"); //determines if p1 in string and return start lo
 | strVar.length() | Returns a value of type string::size_type giving the number of characters in strVar.|
 | strVar.replace(pos, n, str); | Starting at index pos, replaces the next n characters of strVar with all the characters of str. If n > length of strVar, then all the characters until the end of strVar are replaced.|
 | strVar.substr(pos, len) | Returns a string which is a substring of strVar starting at pos. The length of the substring is at most len characters. If len is too large, it means “to the end“ of the string in strVar.|
-| strVar.size() | Returns a value of type string::size_type
-giving the number of characters in strVar.|
-| strVar.swap(str1); | Swaps the contents of strVar and str1.
-str1 is a string variable.|
+| strVar.size() | Returns a value of type string::size_type giving the number of characters in strVar.|
+| strVar.swap(str1); | Swaps the contents of strVar and str1. str1 is a string variable.|
