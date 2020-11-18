@@ -103,3 +103,13 @@ cin >> str1;
 | strVar.substr(pos, len) | Returns a string which is a substring of strVar starting at pos. The length of the substring is at most len characters. If len is too large, it means “to the end“ of the string in strVar.|
 | strVar.size() | Returns a value of type string::size_type giving the number of characters in strVar.|
 | strVar.swap(str1); | Swaps the contents of strVar and str1. str1 is a string variable.|
+
+
+C-String Functions
+| Function | Effect |
+|----------|--------|
+| strcpy(s1, s2) |  Copies the string s2 into the string variable s1 <br>The length of s1 should be at least as large as s2 <br>Does not check to make sure that s1 is as large s2 |
+| strncpy(s1, s2, limit)  |Copies the string s2 into the string variable s1. At most limit characters are copied into s1. |
+| strcmp(s1, s2) | Returns a value < 0 if s1 is less than s2 <br> Returns 0 if s1 and s2 are the same <br> Returns a value > 0 if s1 is greater than s2 |
+| strncmp(s1, s2, limit) | This is same as the previous functions strcmp, except that at most limit characters are compared. |
+| strlen(s) | Returns the length of the string s, excluding the null character |
