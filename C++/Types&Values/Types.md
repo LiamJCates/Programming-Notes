@@ -145,8 +145,14 @@ you should only use cstdint types when there is no other alternative.
 
 Boolean types have two states: true and false.
 true and false are called the logical (Boolean) values. The central purpose of this data type is to manipulate logical (Boolean) expressions.
-The sole Boolean type is bool.
 
+More recent versions of C++ contain a built-in data type, bool, that has the logical
+(Boolean) values true and false. Therefore, you can manipulate logical (Boolean)
+expressions using the bool data type. Recall that in C11, bool, true, and false
+are reserved words. In addition, the identifier true has the value 1, and the identifier
+false has the value 0.
+
+Earlier versions of C11 did not provide built-in data types that had logical (or Boolean) values true and false. Because logical expressions evaluate to either 1 or 0, the value of a logical expression was stored in a variable of the data type int. Therefore, you can use the int data type to manipulate logical (Boolean) expressions.
 
 Integer types and the bool types convert readily: the true state converts to 1, and false converts to 0. Any non-zero integer converts to true, and 0 converts to false.
 
@@ -207,6 +213,18 @@ relevant to your hardware platform. The predominant implementation of floatingpo
 
 
 
+Comparing Floating-Point Numbers for Equality: A Precaution
+Comparison of floating-point numbers for equality may not behave as you would
+expect.
+
+
+One way to check whether two floating-point
+numbers are equal is to check whether the absolute value of their difference is less than
+a certain tolerance. For example, suppose the tolerance is 0.000001. Then, x and y are
+equal if the absolute value of (x – y) is less than 0.000001. To find the absolute value,
+you can use the function fabs (find the absolute value of a floating-point number), of
+the header file cmath, as shown in the program. Therefore, the expression fabs(x – y)
+< 0.000001 determines whether the absolute value of (x – y) is less than 0.000001.
 
 
 

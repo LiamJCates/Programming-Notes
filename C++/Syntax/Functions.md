@@ -8,6 +8,15 @@ To call (or invoke) a function, you use the name of the desired function, parent
 
 The compiler reads files from top to bottom, so the function’s declaration must appear before its point of first use.
 
+
+Because C++ does not provide every function that you will ever need and designers cannot possibly know a user’s specific needs, you must learn to write your own
+functions.
+
+User-defined functions in C++ are classified into two categories:
+Value-returning functions — functions that have a return type. These functions return a value of a specific data type
+Void functions — functions that do not have a return type. These functions do not use a return statement to return a value
+
+
 ## Defining Functions
 Functions enable you to divide the content of your application into functional units that can be invoked in a sequence of your choosing.
 
@@ -19,7 +28,7 @@ A function has three main parts:
 
 A function must be declared before it can be used.
 
-A function declaration or function prototype gives the type of the value returned (if any), the name of the function, and the number and types of the arguments that must be supplied in a call.
+A function declaration or function prototype gives the type of the value returned (if any), the name of the function, and the number and types of the arguments that must be supplied in a call. These elements are also referred to as the function header.
 
 return_type function_name( parameter list );
 
@@ -29,6 +38,25 @@ return-type function_name(par-type1 par_name1, ..., par-typeN par_nameN) {
   //statements
   return return-value;
 }
+
+### prototype
+C11 programmers customarily place the function main before all other
+user-defined functions. However, this organization could produce a compilation
+error because functions are compiled in the order in which they appear in the program. For example, if the function main is placed before the function larger, the
+identifier larger will be undefined when the function main is compiled. To work
+around this problem of undeclared identifiers, we place function prototypes before
+any function definition (including the definition of main).Value-Returning Functions | 361
+6
+The function prototype is not a definition. It gives the program the name of the function, the number and data types of the parameters, and the data type of the returned
+value: just enough information to let C11 use the function. It is also a promise that
+the full definition will appear later in the program. If you neglect to write the definition of the function, the program may compile, but it will not execute.
+Function Prototype: The function heading, terminated by a semicolon, ;, without
+the body of the function.
+
+Function prototypes typically appear before any function definition, so the compiler complies
+these first. The compiler can then correctly translate a function call. However, when
+the program executes, the first statement in the function main always executes first,
+regardless of where in the program the function main is placed. Other functions execute only when they are called.
 
 
 ## main()
@@ -80,6 +108,15 @@ void user2() {
 
 
 ## Arguments
+Parameters provide a communication link between the calling function (such as
+main) and the called function. They enable functions to manipulate different data
+each time they are called. In general, there are two types of formal parameters: value
+parameters and reference parameters.
+Value parameter: A formal parameter that receives a copy of the content of the
+corresponding actual parameter.
+Reference parameter: A formal parameter that receives the location (memory
+address) of the corresponding actual parameter.
+
 The semantics of argument passing are identical to the semantics of initialization, argument types are checked and implicit argument type conversion takes place when necessary
 
 
@@ -160,7 +197,9 @@ a pointer should not be allowed to modify the radius. This is where you use the 
 const to control what a function is allowed to modify
 
 
-
+We can now formally present two definitions:
+Formal Parameter: A variable declared in the function heading.
+Actual Parameter: A variable or expression listed in a call to a function.
 
 Call Type & Description
 1 	Call by Value

@@ -72,3 +72,63 @@ in which we placed the directive. So after the using-directive for std, we can s
 rather than std::cout. By using a using-directive, we lose the ability to selectively use names from
 that namespace, so this facility should be used carefully, usually for a library that’s pervasive in an
 application (e.g., std) or during a transition for an application that didn’t use namespaces.
+
+
+
+
+ANSI/ISO Standard C11 tries to solve this problem of overlapping global identifier
+names with the namespace mechanism.
+
+The general syntax of the statement namespace is:
+namespace namespace_name
+{
+members
+}
+where members is usually named constants, variable declarations, functions, or
+another namespace. Note that namespace_name is a C11 identifier.
+
+
+
+The scope of a namespace member is local to the namespace. You can usually access
+a namespace member outside the namespace in one of two ways, as described below.
+The general syntax for accessing a namespace member is:
+namespace_name::identifier
+Recall that in C11, :: is called the scope resolution operator.
+To access the member RATE of the namespace globalType, the following statement
+is required:
+globalType::RATE
+To access the member printResult (which is a function), the following statement is
+required:
+globalType::printResult();
+Thus, to access a member of a namespace, you use the namespace_name, followed by
+the scope resolution operator, followed by the member name.
+To simplify the accessing of a namespace member, ANSI/ISO Standard C11 provides
+the use of the statement using. The syntax to use the statement using is as follows:
+a. To simplify the accessing of all namespace members:
+using namespace namespace_name;
+using namespace_name::identifier;
+b. To simplify the accessing of a specific namespace member:
+For example, the using statement:
+using namespace globalType;Namespaces | 489
+7
+simplifies the accessing of all members of the namespace globalType. The statement:
+using globalType::RATE;
+simplifies the accessing of the member RATE of the namespace globalType.
+In C11, using is a reserved word.
+You typically put the using statement after the namespace declaration. For the
+namespace globalType, for example, you usually write the code as follows:
+namespace globalType
+{
+const int N = 10;
+const double RATE = 7.50;
+int count = 0;
+void printResult();
+}
+using namespace globalType;
+After the using statement, to access a namespace member, you do not have to put
+the namespace_name and the scope resolution operator before the namespace member. However, if a namespace member and a global identifier in a program have the
+same name, to access this namespace member in the program, the namespace_name
+and the scope resolution operator must precede the namespace member. Similarly,
+if a namespace member and an identifier in a block have the same name, to access
+this namespace member in the block, the namespace_name and the scope resolution
+operator must precede the namespace member.

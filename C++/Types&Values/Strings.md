@@ -66,6 +66,11 @@ For unicode use wstring
 ## String Operators
 str1 = str1 + str2;     str1 += srt2;
 
+The relational operators can be applied to variables of type string. Variables of type
+string are compared character by character, starting with the first character and
+using the ASCII collating sequence. The character-by-character comparison continues until either a mismatch is found or the last characters have been compared and
+are equal.
+
 str1 == str2; //< > !=
 
 string str1;

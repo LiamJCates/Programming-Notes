@@ -13,7 +13,7 @@ STRICTLY_POSITIVE_INTEGER numEggsInBasket = 4532;
 typedef or type substitution is particularly convenient when dealing with complex types that can have a cumbersome syntax, for example, types that use templates.
 
 
-
+Note that the typedef statement does not create any new data type; it only creates an alias to an existing data type.
 
 
 

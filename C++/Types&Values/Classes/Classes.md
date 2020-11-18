@@ -43,6 +43,7 @@ A class has a set of members, which can be data, function, or type members.
 
 Attributes
 Attributes are a classes' data members.
+Attribute values are initialized using a special method called a constructor.
 
 Methods
 Methods are a classes' member functions. They create an explicit connection among a class, its data members, and some code. Defining a method is as simple as adding a function to a class definition. Methods have access to all of a class’s members.
