@@ -15,6 +15,9 @@ Simple data type
 Structured data type
 Pointers
 
+a data type is called simple if variables of that type can store only one value at a time. In contrast, in a structured data type, each data item is a collection of other
+data items. Simple data types are building blocks of structured data types.
+
 Every name and every expression has a type that determines the operations that may be performed on it.
 
 A declaration is a statement that introduces an entity into the program. It specifies a type for the entity:
