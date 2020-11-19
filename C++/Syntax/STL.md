@@ -47,7 +47,8 @@ Member Functions Common to All Containers
 | ct.erase(beg, end); | Deletes all of the elements between beg...end-1 from container ct. Both beg and end are iterators. |
 | ct.clear(); | Deletes all of the elements from the container. After a call to this function, container ct is empty. |
 
-Operator functions
+| Operator | Effect |
+|----------|--------|
 | ct1 = ct2; | Copies the elements of ct2 into ct1. After this operation, the elements in both containers are the same. |
 | ct1 == ct2 | Returns true if containers ct1 and ct2 are equal, false otherwise. |
 | ct1 != ct2 | Returns true if containers ct1 and ct2 are not equal, false otherwise. |
