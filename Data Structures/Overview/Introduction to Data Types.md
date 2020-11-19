@@ -103,8 +103,22 @@ A group of mathematical integers may be represented by a composite type. Composi
 
 The assortment of primitive and composite types a language possesses and how they act is formalized by its type system.
 
+
+
+
+
+
+
+
 Abstract Data Type
 An abstract data type (ADT) is the mathematical model that serves as the interface visible to the end user of a data type.
+
+Abstract data type (ADT): A data type that separates the logical properties from the implementation details.
+
+Like any other data type such as an integer, an ADT has three things associated with it:
+the name of the ADT, called the type name;
+the set of values belonging to the ADT, called the domain;
+the set of operations on the data. 
 
 While concrete data typing is beneficial in specifying meaningful code which defines how the implementer or programmer intends the compiler or interpreter to enforce data behavior. An abstract data type is defined by its behavior from the point of view of an end user, of the data, specifically in terms of possible values, possible operations on data of this type, and the behavior of these operations.
 

@@ -1,11 +1,16 @@
 Pointers
 Pointers are the fundamental mechanism used to refer to memory addresses.
-Pointers encode both pieces of information required to interact with another
-object—that is, the object’s address and the object’s type.
+Pointers encode both pieces of information required to interact with another object—that is, the object’s address and the object’s type.
 
+The values belonging to pointer data types are the memory addresses of your computer. As
+in many other languages, there is no name associated with the pointer data type in C11.
+Because the domain—that is, the set of values of a pointer data type—is the addresses
+(locations) in memory, a pointer variable is a variable whose content is an address, that
+is, a memory location and the pointer variable is said to point to that memory location.
+Pointer variable: A variable whose content is an address (that is, a memory address)
+and is therefore said to point to a memory address.
 
-You can declare a pointer’s type by appending an asterisk (*) to the
-pointed-to type.
+You can declare a pointer’s type by appending an asterisk (*) to the pointed-to type.
 
 Pointers are very low-level objects. Although they play a central role
 in most C programs, C++ offers higher-level, sometimes more efficient,
@@ -297,7 +302,7 @@ except that you don’t need to use a prefix ∗ to access the value referred to
 reference cannot be made to refer to a different object after its initialization.
 References are particularly useful for specifying function arguments. For example:
 void sort(vector<double>& v); // sor t v (v is a vector of doubles)
-By using a reference, we ensure that for a call sor t(my_vec), we do not copy my_vec and that it
+By using a reference, we ensure that for a call sort(my_vec), we do not copy my_vec and that it
 really is my_vec that is sorted and not a copy of it.
 When we don’t want to modify an argument but still don’t want the cost of copying, we use a
 const reference (§1.6). For example:
@@ -612,7 +617,20 @@ pointer when initializing it or after it has been deleted. They also always chec
 for validity (by comparing against NULL) before dereferencing it using operator (*).
 
 
-
+Suppose p and name are pointer variables, as declared previously. Notice that an
+expression such as
+delete p;
+or
+delete [] name;
+only marks the memory spaces that these pointer variables point to as deallocated.
+Depending on the particular operating system, after these statements execute, these
+pointer variables may still contain the addresses of the deallocated memory spaces.
+In this case, we say that these pointers are dangling. Therefore, if later you access the
+memory spaces via these pointers without properly initializing them, depending on
+the particular system, either the program will access a wrong memory space, which
+may result in corrupting data now stored in those spaces, or the program may terminate with an error message. One way to avoid this pitfall is to set these pointers to
+nullptr after the delete operation. Also note that for the operator delete to work
+properly, the pointer must point to a valid memory space.
 
 
 

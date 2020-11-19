@@ -2,6 +2,15 @@ Inheritance allows us to define a class in terms of another class
 
 When creating a class, instead of writing completely new data members and member functions, the programmer can designate that the new class should inherit the members of an existing class. This existing class is called the base class, and the new class is referred to as the derived class.
 
+The derived classes inherit the properties of the base classes.
+So rather than create completely new classes from scratch, we can take advantage of
+inheritance and reduce software development complexity
+
+Each derived class, in turn, can become a base class for a future derived class. Inheritance can be either single inheritance or multiple inheritance. In single inheritance,
+the derived class is derived from a single base class; in multiple inheritance, the
+derived class is derived from more than one base class.
+
+
 The idea of inheritance implements the is a relationship. For example, mammal IS-A animal, dog IS-A mammal hence dog IS-A animal as well and so on.
 
 
@@ -31,15 +40,15 @@ class Derived: access-specifier Base
 Where access-specifier is one of public, protected, or private, and base-class is the name of a previously defined class. If the access-specifier is not used, then it is private by default.
 
 
-The access-specifier can be one of public (most frequently used) where a “derived
-class is a base class” relationship; private or protected for a “derived class has a base
+The access-specifier can be one of public (most frequently used) where a “derived class is a base class” relationship; private or protected for a “derived class has a base
 class” relationship.
 
 
 
 Access Control and Inheritance
-
 A derived class can access all the non-private members of its base class. Thus base-class members that should not be accessible to the member functions of derived classes should be declared private in the base class.
+
+In private inheritance, the public members of the base class become private members of the derived class. So any object of the derived type cannot directly access base class members.
 
 We can summarize the different access types according to - who can access them in the following way −
 Access 	          public   protected   private
@@ -253,6 +262,38 @@ void Swim()
 cout << "Tuna swims real fast" << endl;
 }
 };
+
+
+
+
+
+
+
+In general, while writing the definitions of the member functions of a derived class
+to specify a call to a public member function of the base class, we do the following:
+? If the derived class overrides a public member function of the
+base class, then to specify a call to that public member function of
+the base class, you use the name of the base class, followed by the
+scope resolution operator, ::, followed by the function name with
+the appropriate parameter list. For example, to call the function area of
+the class rectangleType the statement is: rectangleType::area().
+? If the derived class does not override a public member function of
+the base class, you may specify a call to that public member function
+by using the name of the function and the appropriate parameter list.
+(See the following note for member functions of the base class that are
+overloaded in the derived class.)
+
+If a derived class overloads a public member function of the base class, then while writing the definition of a member function of the derived class, to specify a call to that (overloaded) member function of the base class (depending on the compiler), you might need to
+use the name of the base class, followed by the scope resolution operator, ::, followed
+by the function name with the appropriate parameter list.
+
+
+
+
+
+
+
+
 
 
 

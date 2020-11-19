@@ -1,6 +1,15 @@
 Methods
 Methods are a classes' member functions. They create an explicit connection among a class, its data members, and some code. Defining a method is as simple as adding a function to a class definition. Methods have access to all of a class’s members.
 
+
+
+Accessor function: A member function of a class that only accesses (that is, does not
+modify) the value(s) of the member variable(s).
+Mutator function: A member function of a class that modifies the value(s) of the
+member variable(s).
+
+
+
 ## Inline
 C++ inline function is a powerful concept that is commonly used with classes. If a function is inline, the compiler places a copy of the code of that function at each point where the function is called at compile time.
 
@@ -24,6 +33,24 @@ The const specifiers on the functions indicate that a function does not modify t
 
 ## Constructors
 A constructor is a special function (or method) with a special declaration, invoked during the instantiation of a class to construct an object.
+
+Constructors have the following properties:
+? The name of a constructor is the same as the name of the class.
+? A constructor is a function and it has no type. That is, it is neither a
+value-returning function nor a void function.
+? A class can have more than one constructor. However, all constructors of a class have the same name.
+? If a class has more than one constructor, the constructors must have
+different formal parameter lists. That is, either they have a different
+number of formal parameters or, if the number of formal parameters is
+the same, then the data type of the formal parameters, in the order you
+list, must differ in at least one position. In other words, like function
+overloading, a constructor’s name is overloaded.
+? Constructors execute automatically when a class object is declared and
+enters its scope. Because they have no types, they cannot be called like
+other functions.
+? Which constructor executes depends on the types of values passed to
+the class object when the class object is declared.
+
 
 Declaring and Implementing a Constructor
 Constructor declarations don’t state a return type, and their name matches the class’s name.
@@ -56,6 +83,49 @@ For example, Human::dateOfBirth would refer to variable dateOfBirth declared wit
 
 
 
+### Default Constructor
+A constructor that is invoked without arguments is called the
+default constructor. Programming a default constructor is
+optional. If you don’t program any constructor the compiler creates one for you (that constructs member attributes but does not initialize Plain Old Data types such as int to any specific non-zero value).
+
+You can choose to not implement the default constructor to
+enforce object instantiation with certain minimal parameters.
+
+Constructors can be overloaded just like functions.
+You can implement as many constructors as you’d like, as long as their argument types differ.
+
+### Invoking the Default Constructor
+Suppose that a class contains the default constructor. The syntax to invoke the default constructor is:
+className classObjectName;
+
+
+### Invoking a Constructor with Parameters
+Suppose a class contains constructors with parameters. The syntax to invoke a constructor with a parameter is:
+className classObjectName(argument1, argument2, ...);
+
+in which argument1, argument2, and so on are either a variable or an expression.
+Note the following:
+? The number of arguments and their type should match the formal
+parameters (in the order given) of one of the constructors.
+? If the type of the arguments does not match the formal parameters of any
+constructor (in the order given), C11 uses type conversion and looks
+for the best match. For example, an integer value might be converted
+to a floating-point value with a zero decimal part. Any ambiguity will
+result in a compile-time error.
+
+
+
+The important things to remember about classes and constructors are the following:
+? If a class has no constructor(s), C11 automatically provides the default
+constructor. However, the object declared is still uninitialized.
+? On the other hand, suppose aclass, say,dummyClass, includes constructor(s)
+with parameter(s) and does not include the default constructor. In this case,
+C11 does not provide the default constructor for the class dummyClass.
+Therefore, when an object of the class dummyClass is declared, we must
+include the appropriate arguments in its declaration.
+
+
+
 ### Initialization Lists
 Another way to initialize members is by using initialization lists.
 
@@ -77,17 +147,10 @@ public:
 Thus, the initialization list is characterized by a colon (:) following the parameter declaration contained in parentheses (…), followed by an individual member variable and the value it is initialized to. This initialization value can be a parameter such as humansName or can even be a fixed value.
 
 
-### Default Constructor
-A constructor that is invoked without arguments is called the
-default constructor. Programming a default constructor is
-optional. If you don’t program any constructor the compiler creates one for you (that constructs member attributes but does not initialize Plain Old Data types such as int to any specific non-zero value).
 
-You can choose to not implement the default constructor to
-enforce object instantiation with certain minimal parameters.
 
-Constructors can be overloaded just like functions.
-You can implement as many constructors as you’d like, as long as their argument types differ.
 
+## Default Initialization
 Constructor parameters can be given default values.
 
 Note that a default constructor is one that can be instantiated without arguments, and not necessarily one that doesn’t take parameters. So a constructor with two parameters, both with default values, is a default constructor
@@ -176,6 +239,123 @@ Human::~Human()
 A destructor is always invoked when an object of a class is destroyed when it goes out of scope or is deleted via delete. This property makes a destructor the ideal place to reset variables and release dynamically allocated memory and other resources.
 
 A destructor cannot be overloaded. A class can have only one destructor. If you forget to implement a destructor, the compiler creates and invokes a dummy destructor, that is, an empty one (that does no cleanup of dynamically allocated memory).
+
+
+
+
+
+Virtual Destructor
+Classes and Virtual Destructors
+One thing recommended for classes with pointer member variables is that these
+classes should have the destructor. The destructor executes automatically when the
+class object goes out of scope. Thus, if the object creates dynamic memory space, the
+destructor can be designed to deallocate that memory space. If a derived class object
+is passed to a formal parameter of the base class type, the destructor of the base class
+executes regardless of whether the derived class object is passed by reference or by
+value. Logically, however, the destructor of the derived class should be executed when
+the derived class object goes out of scope.
+To correct this problem, the destructor of the base class must be virtual. The virtual
+destructor of a base class automatically makes the destructor of a derived class virtual.
+When a derived class object is passed to a formal parameter of the base class type, then
+when the object goes out of scope, the destructor of the derived class executes. After
+executing the destructor of the derived class, the destructor of the base class executes.
+Therefore, when the derived class object is destroyed, the base class part (that is, the
+members inherited from the base class) of the derived class object is also destroyed.
+If a base class contains virtual functions, make the destructor of the base class virtual.
+
+
+Can a destructor be pure virtual in C++?
+Yes, it is possible to have pure virtual destructor. Pure virtual destructors are legal in standard C++ and one of the most important things to remember is that if a class contains a pure virtual destructor, it must provide a function body for the pure virtual destructor. You may be wondering why a pure virtual function requires a function body. The reason is because destructors (unlike other functions) are not actually ‘overridden’, rather they are always called in the reverse order of the class derivation. This means that a derived class’ destructor will be invoked first, then base class destructor will be called. If the definition of the pure virtual destructor is not provided, then what function body will be called during object destruction? Therefore the compiler and linker enforce the existence of a function body for pure virtual destructors.
+Consider the following program:
+
+#include <iostream>
+class Base
+{
+public:
+    virtual ~Base()=0; // Pure virtual destructor
+};
+
+class Derived : public Base
+{
+public:
+    ~Derived()
+    {
+        std::cout << "~Derived() is executed";
+    }
+};
+
+int main()
+{
+    Base *b=new Derived();
+    delete b;
+    return 0;
+}
+
+The linker will produce following error in the above program.
+
+test.cpp:(.text$_ZN7DerivedD1Ev[__ZN7DerivedD1Ev]+0x4c):
+undefined reference to 'Base::~Base()'
+
+Now if the definition for the pure virtual destructor is provided, then the program compiles & runs fine.
+
+#include <iostream>
+class Base
+{
+public:
+    virtual ~Base()=0; // Pure virtual destructor
+};
+Base::~Base()
+{
+    std::cout << "Pure virtual destructor is called";
+}
+
+class Derived : public Base
+{
+public:
+    ~Derived()
+    {
+        std::cout << "~Derived() is executed\n";
+    }
+};
+
+int main()
+{
+    Base *b = new Derived();
+    delete b;
+    return 0;
+}
+
+Output:
+
+~Derived() is executed
+Pure virtual destructor is called
+
+It is important to note that a class becomes abstract class when it contains a pure virtual destructor. For example, try to compile the following program.
+
+
+
+#include <iostream>
+class Test
+{
+public:
+    virtual ~Test()=0; // Test now becomes abstract class
+};
+Test::~Test() { }
+
+int main()
+{
+    Test p;
+    Test* t1 = new Test;
+    return 0;
+}
+
+The above program fails in compilation & shows following error messages.
+[Error] cannot declare variable ‘p’ to be of abstract type ‘Test’
+[Note] because the following virtual functions are pure within ‘Test’:
+[Note] virtual Test::~Test()
+[Error] cannot allocate an object of abstract type ‘Test’
+[Note] since type ‘Test’ has pure virtual functions
+
 
 
 

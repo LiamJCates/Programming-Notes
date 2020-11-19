@@ -188,8 +188,15 @@ Classes are user-defined types that contain data and functions, and they’re th
 
 PODs are often called Structures.
 
+struct: A collection of a fixed number of components in which the components are accessed by name.
+
+In C++, struct is a reserved word.
 Every Structure begins with the keyword struct followed by the Structures desired name. Next, you list the members’ types and names.
-Each element of a class is called a member.
+
+Each element of a class is called a member. The members of a struct, even though enclosed in braces (that is, they form a block), are not considered to form a compound statement. Thus, a semicolon (after the right brace) is essential to end the struct statement.
+A semicolon at the end of the struct is, therefore, a part of the syntax.
+
+
 
 General struct syntax:
 
@@ -211,7 +218,28 @@ struct Book {
 
 
 You declare POD variables just like any other variables: by type and name.
-You can then access members of the variable using the dot operator (.).
+
+Like any type definition, a struct is a definition, not a declaration. That is, it defines
+only a data type; no memory is allocated.
+Once a data type is defined, you can declare variables of that type:
+
+Book book1;
+
+The memory allocated is large enough to store all of the structs members.
+
+You can also declare struct variables when you define the struct by following the closing } with any number of identifiers.
+
+Typically, in a program, a struct is defined before the definitions of all the functions in
+the program, so that the struct can be used throughout the program. Therefore, if you
+define a struct and also simultaneously declare a struct variable (as in the preceding statements), then that struct variable becomes a global variable and thus can be
+accessed anywhere in the program. Keeping in mind the side effects of global variables,
+you should first only define a struct and then declare the struct variables.
+
+
+### Accessing Members
+You can then access members of the variable using the dot operator (.). In C++, the dot (.) is an operator called the member access operator:
+
+structVariableName.memberName
 
 #include <cstdio>
 struct Book {
@@ -231,6 +259,13 @@ C++ guarantees that members will be sequential in memory, although some implemen
 CPU register length. As a general rule, you should order members from largest to
 smallest within POD definitions.
 
+
+### Assignment
+We can assign the value of one struct variable to another struct variable of the same type by using an assignment statement.
+
+
+Comparison (Relational Operators)
+To compare struct variables, you compare them member-wise, by accessing and comparing the values of similar members. No aggregate relational operations are performed on a struct.
 
 
 
@@ -267,6 +302,35 @@ delete firstWoman;
 What is a better way to access members: using the dot operator (.) or using the pointer operator (->)?
 
 A If you have a pointer to an object, the pointer operator would be best suited. If you have instantiated an object as a local variable on the stack, then the dot operator is best suited.
+
+
+
+
+struct Variables and Functions
+A struct variable can be passed as a parameter either by value or by
+reference, and
+A function can return a value of type struct.
+
+Recall that when a variable is passed by value, the formal parameter copies the value
+of the actual parameter. Therefore, if the formal parameter modifies the data, the
+modification has no effect on the data of the actual parameter.
+Suppose that a struct has several data members requiring a large amount of memory to store the data, and you need to pass a variable of that struct type by value.
+The corresponding formal parameter then receives a copy of the data of the variable.
+The compiler must then allocate memory for the formal parameter in order to copy
+the value of the actual parameter. This operation might require, in addition to a large
+amount of storage space, a considerable amount of computer time to copy the value
+of the actual parameter into the formal parameter.
+On the other hand, if a variable is passed by reference, the formal parameter receives
+only the address of the actual parameter. Therefore, an efficient way to pass a variable as a parameter is by reference. If a variable is passed by reference, then when the
+formal parameter changes, the actual parameter also changes. Sometimes, however,
+you do not want the function to be able to change the values of the actual parameter.
+In C11, you can pass a variable by reference and still prevent the function from
+changing its value. This is done by using the keyword const in the formal parameter
+declaration
+
+
+
+
 
 
 ## Struct Example

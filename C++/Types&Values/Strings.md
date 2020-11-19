@@ -106,6 +106,9 @@ cin >> str1;
 
 
 C-String Functions
+
+Requires #include <cstring>
+
 | Function | Effect |
 |----------|--------|
 | strcpy(s1, s2) |  Copies the string s2 into the string variable s1 <br>The length of s1 should be at least as large as s2 <br>Does not check to make sure that s1 is as large s2 |
@@ -113,3 +116,28 @@ C-String Functions
 | strcmp(s1, s2) | Returns a value < 0 if s1 is less than s2 <br> Returns 0 if s1 and s2 are the same <br> Returns a value > 0 if s1 is greater than s2 |
 | strncmp(s1, s2, limit) | This is same as the previous functions strcmp, except that at most limit characters are compared. |
 | strlen(s) | Returns the length of the string s, excluding the null character |
+
+In some compilers, the functions strcpy and strcmp have been deprecated, and might give
+warning messages when used in a program. Furthermore, the functions strncpy and strncmp
+might not be implemented in all versions of C++. To be sure, check your compiler’s documentation.
+
+
+## string Type and Input/Output Files
+
+values (that is, strings) of type string are not null terminated. Variables of type string can also be used to read and store the names of input/output files. However, the argument to the function open must be a null-terminated string—that is, a C-string. Therefore, if we use a variable of type string to read the name of an
+input/output file and then use this variable to open a file, the value of the variable
+must (first) be converted to a C-string (that is, a null-terminated string). The header
+file string contains the function c_str, which converts a value of type string to
+a null-terminated character array (that is, C-string). The syntax to use the function
+c_str is:
+strVar.c_str()
+in which strVar is a variable of type string.
+The following statements illustrate how to use variables of type string to read the
+names of the input/output files during program execution and open those files:
+ifstream infile;
+string fileName;560 | Chapter 8: Arrays and Strings
+cout << "Enter the input file name: ";
+cin >> fileName;
+infile.open(fileName.c_str()); //open the input file
+Of course, you must also include the header file string in the program. The output
+file has similar conventions.

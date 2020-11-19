@@ -1,8 +1,10 @@
 How struct Differs from class
-struct is a keyword from the days of C, and for all practical purposes it is treated by a
-C++ compiler similarly to a class. The exceptions are applicable to the access specifiers
-(public and private) when the programmer has not specified any. Unless specified,
-members in a struct are public by default (private for a class), and unless specified, a struct features public inheritance from a base struct (private for a class).
+struct is a keyword from the days of C, and for all practical purposes it is treated by a C++ compiler similarly to a class.
+
+As with a class, members of a struct include instance variables as well as functions, including constructors and a destructor. 
+
+The exceptions are applicable to the access specifiers
+(public and private) when the programmer has not specified any. Unless specified, members in a struct are public by default (private for a class), and unless specified, a struct features public inheritance from a base struct (private for a class).
 
 A struct variant of class Human from Listing 9.13 would be the following:
 struct Human

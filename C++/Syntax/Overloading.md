@@ -1,3 +1,11 @@
+C++ Programming Ch 13 for more Examples
+
+
+
+
+
+
+
 C++ Overloading (Operator and Function)
 
 C++ allows you to specify more than one definition for a function name or an operator in the same scope, which is called function overloading and operator overloading respectively.
@@ -71,6 +79,26 @@ return_type operator operator_symbol (...parameter list...);
 
 The operator_symbol in this case could be any of the several operator types that the
 programmer can define. It could be + (addition) or && (logical AND) and so on.
+
+
+When overloading an operator, keep the following in mind:
+1. You cannot change the precedence of an operator.
+2. The associativity cannot be changed. (For example, the associativity of
+the arithmetic operator addition is from left to right, and it cannot be
+changed.)
+3. Default parameters cannot be used with an overloaded operator.
+4. You cannot change the number of parameters an operator takes.
+5. You cannot create new operators. Only existing operators can be
+overloaded.
+6. The operators that cannot be overloaded are:
+. .* :: ?: sizeof
+7. The meaning of how an operator works with built-in types, such as
+int, remains the same. That is, you cannot redefine how operators
+work with built-in data types.
+8. Operators can be overloaded either for objects of the user-defined
+types, or for a combination of objects of the user-defined type and
+objects of the built-in type.
+
 
 
 Overloadable/Non-overloadable Operators

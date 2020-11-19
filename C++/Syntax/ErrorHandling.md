@@ -51,18 +51,103 @@ try {
 }
 
 
+
+
+
+Let us now note the following about try/catch blocks.
+? If no exception is thrown in a that try block are ignored and program execution resumes after the last try block, all catch blocks associated with
+catch block.
+? If an exception is thrown in a that try block are ignored. The program searches the try block, the remaining statements in catch blocks in
+the order they appear after the try block and looks for an appropriate
+exception handler. If the type of thrown exception matches the parameter
+type in one of the catch blocks, the code of that catch block executes, and
+the remaining catch blocks after this catch block are ignored.
+? The last catch block that has an ellipsis (three dots) is designed to catch
+any type of exception.
+
+
+
+
+
 C++ Standard Exceptions
 
 C++ provides a list of standard exceptions defined in <exception> which we can use in our programs.
 
+C11 provides support to handle exceptions via a hierarchy of classes. The class
+exception is the base of the classes designed to handle exceptions. Among others,
+this class contains the function what. The function what returns a string containing an appropriate message. All derived classes of the class exception override the
+function what to issue their own error messages.
+
+Two classes are immediately derived from the class exception: logic_error and
+runtime_error. Both of these classes are defined in the header file stdexcept.
+To deal with logical errors in a program, such as a string subscript out of range or
+an invalid argument to a function call, several classes are derived from the class
+logic_error. For example, the class invalid_argument is designed to deal with
+illegal arguments used in a function call. The class out_of_range deals with the
+string subscript out of range error. If a length greater than the maximum allowed for
+a string object is used, the class length_error deals with this error. For example,
+recall that every string object has a maximum length (see Chapter 7). If a length larger
+than the maximum length allowed for a string is used, then the length_error exception is generated. If the operator new cannot allocate memory space, this operator
+throws a bad_alloc exception.
+The class runtime_error is designed to deal with errors that can be detected only
+during program execution. For example, to deal with arithmetic overflow and underflow exceptions, the classes overflow_error and underflow_error are derived
+from the class runtime_error.
 
 
 
 
+Creating Your Own Exception Classes
+Whenever you create your own classes or write programs, exceptions are likely to
+occur. As you have seen, C11 provides numerous exception classes to deal with
+these situations. However, it does not provide all of the exception classes you will ever
+need. Therefore, C11 enables programmers to create their own exception classes to
+handle both the exceptions not covered by C11’s exception classes and their own
+exceptions. This section describes how to create your own exception classes.
+C11 uses the same mechanism to process the exceptions that you define as it uses
+for built-in exceptions. However, you must throw your own exceptions using the
+throw statement.
+In C11, any class can be considered an exception class. Therefore, an exception class
+is simply a class. It need not be inherited from the class exception. What makes a
+class an exception is how you use it.
+The exception class that you define can be very simple in the sense that it does not
+contain any members. For example, the following code can be considered an exception class:
+class dummyExceptionClass
+{
+};
 
 
 
-
+// User-defined exception class.
+#include <iostream>
+#include <string>
+using namespace std;
+class divisionByZero
+{
+public:
+divisionByZero()
+{
+message = "Division by zero";
+}
+divisionByZero(string str)
+{
+message = str;
+} 
+string what()
+{
+return message;
+}
+private:
+string message;
+};
+The definition of the class divisionByZero contains two constructors: the default
+constructor and the constructor with parameters. The default constructor stores the
+string "Division by zero" in an object. The constructor with parameters allows
+users to create their own error messages. The function what is used to return the
+string stored in the object.
+In the definition of the class divisionByZero, the constructors can also be
+written as:
+divisionByZero() : message("Division by zero"){}
+divisionByZero(string str) : message(str){}
 
 
 A tour of C++ 48/255

@@ -1,4 +1,6 @@
-he copy constructor is a constructor which creates an object by initializing it with an object of the same class, which has been created previously. The copy constructor is used to −
+
+
+The copy constructor is a constructor which creates an object by initializing it with an object of the same class, which has been created previously. The copy constructor is used to −
 
     Initialize one object from another of the same type.
     Copy an object to pass it as an argument to a function.
@@ -197,7 +199,7 @@ Thus, a copy constructor takes an object of the same class by reference as a par
 This parameter is an alias of the source object and is the handle you have in writing your
 custom copy code. You would use the copy constructor to ensure a deep copy
 
-he copy constructor has ensured deep copy in cases such as
+The copy constructor has ensured deep copy in cases such as
 function calls:
 MyString sayHello("Hello from String Class");
 UseMyString(sayHello);
@@ -293,7 +295,10 @@ goal of ensuring non-copyable objects of class President
 
 
 
-
+For classes with pointer member variables, three things are normally done:
+1. Include the destructor in the class.
+2. Overload the assignment operator for the class.
+3. Include the copy constructor.
 
 Constructors, destructors, and copy and move operations for a type are not logically separate.
 

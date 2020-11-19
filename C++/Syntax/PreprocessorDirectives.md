@@ -1,52 +1,56 @@
 ## Preprocessor Directive
 
-As the name suggests, a preprocessor is a tool that runs before the actual compilation starts. Preprocessor directives are commands to the preprocessor and always start with a pound sign #
+As the name suggests, a preprocessor is a tool that runs before the actual compilation starts.
 
+Preprocessor directives are commands to the preprocessor
+
+Preprocessor directives cause the preprocessor to modify the text of a C++ program before it is compiled.
+
+Preprocessor directives always start with a pound sign #
+
+There are no semicolons at the end of preprocessor commands because they are not C++ statements.
+
+### #include
 You use preprocessor directives and the names of header files to tell the computer the locations of the code provided
-in libraries. Preprocessor directives are processed by a program called a preprocessor.
-Preprocessor directives are commands supplied to the preprocessor that cause the
-preprocessor to modify the text of a C11 program before it is compiled. All preprocessor commands begin with #. There are no semicolons at the end of preprocessor
-commands because they are not C11 statements. To use a header file in a C11
-program, use the preprocessor directive include.
+in libraries.
+
+To use a header file in a C++ program, use the preprocessor directive include.
 
  #include
 
+ The general syntax to include a header file (provided by the IDE) in a C++ program is:
 
+  #include <headerFileName>
 
-if an artifact declared in FileA needs to be used in FileB, you need to include the former in the latter. You usually do that by inserting the following include statement in FileA:
+<> brackets are typically used when including standard headers.
+
+Every library has a name and is referred to by a header file. For example, the descriptions of the functions needed to perform input/output (I/O) are contained in the header file iostream.
+
+if an artifact declared in FileA needs to be used in FileB, you need to include the former in the latter using this include statement in FileA:
 
  #include "...relative path \FileB"
 
 We use quotes in this case and not angle brackets in including
-a self-programmed header. <> brackets are typically used when
-including standard headers.
+a self-programmed header.
 
-Every library has a name and is referred to by a header file. For example, the descriptions of the functions needed to perform input/output (I/O) are contained in the header file iostream.
 
-The general syntax to include a header file (provided by the IDE) in a C++ program is:
-
- #include <headerFileName>
- 
-
-Preprocessor directives to include header files are placed as the first line of a program so that the identifiers declared in those header files can be used throughout the
+Preprocessor directives to include header files are placed in the first few lines of a source file so that the identifiers declared in those header files can be used throughout the
 program.
 
+
+### define#
 The preprocessor also provides you with a lot of other directives besides #include. One of the more useful ones is the #define directive. Here’s a
 sample #define line:
 
  #define MYSPECIALNUMBER 42
 
-After the preprocessor sees this line, every time it encounters the word
-MYSPECIALNUMBER, it replaces it with the word 42 (that is, whatever sequence
-of letters, numbers, and other characters follow the definition). But #define
-also lets you create what are called macros:
+After the preprocessor sees this line, every time it encounters the word MYSPECIALNUMBER, it replaces it with the word 42 (that is, whatever sequence of letters, numbers, and other characters follow the definition).
+
+The #define preprocessor directive also lets you create what are called macros:
 
 #define oldmax(x, y) ((x)>(y)?(x):(y))
-After the preprocessor learns this line, every time it sees the word oldmax
-followed by two things in parentheses separated by a comma, it replaces
-it with the form ((x)>(y)?(x):(y)), substituting the thing before the
-comma for x and the thing after the comma for y.
 
+After the preprocessor learns this line, every time it sees the word oldmax followed by two things in parentheses separated by a comma, it replaces it with the form ((x)>(y)?(x):(y)), substituting the thing before the comma for x and the thing after the comma for y.
 
 At times, you may want to compile one version of your application for one
 situation and compile another for a different situation. For example, you may

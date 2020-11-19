@@ -55,11 +55,22 @@ Classes can have member types or nested types (including type aliases).
 
 
 
+### Accessing Class Members
+Once an object of a class is declared, it can access the members of the class. The general syntax for an object to access a member of a class is:
+classObjectName.memberName
+
+The class members that a class object can access depend on where the object is declared.
+? If the object is declared in the definition of a member function of the class, then the object can access both the public and private members.
+? If the object is declared elsewhere (for example, in a user’s program), then the object can access only the public members of the class.
+
+Recall that in C11, the dot, . (period), is an operator called the member access
+operator.
 
 
 
 
-
+Once a class is properly defined and implemented, it can be used in a program. A program
+or software that uses and manipulates the objects of a class is called a client of that class.
 
 
 

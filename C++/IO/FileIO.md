@@ -97,3 +97,13 @@ int main()
   outData.close();
   return 0;
 }
+
+Also, for comparison purposes, someone might want to process each file separately and then store the output in separate files. To accomplish this task efficiently, the user would prefer to specify the name of the input and/or output file at execution time rather than in the programming code. C++ allows the user to do so. Consider the following statements:
+
+cout << "Enter the input file name: ";
+cin >> fileName;
+infile.open(fileName); //open the input file
+...
+cout << "Enter the output file name: ";
+cin >> fileName;
+outfile.open(fileName); //open the output file
