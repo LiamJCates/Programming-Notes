@@ -1,69 +1,3 @@
-ANSI/ISO Standard C11 is equipped with a Standard Template Library (STL).
-Among other things, the STL provides class templates to process lists (contiguous
-or linked), stacks, and queues.
-
-Components of the STL
-The main objective of a program is to manipulate data and generate results. Achieving this goal requires the ability to store data into computer memory, access a particular
-piece of data, and write algorithms to manipulate the data.
-For example, if all data items are of the same type and we have some idea of the number of data items, we could use an array to store the data. We can then use an index to access a particular component of the array. Using a loop and the array index, we can
-step through the elements of the array. Algorithms, such as those for initializing the array, sorting, and searching, are used to manipulate the data stored in an array. On the other hand, if we do not want to be concerned about the size of the data, we can use a linked list to process it. If the data needs to be processed in a Last In First Out (LIFO) manner, we can use a stack. Similarly, if the data needs to be processed in a
-First In First Out (FIFO) manner, we can use a queue.
-
-The STL is equipped with these features to effectively manipulate data. More formally, the STL has three main components:
-? Containers
-? Iterators
-? Algorithms
-
-Containers and iterators are class templates. Iterators are used to step through the elements of a container. Algorithms are used to manipulate data. The following
-sections discuss each of these components in detail.
-
-Container Types
-Containers are used to manage objects of a given type. The STL containers are classified into the following three categories:
-? Sequence containers (also called sequential containers)
-? Associative containers
-? Container adapters
-
-
-
-
-Member Functions Common to All Containers
-
-
-| Member function | Description |
-|-----------------|-------------|
-| Default constructor | Initializes the object to an empty state. |
-| Constructor with parameters | In addition to the default constructor, every container has constructors with parameters. We will describe these constructors when we discuss a specific container. |
-| Copy constructor | Executes when an object is passed as a parameter by value and when an object is declared and initialized using another object of the same type. |
-| Destructor | Executes when the object goes out of scope. |
-| ct.empty() | Returns true if container ct is empty, false otherwise. |
-| ct.size() | Returns the number of elements currently in container ct. |
-| ct.max_size() | Returns the maximum number of elements that can be inserted in container ct. |
-| ct1.swap(ct2); | Swaps the elements of containers ct1 and ct2. |
-| ct.begin() | Returns an iterator to the first element into container ct. |
-| ct.end() | Returns an iterator to the position after the last element into container ct. |
-| ct.rbegin() | Reverse begin. Returns a pointer to the last element into container ct. This function is used to process the elements of ct in reverse. |
-| ct.rend() | Reverse end. Returns a pointer to the position before the first element into container ct.
-| ct.insert(position,elem); | Inserts elem into container ct at the position specified by position. Note that here, position is an iterator. |
-| ct.erase(beg, end); | Deletes all of the elements between beg...end-1 from container ct. Both beg and end are iterators. |
-| ct.clear(); | Deletes all of the elements from the container. After a call to this function, container ct is empty. |
-
-| Operator | Effect |
-|----------|--------|
-| ct1 = ct2; | Copies the elements of ct2 into ct1. After this operation, the elements in both containers are the same. |
-| ct1 == ct2 | Returns true if containers ct1 and ct2 are equal, false otherwise. |
-| ct1 != ct2 | Returns true if containers ct1 and ct2 are not equal, false otherwise. |
-
-
-
-
-
-
-Sequence Containers
-Every object in a sequence container has a specific position. The three predefined sequence containers are as follows:
-? vector
-? deque
-? list
-
 vector
 A vector container stores and manages its objects in a dynamic array. Because an
 array is a random access data structure, the elements of a vector can be accessed
@@ -153,3 +87,45 @@ advances the iterator intVecIter to the next element in the container, and the
 expression
 *intVecIter
 returns the element at the current iterator position.
+
+
+### THE ostream ITERATOR AND THE FUNCTION copy
+a special type of iterators called
+ostream iterators. These iterators work well with the function copy to copy the
+elements of a container to an output device.
+
+One way to output the contents of a container is to use a for loop, the function
+begin to initialize the for loop control variable, and the function end to set the limit.
+Alternatively, the function copy can be used to output the elements of a container. In
+this case, an iterator of type ostream specifies the destination. (ostream iterators are
+discussed in detail later in this chapter.) When we create an iterator of type ostream,
+we also specify the type of element that the iterator will output.
+The following statement illustrates how to create an ostream iterator of type int:
+ostream_iterator<int> screen(cout, " ");
+
+This statement creates screen to be an ostream iterator with the element type int.
+The iterator screen has two arguments: the object cout and a space. Thus, the iterator screen is initialized using the object cout. When this iterator outputs elements,
+they are separated by a space.
+The statement
+copy(intArray, intArray + 9, screen);
+outputs the elements of intArray on the screen. Similarly, the statement
+copy(vecList.begin(), vecList.end(), screen);
+outputs the elements of the container vecList on the screen.
+
+Of course, we can directly specify an ostream iterator in the function copy the statement
+copy(vecList.begin(), vecList.end(),
+ostream_iterator<int>(cout, ", "));
+outputs the elements of vecList with a comma and space between them.
+
+Initializing vector Objects during Declaration
+whlile the following statements can be used to declare intList to be a vector<int> object and store 13, 75, 28, and 35 in intList:
+
+vector<int> intList;
+intList.push_back(13);
+intList.push_back(75);
+intList.push_back(28);
+intList.push_back(35);
+C++ 11 allows a vector object to be declared and initialized at the same time. For example, the following statement declares inList to be a vector<int> object an stores 13, 75, 28, and 35 in it.
+
+vector<int> intList = {13, 75, 28, 35};
+That is, in C++ 11, the five statements used earlier to declare and initialize intList can be replaced by the preceding statement.
