@@ -1,8 +1,3 @@
-// C++ program for linked list implementation of stack
-#include <bits/stdc++.h>
-using namespace std;
-
-// A structure to represent a stack
 template <typename T>
 class LinkedListStack {
   class Node{

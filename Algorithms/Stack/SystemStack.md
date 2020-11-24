@@ -8,26 +8,26 @@ To get the exact point at which execution should be resumed, the address of the 
 When the method call completes, the address at the top of the stack is taken out.
 
 void function2() {
-  std::cout << "fun2 line 1" << std::endl;
+  print("function2 line 1");
 }
 
 void function1() {
-  std::cout << "fun1 line 1" << std::endl;
+  print("function1 line 1");
   function2();
-  std::cout << "fun1 line 2" << std::endl;
+  print("function1 line 2");
 }
 
 void main() {
-  std::cout << "main line 1" << std::endl;
+  print("main line 1");
   function1();
-  std::cout << "main line 2" << std::endl;
+  print("main line 2");
 }
 
 Output:
 main line 1
-fun1 line 1
-fun2 line 1
-fun1 line 2
+function1 line 1
+function2 line 1
+function1 line 2
 main line 2
 
 Analysis:
@@ -35,12 +35,12 @@ Analysis:
 · The first statement of main() will be executed. And we will print “main line 1” as output.
 · function1() is called. Before control goes to function1() then next instruction that is address of next line is stored in the system stack.
 · Control goes to function1() method.
-· The first statement inside function1() is executed, this will print “fun1 line 1” to output.
+· The first statement inside function1() is executed, this will print “function1 line 1” to output.
 · function2() is called from function1(). Before control goes to function2() address of the next instruction that is address of next line is added to the system stack.
 · Control goes to function2() method.
-· “fun2 line 1” is printed to screen.
-· When function2() exits, control come back to function1(). And the program reads the next instruction from the stack, and the next line is executed. And print “fun1 line 2” to screen.
-· When fun1 exits, control comes back to the main method. And program
+· “function2 line 1” is printed to screen.
+· When function2() exits, control come back to function1(). And the program reads the next instruction from the stack, and the next line is executed. And print “function1 line 2” to screen.
+· When function1 exits, control comes back to the main method. And program
 reads the next instruction from the stack and executed it and finally “main line 2” is printed to screen.
 
 Points to remember:

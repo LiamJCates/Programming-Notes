@@ -12,7 +12,7 @@ class Stack
     int size();
     void push(T data);
     T pop();
-    T top();
+    T peak();
 };
 
 template <typename T> Stack :: Stack() : data(), size(0){}
@@ -39,7 +39,7 @@ T template <typename T> Stack :: pop()
   return this->data[size--];
 }
 
-T template <typename T> Stack :: top()
+T template <typename T> Stack :: peak()
 {
   return this->data[size];
 }
