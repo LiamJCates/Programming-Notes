@@ -8,9 +8,11 @@ The implementation of a data structure generally requires writing a set of proce
 
 
 
-Data Structures can be partitioned into Primitive, Composite, Abstract Data Types.
+Data Structures can be partitioned into Primitive and Non-Primitive  
 
-Primitive Data Types
+Primitive data structures are the fundamental data structures or predefined data structures which are supported by a programming language and are typically directly operated upon by machine-level instructions
+
+Common Primitive Data Types
 Boolean
 Character
 Floating-point numbers
@@ -18,6 +20,8 @@ Fixed-point numbers
 Integer
 Reference (also called a pointer or handle)
 Date Time
+
+Non-Primitive Data Types are more complex data types comprised of multiple primitive data types.
 
 Composite Data Types
 Array
@@ -65,7 +69,7 @@ Examples of collections include lists, sets, multisets, trees and graphs.
 | Homogeneous | In homogeneous data structures, all the elements are of the same type. | Array |
 | Non-Homogeneous | In Non-Homogeneous data structure, the elements may or may not be of the same type. | Structures |
 | Static | Static data structures are those whose sizes and structures associated memory locations are fixed, at compile time. | Array |
-| Dynamic | Dynamic structures are those which expand or shrink depending upon the programs need as it executes. Also, their associated memory locations change. | Linked List using pointers |
+| Dynamic | Dynamic structures are those which expand or shrink depending upon the program's needs. To support this the structure's associated memory locations are reallocated during runtime. | Linked List using pointers |
 
 
 

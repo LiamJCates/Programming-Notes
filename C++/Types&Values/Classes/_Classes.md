@@ -1,5 +1,5 @@
 Classes
-POD classes contain only data members, and sometimes that’s all you want from a class. However, designing a program using only PODs can create a lot of complexity. You can fight such complexity with abstraction by placing related functions and data together.
+POD classes contain only data members, and sometimes that’s all you want from a class. However, designing a program using only PODs can create a lot of complexity. You can fight such complexity with abstraction, by placing related functions and data together and providing a user friendly interface for the clients of a class.
 
 This helps to simplify code in at least two ways.
 
@@ -11,16 +11,7 @@ Second, when you bundle class’s code and data you can abstract the implementat
 Having the data specified separately from the operations on it has advantages, such as the ability to use the data in arbitrary ways. However, a tighter connection between the representation and the operations is needed for a user-defined type to have all the properties expected of a ‘‘real type.’’
 
 
-### Concrete Types
-The basic idea of concrete classes is that they behave ‘‘just like built-in types.’’ For example, a complex number type and an infinite-precision integer are much like built-in int, except of course that they have their own semantics and sets of operations.
 
-The defining characteristic of a concrete type is that its representation is part of its definition, and that representation is present in each object of a concrete class. That allows implementations to be optimally efficient in time and space.
-
-In particular, it allows us to:
-• place objects of concrete types on the stack, in statically allocated memory, and in other objects
-• refer to objects directly (and not just through pointers or references);
-• initialize objects immediately and completely (e.g., using constructors;
-• copy and move objects
 
 
 

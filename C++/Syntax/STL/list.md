@@ -103,3 +103,36 @@ in listCont1 are sorted
 according to the sort criteria oper.
 listCont.reverse(); The elements of listCont are
 reversed.
+
+
+Linked List implementation in C++ Collections list<E> in by C++ Collections is a data structure which implements linked list.
+When we have insertion and deletion from both the front and back, we use linked list.
+
+#include <list>
+int main()
+{
+  std::list<int> ll;
+  ll.push_front(1);
+  ll.push_back(11);
+  ll.push_front(2);
+  ll.push_back(21);
+  ll.push_front(3);
+  ll.push_back(31);
+  std::cout << "Contents of Linked List: ";
+  for (auto var : ll)
+  std::cout << var << " ";
+  std::cout << std::endl;
+  ll.pop_front();
+  ll.pop_back();
+  std::cout << "Contents of Linked List: “;
+  for (auto var : ll)
+  std::cout << var << " ";
+  return 0;
+}
+
+Output
+Contents of Linked List: 3 2 1 11 21 31
+Contents of Linked List: 2 1 11 21
+
+Analysis:
+Values are added to the back and front of the linked list. Then the value stored in linked list are printed. Then values are removed from linked list from front and back and again linked list content is printed to screen.

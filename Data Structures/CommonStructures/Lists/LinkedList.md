@@ -1,8 +1,9 @@
 ## LinkedList
 
 A linked list is a recursive data structure implementing the List data type
+A linked list is a sequential list
 
-The data structure is a linear collection of data elements represented by a linked sequence of nodes.
+The data structure is a dynamic linear collection of data elements represented by a resizable linked sequence of nodes.
 
 Unlike an array, sequence order is not given by physical placement in memory but by following references that link to each subsequent node.
 
@@ -13,36 +14,46 @@ Each node thus, at minimum, contains a list value and a reference to a location 
 
 A Singly LinkedList is the most basic LinkedList implementation
 
-The Singly LinkedList structure is either
-An empty list, a null reference
-A reference to the first list node
+A singly linked list is a collection of components called nodes. Every node in a singly linked list has two components: the list value and the link to the next list node
 
-The LinkedList data structure stores a reference to the first node and potentially the last node as well.
-The first node is called the head and is designated by being the only node with nothing linking to it.
+In this form, each node contains:
+data of a given type consistent with the reset of the list
+a reference (in other words, a link) to the next node in the sequence.
+
+The Singly LinkedList structure is minimally defined by the list head, either:
+An empty list represented by a single null reference
+A reference to the first node in the list
+
+
+The head is designated by being the only node with nothing linking to it.
+The LinkedList data structure may store a reference to the last node as well.
 The last node is called the tail and is designated by being the only node that points to a value of null.
 A list with a single element has one node that is both the head and the tail of that list.
 
 
-In this form, each node contains:
-data of a given type consistent with the reset of the list,
-a reference (in other words, a link) to the next node in the sequence.
 
-To implement a singly linked list, we start with a class that defines the node abstraction
 
-Node <T> {
-   T item;
-   Node next;
-}
+To implement a singly linked list
 
 We create a Node for each item, setting:
 the item field in each of the nodes to the desired value,
 the next field to point the subsequent node in the order of the list collection.
 
-We can then dynamically resize the LinkedList through the creation and deletion of nodes
+We can then dynamically resize the LinkedList through the creation and deletion of nodes and altering the adjacent list member's links
 
-An advantage of this linked structure is that it allows for efficient insertion or removal of elements from any position in the sequence.
+Linked List Advantages
+  Linked lists are dynamic data structures; that is, they can grow or shrink
+  during the execution of the program.
+  Efficient memory utilization. Memory is allocated whenever
+  it is required, and it is de-allocated whenever it is no longer needed.
+  Efficient insertion or removal of elements from any position in the sequence
+  Many complex applications can be easily carried out with linked lists.
 
-A drawback of linked lists is that access time is linear (and difficult to pipeline). Faster access, such as random access, is not feasible. Arrays have better cache locality compared to linked lists.
+Disadvantages of linked lists
+  Individual list elements consume more space than array elements because every node requires an additional pointer to store the address of the next node.
+  Searching a particular element in the list is difficult and time-consuming.
+  Access time is linear (and difficult to pipeline). Faster access, such as random access, is not feasible.
+  Arrays have better cache locality compared to linked lists.
 
 Because the links in a singly linked list consist only of next pointers (or references), the list can be traversed only in the forward direction.
 Therefore a complete traversal of the list must begin with the first element, the head.
@@ -50,23 +61,6 @@ You need a pointer or reference to the first element of a list to locate all the
 
 More complex variants add additional links, allowing more efficient insertion or removal of nodes at arbitrary positions.
 <br/><br/>
-
-public class Node<T> {
-  private T data;
-  private Node<T> prev;
-  private Node<T> next;
-
-  public Node( T value ) { data = value; }
-
-  public T getValue() { return data; }
-  public void setValue( T value ) { data = value; }
-
-  public Node<T> getPrev() { return prev; }
-  public void setPrev( Node<T> elem ) { prev = elem; }
-
-  public Node<T> getNext() { return next; }
-  public void setNext( Node<T> elem ) { next = elem; }
-}
 
 
 ## Doubly Linked List

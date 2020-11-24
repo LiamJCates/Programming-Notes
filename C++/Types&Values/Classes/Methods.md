@@ -438,7 +438,7 @@ that the compiler would ignore constexpr when the function or class is used with
  {
  int age;
  public:
- constexpr Human(int humansAge) age(humansAge) {}
+ constexpr Human(int humansAge) : age(humansAge) {}
  constexpr int GetAge() const { return age; }
  };
 
