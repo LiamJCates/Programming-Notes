@@ -1,6 +1,12 @@
 main()
 When you run your program, you’re really running a class. Programs are launched through the Java interpreter with a class name and execution begins with the main method.
 
+A main()
+method is the gateway between the startup of a Java process, which is
+managed by the Java Virtual Machine (JVM), and the beginning of the
+programmer’s code. The JVM calls on the underlying system to
+allocate memory and CPU time, access files, and so on. 
+
 Running a java program means telling the Java Virtual Machine (JVM) to “Load the named class, then start executing its main() method. Keep running ‘til all the code in main is finished.”
 
 When the JVM starts running, it looks for the class you give it at the command line.
@@ -53,7 +59,7 @@ public class ClassName { //class members }
 
 A public class must be written in a source file that has the same name as the class, with the .java extension. A public class named Greeter, for example, must be placed in a file named Greeter.java. As a result, you can’t place two public classes in the same file. You can put the two classes into one file, but only one class in the file can be a public class.
 
-When you compile code with more than one class in a single source file, Java still creates a separate class file for each class. Removing the public keyword from a class is acceptable for relatively small programs, but its limitation is that the class is available only to the classes defined within the same .java file. If you want a class to be more widely available, opt for the second solution: Place it, with the public keyword, in a separate file with its name. 
+When you compile code with more than one class in a single source file, Java still creates a separate class file for each class. Removing the public keyword from a class is acceptable for relatively small programs, but its limitation is that the class is available only to the classes defined within the same .java file. If you want a class to be more widely available, opt for the second solution: Place it, with the public keyword, in a separate file with its name.
 
 If you’re going to create an application that has several public classes, create a separate folder for the application. Then save all the class files for the application to this folder. If you keep your class files together in the same folder, the Java compiler can find them. If you place them in separate folders, you may need to adjust your ClassPath environment variable to help the compiler find the classes.
 

@@ -14,6 +14,20 @@ Properties of arrays are its capacity, type, and size:
 A basic array has a fixed capacity that must be known at time of array instantiation and are thus known as fixed-capacity or fixed-size arrays.
 <br/><br/>
 
+
+Advantages of simple arrays
+1. Elements are stored in adjacent memory locations; hence, searching is
+very fast, as any element can be easily accessed.
+2. Arrays do not support dynamic memory allocation, so all the memory
+management is done by the compiler.
+
+Limitations of simple arrays
+1. Insertion and deletion of elements in arrays is complicated and very
+time-consuming, as it requires the shifting of elements.
+2. Arrays are static; hence, the size must be known in advance.
+3. Elements in the array are stored in consecutive memory locations which
+may or may not be available.
+
 ## Dynamic Array
 
 When using arrays as underlying storage for more complex data structures techniques are used to allow the array to resize or have a dynamic capacity.

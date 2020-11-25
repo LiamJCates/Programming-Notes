@@ -1,19 +1,29 @@
-Enumerations
-Enumerations define a data type with a fixed number of valid values
+Enumerations define a data type with a fixed number of valid values.
+
+An enum type is a special data type that enables a variable to be a set of predefined constants. The variable must be equal to one of the values that have been predefined for it.
+
 An object of an enumeration type can hold only the values it defines.
 Syntax:
+access-modifier enum enum-type{
+  constant1, constant2, ..., constantN
+}
+
+Example
 access-modifier enum DaysOfTheWeek {
     MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY
 }
 
-The identifiers MONDAY, TUESDAY, and so on, are called enumeration constants
-enumeration constants are capitalized by convention.
-Each is implicitly declared as a public, static member of DaysOfTheWeek.
-Furthermore, the enumeration constants’ type is the type of the enumeration in which the constants are declared.
+The identifiers MONDAY, TUESDAY, and so on, are called enumeration constants and, as constants, are capitalized by convention. Each is implicitly declared as a public, static member of DaysOfTheWeek. An enumeration constants’ type is the type of the enumeration in which the constants are declared.
+
+DaysOfTheWeek day = DaysOfTheWeek.MONDAY;
+
 Java, calls these constants self-typed, where “self” refers to the enclosing enumeration.
 
-enumeration constants are defined with the int type and are assigned zero indexed values
-enumerations are type-safe, you can't specify another type where an enumeration type is expected.
+
+
+
+
+
 
 
 Basic Use
@@ -25,12 +35,6 @@ Instead, you declare an enumeration variable and assign only the constants defin
 DaysOfTheWeek day;
 day = DaysOfTheWeek.MONDAY;
 
-Java 5 introduced static imports which simplify references to the constants in an enumeration.
-
-import static com.example.DaysOfTheWeek.*;
-day = TUESDAY;
-
-This is possible because a static import allows you to import the static  class members of the specified package, which enumeration constants are implicitly. Although you can save some typing by using static imports, they often result in code that's more difficult to read and potentially lead to name collisions.
 
 An enumeration value can also be used to control a switch statement.
 All case statements must use constants from the same enum as that used by the switch expression.
@@ -49,9 +53,69 @@ Qualifying the constants in the case statements would cause a compilation error.
 
 
 
-Java Enumerations Are Class Types
+### Static Import
+Java 5 introduced static imports which simplify references to the constants in an enumeration.
+
+import static com.example.DaysOfTheWeek.*;
+DaysOfTheWeek day;
+day = TUESDAY;
+
+This is possible because a static import allows you to import the static  class members of the specified package, which enumeration constants are implicitly. Although you can save some typing by using static imports, they often result in code that's more difficult to read and potentially lead to name collisions.
+
+
+
+
+## Java Enumerations Are Class Types
+It is important to understand that each enumeration constant is an object of its enumeration type.
+Although you don’t instantiate an enum using new, it otherwise acts much like other classes.
+The fact that enum defines a class enables the Java enumeration to have powers that enumerations in some other languages do not.
+enums may define constructors, fields, methods, and even implement interfaces.
+
+When you define a constructor for an enum, the constructor is called when each enumeration constant is created.
+
+Each enum constant is declared with values that are passed to the constructor when the constant is created.
+Constructor arguments are specified by putting them inside parentheses after each constant.
+When an enumeration contains other members, the comma delimited enumeration list must end in a semicolon.
+The constructor for an enum type must be package-private or private access. It automatically creates the constants that are defined at the beginning of the enum body.
+
+Java requires that the constants be defined first, prior to any fields or methods.
+
+Each enumeration constant has its own copy of any instance variables defined by the enumeration.
+
+Each enumeration constant can call any method defined by the enumeration.
+
+
+enum Transport {
+    CAR(65), TRUCK (55), AIRPLANE(600), TRAIN (70), BOAT(22) ;
+
+    private int speed; // typical speed of each transport
+
+    / / Constructor
+    private Transport (int s) {speed s;}
+
+    //Method
+    int getSpeed() { return speed;}
+}
+
+When a Transport variable is declared, the constructor for Transport is called once for each constant that is specified.
+
+
+
+
+
+
+
+
+
+
+
+
+
 Enumeration classes can’t inherit a superclass as all enumerations implicitly extend: java.lang.Enum which in turn inherits from java.lang.Object
 
+
+
+## Inherited Enumeration Methods
 These classes define several methods that are available for use by all enumerations.
 
 ordinal( ) returns the int value of an enumeration constant’s list position, called its ordinal value.
@@ -68,40 +132,22 @@ values( ) returns an array that contains a list of the enumeration constants.
 valueOf( ) returns the enumeration constant whose value corresponds to the parameter string.
 
 DaysOfTheWeek[] day = DaysOfTheWeek.values();
+//day = [MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY];
+
 DaysOfTheWeek day = DaysOfTheWeek.valueOf("MONDAY");
 
-for(DaysOfTheWeek d : DaysOfTheWeek.values()) System.out.println(d);
-
-
-It is important to understand that each enumeration constant is an object of its enumeration type.
-Although you don’t instantiate an enum using new, it otherwise acts much like other classes.
-The fact that enum defines a class enables the Java enumeration to have powers that enumerations in some other languages do not.
-enums may define constructors, fields, methods, and even implement interfaces.
-
-When you define a constructor for an enum, the constructor is called when each enumeration constant is created.
-Each enum constant is declared with values that are passed to the constructor when the constant is created. Java requires that the constants be defined first, prior to any fields or methods. Also, when there are fields and methods, the list of enum constants must end with a semicolon.
-
-The constructor for an enum type must be package-private or private access. It automatically creates the constants that are defined at the beginning of the enum body. You cannot invoke an enum constructor yourself.
-Each enumeration constant can call any method defined by the enumeration.
-Each enumeration constant has its own copy of any instance variables defined by the enumeration.
-
-enum Transport {
-    CAR(65), TRUCK (55), AIRPLANE(600), TRAIN (70), BOAT(22) ;
-
-    private int speed; // typical speed of each transport
-
-    / / Constructor
-    Transport (int s) {speed s;}
-
-    //Method
-    int getSpeed() { return speed;}
-}
-
-When a Transport variable is declared, the constructor for Transport is called once for each constant that is specified. Notice how the arguments to the constructor are specified, by putting them inside parentheses, after each constant.
-
-The comma delimited list of enumeration constants is terminated by a semicolon.
-When an enumeration contains other members, the enumeration list must end in a semicolon.
-
-Q: Since enumerations have been added to Java, should I avoid the use of final variables? In other words, have enumerations rendered final variables obsolete? A: No. Enumerations are appropriate when you are working with lists of items that must be represented by identifiers. A final variable is appropriate when you have a constant value, such as an array size, that will be used in many places. Thus, each has its own use. The advantage of enumerations is that final variables don’t have to be pressed into service for a job for which they are not ideally suited.
+for(DaysOfTheWeek d : DaysOfTheWeek.values())
+  System.out.println(d);
 
 Two Important Restrictions There are two restrictions that apply to enumerations. First, an enumeration can’t inherit another class. Second, an enum cannot be a superclass. This means that an enum can’t be extended. Otherwise, enum acts much like any other class type. The key is to remember that each of the enumeration constants is an object of the class in which it is defined.
+
+
+
+
+
+
+
+
+
+Q: Since enumerations have been added to Java, should I avoid the use of final variables? In other words, have enumerations rendered final variables obsolete?
+A: No. Enumerations are appropriate when you are working with lists of items that must be represented by identifiers. A final variable is appropriate when you have a constant value, such as an array size, that will be used in many places. Thus, each has its own use. The advantage of enumerations is that final variables don’t have to be pressed into service for a job for which they are not ideally suited.
