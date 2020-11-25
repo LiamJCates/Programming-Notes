@@ -60,7 +60,7 @@ void template <typename T> SinglyLinkedList :: prepend(T data)
   tmp->data = data;
   tmp->next = this->head;
   //if the list was empty
-  if(isEmpty()){
+  if(this->isEmpty()){
     //update tail
     this->tail = tmp;
   }
@@ -77,7 +77,7 @@ void template <typename T> SinglyLinkedList :: append(T data)
   tmp->data = data;
   tmp->next = nullptr;
   //if the list was empty
-  if(isEmpty()){
+  if(this->isEmpty()){
     //update the head and tail
     this->head = tmp;
     this->tail = tmp;
@@ -97,7 +97,7 @@ void template <typename T> SinglyLinkedList :: append(T data)
 void template <typename T> SinglyLinkedList :: delete(T data)
 {
   //if the list is not empty traverse the list for a value to delete
-  if (!isEmpty())
+  if (!this->isEmpty())
   {
     //Set current to the list head
     Node<T> *current = this->head;
@@ -166,7 +166,7 @@ void template <typename T> SinglyLinkedList :: delete(int idx)
       //update the length
       this->length--;
       //if the list is now empty
-      if (isEmpty())
+      if (this->isEmpty())
       {
         //update the tail
         this->tail = nullptr;
@@ -225,13 +225,13 @@ void template <typename T> SinglyLinkedList :: search(T data)
 
 void template <typename T> SinglyLinkedList :: print(){
   //if the list is empty
-  if (isEmpty()) {
+  if (this->isEmpty()) {
     //indicate empty list
     std::cout << "List is empty." << std::endl;
   //else the list has members
   } else {
     //create traversal pointer
-    Node<T> *current = this->head_;
+    Node<T> *current = this->head;
     //indicate start of element sequence
     std::cout << "Singly linked list sequence:" << std::endl;
     //while there are members to traverse
