@@ -5,11 +5,7 @@ You're nearing the end of a job interview, the interviewer asks:
 Do not say "I think you answered everything for me, I think I'm good"
 no you have questions, you always have questions
 
-<<<<<<< HEAD
-"what's the next step in this process" is not a good question
-=======
 While you can say "what's the next step in this process" it's not a compelling question and doesn't indicate that you are interested in the role.
->>>>>>> 0da5476467020f5c362500407c580ee5523234f8
 
 
 
@@ -30,15 +26,6 @@ company culture
 What it takes to be successful
 challenges in the department
 
-<<<<<<< HEAD
-culture questions
-"what's a typical work week like here?""
-If you ask about a typical day every company's response will be:
-"well there's no such thing it's a typical day"
-
-You'll learn about what it's like to work there so it shows that you have
-interest in what they do but you're also getting information so you can see can I picture myself in this environment
-=======
 Always have at least three questions, because inevitably one or more will be answered for you during the interview
 
 
@@ -56,7 +43,6 @@ Instead ask "what's a typical work week like here"
 
 it shows that you have interest in what the company does and how they achieve it
 You'll learn about what it's like to work there so you can picture yourself in this environment
->>>>>>> 0da5476467020f5c362500407c580ee5523234f8
 
 
 Success Questions:
@@ -88,26 +74,19 @@ try to connect with the interviewer while also getting some idea of the
 
 make sure you're not asking questions that you could Google the answer
 
-<<<<<<< HEAD
 Asking about culture
 ask about the department not the company because most companies now you can learn about their company culture on their LinkedIn page or website
 but you can't find out about that department so I tend to ask
-=======
-I love asking about culture
-ask it about the department not the company because most companies now you can learn about their company culture on their LinkedIn page or on their website
->>>>>>> 0da5476467020f5c362500407c580ee5523234f8
 
 what's the culture of this department
 
 
 
-<<<<<<< HEAD
+
 I try to have
 one that's success driven
 one that's culture related
 one that's more connecting
-=======
->>>>>>> 0da5476467020f5c362500407c580ee5523234f8
 
 
 the question you have to ask, while scary, is
