@@ -5,8 +5,7 @@ You're nearing the end of a job interview, the interviewer asks:
 Do not say "I think you answered everything for me, I think I'm good"
 no you have questions, you always have questions
 
-Do not say "what's the next step in this process"
-While this
+"what's the next step in this process" is not a good question
 
 have a couple of questions ready
 
@@ -26,13 +25,12 @@ the culture of the company
 people's past successes
 challenges in the department
 
-one question I really like is a culture question like tell me about a typical day in this position or I actually really like what's a typical work week like here
-
-because when you ask what the typical day every company the response will be:
+culture questions
+"what's a typical work week like here?""
+If you ask about a typical day every company's response will be:
 "well there's no such thing it's a typical day"
-but I digress
 
-but you'll learn about what it's like to work there so it shows that you have
+You'll learn about what it's like to work there so it shows that you have
 interest in what they do but you're also getting information so you can see can I picture myself in this environment
 
 ask questions that show that you are thinking of what it would take to be successful in this position:
@@ -62,18 +60,16 @@ what is your favorite part about working for this company or this department?
 
 make sure you're not asking questions that you could Google the answer
 
-I love asking about culture
-what's the culture but I ask it about
-the department not the company because most companies now you can learn about
-their company culture on their LinkedIn page or on their website but you can't
-find out about that department so I tend to ask
+Asking about culture
+ask about the department not the company because most companies now you can learn about their company culture on their LinkedIn page or website
+but you can't find out about that department so I tend to ask
 
 what's the culture of this department
 
 
 Always have at least three questions because inevitably one or more will be answered for you during the interview
 
-I try to have 
+I try to have
 one that's success driven
 one that's culture related
 one that's more connecting
@@ -158,3 +154,6 @@ question at the end to clarify any
 uncertainties so you can make a strong
 argument of why you are a great fit for
 the position
+
+
+https://jobsearchandinterviewcoach.com/good-questions-to-ask-in-hr-screening-interview/
