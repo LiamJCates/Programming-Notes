@@ -1,0 +1,3 @@
+An object is like a black box whose behavior is very well defined, and we use the object because we know what it does, not because we have an insight into how it does it.
+
+This opacity of objects is extremely useful for maintaining them independently of each other. If communication channels between the objects are well defined, then changes made inside an object can affect other objects only as much as these changes affect the communication channels. Knowing the kind of information sent out and received by an object, the object can be replaced more easily by another object more suitable in a particular situation; a new object can perform the same task differently but more quickly in a certain hardware environment. 

@@ -242,6 +242,53 @@ A destructor cannot be overloaded. A class can have only one destructor. If you 
 
 
 
+Pointers and Destructors
+Consider
+
+struct Node {
+  char *name;
+  int age;
+public:
+  Node(char *n = "", int a = 0) {
+    name = strdup(n);
+    age = a;
+  }
+};
+
+What happens to locally defined objects of type Node? Like all local items, they are destroyed in the sense that they become unavailable outside the block in which they are defined, and memory occupied by them is also released. But although memory occupied by an object of type Node is released, not all the memory related to this object becomes available. One of the data members of this object is a pointer to a string;
+therefore, memory occupied by the pointer data member is released, but memory
+taken by the string is not. After the object is destroyed, the string previously available from its data member name becomes inaccessible (if not assigned to the name of
+some other object or to a string variable) and memory occupied by this string can no
+longer be released, which leads to a memory leak. This is a problem with objects that
+have data members pointing to dynamically allocated locations. To avoid the problem, the class definition should include a definition of a destructor. A destructor is a
+function that is automatically invoked when an object is destroyed, which takes place
+upon exit from the block in which the object is defined or upon the call of delete.
+Destructors take no arguments and return no values so that there can be only one
+destructor per class. For the class Node, a destructor can be defined as
+	 ~Node() {
+if (name != 0)
+free(name);
+	 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 Virtual Destructor
