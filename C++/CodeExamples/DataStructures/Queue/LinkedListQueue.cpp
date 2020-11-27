@@ -7,8 +7,12 @@ class LinkedListQueue
     Node<T> *rear;
 
     class Node {
-        T data;
-        Node *next;
+      T data;
+      Node *next;
+
+      Node();
+      Node(T data, Node* next);
+      ~Node();
     };
 public:
     LinkedListQueue();
@@ -21,6 +25,14 @@ public:
     T front();
     void print();
 };
+
+template <typename T> SinglyLinkedList<T> :: Node :: Node()
+: next(nullptr) { }
+
+template <typename T> SinglyLinkedList<T> :: Node :: Node(T element, Node* ptr = nullptr)
+: data(element), next(ptr) { }
+
+template <typename T> SinglyLinkedList<T> :: Node :: ~Node() {data = 0, next = NULL}
 
 template <typename T> LinkedListQueue<T>::LinkedListQueue()
 : length(0), front(nullptr), rear(nullptr) {}
@@ -51,9 +63,7 @@ int template <typename T> LinkedListQueue :: length()
 void template <typename T> LinkedListQueue :: add(T data)
 {
   //create the node
-  Node<T> *tmp = new Node<T>;
-  tmp->data = data;
-  tmp->next = nullptr;
+  Node<T> *tmp = new Node<T>(data);
   //if the list was empty
   if(this->isEmpty())
   {

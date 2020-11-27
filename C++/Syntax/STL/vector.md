@@ -1,9 +1,10 @@
 vector
-A vector container stores and manages its objects in a dynamic array. Because an
-array is a random access data structure, the elements of a vector can be accessed
-randomly. Item insertion in the middle or beginning of an array is time consuming,
-especially if the array is large. However, inserting an item at the end is quite fast.
-The name of the class that implements the vector container is vector.
+A vector container stores and manages its objects in a contiguous dynamic array. Because an array is a random access data structure, the elements of a vector can be accessed randomly in constant time.
+Storage is managed automatically so that on an attempt to insert an element
+into a full vector, a larger memory block is allocated for the vector, the vector elements are copied to the new block, and the old block is released. A vector is thus a flexible array; that is, an array whose size can be dynamically changed.
+Item insertion in the middle or beginning of an array is time consuming, especially if the array is large. However, inserting an item at the end is quite fast.
+
+
 
 The name of the header file containing the class
 vector is vector. Thus, to use a vector container in a program, the program must

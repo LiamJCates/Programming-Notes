@@ -3,11 +3,15 @@ class LinkedListStack {
   class Node{
     T data;
     Node* next;
+
+    Node();
+    Node(T data, Node* next);
+    ~Node();
   }
 
   int length;
   Node<T> *top;
-  
+
   public:
     LinkedListStack();
     ~LinkedListStack();
@@ -18,6 +22,14 @@ class LinkedListStack {
     T pop();
     T peak();
 };
+
+template <typename T> SinglyLinkedList<T> :: Node :: Node()
+: next(nullptr) { }
+
+template <typename T> SinglyLinkedList<T> :: Node :: Node(T element, Node* ptr = nullptr)
+: data(element), next(ptr) { }
+
+template <typename T> SinglyLinkedList<T> :: Node :: ~Node() {data = 0, next = NULL}
 
 template <typename T > LinkedListStack ::
 LinkedListStack() : length(0), top(nullptr){};
@@ -44,9 +56,7 @@ int template <typename T > LinkedListStack :: length() {
 
 void template <typename T > LinkedListStack :: push(T data)  {
   //create the node
-  Node<T> *tmp = new Node<T>;
-  tmp->data = data;
-  tmp->next = this->top;
+  Node<T> *tmp = new Node<T>(data, this->top);
   //if the list was empty
   if(this->isEmpty()){
     //update tail
