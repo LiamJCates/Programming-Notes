@@ -74,13 +74,19 @@ try to connect with the interviewer while also getting some idea of the
 
 make sure you're not asking questions that you could Google the answer
 
-I love asking about culture
-ask it about the department not the company because most companies now you can learn about their company culture on their LinkedIn page or on their website
+Asking about culture
+ask about the department not the company because most companies now you can learn about their company culture on their LinkedIn page or website
+but you can't find out about that department so I tend to ask
 
 what's the culture of this department
 
 
 
+
+I try to have
+one that's success driven
+one that's culture related
+one that's more connecting
 
 
 the question you have to ask, while scary, is
@@ -159,3 +165,6 @@ question at the end to clarify any
 uncertainties so you can make a strong
 argument of why you are a great fit for
 the position
+
+
+https://jobsearchandinterviewcoach.com/good-questions-to-ask-in-hr-screening-interview/

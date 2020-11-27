@@ -5,6 +5,14 @@ A linked list is a sequential list
 
 The data structure is a dynamic linear collection of data elements represented by a resizable linked sequence of nodes.
 
+
+An array is a very useful data structure provided in programming languages. However, it has at least two limitations:
+(1) its size has to be known at compilation time
+(2) the data in the array are separated in computer memory by the same distance, which means that inserting an item inside the array requires shifting other data in this array.
+
+This limitation can be overcome by using linked structures. A linked structure is a collection of nodes storing data and links to other nodes. In this way, nodes can be located anywhere in memory, and passing from one node of the linked structure to another is accomplished by storing the addresses of other nodes in the linked structure. Although linked structures can be implemented
+in a variety of ways, the most flexible implementation is by using pointers.
+
 Unlike an array, sequence order is not given by physical placement in memory but by following references that link to each subsequent node.
 
 Each node thus, at minimum, contains a list value and a reference to a location in memory that holds the next node in the sequence.
@@ -14,7 +22,7 @@ Each node thus, at minimum, contains a list value and a reference to a location 
 
 A Singly LinkedList is the most basic LinkedList implementation
 
-A singly linked list is a collection of components called nodes. Every node in a singly linked list has two components: the list value and the link to the next list node
+A singly linked list is a collection of components called nodes. Every node in a singly linked list has two components: the list value and the link to its successor or the next list node
 
 In this form, each node contains:
 data of a given type consistent with the reset of the list

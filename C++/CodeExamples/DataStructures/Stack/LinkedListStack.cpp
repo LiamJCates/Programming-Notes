@@ -3,10 +3,15 @@ class LinkedListStack {
   class Node{
     T data;
     Node* next;
+
+    Node();
+    Node(T data, Node* next);
+    ~Node();
   }
 
   int length;
-  Node<T> *head;
+  Node<T> *top;
+
   public:
     LinkedListStack();
     ~LinkedListStack();
@@ -15,16 +20,24 @@ class LinkedListStack {
     int length();
     void push();
     T pop();
-    T top();
+    T peak();
 };
 
+template <typename T> SinglyLinkedList<T> :: Node :: Node()
+: next(nullptr) { }
+
+template <typename T> SinglyLinkedList<T> :: Node :: Node(T element, Node* ptr = nullptr)
+: data(element), next(ptr) { }
+
+template <typename T> SinglyLinkedList<T> :: Node :: ~Node() {data = 0, next = NULL}
+
 template <typename T > LinkedListStack ::
-LinkedListStack() : length(0), head(nullptr){};
+LinkedListStack() : length(0), top(nullptr){};
 
 template <typename T > LinkedListStack ::
 ~LinkedListStack()
 {
-  Node<T> *next = this->head;
+  Node<T> *next = this->top;
   Node<T> *current = nullptr;
   while (next != nullptr) {
       current = next;
@@ -43,16 +56,14 @@ int template <typename T > LinkedListStack :: length() {
 
 void template <typename T > LinkedListStack :: push(T data)  {
   //create the node
-  Node<T> *tmp = new Node<T>;
-  tmp->data = data;
-  tmp->next = this->head;
+  Node<T> *tmp = new Node<T>(data, this->top);
   //if the list was empty
-  if(isEmpty()){
+  if(this->isEmpty()){
     //update tail
     this->tail = tmp;
   }
-  //update head
-  this->head = tmp;
+  //update top
+  this->top = tmp;
   //update length
   this->length++;
 }
@@ -60,34 +71,34 @@ void template <typename T > LinkedListStack :: push(T data)  {
 T template <typename T> LinkedListStack :: pop()
 {
   //if the list is empty
-  if(isEmpty())
+  if(this->isEmpty())
   {
     //return nothing
     return NULL;
   }
   //remember the original top of the stack
-  Node<T>* tmp = this->head;
+  Node<T>* tmp = this->top;
   //retrive its value
-  T value = this->head->data;
+  T value = this->top->data;
   //update the top of the stack
-  this->head = this->head->next;
+  this->top = this->top->next;
   //update stack length
   this->length--;
   //if the stack is now empty
-  if(isEmpty())
+  if(this->isEmpty())
   {
     //updte the tail
     this->tail = nullptr;
   }
-  //delete the original head
+  //delete the original top
   delete tmp;
 
-  //return original head value
+  //return original top value
   return value;
 }
 
-T template <typename T> LinkedListStack :: top()
+T template <typename T> LinkedListStack :: peak()
 {
   //if the stack is empty return nothin else retrieve value at top of stack
-  return isEmpty() ? NULL : this->head->data;
+  return this->isEmpty() ? NULL : this->top->data;
 }

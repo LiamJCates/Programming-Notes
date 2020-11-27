@@ -1,5 +1,5 @@
 template <typename T>
-class SinglyLinkedList
+class DoublyLinkedList
 {
 
     int length;
@@ -9,14 +9,15 @@ class SinglyLinkedList
     class Node {
         T data;
         Node *next;
+        Node *previous;
 
         Node();
-        Node(T data, Node* next);
+        Node(T data, Node* next, Node* previous);
         ~Node();
     };
 public:
-    SinglyLinkedList();
-    ~SinglyLinkedList();
+    DoublyLinkedList();
+    ~DoublyLinkedList();
 
     bool isEmpty();
     int length();
@@ -28,21 +29,23 @@ public:
     bool search(T value);
     void reverse();
     void print();
-    void concatenate(SinglyLinkedList<T> second);
+    void concatenate(DoublyLinkedList<T> second);
 };
 
-template <typename T> SinglyLinkedList<T> :: Node :: Node()
-: next(nullptr) { }
+template <typename T> DoublyLinkedList<T> :: Node :: Node()
+: next(nullptr), previous(nullptr) { }
 
-template <typename T> SinglyLinkedList<T> :: Node :: Node(T element, Node* ptr = nullptr)
-: data(element), next(ptr) { }
+template <typename T> DoublyLinkedList<T> :: Node ::
+Node(T element, Node* n = nullptr, Node* p = nullptr)
+: data(element), next(n), previous(p) { }
 
-template <typename T> SinglyLinkedList<T> :: Node :: ~Node() {data = 0, next = NULL}
+template <typename T> DoublyLinkedList<T> :: Node ::
+~Node() {data = 0, next = NULL, previous = NULL}
 
-template <typename T> SinglyLinkedList<T>::SinglyLinkedList()
+template <typename T> DoublyLinkedList<T>::DoublyLinkedList()
 : length(0), head(nullptr), tail(nullptr) {}
 
-template <typename T> SinglyLinkedList<T> :: ~SinglyLinkedList()
+template <typename T> DoublyLinkedList<T> :: ~DoublyLinkedList()
 {
   Node<T> *next = this->head;
   Node<T> *current = nullptr;
@@ -55,18 +58,18 @@ template <typename T> SinglyLinkedList<T> :: ~SinglyLinkedList()
 }
 
 //returns whether the list is empty
-bool template <typename T> SinglyLinkedList :: isEmpty()
+bool template <typename T> DoublyLinkedList :: isEmpty()
 {
     return this->length;
 }
 
 //returns the list's length
-int template <typename T> SinglyLinkedList :: length()
+int template <typename T> DoublyLinkedList :: length()
 {
     return this->length;
 }
 
-void template <typename T> SinglyLinkedList :: prepend(T data)
+void template <typename T> DoublyLinkedList :: prepend(T data)
 {
   //create the node
   Node<T> *tmp = new Node<T>(data, this->head);
@@ -81,18 +84,22 @@ void template <typename T> SinglyLinkedList :: prepend(T data)
   this->length++;
 }
 
-void template <typename T> SinglyLinkedList :: append(T data)
+void template <typename T> DoublyLinkedList :: append(T data)
 {
-  //create the node
-  Node<T> *tmp = new Node<T>(data);
 
+  //create a temperary node identifier
+  Node<T> *tmp;
   //if the list was empty
   if(this->isEmpty()){
+    //create the node with default nullptr for next and previous nodes
+    tmp = new Node<T>(data);
     //update the head and tail
     this->head = this->tail = tmp;
   }
   //else the list was not empty
   else{
+    //create the node with default nullptr for next and the current
+    tmp = new Node<T>(data, nullptr, this->tail);
     //append node to the tail
     this->tail->next = tmp;
     //update the tail
@@ -103,7 +110,7 @@ void template <typename T> SinglyLinkedList :: append(T data)
 }
 
 
-void template <typename T> SinglyLinkedList :: delete(T data)
+void template <typename T> DoublyLinkedList :: delete(T data)
 {
   //if the list is not empty traverse the list for a value to delete
   if (!this->isEmpty())
@@ -118,8 +125,14 @@ void template <typename T> SinglyLinkedList :: delete(T data)
       //if the list would now be empty
       if(head == nullptr)
       {
-        //update tail
+        //update tail to nullptr
         this->tail = head;
+      }
+      //else
+      else
+      {
+        //current head has no previous node
+        this->head->previous = nullptr;
       }
       //delete the original head
       delete current;
@@ -132,7 +145,8 @@ void template <typename T> SinglyLinkedList :: delete(T data)
       current = current->next;
       while(current != nullptr){
         //if the data to delete is the current node
-        if(current->data == data){
+        if(current->data == data)
+        {
           //update the previous nodes link
           previous->next = current->next;
           //delete the current node
@@ -142,6 +156,11 @@ void template <typename T> SinglyLinkedList :: delete(T data)
           {
             //update tail
             this->tail = previous;
+          }
+          else
+          {
+            //link the new next back to previous
+            current->next->previous = previous;
           }
           //update length
           this->length--;
@@ -158,7 +177,8 @@ void template <typename T> SinglyLinkedList :: delete(T data)
   }
 }
 
-void template <typename T> SinglyLinkedList :: delete(int idx)
+/*
+void template <typename T> DoublyLinkedList :: delete(int idx)
 {
   //if the index exists in the list
   if (idx < 0 || idx >= this->length)
@@ -208,8 +228,8 @@ void template <typename T> SinglyLinkedList :: delete(int idx)
     }
   }
 }
-
-void template <typename T> SinglyLinkedList :: search(T data)
+*/
+void template <typename T> DoublyLinkedList :: search(T data)
 {
   //Set traversal pointer to the list head
   Node<T> *current = this->head;
@@ -232,7 +252,7 @@ void template <typename T> SinglyLinkedList :: search(T data)
   return false;
 }
 
-void template <typename T> SinglyLinkedList :: print(){
+void template <typename T> DoublyLinkedList :: print(){
   //if the list is empty
   if (this->isEmpty()) {
     //indicate empty list
@@ -254,7 +274,8 @@ void template <typename T> SinglyLinkedList :: print(){
   }
 }
 
-void template <typename T> SinglyLinkedList :: reverse()
+/*
+void template <typename T> DoublyLinkedList :: reverse()
 {
   //create traversal pointers
   Node<T> *current = this->head;
@@ -272,9 +293,10 @@ void template <typename T> SinglyLinkedList :: reverse()
     current = next;
   }
 }
-
-void template <typename T> SinglyLinkedList :: concatenate(SinglyLinkedList<T> second)
+*/
+void template <typename T> DoublyLinkedList :: concatenate(DoublyLinkedList<T> second)
 {
   this->tail->next = second->head;
   this->tail = second->tail;
+  second->head->previous = this->tail;
 }

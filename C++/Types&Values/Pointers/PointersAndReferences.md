@@ -757,36 +757,3 @@ manifests.
 
 
 ## std::unique_ptr
-
-
-
-
-
-
-
-
-Dynamically Allocating with new
-The heap is a special place where you can declare storage. However, to use
-this storage, you take a different approach from simply declaring a variable.
-
-To allocate memory on the heap, you need to do two things: First, declare a
-pointer variable. Second, call a function named new. The new function is a
-little different from other functions in that you don’t put parentheses around
-its parameter. For this reason, it’s actually considered to be an operator.
-
-To use the new function, you specify the type of variable you want to create.
-For example, the following line creates a new integer variable:
-int *somewhere = new int;
-
-int *ptr = new int;
-*ptr = 10;
-cout << *ptr << endl;
-return 0;
-
-When you allocate memory on the heap by calling the new function and you’re
-finished using the memory, you need to let the computer know, whether it’s
-just a little bit of memory or a lot.
-
-The way you free the memory is by calling the delete function and passing
-the name of the pointer:
-delete MyPointer;
