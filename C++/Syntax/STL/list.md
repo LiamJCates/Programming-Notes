@@ -1,8 +1,7 @@
 Sequence Container: list
+insertion and deletion in the middle of the data structures are very inefficient operations for contiguous data structures. And that's where linked-list-like structures come into the picture.
 
-List containers are implemented
-as doubly linked lists. Thus, every element in a list points to both its immediate
-predecessor and its immediate successor (except the first and last elements).
+List containers are implemented as doubly linked lists. Thus, every element in a list points to both its immediate predecessor and its immediate successor (except the first and last elements).
 
 The name of the class containing the definition of the class list is list. The
 definition of the class list, and the definitions of the functions to implement the

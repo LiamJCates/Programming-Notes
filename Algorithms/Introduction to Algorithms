@@ -1,4 +1,9 @@
 What is an Algorithm?
+The purpose of any application is to get some data as
+input, process or operate on it, and then provide suitable data as output.
+
+The right choice of algorithm to access and manipulate the data is also necessary for the optimal behavior of the application.
+
 In general terms, an Algorithm is a well-defined, step-by-step procedure consisting of a set of instructions to be interpreted and performed to produce some output.
 
 While this description may sound restrictive, what defines a given algorithmic process, or may be achieved by one, is hypothetically limitless...

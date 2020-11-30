@@ -1,5 +1,5 @@
 template <typename T>
-class CircularLinkedList
+class CircularDoublyLinkedList
 {
 
     int length;
@@ -9,10 +9,15 @@ class CircularLinkedList
     class Node {
         T data;
         Node *next;
+        Node *previous;
+
+        Node();
+        Node(T data, Node* next, Node* previous);
+        ~Node();
     };
 public:
-    CircularLinkedList();
-    ~CircularLinkedList();
+    CircularDoublyLinkedList();
+    ~CircularDoublyLinkedList();
 
     bool isEmpty();
     int length();
@@ -24,13 +29,23 @@ public:
     bool search(T value);
     void reverse();
     void print();
-    void concatenate(CircularLinkedList<T> second);
+    void concatenate(CircularDoublyLinkedList<T> second);
 };
 
-template <typename T> CircularLinkedList<T>::CircularLinkedList()
+template <typename T> CircularDoublyLinkedList<T> :: Node :: Node()
+: next(nullptr), previous(nullptr) { }
+
+template <typename T> CircularDoublyLinkedList<T> :: Node ::
+Node(T element, Node* n = nullptr, Node* p = nullptr)
+: data(element), next(n), previous(p) { }
+
+template <typename T> CircularDoublyLinkedList<T> :: Node ::
+~Node() {data = 0, next = NULL, previous = NULL}
+
+template <typename T> CircularDoublyLinkedList<T>::CircularDoublyLinkedList()
 : length(0), head(nullptr), tail(nullptr) {}
 
-template <typename T> CircularLinkedList<T> :: ~CircularLinkedList()
+template <typename T> CircularDoublyLinkedList<T> :: ~CircularDoublyLinkedList()
 {
   Node<T> *next = this->head;
   Node<T> *current = nullptr;
@@ -39,51 +54,53 @@ template <typename T> CircularLinkedList<T> :: ~CircularLinkedList()
       next = next->next;
       delete current;
   }
+  this->head = 0;
 }
 
 //returns whether the list is empty
-bool template <typename T> CircularLinkedList :: isEmpty()
+bool template <typename T> CircularDoublyLinkedList :: isEmpty()
 {
     return this->length;
 }
 
 //returns the list's length
-int template <typename T> CircularLinkedList :: length()
+int template <typename T> CircularDoublyLinkedList :: length()
 {
     return this->length;
 }
-
-void template <typename T> CircularLinkedList :: prepend(T data)
+/*
+void template <typename T> CircularDoublyLinkedList :: prepend(T data)
 {
   //create the node
-  Node<T> *tmp = new Node<T>;
-  tmp->data = data;
-  tmp->next = this->head;
+  Node<T> *tmp = new Node<T>(data, this->head, this->tail);
   //if the list was empty
-  if(isEmpty()){
+  if(this->isEmpty()){
     //update tail
     this->tail = tmp;
   }
   //update head
   this->head = tmp;
+  //update tail's next to the new head
+  this->tail->next = tmp;
   //update length
   this->length++;
 }
 
-void template <typename T> CircularLinkedList :: append(T data)
+void template <typename T> CircularDoublyLinkedList :: append(T data)
 {
-  //create the node
-  Node<T> *tmp = new Node<T>;
-  tmp->data = data;
-  tmp->next = nullptr;
+  //create a temperary node identifier
+  Node<T> *tmp CircularDoublyLinkedList;
   //if the list was empty
-  if(isEmpty()){
+  if(this->isEmpty()){
+    //create the node with default nullptr for next and previous nodes
+    tmp = new Node<T>(data);
     //update the head and tail
-    this->head = tmp;
-    this->tail = tmp;
+    this->head = this->tail = tmp;
   }
   //else the list was not empty
   else{
+    //create the node with default nullptr for next and the current
+    tmp = new Node<T>(data, this->head, this->tail);
     //append node to the tail
     this->tail->next = tmp;
     //update the tail
@@ -94,48 +111,61 @@ void template <typename T> CircularLinkedList :: append(T data)
 }
 
 
-void template <typename T> CircularLinkedList :: delete(T data)
+void template <typename T> CircularDoublyLinkedList :: delete(T data)
 {
-  //if the list is not empty traverse the list for a value to delete
-  if (!isEmpty())
+  //if the list is not empty traverse the list to search for the data to delete
+  if (!this->isEmpty())
   {
-    //Set current to the list head
+    //Set traversal node to current to the list head
     Node<T> *current = this->head;
-    //if the data to delete is the list head
+    //if the data to delete is the head
     if(current->data == data)
     {
-      //move the list head
+      //update the list head
       this->head = current->next;
       //if the list would now be empty
       if(head == nullptr)
       {
-        //update tail
-        this->tail = head;
+        //update tail to nullptr
+        this->tail = nullptr;
+      }
+      else
+      {
+        //current head has no previous node
+        this->head->previous = nullptr;
       }
       //delete the original head
       delete current;
+      this->length--;
+      //finish list processing
+      return;
     }
+    //else traverse the list
     else
     {
-      //remember the node previous to current
-      Node<T> *previous = current;
-      //move current
-      current = current->next;
       while(current != nullptr){
         //if the data to delete is the current node
-        if(current->data == data){
-          //update the previous nodes link
-          previous->next = current->next;
+        if(current->data == data)
+        {
+          //update the previous nodes next link
+          current->previous->next = current->next;
+          //if the current node is the tail
+          if(current->next == nullptr)
+          {
+            //update tail to the previous node
+            this->tail = current->previous;
+          }
+          else
+          {
+            //link the new next back to previous
+            current->next->previous = current->previous;
+          }
           //delete the current node
           delete current;
-          //if the previous node is now the tail
-          if(previous->next == nullptr)
-          {
-            //update tail
-            this->tail = previous;
-          }
           //update length
           this->length--;
+          //finish list processing
+          return;
         }
         //if we have not found the data to delete
         else
@@ -149,7 +179,8 @@ void template <typename T> CircularLinkedList :: delete(T data)
   }
 }
 
-void template <typename T> CircularLinkedList :: delete(int idx)
+
+void template <typename T> CircularDoublyLinkedList :: delete(int idx)
 {
   //if the index exists in the list
   if (idx < 0 || idx >= this->length)
@@ -159,48 +190,53 @@ void template <typename T> CircularLinkedList :: delete(int idx)
     //if the node to delete is the head
     if (idx == 0)
     {
-      //update the head
+      //update the list head
       this->head = this->head->next;
-      //delete the current node
-      delete current;
-      //update the length
-      this->length--;
-      //if the list is now empty
-      if (isEmpty())
+      //if the list would now be empty
+      if(head == nullptr)
       {
-        //update the tail
+        //update tail to nullptr
         this->tail = nullptr;
       }
+      else
+      {
+        //current head has no previous node
+        this->head->previous = this->tail;
+      }
+      //delete the original head
+      delete current;
+      this->length--;
+      //finish list processing
+      return;
     }
     //else traverse the list
     else
     {
-      //remember the node previous to current
-      Node<T> *previous = current;
-      //move current past head
-      current = current->next;
       //locate the node at given index
-      for (int i = 1; i < idx; i++)
+      for (int i = 0; i < idx; i++, current = current->next);
+      //update the previous nodes next link
+      current->previous->next = current->next;
+      //if the current node is the tail
+      if(current->next == nullptr)
       {
-        previous = current;
-        current = current->next;
+        //update tail to the previous node
+        this->tail = current->previous;
       }
-      //update the previous nodes link
-      previous->next = current->next;
-      //delete the desired node
+      else
+      {
+        //link the new next back to previous
+        current->next->previous = current->previous;
+      }
+      //delete the current node
       delete current;
-      //update the length
+      //update length
       this->length--;
-      //if deletion occured at the tail
-      if (idx == this->length)
-      {
-          this->tail = previous;
-      }
     }
   }
 }
 
-void template <typename T> CircularLinkedList :: search(T data)
+
+void template <typename T> CircularDoublyLinkedList :: search(T data)
 {
   //Set traversal pointer to the list head
   Node<T> *current = this->head;
@@ -223,15 +259,15 @@ void template <typename T> CircularLinkedList :: search(T data)
   return false;
 }
 
-void template <typename T> CircularLinkedList :: print(){
+void template <typename T> CircularDoublyLinkedList :: print(){
   //if the list is empty
-  if (isEmpty()) {
+  if (this->isEmpty()) {
     //indicate empty list
     std::cout << "List is empty." << std::endl;
   //else the list has members
   } else {
     //create traversal pointer
-    Node<T> *current = this->head_;
+    Node<T> *current = this->head;
     //indicate start of element sequence
     std::cout << "Singly linked list sequence:" << std::endl;
     //while there are members to traverse
@@ -245,27 +281,10 @@ void template <typename T> CircularLinkedList :: print(){
   }
 }
 
-void template <typename T> CircularLinkedList :: reverse()
-{
-  //create traversal pointers
-  Node<T> *current = this->head;
-  Node<T> *previous = nullptr;
-  Node<T> *next = nullptr;
-  //while there are elements to reverse
-  while(current != nullptr){
-    //the next traversal pointer is updated to the link value of current
-    next = current->next;
-    //the link value of current is linked to the previous node
-    current->next = previous;
-    //the previous traversal pointer is updated to the current node
-    previous = current;
-    //the current traversal pointer is updated to the next value
-    current = next;
-  }
-}
-
-void template <typename T> CircularLinkedList :: concatenate(CircularLinkedList<T> second)
+void template <typename T> CircularDoublyLinkedList :: concatenate(CircularDoublyLinkedList<T> second)
 {
   this->tail->next = second->head;
   this->tail = second->tail;
+  second->head->previous = this->tail;
 }
+*/

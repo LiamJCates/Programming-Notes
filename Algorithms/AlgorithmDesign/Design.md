@@ -1,5 +1,6 @@
 Conceptual Design
-
+The purpose of any application is to get some data as
+input, process or operate on it, and then provide suitable data as output.
 
 Most generally, an algorithm is a set of rules that precisely defines a sequence of operations to achieve a result.
 

@@ -1,3 +1,7 @@
+Before processing the data in any application, we must decide how we want to store data. The answer to that question depends on what kind of operations we want to perform on the data and the frequency of the operations. We should choose the implementation that gives us the best performance in terms of latency, memory, or any other parameter, without affecting the correctness of the application.
+
+A programmer has at their disposal several structures to hold any data in the memory. The choice of the right structure for holding data, also known as a data structure, is crucial for ensuring reliability, performance, and enabling the required functionalities in the application.
+
 A data structure is a particular way of organizing data elements so that operations on them may be performed efficiently.
 
 More formally, a data structure is a collection of data values, the relationships among them, and the operations that can be applied to the collection.
@@ -134,6 +138,9 @@ Sorting:    Arranging data elements of a data structure in a specified order.
 Merging:    Combining elements of two data structures to form a new data structure of the same type.
 
 
+A useful metric for determining the type of data structure to be used is algorithmic complexity, also called time complexity. Time complexity indicates the relative amount of time required, in proportion to the size of the data, to perform a certain operation.
+
+Thus, time complexity shows how the time will vary if we change the size of the dataset. The time complexity of different operations on any data type is dependent on how the data is stored inside it.
 
 [Complexity.png]
 

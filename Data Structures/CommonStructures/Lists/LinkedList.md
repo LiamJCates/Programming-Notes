@@ -16,6 +16,8 @@ in a variety of ways, the most flexible implementation is by using pointers.
 Unlike an array, sequence order is not given by physical placement in memory but by following references that link to each subsequent node.
 
 Each node thus, at minimum, contains a list value and a reference to a location in memory that holds the next node in the sequence.
+
+A linked list can't provide cache locality as the elements are not stored contiguously in memory. Hence, there's no way to bring the next element into the cache without actually visiting it with the pointer stored in the current element. So, although, in theory, it has the same time complexity for traversal as an array, in practice, it gives poorer performance.
 <br/><br/>
 
 ## Singly LinkedList

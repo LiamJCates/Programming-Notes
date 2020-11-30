@@ -1,7 +1,15 @@
 Linked List
+Linked data structures hold the data in multiple chunks of memory, also known as
+nodes, which may be placed at different places in the memory.
 
-Linked list: A list of items, called nodes, in which the order of the nodes is determined by the address, called the link, stored in each node.
+Linked list: A list of items, called nodes, in which the order of the nodes is determined by the address, called the link, stored in each node. The last node contains a NULL pointer link to indicate the end of the list.
+
 The address of the first node in the list is stored in a separate location called the head or first.
+
+A linked list can't provide cache locality at all since the elements are not stored contiguously in memory. Hence, there's no way to bring the next element into the cache
+without actually visiting it with the pointer stored in the current element. So, although,
+in theory, it has the same time complexity for traversal as an array, in practice, it gives
+poor performance.
 
 Operations
 
