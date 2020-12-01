@@ -2,6 +2,10 @@ std::array automates the allocation and deallocation of memory.
 
 std::array is a templatized class that takes two parameters – the type of the elements and the size of the array.
 
+Below is definition of std::array from <array> header file.
+template < class T, size_t N >
+class array;
+
 std::array<int, 10> arr;  // int array size 10
 
 std::array provides operator[], which is same as the C-style array, and avoids the cost of checking whether the index is less than the size of the array.

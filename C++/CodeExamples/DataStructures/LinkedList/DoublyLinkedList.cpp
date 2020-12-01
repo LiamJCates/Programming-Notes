@@ -72,15 +72,21 @@ int template <typename T> DoublyLinkedList :: length()
 
 void template <typename T> DoublyLinkedList :: prepend(T data)
 {
-  //create the node
+  //create the new head node
   Node<T> *tmp = new Node<T>(data, this->head);
-  //update head
-  this->head = tmp;
   //if the list was empty
-  if(this->isEmpty()){
-    //update tail as well
+  if(this->isEmpty())
+  {
+    //the new head is also the tail
     this->tail = tmp;
   }
+  else
+  {
+    //update original head previous link to point to the new head
+    this->head->previous = tmp;
+  }
+  //point head at the new head
+  this->head = tmp;
   //update length
   this->length++;
 }
@@ -88,22 +94,21 @@ void template <typename T> DoublyLinkedList :: prepend(T data)
 void template <typename T> DoublyLinkedList :: append(T data)
 {
 
-  //create a temperary node identifier
-  Node<T> *tmp;
+  //create the new tail node
+  Node<T> *tmp = new Node<T>(data, nullptr, this->tail);
   //if the list was empty
-  if(this->isEmpty()){
-    //create the node with default nullptr for next and previous nodes
-    tmp = new Node<T>(data);
-    //update the head and tail
-    this->head = this->tail = tmp;
+  if(this->isEmpty())
+  {
+    //the new tail is also the head
+    this->head = tmp;
   }
-  //else the list was not empty
-  else{
-    //create the node with nullptr for next and the current tail for previous
-    tmp = new Node<T>(data, nullptr, this->tail);
-    //update the tail
-    this->tail = tmp;
+  else
+  {
+    //append node to the original tail
+    this->tail->next = tmp;
   }
+  //update the tail
+  this->tail = tmp;
   //update length
   this->length++;
 }
@@ -111,10 +116,10 @@ void template <typename T> DoublyLinkedList :: append(T data)
 
 void template <typename T> DoublyLinkedList :: delete(T data)
 {
-  //if the list is not empty traverse the list to search for the data to delete
+  //traverse a non-empty list to search for the data to delete
   if (!this->isEmpty())
   {
-    //Set traversal node to current to the list head
+    //Set traversal node to the list head
     Node<T> *current = this->head;
     //if the data to delete is the head
     if(current->data == data)
@@ -252,7 +257,7 @@ void template <typename T> DoublyLinkedList :: search(T data)
       current = current->next;
     }
   }
-  //indicate search value cloud not be found
+  //indicate search value could not be found
   return false;
 }
 
@@ -284,7 +289,7 @@ void template <typename T> DoublyLinkedList :: reverse()
   //create traversal pointers
   Node<T> *current = this->head;
   Node<T> *previous = nullptr;
-  Node<T> *next = nullptr;
+  Node<T> *next;
   //while there are elements to reverse
   while(current != nullptr){
     //the next traversal pointer is updated to the link value of current
@@ -302,7 +307,10 @@ void template <typename T> DoublyLinkedList :: reverse()
 
 void template <typename T> DoublyLinkedList :: concatenate(DoublyLinkedList<T> second)
 {
+  //link this tail to head of second list
   this->tail->next = second->head;
-  this->tail = second->tail;
+  //link head of second to tail of this list
   second->head->previous = this->tail;
+  //set new tail of this list to tail of second
+  this->tail = second->tail;
 }

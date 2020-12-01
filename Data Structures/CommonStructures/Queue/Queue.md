@@ -8,6 +8,11 @@ deletions can be performed in only one position, namely, the start of the list, 
 Structure
 Either a linked list or dynamic array can be used as the underlying data structure.
 
+If we are aware of the maximum size of the queue in advance,
+then implementation of a queue using arrays will be efficient. But if the
+size is not known in advance, then we will use the concept of a linked list, in
+which dynamic memory allocation takes place.
+
 Linked lists usually allocate memory dynamically for each element. Depending on the overhead of the memory allocator, these allocations are often more time consuming than the copies required by a dynamic array, so a stack based on a dynamic array is usually faster than one based on a linked list. Implementing a linked list is less complicated than implementing a dynamic array, so in an interview, a linked list is probably the best choice for your solution.
 
 Whichever choice you make, be sure to know the pros and cons of both approaches.

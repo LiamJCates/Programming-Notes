@@ -1,5 +1,5 @@
 template <typename T>
-class LinkedListQueue
+class CircularLinkedListQueue
 {
 
     int length;
@@ -15,8 +15,8 @@ class LinkedListQueue
       ~Node();
     };
 public:
-    LinkedListQueue();
-    ~LinkedListQueue();
+    CircularLinkedListQueue();
+    ~CircularLinkedListQueue();
 
     bool isEmpty();
     int length();
@@ -27,18 +27,19 @@ public:
     void print();
 };
 
-template <typename T> LinkedListQueue<T> :: Node :: Node()
-: next(nullptr) { }
+template <typename T> CircularLinkedListQueue<T> :: Node ::
+Node() : next(nullptr) { }
 
-template <typename T> LinkedListQueue<T> :: Node :: Node(T element, Node* ptr = nullptr)
-: data(element), next(ptr) { }
+template <typename T> CircularLinkedListQueue<T> :: Node ::
+Node(T element, Node* ptr = nullptr) : data(element), next(ptr) { }
 
-template <typename T> LinkedListQueue<T> :: Node :: ~Node() {data = 0, next = NULL}
+template <typename T> CircularLinkedListQueue<T> :: Node ::
+~Node() {data = 0, next = NULL}
 
-template <typename T> LinkedListQueue<T>::LinkedListQueue()
+template <typename T> CircularLinkedListQueue<T>::CircularLinkedListQueue()
 : length(0), front(nullptr), rear(nullptr) {}
 
-template <typename T> LinkedListQueue<T> :: ~LinkedListQueue()
+template <typename T> CircularLinkedListQueue<T> :: ~CircularLinkedListQueue()
 {
   Node<T> *next = this->front;
   Node<T> *current = nullptr;
@@ -50,21 +51,21 @@ template <typename T> LinkedListQueue<T> :: ~LinkedListQueue()
 }
 
 //returns whether the list is empty
-bool template <typename T> LinkedListQueue :: isEmpty()
+bool template <typename T> CircularLinkedListQueue :: isEmpty()
 {
     return this->length;
 }
 
 //returns the list's length
-int template <typename T> LinkedListQueue :: length()
+int template <typename T> CircularLinkedListQueue :: length()
 {
     return this->length;
 }
 
-void template <typename T> LinkedListQueue :: add(T data)
+void template <typename T> CircularLinkedListQueue :: add(T data)
 {
-  //create the node
-  Node<T> *tmp = new Node<T>(data);
+  //create the new rear node linked to the front
+  Node<T> *tmp = new Node<T>(data, this->front);
   //if the list was empty
   if(this->isEmpty())
   {
@@ -83,13 +84,13 @@ void template <typename T> LinkedListQueue :: add(T data)
   this->length++;
 }
 
-T template <typename T> LinkedListQueue :: front()
+T template <typename T> CircularLinkedListQueue :: front()
 {
   //return NULL if list is empty else the value of front
   return this->isEmpty() ? NULL : front->data;
 }
 
-T template <typename T> LinkedListQueue :: remove()
+T template <typename T> CircularLinkedListQueue :: remove()
 {
   if(this->isEmpty())
   {
@@ -114,13 +115,13 @@ T template <typename T> LinkedListQueue :: remove()
   return value;
 }
 
-T template <typename T> LinkedListQueue :: rear()
+T template <typename T> CircularLinkedListQueue :: rear()
 {
   //return NULL if list is empty else the value of rear
   return this->isEmpty() ? NULL : rear->data;
 }
 
-void template <typename T> LinkedListQueue :: print(){
+void template <typename T> CircularLinkedListQueue :: print(){
   //if the list is empty
   if (this->isEmpty())
   {
@@ -132,10 +133,12 @@ void template <typename T> LinkedListQueue :: print(){
   {
     //create traversal pointer
     Node<T> *current = this->front;
+    //retrieve the number of nodes to traverse
+    int nodes = this->length;
     //indicate start of element sequence
     std::cout << "Singly linked list sequence:" << std::endl;
     //while there are members to traverse
-    while (current != nullptr) {
+    while (nodes--) {
       //output the element data
       std::cout << current->data << ' ';
       //update traversal pointer
