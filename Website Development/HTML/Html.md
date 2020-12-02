@@ -78,15 +78,17 @@ Contains the content  we want our users to see, where we put our text, where we'
 
 Demo: An HTML Document
 
-\<!DOCTYPE HTML\><br/>
-\<html\><br/>
-\<head\><br/>
-    \<title\> Hello World \</title\><br/>
-\</head\><br/>
-\<body\><br/>
-    Hello World.<br/>
-\</body\><br/>
-\</html\><br/>
+```html
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <title> Hello World </title>
+  </head>
+  <body>
+    Hello World.
+  </body>
+</html>
+```
 
 Begin with DOCTYPE HTML.
 Remember our first element is HTML.
