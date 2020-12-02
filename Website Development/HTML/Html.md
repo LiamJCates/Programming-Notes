@@ -1,4 +1,4 @@
-HTML Fundamentals
+## HTML Fundamentals
 
 HTML's a core technology behind the trillions of web pages that exist today
 
@@ -32,8 +32,7 @@ The markup is not displayed
 markup provides additional information and instructions to clients that render the content
 browsers are the clients that markup and they render the content in the HTML document.
 
-Terms
-
+## Terms
 HTML, Hypertext Markup Language.
 HTTP, Hypertext Transport Protocol.
 The method by which we exchange these HTML documents.
@@ -42,15 +41,21 @@ We have a document on a particular computer, and we want somebody in a browser o
 
 URI and a URL are interchangeable, these are simply addresses Universal Resource Identifier or Resource Locator. There are pieces of that address that indicate the server where that document resides, the folders, and the name of the file.
 
-HTML Documents
+## HTML Documents
 
 The first thing you should see in an HTML document is the DOCTYPE:
-
+\<!--DOCTYPE--\>
 This is information the client can use to understand the structure of the document
 the rest of the document is HTML marked-up text.  
 Today, we typically just see the HTML tag indicating that it's an HTML document in usually HTML5.
 
 If you're looking at an older web page, created several years ago, you may see something similar to this:
+
+```html
+<!DOCTYPE HTML PUBLIC
+  "-//W3C//DTD HTML 4.01//EN"
+  "HTTP:/www.w3.org/TR/html4/strict.dtd">
+```
 
 with a DTD or other type of schema or standard applied to it.
 Again, this tells the browser or the client that the text that follows is going to be structured in such a way that it conforms to that standard.
@@ -331,8 +336,16 @@ generally, those types of formatting of text, in order to get bold, italics, lar
 are handled with those Cascading Style Sheets
 
 Use a span element to wrap the items, give them a particular class,
+\<span class="important"\> WarningL Coffee is hot!\</span\>
 
 and then apply styles to those class of elements.
+```html
+<style>
+  span.important{
+    color:red;
+  }
+</style>
+```
 
 And along those same lines, when we think about the modern use of HTML and the HTML5 that we have today versus the older original versions, we have many more notions of the semantics of the different parts of our document. Let's go back to our document with our divs and our paragraphs and look at some of the new ways in HTML5 we can actually structure that document a little differently with some more semantic tags that provide more context and more understanding of what the content means.
 
@@ -394,6 +407,13 @@ So I can say breadcrumb-item for each of those.
 keeping in mind that we can apply the same class to different items to put them in a class together.
 And finally, I'll add another class of active to this last one. So it's a breadcrumb item, and it also falls under the class active because we can have an item or an element that has multiple classes applied to it.
 
+```html
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">Wired Brain Coffee</li>
+    <li class="breadcrumb-item">Recipes</li>
+    <li class="breadcrumb-item active">Hot Cocoa</li>
+</ol>
+```
 Remember that this doesn't really have an impact unless we use that class.
 In the header we'll add in a reference to a style sheet.
 \<link rel="stylesheet" href="https://stackpath.bootstrap.cdn.com..."/\>
@@ -420,6 +440,12 @@ link metadata, some of the information you can provide about the link such that 
 
 Links
 A link is just another HTML element. We use the \<a\> tag, or anchor, in order to identify that we're creating either the source or target of a link.
+
+```html
+<a href="link.html">
+  Link Text
+</a>
+```
 
 In this first example, you can see we have an anchor tag with an href attribute or a hypertext reference, where we're indicating that the content inside of this anchor is a clickable link that's going to navigate the browser to the target or the href. In this case, we're saying if you click on the text Pluralsight it will take you to the file called Pluralsight.html that sits right next to whatever the current file is.
 
