@@ -78,15 +78,15 @@ Contains the content  we want our users to see, where we put our text, where we'
 
 Demo: An HTML Document
 
-\<!DOCTYPE HTML\>
-\<html\>
-\<head\>
-    \<title\> Hello World \</title\>
-\</head\>
-\<body\>
-    Hello World.
-\</body\>
-\</html\>
+\<!DOCTYPE HTML\><br/>
+\<html\><br/>
+\<head\><br/>
+    \<title\> Hello World \</title\><br/>
+\</head\><br/>
+\<body\><br/>
+    Hello World.<br/>
+\</body\><br/>
+\</html\><br/>
 
 Begin with DOCTYPE HTML.
 Remember our first element is HTML.
@@ -171,11 +171,11 @@ DOCTYPE starts with ! an exclamation point.
 That indicates that this is a processing instruction. It's not part of the document itself necessarily, but it's something that is specifically called out to the browser that's rendering this document as an instruction that we want it to do something.
 
 Another example of that might be a comment.
-```html
+
 \<!--
 comment
 --\>
-```
+
 These processing instructions tell the browser to do something or, in this case, not do something
 
 opening and closing elements, certain things require them and some don't.
