@@ -11,14 +11,25 @@ In computer science and computer programming, a data type is an attribute of eac
 Almost all programming languages explicitly include the notion of data typing, though different languages may use different terminology. A data type generally consists of a concrete implementation understood by the system, and two levels of logical abstraction, one that specifies relationships defined by developers and one that follows a logical model understood by end users.
 
 Components of a data type:
-Concrete Data Type:        Term referencing the concrete implementation used to inform the compiler or interpreter how the underlying system should arrange and manipulate a specific block of memory representing a data unit.
 
-Data Structure:            Term referencing the implementation of abstractions used by system developers to organize, manage, and format a data unit.
+Concrete Data Type
+Term referencing the concrete implementation used to inform the compiler or interpreter how the underlying system should arrange and manipulate a specific block of memory representing a data unit.
 
-Abstract Data Type:        Term referencing the logical abstraction used by end users to understand the mathematical model that dictates the behavior of a data unit of a given type. This model defines the possible values of the data and what are interface exposed by it.
+Data Structure
+Term referencing the implementation of abstractions used by system developers to organize, manage, and format a data unit.
+
+Abstract Data Type
+Term referencing the logical abstraction used by end users to understand the mathematical model that dictates the behavior of a data unit of a given type. This model defines the possible values of the data and what are interface exposed by it.
 
 
 Provided are outlines of both Concrete Data Typing and Abstract Data Typing to serve as a foundation to explore Data Structures. We begin by outlining a real world example of a type of data.
+
+
+
+
+
+
+
 
 
 We begin our data typing journey with a "real-world" example of data with which many are familiar.
@@ -27,11 +38,14 @@ The mathematical integers are one of the most common types of data for which man
 
 Properties of mathematical integers:
 
-Valid Values:         The set of integer values consists of zero (0), the positive natural numbers (1, 2, 3, ...), and their additive inverses (the negative integers, i.e., −1, −2, −3, ...).
+Valid Values:
+The set of integer values consists of zero (0), the positive natural numbers (1, 2, 3, ...), and their additive inverses (the negative integers, i.e., −1, −2, −3, ...).
 
-Format:            We represent integer values in written format as numerals, using Arabic numbers (0,1,2, … 8, 9) arranged as numeric digits, where each numeral is a sequence of digits which may be of arbitrary (any) length.
+Format:
+We represent integer values in written format as numerals, using Arabic numbers (0,1,2, … 8, 9) arranged as numeric digits, where each numeral is a sequence of digits which may be of arbitrary (any) length.
 
-Operations:        The set of integers is "closed" under certain arithmetic operations, like addition and multiplication. A set is closed under an operation if performance of that operation on members of the set always produces a member of that set. If we add or multiply two integer values together the result will always be another integer value.
+Operations:
+The set of integers is "closed" under certain arithmetic operations, like addition and multiplication. A set is closed under an operation if performance of that operation on members of the set always produces a member of that set. If we add or multiply two integer values together the result will always be another integer value.
 (An operation like division involves all real numbers (result values may require decimal digits))
 
 
@@ -44,40 +58,43 @@ In computer science, an integer is a data unit of the type which computationally
 Concrete Data Type
 
 A data types concrete implementation enforces behavior by
-Constraining the values that can be assigned to it
-Determining the way its value is stored by the computer
-Defining the operations that the system can performed using it
+  Constraining the values that can be assigned to it
+  Determining the way its value is stored by the computer
+  Defining the operations that the system can performed using it
 
 Concrete data types can generally be broken down into two broad classes:
-Primitive data types
-Composite data types
+  Primitive data types
+  Composite data types
 
 Primitive Types
 
 A primitive data type is either of the following:
-Basic type:    A data type provided by a programming language as a basic building block.
-Built-in type:    A data type for which the programming language provides built-in support.
+Basic type: A data type provided by a programming language as a basic building block.
+Built-in type: A data type for which the programming language provides built-in support.
 
 In most programming languages, all basic data types are built-in.
 A single mathematical integer can be represented by a data unit of the integer type, a primitive type common to many, if not all, systems.
 
 Properties of computational integer's concrete data type:
 
-Valid Values:         The value of a data unit with an integral type is the mathematical integer that it corresponds to. Integral types may be unsigned (capable of representing only non-negative integers) or signed (capable of representing negative integers), this is system dependent.
+Valid Values:
+The value of a data unit with an integral type is the mathematical integer that it corresponds to. Integral types may be unsigned (capable of representing only non-negative integers) or signed (capable of representing negative integers), this is system dependent.
 
-(Storage) Format:    The internal representation of integer data is the way the value is stored in the computer's memory. Unlike mathematical integers, a typical computational integer data unit has some minimal and maximum possible value. Integers are commonly represented in a computer as a group of binary digits (bits). The order of the memory bytes storing the bits varies; see endianness. The width or precision of an integral type is the number of bits in its representation. There are four well-known ways to represent signed numbers in a binary computing system. The most common is two's complement, which allows a signed integral type with n bits to represent numbers from −2(n−1) through 2(n−1) −1, where as an unsigned type typically represents the non-negative values 0 through 2(n) −1. Other possibilities include offset binary, sign-magnitude, and ones' complement. Some computer languages define integer sizes in a machine-independent way; others have varying definitions depending on the underlying processor word size (the natural unit of data used by a particular processor design). Not all language implementations define variables of all integer sizes, and defined sizes may not even be distinct in a particular implementation.
+(Storage) Format:
+The internal representation of integer data is the way the value is stored in the computer's memory. Unlike mathematical integers, a typical computational integer data unit has some minimal and maximum possible value. Integers are commonly represented in a computer as a group of binary digits (bits). The order of the memory bytes storing the bits varies; see endianness. The width or precision of an integral type is the number of bits in its representation. There are four well-known ways to represent signed numbers in a binary computing system. The most common is two's complement, which allows a signed integral type with n bits to represent numbers from −2(n−1) through 2(n−1) −1, where as an unsigned type typically represents the non-negative values 0 through 2(n) −1. Other possibilities include offset binary, sign-magnitude, and ones' complement. Some computer languages define integer sizes in a machine-independent way; others have varying definitions depending on the underlying processor word size (the natural unit of data used by a particular processor design). Not all language implementations define variables of all integer sizes, and defined sizes may not even be distinct in a particular implementation.
 
-Operations:        Operations performed with computational integers are those defined by the system, typically these operations are consistent with operations on the mathematical integers, additionally functions that take the computational integer data type as their parameters, analogous to mathematical functions.
+Operations:
+Operations performed with computational integers are those defined by the system, typically these operations are consistent with operations on the mathematical integers, additionally functions that take the computational integer data type as their parameters, analogous to mathematical functions.
 
 The primitive data types available for a program's implementation is dependent upon the specific programming language being used.  
 
 Typical primitive types include:
-Character (character, char);
-Integer (integer, int, short, long, byte) with a variety of precisions;
-Floating-point number (float, double, real, double precision);
-Fixed-point number (fixed) with a variety of precisions and a programmer-selected scale.
-Boolean, logical values true and false.
-Reference (also called a pointer or handle or descriptor), a value referring to another object.
+  Character (character, char)
+  Integer (integer, int, short, long, byte) with a variety of precisions
+  Floating-point number (float, double, real, double precision)
+  Fixed-point number (fixed) with a variety of precisions and a programmer-selected scale.
+  Boolean, logical values true and false.
+  Reference (also called a pointer or handle or descriptor), a value referring to another object.
 
 The above primitives are generally supported more or less directly by computer hardware, so operations on primitives are usually fairly efficient ( with the possible exception of floating point values)
 
@@ -113,12 +130,12 @@ The assortment of primitive and composite types a language possesses and how the
 Abstract Data Type
 An abstract data type (ADT) is the mathematical model that serves as the interface visible to the end user of a data type.
 
-Abstract data type (ADT): A data type that separates the logical properties from the implementation details.
+Abstract data types (ADT) separate their logical properties from the implementation details.
 
 Like any other data type such as an integer, an ADT has three things associated with it:
-the name of the ADT, called the type name;
-the set of values belonging to the ADT, called the domain;
-the set of operations on the data. 
+the name of the ADT, called the type name
+the set of values belonging to the ADT, called the domain
+the set of operations on the data.
 
 While concrete data typing is beneficial in specifying meaningful code which defines how the implementer or programmer intends the compiler or interpreter to enforce data behavior. An abstract data type is defined by its behavior from the point of view of an end user, of the data, specifically in terms of possible values, possible operations on data of this type, and the behavior of these operations.
 
@@ -129,9 +146,9 @@ ADTs are a theoretical concept, in computer science, used in the design and anal
 We again use integers as an example when first exploring abstract data types. We discussed Integers as an example of a primitive data type and briefly discussed the concrete internal representation using bits. However, the complexity of this underlying representation is exactly what is avoided when we consider the Integer through a higher level of abstraction. As an end user, we are unconcerned with how the individual bits of an integer value are moved around the computer while they are stored and processed. The complexity of these operations and the systems concrete representation are abstracted away so that we may focus on what we would like to use the integer data for, rather than how the system performs integer operations.
 
 When we consider the integers through the lens of the mathematical model capture by their ADT, we understand we are working with:
-The values ..., −2, −1, 0, 1, 2, ...,
-The operations of addition, subtraction, multiplication, and division, together with greater than, less than, etc., which proceed according to familiar mathematics (with care for integer division).
-The "behavior" we know to apply to mathematical integers, which includes obeying various axioms (associativity and commutativity of addition, etc.), and preconditions on operations (cannot divide by zero).
+  The values ..., −2, −1, 0, 1, 2, ...,
+  The operations of addition, subtraction, multiplication, and division, together with greater than, less than, etc., which proceed according to familiar mathematics (with care for integer division).
+  The "behavior" we know to apply to mathematical integers, which includes obeying various axioms (associativity and commutativity of addition, etc.), and preconditions on operations (cannot divide by zero).
 
 All of this understanding of what an integer is and how to work with them is independent of their representation by the computer. We are free to imagine them operating as they would "normally" following the model of mathematics by which humans perform arithmetic calculations.
 
@@ -150,21 +167,20 @@ Abstract data types are purely theoretical entities, used (among other things) t
 
 The mathematical model presented by an abstract data type contrasts with its underlying type system and data structures, which represent the concrete organization of data at the system level. While a computational system typically has only one way of expressing concrete data types, an ADT may be implemented by specific data types or data structures in many ways, each providing a logically equivalent interface. Implementing an ADT means providing one procedure or function for each abstract operation. The ADT instances are represented by some concrete data structure that is manipulated by those procedures, according to the ADT's specifications.
 
-Examples
-Some common ADTs, which have proved useful in a great variety of applications, are
-Container
-List
-Set
-Multiset
-Map
-Multimap
-Graph
-Tree
-Stack
-Queue
-Priority queue
-Double-ended queue
-Double-ended priority queue
+Example common ADTs, proven useful in a great variety of applications:
+  Container
+  List
+  Set
+  Multiset
+  Map
+  Multimap
+  Graph
+  Tree
+  Stack
+  Queue
+  Priority queue
+  Double-ended queue
+  Double-ended priority queue
 
 An ADT consists of two parts:
 1. Declaration of data

@@ -1,0 +1,25 @@
+While every node in a binary search tree contains three parts, that is, an information part and two pointers LEFT and RIGHT which point to the left and
+right subtrees.
+
+A Multiway search tree is a tree which contains (M – 1) values per node. It also
+has M subtrees. In an M-way search tree, M is called the degree of the
+node. For example, if the value of M = 3 in an M-way search tree, then
+the tree will contain two values per node and it will have three subtrees.
+When an M-way search tree is not empty, it has the following properties:
+1. Each node in an M-way search tree is of the following structure:
+
+n | P0 | K0 | P1 | K1 | P2 | K2 _ _ _ _ _ _ Pn-1 | Kn-1 | Pn |
+
+where
+P0, P1, P2, . . . Pn are the pointers to the node’s subtrees
+K0, K1, K2, . . . Kn are the key values stored in the node.
+
+2. The key values in a node are stored in ascending order, that is, Ki < Ki+1,
+where i = 0, 1, 2, . . . n-2.
+
+3. All the key values stored in the left subtree are always less than the root
+node.
+
+4. All the key values stored in the right subtree are always greater than the root node.
+
+5. The subtrees pointed to by Pi for i = 0, 1, 2, . . . n are also M-way search trees.

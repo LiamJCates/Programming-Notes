@@ -5,19 +5,109 @@ A graph is a data structure that consists of a set of nodes and a set of edges t
 A graph is usually defined as G = (V, E)
 where V is the set of vertices and E is the set of edges
 
-There are two standard ways to represent a graph as a data structure
-adjacency matrix
-a collection of adjacency lists
+Thus, a graph G can be defined as an ordered set of vertices and edges
+G = (V, E), where V(G) represents the set of vertices and E(G) represents the set
+of edges that connect these vertices
 
-Directed Graphs
 
-A graph is like a tree but it can sprawl in all directions at once. The nodes in a graph are not necessarily connected, and nodes can be connected to themselves as well as to other nodes. Two nodes may have more than one connection between them. In terms of structure, it’s almost a free-for-all.
+There are two types of graphs:
+Undirected Graph – In an undirected graph, the edges do not have
+any direction associated with them. An edge between two verticies can be traversed in either direction
 
-As if node connections weren’t already complicated, the connections between nodes (called edges) can be directed, meaning they can be traversed in only one direction. After you’ve gone over a directed edge, you can’t go back to the node you just left unless you go back by another route.
+Directed Graph – In a directed graph, the edges have directions associated with them and can only be traversed in their associated direction
+
+
+
+
+Terms
+Degree of a vertex/node – The degree of a node is the total number
+of edges incident to that particular node.
+
+In-degree of a node – The in-degree of a node is equal to the
+number of edges arriving at that particular node.
+
+Out-degree of a node – The out-degree is equal to the number of
+edges leaving that particular node.
+
+Isolated Node/Vertex – A node having zero edges is known as the
+isolated node. The degree of such a node is zero.
+
+Pendant Node/Vertex – A node having one edge is known as a
+pendant node. The degree of such a node is one.
+
+
+Adjacent Nodes – For every edge e = (A, B) that connect nodes A
+and B, the nodes A and B are said to be the adjacent nodes.
+
+Parallel Edges – If there is more than one edge between the same
+pair of nodes, then they are known as parallel edges.
+
+Loop – If an edge has a starting and ending point at the same node,
+that is, e = (A, A), then it is known as a loop
+
+Simple Graph – A graph G(V, E) is known as a simple graph if it does
+not contain any loop or parallel edge.
+
+Complete Graph – A graph G(V, E) is known as a complete graph if
+and only if every node in the graph is connected to another node and
+there is no loop on any of the nodes.
+
+Regular Graph – A regular graph is a graph in which every node has
+the same degree. If every node has a degree r, then the graph is called
+a regular graph of degree r. In the given figure, all the nodes have the
+same degree, that is, 2; hence, it is known as the 2-regular graph.
+
+Multi-graph - A graph G(V, E) is known as a multi-graph if it contains
+either a loop, parallel edges, or both.
+
+Cycle – It is a path containing one or more edges which start from a
+particular node and also terminate at the same node.
+
+Cyclic Graph – A graph which has cycles in it is known as a cyclic
+graph.
+
+Acyclic Graph – A graph without any cycles is known as an acyclic
+graph.
+
+Connected Graph – A graph G(V, E) is known as a connected graph
+if there is a path from any node in the graph to another node in the
+graph such that for every pair of distinct nodes, there must be a path.
+
+Strongly Connected Graph – A directed graph is said to be a
+strongly connected graph if there exists a dedicated path between
+every pair of nodes in the graph. For example, if there are two nodes,
+say P and Q, and there is a dedicated path from P to Q, then there
+must be a path from Q to P.
+
+Size of a graph – The size of a graph is equal to the total number of
+edges present in the graph.
+
+Weighted Graph – A graph G(V, E) is said to be a weighted graph if
+all the edges in the graph are assigned some data. This data indicates
+the cost of traversing the edge.
+
+
+
+
+
+
+
+
+
+Graphs can be represented in a computer’s memory in either of the
+following ways:
+1. Sequential Representation of Graphs using Adjacency Matrix
+2. Linked Representation of Graphs using Adjacency List
+
+
+
+
+
+
+
 
 Understanding graph traversal Interviewers often want to check that you have at least a basic understanding of tree and graph traversal. You might recall the two basic approaches: depth fi rst, which means following a path all the way down to a leaf node before you follow adjacent nodes, and breadth fi rst, where you visit all children of a node before visiting any further-removed descendants of that node. Algorithms that perform breadth-fi rst traversal normally use a queue (FIFO) to keep track of nodes, whereas algorithms that perform depth-fi rst traversal normally use a stack (LIFO). When visiting nodes in a depth-fi rst algorithm the three distinct orders of traversal are preorder, inorder, and postorder
 
-Anyone would be lucky to have an awesome father like you in their lives, I know I am! Happy Father's Day
 Representation of a graph
 
 An adjacency list is simply a list of edges between nodes in a graph.
@@ -41,21 +131,3 @@ A, then half of an adjacency matrix is wasted space—you don’t need
 to store both edges when one edge implies the other.
 Use a matrix when you have fewer nodes with dense connections
 and a list when you have many nodes with sparse connections.
-
-
-Graph Algorithms
-
-Graph Searching
-Searching a graph means systematically following the edges of the graph to visit its vertices
-
-BFS and DFS
-
-
-
-
-A breadth-fi rst search (BFS) algorithm visits the immediate children
-of a node before it goes any deeper. A depth-fi rst search (DFS) goes
-as deep as it can down a path before visiting sibling nodes (that is,
-before visiting nodes that share the same parent).
-A breadth-fi rst search typically uses a Queue (FIFO) to keep track of
-nodes, whereas a depth-fi rst search typically uses a Stack (LIFO).
