@@ -41,7 +41,8 @@ If the data set is too large for memory, you may need to split it into smaller c
 Adding new data to a sorted list can be done efficiently with certain algorithms, but those same algorithms have poor performance on randomly ordered data.
 
 ➤ How much additional memory does the algorithm require?
-An in-place sorting algorithm sorts the data without using any additional memory, such as by swapping elements in an array. When memory is at a premium, an in-place algorithm may be a better choice than one with otherwise superior efficiency.
+An in-place sorting algorithm sorts the data using a constant amount of additional memory for any input size.
+in-place sorting is achieved through methods such as swapping elements in an array. When memory is at a premium, an in-place algorithm may be a better choice than one with otherwise superior efficiency.
 
 ➤ Is relative order preserved?
 A stable sorting algorithm preserves the relative order of data elements that are otherwise identical for sorting purposes. (In other words, if elements A and B have identical key values and A precedes B in the original data set, A will still precede B after a stable sorting.)

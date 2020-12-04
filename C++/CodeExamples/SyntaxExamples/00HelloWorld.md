@@ -4,7 +4,7 @@ int main()
   std::cout << "Hello, World!" << std::endl;
 }
 
-It is tradition to discuss a HelloWorld program in the start which will print the phrase “Hello, World!” to the output screen. So let us start discussing it.
+It is tradition to discuss a HelloWorld program in the start which will print the phrase “Hello, World!” to the output screen.
 
 This is a small program but it contains many common features of all the C++ programs.
 1. This program begins with “#include <iostream>”:

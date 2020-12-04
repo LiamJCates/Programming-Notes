@@ -6,6 +6,8 @@ Recursive algorithms in general typically follow a divide-and-conquer approach
 
 Divide and Conquer approach uses a recursive structure to solve a given problem by self reference, dividing the problem into smaller subproblems that are instances of the original problem until they are so small that they can be solved in a straightforward manner.
 
+When the problems are large enough to solve recursively we call this the recursive case.
+
 Recursive Case: when the problem instances are large and must be solved by recursively splitting.
 Base Case: When the problem becomes small enough, we halt recursion and say that the recursion “bottoms out” and a simple solution can be found.
 
@@ -19,7 +21,8 @@ When we keep on dividing the subproblems into even smaller sub-problems, we may 
 
 
 
-The divide-and-conquer paradigm involves three recursive steps Divide Conquer Merge
+The divide-and-conquer paradigm involves three recursive steps
+Divide Conquer Merge
 
 Divide/Break
 This step involves breaking the problem into smaller sub-problems. Sub-problems should represent a part of the original problem. This step generally takes a recursive approach to divide the problem until no sub-problem is further divisible. At this stage, sub-problems become atomic in nature but still represent some part of the actual problem.
@@ -38,28 +41,3 @@ Binary Search
 Strassen's Matrix Multiplication
 Closest pair (points)
 There are various ways available to solve any computer problem, but the mentioned are a good example of divide and conquer approach.
-
-
-
-Merge Sort
-
-Divide        n-element sequence into two subsequences of n/2 elements each.
-Conquer     Sort the two subsequences recursively using merge sort.
-Combine    Merge the two sorted subsequences to produce the sorted answer
-
-Our MERGE procedure takes time 𝜽(n), where n = r - p + 1 is the total number of elements being merged
-
-if we call MERGE-SORT on n elements when n is odd, we end up with subproblems of size
-⌊n/2⌋ and ⌈n/2⌉
-In practice, we neglect certain technical details when we state and solve recurrences including omission of floors, ceilings, and boundary conditions.
-
-The recurrence describing the worst-case running time of MERGE-SORT is really
-
-T(n) = 𝜽(1)                       for n = 1
-       T(⌊n/2⌋) + T(⌈n/2⌉) + 𝜽(n)   for n > 1
-
-The worst-case running time T(n) of the MERGE-SORT procedure by the recurrence
-T(n) = 𝜽(1)                       for n = 1
-       2T(n/2) + 𝜽(n)             for n > 1
-
-Solution to: T(n) = 𝜽(n log n) 

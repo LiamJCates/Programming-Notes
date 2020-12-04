@@ -1,4 +1,4 @@
-Introduction to Algorithm Analysis
+## Introduction to Algorithm Analysis
 
 What is Algorithm Analysis?
 A method to estimate the resources required by an algorithm
@@ -32,7 +32,7 @@ For example, during sorting, the input size references the number of items to be
 
 
 
-                              Profile Analysis
+## Profile Analysis
 
 What is Profile Analysis?
 The most intuitive approach might be to implement an algorithm and execute it with test input, recording empirical data such as the resulting runtime and memory space usage, a process called  "profiling". These statistics comprise the implementation's "profile", which may then be compared to the profile of another implementation.
@@ -66,12 +66,18 @@ Algorithm Analysis evaluates the effect of a change in input size, no matter the
 
 
 
-                              Platform Independence
+## Platform Independence
 
 How is Algorithm Analysis platform independent?
 Ultimately, Algorithm Analysis allows for the comparison of algorithms without implementing them.
 
-In order to analyze algorithms in a formal framework, we need a model of computation. Most typically we use the Uniform Cost Model.
+In order to analyze algorithms in a formal framework, we need a model of computation.
+
+Before we can analyze an algorithm, we must model the implementation technology, including the resources and their costs
+
+A computational model, real or imaginary, is a device that is used to perform instructions of the algorithm
+An algorithms execution specifics is determined by the computational model used
+Most typically we use the Uniform Cost Model.
 
 Uniform Cost Model characteristics:
 ○ Sequential execution:
@@ -97,7 +103,7 @@ While weaknesses exist, the Uniform Cost Model provides a simple, effective, and
 
 
 
-                            Input Independence
+## Input Independence
 
 How is Algorithm Analysis independent of specific input?
 To understand this we must first understand complexity.
@@ -114,7 +120,7 @@ However, for different inputs of the same size, the complexity of an algorithm m
 
 
 
-                            Complexity Functions
+## Complexity Functions
 
 The goal of complexity analysis is to provide bounds for the execution costs of an algorithm's implementation.
 
@@ -136,7 +142,7 @@ Average-case analysis attempts to reflect typical behavior, but is difficult to 
 
 
 
-                                Complexity Types
+## Complexity Types
 
 Time Factor:
     measures the number of basic operations required by the algorithm.
@@ -152,7 +158,7 @@ Generally, when "complexity" is used without being further specified, this is th
 
 
 
-                                Time Complexity
+## Time Complexity
 
 Time complexity of an algorithm is defined as the numerical function T(), called the time function, which represents the amount of time required by the algorithm to run to completion. Time requirements for a given problem instance is thus represented by T(n), where n is the size of the input data, and is measured by the number of basic operations, provided each step consumes constant time.
 
@@ -179,7 +185,7 @@ Tbest (N) ≤ Tavg (N) ≤ Tworst (N)
 
 
 
-                              Space Complexity
+## Space Complexity
 
 The space required by an algorithm is equal to the sum of two components
 The constant space required to store certain data and variables, that are independent of the size of the problem. For example, local variables and constants used, program size, etc.

@@ -1,13 +1,5 @@
 Graph Algorithms
 
-Graph Searching
-Searching a graph means systematically following the edges of the graph to visit its vertices
-
-BFS and DFS
-
-A breadth-fi rst search (BFS) algorithm visits the immediate children
-of a node before it goes any deeper. A depth-fi rst search (DFS) goes
-as deep as it can down a path before visiting sibling nodes (that is,
-before visiting nodes that share the same parent).
-A breadth-fi rst search typically uses a Queue (FIFO) to keep track of
-nodes, whereas a depth-fi rst search typically uses a Stack (LIFO).
+Graph Traversals
+Topological Sort
+Minimum Spanning Tree

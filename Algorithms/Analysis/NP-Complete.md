@@ -1,5 +1,48 @@
 Complexity Theory
 
+Why are NP-complete problems interesting?
+nobody has ever proven that an efficient algorithm for NP-complete problems cannot exist.
+
+No one knows whether or not efficient algorithms exist for
+NP-complete problems.
+
+The set of NP-complete problem algorithms has the remarkable property that
+if an efficient algorithm exists for one of them, an efficient algorithms exist for all of them.
+
+This relationship among the NP-complete problem algorithms.
+If an efficient algorithm exists for any one of them, it does for all.
+
+Several NP-complete problems are similar, to problems with
+existing efficient algorithms
+
+a small change to the problem statement can cause
+a big change to the efficiency of the best known algorithm.
+
+You should know NP-complete problem definitions and situations because
+some of them arise surprisingly often in real applications.
+
+If you are called upon to produce an efficient algorithm for an NP-complete problem, you are
+likely to spend a lot of time in a fruitless search. 
+
+If you can show that the problem is NP-complete, you can instead
+spend your time developing an efficient estimate algorithm
+
+Each day, delivery trucks make their drop, then return to the depot. Select an order of stops with the lowest overall distance traveled by each truck.
+“traveling-salesman problem,”
+
+“traveling-salesman problem,” is NP-complete meaning it's solution
+has no known efficient algorithm.
+
+NP-complete problems, under certain assumptions, has approximate algorithms that give
+a result not too far above the smallest possible.
+
+How are the shortest-path and traveling-salesman problems similar?
+The correct solution to both selects an order of stops with the lowest overall distance traveled.
+
+How are the shortest-path and traveling-salesman problems different?
+Shortest path has a discrete start and end point, TSM requires they be the same.
+Shortest path is polynomially solvable but travelling -salesman is NP-Complete
+
 The goal of complexity theory is to understand the nature of efficient computation.
 analysis of algorithms enables us to classify algorithms according to the amount of resources they will consume.
 A nice YouTube video on P = NP:

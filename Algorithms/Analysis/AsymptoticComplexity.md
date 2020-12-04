@@ -1,4 +1,11 @@
 Asymptotic Analysis
+An algorithms asymptotic efficiency is determined by order of growth
+For sufficient input sizes only a runtime's order of growth is relevant
+
+An asymptotically more efficient algorithm is best for all but very small inputs
+
+We use asymptotic notation primarily to describe the running times of algorithms
+
 
 When analyzing the resource requirements of a given algorithm represented by some function f(n), the worst and best case scenarios work to establish another function g(n). g(n) approximates either an upper or lower bound for f(n) at n of sufficient size.
 
@@ -51,21 +58,36 @@ Following are the commonly used asymptotic notations to calculate the running ti
 Ο Notation
 Ω Notation
 θ Notation
-Example
 
+
+Use big-𝜽() notation if the algorithms worst case is not significantly different form the best case use
+
+Use big-O() notation if the algorithms worst case is significantly different from the best case use
+
+Use big-O() notation when unsure of which growth classification use
+
+
+Example
+```
 public static int exampleFunction( int n ) {
-int partialSum;
-partialSum = 0;
-for( int i = 1; i <= n; i++ )
-partialSum += i * i * i;
-return partialSum;
+  int partialSum;
+  partialSum = 0;
+
+  for( int i = 1; i <= n; i++ )
+    partialSum += i * i * i;
+
+  return partialSum;
 }
-Line 2 Declaration costs 0                        0
-Line 3 Assignment costs 1                        1
-Line 4 costs 1 to initialize, N + 1 tests, and N increments            2N + 2
-Line 5 two multiplications, an addition and assignment N times        4N
-Line 6 Return costs 1                            1
-We ignore method call and returning costs, for a total of         6N + 4
+```
+| Line | Purpose | Cost |
+|------|---------|------|
+| 2 | Declaration | 0 |
+| 3 | Assignment | 1 |
+| 5 | one initialization, N + 1 tests, and N increments | 2N + 2 |
+| 6 | two multiplications, an addition and assignment N times | 4N |
+| 8 | Return | 1 |                            1
+
+We ignore method call and returning costs, for a total of:  6N + 4
 
 If we had to perform all this work every time we needed to analyze a program, the task would quickly become infeasible. Fortunately, since we are giving the answer in terms of Big-Oh, there are lots of shortcuts that can be taken without affecting the final answer.
 
@@ -260,7 +282,7 @@ This notation gives the tight upper bound of the given function.
 Generally, it is represented as f(n) = O(g(n)).
 That means, at larger values of n, the upper bound of f(n) is g(n).
 
-O-notation implies that f(n)...
+O-notation implies that f(n)
 |f| is bounded by g up to constant factor asymptotically
 
 
@@ -271,16 +293,21 @@ g(n) is an asymptotic tight upper bound for f(n). Our objective is to give the s
 
 Generally we discard lower values of n. That means the rate of growth at lower values of n is not important. In the figure, n0 is the point from which we need to consider the rate of growth for a given algorithm. Below n0, the rate of growth could be different. n0 is called threshold for the given function.
 
-To represent an asymptotic upper bound, we use...
-We use O-notation to represent...
+To represent an asymptotic upper bound, we use O-notation to represent
 
 Big O limit Definition
 
+lim n → ∞ f(n) / g(n) = 0
 
-through O-notation we represent g(n) as the upper bound of f(n) through...
+through O-notation we represent g(n) as the upper bound of f(n) through
 
 f(n) = O(g(n)) formal definition
-(notation)...
+∀k > 0, ∃n0 ∀n > n0 | f(n) | ≤ k * g(n)
+
+For all values of k greater than zero
+there exists some value initial value n where
+for all values of n greater than the initial value of n
+the value of a function f(n) is less than or equal to a constant k * g(n)
 
 O(f(n)) is the set of functions with smaller or the same order of growth as f(n). For example; O(n2) includes O(1), O(n), O(nlogn), etc.
 
@@ -386,20 +413,20 @@ there exist positive constants c and n0 such that 0 ≤ cg(n) ≤ f(n) for all n
 g(n) is an asymptotic tight lower bound for f(n).
 Our objective is to give the largest rate of growth g(n) which is less than or equal to the given algorithm’s rate of growth f(n).
 
-Ω-notation implies that f(n)...
+Ω-notation implies that f(n)
 f is bounded below by g asymptotically
 
 Big Ω limit Definition
-(notation)...
+(notation)
 
-through Ω-notation we...
-We represent g(n) as the lower bound of f(n) through...
+through Ω-notation we
+We represent g(n) as the lower bound of f(n) through
 
 f(n) = Ω(g(n)) formal definition
-(notation)...
+(notation)
 
-To represent an asymptotic lower bound, we use...
-We use Ω-notation to represent...
+To represent an asymptotic lower bound, we use
+We use Ω-notation to represent
 
 Big Ω in terms of Big O
 f(n) = Ω(g(n)) AND g(n) = O(f(n))
@@ -445,10 +472,10 @@ Big Θ -notation
 f(n) = Θ(g(n))
 
 Big Θ -notation implies
-(notation)...
+(notation)
 
 Big Θ limit Definition
-(notation)...
+(notation)
 
 f(n) = Θ(g(n)) if and only if
 f(n) = O(g(n)) and f(n) = Ω(g(n)).
@@ -462,10 +489,10 @@ f(n) can be “sandwiched” between c1 ⋅ g(n) and c2 ⋅ g(n), for sufficient
 f(n) = Θ(g(n)) formal definition
 
 
-(notation)...
+(notation)
 
-f(n) = Θ(g(n)) implies f(n) = O(g(n)), since...
-Θ notation is a stronger notion than O-notation so...
+f(n) = Θ(g(n)) implies f(n) = O(g(n)), since
+Θ notation is a stronger notion than O-notation so
 
 Written set-theoretically, we have Θg(n)
 ⊆ O(g(n))/Ω(g(n))
@@ -475,22 +502,22 @@ O(f(n))
 
 
 small o-notation
-(notation)...
+(notation)
 
-f(n) = small o(g(n)) if and only if...
-f(n) = O(g(n)) and  f(n) ≠ Θ(g(n)) (notation)...
+f(n) = small o(g(n)) if and only if
+f(n) = O(g(n)) and  f(n) ≠ Θ(g(n)) (notation)
 
 small o-notation implies
-(notation)...
+(notation)
 
 small o-notation formal definition
-(notation)...
+(notation)
 
 small o-notation limit
-(notation)...
+(notation)
 
-small o-notation implies that...
-f grows much slower than g for sufficiently large n when using...
+small o-notation implies that
+f grows much slower than g for sufficiently large n when using
 
 
 
@@ -511,13 +538,13 @@ Big O notation logically means f(n) ≤ g(n)
 
 Asymptotically f(n) is no worse than g(n) if f(n) grows no faster than g(n)
 
-Big Θ(g(n)) notation, logically means f(n) ≈ g(n)...
+Big Θ(g(n)) notation, logically means f(n) ≈ g(n)
 
 Asymptotically, f(n) is equivalent to g(n) if f(n) grows the same as g(n)
 
 Big Ω(g(n)) notation logically means f(n) ≥ g(n)
 
-f(n) is asymptotically no better than g(n) if f(n) grows at least as fast as g(n)...
+f(n) is asymptotically no better than g(n) if f(n) grows at least as fast as g(n)
 
 
 
@@ -532,14 +559,14 @@ f(n) is asymptotically no better than g(n) if f(n) grows at least as fast as g(n
 
 The running time of insertion sort is not Ω(n^2), since there exists an input for which insertion sort runs in Θ(n) time (e.g., when the input is already sorted).
 
-We can say insertion sort's worst-case is Ω(n^2), since...
-There exists an input that causes insertion sort to take a maximumΩ(n^2) time so...
+We can say insertion sort's worst-case is Ω(n^2), since
+There exists an input that causes insertion sort to take a maximumΩ(n^2) time so
 
-if f(n) = O(g(n)) and p(n) = O(h(n)) then f(n) + p(n) =...
-f(n) + p(n) = max(O(g(n)), O(h(n))) if...
+if f(n) = O(g(n)) and p(n) = O(h(n)) then f(n) + p(n) =
+f(n) + p(n) = max(O(g(n)), O(h(n))) if
 
-if f(n) = O(g(n)) and p(n) = O(h(n)) then f(n) ⋅ p(n) =...
-f(n) ⋅ p(n) = O( g(n) ⋅ h(n) ) if...
+if f(n) = O(g(n)) and p(n) = O(h(n)) then f(n) ⋅ p(n) =
+f(n) ⋅ p(n) = O( g(n) ⋅ h(n) ) if
 
 
 If f(n) is a polynomial function of degree k then f(n) = Θ(n^k)
@@ -556,20 +583,23 @@ Transitivity of f(n) = o(g(n)) and g(n) = o(h(n)) implies f(n) = o(h(n));
 
 Transitivity of f(n) = ω(g(n)) and g(n) = ω(h(n)) implies f(n) = ω(h(n)):
 
-Reflexivity of f(n) means f(n) = O(f(n)) = Ω(f(n)) = Θ(f(n))
+Reflexivity of f(n) means
+f(n) = Θ(f(n))
+f(n) = O(f(n))
+f(n) = Ω(f(n))
 
 Symmetry f(n) = Θ(g(n)) if and only if g(n) = Θ(f(n))
 
 Transpose symmetry f(n) = O(g(n)) if and only if g(n) = Ω(f(n))
 Transpose symmetry f(n) = o(g(n)) if and only if g(n) = ω(f(n))
 
-Properties hold for asymptotic notations allow us to draw an analogy between the comparison of two functions f and g and…
+Properties hold for asymptotic notations allow us to draw an analogy between the comparison of two functions f and g
 
-The comparison of two real numbers a and b; f(n) = O(g(n)) is like         a ≤  b
-The comparison of two real numbers a and b; f(n) = Ω(g(n)) is like         a ≥  b
-The comparison of two real numbers a and b; f(n) = Θ(g(n))  is like     a = b
-The comparison of two real numbers a and b; f(n) = o(g(n)) is like         a < b
-The comparison of two real numbers a and b; f(n) = ω(g(n)) is like         a > b
+The comparison of two real numbers a and b; f(n) = O(g(n)) is like a ≤  b
+The comparison of two real numbers a and b; f(n) = Ω(g(n)) is like a ≥  b
+The comparison of two real numbers a and b; f(n) = Θ(g(n)) is like a = b
+The comparison of two real numbers a and b; f(n) = o(g(n)) is like a < b
+The comparison of two real numbers a and b; f(n) = ω(g(n)) is like a > b
 
 We say f(n) is asymptotically smaller than g(n) if f(n) = o(g(n))
 We say f(n) is asymptotically larger than g(n) if f(n) = ω(g(n)).

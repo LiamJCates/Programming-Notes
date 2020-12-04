@@ -1,6 +1,12 @@
 Loop Invariant
+In proofs of correctness of iterative algorithms the most challenging parts usually involve loops.
+
 In computer science, a loop invariant is a is a formal statement of a property/condition that stays true throughout loop iteration
-The loop invariants will be true on entry into a loop and following each iteration
+
+The loop invariant characterizes the loops purpose and pretext for implementation.
+
+
+A loop invariant is a program loop property that is true before during and after each iteration.
 
 Knowing its invariant(s) is essential to understand the effect of a loop
 Loop invariants help us to understand why an algorithm is correct
@@ -36,14 +42,17 @@ A given loop invariants are often the same as a given recursive inductive hypoth
 
 
 
-
 Showing that the invariant holds before the first iteration corresponds to an inductive base case
+
 showing that the invariant holds from iteration to iteration corresponds to the inductive step.
 
-A common problem in computer programming is loops which don't terminate or terminate without achieving their goal behavior
-Loop Invariant Termination property is perhaps the most important as we are using it to show loop correctness
+the terminal invariant stops “induction” when a loop terminates
 
-A loop invariant is a formal statement about the relationship between loop functionality and the variables in your program ...
+
+A common problem in computer programming is loops which don't terminate or terminate without achieving their goal behavior
+Loop Invariant Termination property is perhaps the most important as we use it to show loop correctness
+
+A loop invariant is a formal statement about the relationship between loop functionality and the variables in your program
 
 
 Loop invariants and mathematical induction differ as...

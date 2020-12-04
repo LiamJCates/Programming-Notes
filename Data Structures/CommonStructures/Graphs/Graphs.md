@@ -93,6 +93,7 @@ the cost of traversing the edge.
 
 
 
+Representation of a graph
 
 Graphs can be represented in a computer’s memory in either of the
 following ways:
@@ -100,27 +101,76 @@ following ways:
 2. Linked Representation of Graphs using Adjacency List
 
 
+Adjacency Matrix Representation
+
+
+An adjacency matrix is used to represent the information of the nodes
+which are adjacent to one another. The two nodes will only be adjacent
+when there is an edge connecting those nodes. For any graph G having n
+nodes, the dimension of the adjacency matrix will be (n X n).
+Thus the memory space needed to represent a graph using it's adjacency matrix is n^2
+Let G(V, E) be a graph having vertices V = {V1, V2, V3, …, Vn}, and then the adjacency matrix representation (n X n) will be given by:
+
+aij = [0,1]
+
+where 1 if there is an edge from Vi to Vj, 0 otherwise
+
+The adjacency matrix is also known as a bit matrix or Boolean matrix,
+since it contains only 0s and 1s.
+
+An adjacency matrix is often implemented as a two-dimensional array of size NxN
+where N is the number of nodes in the graph. n^2 units of memory, which can be prohibitive for large graphs.
+
+The advantage of an adjacency matrix is that testing for the existence of an edge is a simple array lookup that takes O(1) time.
+
+weighted adjacency matrix
+The adjacency matrix for a weighted graph will always contain the
+weights of the edges connecting the nodes instead of 0 and 1.
+
+multigraph adjacency matrix
+The adjacency matrix for an undirected multi-graph will contain the
+number of edges connecting the vertices instead of 1.
+
+Extra trivia
+The adjacency matrix for an undirected graph is always symmetric
+The adjacency matrix for a simple graph having no loops or parallel
+edges will always contain 0s on the diagonal.
 
 
 
 
 
 
-Understanding graph traversal Interviewers often want to check that you have at least a basic understanding of tree and graph traversal. You might recall the two basic approaches: depth fi rst, which means following a path all the way down to a leaf node before you follow adjacent nodes, and breadth fi rst, where you visit all children of a node before visiting any further-removed descendants of that node. Algorithms that perform breadth-fi rst traversal normally use a queue (FIFO) to keep track of nodes, whereas algorithms that perform depth-fi rst traversal normally use a stack (LIFO). When visiting nodes in a depth-fi rst algorithm the three distinct orders of traversal are preorder, inorder, and postorder
 
-Representation of a graph
+
+
+
+Adjacency List Representation
+
 
 An adjacency list is simply a list of edges between nodes in a graph.
 
+In this representation, every node is linked to its list of all the other nodes which are adjacent to it.
+
 An adjacency list takes O(n) time to check whether an edge exists because you potentially must iterate over all elements in the list to check for the existence of an edge.
 
+weighted adjacency list
+Also includes the weight of an edge in each none head list node
 
 
-An adjacency matrix is often implemented as a two-dimensional array of size NxN
-where N is the number of nodes in the graph.
-Edges between nodes are represented by a true value (or by a bit set to 1). A two-dimensional 10 × 10 graph will therefore require an array of 100 × 100 = 1000 elements. An adjacency matrix for n nodes will take n^2 units of memory, which can be prohibitive for large graphs.
 
-The advantage of an adjacency matrix is that testing for the existence of an edge is a simple array lookup that takes O(1) time.
+
+
+The adjacency matrix representation has some major drawbacks. First, it
+is very difficult to insert and delete the nodes in/from the graph as the size of the matrix needs to be changed accordingly, which is a very time-consuming
+process. Also, sometimes the matrix may contain many zeroes (sparse matrix).
+Hence, it is a wasteful representation.
+
+Therefore, adjacency list representation is preferred for representing sparse graphs in the memory. Adjacency list representation makes it easier to add or delete nodes. Also, it shows the adjacent nodes of a particular node.
+
+
+
+
 
 Why would you prefer to store a graph as an adjacency matrix?
 Why would you prefer an adjacency list?

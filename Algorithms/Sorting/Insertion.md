@@ -1,4 +1,11 @@
 Insertion Sort
+
+Specification:
+Problem Solved: Sort collection members
+Input: A sequence of N element {e1, e2, ..., en}
+Output: An ordered permutation of the input such that e'1 ≤ e'2 ≤ ... ≤ e'n
+
+
 Sorts one element at a time, comparing already-sorted elements to each subsequent element and inserting the new element into the correct location, similar to the way you sort a hand of playing cards.
 
 To limit the wastage of memory or, we can say,
