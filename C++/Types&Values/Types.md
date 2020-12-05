@@ -33,7 +33,9 @@ A declaration is a statement that introduces an entity into the program. It spec
 ## Simple Data Types
 Simple Data types are the most basic types of object.
 
-Some refer to Simple Data types as primitive or built-in types because they’re part of the core language and almost always available to you. These types will work on any platform, but their features, such as size and memory layout, depend on implementation.
+Some refer to Simple Data types as primitive or built-in types because they’re part of the core language and almost always available to you.
+These types  include integer, floating-point, character, Boolean, byte, size_t, and void.
+These types will work on any platform, but their features, such as size and memory layout, depend on implementation.
 
 Simple Data types strike a balance. On one hand, they try to map a
 direct relationship from C++ construct to computer hardware; on the other hand, they simplify writing cross-platform code by allowing a programmer to write code once that works on many platforms.
@@ -54,7 +56,9 @@ Enumeration, which is a user-defined data type
 Integer Types
 Integral data types are further classified into the following categories: char, short, int, long, bool, unsigned char, unsigned short, unsigned int, unsigned long, long long, and unsigned long long.
 
-Integer types store whole numbers: those that you can write without a fractional component. The four sizes of integer types are short int, int, long int, and long long int.
+Integer types store whole numbers: those that you can write without a fractional component.
+
+The four sizes of integer types that represent numbers are short int, int, long int, and long long int.
 
 Each can be either signed or unsigned. A signed variable can be positive, negative, or zero, and an unsigned variable must be non-negative.
 

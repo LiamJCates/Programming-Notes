@@ -35,27 +35,19 @@ The const specifiers on the functions indicate that a function does not modify t
 A constructor is a special function (or method) with a special declaration, invoked during the instantiation of a class to construct an object.
 
 Constructors have the following properties:
-? The name of a constructor is the same as the name of the class.
-? A constructor is a function and it has no type. That is, it is neither a
+  The name of a constructor is the same as the name of the class.
+  A constructor is a function and it has no type. That is, it is neither a
 value-returning function nor a void function.
-? A class can have more than one constructor. However, all constructors of a class have the same name.
-? If a class has more than one constructor, the constructors must have
-different formal parameter lists. That is, either they have a different
-number of formal parameters or, if the number of formal parameters is
-the same, then the data type of the formal parameters, in the order you
-list, must differ in at least one position. In other words, like function
-overloading, a constructor’s name is overloaded.
-? Constructors execute automatically when a class object is declared and
-enters its scope. Because they have no types, they cannot be called like
-other functions.
-? Which constructor executes depends on the types of values passed to
-the class object when the class object is declared.
+  A class can have more than one constructor. However, all constructors of a class have the same name.
+  If a class has more than one constructor, the constructors must have different formal parameter lists. That is, either they have a different number of formal parameters or, if the number of formal parameters is the same, then the data type of the formal parameters, in the order you list, must differ in at least one position. Like function overloading
+  Constructors execute automatically when a class object is declared and enters its scope. Because they have no types, they cannot be called like other functions.
+  Which constructor executes depends on the types of values passed to the class object when the class object is declared.
 
 
-Declaring and Implementing a Constructor
+### Declaring and Implementing a Constructor
 Constructor declarations don’t state a return type, and their name matches the class’s name.
 
-This constructor can be implemented either inline within the class or externally outside the class declaration.
+A constructor can be implemented either inline within the class or externally outside the class declaration.
 
 An implementation (also called definition) inside the class looks like this:
 

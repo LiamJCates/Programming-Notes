@@ -19,7 +19,7 @@ Reserved Words (Keywords)
 A second category of tokens is reserved word symbols. Some of the reserved word
 symbols include the following:
 int, float, double, char, const, void, return
-The Basics of a C++ Program | 3536 | Chapter 2: Basic Elements of C++
+
 Reserved words are also called keywords. The letters that make up a reserved word
 are always lowercase. Like the special symbols, each is considered to be a single symbol. Furthermore, reserved words cannot be redefined within any program; that is,
 they cannot be used for anything other than their intended use.

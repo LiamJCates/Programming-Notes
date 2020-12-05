@@ -30,7 +30,7 @@ class ClassName{
   class NestedClass{};
 };
 
-A class has a set of members, which can be data, function, or type members.
+A class has a set of members, which can be data, function, or type members
 
 Attributes
 Attributes are a classes' data members.
@@ -50,18 +50,13 @@ Classes can have member types or nested types (including type aliases).
 Once an object of a class is declared, it can access the members of the class. The general syntax for an object to access a member of a class is:
 classObjectName.memberName
 
-The class members that a class object can access depend on where the object is declared.
-? If the object is declared in the definition of a member function of the class, then the object can access both the public and private members.
-? If the object is declared elsewhere (for example, in a user’s program), then the object can access only the public members of the class.
-
 Recall that in C11, the dot, . (period), is an operator called the member access
 operator.
 
 
 
 
-Once a class is properly defined and implemented, it can be used in a program. A program
-or software that uses and manipulates the objects of a class is called a client of that class.
+Once a class is properly defined and implemented, it can be used in a program. A program or software that uses and manipulates the objects of a class is called a client of that class.
 
 
 
@@ -144,9 +139,7 @@ To use an instance variable in a static function, you would explicitly declare a
 sizeof() a Class
 You have learned the fundamentals of defining your own type using keyword class
 that enables you to encapsulate data attributes and methods that operate on that data.
-Operator sizeof(), covered in Lesson 3, “Using Variables, Declaring Constants,” is
-used to determine the memory requirement of a specific type, in bytes. This operator
-is valid for classes, too, and basically reports the sum of bytes consumed by each data
+Operator sizeof() is used to determine the memory requirement of a specific type, in bytes. This operator is valid for classes, too, and basically reports the sum of bytes consumed by each data
 attribute contained within the class declaration. Depending on the compiler you use,
 sizeof() might or might not include padding for certain attributes on word boundaries.
 

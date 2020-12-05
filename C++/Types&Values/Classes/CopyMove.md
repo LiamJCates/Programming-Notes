@@ -1,14 +1,64 @@
+Copy Semantics
+Copy Semantics is “the meaning of copy.” In practice, programmers use the term to mean the rules for making copies of objects: after x is copied into y, they’re equivalent and independent. That is, x == y is true after a copy (equivalence), and a modification to x doesn’t cause a modification of y (independence).
+
+Copying is extremely common, especially when passing objects to functions by value
+
+For fundamental and POD types, the story is straightforward. Copying
+these types is memberwise, which means each member gets copied into its
+corresponding destination. This is effectively a bitwise copy from one memory address to another.
 
 
-The copy constructor is a constructor which creates an object by initializing it with an object of the same class, which has been created previously. The copy constructor is used to −
+Fully featured classes require some more thought. The default copy
+semantics for fully featured classes is also the memberwise copy, and this
+can be extremely dangerous.
 
-    Initialize one object from another of the same type.
-    Copy an object to pass it as an argument to a function.
-    Copy an object to return it from a function.
+A class that uses a pointer to a dynamic value that is memeberwise copied will not maintain independence. Both the original and copies will reference the same region of memory leading to memory clobbering as seemingly independent object operate on the same memory
 
-If a copy constructor is not defined in a class, the compiler itself defines one.If the class has pointer variables and has some dynamic memory allocations, then it is a must to have a copy constructor. The most common form of copy constructor is shown here −
+This result is bad, but even worse things happen when those object start destructing. When one of the objects is destructed, the memory will be freed. When the remaining object tries to use that freed memory undefined behavior occurs. At some point, this remaining object will be destructed and free the memory location again, resulting in what is commonly called a double free.
 
-classname (const classname &obj) {
+N O T E Like its nefarious cousin the use after free, the double free can result in subtle and hard-to-diagnose bugs that manifest only very infrequently. A double free occurs when you deallocate an object twice. Recall that once you’ve deallocated an object, its storage lifetime ends. This memory is now in an undefined state, and if you destruct an object that’s already been destructed, you’ve got undefined behavior. In certain situations, this can cause serious security vulnerabilities.
+
+
+Copy Constructor
+You can avoid this dumpster fire by taking control of copy semantics. You
+can specify copy constructors and copy assignment operators
+
+There are two ways to copy an object. One is to use copy construction, which
+creates a copy and assigns it to a brand-new object. The copy constructor
+looks like other constructors:
+struct MyObject {
+  --snip--
+  MyObject(const MyObject& other);
+};
+
+Notice that other is const. You’re copying from some original MyObject,
+and you have no reason to modify it. You use the copy constructor just
+like other constructors, using the uniform initialization syntax of braced
+initializers:
+MyObject a;
+MyObject a_copy{ a };
+The second line invokes the copy constructor of MyObject with a to
+yield a_copy.
+Let’s implement the copy constructor of MyObject. You want what
+is known as a deep copy where you copy the data pointed to by the original
+
+Rather than copying the pointer buffer, you’ll make a new allocation on
+the free store and then copy all the data pointed to by the original buffer.
+
+You shouldn’t pass by value to avoid modification. Use a const reference.
+
+
+
+
+The copy constructor is a constructor which creates an object by initializing it with an object of the same class, which has been created previously. The copy constructor is used to:
+  Initialize one object from another of the same type.
+  Copy an object to pass it as an argument to a function.
+  Copy an object to return it from a function.
+
+If a copy constructor is not defined in a class, the compiler itself defines one. If the class has pointer variables and has some dynamic memory allocations, then it is a must to have a copy constructor. The most common form of copy constructor is shown here:
+
+classname (const classname &obj)
+{
    // body of constructor
 }
 

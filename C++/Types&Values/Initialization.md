@@ -35,10 +35,10 @@ Using braces {} to initialize a variable is, unsurprisingly, called braced initi
 
 ### Initializing a Fundamental Type to an Arbitrary Value
 Initializing to an arbitrary value is similar to initializing a fundamental type to zero:
-int e = 42; u // Initialized to 42
-int f{ 42 }; v // Initialized to 42
-int g = { 42 };w // Initialized to 42
-int h(42); x // Initialized to 42
+int e = 42;       // Initialized to 42
+int f{ 42 };      // Initialized to 42
+int g = { 42 };   // Initialized to 42
+int h(42);        // Initialized to 42
 
 There are four ways: equals, braced initialization, equals-plus braces initialization, and parentheses. All of these produce identical
 code.
