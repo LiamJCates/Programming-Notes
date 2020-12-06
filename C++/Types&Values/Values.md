@@ -124,5 +124,11 @@ But the following is not a valid statement and would generate compile-time error
 
 Outputting or accessing the value of a variable in an expression does not destroy or modify the contents of the variable.
 
+
+
+
+
+
+
 ## Logical Expression
 Logical expression: An expression that evaluates to true or false is called a logical expression.

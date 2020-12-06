@@ -16,7 +16,8 @@ A class that uses a pointer to a dynamic value that is memeberwise copied will n
 
 This result is bad, but even worse things happen when those object start destructing. When one of the objects is destructed, the memory will be freed. When the remaining object tries to use that freed memory undefined behavior occurs. At some point, this remaining object will be destructed and free the memory location again, resulting in what is commonly called a double free.
 
-N O T E Like its nefarious cousin the use after free, the double free can result in subtle and hard-to-diagnose bugs that manifest only very infrequently. A double free occurs when you deallocate an object twice. Recall that once you’ve deallocated an object, its storage lifetime ends. This memory is now in an undefined state, and if you destruct an object that’s already been destructed, you’ve got undefined behavior. In certain situations, this can cause serious security vulnerabilities.
+NOTE
+Like its nefarious cousin the use after free, the double free can result in subtle and hard-to-diagnose bugs that manifest only very infrequently. A double free occurs when you deallocate an object twice. Recall that once you’ve deallocated an object, its storage lifetime ends. This memory is now in an undefined state, and if you destruct an object that’s already been destructed, you’ve got undefined behavior. In certain situations, this can cause serious security vulnerabilities.
 
 
 Copy Constructor
@@ -37,16 +38,16 @@ like other constructors, using the uniform initialization syntax of braced
 initializers:
 MyObject a;
 MyObject a_copy{ a };
+
 The second line invokes the copy constructor of MyObject with a to
 yield a_copy.
-Let’s implement the copy constructor of MyObject. You want what
-is known as a deep copy where you copy the data pointed to by the original
+
+Let’s implement the copy constructor of MyObject. You want what is known as a deep copy where you copy the data pointed to by the original
 
 Rather than copying the pointer buffer, you’ll make a new allocation on
 the free store and then copy all the data pointed to by the original buffer.
 
 You shouldn’t pass by value to avoid modification. Use a const reference.
-
 
 
 
@@ -285,46 +286,125 @@ absence of raw pointers. This is because the default copy constructor inserted b
 of all available copy constructors of member objects such as
 std::string.
 
-Move Constructors Help Improve Performance
-There are cases where objects are subjected to copy steps automatically, due to the nature
-of the language and its needs. Consider the following:
-class MyString
-{
-// pick implementation from Listing 9.9
-};
-MyString Copy(MyString& source) // function
-{
-MyString copyForReturn(source.GetString()); // create copy
-return copyForReturn; // return by value invokes copy constructor
-}int main()
-{
-MyString sayHello ("Hello World of C++");
-MyString sayHelloAgain(Copy(sayHello)); // invokes 2x copy constructor
-return 0;
-}
-As the comment indicates, in the instantiation of sayHelloAgain, the copy constructor
-was invoked twice, thus a deep copy was performed twice because of our call to function
-Copy(sayHello) that returns a MyString by value. However, this value returned is very
-temporary and is not available outside this expression. So, the copy constructor invoked
-in good faith by the C++ compiler is a burden on performance. This impact becomes significant if our class were to contain objects of great size.
-To avoid this performance bottleneck, versions of C++ starting with C++11 feature a
-move constructor in addition to a copy constructor. The syntax of a move constructor is
-// move constructor
-MyString(MyString&& moveSource)
-{
-if(moveSource.buffer != NULL)
-{
-buffer = moveSource.buffer; // take ownership i.e. 'move'
-moveSource.buffer = NULL; // set the move source to NULL
-}
-}
-When a move constructor is programmed, the compiler automatically opts for the same
-for “moving” the temporary resource and hence avoiding a deep-copy step. With the
-move constructor implemented, the comment should be appropriately changed to the following:
-MyString sayHelloAgain(Copy(sayHello)); // invokes 1x copy, 1x move constructors
 
-You would ensure that your class cannot be copied by declaring a private copy constructor. This ensures that the function call DoSomething(ourPresident) will cause a
-compile failure. To avoid assignment, you declare a private assignment operator.
+Copy Assignment
+The other way to make a copy in C++ is with the copy assignment operator.
+
+You can create a copy of an object and assign it to another existing object
+
+void dont_do_this() {
+SimpleString a{ 50 };
+a.append_line("We apologize for the");
+SimpleString b{ 50 };
+b.append_line("Last message");
+b = a;
+}
+Listing 4-28: Using the default copy assignment operator to create a copy of an object and assign it to another existing object
+
+NOTE
+The code in Listing 4-28 causes undefined behavior because it doesn’t have a userdefined copy assignment operator.
+
+The last line at copy assigns a to b.
+The major difference between copy assignment and copy construction is that in copy assignment, b might already have a value. You must clean up b’s resources before copying a.
+
+WARNING
+The default copy assignment operator for simple types just copies the members from the source object to the destination object. In this case of a full featured object, this is very dangerous for two reasons.
+First, the original object gets rewritten without freeing the dynamically allocated char array.
+
+Second, now two objects own the same buffer, which can cause dangling pointers and double frees. You must implement a copy assignment operator that performs a clean hand-off.
+
+The copy assignment operator uses the operator= syntax, as demonstrated:
+
+struct SimpleString {
+--snip--
+SimpleString& operator=(const SimpleString& other) {
+if (this == &other) return *this; u
+--snip--
+return *this; v
+}
+}
+A user-defined copy assignment operator
+
+
+The copy assignment operator returns a reference to the result, which
+is always *this. It’s also generally good practice to check whether other
+refers to this.
+You can implement copy assignment for SimpleString by following these
+guidelines: free the current buffer of this and then copy other as you did in
+copy construction, as shown in Listing 4-30.
+SimpleString& operator=(const SimpleString& other) {
+if (this == &other) return *this;
+const auto new_buffer = new char[other.max_size];
+delete[] buffer;
+buffer = new_buffer;
+length = other.length;
+max_size = other.max_size;
+strcpy_s(buffer, max_size, other.buffer);
+return *this;
+}
+Listing 4-30: A copy assignment operator for SimpleString
+
+The copy assignment operator starts by allocating a new_buffer with the
+appropriate size. Next, you clean up buffer. You copy buffer, length,
+and max_size and then copy the contents from other.buffer into your own
+buffer.
+
+
+Default Copy
+Often, the compiler will generate default implementations for copy construction and copy assignment. The default implementation is to invoke
+copy construction or copy assignment on each of a class’s members.
+Any time a class manages a resource, you must be extremely careful
+with default copy semantics; they’re likely to be wrong (as you saw with
+SimpleString). Best practice dictates that you explicitly declare that default
+copy assignment and copy construction are acceptable for such classes
+using the default keyword. The Replicant class, for example, has default
+copy semantics, as demonstrated here:
+struct Replicant {
+Replicant(const Replicant&) = default;
+Replicant& operator=(const Replicant&) = default;
+--snip--
+};
+Some classes simply cannot or should not be copied—for example, if
+your class manages a file or if it represents a mutual exclusion lock for concurrent programming. You can suppress the compiler from generating a
+copy constructor and a copy assignment operator using the delete keyword.
+The Highlander class, for example, cannot be copied:
+struct Highlander {
+Highlander(const Highlander&) = delete;
+Highlander& operator=(const Highlander&) = delete;
+--snip--
+};
+Any attempt to copy a Highlander will result in a compiler error:
+--snip--
+int main() {
+Highlander a;
+Highlander b{ a }; // Bang! There can be only one.
+}
+I highly recommend that you explicitly define the copy assignment operator and copy constructor for any class that owns a resource (like a printer, a
+network connection, or a file). If custom behavior is not needed, use either
+default or delete. This will save you from a lot of nasty and difficult-to-debug
+errors.
+
+Copy Guidelines
+When you implement copy behavior, think about the following criteria:
+Correctness You must ensure that class invariants are maintained.
+The SimpleString class demonstrated that the default copy constructor
+can violate invariants.
+Independence After copy assignment or copy construction, the original
+object and the copy shouldn’t change each other’s state during modification. Had you simply copied buffer from one SimpleString to another,
+writing to one buffer could overwrite the data from the other.
+Equivalence The original and the copy should be the same. The semantics of sameness depend on context. But generally, an operation applied
+to the original should yield the same result when applied to the copy.
+
+
+
+
+
+
+
+
+
+Private Assignment Operator
+To avoid assignment, you declare a private assignment operator.
 Thus, the solution is the following:
 class President
 {
@@ -418,3 +498,347 @@ s1 = s2; // error : Shape copy is deleted
 }
 A =delete makes an attempted use of the deleted function a compile-time error; =delete can be used
 to suppress any function, not just essential member functions.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Move Semantics
+Copying can be quite time-consuming at runtime when a large amount of
+data is involved. Often, you just want to transfer ownership of resources from
+one object to another. You could make a copy and destroy the original, but
+this is often inefficient. Instead, you can move.
+Move semantics is move’s corollary to copy semantics, and it requires that
+after an object y is moved into an object x, x is equivalent to the former value
+of y. After the move, y is in a special state called the moved-from state. You
+can perform only two operations on moved-from objects: (re)assign them
+or destruct them. Note that moving an object y into an object x isn’t just a
+renaming: these are separate objects with separate storage and potentially
+separate lifetimes.
+Similar to how you specify copying behavior, you specify how objects
+move with move constructors and move assignment operators.
+
+
+Value Categories
+Every expression has two important characteristics: its type and its value
+category. A value category describes what kinds of operations are valid for
+the expression. Thanks to the evolutionary nature of C++, value categories
+are complicated: an expression can be a “generalized lvalue” (glvalue), a
+“pure rvalue” (prvalue), an “expiring value” (xvalue), an lvalue (a glvalue
+that isn’t an xvalue), or an rvalue (a prvalue or an xvalue). Fortunately for
+the newcomer, you don’t need to know much about most of these value
+categories.
+We’ll consider a very simplified view of value categories. For now, you’ll
+just need a general understanding of lvalues and rvalues. An lvalue is any
+value that has a name, and an rvalue is anything that isn’t an lvalue.
+
+lvalue and rvalue References
+You can communicate to the compiler that a function accepts lvalues or
+rvalues using lvalue references and rvalue references. Up to this point in this
+book, every reference parameter has been an lvalue reference, and these
+are denoted with a single &. You can also take a parameter by rvalue reference using &&.
+Fortunately, the compiler does an excellent job of determining whether
+an object is an lvalue or an rvalue. In fact, you can define multiple functions with the same name but with different parameters, and the compiler
+will automatically call the correct version depending on what arguments
+you provide when you invoke the function.
+
+#include <cstdio>
+void ref_type(int &x) { u
+printf("lvalue reference %d\n", x);
+}The Object Life Cycle 125
+void ref_type(int &&x) { v
+printf("rvalue reference %d\n", x);
+}
+int main() {
+auto x = 1;
+ref_type(x); w
+ref_type(2); x
+ref_type(x + 2); y
+}
+lvalue reference 1 w
+rvalue reference 2 x
+rvalue reference 3 y
+Listing 4-33: A program containing an overloaded function with lvalue and rvalue
+references
+The int &x version u takes an lvalue reference, and the int &&x version v
+takes an rvalue reference. You invoke ref_type three times. First, you invoke
+the lvalue reference version, because x is an lvalue (it has a name) w. Second,
+you invoke the rvalue reference version because 2 is an integer literal without
+a name x. Third, the result of adding 2 to x is not bound to a name, so it’s an
+rvalue y.
+
+The std::move Function
+You can cast an lvalue reference to an rvalue reference using the std::move
+function from the <utility> header.
+
+#include <utility>
+--snip--
+int main() {
+auto x = 1;
+ref_type(std::move(x)); u
+ref_type(2);
+ref_type(x + 2);
+}
+
+As expected, std::move changes the lvalue x into an rvalue u. You never
+call the lvalue ref_type overload.
+
+The C++ committee probably should have named std::move as std::rvalue, but it’s
+the name we’re stuck with. The std:move function doesn’t actually move anything—
+it casts.
+
+Be very careful when you’re using std::move, because you remove the
+safeguards keeping you from interacting with a moved-from object. You can
+perform two actions on a moved-from object: destroy it or reassign it.
+How lvalue and rvalue semantics enable move semantics should now be
+clear. If an lvalue is at hand, moving is suppressed. If an rvalue is at hand,
+moving is enabled.
+
+
+
+Move Construction
+Move constructors look like copy constructors except they take rvalue references instead of lvalue references.
+Consider the SimpleString move constructor in Listing 4-35.
+SimpleString(SimpleString&& other) noexcept
+: max_size{ other.max_size }, u
+buffer(other.buffer),
+length(other.length) {
+other.length = 0; v
+other.buffer = nullptr;
+other.max_size = 0;
+}
+Listing 4-35: A move constructor for SimpleString
+
+Because other is an rvalue reference, you’re allowed to cannibalize
+it. In the case of SimpleString, this is easy: just copy all fields of other into
+this u and then zero out the fields of other v. The latter step is important:
+it puts other in a moved-from state. (Consider what would happen upon the
+destruction of other had you not cleared its members.)
+Executing this move constructor is a lot less expensive than executing
+the copy constructor.
+The move constructor is designed to not throw an exception, so you
+mark it noexcept. Your preference should be to use noexcept move constructors; often, the compiler cannot use exception-throwing move constructors
+and will use copy constructors instead. Compilers prefer slow, correct code
+instead of fast, incorrect code.
+
+
+
+Move Constructors Help Improve Performance
+There are cases where objects are subjected to copy steps automatically, due to the nature
+of the language and its needs. Consider the following:
+class MyString
+{
+// pick implementation from Listing 9.9
+};
+MyString Copy(MyString& source) // function
+{
+MyString copyForReturn(source.GetString()); // create copy
+return copyForReturn; // return by value invokes copy constructor
+}int main()
+{
+MyString sayHello ("Hello World of C++");
+MyString sayHelloAgain(Copy(sayHello)); // invokes 2x copy constructor
+return 0;
+}
+As the comment indicates, in the instantiation of sayHelloAgain, the copy constructor
+was invoked twice, thus a deep copy was performed twice because of our call to function
+Copy(sayHello) that returns a MyString by value. However, this value returned is very
+temporary and is not available outside this expression. So, the copy constructor invoked
+in good faith by the C++ compiler is a burden on performance. This impact becomes significant if our class were to contain objects of great size.
+To avoid this performance bottleneck, versions of C++ starting with C++11 feature a
+move constructor in addition to a copy constructor. The syntax of a move constructor is
+// move constructor
+MyString(MyString&& moveSource)
+{
+if(moveSource.buffer != NULL)
+{
+buffer = moveSource.buffer; // take ownership i.e. 'move'
+moveSource.buffer = NULL; // set the move source to NULL
+}
+}
+When a move constructor is programmed, the compiler automatically opts for the same
+for “moving” the temporary resource and hence avoiding a deep-copy step. With the
+move constructor implemented, the comment should be appropriately changed to the following:
+MyString sayHelloAgain(Copy(sayHello)); // invokes 1x copy, 1x move constructors
+
+You would ensure that your class cannot be copied by declaring a private copy constructor. This ensures that the function call DoSomething(ourPresident) will cause a
+compile failure.
+
+
+
+
+Move Assignment
+You can also create a move analogue to copy assignment via operator=. The
+move assignment operator takes an rvalue reference rather than a const
+lvalue reference, and you usually mark it noexcept. Listing 4-36 implements
+such a move assignment operator for SimpleString.
+SimpleString& operator=(SimpleString&& other) noexcept { u
+if (this == &other) return *this; v
+delete[] buffer; wThe Object Life Cycle 127
+buffer = other.buffer; x
+length = other.length;
+max_size = other.max_size;
+other.buffer = nullptr; y
+other.length = 0;
+other.max_size = 0;
+return *this;
+}
+Listing 4-36: A move assignment operator for SimpleString
+You declare the move assignment operator using the rvalue reference
+syntax and the noexcept qualifier, as with the move constructor u. The selfreference check v handles the move assignment of a SimpleString to itself.
+You clean up buffer w before assigning the fields of this to the fields of
+other x and zero out the fields of other y. Aside from the self-reference
+check v and the cleanup w, the move assignment operator and the move
+constructor are functionally identical.
+Now that SimpleString is movable, you can complete the SimpleString constructor of SimpleStringOwner:
+SimpleStringOwner(SimpleString&& x) : string{ std::move(x)u } { }
+The x is an lvalue, so you must std::move x into the move constructor
+of string u. You might find std::move odd, because x is an rvalue reference.
+Recall that lvalue/rvalue and lvalue reference/rvalue reference are distinct
+descriptors.
+Consider if std::move weren’t required here: what if you moved from x
+and then used it inside the constructor? This could lead to bugs that are
+hard to diagnose. Remember that you cannot use moved-from objects
+except to reassign or destruct them. Doing anything else is undefined
+behavior.
+Listing 4-37 illustrates the SimpleString move assignment.
+--snip--
+int main() {
+SimpleString a{ 50 };
+a.append_line("We apologize for the"); u
+SimpleString b{ 50 };
+b.append_line("Last message"); v
+a.print("a"); w
+b.print("b"); x
+b = std::move(a); y
+// a is "moved-from"
+b.print("b"); z
+}
+a: We apologize for the w
+b: Last message x
+b: We apologize for the z
+Listing 4-37: A program illustrating move assignment with the SimpleString class128 Chapter 4
+As in Listing 4-31, you begin by declaring two SimpleString classes with
+different messages: the string a contains We apologize for the u, and b contains Last message v. You print these strings to verify that they contain the
+strings you’ve specified wx. Next, you move assign b equal to a y. Note that
+you had to cast a to an rvalue using std::move. After the move assignment, a
+is in a moved-from state, and you can’t use it unless you reassign it to a new
+value. Now, b owns the message that a used to own, We apologize for the z.
+
+
+
+
+The Final Product
+You now have a fully implemented SimpleString that supports move and copy
+semantics. Listing 4-38 brings these all together for your reference.
+#include <cstdio>
+#include <cstring>
+#include <stdexcept>
+#include <utility>
+struct SimpleString {
+SimpleString(size_t max_size)
+: max_size{ max_size },
+length{} {
+if (max_size == 0) {
+throw std::runtime_error{ "Max size must be at least 1." };
+}
+buffer = new char[max_size];
+buffer[0] = 0;
+}
+~SimpleString() {
+delete[] buffer;
+}
+SimpleString(const SimpleString& other)
+: max_size{ other.max_size },
+buffer{ new char[other.max_size] },
+length{ other.length } {
+std::strncpy(buffer, other.buffer, max_size);
+}
+SimpleString(SimpleString&& other) noexcept
+: max_size(other.max_size),
+buffer(other.buffer),
+length(other.length) {
+other.length = 0;
+other.buffer = nullptr;
+other.max_size = 0;
+}
+SimpleString& operator=(const SimpleString& other) {
+if (this == &other) return *this;
+const auto new_buffer = new char[other.max_size];
+delete[] buffer;
+buffer = new_buffer;
+length = other.length;
+max_size = other.max_size;
+std::strncpy(buffer, other.buffer, max_size);The Object Life Cycle 129
+return *this;
+}
+SimpleString& operator=(SimpleString&& other) noexcept {
+if (this == &other) return *this;
+delete[] buffer;
+buffer = other.buffer;
+length = other.length;
+max_size = other.max_size;
+other.buffer = nullptr;
+other.length = 0;
+other.max_size = 0;
+return *this;
+}
+void print(const char* tag) const {
+printf("%s: %s", tag, buffer);
+}
+bool append_line(const char* x) {
+const auto x_len = strlen(x);
+if (x_len + length + 2 > max_size) return false;
+std::strncpy(buffer + length, x, max_size - length);
+length += x_len;
+buffer[length++] = '\n';
+buffer[length] = 0;
+return true;
+}
+private:
+size_t max_size;
+char* buffer;
+size_t length;
+};
+Listing 4-38: A fully specified SimpleString class supporting copy and move semantics
+
+
+
+Compiler-Generated Methods
+Five methods govern move and copy behavior:
+•	 The destructor
+•	 The copy constructor
+•	 The move constructor
+•	 The copy assignment operator
+•	 The move assignment operator
+The compiler can generate default implementations for each under
+certain circumstances. Unfortunately, the rules for which methods get
+generated are complicated and potentially uneven across compilers.
+You can eliminate this complexity by setting these methods to
+default/delete or by implementing them as appropriate. This general rule
+is the rule of five, because there are five methods to specify. Being explicit
+costs a little time, but it saves a lot of future headaches.
+
+[C++\Types&Values\Classes\Compiler Generated Methods.png]
+
+If you provide nothing, the compiler will generate all five destruct/
+copy/move functions. This is the rule of zero.
+If you explicitly define any of destructor/copy constructor/copy assignment operator, you get all three. This is dangerous, as demonstrated earlier
+with SimpleString: it’s too easy to get into an unintended situation in which
+the compiler will essentially convert all your moves into copies.
+Finally, if you provide only move semantics for your class, the compiler
+will not automatically generate anything except a destructor.

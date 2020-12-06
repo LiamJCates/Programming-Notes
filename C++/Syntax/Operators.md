@@ -28,10 +28,13 @@ x = y = z = 5;
 
 It assigns 5 to the all three variables: x, y and z; always from right-to-left.
 
+## Unary Arithmetic Operators
+The unary plus + and unary minus - operators take a single arithmetic operand.
+Both operators promote their operands to int. So, if the operand is of type bool, char, or short int, the result of the expression is an int.
+Unary plus doesn’t do much besides promotion
+unary minus flips the sign of the operand.
 
-
-
-## Arithmetic operators
+## Binary Arithmetic operators
 The five arithmetical operations supported by C++ are:
 
 | operator	| description |
@@ -42,7 +45,11 @@ The five arithmetical operations supported by C++ are:
 | / | division |
 | % | modulo |
 
-
+Built-in arithmetic operators perform mathematical computations.
+These operators take two operands and perform the indicated
+mathematical operation. Like their unary counterparts, these binary
+operators cause integer promotion on their operands. For example, adding
+two char operands will result in an int.
 
 ## Bitwise operators
 Bitwise operators modify variables considering the bit patterns that represent the values they store.
@@ -56,7 +63,9 @@ Bitwise operators modify variables considering the bit patterns that represent t
 | << | SHL | Shift bits left |
 | >> | SHR | Shift bits right |
 
-
+bitwise logical operators work on integral types and perform a
+Boolean operation at the bit level and returns an integral type matching
+its operands.
 
 
 ## Compound Assignment
@@ -74,6 +83,7 @@ Bitwise operators modify variables considering the bit patterns that represent t
 | x ^= y; | x = x ^ y; |
 | x \|= y; | x = x \| y; |
 
+An assignment operator performs a given operation between operands and then assigns the result to the first operand.
 
 ## Increment and Decrement
 
@@ -108,7 +118,8 @@ differences.
 | <= | Less than or equal to |
 | >= | Greater than or equal to |
 
-
+Comparison operators compare the given operands and evaluate to a
+bool
 
 ## Logical operators
 
@@ -117,6 +128,11 @@ differences.
 | && | AND |
 | \|\| | OR |
 | ! | NOT |
+
+
+logical operators take bool-convertible operands and return an object of
+type bool.
+
 
 Note that evaluation of an expression to true in C++ essentially
 means that the expression does not evaluate to false, false
@@ -132,6 +148,14 @@ in case you want to evaluate all expressions anyway you can use the & and | oper
 
 
 
+## Member Access Operators
+member access operators are used to interact with pointers, arrays, and many of the classes.
+The six such operators include subscript [], indirection *, address-of &, member-of-object ., and member-of-pointer ->.
+
+There are also pointer-to-member-of-object .* and pointer-to-member-of-pointer ->* operators, but these are uncommon.
+
+
+
 ## Conditional ternary operator
 The conditional operator evaluates an expression, returning one value if that expression evaluates to true, and a different one if the expression evaluates as false. Its syntax is:
 
@@ -141,12 +165,13 @@ condition ? result1 : result2
 
 
 ## Comma operator
-The comma operator (,) is used to separate two or more expressions that are included where only one expression is expected. When the set of expressions has to be evaluated for a value, only the right-most expression is considered.
+The comma operator (,) is used to separate two or more expressions that are included where only one expression is expected.  The comma operator allows several expressions separated by commas to be evaluated within a larger expression. The expressions evaluate from left to right, and the rightmost expression is the return value
 
 For example, the following code:
 a = (b=3, b+2);
 
 would first assign the value 3 to b, and then assign b+2 to variable a. So, at the end, variable a would contain the value 5 while variable b would contain value 3.
+
 
 
 
@@ -184,6 +209,14 @@ The value returned by sizeof is a compile-time constant, so it is always determi
 
 
 
+## Operator Precedence and Associativity
+When more than one operator appears in an expression, operator precedence
+and operator associativity decide how the expression parses. Operators with
+higher precedence are bound tighter to their arguments than operators
+with lower precedence. If two operators have the same precedence, their
+associativity breaks the tie to decide how arguments bind. Associativity is
+either left to right or right to left.
+
 From greatest to smallest priority, C++ operators are evaluated in the following order:
 | Level | Precedence group | Operator | Description | Grouping |
 |-------|------------------|----------|-------------|----------|
@@ -214,3 +247,48 @@ From greatest to smallest priority, C++ operators are evaluated in the following
 |  |  | >>= <<= &= ^= \|= | | |
 | | | ?: | conditional operator | |
 | 16 | Sequencing | , | comma separator | Left-to-right |
+
+
+
+
+
+
+
+
+
+Evaluation Order
+Evaluation order determines the execution sequence of operators in an
+expression. A common misconception is that precedence and evaluation
+order are equivalent: they are not. Precedence is a compile time concept that
+drives how operators bind to operands. Evaluation order is a runtime concept that drives the scheduling of operator execution.
+In general, C++ has no clearly specified execution order for operands. Although
+operators bind to operands in the well-defined way explained in the preceding sections, those operands evaluate in an undefined order. The compiler can order operand evaluation however it likes.
+You might be tempted to think that the parentheses in the following
+expression drive evaluation order for the functions stop, drop, and roll, or
+that some left-to-right associativity has some runtime effect:
+(stop() + drop()) + roll()
+They do not. The roll function might execute before, after, or between
+evaluations of stop and drop. If you require operations to execute in a specific
+order, simply place them into separate statements in the desired sequence,
+as shown here:
+auto result = stop();
+result = result + drop();
+result = result + roll();
+If you aren’t careful, you can even get undefined behavior. Consider the
+following expression:
+b = ++a + a;
+Because the ordering of the expressions ++a and a is not specified, and
+because the value of ++a + a depends on which expression evaluates first,
+the value of b cannot be well defined.
+In some special situations, execution order is specified by the language.
+The most commonly encountered scenarios are as follows:
+•	 The built-in logical AND operator a && b and built-in logical OR operator a || b guarantee that a executes before b.
+•	 The ternary operator a ? b : c guarantees that a executes before
+b and c.
+•	 The comma operator a, b guarantees that a executes before b.
+•	 The constructor arguments in a new expression evaluate before the call
+to the allocator function.
+You might be wondering why C++ doesn’t enforce execution order,
+say from left to right, to avoid confusion. The answer is simply that by not
+arbitrarily constraining execution order, the language is allowing compiler
+writers to find clever optimization opportunities.
