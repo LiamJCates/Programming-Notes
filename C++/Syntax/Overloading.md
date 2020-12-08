@@ -9,19 +9,7 @@ An overloaded declaration is a declaration that is declared with the same name a
 
 When you call an overloaded function or operator, the compiler determines the most appropriate definition to use, by comparing the argument types you have used to call the function or operator with the parameter types specified in the definitions. The process of selecting the most appropriate overloaded function or operator is called overload resolution.
 
-
-
-
-
-
-
-## Function Overloading
-
-You can have multiple definitions for the same function name in the same scope. The definition of the function must differ from each other by the types and/or the number of arguments in the argument list. You cannot overload function declarations that differ only by return type.
-
-
-
-
+This is covered in [C++\Syntax\Functions\Overloading.md]
 
 
 
