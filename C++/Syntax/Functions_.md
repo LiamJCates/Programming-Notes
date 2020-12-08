@@ -54,7 +54,7 @@ return-type function_name(par-type1 par_name1, ..., par-typeN par_nameN) {
 }
 
 ### prototype
-C11 programmers customarily place the function main before all other
+C++ programmers customarily place the function main before all other
 user-defined functions. However, this organization could produce a compilation
 error because functions are compiled in the order in which they appear in the program. For example, if the function main is placed before the function larger, the
 identifier larger will be undefined when the function main is compiled. To work
@@ -62,7 +62,7 @@ around this problem of undeclared identifiers, we place function prototypes befo
 any function definition (including the definition of main).Value-Returning Functions | 361
 6
 The function prototype is not a definition. It gives the program the name of the function, the number and data types of the parameters, and the data type of the returned
-value: just enough information to let C11 use the function. It is also a promise that
+value: just enough information to let C++ use the function. It is also a promise that
 the full definition will appear later in the program. If you neglect to write the definition of the function, the program may compile, but it will not execute.
 Function Prototype: The function heading, terminated by a semicolon, ;, without
 the body of the function.
