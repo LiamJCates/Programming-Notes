@@ -30,7 +30,21 @@ A function must be declared before it can be used.
 
 A function declaration or function prototype gives the type of the value returned (if any), the name of the function, and the number and types of the arguments that must be supplied in a call. These elements are also referred to as the function header.
 
-return_type function_name( parameter list );
+Function declarations have the following familiar form:
+prefix-modifiers return-type func-name(arguments) suffix-modifiers;
+
+
+You can provide a number of optional modifiers (or specifiers) to functions.
+Modifiers alter a function’s behavior in some way. Some modifiers appear at
+the beginning in the function’s declaration or definition (prefix modifiers),
+whereas others appear at the end (suffix modifiers). The prefix modifiers
+appear before the return type. The suffix modifiers appear after the argument list.
+There isn’t a clear language reason why certain modifiers appear as
+prefixes or suffixes: because C++ has a long history, these features evolved
+incrementally
+
+
+
 
 A function definition includes the function's body:
 
