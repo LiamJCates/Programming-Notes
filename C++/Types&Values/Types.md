@@ -155,11 +155,11 @@ true and false are called the logical (Boolean) values. The central purpose of t
 
 More recent versions of C++ contain a built-in data type, bool, that has the logical
 (Boolean) values true and false. Therefore, you can manipulate logical (Boolean)
-expressions using the bool data type. Recall that in C11, bool, true, and false
+expressions using the bool data type. Recall that in C++, bool, true, and false
 are reserved words. In addition, the identifier true has the value 1, and the identifier
 false has the value 0.
 
-Earlier versions of C11 did not provide built-in data types that had logical (or Boolean) values true and false. Because logical expressions evaluate to either 1 or 0, the value of a logical expression was stored in a variable of the data type int. Therefore, you can use the int data type to manipulate logical (Boolean) expressions.
+Earlier versions of C++ did not provide built-in data types that had logical (or Boolean) values true and false. Because logical expressions evaluate to either 1 or 0, the value of a logical expression was stored in a variable of the data type int. Therefore, you can use the int data type to manipulate logical (Boolean) expressions.
 
 Integer types and the bool types convert readily: the true state converts to 1, and false converts to 0. Any non-zero integer converts to true, and 0 converts to false.
 
@@ -356,7 +356,7 @@ Data types such as short, int, long, etc... have a finite capacity for containin
 
 The data types mentioned thus far are often referred to as POD (Plain Old Data). The category POD contains these as well as aggregations (structs, enums, unions, or classes) thereof.
 
-We call the types that can be built from the Simple Data types (§1.4), the const modifier (§1.6), and the declarator operators (§1.7) built-in types
+We call the types that can be built from the Simple Data types, the const modifier, and the declarator operators built-in types
 
 Types built out of other types using C++’s abstraction mechanisms
 are called user-defined types. They are referred to as classes and enumerations. User defined types

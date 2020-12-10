@@ -85,7 +85,7 @@ bitand not or_eq
 
 ## Expressions
 Expressions
-There are three types of arithmetic expressions in C11:
+There are three types of arithmetic expressions in C++:
 
 Integral expressions: all operands in the expression are integers. An integral expression yields an integral result.
 

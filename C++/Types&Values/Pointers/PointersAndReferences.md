@@ -3,7 +3,7 @@ Pointers are the fundamental mechanism used to refer to memory addresses.
 Pointers encode both pieces of information required to interact with another object—that is, the object’s address and the object’s type.
 
 The values belonging to pointer data types are the memory addresses of your computer. As
-in many other languages, there is no name associated with the pointer data type in C11.
+in many other languages, there is no name associated with the pointer data type in C++.
 Because the domain—that is, the set of values of a pointer data type—is the addresses
 (locations) in memory, a pointer variable is a variable whose content is an address, that
 is, a memory location and the pointer variable is said to point to that memory location.

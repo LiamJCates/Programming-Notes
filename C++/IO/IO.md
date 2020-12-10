@@ -20,7 +20,7 @@ This header file contains, among other things, the definitions of two data types
 The header file also contains two variable declarations,
 cin (pronounced ‘‘see-in’’), which stands for common input, cout (pronounced ‘‘see-out’’), which stands for common output.
 
-These variable declarations are similar to the following C11 statements:
+These variable declarations are similar to the following C++ statements:
 istream cin;
 ostream cout;
 
@@ -300,7 +300,7 @@ character is also read but not stored in the string variable.
 
 
 eof Function
-In addition to checking the value of an input stream variable, such as cin, to determine whether the end of the file has been reached, C11 provides a function that you
+In addition to checking the value of an input stream variable, such as cin, to determine whether the end of the file has been reached, C++ provides a function that you
 can use with an input stream variable to determine the end-of-file status. This function is called eof.
 
 

@@ -55,7 +55,7 @@ To define an enumeration type, you need the following items:
 ? A name for the data type
 ? A set of values for the data type
 ? A set of operations on the values
-C11 lets you define a new simple data type wherein you specify its name and values,
+C++ lets you define a new simple data type wherein you specify its name and values,
 but not the operations. Preventing users from creating their own operations helps to
 avoid potential system failures.
 The values that you specify for the data type must be identifiers.
@@ -64,7 +64,7 @@ This section may be skipped without any loss of continuity.
 The syntax for enumeration type is:
 enum typeName {value1, value2, ...};
 
-in which value1, value2, . . . are identifiers called enumerators. In C11, enum is
+in which value1, value2, . . . are identifiers called enumerators. In C++, enum is
 a reserved word.
 By listing all of the values between the braces, you also specify an ordering between
 the values. That is, value1 < value2 < value3 <.... Thus, the enumeration type
@@ -136,7 +136,7 @@ Using enumeration types in loops increases the readability of the program.
 
 Declaring Variables When Defining the Enumeration Type
 
-C11 allows you to combine these two steps into one. That is, you
+C++ allows you to combine these two steps into one. That is, you
 can declare variables of an enumeration type when you define an enumeration type.
 For example, the statement:
 enum grades {A, B, C, D, F} courseGrade;
@@ -324,7 +324,7 @@ On the other hand, if a variable is passed by reference, the formal parameter re
 only the address of the actual parameter. Therefore, an efficient way to pass a variable as a parameter is by reference. If a variable is passed by reference, then when the
 formal parameter changes, the actual parameter also changes. Sometimes, however,
 you do not want the function to be able to change the values of the actual parameter.
-In C11, you can pass a variable by reference and still prevent the function from
+In C++, you can pass a variable by reference and still prevent the function from
 changing its value. This is done by using the keyword const in the formal parameter
 declaration
 

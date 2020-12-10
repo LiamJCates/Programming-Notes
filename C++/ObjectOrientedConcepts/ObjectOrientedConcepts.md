@@ -7,6 +7,16 @@ A class hierarchy offers two kinds of benefits:
 
 Concrete classes – especially classes with small representations – are much like built-in types: we define them as local variables, access them using their names, copy them around, etc.
 
+The defining characteristic of a concrete type is that its representation is part of its definition. In many important cases, that representation is only one or more pointers to data stored elsewhere, but that representation is present in each object of a concrete class. That allows implementations to be optimally efficient in time and space. In particular, it allows us to
+• place objects of concrete types on the stack, in statically allocated memory, and in other objects (§1.5);
+• refer to objects directly (and not just through pointers or references);
+• initialize objects immediately and completely (e.g., using constructors; §2.3);
+• copy and move objects (§5.2).
+
+
+
+The representation can be private and accessible only through the member functions, but it is present. Therefore, if the representation changes in any significant way, a user must recompile. This is the price to pay for having concrete types behave exactly like built-in types. For types that don’t change often, and where local variables provide much-needed clarity and efficiency, this is acceptable and often ideal. To increase flexibility, a concrete type can keep major parts of its representation on the free store (dynamic memory, heap) and access them through the part stored in the class object itself. That’s the way vector and string are implemented; they can be considered resource handles with carefully crafted interfaces.
+
 Classes in class hierarchies are different: we tend to allocate them on the free store using new, and we access them through pointers or references.
 
 To derive a class from an existing class, you write the new class as you
@@ -18,73 +28,14 @@ class Derived : public Base {
 
 
 
-Protected
-When you create a class, member functions can access both public and private member variables and functions. Users of the class can access only the
-public member variables and functions. But when you derive a new class,
-the picture changes. The derived class cannot access the private members in
-its own class. Private members are reserved for a class itself and not for any
-derived class.
-When members need to be accessible by derived classes, there’s a specification you can use beyond public and private: protected.
-Protected members and private members work the same way, but derived
-classes can access only protected members, not private members. Users
-can’t access either class.
 
 
 
 
 
 
-Encapsulation
-To encapsulate functionality combine the methods and member variables into a single entity, hiding some of them and making some accessible.
-The accessible ones together make up the interface of the object. And finally
-(this is important!), when you create an object, you create one that can perform on its own. In other words, the users of the class tell it what to do (such
-as perform a sales transaction) by calling its member functions and supplying parameters, and the object does the work. The calling function doesn’t
-care how the object does its thing, just that it can do it.
 
-For example, a cash
-register class knows how to perform a sales transaction. As the designer of
-the class, don’t force users to first call Sale and then call separate functions
-to manually modify the amount of cash in the register and modify the running total. Rather, the Sale function does all the hard work, and users of the
-class don’t have to worry about how that work takes place.
-And now the fundamental question: Why do you need to know the word
-encapsulation? Because it’s a common term that computer scientists like
-to throw around. If they use it, however, they are likely to use it as a verb:
-“Look at me! I am going to encapsulate this information into an object!”
-But the process matters more than the word itself. When you design objects
-and classes, you encapsulate your information into individual objects. If you
-keep the process in mind, you will be better off. Here are the things you need
-to do every time you design a class:
-✦ Encapsulate the information. Combine the information into a single
-entity that becomes the class. This single entity has member variables
-representing its characteristics and member functions representing its
-capabilities.
-✦ Clearly define the public interface of the class. Provide a set of functions that are public (and, possibly, member variables that are public,
-although it’s best to keep them protected or private), and make the rest
-of the members either protected or private.
-✦ Write the class so that it knows how to do its own work. The class’s
-users should need only to call the functions in the public interface, and
-these public functions should be simple to use.
 
-✦ Think of your class as a black box. The object has an interface that
-provides a means so that others can use it. The class includes details of
-how it does its thing; users only care that it does it. In other words, the
-users don’t see into the class.
-✦ Never change the class interface after you publish the class. Many
-application errors occur when a developer changes how methods,
-events, or access methods in the class work after publishing the class.
-If application developers rely on one behavior and the class developer
-introduces a new behavior, all applications that rely on the original
-behavior will break. You can always add to a class interface but never
-subtract from it or modify it. If you find that you must introduce a new
-behavior to Sale(), add the new behavior to a new method, Sale2().
-
-A common saying in object-oriented programming is that you should never
-make your member variables public. The idea is that if users of the object
-can easily make changes to the object’s member variables, a big mess
-could result. (For example, making the cash member variable public in a
-CashRegister class is asking for functions that just modify it directly,
-screwing up the balance.) By allowing users to call only member functions,
-you can put checking code inside to handle bad situations.
 
 
 
@@ -124,7 +75,7 @@ When a different type is unacceptable, we can simply dynamic_cast to a reference
 object is not of the expected type, dynamic_cast throws a bad_cast exception:
 Shape∗ ps {read_shape(cin)};
 Smiley& r {dynamic_cast<Smiley&>(∗ps)}; // somewhere, catch std::bad_cast
-Code is cleaner when dynamic_cast is used with restraint. If we can avoid using type information,62 Classes Chapter 4
+Code is cleaner when dynamic_cast is used with restraint. If we can avoid using type information,
 we can write simpler and more efficient code, but occasionally type information is lost and must be
 recovered. This typically happens when we pass an object to some system that accepts an interface
 specified by a base class. When that system later passes the object back to us, we might have to
@@ -134,163 +85,7 @@ instance of’’ operations.
 
 
 
-Polymorphism
-The word polymorphism means having many forms. Typically, polymorphism occurs when there is a hierarchy of classes and they are related by inheritance.
 
-
-Polymorphism is one of the most powerful aspects of object-oriented programming. The idea is that you can expand and enhance your application by
-simply adding new classes derived from a common base class. Then you
-have to make very few (if any) modifications to the rest of your application.
-Because you used virtual functions and polymorphism, the rest of your application automatically understands the new class you created. In essence, you
-are able to snap in the new class, and the application will run just fine.
-
-
-polymorphic behavior that can be implemented in C++ via the
-inheritance hierarchy, also known as subtype polymorphism.
-
-Need for Polymorphic Behavior
-In Lesson 10, “Implementing Inheritance,” you found out how Tuna and Carp inherit
-public method Swim() from Fish as shown in Listing 10.1. It is, however, possible that
-both Tuna and Carp provide their own Tuna::Swim() and Carp::Swim() methods
-to make Tuna and Carp different swimmers. Yet, as each of them is also a Fish, if a
-user with an instance of Tuna uses the base class type to invoke Fish::Swim(), he ends
-up executing only the generic part Fish::Swim() and not Tuna::Swim(), even though
-that base class instance Fish is a part of a Tuna.
-
-
-#include <iostream>
-using namespace std;
-
-class Fish
-{
-public:
-void Swim()
-{
-cout << "Fish swims! " << endl;
-}
-};
-class Tuna:public Fish
-{
-public:
-// override Fish::Swim
-void Swim()
-{
-cout << "Tuna swims!" << endl;
-}
-};
-
-void MakeFishSwim(Fish& inputFish)
-{
-// calling Fish::Swim
-inputFish.Swim();
-}
-
-int main()
-{
-Tuna myDinner;
-
-// calling Tuna::Swim
-myDinner.Swim();
-
-// sending Tuna as Fish
-MakeFishSwim(myDinner);
-
-return 0;
-}
-
-
-
-
-C++ polymorphism means that a call to a member function will cause a different function to be executed depending on the type of object that invokes the function.
-
-Consider the following example where a base class has been derived by other two classes
-
-#include <iostream>
-using namespace std;
-
-class Shape {
-   protected:
-      int width, height;
-
-   public:
-      Shape( int a = 0, int b = 0){
-         width = a;
-         height = b;
-      }
-      int area() {
-         cout << "Parent class area :" <<endl;
-         return 0;
-      }
-};
-class Rectangle: public Shape {
-   public:
-      Rectangle( int a = 0, int b = 0):Shape(a, b) { }
-
-      int area () {
-         cout << "Rectangle class area :" <<endl;
-         return (width * height);
-      }
-};
-
-class Triangle: public Shape {
-   public:
-      Triangle( int a = 0, int b = 0):Shape(a, b) { }
-
-      int area () {
-         cout << "Triangle class area :" <<endl;
-         return (width * height / 2);
-      }
-};
-
-// Main function for the program
-int main() {
-   Shape *shape;
-   Rectangle rec(10,7);
-   Triangle  tri(10,5);
-
-   // store the address of Rectangle
-   shape = &rec;
-
-   // call rectangle area.
-   shape->area();
-
-   // store the address of Triangle
-   shape = &tri;
-
-   // call triangle area.
-   shape->area();
-
-   return 0;
-}
-
-
-The reason for the incorrect output is that the call of the function area() is being set once by the compiler as the version defined in the base class. This is called static resolution of the function call, or static linkage - the function call is fixed before the program is executed. This is also sometimes called early binding because the area() function is set during the compilation of the program.
-
-But now, let's make a slight modification in our program and precede the declaration of area() in the Shape class with the keyword virtual so that it looks like this −
-
-class Shape {
-   protected:
-      int width, height;
-
-   public:
-      Shape( int a = 0, int b = 0) {
-         width = a;
-         height = b;
-      }
-      virtual int area() {
-         cout << "Parent class area :" <<endl;
-         return 0;
-      }
-};
-
-After this slight modification, when the previous example code is compiled and executed, it produces the following result −
-
-Rectangle class area
-Triangle class area
-
-This time, the compiler looks at the contents of the pointer instead of it's type. Hence, since addresses of objects of tri and rec classes are stored in *shape the respective area() function is called.
-
-As you can see, each of the child classes has a separate implementation for the function area(). This is how polymorphism is generally used. You have different classes with a function of the same name, and even the same parameters, but with different implementations.
 
 
 
@@ -305,6 +100,30 @@ As you can see, each of the child classes has a separate implementation for the 
 A virtual function is a function in a base class that is declared using the keyword virtual. Defining in a base class a virtual function, with another version in a derived class, signals to the compiler that we don't want static linkage for this function.
 
 What we do want is the selection of the function to be called at any given point in the program to be based on the kind of object for which it is called. This sort of operation is referred to as dynamic linkage, or late binding.
+
+
+Consider again the use of Container:
+void use(Container& c)
+{
+const int sz = c.size();
+for (int i=0; i!=sz; ++i)
+cout << c[i] << '\n';
+}
+How is the call c[i] in use() resolved to the right operator[]()? When h() calls use(), List_container’s
+operator[]() must be called. When g() calls use(), Vector_container’s operator[]() must be called. To achieve this resolution, a Container object must contain information to allow it to select the right
+function to call at run time. The usual implementation technique is for the compiler to convert the
+name of a virtual function into an index into a table of pointers to functions. That table is usually
+called the virtual function table or simply the vtbl. Each class with virtual functions has its own vtbl
+identifying its virtual functions.
+
+The functions in the vtbl allow the object to be used correctly even when the size of the object and
+the layout of its data are unknown to the caller. The implementation of the caller needs only to
+know the location of the pointer to the vtbl in a Container and the index used for each virtual function. This virtual call mechanism can be made almost as efficient as the ‘‘normal function call’’
+mechanism (within 25%). Its space overhead is one pointer in each object of a class with virtual
+functions plus one vtbl for each such class.
+
+
+
 
 
 ## Pure Virtual Functions
@@ -519,147 +338,11 @@ class can enforce support of methods with a specified name and signature in clas
 derive from it is that of an interface.
 
 
-First, we define the interface of a class Container, which we will design as a more abstract version of our Vector:
-class Container {
-public:
-vir tual double& operator[](int) = 0; // pure virtual function
-vir tual int size() const = 0; // const member function (§4.2.1)
-vir tual ˜Container() {} // destr uctor (§4.2.2)
-};
 
 
 
-This class is a pure interface to specific containers defined later. The word virtual means ‘‘may be redefined later in a class derived from this one.’’ Unsurprisingly, a function declared virtual is
-called a virtual function.
 
 
-This is the rule for creating an abstract class: You must have at least one
-abstract virtual function in your class. If you don’t, the class will not be
-abstract, and users of the class will be able to create instances of it. But if you
-do have at least one abstract virtual function, the compiler will issue an error
-message when you and other users try to create an instance of the class.
-In your extensive travels throughout the virtual world of C++, you are likely
-to encounter a slightly different term for abstract virtual function. That term
-is pure virtual function. Although the name sounds all pristine and pure, it
-means the same thing. You can use either term.
-
-
-A class derived from Container provides an implementation for the Container interface. The curious =0 syntax says the function is pure virtual; that is, some class derived
-from Container must define the function. Thus, it is not possible to define an object that is just a
-Container. For example:
-Container c; // error : there can be no objects of an abstract class
-Container∗ p = new Vector_container(10); // OK: Container is an interface
-A Container can only serve as the interface to a class that implements its operator[]() and siz e() functions. A class with a pure virtual function is called an abstract class.
-This Container can be used like this:
-void use(Container& c)
-{
-const int sz = c.size();
-for (int i=0; i!=sz; ++i)
-cout << c[i] << '\n';
-}
-Note how use() uses the Container interface in complete ignorance of implementation details. It
-uses siz e() and [ ] without any idea of exactly which type provides their implementation. A class
-that provides the interface to a variety of other classes is often called a polymorphic type.
-As is common for abstract classes, Container does not have a constructor. After all, it does not
-have any data to initialize. On the other hand, Container does have a destructor and that destructor
-is vir tual, so that classes derived from Container can provide implementations. Again, that is common for abstract classes because they tend to be manipulated through references or pointers, and
-someone destroying a Container through a pointer has no idea what resources are owned by its
-implementation
-
-
-
-The abstract class Container defines only an interface and no implementation. For Container to
-be useful, we have to implement a container that implements the functions required by its interface.
-For that, we could use the concrete class Vector:
-class Vector_container : public Container { // Vector_container implements Container
-public:
-Vector_container(int s) : v(s) { } // Vector of s elements
-˜Vector_container() {}
-double& operator[](int i) override { return v[i]; }
-int size() const override { return v.siz e(); }
-private:
-Vector v;
-};
-The :public can be read as ‘‘is derived from’’ or ‘‘is a subtype of.’’ Class Vector_container is said to
-be derived from class Container, and class Container is said to be a base of class Vector_container.
-An alternative terminology calls Vector_container and Container subclass and superclass, respectively. The derived class is said to inherit members from its base class, so the use of base and
-derived classes is commonly referred to as inheritance.
-The members operator[]() and siz e() are said to override the corresponding members in the base
-class Container. I used the explicit override to make clear what’s intended. The use of override is
-optional, but being explicit allows the compiler to catch mistakes, such as misspellings of function
-names or slight differences between the type of a vir tual function and its intended overrider. The
-explicit use of override is particularly useful in larger class hiearchies where it can otherwise be
-hard to know what is supposed to override what.
-The destructor (˜Vector_container()) overrides the base class destructor (˜Container()). Note that
-the member destructor (˜Vector()) is implicitly invoked by its class’s destructor (˜Vector_container()).
-For a function like use(Container&) to use a Container in complete ignorance of implementation
-details, some other function will have to make an object on which it can operate. For example:
-void g()
-{
-Vector_container vc(10); // Vector of ten elements
-// ... fill vc ...
-use(vc);
-}
-Since use() doesn’t know about Vector_containers but only knows the Container interface, it will
-work just as well for a different implementation of a Container. For example:
-class List_container : public Container { // List_container implements Container
-public:
-List_container() { } // empty List
-List_container(initializ er_list<double> il) : ld{il} { }
-˜List_container() {}56 Classes Chapter 4
-double& operator[](int i) override;
-int size() const override { return ld.size(); }
-private:
-std::list<double> ld; // (standard-librar y) list of doubles (§11.3)
-};
-double& List_container::operator[](int i)
-{
-for (auto& x : ld) {
-if (i==0)
-return x;
-−−i;
-}
-throw out_of_range{"List container"};
-}
-Here, the representation is a standard-library list<double>. Usually, I would not implement a container with a subscript operation using a list, because performance of list subscripting is atrocious
-compared to vector subscripting. However, here I just wanted to show an implementation that is
-radically different from the usual one.
-A function can create a List_container and have use() use it:
-void h()
-{
-List_container lc = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-use(lc);
-}
-The point is that use(Container&) has no idea if its argument is a Vector_container, a List_container,
-or some other kind of container; it doesn’t need to know. It can use any kind of Container. It knows
-only the interface defined by Container. Consequently, use(Container&) needn’t be recompiled if the
-implementation of List_container changes or a brand-new class derived from Container is used.
-The flip side of this flexibility is that objects must be manipulated through pointers or references
-(§5.2, §13.2.1).
-
-
-
-## Virtual Functions
-Consider again the use of Container:
-void use(Container& c)
-{
-const int sz = c.size();
-for (int i=0; i!=sz; ++i)
-cout << c[i] << '\n';
-}
-How is the call c[i] in use() resolved to the right operator[]()? When h() calls use(), List_container’s
-operator[]() must be called. When g() calls use(), Vector_container’s operator[]() must be called. ToSection 4.4 Virtual Functions 57
-achieve this resolution, a Container object must contain information to allow it to select the right
-function to call at run time. The usual implementation technique is for the compiler to convert the
-name of a virtual function into an index into a table of pointers to functions. That table is usually
-called the virtual function table or simply the vtbl. Each class with virtual functions has its own vtbl
-identifying its virtual functions.
-
-The functions in the vtbl allow the object to be used correctly even when the size of the object and
-the layout of its data are unknown to the caller. The implementation of the caller needs only to
-know the location of the pointer to the vtbl in a Container and the index used for each virtual function. This virtual call mechanism can be made almost as efficient as the ‘‘normal function call’’
-mechanism (within 25%). Its space overhead is one pointer in each object of a class with virtual
-functions plus one vtbl for each such class.
 
 
 
@@ -766,335 +449,3 @@ a base class virtual function, thereby getting the compiler to check whether
 ■ The base class function is virtual.
 ■ The signature of the base class virtual function exactly matches the signature of the
 derived class function declared to override.
-
-
-Use final to Prevent Function
-Overriding
-Specifier final, introduced in C++11, was first presented to you in Lesson 10. A class
-declared as final cannot be used as a base class. Similarly, a virtual function
-declared as final cannot be overridden in a derived class.
-Thus, a version of class Tuna that doesn’t allow any further specialization of virtual
-function Swim() would look like this:
-class Tuna:public Fish
-{
-public:
-// override Fish::Swim and make this final
-void Swim() override final
-{
-cout << "Tuna swims!" << endl;
-}
-};
-This version of Tuna can be inherited from, but Swim() cannot be overridden any
-further:
-class BluefinTuna final:public Tuna
-{
-public:
-void Swim() // Error: Swim() was final in Tuna, cannot override
-{
-}
-};
-A demonstration of specifiers override and final is available in Listing 11.9.We used final in the declaration of class BluefinTuna as
-well. This ensures that class BluefinTuna cannot be used as
-a base class. Therefore, the following would result in error:
-class FailedDerivation:public BluefinTuna
-{
-};
-
-
-
-
-
-
-
-
-
-
-Data Abstraction
-Data abstraction refers to providing only essential information to the outside world and hiding their background details, i.e., to represent the needed information in program without presenting the details.
-
-Data abstraction is a programming (and design) technique that relies on the separation of interface and implementation.
-
-Let's take one real life example of a TV, which you can turn on and off, change the channel, adjust the volume, and add external components such as speakers, VCRs, and DVD players, BUT you do not know its internal details, that is, you do not know how it receives signals over the air or through a cable, how it translates them, and finally displays them on the screen.
-
-Thus, we can say a television clearly separates its internal implementation from its external interface and you can play with its interfaces like the power button, channel changer, and volume control without having any knowledge of its internals.
-
-In C++, classes provides great level of data abstraction. They provide sufficient public methods to the outside world to play with the functionality of the object and to manipulate object data, i.e., state without actually knowing how class has been implemented internally.
-
-For example, your program can make a call to the sort() function without knowing what algorithm the function actually uses to sort the given values. In fact, the underlying implementation of the sorting functionality could change between releases of the library, and as long as the interface stays the same, your function call will still work.
-
-In C++, we use classes to define our own abstract data types (ADT). You can use the cout object of class ostream to stream data to standard output like this −
-Live Demo
-
-#include <iostream>
-using namespace std;
-
-int main() {
-   cout << "Hello C++" <<endl;
-   return 0;
-}
-
-Here, you don't need to understand how cout displays the text on the user's screen. You need to only know the public interface and the underlying implementation of ‘cout’ is free to change.
-Access Labels Enforce Abstraction
-
-In C++, we use access labels to define the abstract interface to the class. A class may contain zero or more access labels −
-
-    Members defined with a public label are accessible to all parts of the program. The data-abstraction view of a type is defined by its public members.
-
-    Members defined with a private label are not accessible to code that uses the class. The private sections hide the implementation from code that uses the type.
-
-There are no restrictions on how often an access label may appear. Each access label specifies the access level of the succeeding member definitions. The specified access level remains in effect until the next access label is encountered or the closing right brace of the class body is seen.
-Benefits of Data Abstraction
-
-Data abstraction provides two important advantages −
-
-    Class internals are protected from inadvertent user-level errors, which might corrupt the state of the object.
-
-    The class implementation may evolve over time in response to changing requirements or bug reports without requiring change in user-level code.
-
-By defining data members only in the private section of the class, the class author is free to make changes in the data. If the implementation changes, only the class code needs to be examined to see what affect the change may have. If data is public, then any function that directly access the data members of the old representation might be broken.
-Data Abstraction Example
-
-Any C++ program where you implement a class with public and private members is an example of data abstraction. Consider the following example −
-Live Demo
-
-#include <iostream>
-using namespace std;
-
-class Adder {
-   public:
-      // constructor
-      Adder(int i = 0) {
-         total = i;
-      }
-
-      // interface to outside world
-      void addNum(int number) {
-         total += number;
-      }
-
-      // interface to outside world
-      int getTotal() {
-         return total;
-      };
-
-   private:
-      // hidden data from outside world
-      int total;
-};
-
-int main() {
-   Adder a;
-
-   a.addNum(10);
-   a.addNum(20);
-   a.addNum(30);
-
-   cout << "Total " << a.getTotal() <<endl;
-   return 0;
-}
-
-When the above code is compiled and executed, it produces the following result −
-
-Total 60
-
-Above class adds numbers together, and returns the sum. The public members - addNum and getTotal are the interfaces to the outside world and a user needs to know them to use the class. The private member total is something that the user doesn't need to know about, but is needed for the class to operate properly.
-Designing Strategy
-
-Abstraction separates code into interface and implementation. So while designing your component, you must keep interface independent of the implementation so that if you change underlying implementation then interface would remain intact.
-
-In this case whatever programs are using these interfaces, they would not be impacted and would just need a recompilation with the latest implementation.
-
-
-
-
-
-
-Encapsulation
-
-All C++ programs are composed of the following two fundamental elements −
-
-    Program statements (code) − This is the part of a program that performs actions and they are called functions.
-
-    Program data − The data is the information of the program which gets affected by the program functions.
-
-Encapsulation is an Object Oriented Programming concept that binds together the data and functions that manipulate the data, and that keeps both safe from outside interference and misuse. Data encapsulation led to the important OOP concept of data hiding.
-
-Data encapsulation is a mechanism of bundling the data, and the functions that use them and data abstraction is a mechanism of exposing only the interfaces and hiding the implementation details from the user.
-
-C++ supports the properties of encapsulation and data hiding through the creation of user-defined types, called classes. We already have studied that a class can contain private, protected and public members. By default, all items defined in a class are private. For example −
-
-class Box {
-   public:
-      double getVolume(void) {
-         return length * breadth * height;
-      }
-
-   private:
-      double length;      // Length of a box
-      double breadth;     // Breadth of a box
-      double height;      // Height of a box
-};
-
-The variables length, breadth, and height are private. This means that they can be accessed only by other members of the Box class, and not by any other part of your program. This is one way encapsulation is achieved.
-
-To make parts of a class public (i.e., accessible to other parts of your program), you must declare them after the public keyword. All variables or functions defined after the public specifier are accessible by all other functions in your program.
-
-Making one class a friend of another exposes the implementation details and reduces encapsulation. The ideal is to keep as many of the details of each class hidden from all other classes as possible.
-Data Encapsulation Example
-
-Any C++ program where you implement a class with public and private members is an example of data encapsulation and data abstraction. Consider the following example −
-Live Demo
-
-#include <iostream>
-using namespace std;
-
-class Adder {
-   public:
-      // constructor
-      Adder(int i = 0) {
-         total = i;
-      }
-
-      // interface to outside world
-      void addNum(int number) {
-         total += number;
-      }
-
-      // interface to outside world
-      int getTotal() {
-         return total;
-      };
-
-   private:
-      // hidden data from outside world
-      int total;
-};
-
-int main() {
-   Adder a;
-
-   a.addNum(10);
-   a.addNum(20);
-   a.addNum(30);
-
-   cout << "Total " << a.getTotal() <<endl;
-   return 0;
-}
-
-When the above code is compiled and executed, it produces the following result −
-
-Total 60
-
-Above class adds numbers together, and returns the sum. The public members addNum and getTotal are the interfaces to the outside world and a user needs to know them to use the class. The private member total is something that is hidden from the outside world, but is needed for the class to operate properly.
-Designing Strategy
-
-Most of us have learnt to make class members private by default unless we really need to expose them. That's just good encapsulation.
-
-This is applied most frequently to data members, but it applies equally to all members, including virtual functions.
-
-
-
-
-
-
-
-
-
-Interfaces
-
-An interface describes the behavior or capabilities of a C++ class without committing to a particular implementation of that class.
-
-The C++ interfaces are implemented using abstract classes and these abstract classes should not be confused with data abstraction which is a concept of keeping implementation details separate from associated data.
-
-A class is made abstract by declaring at least one of its functions as pure virtual function. A pure virtual function is specified by placing "= 0" in its declaration as follows −
-
-class Box {
-   public:
-      // pure virtual function
-      virtual double getVolume() = 0;
-
-   private:
-      double length;      // Length of a box
-      double breadth;     // Breadth of a box
-      double height;      // Height of a box
-};
-
-The purpose of an abstract class (often referred to as an ABC) is to provide an appropriate base class from which other classes can inherit. Abstract classes cannot be used to instantiate objects and serves only as an interface. Attempting to instantiate an object of an abstract class causes a compilation error.
-
-Thus, if a subclass of an ABC needs to be instantiated, it has to implement each of the virtual functions, which means that it supports the interface declared by the ABC. Failure to override a pure virtual function in a derived class, then attempting to instantiate objects of that class, is a compilation error.
-
-Classes that can be used to instantiate objects are called concrete classes.
-Abstract Class Example
-
-Consider the following example where parent class provides an interface to the base class to implement a function called getArea() −
-Live Demo
-
-#include <iostream>
-
-using namespace std;
-
-// Base class
-class Shape {
-   public:
-      // pure virtual function providing interface framework.
-      virtual int getArea() = 0;
-      void setWidth(int w) {
-         width = w;
-      }c
-
-      void setHeight(int h) {
-         height = h;
-      }
-
-   protected:
-      int width;
-      int height;
-};
-
-// Derived classes
-class Rectangle: public Shape {
-   public:
-      int getArea() {
-         return (width * height);
-      }
-};
-
-class Triangle: public Shape {
-   public:
-      int getArea() {
-         return (width * height)/2;
-      }
-};
-
-int main(void) {
-   Rectangle Rect;
-   Triangle  Tri;
-
-   Rect.setWidth(5);
-   Rect.setHeight(7);
-
-   // Print the area of the object.
-   cout << "Total Rectangle area: " << Rect.getArea() << endl;
-
-   Tri.setWidth(5);
-   Tri.setHeight(7);
-
-   // Print the area of the object.
-   cout << "Total Triangle area: " << Tri.getArea() << endl;
-
-   return 0;
-}
-
-When the above code is compiled and executed, it produces the following result −
-
-Total Rectangle area: 35
-Total Triangle area: 17
-
-You can see how an abstract class defined an interface in terms of getArea() and two other classes implemented same function but with different algorithm to calculate the area specific to the shape.
-Designing Strategy
-
-An object-oriented system might use an abstract base class to provide a common and standardized interface appropriate for all the external applications. Then, through inheritance from that abstract base class, derived classes are formed that operate similarly.
-
-The capabilities (i.e., the public functions) offered by the external applications are provided as pure virtual functions in the abstract base class. The implementations of these pure virtual functions are provided in the derived classes that correspond to the specific types of the application.
-
-This architecture also allows new applications to be added to a system easily, even after the system has been defined.

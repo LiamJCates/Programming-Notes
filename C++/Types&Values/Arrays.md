@@ -57,8 +57,8 @@ arrayName[indexExp]
 
 in which indexExp, called the index, is any expression whose value is a nonnegative
 integer. The index value specifies the position of the component in the array.
-In C11, [] is an operator called the array subscripting operator. Moreover, in
-C11, the array index starts at 0.
+In C++, [] is an operator called the array subscripting operator. Moreover, in
+C++, the array index starts at 0.
 Consider the following statement:
 int list[10];
 This statement declares an array list of 10 components. The components are
@@ -77,7 +77,7 @@ all costs.
 The index—say, index—of an array is in bounds if index is between 0 and
 ARRAY_ SIZE - 1, that is, 0 <= index <= ARRAY_SIZE - 1. If index is negative or
 index is greater than ARRAY_SIZE - 1, then we say that the index is out of bounds.
-Unfortunately, C11 does not check whether the index value is within range—that is,
+Unfortunately, C++ does not check whether the index value is within range—that is,
 between 0 and ARRAY_SIZE - 1. If the index goes out of bounds and the program tries to
 access the component specified by the index, then whatever memory location is indicated
 by the index that location is accessed. This situation can result in altering or accessing
@@ -222,7 +222,7 @@ The first parameter of the function initialize is an int array of any size. When
 the function initialize is called, the size of the actual array is passed as the second
 parameter of the function initialize.
 
-If C11 allowed arrays to be passed by value, the computer would have to allocate memory for the components of the formal parameter and copy the contents of the actual array
+If C++ allowed arrays to be passed by value, the computer would have to allocate memory for the components of the formal parameter and copy the contents of the actual array
 into the corresponding formal parameter when the function is called. If the array size was
 large, this process would waste memory as well as the computer time needed for copying
 the data. That is why in C++ arrays are always passed by reference.
@@ -386,11 +386,11 @@ Two-dimensional arrays can be passed as parameters to a function, and they are
 passed by reference. The base address (that is, the address of the first component of
 the actual parameter) is passed to the formal parameter. If matrix is the name of a
 two-dimensional array, then matrix[0][0] is the first component of matrix.
-When storing a two-dimensional array in the computer’s memory, C11 uses the row
+When storing a two-dimensional array in the computer’s memory, C++ uses the row
 order form. That is, the first row is stored first, followed by the second row, followed
 by the third row, and so on.
 In the case of a one-dimensional array, when declaring it as a formal parameter, we
-usually omit the size of the array. Because C11 stores two-dimensional arrays in
+usually omit the size of the array. Because C++ stores two-dimensional arrays in
 row order form, to compute the address of a component correctly, the compiler must
 know where one row ends and the next row begins. Thus, when declaring a twodimensional array as a formal parameter, you can omit the size of the first dimension,
 but not the second; that is, you must specify the number of columns.

@@ -43,6 +43,14 @@ value-returning function nor a void function.
   Constructors execute automatically when a class object is declared and enters its scope. Because they have no types, they cannot be called like other functions.
   Which constructor executes depends on the types of values passed to the class object when the class object is declared.
 
+It is the job of a constructor
+to establish the invariant for its class (so that the member functions can rely on it) and for the member functions to make sure that the invariant holds when they exit.
+
+The notion of invariants is central to the design of classes, and preconditions serve a similar role
+in the design of functions. Invariants
+• help us to understand precisely what we want
+• force us to be specific; that gives us a better chance of getting our code correct (after debugging and testing).
+The notion of invariants underlies C++’s notions of resource management supported by constructors (Chapter 4) and destructors
 
 ### Declaring and Implementing a Constructor
 Constructor declarations don’t state a return type, and their name matches the class’s name.
@@ -100,7 +108,7 @@ Note the following:
 ? The number of arguments and their type should match the formal
 parameters (in the order given) of one of the constructors.
 ? If the type of the arguments does not match the formal parameters of any
-constructor (in the order given), C11 uses type conversion and looks
+constructor (in the order given), C++ uses type conversion and looks
 for the best match. For example, an integer value might be converted
 to a floating-point value with a zero decimal part. Any ambiguity will
 result in a compile-time error.
@@ -108,11 +116,11 @@ result in a compile-time error.
 
 
 The important things to remember about classes and constructors are the following:
-? If a class has no constructor(s), C11 automatically provides the default
+? If a class has no constructor(s), C++ automatically provides the default
 constructor. However, the object declared is still uninitialized.
 ? On the other hand, suppose aclass, say,dummyClass, includes constructor(s)
 with parameter(s) and does not include the default constructor. In this case,
-C11 does not provide the default constructor for the class dummyClass.
+C++ does not provide the default constructor for the class dummyClass.
 Therefore, when an object of the class dummyClass is declared, we must
 include the appropriate arguments in its declaration.
 

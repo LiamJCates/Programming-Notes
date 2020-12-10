@@ -57,8 +57,8 @@ cout << fixed << showpoint;
 
 
 C++14 Digit Separator
-To make the reading and writing of long numbers easier C1114
-introduces digit separator ' (single-quote character). So in C11 14, the number
+To make the reading and writing of long numbers easier C++14
+introduces digit separator ' (single-quote character). So in C++ 14, the number
 87523872918 can be represented as 87'523'872'918 or 87'523872'918 or 8'7'5'2'3'8'7'2'9'1'8.
 
 

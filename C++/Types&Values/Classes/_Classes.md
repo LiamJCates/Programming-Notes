@@ -50,7 +50,7 @@ Classes can have member types or nested types (including type aliases).
 Once an object of a class is declared, it can access the members of the class. The general syntax for an object to access a member of a class is:
 classObjectName.memberName
 
-Recall that in C11, the dot, . (period), is an operator called the member access
+Recall that in C++, the dot, . (period), is an operator called the member access
 operator.
 
 
@@ -86,6 +86,9 @@ Steps to Using Objects
 4 delete MyPen; Deletes the object
 5 MyPen = 0; Clears the pointer
 
+
+The constructor allocates the elements and initializes the Vector members appropriately. The destructor deallocates the elements. This handle-to-data model is very commonly used to manage
+data that can vary in size during the lifetime of an object.
 
 The technique of acquiring resources in a constructor and releasing them in a destructor, known as Resource Acquisition Is Initialization or RAII, allows us to eliminate ‘‘naked new operations,’’ that is, to avoid allocations in general code and keep them buried inside the implementation of well-behaved abstractions. Similarly, ‘‘naked delete operations’’ should be avoided. Avoiding naked new and naked delete makes code far less error-prone and far easier to keep free of resource leaks
 
@@ -162,6 +165,7 @@ two in the header — in fact, many don’t put any function code at all in
 the header. You may want to name the header file the same as the class
 but with an .h or .hpp extension. Thus, the class Pen, for instance,
 might be in the file Pen.h.
+
 ✦ Source file: If your class has member functions, and you did not put the
 code in the class definition, you need to put the code in a source file.
 When you do, precede the function name with the class name and two

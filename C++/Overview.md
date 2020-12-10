@@ -1,9 +1,6 @@
 C++ is a middle-level programming language developed by Bjarne Stroustrup starting in 1979 at Bell Labs.
 
-
-
 C++ runs on a variety of platforms, such as Windows, Mac OS, and the various versions of UNIX.
-
 
 Why Learn C++
     C++ is very close to hardware, so you get a chance to work at a low level which gives you lot of control in terms of memory management, better performance and finally a robust software development.
@@ -38,6 +35,27 @@ C++ features classes that are used to contain member data and member
 methods. These member methods operate using member data. The effect of this
 organization is that the programmer models objects containing data and actions they wants to perform.
 
+
+
+
+
+
+
+
+
+Syntax and semantics
+While there is no single organization the controls all of C++, individual vendors and communities implement the ISO standard which determines the syntax and semantics of the C++ language
+The ISO committee updates the standard every three years
+always used the most recent implementation of the standard
+
+The ISO C++ standard defines two kinds of entities:
+• Core language features, such as built-in types (e.g., char and int) and loops (e.g., for-statements and while-statements)
+• Standard-library components, such as containers (e.g., vector and map) and I/O operations
+(e.g., << and getline())
+
+The standard-library components are perfectly ordinary C++ code provided by every C++ implementation. That is, the C++ standard library can be implemented in C++ itself and is (with very
+minor uses of machine code for things such as thread context switching). This implies that C++ is
+sufficiently expressive and efficient for the most demanding systems programming tasks.
 
 
 
