@@ -10,13 +10,13 @@ data type.
 Reflecting these kinds of underlying differences, C++ categorizes data into different types, and only certain operations can be performed on particular types of data. Although at first it may seem confusing, by being so type conscious, C++ has built-in checks to guard against errors.
 
 Data type: A set of values together with a set of allowed operations.
+
 C++ data types fall into the following three categories:
 Simple data type
 Structured data type
 Pointers
 
-a data type is called simple if variables of that type can store only one value at a time. In contrast, in a structured data type, each data item is a collection of other
-data items. Simple data types are building blocks of structured data types.
+A data type is called simple if variables of that type can store only one value at a time. In contrast, in a structured data type, each data item is a collection of other data items. Simple data types are building blocks of structured data types.
 
 Every name and every expression has a type that determines the operations that may be performed on it.
 
@@ -34,21 +34,14 @@ A declaration is a statement that introduces an entity into the program. It spec
 Simple Data types are the most basic types of object.
 
 Some refer to Simple Data types as primitive or built-in types because they’re part of the core language and almost always available to you.
-These types  include integer, floating-point, character, Boolean, byte, size_t, and void.
+
+These types include integer, floating-point, character, Boolean, byte, size_t, and void.
+
 These types will work on any platform, but their features, such as size and memory layout, depend on implementation.
 
-Simple Data types strike a balance. On one hand, they try to map a
-direct relationship from C++ construct to computer hardware; on the other hand, they simplify writing cross-platform code by allowing a programmer to write code once that works on many platforms.
+Simple Data types strike a balance. On one hand, they try to map a direct relationship from C++ construct to computer hardware; on the other hand, they simplify writing cross-platform code by allowing a programmer to write code once that works on many platforms.
 
 
-
-There are three categories of Simple Data:
-Integral, which is a data type that deals with integers, or numbers
-without a decimal part
-
-Floating point, which is a data type that deals with decimal numbers
-
-Enumeration, which is a user-defined data type
 
 
 

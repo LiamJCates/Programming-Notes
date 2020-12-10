@@ -1,13 +1,23 @@
-Sequence Container: list
+list
+A list is a sequence container with fast insert/remove operations everywhere
+but with no random element access.
+
 insertion and deletion in the middle of the data structures are very inefficient operations for contiguous data structures. And that's where linked-list-like structures come into the picture.
 
 List containers are implemented as doubly linked lists. Thus, every element in a list points to both its immediate predecessor and its immediate successor (except the first and last elements).
 
-The name of the class containing the definition of the class list is list. The
-definition of the class list, and the definitions of the functions to implement the
-various operations on a list, are contained in the header file list. Therefore, to use
-list in a program, the program must include the following statement:
+As a result of a lack of random access, you cannot use operator[] or at to access arbitrary elements in a list, because such operations would be very inefficient.
+
+The trade­off is that inserting and removing elements in a list is much faster.
+
+
+
+The STL implementation std::list is available from the <list> header. To use list in a program, the program must include the following statement:
 #include <list>
+
+
+The list container supports the same constructor patterns as vector.
+
 
 | Constructor | Description |
 |-------------|-------------|
@@ -16,6 +26,23 @@ list in a program, the program must include the following statement:
 | list<elementType> listCont(size); | Creates the list container listCont of size size. listCont is initialized using the default constructor.|
 | list<elementType> listCont(n, elm); | Creates the list container listCont of size n. listCont is initialized using n copies of the element elm. |
 | list<elementType> listCont(beg, end); | Creates the list container listCont. listCont is initialized to the elements in the range of iterators [beg, end); |
+
+
+All the vector methods not implemented by list, along with an explanation for their absence, are as follows:
+capacity, reserve, shrink_to_fit Because list acquires memory incrementally, it doesn’t require periodic resizing.
+operator[], at Random element access is prohibitively expensive on lists.
+data Unneeded because list elements are not contiguous.
+
+You can perform special operations on lists, such as splicing elements
+from one list into another using the splice method, removing consecutive
+duplicate elements using the unique method, and even sorting the elements
+of a container using the sort method. Consider, for example, the remove_if
+method. The remove_if method accepts a function object as a parameter,
+and it traverses the list while invoking the function object on each element.
+If the result is true, remove_if removes the element.
+
+
+
 
 | Expression  | Description |
 |-------------|-------------|
@@ -102,6 +129,38 @@ in listCont1 are sorted
 according to the sort criteria oper.
 listCont.reverse(); The elements of listCont are
 reversed.
+
+
+
+
+Operation Notes
+lst.emplace_front(...) Constructs an element in place at the front of the d by forwarding all arguments to the appropriate constructor.
+lst.push_front(t) Constructs an element in place at the front of d by copying t.
+lst.pop_front() Removes the element at the front of d.
+lst.push_back(t) Constructs an element in place at the back of d by copying t.
+lst.pop_back() Removes the element at the back of d.
+lst1.splice(itr1,lst2,
+[itr2a], [itr2b])
+Transfers items from lst2 into lst1 at position itr1.
+Optionally, only transfer the element at itr2a or the elements
+within the half-open range itr2a to itr2b.Containers 427
+
+lst.remove(t) Removes all elements in lst equal to t.
+lst.remove_if(pred) Eliminates elements in lst where pred returns true; pred
+accepts a single T argument.
+lst.unique(pred) Eliminates duplicate consecutive elements in lst according to
+the function object pred, which accepts two T arguments and
+returns t1 == t2.
+lst1.merge(lst2, comp) Merges lst1 and lst2 according to the function object comp,
+which accepts two T arguments and returns t1 < t2.
+lst.sort(comp) Sorts lst according to the function object comp.
+lst.reverse() Reverses the order of lst’s elements (mutates lst).
+
+
+
+
+
+
 
 
 Linked List implementation in C++ Collections list<E> in by C++ Collections is a data structure which implements linked list.

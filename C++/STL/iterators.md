@@ -138,3 +138,81 @@ In addition to these operations, iterator operations for classes deque and vecto
 	 i1[n]
 
 The iterators provide a unified interface across all of the dynamically iterable STL containers.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+### CONTAINERS AND THE FUNCTIONS begin AND end
+Every container has the member functions begin and end. The function begin
+returns the position of the first element in the container; the function end returns the
+position of one past the last element in the container. Also, these functions have no
+parameters.
+After the following statement executes
+intVecIter = intList.begin();
+the iterator intVecIter points to the first element in the container intList.
+The following for loop outputs the elements of intList to the standard output
+device.
+for (intVecIter = intList.begin(); intVecIter != intList.end();
+++intVecIter)
+cout << *intVecIter << " ";
+
+Because iterator is a typedef defined inside the class vector, we must use the container name (which is vector), the container element type, and the scope resolution operator to use the typedef iterator.
+The expression
+++intVecIter
+advances the iterator intVecIter to the next element in the container, and the
+expression
+*intVecIter
+returns the element at the current iterator position.
+
+
+### THE ostream ITERATOR AND THE FUNCTION copy
+a special type of iterators called
+ostream iterators. These iterators work well with the function copy to copy the
+elements of a container to an output device.
+
+One way to output the contents of a container is to use a for loop, the function
+begin to initialize the for loop control variable, and the function end to set the limit.
+Alternatively, the function copy can be used to output the elements of a container. In
+this case, an iterator of type ostream specifies the destination. (ostream iterators are
+discussed in detail later in this chapter.) When we create an iterator of type ostream,
+we also specify the type of element that the iterator will output.
+The following statement illustrates how to create an ostream iterator of type int:
+ostream_iterator<int> screen(cout, " ");
+
+This statement creates screen to be an ostream iterator with the element type int.
+The iterator screen has two arguments: the object cout and a space. Thus, the iterator screen is initialized using the object cout. When this iterator outputs elements,
+they are separated by a space.
+The statement
+copy(intArray, intArray + 9, screen);
+outputs the elements of intArray on the screen. Similarly, the statement
+copy(vecList.begin(), vecList.end(), screen);
+outputs the elements of the container vecList on the screen.
+
+Of course, we can directly specify an ostream iterator in the function copy the statement
+copy(vecList.begin(), vecList.end(),
+ostream_iterator<int>(cout, ", "));
+outputs the elements of vecList with a comma and space between them.
+
+Initializing vector Objects during Declaration
+whlile the following statements can be used to declare intList to be a vector<int> object and store 13, 75, 28, and 35 in intList:
+
+vector<int> intList;
+intList.push_back(13);
+intList.push_back(75);
+intList.push_back(28);
+intList.push_back(35);
+C++ 11 allows a vector object to be declared and initialized at the same time. For example, the following statement declares inList to be a vector<int> object an stores 13, 75, 28, and 35 in it.
+
+vector<int> intList = {13, 75, 28, 35};
+That is, in C++ 11, the five statements used earlier to declare and initialize intList can be replaced by the preceding statement.

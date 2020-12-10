@@ -52,34 +52,7 @@ or a variable, you must first declare it.
 ## Naming Variables
 Naming variables appropriately is important for writing good, understandable, and maintainable code.
 
-Variable names in C++ can be alphanumeric, but they cannot start with a number. They cannot contain spaces and cannot contain arithmetic operators (such as +, –, and so on) within them. Variable names also cannot be reserved keywords.
-
-Variable names can contain the underscore character _ that often is used in descriptive variable naming.
-
-Keywords You Cannot Use as Variable or Constant Names
-
-asm else new this
-auto enum operator throw
-bool explicit private true
-break export protected try
-case extern public typedef
-catch false register typeid
-char float reinterpret_cast typename
-class for return union
-const friend short unsigned
-constexpr goto signed using
-continue if sizeof virtual
-default inline static void
-delete int static_cast volatile
-do long struct wchar_t
-double mutable switch while
-dynamic_cast namespace template
-In addition, the following words are reserved:
-and bitor not_eq xor
-and_eq compl or xor_eq
-bitand not or_eq
-
-
+Variable names in C++ follow the rules for identifiers.
 
 
 
@@ -102,6 +75,7 @@ If the operator to be evaluated has one integer operand and one floating-point o
 
 
 A common expression is assignment
+
 The assignment operator replaces the value contained by the operand to the left (l-value) by that on the right (r-value).
 
 There are two kinds of expressions in C++ −

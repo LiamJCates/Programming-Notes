@@ -91,34 +91,21 @@ Member Functions Common to All Containers
 
 
 
-Sequence Containers
-Sequence containers are STL containers that allow sequential member access.
-
-Every object in a sequence container has a specific position.
-
-That is, you can start from one end of the container and iterate through to
-the other end.
-
-Some containers have a fixed length; others can shrink and grow as program needs dictate. Some allow indexing directly into the container, whereas you can only access others sequentially. Additionally, each sequence container has unique performance characteristics that make it desirable in some situations and undesirable in others.
-
-Sequence containers:
-array
-vector
-deque
-list
 
 
-Member Functions Common to Sequence Containers
 
-| Expression | Description |
-| seqCont.insert(position, elem); | A copy of elem is inserted at the position specified by the iterator position. The position of the new element is returned. |
-| seqCont.insert(position, n, elem); | n copies of elem are inserted at the position specified by the iterator position. |
-| seqCont.insert(position, beg, end); |
-| A copy of the elements, starting at beg until end-1, is inserted into seqCont at the position specified by the iterator position. Also, beg and end are iterators. |
-| seqCont.push_back(elem); | A copy of elem is inserted into seqCont at the end. |
-| seqCont.pop_back(); | Deletes the last element. |
-| seqCont.erase(position); | Deletes the element at the position specified by the iterator position. |
-| seqCont.erase(beg, end); | Deletes all of the elements starting at beg until end-1. Both beg and end are iterators. |
-| seqCont.clear(); Deletes all of the elements from the container. |
-| seqCont.resize(num); | Changes the number of elements to num. If size grows, the new elements are created by their default constructor. |
-| seqCont.resize(num, elem); | Changes the number of elements to num. If size grows, the new elements are copies of elem. |
+
+
+Comparing containers
+
+All containers overload the operator == for comparing two containers of the same type that have the same element type. You can use == to compare a vector<string> to another vector<string>, but you can't use it to compare a vector<string> to a list<string> or a vector<string> to a vector<char*>.
+
+In C++98/03, you can use std::equal or std::mismatch to compare dissimilar container types and/or element types.
+
+In C++11, you can also use std::is_permutation.
+
+But in all these cases the functions assume the containers are the same length. If the second range is shorter than the first, then undefined behavior results. If the second range is longer, results can still be incorrect because the comparison never continues past the end of the first range.
+
+Comparing dissimilar containers (C++14)
+
+In C++14 and later, you can compare dissimilar containers and/or dissimilar elements types by using one of the std::equal, std::mismatch, or std::is_permutation function overloads that take two complete ranges. These overloads enable you to compare containers with different lengths. These overloads are much less susceptible to user error, and are optimized to return false in constant time when containers of dissimilar lengths are compared. Therefore, we recommend you use these overloads unless you have a clear reason not to, or you're using a std::list container, which does not benefit from the dual-range optimizations.
