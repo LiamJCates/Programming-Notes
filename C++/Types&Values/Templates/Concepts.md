@@ -10,7 +10,7 @@ Concepts allow you to express requirements on template parameters directly in th
 Unfortunately, concepts aren’t yet officially part of the C++ standard, although they’ve been voted into C++ 20. At press time, GCC 6.0 and later support the Concepts Technical Specification, and Microsoft is actively working toward implementing concepts in its C++ compiler, MSVC.
 
 
-Regardless of its unofficial status, concepts are worth exploring for a few reasons:
+Regardless of its unofficial status, concepts are worth exploring:
 •	 They’ll fundamentally change the way you achieve compile-time polymorphism. Familiarity with concepts will pay major dividends.
 
 •	 They provide a conceptual framework for understanding some of the makeshift solutions that you can put in place to get better compiler errors when templates are misused.
@@ -82,71 +82,7 @@ We call such requirements concepts.
 
 
 
-## Use of Concepts
-Most template arguments must meet specific requirements for the template to compile properly and for the generated code to work properly. That is, most templates must be constrained templates.
 
-
-The type-name introducer typename is the least constraining, requiring only that the argument be a type.
-
-Consider sum() again:
-
-template<Sequence Seq, Number Num>
-Num sum(Seq s, Num v)
-{
-  for (const auto& x : s)
-    v+=x;
-  return v;
-}
-
-We can define what the concepts Sequence and Number mean.
-The compiler can then reject bad calls by looking at sum()’s interface only, rather than looking at its implementation. This improves error reporting.
-
-However, the specification of sum()’s interface is not complete:
-  we must be able to add elements of a Sequence to a Number, we define:
-
-template<Sequence Seq, Number Num>
-  requires Arithmetic<Value_type<Seq>,Num>
-Num sum(Seq s, Num n);
-
-The Value_type of a sequence is the type of the elements in the sequence.
-
-Arithmetic<X,Y> is a concept specifying that we can do arithmetic with numbers of types X and Y.
-
-This saves us from
-  trying to calculate the sum() of a vector<string> or a vector<int∗>
-  while accepting vector<int> and vector<complex<double>>.
-
-In this example, we needed only +=, but for simplicity and flexibility, we should not constrain our template argument too tightly.
-
-In particular, we might someday want to express sum() in terms of + and = rather than +=, and then we’d be happy that we used a general concept (here, Arithmetic) rather than a narrow requirement to ‘‘have +=.’’
-
-Partial specifications, as in the first sum() using concepts, can be very useful.
-
-Unless the specification is complete, some errors will not be found until instantiation time. However, partial specifications can help a lot, express intent, and are essential for smooth incremental development where we don’t initially recognize all the requirements we need. With mature libraries of concepts, initial specifications will be close to perfect.
-
-Unsurprisingly, requires Arithmetic<Value_type<Seq>,Num> is called a requirements-clause.
-
-The template<Sequence Seq> notation is simply a shorthand for an explicit use of requires Sequence<Seq>.
-
-A verbose equivalent:
-
-template<typename Seq, typename Num>
-  requires Sequence<Seq> && Number<Num> && Arithmetic<Value_type<Seq>,Num>
-Num sum(Seq s, Num n);
-
-
-On the other hand, we could also use the equivalence between the two notations:
-
-template<Sequence Seq, Arithmetic<Value_type<Seq>> Num>
-Num sum(Seq s, Num n);
-
-Where we cannot yet use concepts, we have to make do with naming conventions and comments, such as:
-
-template<typename Sequence, typename Number>
-// requires Arithmetic<Value_type<Sequence>,Number>
-Numer sum(Sequence s, Number n);
-
-Whatever notation we chose, it is important to design a template with semantically meaningful constraints on its arguments (§7.2.4).
 
 
 
@@ -191,6 +127,9 @@ the type you want to inspect. You extract the results using the template’s sta
 member value. This member equals true if the type parameter meets the
 criteria; otherwise, it’s false.
 
+
+
+
 | Type | trait Checks if template argument is . . . |
 |------|--------------------------------------------|
 | is_void | void |
@@ -220,6 +159,83 @@ use requirements.
 
 
 
+
+
+
+
+
+
+
+
+
+## Use of Concepts
+Most template arguments must meet specific requirements for the template to compile properly and for the generated code to work properly. That is, most templates must be constrained templates.
+
+
+The type-name introducer typename is the least constraining, requiring only that the argument be a type.
+
+Consider sum() again:
+
+template<Sequence Seq, Number Num>
+Num sum(Seq s, Num v)
+{
+  for (const auto& x : s)
+    v+=x;
+  return v;
+}
+
+We can define what the concepts Sequence and Number mean.
+The compiler can then reject bad calls by looking at sum()’s interface only, rather than looking at its implementation. This improves error reporting.
+
+However, the specification of sum()’s interface is not complete:
+  we must be able specify the ability to add elements of a Sequence to a Number
+
+
+We define:
+
+template<Sequence Seq, Number Num>
+  requires Arithmetic<Value_type<Seq>,Num>
+Num sum(Seq s, Num n);
+
+The Value_type of a sequence is the type of the elements in the sequence.
+
+Arithmetic<X,Y> is a concept specifying that we can do arithmetic with numbers of types X and Y.
+
+This saves us from
+  trying to calculate the sum() of a vector<string> or a vector<int∗>
+  while accepting vector<int> and vector<complex<double>>.
+
+In this example, we needed only +=, but for simplicity and flexibility, we should not constrain our template argument too tightly.
+
+In particular, we might someday want to express sum() in terms of + and = rather than +=, and then we’d be happy that we used a general concept (here, Arithmetic) rather than a narrow requirement to ‘‘have +=.’’
+
+Partial specifications, as in the first sum() using concepts, can be very useful.
+
+Unless the specification is complete, some errors will not be found until instantiation time. However, partial specifications can help a lot, express intent, and are essential for smooth incremental development where we don’t initially recognize all the requirements we need. With mature libraries of concepts, initial specifications will be close to perfect.
+
+Unsurprisingly, requires Arithmetic<Value_type<Seq>,Num> is called a requirements-clause.
+
+The template<Sequence Seq> notation is simply a shorthand for an explicit use of requires Sequence<Seq>.
+
+A verbose equivalent:
+
+template<typename Seq, typename Num>
+  requires Sequence<Seq> && Number<Num> && Arithmetic<Value_type<Seq>,Num>
+Num sum(Seq s, Num n);
+
+
+On the other hand, we could also use the equivalence between the two notations:
+
+template<Sequence Seq, Arithmetic<Value_type<Seq>> Num>
+Num sum(Seq s, Num n);
+
+Where we cannot yet use concepts, we have to make do with naming conventions and comments, such as:
+
+template<typename Sequence, typename Number>
+// requires Arithmetic<Value_type<Sequence>,Number>
+Numer sum(Sequence s, Number n);
+
+Whatever notation we chose, it is important to design a template with semantically meaningful constraints on its arguments.
 
 
 
@@ -488,3 +504,142 @@ baking requirements directly into the code, you can avoid stale documentation. I
 
 
 Concept-based Overloading
+Once we have properly specified templates with their interfaces, we can overload based on their properties, much as we do for functions.
+
+Consider a slightly simplified standard-library function advance() that advances an iterator:
+template<Forward_iterator Iter>
+void advance(Iter p, int n) // move p n elements forward
+{
+while (n−−)
+++p; // a forward iterator has ++, but not + or +=
+}
+template<Random_access_iterator Iter>
+void advance(Iter p, int n) // move p n elements forward
+{
+p+=n; // a random-access iterator has +=
+}
+
+The compiler will select the template with the strongest requirements met by the arguments. In this case, a list only supplies forward iterators, but a vector offers random-access iterators, so we get:
+
+void user(vector<int>::iterator vip, list<string>::iterator lsp)
+{
+advance(vip,10); // use the fast advance()
+advance(lsp,10); // use the slow advance()
+}
+
+Like other overloading, this is a compile-time mechanism implying no run-time cost, and where the compiler does not find a best choice, it gives an ambiguity error. The rules for concept-based overloading are far simpler than the rules for general overloading (§1.3). Consider first a single argument for several alternative functions:
+• If the argument doesn’t match the concept, that alternative cannot be chosen.
+• If the argument matches the concept for just one alternative, that alternative is chosen.
+• If arguments from two alternatives are equally good matches for a concept, we have an
+ambiguity.
+• If arguments from two alternatives match a concept and one is stricter than the other (match
+all the requirements of the other and more), that alternative is chosen.
+For an alternative to be chosen it has to be
+• a match for all of its arguments, and
+• at least an equally good match for all arguments as other alternatives, and
+• a better match for at least one argument.
+
+
+
+Valid Code
+The question of whether a set of template arguments offers what a template requires of its template parameters ultimately boils down to whether some expressions are valid.
+
+Using a requires-expression, we can check if a set of expressions is valid. For example:
+
+template<Forward_iterator Iter>
+void advance(Iter p, int n) // move p n elements forward
+{
+while (n−−)
+++p; // a forward iterator has ++, but not + or +=
+}
+
+template<Forward_iterator Iter, int n>
+requires requires(Iter p, int i) { p[i]; p+i; } // Iter has subscripting and addition
+void advance(Iter p, int n) // move p n elements forward
+{
+p+=n; // a random-access iterator has +=
+}
+
+No, that requires requires is not a typo.
+The first requires starts the requirements-clause and the second requires starts the requires−expression:
+
+requires(Iter p, int i) { p[i]; p+i; }
+
+A requires−expression is a predicate that is true if the statements in it are valid code and false if they are not.
+
+I consider requires-expressions the assembly code of generic programming. Like ordinary assembly code, requires-expressions are extremely flexible and impose no programming discipline.
+
+In some form or other, they are at the bottom of most interesting generic code, just as assembly code is at the bottom of most interesting ordinary code. Like assembly code, requires-expressions should not be seen in ‘‘ordinary code.’’ If you see requires requires in your code, it is probably too low level.
+
+The use of requires requires in advance() is deliberately inelegant and hackish. Note that I ‘‘forgot’’ to specify += and the required return types for the operations.
+You have been warned! Prefer named concepts for which the name indicates its semantic meaning.
+
+Prefer use of properly named concepts with well-specified semantics and use requires expressions in the definition of those.
+
+
+
+
+
+Definition of Concepts
+
+Eventually, we expect to find useful concepts, such as Sequence and Arithmetic in libraries, including the standard library.
+
+The Ranges Technical Specification [RangesTS] already offers a set for constraining standard-library algorithms (§12.7). However, simple concepts are not hard to define.
+
+A concept is a compile-time predicate specifying how one or more types can be used.
+
+Consider:
+
+template<typename T>
+concept Equality_comparable =
+  requires (T a, T b) {
+    { a == b } −> bool; // compare Ts with ==
+    { a != b } −> bool; // compare Ts with !=
+  };
+
+Equality_comparable is the concept we use to ensure that we can compare values of a type equal and non-equal. We simply say that, given two values of the type, they must be comparable using == and != and the result of those operations must be convertible to bool.
+
+For example:
+static_assert(Equality_comparable<int>);
+// succeeds
+
+struct S { int a; };
+static_assert(Equality_comparable<S>);
+// fails because structs don’t automatically get == and !=
+
+The definition of the concept Equality_comparable is exactly equivalent to the English description and no longer. The value of a concept is always bool.
+
+Defining Equality_comparable to handle nonhomogeneous comparisons is almost as easy:
+
+template<typename T, typename T2 = T>
+concept Equality_comparable =
+  requires (T a, T2 b) {
+    { a == b } −> bool; // compare a T to a T2 with ==
+    { a != b } −> bool; // compare a T to a T2 with !=
+    { b == a } −> bool; // compare a T2 to a T with ==
+    { b != a } −> bool; // compare a T2 to a T with !=
+  };
+
+The typename T2 = T says that if we don’t specify a second template argument, T2 will be the same as T; T is a default template argument.
+
+We can test Equality_comparable like this:
+
+static_assert(Equality_comparable<int,double>); // succeeds
+static_assert(Equality_comparable<int>); // succeeds (T2 is defaulted to int)
+static_assert(Equality_comparable<int,string>); // fails
+
+For a more complex example, consider a sequence:
+
+template<typename S>
+concept Sequence = requires(S a) {
+  typename Value_type<S>; // S must have a value type.
+  typename Iterator_type<S>; // S must have an iterator type.
+  { begin(a) } −> Iterator_type<S>; // begin(a) must return an iterator
+  { end(a) } −> Iterator_type<S>; // end(a) must return an iterator
+  requires Same_type<Value_type<S>,Value_type<Iterator_type<S>>>;
+  requires Input_iterator<Iterator_type<S>>;
+};
+
+For a type S to be a Sequence, it must provide a Value_type (the type of its elements) and an Iterator_type (the type of its iterators; see §12.1). It must also ensure that there exist begin() and end() functions that return iterators, as is idiomatic for standard-library containers (§11.3). Finally, the Iterator_type really must be an input_iterator with elements of the same type as the elements of S.
+
+The hardest concepts to define are the ones that represent fundamental language concepts. Consequently, it is best to use a set from an established library. For a useful collection, see §12.7.

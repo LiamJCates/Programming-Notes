@@ -1,4 +1,5 @@
 ## String Literals
+
 String Literals
 Declare string literals by enclosing text in quotation marks (""). Like character literals, string literals support Unicode: just prepend the literal with
 the appropriate prefix, such as L. The following example assigns string literals

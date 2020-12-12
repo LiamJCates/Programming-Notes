@@ -1,57 +1,76 @@
 https://www.cplusplus.com/reference/cstdio/
 
+The I/O stream library provides formatted and unformatted buffered I/O of text and numeric values.
 
+In C++, I/O is a sequence of bytes, called a stream, from the source to the destination. The bytes are usually characters, unless the program requires other types of information, such as a graphic image or digital speech.
 
-In C++, I/O is a sequence of bytes, called a stream, from the source to the destination. The bytes are usually characters, unless the program requires other types
-of information, such as a graphic image or digital speech.
+Therefore, a stream is a sequence of characters from the source to the destination.
 
-Therefore, a stream is a sequence of characters from the source to the destination. There are two types of streams:
+There are two types of streams:
 Input stream: A sequence of characters from an input device to the computer.
 Output stream: A sequence of characters from the computer to an output device.
 
 The standard input device is usually the keyboard
 The standard output device is usually the screen.
 
-To receive data from the keyboard and send output to the
-screen, every C++ program must use the header file iostream.
+To receive data from the keyboard and send output to the screen, every C++ program must use the header file iostream.
+#include <iostream>
 
-This header file contains, among other things, the definitions of two data types, istream (input stream) and ostream (output stream).
+This header file contains, among others, the definitions of
+two data types:
+istream (input stream)  
+//converts a stream of characters (bytes) to typed objects
+ostream (output stream)
+//converts typed objects to a stream of characters (bytes)
 
-The header file also contains two variable declarations,
-cin (pronounced ‘‘see-in’’), which stands for common input, cout (pronounced ‘‘see-out’’), which stands for common output.
+two variable declarations:
+cin (pronounced ‘‘see-in’’), which stands for common input
+cout (pronounced ‘‘see-out’’), which stands for common output.
 
 These variable declarations are similar to the following C++ statements:
 istream cin;
 ostream cout;
 
-To use cin and cout, every C++ program must use the preprocessor directive:
- #include <iostream>
+use std::cout (pronounced “standard see-out”) to write simple text data to the console
+use std::cin (“standard see-in”) to read text and numbers from the console.
+
+Variables of type istream are called input stream variables;
+variables of type ostream are called output stream variables.
+A stream variable is either an input stream variable or an output stream variable.
+
+Operations on istreams and ostreams are typesafe, type-sensitive, and extensible to handle user-defined types
 
 
-Variables of type istream are called input stream variables; variables of type
-ostream are called output stream variables. A stream variable is either an input
-stream variable or an output stream variable.
 
- #include <iostream>
-allows us to use (the predefined object) std::cout to generate output and (the manipulator) std::endl.
-
-
-You use std::cout (pronounced “standard see-out”) to write simple text data to the console and use std::cin (“standard see-in”) to read text and numbers (entered using the keyboard) from the console.
-
+Stream operators:
+insertion operator <<, sends to stream:
 std::cout << "Hello World" << std::endl;
 
-insertion operator: << sends to stream
-
+extraction operator >>, reads from stream:
 std::cin >> Variable;
 
-extraction operator: >> reads from stream
 
 
+## Output
+In <ostream>, the I/O stream library defines output for every built-in type. Further, it is easy to define output of a user-defined type.
 
-The statement
-using namespace std;
+The operator << (‘‘put to’’) is used as an output operator on objects of type ostream;
 
-allows you to use cout and endl without the prefix std::
+cout is the standard output stream
+cerr is the standard stream for reporting errors.
+
+By default, values written to cout are converted to a sequence of characters.
+
+
+##  Input
+In <istream>, the standard library offers istreams for input. Like ostreams, istreams deal with character string representations of built-in types and can easily be extended to cope with user-defined types.
+The operator >> (‘‘get from’’) is used as an input operator;
+cin is the standard input stream.
+The type of the right-hand operand of >> determines what input is accepted and what is the target of the input operation
+
+By default, >> skips initial whitespace
+
+By default, a whitespace character, such as a space or a newline, terminates the read
 
 
 Reading from the console has some catches. First, the console uses spaces
@@ -67,12 +86,32 @@ std::cin >> Variable1 >> Variable2;
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 Data Type of a Valid Input
 char
 One printable character except the blank.
 
 int
 An integer, possibly preceded by a + or - sign.
+
 double
 A decimal number, possibly preceded by a + or - sign. If the actual data input is an integer, the input is converted to a decimal number with the zero decimal part.
 
@@ -81,74 +120,50 @@ When reading data into a char variable, after skipping any leading whitespace ch
 To read data into an int or double variable, after skipping all leading whitespace characters and reading the plus or minus sign (if any), the extraction operator >> reads the digits of the number, including the decimal point for floating-point variables, and stops when it finds a whitespace character or a character other than a digit.
 
 
-What happens if the input stream has more data items than required by the program?
-After the program terminates, any values left in the input stream are discarded. When
-you enter data for processing, the data values should correspond to the data types of
-the variables in the input statement. Recall that when entering a number for a double
-variable, it is not necessary for the input number to have a decimal part. If the input
-number is an integer and has no decimal part, it is converted to a decimal value. The
-computer, however, does not tolerate any other kind of mismatch. For example, entering a char value into an int or double variable causes serious errors, called input
-failure.
+After the program terminates, any values left in the input stream are discarded. When you enter data for processing, the data values should correspond to the data types of the variables in the input statement. Recall that when entering a number for a double variable, it is not necessary for the input number to have a decimal part. If the input number is an integer and has no decimal part, it is converted to a decimal value. The computer, however, does not tolerate any other kind of mismatch. For example, entering a char value into an int or double variable causes serious errors, called input failure.
 
 
 
 cin is a stream so if we want to intake a space delimited phrase cin will only read the first word in a space delimited phrase. To get the whole line use:
-getline([stream], [variable]);
-
-string str;
-getline(cin, str);
 
 
 
-
-The extraction operator, when scanning for the next input in the input stream, skips
-whitespace such as blanks and the newline character. However, there are situations
-when these characters must also be stored and processed. For example, if you are
-processing text in a line-by-line fashion, you must know where in the input stream
-the newline character is located. Without identifying the position of the newline
-character, the program would not know where one line ends and another begins. The
-next few sections teach you how to input data into a program using the input functions, such as get, ignore, putback, and peek. These functions are associated with
-the data type istream and are called istream member functions. I/O functions,
-such as get, are typically called stream member functions or stream functions.
+Stream Functions
+| Usage | Effects |
+|-------|---------|
+| getline([stream], [variable]) | retrieve a whole line from a stream |
+| stream.peek() |  |
 
 
 
-Because I/O is fundamental to any programming language and because writing
-instructions to perform a specific I/O operation is not a job for everyone, every
-programming language provides a set of useful functions to perform specific I/O
-operations.
+cin Functions
+
+| Usage | Effects |
+|-------|---------|
+| cin.get(charVar) | store the next input character in the variable varChar |
+| cin.ignore(int, char) | specifies the number of characters to be ignored in a line or a character to ignore the stream until, whichever comes first. |
+|  |  |
 
 
-## cin and get()
-The variable cin can access the stream function get, which is used to read character
-data. The get function inputs the very next character, including whitespace characters, from the input stream and stores it in the memory location indicated by its
-argument. The function get comes in many forms. Next, we discuss the one that is
-used to read a character.
-The syntax of cin, together with the get function to read a character, follows:
-In the cin.get statement, varChar is a char variable. varChar, which appears in
-parentheses following the function name, is called the argument or parameter of
-the function. The effect of the preceding statement would be to store the next input
-character in the variable varChar.
+The extraction operator, when scanning for the next input in the input stream, skips whitespace such as blanks and the newline character. However, there are situations when these characters must also be stored and processed. For example, if you are processing text in a line-by-line fashion, you must know where in the input stream the newline character is located. Without identifying the position of the newline character, the program would not know where one line ends and another begins. The next few sections teach you how to input data into a program using the input functions, such as get, ignore, putback, and peek. These functions are associated with the data type istream and are called istream member functions. I/O functions such as get, are typically called stream member functions or stream functions.
+
+
+
+Because I/O is fundamental to any programming language and because writing instructions to perform a specific I/O operation is not a job for everyone, every programming language provides a set of useful functions to perform specific I/O operations.
+
+
+
 
 
 
 ## cin and ignore()
-When the function ignore is used without any arguments, then it only skips the very next character. For example, the following statement will skip the very next character:
+When you want to process only partial data (say, within a line), you can use the stream function ignore to discard a portion of the input by specifying the number of characters to be ignored in a line or a character to ignore the stream until, whichever comes first.
+
+When the function ignore is used without any arguments, then it only skips the very next character:
 cin.ignore();
 
 This statement is typically used to skip the newline character.
 
-When you want to process only partial data (say, within a line), you can use the stream function ignore to discard a portion of the input.
-
-The complete syntax to use the function ignore is:
-cin.ignore(int intExp, char chExp);
-
-intExp specifies the maximum number of characters to be ignored in a line.
-chExp specifies a character to ignore the stream until. whichever comes first.
-
-To be specific, consider the following statement:
-cin.ignore(100, '\n');
-When this statement executes, it ignores either the next 100 characters or all characters until the newline character is found, whichever comes first.
 
 
 
@@ -175,7 +190,7 @@ istreamVar is an input stream variable, such as cin
 ch is a char variable.
 
 
-EXAMPLE 3-7
+
 //Functions peek and putback
  #include <iostream>
  using namespace std;

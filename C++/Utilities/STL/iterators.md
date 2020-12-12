@@ -10,7 +10,10 @@ As a generalization of pointers, iterators retain the same dereferencing notatio
 
 
 
-
+What are iterators really? Any particular iterator is an object of some type. There are, however,
+many different iterator types, because an iterator needs to hold the information necessary for doing
+its job for a particular container type. These iterator types can be as different as the containers and
+the specialized needs they serve.
 
 Iterators come in various flavors, but they all support at least the following operations:
 1. Get the current element (operator*)

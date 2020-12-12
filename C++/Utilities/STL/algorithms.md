@@ -2,8 +2,7 @@ The STL provides some 70 generic functions, called algorithms, that can be appli
 the STL containers and to arrays.
 
 
-These
-algorithms are implementing operations that are very frequently used in most programs, such as locating an element in a container, inserting an element into a sequence
+These algorithms are implementing operations that are very frequently used in most programs, such as locating an element in a container, inserting an element into a sequence
 of elements, removing an element from a sequence, modifying elements, comparing
 elements, finding a value based on a sequence of elements, sorting the sequence of elements, and so on. Almost all STL algorithms use iterators to indicate the range of elements on which they operate. The first iterator references the first element of the range,
 and the second iterator references an element after the last element of the range. Therefore, it is assumed that it is always possible to reach the position indicated by the second
@@ -46,3 +45,13 @@ The parameter first2 specifies where to copy the elements. Therefore, the parame
 The definition of the function template copy is contained in the header file algorithm.
 Thus, to use the function copy, the program must include the statement
 #include <algorithm>
+
+
+
+
+
+
+
+
+
+sort() sorts the sequence defined by the pair of iterators collection.begin() and collection.end()
