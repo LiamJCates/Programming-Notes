@@ -6,4 +6,25 @@ A set is just an ascending container of unique elements—the value is also the 
 
 Both map and set only allow one instance of a key or element to be inserted into the container. If multiple instances of elements are required, use multimap or multiset. The unordered versions are unordered_multimap and unordered_multiset. For more information, see multimap Class, unordered_multimap Class, multiset Class, and unordered_multiset Class.
 
-Ordered maps and sets support bi-directional iterators, and their unordered counterparts support forward iterators. 
+Ordered maps and sets support bi-directional iterators, and their unordered counterparts support forward iterators.
+
+
+The associative containers supplied by STL are
+  std::set — Stores unique values sorted on insertion in a container featuring logarithmic complexity
+
+  std::unordered_set — Stores unique values sorted on insertion in a container featuring near constant complexity. Available starting C++11
+
+  std::map — Stores key-value pairs sorted by their unique keys in a container with logarithmic complexity
+
+  std::unordered_map — Stores key-value pairs sorted by their unique keys in a container with near constant complexity. Available starting C++11
+
+  std::multiset — Akin to a set. Additionally, supports the ability to store multiple items having the same value; that is, the value doesn’t need to be unique
+
+  std::unordered_multiset — Akin to a unordered_set. Additionally, supports
+  the ability to store multiple items having the same value; that is, the value doesn’t need to be unique. Available starting C++11.
+
+  std::multimap — Akin to a map. Additionally, supports the ability to store
+  key-value pairs where keys don’t need to be unique.
+
+  std::unordered_multimap — Akin to a unordered_map. Additionally, supports
+  the ability to store key-value pairs where keys don’t need to be unique. Available starting C++11

@@ -58,6 +58,157 @@ you choose for a particular application depends on the required operations, the 
 
 
 
+| Container | Advantages | Disadvantages |
+|-----------|------------|---------------|
+|std::vector \n (Sequential Container) | Quick (constant time) insertion at the end. \n | Resizing can result in performance loss. \n Search time is proportional to the number of elements in the container. \n Constant time insertion only at the end. |
+
+std::deque
+(Sequential Container)
+All advantages of the
+vector. Additionally, offers
+constant-time insertion at the
+beginning of the container
+too.
+Disadvantages of the vector
+with respect to performance
+and search are applicable to
+the deque.Container Advantages Disadvantages
+Unlike the vector, the deque
+by specification does not need
+to feature the reserve() function that allows the programmer
+to reserve memory space to
+be used—a feature that avoids
+frequent resizing to improve
+performance.
+std::list (Sequential
+Container)
+Constant time insertion at
+the front, middle, or end of
+the list.
+Elements cannot be accessed
+randomly given an index as in
+an array.
+Removal of elements from a
+list is a constant-time activity regardless of the position
+of the element.
+Accessing elements can
+be slower than the vector
+because elements are not
+stored in adjacent memory
+locations.
+Insertion or removal of elements does not invalidate
+iterators that point to other
+elements in the list.
+Search time is proportional to
+the number of elements in the
+container.
+std::forward_list
+(Sequential Container)
+Singly linked list class that
+allows iteration only in one
+direction.
+Allows insertion only at the
+front of the list via push_
+front().
+std::set (Associative
+Container)
+Search is not directly proportional to the number of elements in the container, rather
+to the logarithm thereof and
+hence is often significantly
+faster than sequential containers.
+Insertion of elements is slower
+than in sequential counterparts,
+as elements are sorted at
+insertion.
+std::unordered set
+(Associative Container)
+Search, insertion, and
+removal in this type of container are nearly independent
+of the number of elements in
+the container.
+As elements are weakly
+ordered, one cannot rely on
+their relative position within the
+container.
+std::multiset
+(Associative Container)
+Should be used when a set
+needs to contain nonunique
+values too.
+Insertions may be slower than
+in a sequential container as
+elements (pairs) are sorted on
+insertion.Container Advantages Disadvantages
+std::unordered_
+multiset (Associative
+Container)
+Should be preferred over an
+unordered_set when you
+need to contain nonunique
+values too.
+Elements are weakly ordered,
+so one cannot rely on their
+relative position within the container.
+Performance is similar to
+unordered_set, namely,
+constant average time
+for search, insertion, and
+removal of elements, independent of size of container.
+std::map (Associative
+Container)
+Key-value pairs container that
+offers search performance
+proportional to the logarithm
+of number of elements in
+the container and hence
+often significantly faster than
+sequential containers.
+Elements (pairs) are sorted on
+insertion, hence insertion will
+be slower than in a sequential
+container of pairs.
+std::unordered_map.
+(Associative Container)
+Offers advantage of near constant time search, insertion,
+and removal of elements
+independent of the size of
+the container.
+Elements are weakly ordered
+and hence not suited to cases
+where order is important.
+std::multimap.
+(Associative Container)
+To be selected over
+std::map when requirements
+necessitate the need of a
+key-value pairs container that
+holds elements with nonunique keys.
+Insertion of elements will be
+slower than in a sequential
+equivalent as elements are
+sorted on insertion.
+std::unordered_
+multimap (Associative
+Container)
+To be selected over multimap when you need a keyvalue pairs container where
+keys can be nonunique.
+Is a weakly ordered container,
+so you cannot use it when you
+need to rely on the relative
+order of elements.
+Allows constant average
+time insertion, search, and
+removal of elements, independent of the size of the
+container
+
+
+
+
+
+
+
+
+
 
 Initializing Containers
 A container exists to hold elements, so obviously we need convenient ways of getting elements into a container.

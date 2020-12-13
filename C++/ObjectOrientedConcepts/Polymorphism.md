@@ -34,13 +34,9 @@ polymorphic behavior that can be implemented in C++ via the
 inheritance hierarchy, also known as subtype polymorphism.
 
 Need for Polymorphic Behavior
-In Lesson 10, “Implementing Inheritance,” you found out how Tuna and Carp inherit
-public method Swim() from Fish as shown in Listing 10.1. It is, however, possible that
-both Tuna and Carp provide their own Tuna::Swim() and Carp::Swim() methods
-to make Tuna and Carp different swimmers. Yet, as each of them is also a Fish, if a
-user with an instance of Tuna uses the base class type to invoke Fish::Swim(), he ends
-up executing only the generic part Fish::Swim() and not Tuna::Swim(), even though
-that base class instance Fish is a part of a Tuna.
+In Lesson 10, “Implementing Inheritance,” you found out how Tuna and Carp inherit public method Swim() from Fish as shown in Listing 10.1. It is, however, possible that both Tuna and Carp provide their own Tuna::Swim() and Carp::Swim() methods to make Tuna and Carp different swimmers.
+
+Yet, as each of them is also a Fish, if a user with an instance of Tuna uses the base class type to invoke Fish::Swim(), he ends up executing only the generic part Fish::Swim() and not Tuna::Swim(), even though that base class instance Fish is a part of a Tuna.
 
 
 #include <iostream>

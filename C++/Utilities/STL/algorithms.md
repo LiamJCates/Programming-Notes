@@ -1,5 +1,24 @@
-The STL provides some 70 generic functions, called algorithms, that can be applied to
-the STL containers and to arrays.
+The STL provides some 70 generic functions, called algorithms, that can be applied to the STL containers and to arrays.
+
+Finding, sorting, reversing, and the like are standard programming requirements that should not require the programmer to reinvent implementation to support.
+
+This is precisely why STL supplies these functions in the form of STL algorithms that work well with containers using iterators to help the programmer with some of the most common requirements.
+
+Some of the most used STL algorithms are
+
+std::find — Helps find a value in a collection
+
+std::find_if — Helps find a value in a collection on the basis of a specific
+user-defined predicate
+
+std::reverse — Reverses a collection
+
+std::remove_if — Helps remove an item from a collection on the basis of a
+user-defined predicate
+
+std::transform — Helps apply a user-defined transformation function to elements in a container
+
+These algorithms are template functions in the std namespace and require that the standard header <algorithm> be included.
 
 
 These algorithms are implementing operations that are very frequently used in most programs, such as locating an element in a container, inserting an element into a sequence

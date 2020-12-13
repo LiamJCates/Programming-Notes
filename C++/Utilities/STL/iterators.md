@@ -1,5 +1,27 @@
 The interface between containers and algorithms is the iterator.
 
+The simplest example of an iterator is a pointer. Given a pointer to the first element in an
+array, you can increment it and point to the next element or, in many cases, manipulate
+the element at that location.
+Iterators in STL are template classes that in some ways are a generalization of pointers.
+These are template classes that give the programmer a handle by which he can work with
+and manipulate STL containers and perform operations on them. Note that operations
+could as well be STL algorithms that are template functions, Iterators are the bridge that
+allows these template functions to work with containers, which are template classes, in a
+consistent and seamless manner.
+
+Iterators supplied by STL can be broadly classified into the following:
+	Input iterator — One that can be dereferenced to reference an object. The object can be in a collection, for instance. Input iterators of the purest kinds guarantee read access only.
+
+	Output iterator — One that allows the programmer to write to the collection. Output iterators of the strictest types guarantee write access only.
+
+The basic iterator types mentioned in the preceding list are further refined into the following:
+	Forward iterator — A refinement of the input and output iterators allowing both input and output. Forward iterators may be constant, allowing for read-only access to the object the iterator points to, and otherwise allow for both read and write operations, making it mutable. A forward iterator would typically find use in a singly linked list.
+
+	Bidirectional iterator — A refinement of the forward iterator in that it can be decremented to move backward as well. A bidirectional iterator would typically find use in a doubly linked list.
+
+	Random access iterators — In general, a refinement over the concept of bidirectional iterators that allow addition and subtraction of offsets or allow one iterator to be subtracted from another to find the relative separation or distance between the two objects in a collection. A random iterator would typically find use in an array
+
 An iterator is a type that knows the internal structure of a container and exposes simple, pointer­like operations to a container’s elements.
 
 An iterator is an object used to reference an element stored in a container. Thus, it is a generalization of the pointer.

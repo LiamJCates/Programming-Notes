@@ -425,6 +425,7 @@ cases is that the compiler copies only the Base part of objDerived—that is, no
 complete object. The information contained by the data members belonging to Derived
 is lost in the process. This is not anticipated, and this unwanted reduction of that part of
 data that makes the Derived a specialization of Base is called slicing.
+
 To avoid slicing problems, don’t pass parameters by value. Pass
 them as pointers to the base class or as a (optionally const)
 reference to the same
