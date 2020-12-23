@@ -10,6 +10,4 @@ Bitwise operators modify variables considering the bit patterns that represent t
 | << | SHL | Shift bits left |
 | >> | SHR | Shift bits right |
 
-bitwise logical operators work on integral types and perform a
-Boolean operation at the bit level and returns an integral type matching
-its operands.
+bitwise logical operators work on integral types and perform a Boolean operation at the bit level and returns an integral type matching its operands.

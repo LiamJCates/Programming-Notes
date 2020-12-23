@@ -1,3 +1,11 @@
+STL supplies a template class that has been specially designed for string operations.
+std::basic_string<T> is used popularly in its two template specializations:
+■ std::string — A char-based specialization of std::basic_string used for
+the manipulation of simple character strings.
+■ std::wstring— A wchar_t-based specialization of std::basic_string
+used for the manipulation of wide character strings typically used to store Unicode
+characters that support symbols from different languages.
+
 C++ strings are a programmer-defined data type.
 
 The data type string is a feature of ANSI/ISO Standard C++.

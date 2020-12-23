@@ -1,4 +1,4 @@
-Each C++ program is comprised a sequence of statements, which are programming constructs that specify program execution.
+Each C++ program is comprised of a sequence of statements, which are programming constructs that specify program execution.
 
 All statements in C++ end with a semicolon (;)
 
@@ -8,11 +8,7 @@ If you need to spread a statement over two lines by inserting a backslash (\) at
 cout << "Hello \
 World" << endl; // split to two lines is OK
 
-The preceding statement can be written as two string literals:
-cout << "Hello "
-"World" << endl; // two string literals is also OK
 
-The compiler notices two adjacent string literals and concatenates them.
 
 
 

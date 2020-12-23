@@ -19,6 +19,18 @@ Invariants
 
 The notion of invariants underlies C++’s notions of resource management supported by constructors (Chapter 4) and destructors
 
+
+### Constructor Types
+There are three types of constructors in C++:
+Default Constructors
+Parameterized
+Copy Constructors
+
+We discuss the first two here and the third is discussed:
+[C++\Types&Values\Classes\Copy&Move\CopyConstructor.md]
+
+
+
 ### Declaring and Implementing a Constructor
 Constructor declarations don’t state a return type, and their name matches the class’s name.
 
@@ -63,7 +75,9 @@ className classObjectName;
 
 
 ### Invoking a Constructor with Parameters
-Suppose a class contains constructors with parameters. The syntax to invoke a constructor with a parameter is:
+A class may contain constructors with parameters, called parameterized constructors.
+
+The syntax to invoke a constructor with a parameter is:
 className classObjectName(argument1, argument2, ...);
 
 in which argument1, argument2, and so on are either a variable or an expression.

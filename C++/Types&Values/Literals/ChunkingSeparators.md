@@ -1,6 +1,5 @@
 ### Chunking Separators
-C++14 adds support for chunking separators in the form of a
-single quotation mark:
+C++14 adds support for chunking separators in the form of a single quotation mark:
 
 Integer and Floating Point literals can contain any number of single quotes (') for readability.  These are completely ignored by the compiler.
 

@@ -1,10 +1,8 @@
 Operators, such as the addition (+) and address-of (&) operators, do work
 on arguments called operands, such as numerical values or objects to produce some value.
 
-Unary operator: An operator that has only one operand.
-Binary operator: An operator that has two operands.
-
-To avoid confusion, you can use parentheses to group arithmetic expressions.
+For more information about Operators see:
+[Programming Methods\Fundamentals\Constructs\Operators]
 
 
 ## Operator Precedence and Associativity

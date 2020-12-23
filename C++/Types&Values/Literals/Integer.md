@@ -1,37 +1,111 @@
 ## Integer Literals
-You can use one of four hardcoded, integer literal representations:
-decimal default no prefix
-hexadecimal prefix 0x
-octal prefix 0
-binary prefix 0b
+Integer literals begin with a digit and have no fractional parts or exponents. You can specify integer literals in decimal, binary, octal, or hexadecimal form.
 
-Integer literals are by default decimal (e.g., 42 means forty-two).
-A 0b prefix indicates a binary (base 2) integer literal (e.g., 0b10101010).
-A 0x prefix indicates a hexadecimal (base 16) integer literal (e.g., 0xBAD1234).
-A 0 prefix indicates an octal (base 8) integer literal (e.g., 0334).
+| Representation | Base |Prefix | Example |
+|----------------|------|-------|---------|
+| decimal (default) | 10 | none | 65 |
+| hexadecimal | 16 | 0x | 0x41 |
+| octal | 8 | 0 | 0101 |
+| binary | 2 | 0b | 0b1000001|
 
-The octal prefix is a holdover from the B language, back in the days of the PDP-8 computer and ubiquitous octal literals. C, and by extension C++, continues the dubious tradition. You must be careful, for example, when you’re hardcoding ZIP codes:
+
+
+
+### Syntax
+An integer literal has the form
+
+decimal-literal integer-suffix(optional)
+octal-literal integer-suffix(optional)
+hex-literal integer-suffix(optional)
+binary-literal integer-suffix(optional)	(since C++14)
+
+where
+
+decimal-literal is a non-zero decimal digit (1, 2, 3, 4, 5, 6, 7, 8, 9), followed by zero or more decimal digits (0, 1, 2, 3, 4, 5, 6, 7, 8, 9)
+
+octal-literal is the digit zero (0)
+followed by zero or more octal digits (0, 1, 2, 3, 4, 5, 6, 7)
+
+hex-literal is the character sequence 0x or 0X
+followed by one or more hexadecimal digits (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, a, A, b, B, c, C, d, D, e, E, f, F)
+
+binary-literal is the character sequence 0b or 0B
+followed by one or more binary digits (0, 1)
+
+integer-suffix, if provided, may contain one or both of the following (if both are provided, they may appear in any order:
+  unsigned-suffix (the character u or the character U)
+  either
+  long-suffix (the character l or L)
+  long-long-suffix (the character sequence ll or LL) (since C++11)
+
+
+
+
+### Decimal
+When no prefix or suffix is present, the compiler will give an integral literal value type int (32 bits), if the value will fit, otherwise it will give it type long long (64 bits).
+
+For example, the integer literal 112114 could be held by an int, a long, or a long long. Since an int can store 112114, the resulting integer literal is an int. If you really want, say, a long, you can instead specify 112114L (or 112114l).
+
+Examples:
+65         // int
+65u        // unsigned int
+65l        // long
+65ul       // unsigned long
+65lu       // unsigned long
+65ll       // long long
+65ull      // unsigned long long
+65llu      // unsigned long long
+
+
+
+### Hexadecimal
+To specify a hexadecimal integral literal, begin the specification with 0x or 0X (the case of the "x" doesn't matter), followed by a sequence of digits in the range 0 through 9 and a (or A) through f (or F). Hexadecimal digits a (or A) through f (or F) represent values in the range 10 through 15.
+
+To specify an unsigned type, use either the u or U suffix. To specify a long type, use either the l or L suffix. To specify a 64-bit integral type, use the LL, or ll suffix.
+
+Examples:
+0x41         // hexadecimal literal  
+0x41u        // unsigned int specified as hex literal
+0x41l        // long specified as hex literal
+0x41ul       // unsigned long specified as hex literal
+0x41lu       // unsigned long specified as hex literal
+0x41ll       // long long specified as hex literal
+0x41ull      // unsigned long long specified as hex literal
+0x41llu      // unsigned long long specified as hex literal
+
+
+
+### Octal
+To specify an octal integral literal, begin the specification with 0, followed by a sequence of digits in the range 0 through 7. The digits 8 and 9 are errors in specifying an octal literal.
+
+The octal prefix is a holdover from the B language, back in the days of the PDP-8 computer and ubiquitous octal literals. C, and by extension C++, continues the dubious tradition.
+
+You must be careful, for example, when you’re hardcoding ZIP codes:
 int mit_zip_code = 02139; // Won't compile
 
 This line doesn’t compile because 9 is not an octal digit.
 
 Eliminate leading zeros on decimal literals; otherwise, they’ll cease to be decimal.
 
-By default, an integer literal’s type is one of the following: int, long, or long long. An integer literal’s type is the smallest of these three types that fits. (This is defined by the language and will be enforced by the compiler.) This means that among all types allowed for a particular integer, the smallest type will apply. For example, the integer literal 112114 could be held by an int, a long, or a long long. Since an int can store 112114, the resulting integer literal is an int.
-
-If you want more control, you can supply suffixes to an integer literal to specify its type (suffixes are case insensitive, so you can choose the style you like best):
-•	 The unsigned suffix u or U
-•	 The long suffix l or L
-•	 The long long suffix ll or LL
-
-If you really want, say, a long, you can instead specify 112114L
-(or 112114l).
-
 Examples:
-85         // decimal
-0213       // octal
-0x4b       // hexadecimal
-30         // int
-30u        // unsigned int
-30l        // long
-30ul       // unsigned long
+0101         // octal literal
+0101u        // unsigned int specified as octal literal
+0101l        // long specified as octal literal
+0101ul       // unsigned long specified as octal literal
+0101lu       // unsigned long specified as octal literal
+0101ll       // long long specified as octal literal
+0101ull      // unsigned long long specified as octal literal
+0101llu      // unsigned long long specified as octal literal
+
+
+### Binary
+A binary literal can be specified by the use of the 0B or 0b prefix, followed by a sequence of 1's and 0's
+
+0b1000001         // binary literal
+0b1000001u        // unsigned int specified as binary literal
+0b1000001l        // long specified as binary literal
+0b1000001ul       // unsigned long specified as binary literal
+0b1000001lu       // unsigned long specified as binary literal
+0b1000001ll       // long long specified as binary literal
+0b1000001ull      // unsigned long long specified as binary literal
+0b1000001llu      // unsigned long long specified as binary literal

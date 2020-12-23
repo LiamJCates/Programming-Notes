@@ -1,7 +1,7 @@
 Hexadecimal is used to represent colors in a web page:
 <body bgcolor="#007F7F">
 
-Octal is used in UNIX/Linux-based operating systems when setting permissions of a fi le.
+Octal is used in UNIX/Linux-based operating systems when setting permissions of a file.
 chmod 0664 myfile
 
 Binary is necessary to understand subnet masks in an IP network.

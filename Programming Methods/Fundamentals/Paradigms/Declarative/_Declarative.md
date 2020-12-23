@@ -1,0 +1,3 @@
+Languages that fit the declarative paradigm do not state the order in which to execute operations. Instead, they supply a number of operations that are available in the system, along with the conditions under which each is allowed to execute. The implementation of the language's execution model tracks which operations are free to execute and chooses the order on its own.
+
+To understand what declarative programming is, we can compare it to something we know, and that is imperative programming. In imperative programming, we focus on describing how something will be done. In declarative programming, on the other hand, the focus is on what we want to achieve.

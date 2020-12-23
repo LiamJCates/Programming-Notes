@@ -1,0 +1,9 @@
+Integration testing is about putting several units together and testing them so that they work correctly when they are no longer isolated, but work together.
+
+Units that work together will need to communicate, and they will communicate by passing data between them. This means that integration testing is about checking that the data transfer and data representation aspects work.
+
+This can be done in several ways. There is a big-bang approach we can take, which means that we wait for all the modules to be completed, and then we put them together and test them. The disadvantage of this is that the modules will not be ready at the same time. If Alice, who writes Module A, is done with her work, she will need Bob to finish his work before she can integration test her module, as her work is making a call to Bob's work. The same goes for Bob: he needs Carl to finish his work before he can integrate his module into the application.
+
+There are other approaches where we don't wait for all the parts to be finished before we begin testing. Instead, we create fake modules, called stubs and drivers. A stub is a module that gets called by another module, while a driver is a module calling another module. We can create these to pass and accept data so that we can begin testing. They are not fully functional modules, but they act as the real modules for the sake of testing. As modules get completed, they can replace these stubs and drivers, and tests can then be performed on the real modules.
+
+Having these tests in place is essential, partly because it verifies that the modules can interact with each other, but also for the future. When we add new functionality later, either by changing existing modules or adding new ones, we want to make sure that everything that worked previously still does. Inserting new code into an existing application can have unwanted side effects, and we must make sure that this has not happened.

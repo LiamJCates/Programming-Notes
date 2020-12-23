@@ -12,7 +12,8 @@ A vector container stores and manages its objects in a contiguous dynamic array.
 A vector manages its storage dynamically, requiring no outside help from
 the programmer. Storage is managed automatically so that on an attempt to insert an element into a full vector, a larger memory block is allocated for the vector, the vector elements are copied to the new block, and the old block is released. A vector is thus a flexible array; that is, an array whose size can be dynamically changed.
 
-Item insertion in the middle or beginning of an array is time consuming, especially if the array is large. However, inserting an item at the end is quite fast.
+Item insertion in the middle or beginning of an array is time consuming, especially if the array is large, as it is directly
+proportional to the number of elements behind the element being removed.. However, inserting an item at the end constant time.
 
 
 ## Constructing
@@ -35,6 +36,7 @@ An explicit size is enclosed in ordinary parentheses, for example, (23), and by 
 
 Braced initialization fills the vector with the specified elements:
 std::vector<int> vec{ 1, 1, 2, 3, 5 };
+std::vector<int> vec = { 1, 1, 2, 3, 5 };
 
 To fill construct a vector, you first pass a size_t corresponding to the number of elements you want to fill:
 std::vector<int> five_nines(5, 9);
@@ -137,7 +139,8 @@ Modifiers
 | v1.swap(v2) | Exchanges each element of v1 with those of v2. |
 | swap(v1, v2) | Exchanges each element of v1 with those of v2. |
 
-
+Access and set individual elements
+vec[0] = (T)object;
 
 Because the emplacement methods can construct elements in place, it seems they should be more efficient than the insertion methods. This intuition is often correct, but for complicated and unsatisfying reasons it’s not always faster. As a general rule, use the emplacement methods. If you determine a performance bottleneck, also try the insertion methods.
 

@@ -17,6 +17,10 @@ The STL implementation std::list is available from the <list> header. To use lis
 
 List Constructor
 
+std::list<T> listName;      //default
+
+
+
 | Constructor | Description |
 |-------------|-------------|
 | list<elementType> list | Creates the empty list container (default constructor) |
@@ -59,18 +63,36 @@ list.back() | Returns the last element. (Undefined behavior for empty list)
 
 
 ##List Modification Methods
+The list::insert() member function is available in three forms:
+
+iterator insert(iterator pos, const T& x)
+
+Here the insert function accepts the position of insertion as the first parameter and the value to insert as the second. This function returns an iterator pointing to the recently inserted element in the list.
+
+void insert(iterator pos, size_type n, const T& x)
+This function accepts the position of insertion as the first parameter, the value to insert as the last parameter, and the number of elements in variable n.
+
+template <class InputIterator>
+void insert(iterator pos, InputIterator f, InputIterator l)
+
+This overloaded variant is a template function that accepts, in addition to the position, two input iterators that mark the bounds of the collection to insert into the list. Note that the input type InputIterator is a template parameterized type and therefore can point to the bounds of any collection—be it an array, a vector, or just another list.
+
+The list member function erase() comes in two overloaded forms:
+one that erases one element given an iterator that points to it
+one that accepts a range and therefore erases a range of elements
+
 | Expression  | Description |
 |-------------|-------------|
 | list.assign(n, elem) | Assigns n copies of elem. |
 list.assign(beg, end) | Assigns elements in the iterator range beg...end−1. |
 
-lst.emplace_front(...) | Constructs an element in place at the list front by forwarding all arguments to the appropriate constructor.
+list.emplace_front(...) | Constructs an element in place at the list front by forwarding all arguments to the appropriate constructor.
 | list.emplace(iter, (T)(...)) | construct and insert element at position pointed to by iterator an element constructed in place. |
 | list.emplace_back((T)(...))| Construct and insert element at the end |
 
-lst.push_front(T) | Constructs an element in place at the front of d by copying T.
-lst.push_back(T) | Constructs an element in place at the back of list by copying T.
-lst.pop_back() | Removes the element at the back of list.
+list.push_front(T) | Constructs an element in place at the front of d by copying T.
+list.push_back(T) | Constructs an element in place at the back of list by copying T.
+list.pop_back() | Removes the element at the back of list.
 list.push_front(elem) | Inserts elem at the beginning of list.
 list.pop_front() | Removes the first element from list.
 
@@ -99,8 +121,25 @@ list1.merge(list2, oper) | Suppose that the elements of list1 and list2 are sort
 list.reverse() | The elements of list are reversed
 
 
+Sorting and Removing Elements from a list That Contains Instances of a class
+
+What if you had a list of a class type, and not a simple built-in type such as int? Say a list of address book entries where each entry is a class that contains name, address, and so on. How would you ensure that this list is sorted on name?
+
+The answer is one of the following:
+Implement operator < within the class type that the list contains.
+Supply a sort binary predicate — a function that takes two values as input and returns a Boolean value indicating whether the first value is smaller than the second.
+
+Most practical applications involving STL containers rarely collect integers; instead, they collect user-defined types such as classes or structs.
+
 
 ## List Iterator
+
+To declare an iterator that points to an element in the list, you would use
+std::list<int>::const_iterator elementInList;
+
+
+If you need an iterator that can be used to modify values or invoke non-const functions, you use iterator instead of const_iterator.
+
 
 | Expression | Description|
 |------------|------------|

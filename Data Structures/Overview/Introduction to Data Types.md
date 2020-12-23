@@ -98,7 +98,7 @@ Typical primitive types include:
 
 The above primitives are generally supported more or less directly by computer hardware, so operations on primitives are usually fairly efficient ( with the possible exception of floating point values)
 
-A general overview of each primitive type can be found: here
+A general overview of each primitive type can be found here:
 https://en.wikipedia.org/wiki/Primitive_data_type#Specific_primitive_data_types
 
 

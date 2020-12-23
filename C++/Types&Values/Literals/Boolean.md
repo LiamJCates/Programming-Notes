@@ -1,5 +1,7 @@
 ## Boolean Literals
-To initialize Boolean types, you use two Boolean literals, true and false
+The boolean literals are true and false.
+
+To initialize Boolean types, you use either of the two Boolean literals.
 
 bool trueBool = true;
 bool falseBool = false;
