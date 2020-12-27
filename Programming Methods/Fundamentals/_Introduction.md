@@ -1,105 +1,97 @@
-A computer program is a set of instructions that the computer can execute
+## Introduction to Computer Programs
+A computer program is a set of instructions that the computer can execute.
 
-programmers write these programs using one or more programming languages.
-
-
-Execution Environment
-Most end user applications that we run, such as a web browser, word processor, or mail client, can't communicate with the computer hardware directly. They require a layer in between that takes care of this. This layer is called the operating system. Windows and Linux are two examples of well-known operating systems. The main purpose of an operating system is to take care of the direct communication between the applications that we use and the hardware, such as the processor, memory, hard drives, keyboards, and printers. To be able to perform this communication, the operating system requires special programs that are designed to communicate with a particular device. These programs are called device drivers.
-
-Programmers will write the end user applications, the operating system, and the device drivers, but the end user applications category is by far the most common. The programs we write will communicate with the system kernel, which is the core of the operating system. The operating system will take care of the direct communication with the underlying hardware. The good thing about this layered structure is that we only need to talk to the operating system, so we don't need to think about what kind of mouse the user has or how to send a line of text to a particular printer model. The operating system will talk to the device drivers for the mouse and the printer, and the driver will know precisely how to communicate with that device.
-
-If we write a program and that program wants to print the text Hi there computer! to the screen, then this request will be sent to the operating system. The operating system will pass this on to the device driver for the monitor, and this driver will know how to send this to the monitor connected to this computer.
-
-The text entered will not magically appear on the screen, though. It will pass through several layers inside the computer.
-
-These layers are modeled by a design today known as the Von Neumann Architecture, and it defines four different components that can be used to construct a computer. These components are as follows:
-
-• A processing unit that has an arithmetic logic unit and registers for the processing unit to use.
-
-• A control unit that contains an instruction register and a program counter. These are used to execute programs.
-
-• Memory that stores data and instructions. This memory is volatile, meaning that its content will be erased when the power is turned off or the computer is restarted.
-
-• External mass storage. This is long-time storage for programs and data that can also be preserved after a computer restarts.
-
-• Input and output mechanisms. Today, this is typically a keyboard, a mouse, and a monitor.
-
-All of these components, except external mass storage, come into play when text is entered on the keyboard and displayed on the screen.
+While modern programming languages use characters that are common to the alphabet of human languages, these characters are translated into values that the computer can understand and execute using mathematic principles. This is because computers only understand values made of ones and zeros, called binary. The collection of binary values understood by a given computer is known as its machine language.
 
 
 
+### Why Binary
+The computer only works with numbers in the binary form, that is why we often hear that a computer only understands zeros and ones.
 
-Computers perform four basic tasks:
+Why is it that computers only work with zeros and ones? Why can't they work directly with text or images, for example? The answer is that it is rather easy to build circuits that can represent two states. If you have an electrical wire, you can easily represent two states by either running electricity through it or not. While differing levels of electrical activity could be detected, the stability and precision of such readings are often difficult to achieve quickly. It is much easier to detect a presence or lack of electrical activity.
 
-take input
-We can provide input to the computer in many ways, such as a file, a network download, a keyboard, a mouse, voice commands, touch screens, etc...
-
-store data
-The input is translated into meaningful computer data that is sent to the computer's internal memory storage
-
-process data
-The central and graphical processing unit retrieves the data from storage and performs operations on it, the results of which are then sent back to be stored in memory.
-
-output results
-Data processing results are retrieved from memory and sent to an output device like a printer, speakers, a monitor, a network upload, etc...
+The presence or absence of electricity could represent several things, such as on and off, true and false, or zero and one, respectively. If we can serve these two states, we could add more wires and, by doing so, represent a longer group of zeros and ones. Longer groups of ones and zeros allow us to representing values using the binary numeral system.
 
 
 
+## Representing Bases
+A "character set" assigns numeric values to characters of human language. By changing the base those numbers are represented in, we can express any group of characters, called a string of characters or "character string", in binary.
 
+While computers only understand binary values, "binary strings", long groups of zeros and ones are cumbersome for human interpretation. Humans most often communicate numeric values using the "decimal system". The process of transforming decimal values to binary values is known as "changing base".
 
+Example of the character string "hello", its character set values, and the resulting binary string after changing the base of the character set values:
 
+     h       e         l        l       o
+    104     101       108      108     111
+  1101000 01100101 01101100 01101100 01101111
 
+To make sense of the example above we must understand some definitions and explore the operations that take place when changing the base of a number.
 
+A number's base is defined as the number of unique digits used to represent a number in a given numeric system. By changing a value's base, we may express the same numeric value in multiple ways; allowing us to turn the decimal numbers humans are familiar with into the binary values processed by computers.
 
+The first set is understanding the difference between digits and numbers:
+  digit: a single symbol representing a value.
+  number: a sequence of one or more digits.
 
+For example, we can talk about the digit 7, but not the digit 12 (a number made up of 2 digits).
 
+The defining characteristic of a given bases is the variety of digits expressed by it. In our daily life, we use the decimal system, called base 10, because we have 10 digits, from 0 to 9.
 
+Numbers in the decimal system are represented with two or more digits upon reaching a value greater than or equal to 10. This can be seen:
 
+  9 + 1 = 10
 
+Likewise, for each digital position, once the value of that digital position exceeds 9, another decimal digit is added to express a value higher that it can contain:
 
+  99 + 1 = 100
+  999 + 1 = 1000,
+  ...
+  9...9 + 1 = 10...0
 
+Once the value achieved exceeds 9 we must use another decimal digit to represent that value. This can be seen when we need two decimal digits to represent 10 when the value of the first digital position is exceeded, and when we need three decimal digits to represent 100 when the value of the second digital position is exceeded. This pattern, of using one more digit when the highest value representable by a string of decimal digits is exceeded by one or more, continues indefinitely allowing us to express any numeric value in decimal.
 
-Why Binary
-The computer only works with numbers in the binary form, also known as base 2, and that is why we often hear that a computer only understands zeros and ones.
-
-Why is it that computers only work with zeros and ones? Why can't they work directly with text or images, for example? The answer is that it is rather easy to build circuits that can represent two states. If you have an electrical wire, you can either run electricity through it or not. While differing levels of electrical activity could be detected, the stability and precision of such readings are often difficult to achieve quickly. It is much easier to detect either the presence or lack of electrical activity.
-
-The flow or no flow of electricity could represent several things, such as on or off, true or false, or zero or one. These two states are often zero representing no electricity flowing and one symbolizing that we do have
-flow. If we can serve these two states, we could add more wires and, by doing so, represent a longer group of ones and zeros and ones. Longer groups of ones and zeros allow us to representing values using the base two binary numeral system.
-
-Representing Bases
-
-While computers only understand binary values, long strings of zeros and ones are cumbersome for human interpretation. Often we would like to specify numeric values using a wider range of digits by using a different base. Using a different base, we can express the same numeric value in multiple ways.
-
-However, we first must understand the difference between digits and numbers: a digit is a single symbol representing a value, whereas a number is a sequence of one or more digits. So, for example, we can talk about the digit 7, but not the digit 12 (as it is a number made up of 2 digits).
-
-To understand the different bases, let's consider how many digits they have. In our daily life, we use the decimal system, called base 10, because we have 10 digits, from 0 to 9.
-
-Other bases include:
-base 2 binary system, with two digits, 0 and 1.
-base 16 hexadecimal system, with 16 digits, 0 to 9 and A to F.
-
-
-
-Hexadecimal
-
-While a number with one digit in the decimal system must use two digits upon reaching a value greater than or equal to 10, the base 16 hexadecimal system must only do so after reaching a value greater than or equal to 16.
-
-As it is a base 16 system, each hexadecimal digit can represent 16 values; therefore, we need 16 digits. Since we only have 10 digits in our decimal system, we must use some symbols in the hexadecimal system to represent the values between 10 and 15. By convention those symbols are the six letters A to F.
+We will now see how this property manifests in the binary system.
 
 
 Binary Values
+When we have a single binary digit, called a bit, we are able to represent two numeric values 0 and 1. Similar to the functionality of the decimal system, for each digital position, once the value of that digital position exceeds 1, another decimal digit is added to express a higher value:
 
-When we have one single binary digit, we call it a bit, and if we place them in groups of 8 bits, we call them a byte. One byte can hold values between 0 and 255. This is because a 1 in all positions (11111111) will be 128 + 64 + 32 + 16 + 8 + 4 + 2 + 1= 255.
+  1 + 1 = 1     //Decimal representation: 1 + 0 = 1
+  1 + 1 = 10    //Decimal representation: 1 + 1 = 2
+  10 + 1 = 10   //Decimal representation: 2 + 1 = 3
+  11 + 1 = 100  //Decimal representation: 3 + 1 = 4
+  ...
+  1...1 + 1 = 10...0
 
-By using lots of zeros and ones, the computer can represent any number in binary form, and if it can represent numbers, it can serve other things too, such as text by specifying a numeric value for each given symbol.
+As seen above, the first addition operation looks the same as we would represent it in decimal. However, once the value achieved exceeds 1 we must use another binary digit to represent that value. This can be seen when we need two binary digits to represent 2 as the value of the first digital position is exceeded, and when we need three binary digits when the value of the second digital position is exceeded. The same pattern, of using one more digit when the highest value representable by a string of binary digits is exceeded by one or more, continues indefinitely allowing us to express any numeric value in binary.
 
 
 
-Understanding ASCII and Unicode
-The symbols representable by a computer a generally known as characters. If you give each letter of the English alphabet a numerical value, you could represent these textual characters with numbers. We could, for example, say that A=1, B=2, and so on. The specification of which values are associated with a given symbol is known as a character encoding scheme.
 
-Two common character encoding schemes are ASCII and Unicode. It is not important to understand exactly how they work; the only thing we need to understand is that a number can represent every character. This number can then be looked up using a given encoding scheme.
+A groups of 8 bits is called a byte. One byte can hold values between 0 and 255. This is because a 1 in all positions (11111111) will be 128 + 64 + 32 + 16 + 8 + 4 + 2 + 1= 255.
+
+
+Hexadecimal
+The base 16 hexadecimal system is also common in computing. We will first explore how to use it then given an example of why it is useful.
+
+As it is a base 16 system, each hexadecimal digit can represent 16 values; therefore, we need 16 digits. Since we only have 10 digits in our decimal system, we must use some symbols in the hexadecimal system to represent the values between 10 and 15. By convention those symbols are the six letters A to F.
+
+Similar to the decimal system of base 10, the hexadecimal system of base 16 uses larger digits once the value at that digital position exceeds 16.
+
+  F + 1 = 10    //Decimal representation: 15 + 1 = 16
+
+Todo: Show correspondence between a single hexadecimal digit and four binary digits.
+
+
+
+Introduction to Character Encoding
+By using a string of zeros and ones, the computer can represent any number in binary form, and if it can represent numbers, it can serve other things too, such as text by specifying a numeric value for each given symbol.
+
+We mentioned the concept of a character set earlier.
+
+The symbols representable by a computer are generally known as characters. If you give each letter of the English alphabet a numerical value, you could represent these textual characters with numbers. We could, for example, say that A=1, B=2, and so on. The method used to specify which values are associated with a given symbol is known as a character encoding scheme and a collection of these associations is called a character set.
+
+Two common character encoding schemes are ASCII and Unicode. It is not important to know the associations given by these character sets; the only thing we need to understand is that a number can represent a character via some encoding scheme. This number can then be looked up using a character set that follows an encoding scheme.
 
 The ASCII table uses one byte to represent different characters. The table starts with characters that are non-printable. Eventually, it reaches the characters in the English alphabet. So, A, for example, is 65, B is 66, and so on.
 
@@ -193,22 +185,55 @@ Machine Code
 
 Now that we have circuits that can perform some basic operations on numbers, and we have data in the form of numbers, we can start to write programs that will perform operations on the data. We can do that with the only thing the computer understands: machine code, the native language of the computer
 
-machine code is a set of numerical values that the computer interprets as instructions. The instructions we give to the computer will be designated by unique numbers, called opcodes. Each processor type has a specific set of instructions. That is why a program written for a Mac can't run on a PC running Windows, for example. The operations can be things such as AND, OR, ADD, and so on. For example, AND could have an opcode value of 1, and OR could have an opcode value of 9.
+A single instruction to a computer could look like this:
 
-The processor will also have several registers. A register is an area, where the processor can store data it is currently working with. Before executing an operation, we will need to move the data we want as input to the operation, from memory, into some of these registers. The result of the operation, the output, is also stored in a register.
+00000	10011110
 
-In reality, things are a bit more complicated than this, but we do not need to go into all the details here. We can now recall the image of the four operations that were common for all computers: input, storage, process, and output. We first get some input, and it will go to the computer's memory for storage. The processor will then retrieve it from its registers and perform operations on it, which is the process part. When we have the result of the operations, it will go back into the memory so that it can later be sent to the output.
+machine code is a set of numerical values that the computer interprets as instructions.
 
-One way to write these instructions is to use something called an assembly. This is a way of writing a program where we use three-letter abbreviations for the opcodes and have names for the registers which are also internally represented by their own numbers. By doing this, it will be easier to read and understand the instructions we give. We can then use a program that can translate the assembly code into machine code.
+A particular computer's machine language program that allows a user to input two numbers, adds the two numbers together, and displays the total could include these machine code instructions:
 
-The assembly language is the first programming language we encounter. The assembly language can look like this:
+000001001111
+000011111010
+000101001111
+000111101010
+001001011111
+001010000000
+
+Each binary value above is an instruction, a single operation of a processor defined by the processor instruction set.
+
+The size or length of an instruction varies widely, from as little as 4-bits in some microcontrollers to 512+ bits in some specialized processors. Most modern processors have instruction sizes between 16 and 64 bits.
+
+On traditional architectures, an instruction includes an operation to be performed, and zero or more operands which are the values the operation is performed with.
+
+Each operation, such as AND, OR, ADD, and so on, is designated by a unique number, called its opcode. For example, ADD could have an opcode value of 1 or 001, and OR could have an opcode value of 5 or 101.
+
+To hold instructions, the input values they operate on, and their resulting output, the processor will use registers. A register is a small amount of fast storage located on the processor. Each register is assigned a number value that the processor can use to reference the data it holds.
+
+A computer instruction that uses an ADD operation 001 to add the values in register one, 001, and register two 010 and stores them in register three 011 might look like this:
+
+  001 001 010 011
+
+In reality, things are a bit more complicated than this, but we do not need to go into all the details here.
+
+As you can imagine, programming a computer directly in machine language using only ones and zeros is very tedious and error prone.
+
+One way to write these instructions is to use something called assembly.
+Assembly uses three-letter abbreviations for both the opcode values and as names for the register values. By doing this, it will be easier to read and understand the instructions we give.
+
+The assembly language is the most basic programming language we encounter:
 mov eax, 14
 mov ebx, 10
 add eax, ebx
 
-Here, we are moving (mov) the value of 14 into one of the registers, called eax, and then we are moving the value of 10 into another register, called ebx. We are then performing the add operation on the contents of these two registers. The result, 24, will be written back into the register eax.
+Here, we are
+moving (mov) the value of 14 into one of the registers, called eax
+moving (mov) the value of 10 into another register, called ebx.
+adding the contents of these two registers.
 
-If the move operation has an opcode of 136 and the add operation has an opcode of 1, we can use these values together with the numerical representations of the registers to have all of this in only numerical format. And, as we know, everything that is numerical can be represented in binary form, that is, with zeros and ones.
+The result, 24, will be written back into the register eax.
+
+We can then use a program that can translate the assembly code into machine code.
 
 Now we have all that, we need to look at some machine code.
 
@@ -232,7 +257,12 @@ cd 80
 b8 01 00 00 00
 cd 80
 
-When looking at this program, we can write the numbers in binary or decimal format if we want to. However, to make it easier to read, we often use hexadecimal numbers as we can then use fewer digits. For example, 15 in the decimal format (two digits) is 1111 (four digits) in binary, but only F (one digit) in hexadecimal. It is just more compact – that is the only reason we do this. Don't worry if you don't understand anything about the machine code program. It is not supposed to be readable for humans; however, for the computer, this all makes sense. Writing code in machine code is error-prone. A number in the wrong place can be the difference between success and disaster. The natural next step, therefore, has been to create something more comfortable for humans to read and write, which the computer can then translate into machine code. One such measure has been the creation of the assembly language that we talked about earlier.
+Note:
+To make machine code easier to read, we often use hexadecimal numbers as we can then use fewer digits. For example, 15 in the decimal format (two digits) is 1111 (four digits) in binary, but only F (one digit) in hexadecimal.
+
+Don't worry if you don't understand the machine code program. It is not supposed to be readable for humans; however, for the computer, this all makes sense.
+
+Writing machine code is error-prone. A number in the wrong place can be the difference between success and disaster. Assembly code is more comfortable for humans to read and write.
 
 Here is the same program, written in the assembly language:
 section .text
@@ -250,10 +280,14 @@ section .data
 msg db 'Hello, world!',0xa
 len equ $ - msg
 
-As you can see, this is still not that easy to understand. In the next chapter, we will learn how to write the same program using languages that resemble human language to a much higher degree.
+This code is then translated into machine code that the computer can understand.
+
+However, this could be more user friendly still. There are many ways that the same program can be written using languages that resemble human language to a much higher degree.
 
 Why do we have programming languages?
-Machine code is very difficult for humans to write efficiently. It is perfect for computers, but we need something more comfortable to read, write, and understand. The time it takes to write a program, find errors and bugs in code, and update a program to add new features costs money. If the language we use can help us reduce the chance of introducing errors in code, it will reduce the costs. If it helps us understand the code when we read it, it will let us add new features faster, and so reduce costs. One goal of a programming language is that it must help us be efficient when we write programs. It is at this point that the higher-level programming languages enter the scene. They enable us to write our code in something that often, at least to some degree, resembles English.
+Machine code is very difficult for humans to write efficiently. It is perfect for computers, but we need something more comfortable to read, write, and understand. The time it takes to write a program, find errors and bugs in code, and update a program to add new features costs money. If the language we use can help us reduce the chance of introducing errors in code, it will reduce the costs. If it helps us understand the code when we read it, it will let us add new features faster, and so reduce costs.
+
+One goal of a programming language is that it must help us be efficient when we write programs. It is at this point that the higher-level programming languages enter the scene. They enable us to write our code in something that often, at least to some degree, resembles English.
 
 Look at the following code snippet:
 .data
@@ -271,7 +305,7 @@ mov ah, 09h
 lea dx, msgEqual
 int 21h
 mov ah, 4Ch
-int 21hWhy do we have programming languages? 25
+int 21h
 NotEqual:
 mov ax, seg msgNotEqual
 mov ds, ax
@@ -291,7 +325,11 @@ ELSE
   print "Not Equal"
 ENDIF
 
-Believe it or not, they both do the same thing. The first one is in assembly language and the second one is something that resembles a high-level language. Even if you have never seen code before, it is not hard to understand what this program is doing. It compares two text strings, Alice and Bob, and if they are equal, prints this result to the screen, and if not, prints Not Equal. Of course, they are not equal, so the output here is Not Equal. What these two examples show is the leap that was taken to prove how easy code could be if we compare machine code and assembly code. In Chapter 1, Introduction to Computer Programs we saw a program that was first written in machine code and then in assembly that printed the text Hello, World to the screen. What would that program look like in some of the high-level languages that we use today?
+Believe it or not, they both do the same thing. The first one is in assembly language and the second one is something that resembles a high-level language. Even if you have never seen code before, it is not hard to understand what this program is doing. It compares two text strings, Alice and Bob, and if they are equal, prints this result to the screen, and if not, prints Not Equal.
+
+What these two examples show is the leap that was taken to prove how easy code could be if we compare machine code and assembly code.
+
+Earlier we saw a program that was first written in machine code and then in assembly that printed the text Hello, World to the screen. What would that program look like in some of the high-level languages that we use today?
 
 Let's look at some modern examples.
 
@@ -333,9 +371,9 @@ JavaScript:
 console.log("Hello, World");
 
 
-A programming language is nothing more than a tool that we use to create programs, and as with all tools, we want it to be as functional for the task as possible. Different types of applications have requirements that make one language better suited to meet them than other language will.
+A programming language is nothing more than a tool that we use to create programs, and as with all tools, we want it to be as functional for the task as possible. Different types of applications have requirements that make one language better suited to program it in.
 
-Some programming languages can give a programmer direct access to computer hardware. This means that it will let the programmer have more control over how data will be represented and stored in the computer's memory. The benefit of this is that programs written in this sort of language have the potential of being more efficient or running faster. However, this comes at the cost of complexity. When more control is given to the programmer, we also give the programmer more chances to make errors.
+Some programming languages can give a programmer direct access to computer hardware. This means the programmer will have more control over how data is represented and stored in the computer's memory. The benefit of this is that programs written in this sort of language have the potential of being more efficient or running faster. However, this comes at the cost of complexity. When more control is given to the programmer, we also give the programmer more chances to make errors.
 
 Some programming languages also have a structure that makes writing programs easier, which in turn reduces the time spent by the programmer in writing the software. These languages give us less control but are easier to use. The disadvantage here is that programs written in these languages tend to run slower. If we write some administrative software, the speed of the application will not be our focus; rather, we want a programming language that will help us write high-quality software with as few errors as possible.
 
@@ -345,108 +383,36 @@ Requirements like this can also be the motivation for creating a new programming
 
 
 ## Source Code Translation
-The code that a programmer writes is called source code, this code must be translated into machine code so that the computer can understand it. There are two main principles of how this translation is done. We will first explore these two concepts and look at their pros and cons before we look at a combination of these two concepts.
+The high level language modern programmers write is called source code. The many hello world examples above are each an example of their respective languages source code.
 
-One way to carry out this translation is by using an interpreter. An interpreter will look at a single line of source code, translate it into machine code, let the computer execute this line, and then move on to the next line of code. The way the interpreter works is a bit like how a simultaneous translator works with human languages. A simultaneous translator will, for example, work for the UN. In the UN, everyone is entitled to speak in their native language. A group of translators listens to the talk, and as they listen, they will translate it into another language. Delegates can then listen to the speech in real time in their native language through headphones.
+Source code must be translated into machine code so that the computer can understand it. This process is complicated and language dependent, when learning a specific language always pay attention to the method used to transform source code into machine code as it will be a necessary step in executing your program.
 
-Another way to carry out the translation is by using a technique called compiling. When we compile source code into machine code, we first translate every line of code, and it is not until the translation of all of the lines of code has been done that the program is executed. We can compare this to the concept of translating a book. First, an author writes the book in one language. A translator will then translate the whole book into another language. It is not until the translation of all of the text in the original book is done that it will be available to read.
-
-Interpreting and compiling are two of the main techniques for translating source code. A programming language can use either one of these techniques, and a language is therefore often referred to as either an interpreted or compiled language.
-
-Let's look more closely at these two techniques so that we can understand them better before we compare them.
-
-When an interpreted languages source code is executed, a specialized program called an interpreter will read the source code line by line and translate each line during runtime, the time the program is active.
-
-A compiler will instead translate all the code in the source code document and store it in a file containing the machine code instructions. When we want to run the program, we can use this file to run it; it is at this point that the CPU will execute the machine code.
-
-
-What are the advantages and disadvantages of these two methods of translation?
-
-Advantages of Interpretation:
-• It has a smaller program size.
-• If we have the code and an interpreter, we can run it on any platform (for example, Windows, Linux, macOS, and so on).
-• Interpreted languages tend to be more flexible for programmers to use. One
-example of this is called dynamic typing.
-
-Disadvantages of  Interpretation:
-• The program runs slower as translation happens during runtime.
-• Anyone who wants to run the program must have an interpreter installed.
-• The user of the program has access to the source code, so if it is a commercial application, all the code we have written will be accessible to anyone, including any potential business secrets.
-
-
-
-Advantages of Compilation:
-• It runs faster as the translation is done previous to runtime.
-• No extra program is needed to run the application — that is, the application has all the information it needs to run, so the user does not need to have any other programs installed.
-• Compiled programming languages tend to help the programmer with things such
-as type checking to a higher degree.
-
-Disadvantages of Compilation:
-• The programs tend to be larger as a single line of programming language code can constitute many lines of machine code as previous examples indicate.
-• We need to make versions for all of the platforms that we intend the program to run on — that is, we need a Windows version, a macOS version, and a Linux version as the file a compiler outputs is only translated for one type of machine.
-• The time it takes to complete the translation can be long, making it harder to try things out as we write the program.
-
-Some examples of interpreted languages are PHP, Ruby, and JavaScript.
-Some examples of compiled languages are C, C++, COBOL, ALGOL, Fortran, and Lisp
-
-
-We also have a group of languages that both compile and interpret. When they compile the source code, they do not directly compile it into machine code. They follow an intermediate step where they compile the source code into byte code. This byte code is then interpreted as the program executes. The benefit of doing this is that we get some of the advantages of both techniques. For example, this byte code can be distributed to anyone who wants to run the program, and then an interpreter will interpret the byte code into machine code for the current system that the program is executed on.
-
-Another advantage that compiled languages have—and this applies to the technique of mixing them, too—is that if there is an error in the source code, the compiler will detect this because the syntax (the grammar of a language) has to be correct and if it is not, the compiler can't proceed and will stop the translation. The programmer then needs to go back and correct the error before the program can compile again. Mixed technique languages share a disadvantage with interpreted languages, which is that programs written with them will run slower than programs written in a compiled language.
-
-Some examples of mixed technique languages are Python, Java, C#, and Perl.
+For now we can categorize programming languages into those that are interpreted languages and those that are compiled languages.
+  Interpreted languages allow the user of a program to execute source code directly, translating them into machine code line by line as the program runs.
+  Compiled languages use a compiler to transform the entirety of the source code into an machine code executable before it can be executed.
 
 
 
 
-## Language Description
+
+## Language Definition
 A programming language is a formal language comprising a set of instructions that produce various kinds of output.
-Thousands of different programming languages have been created, and more are being created every year.
-The description of a programming language is usually split into the two components of syntax (form) and semantics (meaning).
+
+The description of a programming language is usually split into the two components of syntax and semantics:
+  the syntax of a computer language is the set of rules that defines the combinations of symbols that are considered to be correctly structured statements or expressions in that language.
+  the semantics of a computer language is the set of rules that defines the meaning of syntactically valid strings defined by a specific programming language
+
+For now, remember that a languages syntax determines what form instructions take and a languages semantics determine what those instructions mean.
 
 
-## Syntax
-https://en.wikipedia.org/wiki/Syntax_(programming_languages)
-Just as human languages have grammar to dictate the rules of the language, a programming language has syntax. The syntax is the rules for how we write a program using a language. There is one big difference between grammar and syntax and that is about forgiveness for errors. If you meet someone who speaks your native language but makes some errors here and there, you will still be able to understand what that person is trying to communicate to you. That is not the case for the syntax of a programming language. If written source code violates the syntactical rules of a programming language its interpretation or compilation will not be successful, the syntax must be flawless.
+## Language Types
+Thousands of different programming languages have been created, and more are being created every year. Many programming languages are written in either:
+  an imperative form, which specifies the structure of a sequence of operations to perform to achieve the desired result
+  a declarative form, which specifies the structure of the desired result, not how to achieve it
 
-If we have an error in the syntax, it will be discovered during the translation, and here is where a compiled and an interpreted language will differ. For a compiled language, all the translation will be done before we can execute the program. If we have an error in the syntax, the compilation will stop as soon as the compiler discovers the mistake. We must then find the fault and correct it, then let the compiler try to translate the code again. It is not until our code does not have any syntax errors that we have something we can run completely.
-
-This is different for an interpreted language as it will translate line by line as we run the program. This means that a syntax error can be hidden in a corner of the program that is rarely executed and will not be discovered until we eventually want to run that line of code. When this happens, the program will crash mid-execution with an error message letting us know what problem was there with our syntax.
-
-
-This means that a source code document that we have written can either be syntactically correct or incorrect. The syntax is a set of rules defining how the source code will be written and structured. But that is not all. The syntax also defines other things, such as the words that make up the language. These are called keywords.
+There are many other categorizations and sub-categorizations
 
 
-
-Keywords
-When learning a new language, we must keep track of its keywords, also called reserved words, as these words are reserved by the language. If we use a keyword by accident for something other than its intended use, we will get an error. A language will typically have between 30 and 50 keywords. Here is a list of some common keywords:
-• for
-• if
-• else
-• break
-• continue
-• return
-• while
-
-Most programming languages are case sensitive, so the use of uppercase and lowercase letters matters—for example, "if" is not the same thing as "If" or "IF".
-
-
-
-Operators
-Apart from keywords, we also have something called operators, which we can use to represent the actions we want to perform on data much like the arithmetic operators of mathematics.
-
-A programming language will also have several operators, and these are what we use to accomplish things such as addition and multiplication, as well as to compare data. The symbols that can be used are also defined as part of the language syntax.
-
-
-
-Code Blocks
-Having our code in one long sequence would make it difficult to read. It would be like having a book with no chapters or paragraphs. To add the concept of chapters and paragraphs to our code, we use something called code blocks.
-
-It is common for a language to also allow us to define blocks of code. There are several reasons why you would want to do that, and we will talk more about them in later. However, for now, we can think of a block of code like a paragraph in standard text.
-
-The language then defines how we mark the beginning and end of the block. A common technique that many languages employ is using parentheses, also called braces or curly brackets — {}. A language like this would open the code block with { and close the code block with }. Everything within is considered part of the block.
-
-Other languages might have different ways to do the same thing, so again, when switching between languages, we must learn what the syntax rules are for that language.
 
 
 
@@ -460,6 +426,6 @@ Another concept borrowed from mathematics is the use of operators. In mathematic
 Another concept borrowed from mathematics is functions. In mathematics, a function is something that takes an input value and transforms it in some way to produce an output. This is close to how we can describe functions in programming as well.
 
 
-The rules for how we can name variables as well as structure operations and functions are also part of the language syntax.
+
 
 One thing we must remember when approaching programming is that if we understand how these concepts work in mathematics, that does not mean that we can apply this knowledge directly to programming, even if they happen to share the same name. They will be related, but how things are done in programming will differ from how things work in math.

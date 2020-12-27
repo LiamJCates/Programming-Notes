@@ -4,9 +4,9 @@ https://en.wikipedia.org/wiki/Expression_(computer_science)
 
 Informally, a statement can be viewed as a command that we give to the application.
 
-Formally, a statement is syntactic unit of an imperative language which expresses some action to be carried out. 
+Formally, a statement is syntactic unit of an imperative language which expresses some action to be carried out.
 
-
+Statements are the most prominent syntactic component in imperative languages, the dominant of class languages in use today. Their syntax has a critical effect on the overall regularity, readability and writability of the language. Some languages adopt a single basic statement format, whereas others use a different syntax for each different statement type. The former approach emphasizes regularity, whereas the latter emphasizes readability. A more important difference in statement structures is that between structured or nested statements and simple statements. A simple statement contains no other embedded statements. A structured statement may contain embedded statements.
 
 
 
@@ -37,6 +37,9 @@ Each statement introduced via keyword typically uses a unique syntax, which look
 Statements are made up of internal components called expressions, and expressions are made up of even smaller parts
 
 In computer science, an expression is a syntactic entity in a programming language that may be evaluated to determine its value. It is a combination of one or more constants, variables, functions, and operators that the programming language interprets and computes to produce another value.
+
+
+
 
 Conceptually, there are two types of expressions: those that resolve to a value and those that assign a value to a variable.
 
@@ -112,7 +115,14 @@ consist of other compound statements.
 Block
 A block is a notation for a group of two or more statements, expressions or other units of code that are related in such a way as to comprise a whole.
 
+Code Blocks
+Having our code in one long sequence would make it difficult to read. It would be like having a book with no chapters or paragraphs. To add the concept of chapters and paragraphs to our code, we use something called code blocks.
 
+It is common for a language to also allow us to define blocks of code. There are several reasons why you would want to do that, and we will talk more about them in later. However, for now, we can think of a block of code like a paragraph in standard text.
+
+The language then defines how we mark the beginning and end of the block. A common technique that many languages employ is using parentheses, also called braces or curly brackets — {}. A language like this would open the code block with { and close the code block with }. Everything within is considered part of the block.
+
+Other languages might have different ways to do the same thing, so again, when switching between languages, we must learn what the syntax rules are for that language.
 
 Programming language statements typically have conventions for:
   statement separators
@@ -192,8 +202,13 @@ Within an imperative programming language, a control flow statement is a stateme
 A set of statements is in turn generally structured as a block, which in addition to grouping, also defines a lexical scope.
 
 
+#### Control Structures
+Control structures provide alternatives to sequential program execution and are used to alter the sequential flow of execution.
 
-
+The most common control structures are selection, iteration, and jump statements:
+  Selection statements cause the program to execute particular statements depending on some condition(s).
+  Iteration statements cause the program to repeat particular statements based on some condition(s).
+  Jump statements cause the program to transfer execution unconditionally
 
 
 

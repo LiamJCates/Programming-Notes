@@ -2,8 +2,7 @@ Volatile Expressions
 The volatile keyword tells the compiler that every access made through
 this expression must be treated as a visible side effect. This means access
 cannot be optimized out or reordered with another visible side effect.
-This keyword is crucial in some settings, like embedded programming,208 Chapter 7
-where reads and writes to some special portions of memory have effects
+This keyword is crucial in some settings, like embedded programming, where reads and writes to some special portions of memory have effects
 on the underlying system. The volatile keyword keeps the compiler from
 optimizing such accesses away. Listing 7-18 illustrates why you might need
 the volatile keyword by containing instructions that the compiler would

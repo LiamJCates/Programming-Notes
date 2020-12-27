@@ -1,10 +1,14 @@
-Syntax
+## Syntax
 A programming language's surface form is known as its syntax.
 
-The syntax of textual programming languages is usually defined using a combination of
 
-regular expressions (for lexical structure)
-EBNF Backus–Naur form (for grammatical structure)
+### Tokens
+The smallest individual unit of a program written in any language is called a token.
+
+
+The syntax of textual programming languages is usually defined using a combination of
+  regular expressions (for lexical structure)
+  EBNF Backus–Naur form (for grammatical structure)
 
 These rules inductively specify syntactic categories (nonterminals) and terminal symbols.
 

@@ -1,5 +1,4 @@
 ## Assert
-
 An assert is a statement in C++ which tests for a condition. If the condition is true, the program continues normally and if the condition is false, the program is terminated and an error message is displayed.
 
 

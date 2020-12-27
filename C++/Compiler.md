@@ -1,28 +1,23 @@
 An executable program is created for a specific hardware/system combination; it is not portable, say, from a Mac to a Windows PC. When we talk about portability of C++ programs, we usually mean portability of source code; that is, the source code can be successfully compiled and run on a variety of systems.
 
-A C++ program is typically derived from many source code files (source files) by a compiler and linker.
-
-
+A C++ program is typically derived from many source code files (source files) by a compiler and linker in the steps that follow:
 
 Code begins as a source code file.
-You write C++ source code into human-readable text files called source files.
-A source code file must be properly formatted according to language syntax and semantics.
+  You write C++ source code into human-readable text files called source files.
+  A source code file must be properly formatted according to language syntax and semantics.
 
-Then you use a compiler and linker to convert your C++ into executable machine code, which is a program that computers can run.
+A compiler is used to produce object files:
+  If source files properly formatted the compiler will output a transformation called an object file, otherwise it will produce an error message and fail to compile.
+  An object file is a computer file containing object code, that is, machine code output of an assembler or compiler.
 
-If source files are improperly formatted the compiler will produce and error message, if properly formatted the compiler will output a transformation called an object file.
-
-All object files made from individual source files then need to be made into a single executable
-
-a linker is used to link object files together
-if it can't link the object files it will produce an error message
-if it can, the object files are linked together to create an executable file (an executable).
+A linker is used to convert object files into an executable machine code file:
+  All object files made from individual source files are linked into a single executable file (an executable), if it can't link the object files it will produce an error message.
 
 Executables can be run by the operating system.
 
 
 
-The Compiler Tool Chain
+### The Compiler Tool Chain
 After writing the source code for a C++ program, the next step is to turn
 your source code into an executable program. The compiler tool chain (or
 tool chain) is a collection of three elements that run one after the other to
