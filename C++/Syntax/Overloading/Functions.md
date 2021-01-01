@@ -1,6 +1,8 @@
 ## Function Overloading
 
-You can have multiple definitions for the same function name in the same scope. The definition of the function must differ from each other by the types and/or the number of arguments in the argument list. You cannot overload function declarations that differ only by return type.
+C++ allows multiple definitions for the same function name in the same scope. The definition of the function must differ from each other by the types and/or the number of arguments in the argument list. While the return type can change, you cannot overload function declarations that differ only by return type.
+
+Overloaded functions can be quite useful in applications where a function with a particular name that produces a certain type of output might need to be invoked with different sets of parameters.
 
 Overload Resolution
 Overload resolution is the process that the compiler executes when matching
@@ -14,3 +16,17 @@ Roughly, the matching process proceeds as follows:
 3. The compiler will try to match using standard conversions like integral type to floating-point or casting a pointer-to-child into a pointer-to-parent.
 4. The compiler will look for a user-defined conversion.
 5. The compiler will look for a variadic function.
+
+
+
+## Conflicts
+If two functions are defined with the same name, but with different argument types, the compiler will choose the most appropriate function to invoke for each call
+
+If two alternative functions could be called, but neither is better than the other, the call is deemed ambiguous and the compiler gives an error. For example:
+
+void print(int, double);
+void print(double, int);
+
+void user2() {
+  print(0,0); // error: ambiguous
+}

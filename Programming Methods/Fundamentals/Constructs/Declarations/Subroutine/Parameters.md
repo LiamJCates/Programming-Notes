@@ -1,4 +1,7 @@
 Parameter passing
+Parameters provide a communication link between the calling function (such as
+main) and the called function. They enable functions to manipulate different data each time they are called.
+
 Ways in which parameter data can be passed into and out of methods and functions.
 
 Formal Parameter
@@ -22,6 +25,21 @@ Modes:
 IN: Passes info from caller to callee.
 OUT: Callee writes values in caller.
 IN/OUT: Caller tells callee value of variable, which may be updated by callee.
+
+
+
+Call Type & Description
+
+Call by Value
+This method copies the actual value of an argument into the formal parameter of the function. In this case, changes made to the parameter inside the function have no effect on the argument.
+
+Call by Pointer
+This method copies the address of an argument into the formal parameter. Inside the function, the address is used to access the actual argument used in the call. This means that changes made to the parameter affect the argument.
+
+Call by Reference
+This method copies the reference of an argument into the formal parameter. Inside the function, the reference is used to access the actual argument used in the call. This means that changes made to the parameter affect the argument.
+
+
 
 The most common methods are to pass the value of the actual parameter (call by value),
 or to pass the memory address where the actual parameter is stored (call by reference).

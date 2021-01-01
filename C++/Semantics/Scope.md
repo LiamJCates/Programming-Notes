@@ -1,16 +1,35 @@
 ### Identifier Access
-First, we define the following two terms:
-Local identifier: Identifiers declared within a function (or block).
-Global identifier: Identifiers declared outside of every function definition.
+Named entities, such as variables, functions, and compound types need to be declared before being used in C++. The visibility of a name, also called its scope, is the region in the program where a declared name can be used.
+
+Only one entity can exist with a particular name in a particular scope.
+
+The point in the program where a declaration happens influences its visibility/scope.
+
+A declaration introduces its name into a scope:
+
+• Local scope:
+  A name declared in a function or lambda is called a local name.
+  Its scope extends from its point of declaration to the end of the block in which its declaration occurs. A block is delimited by a {} pair. Function argument names are considered local names.
+
+• Class scope:
+  A name is called a member name(or a class member name) if it is defined in a class, outside any function, lambda, or enum class.
+ Its scope extends from the opening { of its enclosing declaration to the end of that declaration.
+
+• Namespace scope:
+  A name is called a namespace member name if it is defined in a name-space outside any function, lambda, class, or enum class.
+  Its scope extends from the point of declaration to the end of its namespace.
+
+Global scope:
+  A name not declared inside any other construct is called a global name and is said to be in the global namespace.
+  A global variable will hold it's value throughout the life-time of your program. A global variable can be accessed by any function. That is, a global variable is available for use throughout your entire program after its declaration.
 
 In general, the following rules apply when an identifier is accessed:
 
-Global identifiers are accessible by a function or a block if
-  a. The identifier is declared before the function definition (block),
+Global identifiers are accessible within a block if
+  a. The identifier is declared before the function definition (block)
   b. The function name is different than the identifier
-  c. All parameters of the function have names different than the name of the identifier
-  d. All local identifiers (such as local variables) have names different
-  than the name of the identifier.
+  c. All function parameter names differ from the global identifier name
+  d. All local identifier names differ from the global identifier name
 
 Local identifiers are not accessible outside of the function (block).
 
@@ -25,19 +44,13 @@ C++ does not allow the nesting of functions. That is, you cannot include the def
 
 
 
+Only one entity can exist with a particular name in a particular scope. This is seldom a problem for local names, since blocks tend to be relatively short, and names have particular purposes within them, such as naming a counter variable, an argument, etc...
 
-A declaration introduces its name into a scope:
-• Local scope: A name declared in a function or lambda is called a local name.
-    Its scope extends from its point of declaration to the end of the block in which its declaration  occurs.  A block is  delimited by a {} pair.  Function argument  names  are  considered local names.
+But non-local names bring more possibilities for name collision, especially considering that libraries may declare many functions, types, and variables, neither of them local in nature, and some of them very generic.
 
-• Class scope: A name is called a member name(or a class member name) if it is defined in a class,  outside  any  function,  lambda,  or enum  class.
-  Its scope  extends  from  the  opening { of  its  enclosing  declaration  to  the  end  of  that declaration.
+Namespaces allow us to group named entities that otherwise would have global scope into narrower scopes, giving them namespace scope. This allows organizing the elements of programs into different logical scopes referred to by names:
+[C++\Syntax\Statements\Declarations\Namespace.md]
 
-• Namespace scope: A name is called a namespace member name if  it  is  defined  in  a  name-space outside  any function,  lambda,  class,  or enum class.  
-  Its scope extends from the point of declaration to the end of its namespace.
-
-Global scope: A  name  not  declared  inside  any  other  construct  is  called  a global  name and  is  said  to  be  in  the global namespace.
-  A global variable will hold it's value throughout the life-time of your program. A global variable can be accessed by any function. That is, a global variable is available for use throughout your entire program after its declaration.
 
 
 
@@ -56,14 +69,6 @@ a team.
 
 
 
-
-
-
-
-### Resolution Operator
-In C++, :: is called the scope resolution operator.
-
-By using the scope resolution operator, a global variable declared before the definition of a function (block) can be accessed by the function (or block) even if the function (or block) has an identifier with the same name as the variable.
 
 
 

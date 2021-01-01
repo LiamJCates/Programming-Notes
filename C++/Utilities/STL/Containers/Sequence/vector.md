@@ -1,3 +1,66 @@
+## Dynamic Arrays
+To program an application that is able to optimally consume memory resources on the basis of the needs of the user, you need to use dynamic memory allocation. This enables you to allocate more when you need more memory and release memory that you have in excess. C++ supplies you two operators, new and delete, to help you better manage the memory consumption of your application. Pointers being variables that are used to contain memory addresses play a critical role in efficient dynamic memory allocation.
+
+choose dynamic arrays that optimize memory consumption and scale up depending on the demand for resources and memory at execution-time. C++ provides you with convenient and easy-to-use dynamic arrays in the form of std::vector
+
+ #include <iostream>
+ #include <vector>
+
+using namespace std;
+//using std::vector;
+
+int main()
+{
+vector<int> dynArray (3); // dynamic array of int
+
+dynArray[0] = 365;
+dynArray[1] = -421;
+dynArray[2]= 789;
+
+cout << "Number of integers in array" << dynArray.size() << endl;
+
+cout << "Enter another element to insert" << endl;
+int newValue = 0;
+cin >> newValue;
+dynArray.push_back(newValue);
+
+cout << "Number of integers in array" << dynArray.size() << endl;
+cout << "Last element in array";
+cout << dynArray[dynArray.size() - 1] << endl;
+return 0;
+
+}
+
+To use the dynamic array class std::vector, you need to
+include header vector.
+ #include <vector>
+
+[vector].push_back();
+adds element to the end of the collection
+
+ranged for loop useful for vector collection iteration
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 vector
 vectors are a sequential container that holds a dynamically sized, contiguous series of elements of a given type.
 

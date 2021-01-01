@@ -3,7 +3,9 @@ Methods are a classes' member functions.
 
 Methods create an explicit connection among a class, its data members, and some code. Defining a method is as simple as adding a function to a class definition. Methods have access to all of a class’s members.
 
+A function can be a member of a class. For such a member function, the name of its class is also part of the function type. For example:
 
+char& String::operator[](int index); // type: char& String::(int)
 
 Accessor function: A member function of a class that only accesses (that is, does not modify) the value(s) of the member variable(s).
 

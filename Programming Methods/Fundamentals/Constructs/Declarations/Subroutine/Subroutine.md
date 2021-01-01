@@ -1,4 +1,7 @@
-Formally a computer programming subroutine is a sequence of program instructions that performs a specific task, packaged as a unit. This unit can then be used in programs wherever that particular task should be performed.
+In general, a computer programming subroutine is a group of statements, given a name, which can be called from some point in the program to be executed to accomplish some task.
+
+
+Formally, computer programming subroutine is a code block that can take inputs, execute instructions, and return a result. Functions allow a programmer to structure programs in segments of code to perform individual tasks.
 
 In different programming languages, a subroutine may be called a routine, subprogram, function, method, or procedure. Technically, these terms all have different definitions. The generic, umbrella term "callable unit" is sometimes used.
 
@@ -57,6 +60,8 @@ Functions are a method of managing a program's control flow
 By convention, and required by many languages, a function is specified before it is called. Though the code for the function is above the rest of the function, it will not execute until we call the function.
 
 Once a function has been declared we can call the function as often as we like, and all of the code within it will run each time.
+
+Typically, the function name and function call operator () are used to reference the function throughout the source code
 
 When a function is called, control flow is transferred from sequential execution of one code block to the top of the function.
 
@@ -162,7 +167,7 @@ Output:
 14
 
 
-When we make the first call to the function, we are passing in the values, 73 and 8. These are called arguments. 
+When we make the first call to the function, we are passing in the values, 73 and 8. These are called arguments.
 
 On the receiving side, that is, in the add function, these two values will be assigned to two variables, number1 and number2. These are called the parameters of the function.
 
@@ -173,7 +178,9 @@ The first argument that we pass in, the value, 73, is assigned to the first para
 
 
 
-A subroutine may be written so that it expects to obtain one or more data values from the calling program (to replace its parameters or formal parameters). The calling program provides actual values for these parameters, called arguments. Different programming languages may use different conventions for passing arguments:
+A subroutine may be written so that it expects to obtain one or more data values upon being called. The calling program provides actual values for these parameters, known as arguments.
+
+Different programming languages may use different conventions for passing arguments:
 
 
 Call by value: Arguments are evaluated and copy of the value is passed to subroutine
@@ -199,13 +206,13 @@ Advantages
 
 The advantages of breaking a program into subroutines include:
 
-    Decomposing a complex programming task into simpler steps: this is one of the two main tools of structured programming, along with data structures
-    Reducing duplicate code within a program
-    Enabling reuse of code across multiple programs
-    Dividing a large programming task among various programmers or various stages of a project
-    Hiding implementation details from users of the subroutine
-    Improving readability of code by replacing a block of code with a function call where a descriptive function name serves to describe the block of code. This makes the calling code concise and readable even if the function is not meant to be reused.
-    Improving traceability (i.e. most languages offer ways to obtain the call trace which includes the names of the involved subroutines and perhaps even more information such as file names and line numbers); by not decomposing the code into subroutines, debugging would be severely impaired
+  Decomposing a complex programming task into simpler steps: this is one of the two main tools of structured programming, along with data structures
+  Reducing duplicate code within a program
+  Enabling reuse of code across multiple programs
+  Dividing a large programming task among various programmers or various stages of a project
+  Hiding implementation details from users of the subroutine
+  Improving readability of code by replacing a block of code with a function call where a descriptive function name serves to describe the block of code. This makes the calling code concise and readable even if the function is not meant to be reused.
+  Improving traceability (i.e. most languages offer ways to obtain the call trace which includes the names of the involved subroutines and perhaps even more information such as file names and line numbers); by not decomposing the code into subroutines, debugging would be severely impaired
 
 Disadvantages
 
@@ -216,27 +223,11 @@ A subroutine typically requires standard housekeeping code – both at the entry
 
 
 
-Call stack
-
-Most modern implementations of a subroutine call use a call stack, a special case of the stack data structure, to implement subroutine calls and returns. Each procedure call creates a new entry, called a stack frame, at the top of the stack; when the procedure returns, its stack frame is deleted from the stack, and its space may be used for other procedure calls. Each stack frame contains the private data of the corresponding call, which typically includes the procedure's parameters and internal variables, and the return address.
-
-The call sequence can be implemented by a sequence of ordinary instructions (an approach still used in reduced instruction set computing (RISC) and very long instruction word (VLIW) architectures), but many traditional machines designed since the late 1960s have included special instructions for that purpose.
-
-The call stack is usually implemented as a contiguous area of memory. It is an arbitrary design choice whether the bottom of the stack is the lowest or highest address within this area, so that the stack may grow forwards or backwards in memory; however, many architectures chose the latter.[citation needed]
-
-Some designs, notably some Forth implementations, used two separate stacks, one mainly for control information (like return addresses and loop counters) and the other for data. The former was, or worked like, a call stack and was only indirectly accessible to the programmer through other language constructs while the latter was more directly accessible.
-
-When stack-based procedure calls were first introduced, an important motivation was to save precious memory.[citation needed] With this scheme, the compiler does not have to reserve separate space in memory for the private data (parameters, return address, and local variables) of each procedure. At any moment, the stack contains only the private data of the calls that are currently active (namely, which have been called but haven't returned yet). Because of the ways in which programs were usually assembled from libraries, it was (and still is) not uncommon to find programs that include thousands of subroutines, of which only a handful are active at any given moment.[citation needed] For such programs, the call stack mechanism could save significant amounts of memory. Indeed, the call stack mechanism can be viewed as the earliest and simplest method for automatic memory management.
-
-However, another advantage of the call stack method is that it allows recursive subroutine calls, since each nested call to the same procedure gets a separate instance of its private data.
 
 
 
-Overloading
 
-In strongly typed languages, it is sometimes desirable to have a number of functions with the same name, but operating on different types of data, or with different parameter profiles. For example, a square root function might be defined to operate on reals, complex values or matrices. The algorithm to be used in each case is different, and the return result may be different. By writing three separate functions with the same name, the programmer has the convenience of not having to remember different names for each type of data. Further, if a subtype can be defined for the reals, to separate positive and negative reals, two functions can be written for the reals, one to return a real when the parameter is positive, and another to return a complex value when the parameter is negative.
 
-In object-oriented programming, when a series of functions with the same name can accept different parameter profiles or parameters of different types, each of the functions is said to be overloaded.
 
 
 

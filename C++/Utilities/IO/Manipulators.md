@@ -10,7 +10,7 @@ Other output manipulators that are of interest include setprecision, fixed, show
 
 
 
-setprecision Manipulator
+### setprecision Manipulator
 You use the manipulator setprecision to control the output of floating-point numbers
 
 he general syntax of the setprecision manipulator is:
@@ -22,10 +22,11 @@ formats the output of decimal numbers to two decimal places until a similar subs
 the precision value, is passed as an argument to setprecision.
 To use the manipulator setprecision, the program must include the header file
 iomanip. Thus, the following include statement is required:
-#include <iomanip>
+ #include <iomanip>
 
 
-fixed Manipulator
+
+### fixed Manipulator
 To output floating-point numbers in a fixed decimal format, you use the manipulator fixed. The following statement sets the output of floating-point numbers in a
 fixed decimal format on the standard output device:
 cout << fixed;
@@ -41,7 +42,9 @@ might not work. In this case, you can use cout.setf(ios::fixed); in place of
 cout << fixed; and cout.setf(ios::scientific); in place of cout <<
 scientific;
 
-showpoint Manipulator
+
+
+### showpoint Manipulator
 Suppose that the decimal part of a decimal number is zero. In this case, when you
 instruct the computer to output the decimal number in a fixed decimal format, the
 output may not show the decimal point and the decimal part. To force the output to

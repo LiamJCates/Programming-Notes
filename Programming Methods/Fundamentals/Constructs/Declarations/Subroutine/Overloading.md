@@ -1,0 +1,5 @@
+Overloading
+
+In strongly typed languages, it is sometimes desirable to have a number of functions with the same name, but operating on different types of data, or with different parameter profiles. For example, a square root function might be defined to operate on reals, complex values or matrices. The algorithm to be used in each case is different, and the return result may be different. By writing three separate functions with the same name, the programmer has the convenience of not having to remember different names for each type of data. Further, if a subtype can be defined for the reals, to separate positive and negative reals, two functions can be written for the reals, one to return a real when the parameter is positive, and another to return a complex value when the parameter is negative.
+
+In object-oriented programming, when a series of functions with the same name can accept different parameter profiles or parameters of different types, each of the functions is said to be overloaded.

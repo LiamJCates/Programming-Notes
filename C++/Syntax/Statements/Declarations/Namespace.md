@@ -45,6 +45,11 @@ another namespace. Note that namespace_name is a C++ identifier.
 
 
 
+## Namespace Aliasing
+Existing namespaces can be aliased with new names, with the following syntax:
+
+namespace new_name = current_name;
+
 
 ## Accessing Namespaces
 The scope of a namespace member is local to the namespace. You can usually access a namespace member outside the namespace in one of two ways, as described below.

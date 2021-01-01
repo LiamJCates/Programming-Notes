@@ -1,4 +1,5 @@
 ## Overview
+The function get and it's various derivatives are used to read data on a character-by-character basis and does not skip any whitespace characters.
 
 getchar is recommended to read a single char from stdint
 
