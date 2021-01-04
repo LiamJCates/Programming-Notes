@@ -51,6 +51,17 @@ The member access operators . and -> are used to refer to members of structures,
 
 There are two forms of member access expressions:
 
-    In the first form, postfix-expression represents a value of struct, class, or union type, and name names a member of the specified structure, union, or class. The value of the operation is that of name and is an l-value if postfix-expression is an l-value.
+  In the first form, postfix-expression represents a value of struct, class, or union type, and name names a member of the specified structure, union, or class. The value of the operation is that of name and is an l-value if postfix-expression is an l-value.
 
-    In the second form, postfix-expression represents a pointer to a structure, union, or class, and name names a member of the specified structure, union, or class. The value is that of name and is an l-value. The -> operator dereferences the pointer. Therefore, the expressions e->member and (*e).member (where e represents a pointer) yield identical results (except when the operators -> or * are overloaded).
+  In the second form, postfix-expression represents a pointer to a structure, union, or class, and name names a member of the specified structure, union, or class. The value is that of name and is an l-value. The -> operator dereferences the pointer. Therefore, the expressions e->member and (*e).member (where e represents a pointer) yield identical results (except when the operators -> or * are overloaded).
+
+
+
+
+The member-of-pointer operator, or arrow operator (->), performs two simultaneous operations:
+•	 It dereferences a pointer.
+•	 It accesses a member of the pointed-to object.
+
+You can use this operator to reduce notational friction, the resistance a programmer feels in expressing their intent in code, when you’re handling pointers to classes.
+
+You’ll need to handle pointers to classes in a variety of design patterns. For example, you might want to pass a pointer to a class as a function parameter. If the receiving function needs to interact with a member of that class, the member-of-pointer operator is the tool for the job.

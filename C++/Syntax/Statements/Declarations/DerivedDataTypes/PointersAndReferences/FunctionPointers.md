@@ -1,13 +1,9 @@
 ## Function Pointers
-Functional programming is a programming paradigm that emphasizes function
-evaluation and immutable data. One of the major concepts in functional
-programming is to pass a function as a parameter to another function.
-One way you can achieve this is to pass a function pointer. Functions
-occupy memory, just like objects. You can refer to this memory address via
-usual pointer mechanisms. However, unlike objects, you cannot modify the
-pointed-to function. In this respect, functions are conceptually similar to
-const objects. You can take the address of functions and invoke them, and
-that’s about it.
+C++ allows operations with pointers to functions. The typical use of this is for passing a function as an argument to another function.
+
+Functions occupy memory, just like objects. You can refer to this memory address via usual pointer mechanisms. However, unlike objects, you cannot modify the pointed-to function. In this respect, functions are conceptually similar to const objects. You can take the address of functions and invoke them, and that’s about it.
+
+
 
 ### Declaring a Function Pointer
 To declare a function pointer, use the following ugly syntax:

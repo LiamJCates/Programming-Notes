@@ -2,9 +2,12 @@ Data Types
 The objective of a C++ program is to manipulate data. Different programs manipulate different data.
 
 The C++ Type System
+
 C++ is an object-oriented language.
 
-The collection of behaviors and states describing an object is called its type. C++ is a strongly typed language, meaning each object has a predefined
+The collection of behaviors and states describing an object is called its type.
+
+C++ is a strongly typed language, meaning each object has a predefined
 data type.
 
 Reflecting these kinds of underlying differences, C++ categorizes data into different types, and only certain operations can be performed on particular types of data. Although at first it may seem confusing, by being so type conscious, C++ has built-in checks to guard against errors.
