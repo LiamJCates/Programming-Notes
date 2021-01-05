@@ -1,4 +1,151 @@
 Resource Management
+
+
+
+
+When we call new, a special member function called a constructor allocates the elements and initializes the members appropriately.
+
+When we call delete, a special member function called a destructor deallocates the elements.
+
+This handle-to-data model is very commonly used to manage data that can vary in size during the lifetime of an object.
+
+The technique of acquiring resources in a constructor and releasing them in a destructor is known as Resource Acquisition Is Initialization or RAII.
+
+RAII allows us to eliminate ‘‘naked new operations,’’ that is, to avoid allocations in general code and keep them buried inside the implementation of well-behaved abstractions, like constructors and destructors. Similarly, ‘‘naked delete operations’’ should be avoided. Avoiding naked new and naked delete makes code far less error-prone and far easier to keep free of resource leaks.
+
+An example of the difference between using a dynamic allocation via a naked new and delete and using automatic allocation follows.  
+
+We might created the two object on the heap by using pointers and calling
+Object *ob1 = new Object;
+Object *ob2 = new Object;
+
+Then delete them
+delete ob1;
+delete ob2;
+
+But we could have made them on the stack by just declaring them without pointers:
+Object ob1;
+Object ob2;
+
+You can do this, and the application will run fine, provided you remove the delete lines.
+
+You do not delete stack variables. The computer calls the destructor when the function they are contained by ends, and they go out of scope. That’s the general rule with objects on the stack: They are created when you declare them, and they stay until the function ends.
+
+
+
+Avoiding naked new in modern C++
+
+The old-days way of acquiring memory resources is to have a pair of malloc and free calls. The C++’s addition, the new and delete keywords simplified the syntax, but did not eliminate the problem of proper memory management.
+The Problem
+
+Here is a typical approach: you create some place for your data, get a pointer, and later you have to delete it yourself. In the following code fragment, the new and delete calls are called at correct places, but the program is still error-prone.
+
+#include <iostream>
+
+class data {
+public:
+    int value;    
+};
+
+int main() {
+    data* p = new data[10];
+
+    p[5].value = 42;
+    std::cout << p[5].value << "\n";
+
+    delete[] p;
+}
+
+Imagine now what happens if you append the following lines after destroying the data array.
+
+int main() {
+    data* p = new data[10];
+
+    p[5].value = 42;
+    std::cout << p[5].value << "\n";
+
+    delete[] p;
+
+    p[5].value++;
+    std::cout << p[5].value << "\n";
+}
+
+The program access the data after its memory was released back to the operating system. I believe that in most cases you will not notice this when executing the program, as it will still work visually correct. Run it and you’ll see that it prints both 42 and 43 as if it indeed was working with the earlier allocated data.
+
+In this example, both new and delete are located close to each other. In bigger examples, you may hide both of them in some kind of create and destroy function. It can happen that delete occurs to happen in one of the branch of some if–else check, and thus could be called incorrectly or not called at all.
+The Solution
+
+The proper solution is to allow the compiler to destroy the object at a proper time. You still need to call delete, but you place that in a destructor of an object. Having that done, you allow the compiler to call it at the end of the current scope.
+
+The following modification of the program contains a helper class that does all the job for relocating and freeing memory.
+
+#include <iostream>
+
+class data {
+public:
+    int value;    
+};
+
+class DataList {
+    data* storage;
+public:
+    DataList(int n) {
+        storage = new data[n];
+    }
+
+    ~DataList() {
+        delete[] storage;
+    }
+
+    data& operator[](int i) {
+        return storage[i];
+    }
+};
+
+int main() {
+    DataList p(10);
+
+    p[5].value = 42;
+    std::cout << p[5].value << "\n";
+
+    p[5].value++;
+    std::cout << p[5].value << "\n";
+}
+
+It is not possible now to make any attempt of calling delete inside the main function. Neither you have any need to worry not to forget to call it.
+
+At the end of the main function, the destructor DataList::~DataList() is called automatically. Its job is to free the memory for you.
+
+From the user perspective, the data is still placed on heap, its size can be chosen at runtime if needed, but there is no way to make it wrong.
+
+If you worry about the size of the second program, you have to look at the clearness of the updated main function first. The class definitions in real application are most likely placed in separate files and are part of a library. What has been achieved is simplification and safety of working with this code.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 By defining constructors, copy operations, move operations, and a destructor, a programmer can provide complete control of the lifetime of a contained resource (such as the elements of a container). Furthermore, a move constructor allows an object to move simply and cheaply from one scope to another. That way, objects that we cannot or would not want to copy out of a scope can be simply and cheaply moved out instead. Consider a standard-library thread representing a concurrent activity and a Vector of a million doubles. We can’t copy the former and don’t want to copy the latter.
 
 std::vector<thread> my_threads;

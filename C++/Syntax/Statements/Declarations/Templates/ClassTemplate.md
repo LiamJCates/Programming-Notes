@@ -56,7 +56,7 @@ public:
 
 The template<typename T> prefix makes T a parameter of the declaration it prefixes. It is C++’s version of the mathematical ‘‘for all T’’ or more precisely ‘‘for all types T.’’ If you want the mathematical ‘‘for all T, such that P(T),’’ you need concepts.
 
-The member functions might be defined similarly:
+In case that a member function is defined outside the defintion of the class template, it shall be preceded with the template <...> prefix:
 
 template<typename T>
 Vector<T>::Vector(int s)

@@ -15,8 +15,6 @@ A linker is used to convert object files into an executable machine code file:
 
 Executables can be run by the operating system.
 
-
-
 ### The Compiler Tool Chain
 After writing the source code for a C++ program, the next step is to turn
 your source code into an executable program. The compiler tool chain (or

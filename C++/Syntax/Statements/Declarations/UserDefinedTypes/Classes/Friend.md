@@ -1,4 +1,5 @@
 Friend Function
+Friend declarations are not class members but must appear in member lists.
 
 A friend function of a class is defined outside that class' scope but it has the right to access all private and protected members of the class. Even though the prototypes for friend functions appear in the class definition, friends are not member functions.
 
