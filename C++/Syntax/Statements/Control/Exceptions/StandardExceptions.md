@@ -1,26 +1,49 @@
 Standard Exceptions
+C++ enables you to throw exceptions of any type, although in general it is recommended to throw types that are derived from std::exception.
 
-C++ provides a list of standard exceptions defined in <exception> which we can use in our programs.
+C++ provides a list of standard exceptions defined in <exception>.
 
-C++ provides support to handle exceptions via a hierarchy of classes. The class
-exception is the base of the classes designed to handle exceptions. Among others,
-this class contains the function what. The function what returns a string containing an appropriate message. All derived classes of the class exception override the
-function what to issue their own error messages.
+C++ provides support to handle exceptions via a hierarchy of classes.
 
-stdlib Exception Classes
-You can arrange classes into parent-child relationships using inheritance.
-Inheritance has a big impact on how the code handles exceptions. There is
-a nice, simple hierarchy of existing exception types available for use in the
-stdlib. You should try to use these types for simple programs.
+Classes are arranged into parent-child relationship hierarchy using inheritance.
+
+The rules for exception handling are based on class inheritance. When
+an exception is thrown, a catch block handles the exception if the thrown
+exception’s type matches the catch handler’s exception type or if the
+thrown exception’s type inherits from the catch handler’s exception type.
+
+There is a hierarchy of existing exception types available for use in the
+stdlib.
+
+This hierarchy has many types for exceptions that occur often and their use is recommended.
+
+
+
+
+
+<stdexcept>: Defines a set of standard exceptions that both the library and programs can use to report common errors.
+
+<exception>: Defines the base class (i.e., std::exception) for all exceptions thrown by the elements of the standard library, along with several types and utilities to assist handling exceptions.
+
+So, <exception> only defines the class std::exception, while <stdexcept> defines several classes that inherit from std::exception (e.g., std::logic_error, std::out_of_range). That is why <stdexcept> includes <exception>.
+
+They are in separate headers because if you want to define your own exception class inheriting std::exception (and not use the classes from <stdexcept>), you can avoid unnecessary definitions.
+
+
+
 
 Standard Exception Classes
 The stdlib provides you with the standard exception classes in the <stdexcept>
 header. These should be your first port of call when you’re programming
 exceptions. The superclass for all the standard exception classes is the
-class std::exception. All the subclasses in std::exception can be partitioned
-into three groups: logic errors, runtime errors, and language support
-errors. While language support errors are not generally relevant to you as
-a programmer, you’ll definitely encounter logic errors and runtime errors.
+class std::exception. The class exception is the base of the classes designed to handle exceptions.
+
+All the subclasses in std::exception can be partitioned into three groups:
+  logic errors
+  runtime errors
+  language support errors
+
+While language support errors are not generally relevant to you as a programmer, you’ll definitely encounter logic errors and runtime errors.
 
 Two classes are immediately derived from the class exception: logic_error and
 runtime_error. Both of these classes are defined in the header file stdexcept.
@@ -84,3 +107,94 @@ memory for dynamic storage.
 Language Support Errors
 You won’t use language support errors directly. They exist to indicate that
 some core language feature failed at runtime.
+
+
+Example
+
+
+
+All exceptions thrown by components of the C++ Standard library throw exceptions derived from this exception class. These are:
+
+exception	description
+bad_alloc	thrown by new on allocation failure
+bad_cast	thrown by dynamic_cast when it fails in a dynamic cast
+bad_exception	thrown by certain dynamic exception specifiers
+bad_typeid	thrown by typeid
+bad_function_call	thrown by empty function objects
+bad_weak_ptr	thrown by shared_ptr when passed a bad weak_ptr
+
+Also deriving from exception, header <exception> defines two generic exception types that can be inherited by custom exceptions to report errors:
+
+exception	description
+logic_error	error related to the internal logic of the program
+runtime_error	error detected during runtime
+
+A typical example where standard exceptions need to be checked for is on memory allocation:
+
+  // bad_alloc standard exception
+  #include <iostream>
+  #include <exception>
+  using namespace std;
+
+  int main () {
+    try
+    {
+      int* myarray= new int[1000];
+    }
+    catch (exception& e)
+    {
+      cout << "Standard exception: " << e.what() << endl;
+    }
+    return 0;
+  }
+
+The exception that may be caught by the exception handler in this example is a bad_alloc. Because bad_alloc is derived from the standard base class exception, it can be caught (capturing by reference, captures all related classes).
+
+
+
+
+
+
+
+
+
+
+
+#### what
+The C++ Standard library provides a base class specifically designed to declare objects to be thrown as exceptions. It is called std::exception and is defined in the <exception> header.
+
+Among others, this class contains the function what. The function what returns a string containing an appropriate message. All derived classes of the class exception override the function what to issue their own error messages.
+
+
+This class has a virtual member function called what that returns a null-terminated character sequence (of type char *) and that can be overwritten in derived classes to contain some sort of description of the exception.
+
+  // using standard exceptions
+  #include <iostream>
+  #include <exception>
+  using namespace std;
+
+  class myexception: public exception
+  {
+    virtual const char* what() const throw()
+    {
+      return "My exception happened";
+    }
+  } myex;
+
+  int main () {
+    try
+    {
+      throw myex;
+    }
+    catch (exception& e)
+    {
+      cout << e.what() << '\n';
+    }
+    return 0;
+  }
+
+
+Output
+  My exception happened
+
+We have placed a handler that catches exception objects by reference (notice the ampersand & after the type), therefore this catches also classes derived from exception, like our myex object of type myexception.

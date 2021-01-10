@@ -5,29 +5,27 @@ The C++ Type System
 
 C++ is an object-oriented language.
 
-The collection of behaviors and states describing an object is called its type.
+Data type: The collection of behaviors, a type's operations, and states, a type's domain values, describing an object is called its type.
 
 C++ is a strongly typed language, meaning each object has a predefined
 data type.
 
 Reflecting these kinds of underlying differences, C++ categorizes data into different types, and only certain operations can be performed on particular types of data. Although at first it may seem confusing, by being so type conscious, C++ has built-in checks to guard against errors.
 
-Data type: A set of values together with a set of allowed operations.
-
 C++ data types fall into the following three categories:
-Simple data type
-Structured data type
-Pointers
+  Simple data type
+  Structured data type
+  Pointers
 
 A data type is called simple if variables of that type can store only one value at a time. In contrast, in a structured data type, each data item is a collection of other data items. Simple data types are building blocks of structured data types.
 
 Every name and every expression has a type that determines the operations that may be performed on it.
 
 A declaration is a statement that introduces an entity into the program. It specifies a type for the entity:
-• A type defines a set of possible values and a set of operations (for an object).
-• An object is some memory that holds a value of some type.
-• A value is a set of bits interpreted according to a type.
-• A variable is a named object.
+  A type defines an object's set of possible domain values and operations
+  An object is some memory that holds a value of some type.
+  A value is a set of bits interpreted according to a type.
+  A variable is a named object.
 
 
 
@@ -38,7 +36,8 @@ Simple Data types are the most basic types of object.
 
 Some refer to Simple Data types as primitive or built-in types because they’re part of the core language and almost always available to you.
 
-These types include integer, floating-point, character, Boolean, byte, size_t, and void.
+For more information on primitive types see:
+[C++\Syntax\Statements\Declarations\PrimitiveTypes\_Primitives.md]
 
 These types will work on any platform, but their features, such as size and memory layout, depend on implementation.
 

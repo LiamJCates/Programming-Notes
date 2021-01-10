@@ -18,5 +18,4 @@ decltype(foo) bar;  // the same as: int bar;
 
 Here, bar is declared as having the same type as foo.
 
-
 These features are meant to be used either when the type cannot be obtained by other means or when using it improves code readability. The two examples above were likely neither of these use cases. In fact they probably decreased readability, since, when reading the code, one has to search for the type of foo to actually know the type of bar.

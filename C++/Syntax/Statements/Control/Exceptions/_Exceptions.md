@@ -1,312 +1,283 @@
-Exception handling provides a way of transferring control and information from some point in the execution of a program to a handler associated with a point previously passed by the execution (in other words, exception handling transfers control up the call stack)
+Exception handling
+Exceptions are types that communicate an error condition. Exceptions provide a way to react to exceptional circumstances (like runtime errors) in programs by transferring control to special functions called handlers.
 
-An exception can be thrown by a throw-expression, dynamic_cast, typeid, new-expression, allocation function, and any of the standard library functions that are specified to throw exceptions to signal certain error conditions (e.g. std::vector::at, std::string::substr, etc).
+Exception handling is thus the process of responding to the occurrence of exceptions – anomalous or exceptional conditions requiring special processing - during the execution of a program. In general, an exception breaks the normal flow of execution and executes a pre-registered exception handler.
 
-In order for an exception to be caught, the throw-expression has to be inside a try-block or inside a function called from a try-block, and there has to be a catch clause that matches the type of the exception object.
+Exception handling provides a way of transferring control and information from some point in the execution of a program to a handler associated with a point previously passed by the execution, known as transferring control up the call stack.
 
-When declaring a function, exception specifications and noexcept specifiers may be provided to limit the types of the exceptions a function may throw.
-
-
+To catch exceptions, a portion of code is placed under exception inspection. This is done by enclosing that portion of code in a try-block. When an exceptional circumstance arises within that block, an exception is thrown that transfers the control to the exception handler. If no exception is thrown, the code continues normally and all handlers are ignored.
 
 
-### What is an Exception
-Exceptions are types that communicate an error condition.
-
-When an error condition occurs, you throw an exception. After you throw an exception, it’s in flight. When an exception is in flight, the program stops normal execution and searches for an exception handler that can manage the in-flight exception. Objects that fall out of scope during this process are destroyed. In situations where there’s no good way to handle an error locally, such as in a constructor, you generally use exceptions. Exceptions play a crucial role in managing object life cycles in such circumstances. The other option for communicating error conditions is to return an error code as part of a function’s prototype. These two approaches are complementary. In situations where an error occurs that can be dealt with locally or that is expected to occur during the normal course of a program’s execution, you generally return an error code.
+General Steps
+  An error condition occurs
+  A corresponding exception is thrown
+  The program stops normal execution
+  The runtime seeks the closest exception handler to catch a thrown exception.
+  Appropriate handler is found or the program terminates.
 
 
 
 ### Syntax
 C++ exception handling is built upon three keywords which specify try, catch, and throw expressions:
 
-    throw − A program throws an exception when a problem shows up. This is done using a throw keyword.
-
-    catch − A program catches an exception with an exception handler at the place in a program where you want to handle the problem. The catch keyword indicates the catching of an exception.
-
-    try − A try block identifies a block of code for which particular exceptions will be activated. It's followed by one or more catch blocks.
+  throw − The throw keyword throws an exception when a problem occurs.
+  try − The try keyword identifies a code block where exceptions might occur
+  catch − The catch keyword indicates an exception handler.
 
 
 
-First, use a try block to enclose one or more statements that might throw an exception.
+#### Throw
+In C++, a throw statement is used to signal that an exception or error case has occurred (think of throwing a penalty flag). Signaling that an exception has occurred is also commonly called raising an exception.
 
-A throw expression signals that an exceptional condition—often, an error—has occurred in a try block. You can use an object of any type as the operand of a throw expression. Typically, this object is used to communicate information about the error. In most cases, we recommend that you use the std::exception class or one of the derived classes that are defined in the standard library. If one of those is not appropriate, we recommend that you derive your own exception class from std::exception.
+To use a throw statement, simply use the throw keyword, followed by an expression of any data type you wish to use to signal that an error has occurred.
 
-To handle exceptions that may be thrown, implement one or more catch blocks immediately following a try block. Each catch block specifies the type of exception it can handle.
+  throw expression;
+
+A throw expression accepts one parameter which is passed as an argument to the exception handler.
 
 
-Assuming a block will raise an exception, a method catches an exception using a combination of the try and catch keywords. A try/catch block is placed around the code that might generate an exception. Code within a try/catch block is referred to as protected code, and the syntax for using try/catch as follows −
+#### Try
+In C++, we use the try keyword to define a block of statements (called a try block). The try block acts as an observer, looking for any exceptions that are thrown by any of the statements within the try block:
 
-try {
-   // protected code
-} catch( ExceptionName e1 ) {
-   // catch block
-} catch( ExceptionName e2 ) {
-   // catch block
-} catch( ExceptionName eN ) {
-   // catch block
-}
+  try
+  {
+    // Statements that may throw exceptions you want to handle go here
+  }
 
-Once an exception occurs in a try{} block, no further statements execute.
 
+
+#### Catch
+The catch keyword is used to define a block of code (called a catch block) that handles exceptions for a single data type. To handle exceptions that may be thrown, implement one or more catch blocks immediately following the closing brace of a try block. Each catch block specifies the type of exception it can handle. The syntax for catch is similar to a regular function with one parameter:
+
+  catch( ExceptionName e1 )
+  {
+     // catch block
+  }
+
+Here’s an example of a catch block that will catch integer exceptions:
+
+  catch (int x)
+  {
+    // Handle an exception of type int here
+    std::cerr << "We caught an int exception with value" << x << '\n';
+  }
+
+
+
+#### try/catch block
+Try blocks and catch blocks work together, a try block is placed around the code that might generate an exception and a catch block immediately follows it. Code within a try/catch block is referred to as protected or guarded code. The syntax for using try/catch as follows:
+
+  #include <iostream>
+
+  int main () {
+    try
+    {
+      throw 20;
+    }
+    catch (int e)
+    {
+      std::cout << "An exception occurred. Exception Nr. " << e << '\n';
+    }
+  }
+
+A try block must have at least one catch block immediately following it, but may have multiple catch blocks listed in sequence. Multiple handlers (i.e., catch expressions) can be chained:
+
+  try {
+     // protected code
+     throw expression;
+  }
+  catch( ExceptionName e1 )
+  {
+     // catch block
+  }
+  catch( ExceptionName e2 )
+  {
+     // catch block
+  }
+  catch( ExceptionName eN )
+  {
+     // catch block
+  }
+
+When try block detects any exceptions that are thrown by statements within the try block it routes them to the first appropriate catch block for handling.
+
+
+
+### Handling Exceptions
+Once an exception is thrown, no further statements in the try block execute and the exception is "in flight".
+
+While an exception is in flight, the program searches the statements in catch blocks in the order they appear after the try block to look for an appropriate exception handler.
+
+An exception in flight is "caught" and routed to the first catch block parameterized for handling it. The routing will travel up the call stack called "unwinding" the call stack in search of an appropriately parameterized handler.
+
+For more information about unwinding the call stack see:
+[C++\Syntax\Statements\Control\Exceptions\Unwinding.md]
+
+If the type of thrown exception matches the parameter type in one of the catch blocks, the code of that catch block executes, and the remaining catch blocks after this catch block are ignored. The exception is then considered "handled". After an exception has been handled, program execution resumes after the try-catch block, not after the throw statement.
+
+If no catch block of a correctly parameterized type is found the program will terminate.
+
+For more information about program termination via unhandled exception see:
+[C++\Syntax\Statements\Control\Exceptions\Unhandled.md]
 
 
 
 ### Throwing Exceptions
 To throw an exception, use the throw keyword followed by a throwable object.
+
+Typically, this value will be an error code, a description of the problem, or a custom exception class:
+
+  throw -1; // literal integer value
+  throw ENUM_INVALID_INDEX; // enum value
+  throw "Can't take square root of negative number"; // literal C-style (const char*) string
+  throw dX; // previously defined double variable
+  throw MyException("Fatal Error"); // MyException class object
+
+Each of these statements acts as a signal that some kind of problem that needs to be handled has occurred. Typically, this object is used to communicate information about the error.
+
 Most objects are throwable. But it’s good practice to use one of the
-exceptions available in stdlib, such as std::runtime_error in the <stdexcept>
-header. The runtime_error constructor accepts a null-terminated const char*
-describing the nature of the error condition. You can retrieve this message
-via the what method, which takes no parameters.
+exceptions available in stdlib. In most cases, it is recommended that you use the std::exception class or one of the derived classes that are defined in the standard library. If one of those is not appropriate, it is recommended that you derive your own exception class from std::exception.
+
+For more information about deriving exceptions see:
+[C++\Syntax\Statements\Control\Exceptions\CustomExceptions.md]
 
 Exceptions can be thrown anywhere within a code block using throw statement. The operand of the throw statement determines a type for the exception and can be any expression and the type of the result of the expression determines the type of exception thrown.
 
-Following is an example of throwing an exception when dividing by zero condition occurs −
+The following throws an exception for a divide by zero condition:
 
-double division(int a, int b) {
-   if( b == 0 ) {
-      throw "Division by zero condition!";
-   }
-   return (a/b);
-}
+  double division(int a, int b)
+  {
+     if( b == 0 ) {
+        throw "Division by zero condition!";
+     }
+     return (a/b);
+  }
+
+An exception can be thrown by a throw-expression, dynamic_cast, typeid, new-expression, allocation function, and any of the standard library functions that are specified to throw exceptions to signal certain error conditions (e.g. std::vector::at, std::string::substr, etc).
 
 
 
 ### Catching Exceptions
-The catch block following the try block catches a specified exception.
+In order for an exception to be "caught" by an exception handler, the throw-expression has to be inside the scope of a try-block.
 
-You use try-catch blocks to establish exception handlers for a block of code.
-Within the try block, you place code that might throw an exception. Within
-the catch block, you specify a handler for each exception type you can handle.
+A catch block following a try block catches a specified exception type.
 
-You can specify what type of exception you want to catch and this is determined by the exception declaration that appears in parentheses following the keyword catch.
+The types of exception a given catch block handles is determined by the exception declaration that appears in parentheses following the keyword catch.
 
-try {
-   // protected code
-} catch( ExceptionName e ) {
-  // code to handle ExceptionName exception
-}
+A distinct catch block must be used to specify a handler for each exception type you choose to handle.
 
-Above code will catch an exception of ExceptionName type. If you want to specify that a catch block should handle any type of exception that is thrown in a try block, you must put an ellipsis, ..., between the parentheses enclosing the exception declaration.
+If the type of thrown exception is a class, which also has a base class (or classes), it can be caught by handlers that accept base classes of the exception's type, as well as references to bases of the exception's type.
+
+  try
+  {
+     // protected code
+  }
+  catch( ExceptionName e )
+  {
+    // code to handle ExceptionName exception
+  }
+
+For more information about the selection of a catch block see:
+[C++\Syntax\Statements\Control\Exceptions\CatchSelection.md]
+
+
+
+#### Catch Parameters
+A catch clause has exactly one parameter
+
+Catch parameters work just like function parameters, with the parameter being available within the subsequent catch block. Exceptions of fundamental types can be caught by value, but exceptions of non-fundamental types should be caught by const reference to avoid making an unnecessary copy.
+
+Note that when an exception is caught by a reference, it is bound to the actual thrown exception object; otherwise, it is a copy (much the same as an argument to a function).
+
+Just like with functions, if the parameter is not going to be used in the catch block, the variable name can be omitted:
+
+  catch (double) //no variable name as it's unused in the catch block below
+  {
+    // Handle exception of type double here
+    std::cerr << "We caught an exception of type double" << '\n';
+  }
+
+To throw an exception that includes more than one variable with or without the same type you might throw like this:
+
+ throw std::make_pair(3, std::string("hello"));
+
+and catch like this:
+
+  catch(std::pair<int, std::string>& exc)
+  {
+    // Handle exception of type here
+  }
+
+
+
+#### ... Handler
+
+If you want to specify that a catch block should handle any type of exception that is thrown in a try block, you must put an ellipsis, ..., between the parentheses enclosing the exception declaration.
 
 The following special handler catches any exception regardless of its type:
 
-try {
-   // protected code
-} catch(...) {
-  // code to handle any exception
-}
+  try
+  {
+     // protected code
+  }
+  catch(...)
+  {
+    // code to handle any exception
+  }
 
-Special handlers are typically used as a safety mechanism to log the
-program’s catastrophic failure to catch an exception of a specific type.
-You can handle different types of exceptions originating from the same
-try block by chaining together catch statements, as demonstrated here:
-try {
-// Code that might throw an exception
---snip--
-} catch (const std::logic_error& ex) {
-// Log exception and terminate the program; there is a programming error!
---snip--
-} catch (const std::runtime_error& ex) {
-// Do our best to recover gracefully
---snip--
-} catch (const std::exception& ex) {
-// This will handle any exception that derives from std:exception
-// that is not a logic_error or a runtime_error.
---snip--
-} catch (...) {
-// Panic; an unforeseen exception type was thrown
---snip--
-}
+Because catch blocks are processed in sequential program order to find a matching type, an ellipsis handler must be the last handler for the associated try block. This can be used as a default handler that catches all exceptions not caught by other handlers:
 
-It’s common to see such code in a program’s entry point.
+  try {
+    // code here
+  }
+  catch (int param) { cout << "int exception"; }
+  catch (char param) { cout << "char exception"; }
+  catch (...) { cout << "default exception"; }
+
+In this case, the last handler would catch any exception thrown of a type that is neither int nor char.
+
+Use catch(...) with caution; do not allow a program to continue unless the catch block knows how to handle the specific exception that is caught. Typically, a catch(...) block is used to log errors and perform special cleanup before program execution is stopped.
 
 
 
-### Rethrowing An Exception
-In a catch block, you can use the throw keyword to resume searching for an
-appropriate exception handler. This is called rethrowing an exception. There
-are some unusual but important cases where you might want to further inspect
-an exception before deciding to handle it, as shown:
-try {
-// Some code that might throw a system_error
---snip--
-} catch(const std::system_error& ex) {
-if(ex.code()!= std::errc::permission_denied){
-// Not a permission denied error
-throw;
-}
-// Recover from a permission denied
---snip--
-}
+#### Rethrowing An Exception
+In a catch block, you can use the throw keyword to resume searching for an appropriate exception handler. This is called rethrowing an exception.
 
-In this example, some code that might throw a system_error is wrapped
-in a try-catch block. All system_errors are handled, but unless it’s an EACCES
-(permission denied) error, you rethrow the exception. There are some performance penalties to this approach, and the resulting code is often needlessly convoluted.
+A throw expression that has no operand re-throws the exception currently being handled:
 
-Rather than rethrowing, you can define a new exception type and create
-a separate catch handler for the EACCES error, as demonstrated:
+  throw;
 
-try {
-// Throw a PermissionDenied instead
---snip--
-} catch(const PermissionDenied& ex) {
-// Recover from an EACCES error (Permission Denied
---snip--
-}
-
-If a std::system_error is thrown, the PermissionDenied handler won’t
-catch it. (Of course, you could still keep the std::system_error handler to catch such exceptions if you wish.)
+This form is recommend when re-throwing the exception, because this preserves the original exception’s polymorphic type information. Such an expression should only be used in a catch handler or in a function that's called from a catch handler. The re-thrown exception object is the original exception object, not a copy.
 
 
 
+#### nested try-catch
 
-### Handling Exceptions
-If no exception is thrown, program execution resumes after the last try block, all catch blocks associated with catch block.
+It is also possible to nest try-catch blocks within more external try blocks. In these cases, we have the possibility that an internal catch block forwards the exception to its external level. This is done with the expression throw; with no arguments. For example:
 
-If an exception is thrown, the program searches the try block, then the remaining statements in catch blocks in the order they appear after the try block to look for an appropriate exception handler.
-
-If the type of thrown exception matches the parameter type in one of the catch blocks, the code of that catch block executes, and the remaining catch blocks after this catch block are ignored.
-
-A catch block that has an ellipsis (three dots) is designed to catch
-any type of exception.
-
-
-The rules for exception handling are based on class inheritance. When
-an exception is thrown, a catch block handles the exception if the thrown
-exception’s type matches the catch handler’s exception type or if the
-thrown exception’s type inherits from the catch handler’s exception type.
-
-
-
-Unhandled C++ exceptions
-
-If a matching handler (or ellipsis catch handler) cannot be found for the current exception, the predefined terminate run-time function is called. (You can also explicitly call terminate in any of your handlers.) The default action of terminate is to call abort. If you want terminate to call some other function in your program before exiting the application, call the set_terminate function with the name of the function to be called as its single argument. You can call set_terminate at any point in your program. The terminate routine always calls the last function given as an argument to set_terminate.
-
-
-
-
-Remarks
-The code after the try clause is the guarded section of code. The throw expression throws—that is, raises—an exception. The code block after the catch clause is the exception handler. This is the handler that catches the exception that's thrown if the types in the throw and catch expressions are compatible. For a list of rules that govern type-matching in catch blocks, see How Catch Blocks are Evaluated. If the catch statement specifies an ellipsis (...) instead of a type, the catch block handles every type of exception. When you compile with the /EHa option, these can include C structured exceptions and system-generated or application-generated asynchronous exceptions such as memory protection, divide-by-zero, and floating-point violations. Because catch blocks are processed in program order to find a matching type, an ellipsis handler must be the last handler for the associated try block. Use catch(...) with caution; do not allow a program to continue unless the catch block knows how to handle the specific exception that is caught. Typically, a catch(...) block is used to log errors and perform special cleanup before program execution is stopped.
-
-A throw expression that has no operand re-throws the exception currently being handled. We recommend this form when re-throwing the exception, because this preserves the original exception’s polymorphic type information. Such an expression should only be used in a catch handler or in a function that's called from a catch handler. The re-thrown exception object is the original exception object, not a copy.
-
-
-
-
-
-
-How Catch Blocks are Evaluated (C++)
-https://docs.microsoft.com/en-us/cpp/cpp/how-catch-blocks-are-evaluated-cpp?view=msvc-160
-
-C++ enables you to throw exceptions of any type, although in general it is recommended to throw types that are derived from std::exception. A C++ exception can be caught by a catch handler that specifies the same type as the thrown exception, or by a handler that can catch any type of exception.
-
-If the type of thrown exception is a class, which also has a base class (or classes), it can be caught by handlers that accept base classes of the exception's type, as well as references to bases of the exception's type. Note that when an exception is caught by a reference, it is bound to the actual thrown exception object; otherwise, it is a copy (much the same as an argument to a function).
-
-When an exception is thrown, it may be caught by the following types of catch handlers:
-
-    A handler that can accept any type (using the ellipsis syntax).
-
-    A handler that accepts the same type as the exception object; because it is a copy, const and volatile modifiers are ignored.
-
-    A handler that accepts a reference to the same type as the exception object.
-
-    A handler that accepts a reference to a const or volatile form of the same type as the exception object.
-
-    A handler that accepts a base class of the same type as the exception object; since it is a copy, const and volatile modifiers are ignored. The catch handler for a base class must not precede the catch handler for the derived class.
-
-    A handler that accepts a reference to a base class of the same type as the exception object.
-
-    A handler that accepts a reference to a const or volatile form of a base class of the same type as the exception object.
-
-    A handler that accepts a pointer to which a thrown pointer object can be converted via standard pointer conversion rules.
-
-The order in which catch handlers appear is significant, because handlers for a given try block are examined in order of their appearance. For example, it is an error to place the handler for a base class before the handler for a derived class. After a matching catch handler is found, subsequent handlers are not examined. As a result, an ellipsis catch handler must be the last handler for its try block.
-
-
-
-
-
-Modern C++ best practices for exceptions and error handling
-https://docs.microsoft.com/en-us/cpp/cpp/errors-and-exception-handling-modern-cpp?view=msvc-160
-
-In modern C++, in most scenarios, the preferred way to report and handle both logic errors and runtime errors is to use exceptions. It's especially true when the stack might contain several function calls between the function that detects the error, and the function that has the context to handle the error. Exceptions provide a formal, well-defined way for code that detects errors to pass the information up the call stack.
-Use exceptions for exceptional code
-
-Program errors are often divided into two categories: Logic errors that are caused by programming mistakes, for example, an "index out of range" error. And, runtime errors that are beyond the control of programmer, for example, a "network service unavailable" error. In C-style programming and in COM, error reporting is managed either by returning a value that represents an error code or a status code for a particular function, or by setting a global variable that the caller may optionally retrieve after every function call to see whether errors were reported. For example, COM programming uses the HRESULT return value to communicate errors to the caller. And the Win32 API has the GetLastError function to retrieve the last error that was reported by the call stack. In both of these cases, it's up to the caller to recognize the code and respond to it appropriately. If the caller doesn't explicitly handle the error code, the program might crash without warning. Or, it might continue to execute using bad data and produce incorrect results.
-
-Exceptions are preferred in modern C++ for the following reasons:
-
-    An exception forces calling code to recognize an error condition and handle it. Unhandled exceptions stop program execution.
-
-    An exception jumps to the point in the call stack that can handle the error. Intermediate functions can let the exception propagate. They don't have to coordinate with other layers.
-
-    The exception stack-unwinding mechanism destroys all objects in scope after an exception is thrown, according to well-defined rules.
-
-    An exception enables a clean separation between the code that detects the error and the code that handles the error.
-
-The following simplified example shows the necessary syntax for throwing and catching exceptions in C++.
-C++
-
-#include <stdexcept>
-#include <limits>
-#include <iostream>
-
-using namespace std;
-
-void MyFunc(int c)
-{
-    if (c > numeric_limits< char> ::max())
-        throw invalid_argument("MyFunc argument too large.");
-    //...
-}
-
-int main()
-{
-    try
-    {
-        MyFunc(256); //cause an exception to throw
+  try {
+    try {
+        // code here
     }
-
-    catch (invalid_argument& e)
-    {
-        cerr << e.what() << endl;
-        return -1;
+    catch (int n) {
+        throw;
     }
-    //...
-    return 0;
-}
+  }
+  catch (...) {
+    cout << "Exception occurred";
+  }
 
-Exceptions in C++ resemble ones in languages such as C# and Java. In the try block, if an exception is thrown it will be caught by the first associated catch block whose type matches that of the exception. In other words, execution jumps from the throw statement to the catch statement. If no usable catch block is found, std::terminate is invoked and the program exits. In C++, any type may be thrown; however, we recommend that you throw a type that derives directly or indirectly from std::exception. In the previous example, the exception type, invalid_argument, is defined in the standard library in the <stdexcept> header file. C++ doesn't provide or require a finally block to make sure all resources are released if an exception is thrown. The resource acquisition is initialization (RAII) idiom, which uses smart pointers, provides the required functionality for resource cleanup. For more information, see How to: Design for exception safety. For information about the C++ stack-unwinding mechanism, see Exceptions and stack unwinding.
-Basic guidelines
 
-Robust error handling is challenging in any programming language. Although exceptions provide several features that support good error handling, they can't do all the work for you. To realize the benefits of the exception mechanism, keep exceptions in mind as you design your code.
 
-    Use asserts to check for errors that should never occur. Use exceptions to check for errors that might occur, for example, errors in input validation on parameters of public functions. For more information, see the Exceptions versus assertions section.
 
-    Use exceptions when the code that handles the error is separated from the code that detects the error by one or more intervening function calls. Consider whether to use error codes instead in performance-critical loops, when code that handles the error is tightly coupled to the code that detects it.
+### Exception specification
+Older code may contain dynamic exception specifications. They are now deprecated in C++, but still supported. A dynamic exception specification follows the declaration of a function, appending a throw specifier to it:
 
-    For every function that might throw or propagate an exception, provide one of the three exception guarantees: the strong guarantee, the basic guarantee, or the nothrow (noexcept) guarantee. For more information, see How to: Design for exception safety.
+  double myfunction (char param) throw (int);
 
-    Throw exceptions by value, catch them by reference. Don’t catch what you can't handle.
+This declares a function called myfunction, which takes one argument of type char and returns a value of type double. If this function throws an exception of some type other than int, the function calls std::unexpected instead of looking for a handler or calling std::terminate.
 
-    Don't use exception specifications, which are deprecated in C++11. For more information, see the Exception specifications and noexcept section.
+If this throw specifier is left empty with no type, this means that std::unexpected is called for any exception. Functions with no throw specifier (regular functions) never call std::unexpected, but follow the normal path of looking for their exception handler.
 
-    Use standard library exception types when they apply. Derive custom exception types from the exception Class hierarchy.
-
-    Don't allow exceptions to escape from destructors or memory-deallocation functions.
-
-Exceptions and performance
-
-The exception mechanism has a minimal performance cost if no exception is thrown. If an exception is thrown, the cost of the stack traversal and unwinding is roughly comparable to the cost of a function call. Additional data structures are required to track the call stack after a try block is entered, and additional instructions are required to unwind the stack if an exception is thrown. However, in most scenarios, the cost in performance and memory footprint isn't significant. The adverse effect of exceptions on performance is likely to be significant only on memory-constrained systems. Or, in performance-critical loops, where an error is likely to occur regularly and there's tight coupling between the code to handle it and the code that reports it. In any case, it's impossible to know the actual cost of exceptions without profiling and measuring. Even in those rare cases when the cost is significant, you can weigh it against the increased correctness, easier maintainability, and other advantages that are provided by a well-designed exception policy.
-Exceptions versus assertions
-
-Exceptions and asserts are two distinct mechanisms for detecting run-time errors in a program. Use assert statements to test for conditions during development that should never be true if all your code is correct. There's no point in handling such an error by using an exception, because the error indicates that something in the code has to be fixed. It doesn't represent a condition that the program has to recover from at run time. An assert stops execution at the statement so that you can inspect the program state in the debugger. An exception continues execution from the first appropriate catch handler. Use exceptions to check error conditions that might occur at run time even if your code is correct, for example, "file not found" or "out of memory." Exceptions can handle these conditions, even if the recovery just outputs a message to a log and ends the program. Always check arguments to public functions by using exceptions. Even if your function is error-free, you might not have complete control over arguments that a user might pass to it.
-C++ exceptions versus Windows SEH exceptions
-
-Both C and C++ programs can use the structured exception handling (SEH) mechanism in the Windows operating system. The concepts in SEH resemble the ones in C++ exceptions, except that SEH uses the __try, __except, and __finally constructs instead of try and catch. In the Microsoft C++ compiler (MSVC), C++ exceptions are implemented for SEH. However, when you write C++ code, use the C++ exception syntax.
-
-For more information about SEH, see Structured Exception Handling (C/C++).
-Exception specifications and noexcept
-
-Exception specifications were introduced in C++ as a way to specify the exceptions that a function might throw. However, exception specifications proved problematic in practice, and are deprecated in the C++11 draft standard. We recommend that you don't use throw exception specifications except for throw(), which indicates that the function allows no exceptions to escape. If you must use exception specifications of the deprecated form throw( type-name ), MSVC support is limited. For more information, see Exception Specifications (throw). The noexcept specifier is introduced in C++11 as the preferred alternative to throw().
+int myfunction (int param) throw(); // all exceptions call unexpected
+int myfunction (int param);         // normal exception handling

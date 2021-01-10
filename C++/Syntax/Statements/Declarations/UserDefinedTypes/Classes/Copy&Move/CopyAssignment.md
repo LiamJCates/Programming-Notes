@@ -65,8 +65,9 @@ refers to this.
 You can implement copy assignment for SimpleString by following these
 guidelines: free the current buffer of this and then copy other as you did in
 copy construction, as shown in Listing 4-30.
+
 SimpleString& operator=(const SimpleString& other) {
-if (this == &other) return *this;
+  if (this == &other) return *this;
 const auto new_buffer = new char[other.max_size];
 delete[] buffer;
 buffer = new_buffer;

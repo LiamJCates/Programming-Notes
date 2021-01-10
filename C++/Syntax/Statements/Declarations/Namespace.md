@@ -1,7 +1,9 @@
 ## Namespaces
-A namespace statement declares the name of a namespace and causes the source code that follows the declaration to be compiled within that namespace.
+Namespaces prevent naming conflicts.
 
-Namespaces are names given to parts of code
+A namespace statement declares the name of a namespace and causes the source code that follows the declaration to be compiled within the scope encompassed by that namespace.
+
+Namespaces are names given to parts of code.
 
 The reason you use std::cout in a program and not only cout is that the artifact (cout) that you want to invoke is in the standard (std) namespace.
 
@@ -31,173 +33,47 @@ this will ensure that you only use what you need from a library and also documen
 
 
 
-## Declaring Namespaces
+### Declaring Namespaces
 ANSI/ISO Standard C++ tries to solve this problem of overlapping global identifier names with the namespace mechanism.
 
 The general syntax of the statement namespace is:
+
 namespace namespace_name
 {
-members
+  //members
 }
 
 where members is usually named constants, variable declarations, functions, or
-another namespace. Note that namespace_name is a C++ identifier.
+another namespace.
 
+Note that namespace_name follows the rules for C++ identifier.
 
+For more information on C++ identifier see:
+[C++\Syntax\Statements\Declarations\Identifiers.md]
 
-## Namespace Aliasing
-Existing namespaces can be aliased with new names, with the following syntax:
-
-namespace new_name = current_name;
-
-
-## Accessing Namespaces
-The scope of a namespace member is local to the namespace. You can usually access a namespace member outside the namespace in one of two ways, as described below.
 
 ###Scope Resolution
 To access a member of a namespace, you use the namespace_name, followed by
 the scope resolution operator, followed by the member name.
 
 The general syntax for accessing a namespace member is:
-namespace_name::identifier
+
+  namespace_name::identifier
 
 In C++, :: is called the scope resolution operator.
 
 To access the member RATE of the namespace globalType, the following statement
 is required:
 
-globalType::RATE
+  globalType::RATE
 
 To access the member printResult (which is a function), the following statement is required:
 
-globalType::printResult();
-
-
-### Using Directive
-
-To simplify the accessing of a namespace member, ANSI/ISO Standard C++ provides
-the use of the statement using. In C++, using is a reserved word.
-
-To gain access to all names in the standard-library namespace, we can use a using-directive:
-using namespace std;
-
-A using-directive makes unqualified names from the named namespace accessible from the scope in which we placed the directive. So after the using-directive for std, we can simply write cout rather than std::cout.
-
-By using a using-directive, we lose the ability to selectively use names from
-that namespace, so this facility should be used carefully, usually for a library that’s pervasive in an application (e.g., std) or during a transition for an application that didn’t use namespaces.
-
-
-The syntax to use the statement using is as follows:
-
-a. To simplify the accessing of all namespace members:
-using namespace namespace_name;
-using namespace_name::identifier;
-
-b. To simplify the accessing of a specific namespace member:
-For example, the using statement:
-using namespace globalType;
-
-simplifies the accessing of all members of the namespace globalType. The statement:
-using globalType::RATE;
-simplifies the accessing of the member RATE of the namespace globalType.
+  globalType::printResult();
 
 
 
-
-You typically put the using statement after the namespace declaration. For the
-namespace globalType, for example, you usually write the code as follows:
-
-namespace globalType
-{
-const int N = 10;
-const double RATE = 7.50;
-int count = 0;
-void printResult();
-}
-using namespace globalType;
-
-After the using statement, to access a namespace member, you do not have to put
-the namespace_name and the scope resolution operator before the namespace member. However, if a namespace member and a global identifier in a program have the same name, to access this namespace member in the program, the namespace_name and the scope resolution operator must precede the namespace member. Similarly, if a namespace member and an identifier in a block have the same name, to access this namespace member in the block, the namespace_name and the scope resolution operator must precede the namespace member.
-
-
-
-
-
-
-## Example
-
-C++ offers namespaces as a mechanism for expressing that some declarations belong together and that their names shouldn’t clash with other names.
-
-For example, I might want to experiment with my own complex number type:
-
-namespace My_code {
-  class complex {
-  // ...
-  };
-
-  complex sqr t(complex);
-  // ...
-  int main();
-}
-
-int My_code::main()
-{
-  complex z {1,2};
-  auto z2 = sqrt(z);
-  std::cout << '{' << z2.real() << ',' << z2.imag() << "}\n";
-  // ...
-}
-
-int main()
-{
-  return My_code::main();
-}
-
-By putting my code into the namespace My_code, it ensures that my names do not conflict
-
-The simplest way to access a name in another namespace is to qualify it with the namespace name (e.g., std::cout and My_code::main).
-
-The ‘‘real main()’’ is defined in the global namespace, that is, not local to a defined namespace, class, or function.
-
-If repeatedly qualifying a name becomes tedious or distracting, we can bring the name into a scope with a using-declaration:
-
-void my_code(vector<int>& x, vector<int>& y)
-{
-  using std::swap; // use the standard-librar y sw ap
-  // ...
-  swap(x,y); // std::swap()
-  other::swap(x,y); // some other swap()
-  // ...
-}
-
-A using-declaration makes a name from a namespace usable as if it was declared in the scope in which it appears. After using std::swap, it is exactly as if swap had been declared in my_code().
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Namespaces
-Namespaces prevent naming conflicts. In large projects or when importing
-libraries, namespaces are essential for disambiguating symbols.
-
-Placing Symbols Within Namespaces
+### Placing Symbols Within Namespaces
 By default, all symbols you declare go into the global namespace. The global
 namespace contains all the symbols that you can access without adding
 any namespace qualifiers.
@@ -229,21 +105,126 @@ namespace Namespace1::Namespace2 {
 }
 The latter approach is more succinct.
 
-Using Symbols in Namespaces
-To use a symbol within a namespace, you can always use the scope-resolution
-operator to specify the fully qualified name of a symbol.
 
 
-Using Directives
-You can employ a using directive to avoid a lot of typing. A using directive
-imports a symbol into a block or, if you declare a using directive at namespace
-scope, into the current namespace. Either way, you have to type the full
-namespace path only once. The usage has the following pattern:
-using my-type;
-The corresponding my-type gets imported into the current namespace
-or block, meaning you no longer have to use its full name.
+### Namespace Aliasing
+Existing namespaces can be aliased with new names, with the following syntax:
+
+namespace new_name = current_name;
 
 
-You should never put a using namespace directive within a header file. Every source
-file that includes your header will dump all the symbols from that using directive into
-the global namespace. This can cause issues that are very difficult to debug
+### Accessing Namespaces
+The scope of a namespace member is local to the namespace. You can usually access a namespace member outside the namespace in one of two ways, as described below.
+
+
+
+
+### Using Directive
+
+To simplify the accessing of a namespace member, ANSI/ISO Standard C++ provides the use of the statement using. In C++, using is a reserved word.
+
+To gain access to all names in the standard-library namespace, we can use a using-directive:
+
+  using namespace std;
+
+A using-directive makes unqualified names from the named namespace accessible from the scope in which we placed the directive. So after the using-directive for std, we can simply write cout rather than std::cout.
+
+The name must be a previously defined namespace.
+
+By using a using-directive, we lose the ability to selectively use names from
+that namespace, so this facility should be used carefully, usually for a library that’s pervasive in an application (e.g., std) or during a transition for an application that didn’t use namespaces.
+
+
+The syntax to use the statement using is as follows:
+
+  a. To simplify the accessing of all namespace members:
+
+    using namespace namespace_name;
+
+  The using statement simplifies the accessing of all members of the namespace globalType.
+
+    using namespace globalType;
+
+  b. To simplify the accessing of a specific namespace member:
+
+    using namespace_name::identifier;
+
+  The following statement simplifies the accessing of the member RATE of the namespace globalType:
+
+    using globalType::RATE;
+
+
+
+
+Names introduced in a using directive obey normal scope rules. The name is visible from the point of the using directive to the end of the scope in which the directive is found. Entities with the same name defined in an outer scope are hidden.
+
+For the namespace globalType, for example, you usually write the code as follows:
+
+  namespace globalType
+  {
+    const int N = 10;
+    const double RATE = 7.50;
+    int count = 0;
+    void printResult();
+  }
+
+  using namespace globalType;
+
+After the using statement, to access a namespace member, you do not have to put the namespace_name and the scope resolution operator before the namespace member. However, if a namespace member and a global identifier in a program have the same name, to access this namespace member in the program, the namespace_name and the scope resolution operator must precede the namespace member. Similarly, if a namespace member and an identifier in a block have the same name, to access this namespace member in the block, the namespace_name and the scope resolution operator must precede the namespace member.
+
+
+### Header File
+You should never put a using namespace directive within a header file. Every source file that includes your header will dump all the symbols from that using directive into the global namespace. This can cause issues that are very difficult to debug
+
+
+
+
+Should 'using' directives be inside or outside the namespace?
+
+There is actually a (subtle) difference between the two. Imagine you have the following code in File1.cs:
+
+  // File1.cs
+  using System;
+  namespace Outer.Inner
+  {
+    class Foo
+    {
+      static void Bar()
+      {
+        double d = Math.PI;
+      }
+    }
+  }
+
+Now imagine that someone adds another file (File2.cs) to the project that looks like this:
+
+  // File2.cs
+  namespace Outer
+  {
+    class Math
+    {
+    }
+  }
+
+The compiler searches Outer before looking at those using directives outside the namespace, so it finds Outer.Math instead of System.Math. Unfortunately (or perhaps fortunately?), Outer.Math has no PI member, so File1 is now broken.
+
+This changes if you put the using inside your namespace declaration, as follows:
+
+  // File1b.cs
+  namespace Outer.Inner
+  {
+    using System;
+    class Foo
+    {
+      static void Bar()
+      {
+        double d = Math.PI;
+      }
+    }
+  }
+
+Now the compiler searches System before searching Outer, finds System.Math, and all is well.
+
+Some would argue that Math might be a bad name for a user-defined class, since there's already one in System; the point here is just that there is a difference, and it affects the maintainability of your code.
+
+It's also interesting to note what happens if Foo is in namespace Outer, rather than Outer.Inner. In that case, adding Outer.Math in File2 breaks File1 regardless of where the using goes. This implies that the compiler searches the innermost enclosing namespace before it looks at any using directive.

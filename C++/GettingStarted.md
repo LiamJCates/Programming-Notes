@@ -1,10 +1,11 @@
 To demonstrate a simple C++ program we must create then compile some source code text. C++ is a compiled language, this means, for a program to run, its source code has to be processed by a compiler.
 
+For more information about compilation see:
+[C++\Compiler.md]
 
 ### Smallest Valid Program
 
 int main() {}
-
 
 save to [filename].cpp
 C++ files use the .cpp file extension

@@ -55,3 +55,46 @@ In the definition of the class divisionByZero, the constructors can also be
 written as:
 divisionByZero() : message("Division by zero"){}
 divisionByZero(string str) : message(str){}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+To throw an exception that includes more than one variable with or without the same type  create your own exception class that can contain more than one piece of information. It should preferably derive from std::exception. If you make this a strategy, you can always catch your exceptions with a single catch(std::exception&) (useful if you only want to free some resource, and then rethrow the exception - you don't have to have a gazilion catch handlers for each and every exception type you throw).
+
+Example:
+
+class MyException : public std::exception {
+   int x;
+   const char* y;
+
+public:
+   MyException(const char* msg, int x_, const char* y_)
+      : std::exception(msg)
+      , x(x_)
+      , y(y_) {
+   }
+
+   int GetX() const { return x; }
+   const char* GetY() const { return y; }
+};
+
+...
+
+try {
+   throw MyException("Shit just hit the fan...", 1234, "Informational string");
+} catch(MyException& ex) {
+   LogAndShowMessage(ex.what());
+   DoSomething(ex.GetX(), ex.GetY());
+}

@@ -1,21 +1,14 @@
 Programming language: A set of tokens and their rules which enable you to write programs to solve problems.
 
-
-
 ## Tokens
 A C++ token is the smallest element of a program that is meaningful to the compiler.
 
-C++’s tokens are divided into special symbols, keywords, identifiers, and constants.
-
-
+C++’s tokens are divided into special symbols, keywords, identifiers, and literals.
 
 ### Special Symbols
 The symbols that are used in C/C++ with some special meaning and for some specific function are called as Special Symbols.
 
 The special symbols being used with context to programming language are illustrated below as:
-
-Brackets [] : used as array element references and indicate single & multidimensional subscripts.
-[C++\Types&Values\Arrays.md]
 
 Braces {} : used to delimit compound statements.
 [C++\Syntax\Statements\_Statements.md]
@@ -43,11 +36,6 @@ Operators : used to perform a specific operation on data.
 
 
 
-### Identifiers
-[C++\Syntax\Statements\Declarations\Identifiers.md]
-
-
-
 ### Reserved Words (Keywords)
 C++ uses a number of keywords to identify operations and data descriptions.
 
@@ -60,6 +48,13 @@ The letters that make up a reserved word are always lowercase. Each is considere
 
 
 
+### Identifiers
+[C++\Syntax\Statements\Declarations\Identifiers.md]
+
+### Literals
+[C++\Syntax\Statements\Expressions\Primary\Literals]
+
+
 
 ## Whitespace
-C++ whitespaces include spaces, tabs, and newline characters. In a C++ program, whitespaces are used to separate special symbols, reserved words, and identifiers as well as make the structure of programs more readable. Whitespaces typically are not visible to the compiler. Whitespaces within string literals, though, make a difference to the output.
+C++ whitespaces include spaces, tabs, and newline characters. In a C++ program, whitespaces are used to separate tokens as well as make the structure of programs more readable. Whitespaces typically are not visible to the compiler. Whitespaces within string literals, though, make a difference to the output.

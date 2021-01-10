@@ -22,6 +22,8 @@ where:
   parameters is a comma seperated list of zero or more parameters. Each parameter consists of a type followed by an identifier.
   statements is the function's body a curly brace delimited block of statements
 
+
+
 ### Declaring a Function
 In C++, identifiers can only be used in expressions once they have been declared. For example, some variable x cannot be used before being declared with a statement, such as:
 
@@ -67,10 +69,6 @@ chain can figure it out.
 
 
 
-
-
-
-
 ### Function Calls
 To call (or invoke) a function, you use the name of the desired function, parentheses, and a comma-separated list of values of order and type specified by the function's parameters.
 
@@ -79,10 +77,10 @@ To call (or invoke) a function, you use the name of the desired function, parent
 ### Defining Functions
 A function’s definition, in addition to it's declaration, defines its implementation, which includes the statements the function executes, the name of zero or more parameters used during that execution and optionally a return statement:
 
-return-type function_name(par-type1 par_name1, ..., par-typeN par_nameN) {
-  //statements
-  return return-value;
-}
+  return-type function_name(par-type1 par_name1, ..., par-typeN par_nameN) {
+    //statements
+    return return-value;
+  }
 
 A function definition also declares a function if it had not been previously.
 

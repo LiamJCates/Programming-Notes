@@ -10,6 +10,8 @@ These access modifiers are used to set boundaries for availability of members of
 
 Access modifiers are followed by a colon.
 
+There are no restrictions on how often an access label may appear. Each access label specifies the access level of the succeeding member definitions. The specified access level remains in effect until the next access label is encountered or the closing right brace of the class body is seen.
+
 They change the boundary for all the declarations that follow them:
 
   Public class members are available to all class clients.
@@ -17,15 +19,3 @@ They change the boundary for all the declarations that follow them:
   Protected class members are available inside the class and to any derived class.
 
 Invalid access will result in a compile time error
-
-Protected
-When you create a class, member functions can access both public and private member variables and functions. Users of the class can access only the
-public member variables and functions. But when you derive a new class,
-the picture changes. The derived class cannot access the private members in
-its own class. Private members are reserved for a class itself and not for any
-derived class.
-
-When members need to be accessible by derived classes we specify the protected access modifier.
-
-Protected members and private members work the same way, but derived
-classes can access only protected members, not private members.

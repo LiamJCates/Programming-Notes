@@ -31,6 +31,3 @@ When the variables in the example above are declared, they have an undetermined 
 
 For more information about initialization see:
 [C++\Types&Values\Initialization.md]
-
-
-VariableType VariableName = InitialValue;

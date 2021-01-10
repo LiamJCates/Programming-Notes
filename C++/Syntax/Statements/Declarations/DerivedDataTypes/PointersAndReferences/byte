@@ -1,0 +1,6 @@
+For times you want to interact with raw memory at the byte level.
+
+Examples include low-level operations like copying raw data between files
+and memory, encryption, and compression.
+
+In such situations, you can use a std::byte pointer which allow bit-wise and arithmetic operations

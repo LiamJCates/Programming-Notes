@@ -4,10 +4,10 @@ A C++ program is typically derived from many source code files (source files) by
 
 Code begins as a source code file.
   You write C++ source code into human-readable text files called source files.
-  A source code file must be properly formatted according to language syntax and semantics.
+  A source code file is formatted according to language syntax and semantics.
 
 A compiler is used to produce object files:
-  If source files properly formatted the compiler will output a transformation called an object file, otherwise it will produce an error message and fail to compile.
+  If source files properly formatted the compiler will output a transformation called an object file, otherwise it will produce an error message and fail.
   An object file is a computer file containing object code, that is, machine code output of an assembler or compiler.
 
 A linker is used to convert object files into an executable machine code file:
@@ -15,11 +15,10 @@ A linker is used to convert object files into an executable machine code file:
 
 Executables can be run by the operating system.
 
+
+
 ### The Compiler Tool Chain
-After writing the source code for a C++ program, the next step is to turn
-your source code into an executable program. The compiler tool chain (or
-tool chain) is a collection of three elements that run one after the other to
-convert source code into a program:
+After writing the source code for a C++ program, the next step is to turn your source code into an executable program. The compiler tool chain (or tool chain) is a collection of three elements that run one after the other to convert source code into a program:
 
 1. The preprocessor performs basic source code manipulation.
 

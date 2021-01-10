@@ -1,7 +1,7 @@
 For classes with pointer member variables, three things are normally done:
-1. Include the destructor in the class.
-2. Overload the assignment operator for the class.
-3. Include the copy constructor.
+1. Include the destructor in the class
+2. Overload the assignment operator for the class
+3. Include the copy constructor
 
 
 Constructors, destructors, and copy and move operations for a type are not logically separate. We must define them as a matched set or suffer logical or performance problems.

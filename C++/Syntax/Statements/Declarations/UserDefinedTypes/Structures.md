@@ -19,6 +19,7 @@ Fortunately, C++ allows us to create our own user-defined aggregate data types. 
 
 One of the simplest aggregate data types is the struct. A struct (short for structure) allows us to group variables of mixed data types together into a single unit. These data elements, known as members or fields, can have different types and different lengths.
 
+Basic structures are also called plain-old-data classes (PODs). PODs are simple containers. Think of them as a sort of heterogeneous array of elements of potentially different types.
 
 
 ### Declaring and defining structs

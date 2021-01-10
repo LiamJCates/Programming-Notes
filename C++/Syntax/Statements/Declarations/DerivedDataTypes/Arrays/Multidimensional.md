@@ -1,27 +1,25 @@
 ## Multidimensional arrays
 C++ enables you to declare multidimensional arrays by indicating the number of elements you want to reserve in each dimension.
 
-We can also define three-dimensional or larger arrays. In
-C++, there is no limit, except the limit of the memory space, on the dimension of arrays. Following is the general definition of an array.
+In C++ has no limit, except the limit of the memory space, on the dimension of arrays.
+
+Following is the general definition of an array.
+
 n-dimensional array: A collection of a fixed number of components arranged in n dimensions (n >= 1).
 
 The general syntax for declaring an n-dimensional array is:
-dataType arrayName[intExp1][intExp2] ... [intExpn];
+
+  dataType arrayName[intExp1][intExp2] ... [intExpn];
 
 
 where intExp1, intExp2, . . ., and intExpn are constant expressions yielding positive integer values.
 
 The syntax to access a component of an n-dimensional array is:
-arrayName[indexExp1][indexExp2] ... [indexExpn]
+
+  arrayName[indexExp1][indexExp2] ... [indexExpn]
 
 
-where indexExp1, indexExp2, . . ., and indexExpn are expressions yielding nonnegative integer values. indexExpi gives the position of the array component in the
-ith dimension.
-
-
-
-
-
+where indexExp1, indexExp2, . . ., and indexExpn are expressions yielding nonnegative integer values. indexExpi gives the position of the array component in the ith dimension.
 
 
 
@@ -33,170 +31,170 @@ int solarPanels [2][3] = {{0, 1, 2}, {3, 4, 5}};
 |0|1|2|
 |3|4|5|
 
-Even though C++ enables us to model multidimensional arrays,
-the memory where the array is contained is one-dimensional. So,
-the compiler maps the multidimensional array into the memory
-space, which expands only in one direction.
-If you wanted to, you could also initialize the array called
-solarPanels like the following, and it would still contain the
-same values in the respective elements:
-int solarPanels [2][3] = {0, 1, 2, 3, 4, 5};
-However, the earlier method makes a better example because
-it’s easier to imagine and understand a multidimensional array
-as an array of arrays.
+Even though C++ enables us to model multidimensional arrays, the memory where the array is contained is one-dimensional. So, the compiler maps the multidimensional array into the memory space, which expands only in one direction.
 
-When you need to access an integer in this array, you would need to use a first subscript
-to address the array where the integer is and the second subscript to address that integer
-in this array.
+If matrix is the name of a two-dimensional array, then matrix[0][0] is the first component of matrix.
+
+When storing a two-dimensional array in the computer’s memory, C++ uses the row
+order form. That is, the first row is stored first, followed by the second row, followed by the third row, and so on.
+
+If you wanted to, you could also initialize the array called solarPanels like the following, and it would still contain the same values in the respective elements:
+
+  int solarPanels [2][3] = {0, 1, 2, 3, 4, 5};
+
+However, the earlier method makes a better example because it’s easier to imagine and understand a multidimensional array as an array of arrays.
+
+When you need to access an integer in this array, you would need to use a first subscript operator to address the array where the integer is and the second subscript operator to address that integer in this array.
+
 
 
 ## Two-Dimensional Arrays and Enumeration Types
 You can also use the enumeration type for array indices. Consider the following
 statements:
-const int NUMBER_OF_ROWS = 6;
-const int NUMBER_OF_COLUMNS = 5;
-enum carType {GM, FORD, TOYOTA, BMW, NISSAN, VOLVO};
-enum colorType {RED, BROWN, BLACK, WHITE, GRAY};
-int inStock[NUMBER_OF_ROWS][NUMBER_OF_COLUMNS];
 
-These statements define the carType and colorType enumeration types and define
-inStock as a two-dimensional array of six rows and five columns. Suppose that
-each row in inStock corresponds to a car type, and each column in inStock corresponds to a color type. That is, the first row corresponds to the car type GM, the
-second row corresponds to the car type FORD, and so on. Similarly, the first column
-corresponds to the color type RED, the second column corresponds to the color type
-BROWN, and so on. Suppose further that each entry in inStock represents the number
-of cars of a particular type and color
+  const int NUMBER_OF_ROWS = 6;
+  const int NUMBER_OF_COLUMNS = 5;
+  enum carType {GM, FORD, TOYOTA, BMW, NISSAN, VOLVO};
+  enum colorType {RED, BROWN, BLACK, WHITE, GRAY};
+  int inStock[NUMBER_OF_ROWS][NUMBER_OF_COLUMNS];
 
-The statement:
-inStock[1][3] = 15;
+These statements define the carType and colorType enumeration types and define inStock as a two-dimensional array of six rows and five columns. Suppose that each row in inStock corresponds to a car type, and each column in inStock corresponds to a color type. That is, the first row corresponds to the car type GM, the second row corresponds to the car type FORD, and so on. Similarly, the first column corresponds to the color type RED, the second column corresponds to the color type BROWN, and so on. Suppose further that each entry in inStock represents the number of cars of a particular type and color
+
+Using the definitions above, the statement:
+
+  inStock[1][3] = 15;
+
 is equivalent to the following statement:
-inStock[FORD][WHITE] = 15;
+
+  inStock[FORD][WHITE] = 15;
+
 
 
 ### PROCESSING TWO-DIMENSIONAL ARRAYS
-A two-dimensional array can be processed in four ways:
-1. Process a single element.
-2. Process the entire array.
-3. Process a particular row of the array, called row processing.
-4. Process a particular column of the array, called column processing.
-Processing a single element is like processing a single variable. Initializing and printing the array are examples of processing the entire two-dimensional array. Finding the
-largest element in a row (column) or finding the sum of a row (column) are examples
-of row (column) processing. We will use the following declaration for our discussion:
-const int NUMBER_OF_ROWS = 7; //This can be set to any number.
-const int NUMBER_OF_COLUMNS = 6; //This can be set to any number.
-int matrix[NUMBER_OF_ROWS][NUMBER_OF_COLUMNS];
-int row;
-int col;
-int sum;
-int largest;
-int temp;
 
-All of the components of a two-dimensional array, whether rows or columns, are identical in type. If a row is looked at by itself, it can be seen to be just a one-dimensional
-array. A column seen by itself is also a one-dimensional array. Therefore, when processing a particular row or column of a two-dimensional array, we use algorithms
-similar to those that process one-dimensional arrays.
+A two-dimensional array can be processed in four ways:
+  Process a single element.
+  Process the entire array.
+  Process a particular row of the array, called row processing.
+  Process a particular column of the array, called column processing.
+
+Processing a single element is like processing a single variable. Initializing and printing the array are examples of processing the entire two-dimensional array. Finding the largest element in a row (column) or finding the sum of a row (column) are examples of row (column) processing. We will use the following declaration for our discussion:
+
+  const int NUMBER_OF_ROWS = 7; //This can be set to any number.
+  const int NUMBER_OF_COLUMNS = 6; //This can be set to any number.
+  int matrix[NUMBER_OF_ROWS][NUMBER_OF_COLUMNS];
+  int row;
+  int col;
+  int sum;
+  int largest;
+  int temp;
+
+All of the components of a two-dimensional array, whether rows or columns, are identical in type. If a row is looked at by itself, it can be seen to be just a one-dimensional array. A column seen by itself is also a one-dimensional array. Therefore, when processing a particular row or column of a two-dimensional array, we use algorithms similar to those that process one-dimensional arrays.
 
 Suppose that we want to process row number 5 of matrix (that is, the sixth row of matrix).
+
 We see that in these components, the first index (the row position) is fixed at 5. The second index (the column position) ranges from 0 to 5. Therefore, we can use the following for loop to process row number 5:
-row = 5;
-for (col = 0; col < NUMBER_OF_COLUMNS; col++)
-process(matrix[row][col]
+
+  row = 5;
+  for (col = 0; col < NUMBER_OF_COLUMNS; col++)
+    process(matrix[row][col]
 
 Similarly, suppose that we want to process column number 2 of matrix, the second index (that is, the column position) is fixed at 2. The first index (that is, the row position) ranges from 0 to 6. In this case, we can use the following for loop to process column 2 of matrix:
-col = 2;
-for (row = 0; row < NUMBER_OF_ROWS; row++)
-process(matrix[row][col])
+
+  col = 2;
+  for (row = 0; row < NUMBER_OF_ROWS; row++)
+    process(matrix[row][col])
 
 
-Passing Two-Dimensional Arrays as Parameters to Functions
-Two-dimensional arrays can be passed as parameters to a function, and they are
-passed by reference. The base address (that is, the address of the first component of
-the actual parameter) is passed to the formal parameter. If matrix is the name of a
-two-dimensional array, then matrix[0][0] is the first component of matrix.
-When storing a two-dimensional array in the computer’s memory, C++ uses the row
-order form. That is, the first row is stored first, followed by the second row, followed
-by the third row, and so on.
-In the case of a one-dimensional array, when declaring it as a formal parameter, we
-usually omit the size of the array. Because C++ stores two-dimensional arrays in
-row order form, to compute the address of a component correctly, the compiler must
-know where one row ends and the next row begins. Thus, when declaring a twodimensional array as a formal parameter, you can omit the size of the first dimension,
-but not the second; that is, you must specify the number of columns.
+
+#### Passing Two-Dimensional Arrays as Parameters
+
+Two-dimensional arrays can be passed as parameters to a function, and they are passed by reference. The base address (that is, the address of the first component of the actual parameter) is passed to the formal parameter.
+
+In the case of a one-dimensional array, when declaring it as a formal parameter, we usually omit the size of the array. Because C++ stores two-dimensional arrays in row order form, to compute the address of a component correctly, the compiler must know where one row ends and the next row begins.
+
+Thus, when declaring a twodimensional array as a formal parameter, you can omit the size of the first dimension, but not the second; that is, you must specify the number of columns.
+
 Suppose we have the following declaration:
-const int NUMBER_OF_ROWS = 6;
-const int NUMBER_OF_COLUMNS = 5;
+
+  const int NUMBER_OF_ROWS = 6;
+  const int NUMBER_OF_COLUMNS = 5;
+
 Consider the following definition of the function printMatrix:
-void printMatrix(int matrix[][NUMBER_OF_COLUMNS],
-int noOfRows)
+
+void printMatrix(int matrix[][NUMBER_OF_COLUMNS], int noOfRows)
 {
-for (int row = 0; row < noOfRows; row++)
-{
-for (int col = 0; col < NUMBER_OF_COLUMNS; col++)
-cout << setw(5) << matrix[row][col] << " ";
-cout << endl;
+  for (int row = 0; row < noOfRows; row++)
+  {
+  for (int col = 0; col < NUMBER_OF_COLUMNS; col++)
+    cout << setw(5) << matrix[row][col] << " ";
+    cout << endl;
+  }
 }
-}
-This function takes as a parameter a two-dimensional array of an unspecified number
-of rows and five columns, and outputs the content of the two-dimensional array. During the function call, the number of columns of the actual parameter must match the
-number of columns of the formal parameter.
-Similarly, the following function outputs the sum of the elements of each row of a
-two-dimensional array whose elements are of type int:
+
+This function takes as a parameter a two-dimensional array of an unspecified number of rows and five columns, and outputs the content of the two-dimensional array. During the function call, the number of columns of the actual parameter must match the number of columns of the formal parameter.
+
+Similarly, the following function outputs the sum of the elements of each row of a two-dimensional array whose elements are of type int:
+
 void sumRows(int matrix[][NUMBER_OF_COLUMNS], int noOfRows)
 {
-int sum;Two- and Multidimensional Arrays | 571
-8
-//Sum of each individual row
-for (int row = 0; row < noOfRows; row++)
-{
-sum = 0;
-for (int col = 0; col < NUMBER_OF_COLUMNS; col++)
-sum = sum + matrix[row][col];
-cout << "Sum of row " << (row + 1) << " = " << sum
-<< endl;
+  int sum;
+  //Sum of each individual row
+  for (int row = 0; row < noOfRows; row++)
+  {
+    sum = 0;
+    for (int col = 0; col < NUMBER_OF_COLUMNS; col++)
+      sum = sum + matrix[row][col];
+    cout << "Sum of row " << (row + 1) << " = " << sum << endl;
+  }
 }
-}
+
 The following function determines the largest element in each row:
-void largestInRows(int matrix[][NUMBER_OF_COLUMNS],
-int noOfRows)
+
+void largestInRows(int matrix[][NUMBER_OF_COLUMNS], int noOfRows)
 {
-int largest;
-//Largest element in each row
-for (int row = 0; row < noOfRows; row++)
-{
-largest = matrix[row][0]; //Assume that the first element
-//of the row is the largest.
-for (int col = 1; col < NUMBER_OF_COLUMNS; col++)
-if (largest < matrix[row][col])
-largest = matrix[row][col];
-cout << "The largest element of row " << (row + 1)
-<< " = " << largest << endl;
+  int largest;
+  //Largest element in each row
+  for (int row = 0; row < noOfRows; row++)
+  {
+    largest = matrix[row][0]; //Assume that the first element
+    //of the row is the largest.
+    for (int col = 1; col < NUMBER_OF_COLUMNS; col++)
+      if (largest < matrix[row][col])
+        largest = matrix[row][col];
+    cout << "Largest element of row " << (row + 1) << " = " << largest << "\n";
+  }
 }
-}
-Likewise, you can write a function to find the sum of the elements of each column,
-read the data into a two-dimensional array, find the largest and/or smallest element
-in each row or column, and so on.
+
+Likewise, you can write a function to find the sum of the elements of each column, read the data into a two-dimensional array, find the largest and/or smallest element in each row or column, and so on.
 
 
 ### Another Way to Declare a Two-Dimensional Array
 
-If you know the size of the tables with which the program will be working, then you
-can use typedef to first define a two-dimensional array data type and then declare
-variables of that type.
+If you know the size of the tables with which the program will be working, then you can use typedef to first define a two-dimensional array data type and then declare variables of that type.
+
 For example, consider the following:
-const int NUMBER_OF_ROWS = 20;
-const int NUMBER_OF_COLUMNS = 10;
-typedef int tableType[NUMBER_OF_ROWS][NUMBER_OF_COLUMNS];
+
+  const int NUMBER_OF_ROWS = 20;
+  const int NUMBER_OF_COLUMNS = 10;
+  typedef int tableType[NUMBER_OF_ROWS][NUMBER_OF_COLUMNS];
+
 The previous statement defines a two-dimensional array data type tableType. Now
 we can declare variables of this type. So:
-tableType matrix;
+
+  tableType matrix;
+
 declares a two-dimensional array matrix of 20 rows and 10 columns.
-You can also use this data type when declaring formal parameters, as shown in the
-following code:
-void initialize(tableType table)
-{
-for (int row = 0; row < NUMBER_OF_ROWS; row++)
-for (int col = 0; col < NUMBER_OF_COLUMNS; col++)
-table[row][col] = 0;
-}
+
+You can also use this data type when declaring formal parameters, as shown in the following code:
+
+  void initialize(tableType table)
+  {
+    for (int row = 0; row < NUMBER_OF_ROWS; row++)
+      for (int col = 0; col < NUMBER_OF_COLUMNS; col++)
+        table[row][col] = 0;
+  }
+
 This function takes as an argument any variable of type tableType, which is a twodimensional array containing 20 rows and 10 columns, and initializes the array to 0.
-By first defining a data type, you do not need to keep checking the exact number of
-columns when you declare a two-dimensional array as a variable or formal parameter,
-or when you pass an array as a parameter during a function call.
+
+By first defining a data type, you do not need to keep checking the exact number of columns when you declare a two-dimensional array as a variable or formal parameter, or when you pass an array as a parameter during a function call.

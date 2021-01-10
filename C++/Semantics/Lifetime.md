@@ -2,16 +2,13 @@ An object is a region of storage that has a type and a value. When you
 declare a variable, you create an object. A variable is simply an object
 that has a name.
 
-Allocation, Deallocation, and Lifetime
-Every object requires storage. You reserve storage for objects in a process
-called allocation. When you’re done with an object, you release the object’s
-storage in a process called deallocation.
 
-An object’s storage duration begins when the object is allocated and
-ends when the object is deallocated. The lifetime of an object is a runtime
-property that is bound by the object’s storage duration. An object’s lifetime
-begins once its constructor completes, and it ends just before a destructor
-is invoked.
+TODO: C++ Crash Course Ch 4
+
+### Allocation, Deallocation, and Lifetime
+Every object requires storage. You reserve storage for objects in a process called allocation. When you’re done with an object, you release the object’s storage in a process called deallocation.
+
+An object’s storage duration begins when the object is allocated and ends when the object is deallocated. The lifetime of an object is a runtime property that is bound by the object’s storage duration. An object’s lifetime begins once its constructor completes, and it ends just before a destructor is invoked.
 
 In summary, each object passes through the following stages:
 1. The object’s storage duration begins, and storage is allocated.

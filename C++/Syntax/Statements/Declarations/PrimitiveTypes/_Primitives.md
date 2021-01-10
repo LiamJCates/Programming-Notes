@@ -2,8 +2,11 @@ Primitive data types are basic types implemented directly by the language that r
 
 Primitives can generally be classified into:
   Character types: Those that represent a single character, such as 'A' or '$'. The most basic type is char, which is a one-byte character. Other types are also provided for wider characters.
+
   Numerical integer types: They can store a whole number value, such as 7 or 1024. They exist in a variety of sizes, and can either be signed or unsigned, depending on whether they support negative values or not.
+
   Floating-point types: They can represent real values, such as 3.14 or 0.01, with different levels of precision, depending on which of the three floating-point types is used.
+
   Boolean type: The boolean type, known in C++ as bool, can only represent one of two states, true or false.
 
 

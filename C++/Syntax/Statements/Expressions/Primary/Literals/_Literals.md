@@ -1,7 +1,9 @@
 # Literals
 A literal is a program element that directly represents a value.
 
-A literal constant is a hardcoded value in a program.
+The word ‘literal‘ means exact or accurate. 
+
+In C++ literals are represented by hardcoded values in a program's source code.
 
 Types
   Integer

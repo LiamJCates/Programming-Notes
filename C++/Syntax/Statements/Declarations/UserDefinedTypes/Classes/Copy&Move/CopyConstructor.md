@@ -12,8 +12,7 @@ You use the copy constructor just like other constructors, using the uniform ini
 MyObject a;
 MyObject a_copy{ a };
 
-The second line invokes the copy constructor of MyObject with a to
-yield a_copy.
+The second line invokes the copy constructor of MyObject with a to yield a_copy.
 
 
 

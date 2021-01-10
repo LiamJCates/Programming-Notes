@@ -1,4 +1,18 @@
 ## Error-Handling Alternatives
+
+Hopefully, you’re convinced of the central role exceptions play in idiomatic C++ programs.
+
+Sometimes, unfortunately, you won’t be able to use exceptions:
+
+In embedded development where real-time guarantees are required; tools simply don’t (yet) exist in this setting. With luck, this will change soon, but for now, you’re stuck without exceptions in most embedded contexts.
+
+There is legacy code that doesn't use. Exceptions are elegant because of how they fit in with RAII objects. When destructors are responsible for cleaning up resources, stack unwinding is a direct and effective way to guarantee against resource leakages. In legacy code, you might find manual resource management and error handling instead of RAII objects. This makes using exceptions very dangerous, because stack unwinding is safe only with RAII objects. Without them, you could easily leak resources.
+
+
+
+
+
+
 Error handling is a major issue in all real-world software, so naturally there are a variety of approaches. If an error is detected and it cannot be handled locally in a function, the function must somehow communicate the problem to some caller. Throwing an exception is C++’s most general
 mechanism for that.
 
@@ -56,6 +70,8 @@ for error codes
 
 
 ## Alternatives to Exceptions
+In situations where there’s no good way to handle an error locally, such as in a constructor, you generally use exceptions. Exceptions play a crucial role in managing object life cycles in such circumstances. The other option for communicating error conditions is to return an error code as part of a function’s prototype. These two approaches are complementary. In situations where an error occurs that can be dealt with locally or that is expected to occur during the normal course of a program’s execution, you generally return an error code.
+
 In situations where exceptions are not available, all is not lost. Although
 you’ll need to keep track of errors manually, there are some helpful C++
 features that you can employ to take the sting out a bit. First, you can manually enforce class invariants by exposing some method that communicates

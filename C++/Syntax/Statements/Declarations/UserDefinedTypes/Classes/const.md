@@ -1,3 +1,31 @@
+the const keyword can be used for a number of purposes throughout the declaration of a class.
+
+
+### const Member Variables
+You can mark member variables const by adding the keyword to the member’s type. The const member variables cannot be modified after their initialization.
+
+struct Avout {
+  const char* name = "Erasmas";
+};
+
+The name member is const, meaning the pointed-to value cannot be modified. On the other hand, apert is not const.
+
+Sometimes you want the safety of marking a member variable const but would also like to initialize the member with arguments passed into a constructor. For this, you employ member initializer lists.
+
+struct Avout {
+  Avout(const char* name, long year_of_apert)
+  : name{ name }, apert{ year_of_apert } {
+  }  
+  
+  const char* name;
+};
+
+
+
+
+
+### Constant Objects
+
 When an object of a class is qualified as a const object:
 
   const MyClass myobject;

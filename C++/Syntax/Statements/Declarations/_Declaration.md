@@ -1,4 +1,4 @@
-C++ declaration statements (or just declarations) introduce identifiers, such as those that declare variables, constants, functions, templates, namespaces, classes, enumerations, and structures.
+C++ declaration statements, or declarations, introduce identifiers into a scope.
 
 Declarations
   Variables
