@@ -5,14 +5,12 @@ class AB {
 public:
   virtual void f() = 0;
 };
-Copy code
 
 Function AB::f is a pure virtual function. A function declaration cannot have both a pure specifier and a definition. For example, the compiler will not allow the following:
 
 struct A {
   virtual void g() { } = 0;
 };
-Copy code
 
 You cannot use an abstract class as a parameter type, a function return type, or the type of an explicit conversion, nor can you declare an object of an abstract class. You can, however, declare pointers and references to an abstract class. The following example demonstrates this:
 
@@ -46,7 +44,6 @@ int main() {
 // Class A is an abstract class
 //   static_cast<A>(b);
 }
-Copy code
 
 Class A is an abstract class. The compiler would not allow the function declarations A g() or void h(A), declaration of object a, nor the static cast of b to type A.
 
@@ -65,7 +62,6 @@ class D2 : public AB {
 int main() {
   D2 d;
 }
-Copy code
 
 The compiler will not allow the declaration of object d because D2 is an abstract class; it inherited the pure virtual function f()from AB. The compiler will allow the declaration of object d if you define function D2::f(), as this overrides the inherited pure virtual function AB::f(). Function AB::f() needs to be overridden if you want to avoid the abstraction of D2.
 
@@ -80,6 +76,5 @@ struct A {
   virtual void direct() = 0;
   virtual void indirect() { direct(); }
 };
-Copy code
 
 The default constructor of A calls the pure virtual function direct() both directly and indirectly (through indirect()).

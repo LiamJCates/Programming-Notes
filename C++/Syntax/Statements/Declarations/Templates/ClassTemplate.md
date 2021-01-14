@@ -115,3 +115,215 @@ Similarly, we can define lists, vectors, maps (that is, associative arrays), uno
 
 A template plus a set of template arguments is called an instantiation or a specialization. Late in the compilation process, at instantiation time, code is generated for each instantiation used in a program. The code generated is type checked so that the generated code is as type safe as handwritten code. Unfortunately, that type check often occurs late in the compilation process, at
 instantiation time.
+
+
+
+
+
+
+
+
+
+Splitting up template classes
+
+A template is not a class or a function -- it is a stencil used to create classes or functions. As such, it does not work in quite the same way as normal functions or classes. In most cases, this isn’t much of a issue. However, there is one area that commonly causes problems for developers.
+
+Each templated member function defined outside the class declaration needs its own template declaration.
+
+With non-template classes, the common procedure is to put the class definition in a header file, and the member function definitions in a similarly named code file. In this way, the source for the class is compiled as a separate project file. However, with templates, this does not work. Consider the following:
+
+Array.h:
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+
+#ifndef ARRAY_H
+#define ARRAY_H
+
+#include <cassert>
+
+template <class T>
+class Array
+{
+private:
+    int m_length{};
+    T* m_data{};
+
+public:
+
+    Array(int length)
+    {
+        assert(length > 0);
+        m_data = new T[length]{};
+        m_length = length;
+    }
+
+    Array(const Array&) = delete;
+    Array& operator=(const Array&) = delete;
+
+    ~Array()
+    {
+        delete[] m_data;
+    }
+
+    void Erase()
+    {
+        delete[] m_data;
+
+        m_data = nullptr;
+        m_length = 0;
+    }
+
+    T& operator[](int index)
+    {
+        assert(index >= 0 && index < m_length);
+        return m_data[index];
+    }
+
+    int getLength() const;
+};
+
+#endif
+
+Array.cpp:
+1
+2
+3
+4
+5
+6
+7
+
+#include "Array.h"
+
+template <class T>
+int Array<T>::getLength() const // note class name is Array<T>, not Array
+{
+  return m_length;
+}
+
+main.cpp:
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+
+#include "Array.h"
+
+int main()
+{
+	Array<int> intArray(12);
+	Array<double> doubleArray(12);
+
+	for (int count{ 0 }; count < intArray.getLength(); ++count)
+	{
+		intArray[count] = count;
+		doubleArray[count] = count + 0.5;
+	}
+
+	for (int count{ intArray.getLength() - 1 }; count >= 0; --count)
+		std::cout << intArray[count] << '\t' << doubleArray[count] << '\n';
+
+	return 0;
+}
+
+The above program will compile, but cause a linker error:
+
+unresolved external symbol "public: int __thiscall Array::getLength(void)" (?GetLength@?$Array@H@@QAEHXZ)
+
+In order for the compiler to use a template, it must see both the template definition (not just a declaration) and the template type used to instantiate the template. Also remember that C++ compiles files individually. When the Array.h header is #included in main, the template class definition is copied into main.cpp. When the compiler sees that we need two template instances, Array<int>, and Array<double>, it will instantiate these, and compile them as part of main.cpp. However, when it gets around to compiling Array.cpp separately, it will have forgotten that we need an Array<int> and Array<double>, so that template function is never instantiated. Thus, we get a linker error, because the compiler can’t find a definition for Array<int>::getLength() or Array<double>::getLength().
+
+There are quite a few ways to work around this.
+
+The easiest way is to simply put all of your template class code in the header file (in this case, put the contents of Array.cpp into Array.h, below the class). In this way, when you #include the header, all of the template code will be in one place. The upside of this solution is that it is simple. The downside here is that if the template class is used in many places, you will end up with many local copies of the template class, which can increase your compile and link times (your linker should remove the duplicate definitions, so it shouldn’t bloat your executable). This is our preferred solution unless the compile or link times start to become a problem.
+
+If you feel that putting the Array.cpp code into the Array.h header makes the header too long/messy, an alternative is to rename Array.cpp to Array.inl (.inl stands for inline), and then include Array.inl from the bottom of the Array.h header. That yields the same result as putting all the code in the header, but helps keep things a little cleaner.
+
+Other solutions involve #including .cpp files, but we don’t recommend these because of the non-standard usage of #include.
+
+Another alternative is to use a three-file approach. The template class definition goes in the header. The template class member functions goes in the code file. Then you add a third file, which contains all of the instantiated classes you need:
+
+templates.cpp:
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+
+// Ensure the full Array template definition can be seen
+#include "Array.h"
+#include "Array.cpp" // we're breaking best practices here, but only in this one place
+
+// #include other .h and .cpp template definitions you need here
+
+template class Array<int>; // Explicitly instantiate template Array<int>
+template class Array<double>; // Explicitly instantiate template Array<double>
+
+// instantiate other templates here
+
+The “template class” command causes the compiler to explicitly instantiate the template class. In the above case, the compiler will stencil out both Array<int> and Array<double> inside of templates.cpp. Because templates.cpp is inside our project, this will then be compiled. These functions can then be linked to from elsewhere.
+
+This method is more efficient, but requires maintaining the templates.cpp file for each program.

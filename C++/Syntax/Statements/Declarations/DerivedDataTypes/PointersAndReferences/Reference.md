@@ -31,6 +31,36 @@ A reference is an alias for a variable. When you declare a reference, you need t
 
 
 
+References as shortcuts
+
+A secondary (much less used) use of references is to provide easier access to nested data. Consider the following struct:
+
+  struct Something
+  {
+    int value1;
+    float value2;
+  };
+
+  struct Other
+  {
+    Something something;
+    int otherValue;
+  };
+
+  Other other;
+
+Let’s say we needed to work with the value1 field of the Something struct of other. Normally, we’d access that member as other.something.value1. If there are many separate accesses to this member, the code can become messy. References allow you to more easily access the member:
+
+  int &ref{ other.something.value1 };
+  // ref can now be used in place of other.something.value1
+
+The following two statements are thus identical:
+
+  other.something.value1 = 5;
+  ref = 5;
+
+This can help keep your code cleaner and more readable.
+
 
 Passing by Reference
 A reference is another way of specifying a parameter in a function whereby the function can modify the original variable. Instead of following the parameter type with an asterisk (*) to denote a pointer, you follow it with an ampersand (&).
@@ -112,9 +142,25 @@ const int& constRef2 = constRef; // OK
 
 
 
+References to r-values extend the lifetime of the referenced value
+
+Normally r-values have expression scope, meaning the values are destroyed at the end of the expression in which they are created.
+
+  // 2 + 3 evaluates to r-value 5, which is destroyed at the end of this statement
+  std::cout << 2 + 3 << '\n';
+
+However, when a reference to a const value is initialized with an r-value, the lifetime of the r-value is extended to match the lifetime of the reference.
+
+  int somefcn()
+  {
+      const int& ref{ 2 + 3 }; // normally the result of 2+3 has expression scope and is destroyed at the end of this statement
+      // but because the result is now bound to a reference to a const value...
+      std::cout << ref << '\n'; // we can use it here
+  } // and the lifetime of the r-value is extended to here, when the const reference dies
 
 
- Assignment to a reference
+
+Assignment to a reference
 does not change what the reference refers to but assigns to the referenced object:
 int x = 2;
 int y = 3;

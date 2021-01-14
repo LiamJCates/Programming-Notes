@@ -88,6 +88,7 @@ TODO: More... Modern C++ Programming pg9
 
 
 ### auto Return Types
+In C++14, the auto keyword was extended to be able to deduce a function’s return type from return statements in the function body.
 
 There are two ways to declare the return value of a function:
   Lead a function declaration with its return.
@@ -102,7 +103,22 @@ As with auto type deduction, the compiler deduces the return type, fixing the ru
 
 This feature should be used judiciously. Because function definitions are documentation, it’s best to provide concrete return types when available.
 
+Consider the following program:
 
+  auto add(int x, int y)
+  {
+      return x + y;
+  }
+
+Since x + y evaluates to an int, the compiler will deduce this function should have a return type of int. When using an auto return type, all return statements must return the same type, otherwise an error will result.
+
+While this may seem neat, we recommend that this syntax be avoided for normal functions. The return type of a function is of great use in helping to document for the caller what a function is expected to return. When a specific type isn’t specified, the caller may misinterpret what type the function will return, which can lead to inadvertent errors.
+
+Best practice
+
+Avoid using type inference for function return types.
+
+Interested readers may wonder why using auto when initializing variables is okay, but not recommended for function return types. A good rule of thumb is that auto is okay to use when defining a variable, because the object the variable is inferring a type from is visible on the right side of the statement. However, with functions, that is not the case -- there’s no context to help indicate what type the function returns. A user would actually have to dig into the function body itself to determine what type the function returned. It’s much less intuitive, and therefore more error prone.
 
 ### auto and Function Templates
 
@@ -114,3 +130,58 @@ It’s possible to extend the auto-return-type deduction syntax to provide the r
     // return an object with type matching
     // the type-expression above
   }
+
+
+
+
+
+Trailing return type syntax
+
+The auto keyword can also be used to declare functions using a trailing return syntax, where the return type is specified after the rest of the function prototype.
+
+Consider the following function:
+
+  int add(int x, int y)
+  {
+    return (x + y);
+  }
+
+Using auto, this could be equivalently written as:
+
+  auto add(int x, int y) -> int
+  {
+    return (x + y);
+  }
+
+In this case, auto does not perform type inference -- it is just part of the syntax to use a trailing return type.
+
+Why would you want to use this?
+
+One nice thing is that it makes all of your function names line up:
+
+  auto add(int x, int y) -> int;
+  auto divide(double x, double y) -> double;
+  auto printSomething() -> void;
+  auto generateSubstring(const std::string &s, int start, int len) -> std::string;
+
+we’ll see this trailing return type syntax crop up in lambda functions.
+
+
+Type inference for function parameter types
+
+  #include <iostream>
+
+  void addAndPrint(auto x, auto y) // only valid starting in C++20
+  {
+    std::cout << x + y;
+  }
+
+  int main()
+  {
+    addAndPrint(2, 3); // int
+    addAndPrint(4.5, 6.7); // double
+  }
+
+Prior to C++20, this won’t work, because the compiler can’t infer types for function parameters x and y at compile time. Pre-C++20, if you’re looking to create generic functions that work with a variety of different types, you should be using function templates (covered in a later chapter), not type inference.
+
+Starting in C++20, the auto keyword can be used as a shorthand way to create function templates, so the above code will compile and run.

@@ -2,8 +2,26 @@ An object is a region of storage that has a type and a value. When you
 declare a variable, you create an object. A variable is simply an object
 that has a name.
 
+An object’s lifetime is defined to be the time between its creation and destruction.
 
-TODO: C++ Crash Course Ch 4
+Duration summary
+
+A variable’s duration determines when it is created and destroyed.
+
+    Variables with automatic duration are created at the point of definition, and destroyed when the block they are part of is exited. This includes:
+        Local variables
+        Function parameters
+    Variables with static duration are created when the program begins and destroyed when the program ends. This includes:
+        Global variables
+        Static local variables
+    Variables with dynamic duration are created and destroyed by programmer request. This includes:
+        Dynamically allocated variables
+
+
+The above about creation, initialization, and destruction are guarantees. That is, objects must be created and initialized no later than the point of definition, and destroyed no earlier than the end of the set of the curly braces in which they are defined (or, for function parameters, at the end of the function).
+
+In actuality, the C++ specification gives compilers a lot of flexibility to determine when local variables are created and destroyed. Objects may be created earlier, or destroyed later for optimization purposes. Most often, local variables are created when the function is entered, and destroyed in the opposite order of creation when the function is exited.
+
 
 ### Allocation, Deallocation, and Lifetime
 Every object requires storage. You reserve storage for objects in a process called allocation. When you’re done with an object, you release the object’s storage in a process called deallocation.
@@ -66,7 +84,7 @@ Object Types
 An automatic object is allocated at the beginning of an enclosing code block,
 and it’s deallocated at the end. The enclosing block is the automatic object’s
 scope. Automatic objects are said to have automatic storage duration. Note that
-function parameters are automatic, even though notationally they appear
+function parameters are automatic, even though rotationally they appear
 outside the function body.
 
 
@@ -176,27 +194,32 @@ different storage durations. By looking at the order of the program’s Tracer
 output, you can verify what you’ve learned about storage durations.
 
 Example
-#include <cstdio>
-struct Tracer {
-Tracer(const char* nameu) : name{ name }v {
-printf("%s constructed.\n", name); w
-}
-~Tracer() {
-printf("%s destructed.\n", name); x
-}
-private:
-const char* const name;
-};
+  #include <cstdio>
+  struct Tracer
+  {
+    Tracer(const char* nameu) : name{ name }
+    {
+      printf("%s constructed.\n", name);
+    }
 
-static Tracer t1{ "Static variable" }; u
-thread_local Tracer t2{ "Thread-local variable" }; v
-int main() {
-printf("A\n"); w
-Tracer t3{ "Automatic variable" }; x
-printf("B\n");
-const auto* t4 = new Tracer{ "Dynamic variable" }; y
-printf("C\n");
-}
+    ~Tracer()
+    {
+      printf("%s destructed.\n", name);
+    }
+    private:
+      const char* const name;
+  };
+
+  static Tracer t1{ "Static variable" };
+  thread_local Tracer t2{ "Thread-local variable" };
+
+  int main() {
+    printf("A\n");
+    Tracer t3{ "Automatic variable" };
+    printf("B\n");
+    const auto* t4 = new Tracer{ "Dynamic variable" };
+    printf("C\n");
+  }
 
 Output:
 Static variable constructed.

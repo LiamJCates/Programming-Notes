@@ -22,6 +22,24 @@ When you embed a string literal in your code, the compiler does the job of addin
 
 
 
+C-style strings have many shortcomings, primarily revolving around the fact that you have to do all the memory management yourself. For example, if you want to assign the string “hello!” into a buffer, you have to first dynamically allocate a buffer of the correct length:
+
+  char *strHello = new char[7];
+
+Don’t forget to account for an extra character for the null terminator!
+
+Then you have to actually copy the value in:
+
+  strcpy(strHello, "hello!");
+
+Hopefully you made your buffer large enough so there’s no buffer overflow!
+
+And of course, because the string is dynamically allocated, you have to remember to deallocate it properly when you’re done with it:
+
+  delete[] strHello;
+
+Don’t forget to use array delete instead of normal delete!
+
 Applications programmed in C (or in C++ by programmers who have a strong C background) often use string copy functions such as strcpy(), concatenation functions such as strcat(), and strlen() to determine the length of a string, in addition to others of this kind.
 
 These functions take C-style strings as input and are dangerous as they seek the null-terminator and can exceed the boundaries of the character array they’re using if the programmer has not ensured the presence of the terminating null

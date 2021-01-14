@@ -3,14 +3,18 @@ A template parameter declared with the typename (or class) keyword is called
 a type template parameter, which is a stand-in for some yet-to-be-specified type.
 
 Alternatively, you can use non-type template parameters, which are stand-ins for
-some yet-to-be-specified value.
+some yet-to-be-specified value. A template non-type parameter is a special type of parameter that does not substitute for a type, but is instead replaced by a value.
 
 Non-type template parameters can be any of the following:
-•	 An integral type
-•	 An lvalue reference type
-•	 A pointer (or pointer-to-member) type
-•	 A std::nullptr_t (the type of nullptr)
-•	 An enum class
+  An integral type
+  An lvalue reference type
+    A pointer or reference to a class object
+    A pointer or reference to a function
+    A pointer or reference to a class member function
+  A pointer (or pointer-to-member) type
+  A std::nullptr_t (the type of nullptr)
+  An enum class
+
 
 Using a non-type template parameter, also called value arguments, allows you to inject a value into the generic code at compile time. For example, you can construct a template function called get that checks for out-of-bounds array access at compile time by taking the index you want to access as a non-type template parameter.
 

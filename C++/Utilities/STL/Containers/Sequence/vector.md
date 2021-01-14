@@ -66,7 +66,8 @@ vectors are a sequential container that holds a dynamically sized, contiguous se
 
 The std::vector available in the STL’s <vector> header
 Thus, to use a vector container include the following statement:
-#include <vector>
+
+  #include <vector>
 
 The vector is the workhorse of the sequential ­data­ structure stable. For a very modest overhead, you gain substantial flexibility over the array. Plus, vector supports almost all of the same operations as an array and adds a slew of others. If you have a fixed number of elements on hand, you should strongly consider an array because you’ll get some small reductions in overhead versus a vector. In all other situations, your go-­to sequential container is the vector.
 
@@ -208,6 +209,45 @@ vec[0] = (T)object;
 Because the emplacement methods can construct elements in place, it seems they should be more efficient than the insertion methods. This intuition is often correct, but for complicated and unsatisfying reasons it’s not always faster. As a general rule, use the emplacement methods. If you determine a performance bottleneck, also try the insertion methods.
 
 See Item 42 of Effective Modern C++ by Scott Meyers for a treatise.
+
+
+
+
+
+
+
+Compacting bools
+
+std::vector has another cool trick up its sleeves. There is a special implementation for std::vector of type bool that will compact 8 booleans into a byte! This happens behind the scenes, and doesn’t change how you use the std::vector.
+
+  #include <vector>
+  #include <iostream>
+
+  int main()
+  {
+      std::vector<bool> array { true, false, false, true, true };
+      std::cout << "The length is: " << array.size() << '\n';
+
+      for (int i : array)
+          std::cout << i << ' ';
+
+      std::cout << '\n';
+
+      return 0;
+  }
+
+Outputs:
+
+The length is: 5
+1 0 0 1 1
+
+
+
+
+
+
+
+
 
 
 

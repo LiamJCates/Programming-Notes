@@ -10,7 +10,8 @@ A C++ identifier:
   must begin with a letter or underscore.
   identifiers can be of any length.
   spaces, punctuation marks, and symbols cannot be part of an identifier.
-  
+  can not be a keyword
+
 All identifiers must obey C++’s rules for identifiers.
 
 NOTE

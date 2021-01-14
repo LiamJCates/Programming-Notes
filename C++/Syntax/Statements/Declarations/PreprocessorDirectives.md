@@ -3,13 +3,14 @@ Preprocessor directives are commands to the preprocessor
 
 As the name suggests, a preprocessor is a tool that runs before the actual compilation starts. Preprocessor directives cause the preprocessor to modify the text of a C++ program before it is compiled.
 
+Prior to compilation, the code file goes through a phase known as translation. Many things happen in the translation phase to get your code ready to be compiled. A code file with translations applied to it is called a translation unit.
+
 Preprocessor directives always start with a hash sign #
 
 These preprocessor directives extend only across a single line of code. As soon as a newline character is found, the preprocessor directive is ends. No semicolon (;) is expected at the end of a preprocessor directive. The only way a preprocessor directive can extend through more than one line is by preceding the newline character at the end of the line by a backslash (\).
 
 ### #include
-You use preprocessor directives and the names of header files to tell the computer the locations of the code provided
-in libraries.
+You use preprocessor directives and the names of header files to tell the computer the locations of the code provided in libraries.
 
 To use a header file in a C++ program, use the preprocessor directive include.
 
@@ -35,10 +36,44 @@ Preprocessor directives to include header files are placed in the first few line
 program.
 
 
-### define#
-The #define directive specifies a preprocessor macro:
+The NULL macro
 
-  #define identifier replacement
+In C++, there is a special preprocessor macro called NULL (defined in the <cstddef> header). This macro was inherited from C, where it is commonly used to indicate a null pointer.
+
+#include <cstddef> // for NULL
+
+double *ptr { NULL }; // ptr is a null pointer
+
+The value of NULL is implementation defined, but is usually defined as the integer constant 0. Note: as of C++11, NULL can be defined as nullptr instead (which we’ll discuss in a bit).
+
+Rule
+
+Because NULL is a preprocessor macro with an implementation defined value, avoid using NULL.
+
+https://www.learncpp.com/cpp-tutorial/header-files/
+https://www.learncpp.com/cpp-tutorial/header-guards/
+
+### define
+The #define directive specifies a preprocessor macro.
+
+In C++, a macro is a rule that defines how input text is converted into replacement output text.
+
+There are two basic types of macros: object-like macros, and function-like macros.
+
+#### Object macros
+
+Object-like macros can be defined in one of two ways:
+
+  #define identifier
+  #define identifier substitution_text
+
+The top definition has no substitution text, whereas the bottom one does. Because these are preprocessor directives (not statements), note that neither form ends with a semicolon.
+
+##### Object-like macros with substitution text
+
+  #define identifier substitution_text
+
+When the preprocessor encounters this directive, any further occurrence of the identifier is replaced by substitution_text. The identifier is traditionally typed in all capital letters, using underscores to represent spaces.
 
 When the preprocessor encounters this directive, it replaces any occurrence of identifier in the rest of the code by replacement. This replacement can be an expression, a statement, a block or simply anything. The preprocessor does not understand C++ proper, it simply replaces any occurrence of identifier by replacement.
 
@@ -48,6 +83,45 @@ sample #define line:
  #define MYSPECIALNUMBER 42
 
 After the preprocessor sees this line, every time it encounters the word MYSPECIALNUMBER, it replaces it with the word 42 (that is, whatever sequence of letters, numbers, and other characters follow the definition).
+
+Object-like macros should only be seen in legacy code anymore.
+
+
+
+##### Object-like macros without substitution text
+
+Object-like macros can also be defined without substitution text.
+
+For example:
+
+  #define USE_YEN
+
+Macros of this form work like you might expect: any further occurrence of the identifier is removed and replaced by nothing!
+
+This might seem pretty useless, and it is useless for doing text substitution. However, that’s not what this form of the directive is generally used for.
+
+Unlike object-like macros with substitution text, macros of this form are generally considered acceptable to use for things like conditional inclusions.
+
+
+
+##### Object-like macros don’t affect other preprocessor directives
+
+Now you might be wondering:
+
+  #define PRINT_JOE
+
+  #ifdef PRINT_JOE
+  // ...
+
+Since we defined PRINT_JOE to be nothing, how come the preprocessor didn’t replace PRINT_JOE in #ifdef PRINT_JOE with nothing?
+
+Macros only cause text substitution for normal code. Other preprocessor commands are ignored.
+
+
+
+
+#### Function macros
+Function-like macros act like functions, and serve a similar purpose.
 
 The #define preprocessor directive can work with parameters to define function macros:
 
@@ -94,6 +168,7 @@ Because preprocessor replacements happen before any C++ syntax check, macro defi
 
 
 ### Conditional Inclusions
+The conditional compilation preprocessor directives allow you to specify under what conditions something will or won’t compile.
 
 The conditional inclusions are #ifdef, #ifndef, #if, #endif, #else and #elif
 
@@ -154,15 +229,19 @@ ship to the masses so that millions of people can use it, you no longer want
 that extra debug information.
 To accomplish this, you can use a conditional compilation. Take a look at
 these lines:
-#ifdef DEBUG
-cout << "The value of j is " << j << endl;
-#else
-cout << j << endl;
-#endif
+
+  #ifdef DEBUG
+  cout << "The value of j is " << j << endl;
+  #else
+  cout << j << endl;
+  #endif
+
 The lines that begin with # are preprocessor directives. The preprocessor
 has its own version of if statements. In your code, you can have a line like
 the following, with nothing after it:
-#define DEBUG
+
+  #define DEBUG
+
 This simply defines a symbol. It works just like the symbols we described
 earlier, except that it’s not set to be replaced by anything.
 
@@ -185,7 +264,27 @@ can either use -DDEBUG or -D DEBUG. They both do the same thing
 
 
 
+### if 0
 
+One more common use of conditional compilation involves using #if 0 to exclude a block of code from being compiled (as if it were inside a comment block):
+
+  #include <iostream>
+
+  int main()
+  {
+    std::cout << "Joe\n";
+
+  #if 0 // Don't compile anything starting here
+    std::cout << "Bob\n";
+    std::cout << "Steve\n";
+  #endif // until this point
+
+    return 0;
+  }
+
+The above code only prints “Joe”, because “Bob” and “Steve” were inside an #if 0 block that the preprocessor will exclude from compilation.
+
+This provides a convenient way to “comment out” code that contains multi-line comments.
 
 
 

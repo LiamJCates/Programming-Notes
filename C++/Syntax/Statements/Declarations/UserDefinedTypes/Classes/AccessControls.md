@@ -16,6 +16,6 @@ They change the boundary for all the declarations that follow them:
 
   Public class members are available to all class clients.
   Private class members are not available to any code outside of the class.
-  Protected class members are available inside the class and to any derived class.
+  Protected class members are available inside the class and to any friends or derived classes.
 
 Invalid access will result in a compile time error

@@ -211,3 +211,64 @@ public:
 }
 
 The default value is used whenever a constructor doesn’t provide a value. This simplifies code and helps us to avoid accidentally leaving a member uninitialized.
+
+
+
+Delegating constructors
+
+Constructors are allowed to call other constructors. This process is called delegating constructors (or constructor chaining).
+
+To have one constructor call another, simply call the constructor in the member initializer list. This is one case where calling another constructor directly is acceptable. Applied to our example above:
+
+  class Foo
+  {
+  private:
+
+  public:
+      Foo()
+      {
+          // code to do A
+      }
+
+      Foo(int value): Foo{} // use Foo() default constructor to do A
+      {
+          // code to do B
+      }
+
+  };
+
+This works exactly as you’d expect. Make sure you’re calling the constructor from the member initializer list, not in the body of the constructor.
+
+
+
+Using a separate function
+
+Relatedly, you may find yourself in the situation where you want to write a member function to re-initialize a class back to default values. Because you probably already have a constructor that does this, you may be tempted to try to call the constructor from your member function. However, trying to call a constructor directly will generally result in unexpected behavior as we have shown above. Many developers simply copy the code from the constructor into the initialization function, which would work, but lead to duplicate code. The best solution in this case is to move the code from the constructor to your new function, and have the constructor call your function to do the work of “initializing” the data:
+
+class Foo
+{
+public:
+    Foo()
+    {
+        init();
+    }
+
+    Foo(int value)
+    {
+        init();
+        // do something with value
+    }
+
+    void init()
+    {
+        // code to "initialize" Foo
+    }
+};
+
+Constructors are allowed to call non-constructor functions in the class. Just be careful that any members the non-constructor function uses have already been initialized. Although you may be tempted to copy code from the first constructor into the second constructor, having duplicate code makes your class harder to understand and more burdensome to maintain.
+
+We say “initialize”, but it’s not real initialization. By the time the constructor calls init(), the members already exist and have been default initialized or are uninitialized. The init function can only assign values to the members. There are some types that cannot be instantiated without arguments, because they don’t have a default constructor. If any of the class members has such a type, the init function doesn’t work and the constructors have to initialize those members themselves.
+
+It is fairly common to include an init() function that initializes member variables to their default values, and then have each constructor call that init() function before doing its parameter-specific tasks. This minimizes code duplication and allows you to explicitly call init() from wherever you like.
+
+One small caveat: be careful when using init() functions and dynamically allocated memory. Because init() functions can be called by anyone at any time, dynamically allocated memory may or may not have already been allocated when init() is called. Be careful to handle this situation appropriately -- it can be slightly confusing, since a non-null pointer could be either dynamically allocated memory or an uninitialized pointer!

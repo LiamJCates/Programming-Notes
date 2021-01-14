@@ -1,3 +1,5 @@
+In order to determine the size of data types on a particular machine, C++ provides an operator named sizeof. The sizeof operator is a unary operator that returns its operands size in bytes.
+
 | Name | Syntax | Overloadable |
 |------|--------|--------------|
 | sizeof VariableType | sizeof(a) | Yes |

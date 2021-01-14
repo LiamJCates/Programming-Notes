@@ -198,3 +198,125 @@ You can also use this data type when declaring formal parameters, as shown in th
 This function takes as an argument any variable of type tableType, which is a twodimensional array containing 20 rows and 10 columns, and initializes the array to 0.
 
 By first defining a data type, you do not need to keep checking the exact number of columns when you declare a two-dimensional array as a variable or formal parameter, or when you pass an array as a parameter during a function call.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Two-dimensional dynamically allocated arrays
+
+Another common use for pointers to pointers is to facilitate dynamically allocated multidimensional arrays (see 9.5 -- Multidimensional Arrays for a review of multidimensional arrays).
+
+Unlike a two dimensional fixed array, which can easily be declared like this:
+
+1
+
+int array[10][5];
+
+Dynamically allocating a two-dimensional array is a little more challenging. You may be tempted to try something like this:
+
+1
+
+int **array = new int[10][5]; // won’t work!
+
+But it won’t work.
+
+There are two possible solutions here. If the rightmost array dimension is a compile-time constant, you can do this:
+
+1
+
+int (*array)[5] = new int[10][5];
+
+The parenthesis are required here to ensure proper precedence. In C++11 or newer, this is a good place to use automatic type deduction:
+
+1
+
+auto array = new int[10][5]; // so much simpler!
+
+Unfortunately, this relatively simple solution doesn’t work if any non-leftmost array dimension isn’t a compile-time constant. In that case, we have to get a little more complicated. First, we allocate an array of pointers (as per above). Then we iterate through the array of pointers and allocate a dynamic array for each array element. Our dynamic two-dimensional array is a dynamic one-dimensional array of dynamic one-dimensional arrays!
+
+1
+2
+3
+
+int **array = new int*[10]; // allocate an array of 10 int pointers — these are our rows
+for (int count = 0; count < 10; ++count)
+    array[count] = new int[5]; // these are our columns
+
+We can then access our array like usual:
+
+1
+
+array[9][4] = 3; // This is the same as (array[9])[4] = 3;
+
+With this method, because each array column is dynamically allocated independently, it’s possible to make dynamically allocated two dimensional arrays that are not rectangular. For example, we can make a triangle-shaped array:
+
+1
+2
+3
+
+int **array = new int*[10]; // allocate an array of 10 int pointers — these are our rows
+for (int count = 0; count < 10; ++count)
+    array[count] = new int[count+1]; // these are our columns
+
+In the above example, note that array[0] is an array of length 1, array[1] is an array of length 2, etc…
+
+Deallocating a dynamically allocated two-dimensional array using this method requires a loop as well:
+
+1
+2
+3
+
+for (int count = 0; count < 10; ++count)
+    delete[] array[count];
+delete[] array; // this needs to be done last
+
+Note that we delete the array in the opposite order that we created it (elements first, then the array itself). If we delete array before the array elements, then we’d have to access deallocated memory to delete the array elements. And that would result in undefined behavior.
+
+Because allocating and deallocating two-dimensional arrays is complex and easy to mess up, it’s often easier to “flatten” a two-dimensional array (of size x by y) into a one-dimensional array of size x * y:
+
+1
+2
+3
+4
+5
+6
+7
+
+// Instead of this:
+int **array = new int*[10]; // allocate an array of 10 int pointers — these are our rows
+for (int count = 0; count < 10; ++count)
+    array[count] = new int[5]; // these are our columns
+
+// Do this
+int *array = new int[50]; // a 10x5 array flattened into a single array
+
+Simple math can then be used to convert a row and column index for a rectangular two-dimensional array into a single index for a one-dimensional array:
+
+1
+2
+3
+4
+5
+6
+7
+
+int getSingleIndex(int row, int col, int numberOfColumnsInArray)
+{
+     return (row * numberOfColumnsInArray) + col;
+}
+
+// set array[9,4] to 3 using our flattened array
+array[getSingleIndex(9, 4, 5)] = 3;

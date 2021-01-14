@@ -6,32 +6,65 @@ Since the initial versions of C++ had only the "low-level" C string handling fun
 In your source code, you express the content of your string literals using a character set. Universal character names and escape characters allow you to express any string using only the basic source character set. A raw string literal enables you to avoid using escape characters, and can be used to express all types of string literals. You can also create std::string literals without having to perform extra construction or conversion steps.
 
 
+Declare a basic string literal by enclosing text in quotation marks ("").
+std::cout << "Hello World" << std::endl;
 
 
 The C-Style Character String
 
 The C-style character string originated within the C language and continues to be supported within C++. This string is actually a one-dimensional array of characters which is terminated by a null character '\0'. Thus a null-terminated string contains the characters that comprise the string followed by a null.
 
-The following declaration and initialization create a string consisting of the word "Hello". To hold the null character at the end of the array, the size of the character array containing the string is one more than the number of characters in the word "Hello."
+The following fixed array declaration and initialization create a string consisting of the word "Hello". To hold the null character at the end of the array, the size of the character array containing the string is one more than the number of characters in the word "Hello."
 
 char greeting[6] = {'H', 'e', 'l', 'l', 'o', '\0'};
 
-If you follow the rule of array initialization, then you can write the above statement as follows −
+Also equal to the above declarations are char arrays initialized with a string literal:
 
 char greeting[] = "Hello";
+char greeting[]{ "Hello" };
 
-You do not place the null character at the end of a string constant. The C++ compiler automatically places the '\0' at the end of the string when it initializes the array.
+You do not place the null character at the end of a string literal. The C++ compiler automatically places the '\0' at the end of the string when it initializes the array.
+
+C++ also supports a way to create C-style string symbolic constants using pointers:
+
+  const char *greeting{ "Hello" }; // pointer to symbolic constant
 
 
-Declare a basic string literal by enclosing text in quotation marks ("").
-std::cout << "Hello World" << std::endl;
+In the fixed array case, the program allocates memory for a fixed array of length 5, and initializes that memory with the string "Hello\0". Because memory has been specifically allocated for the array, you’re free to alter the contents of the array. The array itself is treated as a normal local variable, so when the array goes out of scope, the memory used by the array is freed up for other uses.
+
+In the symbolic constant case, how the compiler handles this is implementation defined. What usually happens is that the compiler places the string C++20Alex\0" into read-only memory somewhere, and then sets the pointer to point to it. Because this memory may be read-only, best practice is to make sure the string is const.
+
+For optimization purposes, multiple string literals may be consolidated into a single value. For example:
+
+  const char *name1{ "Alex" };
+  const char *name2{ "Alex" };
+
+These are two different string literals with the same value. The compiler may opt to combine these into a single shared string literal, with both name1 and name2 pointed at the same address. Thus, if name1 was not const, making a change to name1 could also impact name2 (which might not be expected).
+
+As a result of string literals being stored in a fixed location in memory, string literals have static duration rather than automatic duration (that is, they die at the end of the program, not the end of the block in which they are defined). That means that when we use string literals, we don’t have to worry about scoping issues. Thus, the following is okay:
+
+  const char* getName()
+  {
+      return "Alex";
+  }
+
+In the above code, getName() will return a pointer to C-style string "Alex". If this function were returning any other local variable by address, the variable would be destroyed at the end of getName(), and we’d return a dangling pointer back to the caller. However, because string literals have static duration, "Alex" will not be destroyed when getName() terminates, so the caller can still successfully access it.
+
+C-style strings are used in a lot of old or low-level code, because they have a very small memory footprint. Modern code should favor the use std::string and std::string_view, as those provide safe and easy access to the string.
+
+
+
+
+
 
 A string literal represents a sequence of characters that together form a null-terminated string.
 
 There are the following kinds of string literals:
   Narrow string literals
   UTF-8 encoded strings
-
+  Wide string literals
+  Raw string Literals
+  std::string literals
 
 Narrow string literals
 A narrow string literal is a non-prefixed, double-quote delimited, null-terminated array of type const char[n], where n is the length of the array in bytes. A narrow string literal may contain any graphic character except the double quotation mark ("), backslash (\), or newline character. A narrow string literal may also contain the escape sequences listed above, and universal character names that fit in a byte.

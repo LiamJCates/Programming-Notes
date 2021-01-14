@@ -1,9 +1,10 @@
 In general, a computer programming subroutine is a group of statements, given a name, which can be called from some point in the program to be executed to accomplish some task.
 
-
 Formally, computer programming subroutine is a code block that can take inputs, execute instructions, and return a result. Functions allow a programmer to structure programs in segments of code to perform individual tasks.
 
 In different programming languages, a subroutine may be called a routine, subprogram, function, method, or procedure. Technically, these terms all have different definitions. The generic, umbrella term "callable unit" is sometimes used.
+
+Functions enable you to divide the content of your application into functional units that can be invoked in a sequence of your choosing.
 
 In the following discussion we shall refer to the more general concept of subroutine using the word function.
 

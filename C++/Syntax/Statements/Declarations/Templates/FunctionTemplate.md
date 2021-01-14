@@ -25,6 +25,12 @@ There are three ways of expressing an operation parameterized by types or values
 • A lambda expression: a shorthand notation for a function object
 
 
+
+Template functions do have a few drawbacks, and we would be remiss not to mention them. First, some older compilers do not have very good template support. However, this downside is no longer as much of a problem as it used to be. Second, template functions often produce crazy-looking error messages that are much harder to decipher than those of regular functions (we’ll see an example of this in the next lesson). Third, template functions can increase your compile time and code size, as a single template might be “realized” and recompiled in many files (there are ways to work around this one).
+
+However, these drawbacks are fairly minor compared with the power and flexibility templates bring to your programming toolkit!
+
+
 ## Examples
 
 
@@ -120,7 +126,7 @@ Function objects used to specify the meaning of key operations of a general algo
 
 
 ## Lambda Expressions
-We recently defined Less_than separately from its use. That can be inconvenient. Consequently, there is a notation for implicitly generating function objects:
+There is a notation for implicitly generating function objects:
 
 void f(const Vector<int>& vec, const list<string>& lst, int x, const string& s)
 {

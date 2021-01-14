@@ -183,59 +183,6 @@ variable c, which is a pointer to a pointer, and can be used in three different 
 
 
 
-### Void Pointer
-You can also specify a pointer to a block of memory (called a void pointer):
-
-  void* voidPointer;
-
-The void type of pointer is a special type of pointer. In C++, void represents the absence of type. Therefore, void pointers are pointers that point to a value that has no type (and thus also an undetermined length and undetermined dereferencing properties).
-
-This gives void pointers a great flexibility, by being able to point to any data type, from an integer value or a float to a string of characters. In exchange, they have a great limitation: the data pointed to by them cannot be directly dereferenced (which is logical, since we have no type to dereference to), and for that reason, any address in a void pointer needs to be transformed into some other pointer type that points to a concrete data type before being dereferenced.
-
-One of its possible uses may be to pass generic parameters to a function.
-
-
-
-
-### const Pointers
-
-declaring a variable as const effectively ensures that value of the variable is fixed as the initialization value for the life of the variable. The value of a const-variable cannot be changed, and therefore it cannot be used as an l-value.
-
-Pointers are variables, too, and hence the const keyword that is relevant to variables is relevant to pointers as well. However, pointers are a special kind of variable as they contain a memory address and are used to modify memory at that address. Thus, when it comes to pointers and constants, you have the following cases:
-
-The address contained in the pointer is constant and cannot be changed, yet the data at that address can be changed:
-
-  int daysInMonth = 30;
-  int* const pDaysInMonth = \&daysInMonth;
-  *pDaysInMonth = 31; // OK! Data pointed to can be changed
-  int daysInLunarMonth = 28;
-  pDaysInMonth = \&daysInLunarMonth; // Not OK! Cannot change address!
-
-
-Data pointed to is constant and cannot be changed, yet the address contained in the pointer can be changed — that is, the pointer can also point elsewhere:
-
-  int hoursInDay = 24;
-  const int* pointsToInt = &hoursInDay;
-  int monthsInYear = 12;
-  pointsToInt = &monthsInYear; // OK!
-  *pointsToInt = 13; // Not OK! Cannot change data being pointed to
-  int* newPointer = pointsToInt; // Not OK! Cannot assign const to non-const
-
-
-Both the address contained in the pointer and the value being pointed to are
-constant and cannot be changed (most restrictive variant):
-
-  int hoursInDay = 24;
-  const int* const pHoursInDay = &hoursInDay;
-  *pHoursInDay = 25; // Not OK! Cannot change data being pointed to
-  int daysInMonth = 30;
-  pHoursInDay = &daysInMonth; // Not OK! Cannot change address
-
-
-These different forms of const are particularly useful when passing pointers to functions. Function parameters need to be declared to support the highest possible (restrictive) level of const-ness, to ensure that a function does not modify the pointed value when it is not supposed to. This will keep programmers of your application from making unwanted changes to pointer values or data.
-
-
-
 ### Array Pointer
 Pointers share several characteristics with arrays. Pointers encode object location. Arrays encode the location and length of contiguous objects.
 
@@ -248,7 +195,15 @@ After initialization, key_ptr points to the first element of key_to_the_universe
 
 An array is a pointer to the first element. Should you need to access the second element via the expression myNumbers[1], you can also access the same using the pointer pointToNums with the syntax *(pointToNums + 1). The third element is accessed in the static array using myNumbers[2], whereas the third element is accessed in the dynamic array using the syntax *(pointToNums + 2).
 
+In all but two cases (which we’ll cover below), when a fixed array is used in an expression, the fixed array will decay (be implicitly converted) into a pointer that points to the first element of the array. You can see this in the following program:
 
+Differences between pointers and fixed arrays
+
+There are a few cases where the difference in typing between fixed arrays and pointers makes a difference. These help illustrate that a fixed array and a pointer are not the same.
+
+The primary difference occurs when using the sizeof() operator. When used on a fixed array, sizeof returns the size of the entire array (array length * element size). When used on a pointer, sizeof returns the size of a memory address (in bytes). A fixed array knows how long the array it is pointing to is. A pointer to the array does not.
+
+The second difference occurs when using the address-of operator (&). Taking the address of a pointer yields the memory address of the pointer variable. Taking the address of the array returns a pointer to the entire array. This pointer also points to the first element of the array, but the type information is different. It’s unlikely you’ll ever need to use this.
 
 #### Handling Decay
 Often, you pass arrays as two arguments:

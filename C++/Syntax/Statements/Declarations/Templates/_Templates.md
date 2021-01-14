@@ -1,6 +1,25 @@
 ## Templates
 
-C++ templates achieve compile-time polymorphism
+While functions and classes are powerful and flexible tools for effective programming, in certain cases they can also be somewhat limiting because of C++’s requirement that you specify the type of all parameters.
+
+For example, let’s say you wanted to write a function to calculate the maximum of two numbers. You might do so like this:
+
+  int max(int x, int y)
+  {
+      return (x > y) ? x : y;
+  }
+
+This function would work great -- for integers. What happens later when you realize your max() function needs to work with doubles? Traditionally, the answer would be to overload the max() function and create a new version that works with doubles:
+
+  double max(double x, double y)
+  {
+      return (x > y) ? x : y;
+  }
+
+Note that the code for the implementation of the double version of maximum() is exactly the same as for the int version of max()! In fact, this implementation would work for all sorts of different types: chars, ints, doubles, and if you’ve overloaded the > operator, even classes! However, because C++ requires you to make your variables specific types, you’re stuck writing one function for each type you wish to use.
+
+Having to specify different “flavors” of the same function where the only thing that changes is the type of the parameters can become a maintenance headache and time-waster, and it also violates the general programming guideline that duplicate code should be minimized as much as possible. Wouldn’t it be nice if we could write one version of max() that was able to work with parameters of ANY type?
+
 
 
 ### Idea
@@ -10,9 +29,9 @@ These parameters, called type parameters, can stand in for any type, including f
 
 The big idea is single source code template substitutes a type parameter for a given type throughout the template statements. This type parameter functions much like a function parameter in that a supplied type values is substituted everywhere the type parameter is specified throughout the statements.
 
-When the templated code is invoke with a type value the compiler generates new template instance, an implementation of the statements that use the source code as a template and the type specified as template instantiation.
+Template instantiation is the process of creating a class or a function from a template. When the templated code is invoke with a type value the compiler generates a new template instance. A template instance is a discrete implementation of the template statements that replaces the type parameter with the supplied type value using the template statement source code as a template.
 
-Template instantiation is the process of creating a class or a function from a template. Somewhat confusingly, you can also refer to “a template instantiation” as the result of the template instantiation process. Template instantiations are also called concrete classes and concrete types.
+Somewhat confusingly, you can also refer to “a template instantiation” as the result of the template instantiation process. Template instantiations are also called concrete classes and concrete types.
 
 The template feature allows us to write a single code segment for:
   a set of related functions, called a function template or parameterized operations.

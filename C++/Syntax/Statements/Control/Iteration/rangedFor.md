@@ -43,3 +43,53 @@ Example:
     }
     printf("The maximum value is %lu.", maximum);
   }
+
+
+
+
+Can I get the index of the current element?
+
+For-each loops do not provide a direct way to get the array index of the current element. This is because many of the structures that for-each loops can be used with (such as linked lists) are not directly indexable!
+
+Since C++20, range-based for-loops can be used with an init-statement just like the init-statement in if-statements. We can use the init-statement to create a manual index counter without polluting the function in which the for-loop is placed.
+
+The init-statement is placed right before the loop variable:
+
+for (init-statement; element_declaration : array)
+   statement;
+
+In the following code, we have two arrays which are correlated by index. For example, the student with the name at names[3] has a score of scores[3]. Whenever a student with a new high score is found, we print their name and difference in points to the previous high score.
+
+  #include <iostream>
+
+  int main()
+  {
+    std::string names[]{ "Alex", "Betty", "Caroline", "Dave", "Emily" };
+    constexpr int scores[]{ 84, 92, 76, 81, 56 };
+    int maxScore{ 0 };
+
+    for (int i{ 0 }; auto score : scores)
+    {
+        if (score > maxScore)
+        {
+            std::cout << names[i] << " beat the previous best score of " << maxScore << " by " << (score - maxScore) << " points!\n";
+            maxScore = score;
+        }
+
+        ++i;
+    }
+
+    std::cout << "The best score was " << maxScore << '\n';
+
+    return 0;
+  }
+
+Output
+
+Alex beat the previous best score of 0 by 84 points!
+Betty beat the previous best score of 84 by 8 points!
+The best score was 92
+
+The int i{ 0 }; is the init-statement, it only gets executed once when the loop starts. At the end of each iteration, we increment i, similar to a normal for-loop. However, if we were to use continue inside the loop, the ++i would get skipped, leading to unexpected results. If you use continue, you need to make sure that i gets incremented before the continue is encountered.
+
+Before C++20, the index variable i had to be declared outside of the loop, which could lead to name conflicts when we wanted to define another variable named i later in the function.

@@ -1,6 +1,6 @@
 When an exception is thrown, it may be caught by the following types of catch handlers:
 
-    A handler that can accept any type (using the ellipsis syntax).
+    A handler that can accept any type (using the ellipsis syntax, ...).
 
     A handler that accepts the same type as the exception object; because it is a copy, const and volatile modifiers are ignored.
 

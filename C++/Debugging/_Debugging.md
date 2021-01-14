@@ -1,7 +1,19 @@
 Debugging
 One of the most important skills for a software engineer is efficient, effective debugging.
 
+Although debugging tools and techniques aren’t part of the C++ standard, learning to find and remove bugs in the programs you write is an extremely important part of being a successful programmer.
+
 It is best to try to correct the errors in top-down fashion because the first error may confuse the compiler and cause it to flag multiple subsequent errors when actually there was only one error on an earlier line.
+
+A general approach to debugging
+
+Once a problem has been identified, debugging the problem generally consists of five steps:
+
+  Find the root cause of the problem (usually the line of code that’s not working)
+  Ensure you understand why the issue is occurring
+  Determine how you’ll fix the issue
+  Repair the issue causing the problem
+  Retest to ensure the problem has been fixed and no new problems have emerged
 
 
 ## Visual Studio

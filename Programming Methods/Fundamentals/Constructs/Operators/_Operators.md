@@ -1,3 +1,5 @@
+In mathematics, an operation is a mathematical calculation involving zero or more input values (called operands) that produces a new value (called an output value). The specific operation to be performed is denoted by a construct (typically a symbol or pair of symbols) called an operator.
+
 In computer programming, operators are constructs defined within programming languages which behave generally like functions, but which differ syntactically or semantically.
 
 

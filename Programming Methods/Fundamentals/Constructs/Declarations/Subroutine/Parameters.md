@@ -1,19 +1,20 @@
 Parameter passing
-Parameters provide a communication link between the calling function (such as
-main) and the called function. They enable functions to manipulate different data each time they are called.
+A function parameter is a variable used in a function. Function parameters work almost identically to variables defined inside the function, but with one difference: they are always initialized with a value provided by the caller of the function.
+
+Parameters provide a communication link between the calling function (such as main) and the called function. They enable functions to manipulate different data each time they are called.
 
 Ways in which parameter data can be passed into and out of methods and functions.
 
 Formal Parameter
-A variable and its type
-as they appear in the prototype of the function or method.
+A variable and its type as they appear in the prototype of the function or method.
 
 Actual Parameter
-The variable or expression corresponding to a formal parameter
-that appears in the function or method call in the calling environment.
+The variable or expression corresponding to a formal parameter that appears in the function or method call in the calling environment.
 
 Parameter passing
 The mechanism used to pass parameters to a procedure (subroutine) or function.
+
+An argument is a value that is passed from the caller to the function when a function call is made
 
 Let us assume that a function B() is called from another function A().
 In this case A is called the “caller function”

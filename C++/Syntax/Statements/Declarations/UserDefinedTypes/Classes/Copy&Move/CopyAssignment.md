@@ -82,3 +82,242 @@ The copy assignment operator starts by allocating a new_buffer with the
 appropriate size. Next, you clean up buffer. You copy buffer, length,
 and max_size and then copy the contents from other.buffer into your own
 buffer.
+
+
+
+
+
+
+
+
+Copy initialization
+By Alex on June 5th, 2016 | last modified by Alex on December 21st, 2020
+
+Consider the following line of code:
+
+1
+
+int x = 5;
+
+This statement uses copy initialization to initialize newly created integer variable x to the value of 5.
+
+However, classes are a little more complicated, since they use constructors for initialization. This lesson will examine topics related to copy initialization for classes.
+
+Copy initialization for classes
+
+Given our Fraction class:
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+
+#include <cassert>
+#include <iostream>
+
+class Fraction
+{
+private:
+    int m_numerator;
+    int m_denominator;
+
+public:
+    // Default constructor
+    Fraction(int numerator=0, int denominator=1) :
+        m_numerator(numerator), m_denominator(denominator)
+    {
+        assert(denominator != 0);
+    }
+
+    friend std::ostream& operator<<(std::ostream& out, const Fraction &f1);
+};
+
+std::ostream& operator<<(std::ostream& out, const Fraction &f1)
+{
+	out << f1.m_numerator << "/" << f1.m_denominator;
+	return out;
+}
+
+Consider the following:
+
+1
+2
+3
+4
+5
+6
+
+int main()
+{
+    Fraction six = Fraction(6);
+    std::cout << six;
+    return 0;
+}
+
+If you were to compile and run this, you’d see that it produces the expected output:
+
+6/1
+
+This form of copy initialization is evaluated the same way as the following:
+
+1
+
+	Fraction six(Fraction(6));
+
+And as you learned in the previous lesson, this can potentially make calls to both Fraction(int, int) and the Fraction copy constructor (which may be elided for performance reasons). However, because eliding isn’t guaranteed (prior to C++17, where elision in this particular case is now mandatory), it’s better to avoid copy initialization for classes, and use uniform initialization instead.
+
+Rule: Avoid using copy initialization, and use uniform initialization instead.
+
+Other places copy initialization is used
+
+There are a few other places copy initialization is used, but two of them are worth mentioning explicitly. When you pass or return a class by value, that process uses copy initialization.
+
+Consider:
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+
+#include <cassert>
+#include <iostream>
+
+class Fraction
+{
+private:
+	int m_numerator;
+	int m_denominator;
+
+public:
+    // Default constructor
+    Fraction(int numerator=0, int denominator=1) :
+        m_numerator(numerator), m_denominator(denominator)
+    {
+        assert(denominator != 0);
+    }
+
+        // Copy constructor
+	Fraction(const Fraction &copy) :
+		m_numerator(copy.m_numerator), m_denominator(copy.m_denominator)
+	{
+		// no need to check for a denominator of 0 here since copy must already be a valid Fraction
+		std::cout << "Copy constructor called\n"; // just to prove it works
+	}
+
+	friend std::ostream& operator<<(std::ostream& out, const Fraction &f1);
+        int getNumerator() { return m_numerator; }
+        void setNumerator(int numerator) { m_numerator = numerator; }
+};
+
+std::ostream& operator<<(std::ostream& out, const Fraction &f1)
+{
+	out << f1.m_numerator << "/" << f1.m_denominator;
+	return out;
+}
+
+Fraction makeNegative(Fraction f) // ideally we should do this by const reference
+{
+    f.setNumerator(-f.getNumerator());
+    return f;
+}
+
+int main()
+{
+    Fraction fiveThirds(5, 3);
+    std::cout << makeNegative(fiveThirds);
+
+    return 0;
+}
+
+In the above program, function makeNegative takes a Fraction by value and also returns a Fraction by value. When we run this program, we get:
+
+Copy constructor called
+Copy constructor called
+-5/3
+
+The first copy constructor call happens when fiveThirds passed as an argument into makeNegative() parameter f. The second call happens when the return value from makeNegative() is passed back to main().
+
+In the above case, both the argument passed by value and the return value can not be elided. However, in other cases, if the argument or return value meet specific criteria, the compiler may opt to elide the copy constructor. For example:
+
+class Something
+{
+};
+
+Something foo()
+{
+  Something s;
+  return s;
+}
+
+int main()
+{
+  Something s = foo();
+}
+
+In this case, the compiler will probably elide the copy constructor, even though variable s is returned by value.

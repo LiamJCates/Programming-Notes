@@ -191,6 +191,17 @@ If C++ allowed arrays to be passed by value, the computer would have to allocate
 functions also return the address of an array rather than copy each member back to the caller
 
 
+As C++ implicitly converts parameters using the array syntax ([]) to the pointer syntax (*). That means the following two function declarations are identical:
+
+  void printSize(int array[]);
+  void printSize(int *array);
+
+Some programmers prefer using the [] syntax because it makes it clear that the function is expecting an array, not just a pointer to a value. However, in most cases, because the pointer doesn’t know how large the array is, you’ll need to pass in the array size as a separate parameter anyway (strings being an exception because they’re null terminated).
+
+We lightly recommend using the pointer syntax, because it makes it clear that the parameter is being treated as a pointer, not a fixed array, and that certain operations, such as sizeof(), will operate as if the parameter is a pointer.
+
+Recommendation: Favor the pointer syntax (*) over the array syntax ([]) for array function parameters.
+
 
 ## Library
 The arrays explained above are directly implemented as a language feature, inherited from the C language. They are a great feature, but by restricting its copy and easily decay into pointers, they probably suffer from an excess of optimization. To overcome some of these issues with language built-in arrays, C++ provides an alternative array type as a standard container:

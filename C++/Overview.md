@@ -15,6 +15,12 @@ Why Learn C++
 
 
 
+C and C++’s philosophy
+
+The underlying design philosophy of C and C++ can be summed up as “trust the programmer” -- which is both wonderful and dangerous. C++ is designed to allow the programmer a high degree of freedom to do what they want. However, this also means the language often won’t stop you from doing things that don’t make sense, because it will assume you’re doing so for some reason it doesn’t understand. There are quite a few pitfalls that new programmers are likely to fall into if caught unaware. This is one of the primary reasons why knowing what you shouldn’t do in C/C++ is almost as important as knowing what you should do.
+
+
+
 C++ Characteristics
 C++ is a mid-level, statically typed, compiled, general-purpose, case-sensitive, free-form programming language that supports procedural, object-oriented, and generic programming.
 
@@ -58,7 +64,15 @@ Generic programming is a style of computer programming in which algorithms are w
 Syntax and semantics
 While there is no single organization the controls all of C++, individual vendors and communities implement the ISO standard which determines the syntax and semantics of the C++ language
 
-The ISO committee updates the standard every three years
+C++ was standardized in 1998 by the ISO committee (this means the ISO committee ratified a document describing the C++ language, to help ensure all compilers adhered to the same set of standards).
+
+A minor update was released in 2003 (called C++03).
+
+Four major updates to the C++ language (C++11, C++14, C++17, and C++20 ratified in 2011, 2014, 2017, and 2020 accordingly) have been made since then, each adding additional functionality. C++11 in particular added a huge number of new capabilities, and at this point is widely considered the new baseline.
+
+Upgrades language by the ISO committee are expected every three or so years.
+
+Each new formal release of the language is called a language standard (or language specification). Standards are named after the year they are released in. For example, there is no C++15, because there was no new standard in 2015.
 
 It is suggested that projects always used the most recent implementation of the standard.
 
