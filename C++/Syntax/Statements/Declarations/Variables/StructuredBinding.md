@@ -53,7 +53,8 @@ struct TextFile {
 First, a flag communicates to the caller whether the function call was a success. Next is the contents of the file and its size n_bytes.
 
 The prototype of read_text_file looks like this:
-TextFile read_text_file(const char* path);
+
+  TextFile read_text_file(const char* path);
 
 You can use a structured binding declaration to unpack a TextFile into
 its parts within your program:

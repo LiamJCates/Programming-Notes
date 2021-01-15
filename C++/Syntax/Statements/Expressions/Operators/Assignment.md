@@ -25,7 +25,8 @@ All assignment operators except the = operator are compound assignment operators
 
 
 
-simple assignment
+### Simple Assignment
+
 The simple assignment operator (=) causes the value of the second operand to be stored in the object specified by the first operand. If both objects are of arithmetic types, the right operand is converted to the type of the left, before storing the value.
 
 Assignments to reference types behave as if the assignment were being made to the object to which the reference points.
@@ -38,7 +39,8 @@ An object of any unambiguously derived class from a given base class can be assi
 
 
 
-compound assignment
+### Compound Assignment
+
 The compound assignment operators are shown in the Assignment operators table. These operators have the form e1 op= e2, where e1 is a non-const modifiable l-value and e2 is:
 
     an arithmetic type

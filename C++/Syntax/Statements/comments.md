@@ -3,6 +3,11 @@ There are two common types of comments in a C++ program:
   single-line comments
   multiple-line comments
 
+
+
+
+### Single-line comments
+
 Single-line comments begin with // and can be placed anywhere in a line:
 
   //single line
@@ -29,7 +34,7 @@ std::cout << "Yeah!\n";
 
 
 
-Multi-line Comments
+### Multi-line Comments
 
 The /* and */ pair of symbols denotes a C-style multi-line comment.
 

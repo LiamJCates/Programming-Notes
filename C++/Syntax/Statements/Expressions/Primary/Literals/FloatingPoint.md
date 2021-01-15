@@ -54,9 +54,9 @@ Floating-point literals are of three types:
   extended precision specified by l or L suffix
 
 Example:
-auto a = 0.1F;    //float
-auto b = 0.1;     //double
-auto c = 0.1L;    //long double
+  auto a = 0.1F;    //float
+  auto b = 0.1;     //double
+  auto c = 0.1L;    //long double
 
 
 
@@ -80,22 +80,21 @@ double d = 0x1.4p3; // hex fraction 1.4 (decimal 1.25) scaled by 2^3, that is 10
 
 
 Example
-Run this code
 
-#include <iostream>
-int main()
-{
-  std::cout << 58.         << '\n'
-            << 4e2         << '\n'
-            << 123.456e-67 << '\n'
-            << .1E4f       << '\n'
-            << 0x10.1p0    << '\n';
-}
+  #include <iostream>
+  int main()
+  {
+    std::cout << 58.         << '\n'
+              << 4e2         << '\n'
+              << 123.456e-67 << '\n'
+              << .1E4f       << '\n'
+              << 0x10.1p0    << '\n';
+  }
 
 Output:
 
-58
-400
-1.23456e-65
-1000
-16.0625
+  58
+  400
+  1.23456e-65
+  1000
+  16.0625

@@ -12,27 +12,31 @@ or more comma-separated attribute elements.
 | [[maybe_unused]] | Indicates that the following element might be unused and that the compiler shouldn’t warn about it. |
 | [[carries_dependency]] | Used within the <atomic> header to help the compiler optimize certain memory operations. You’re unlikely to encounter this directly.|
 
-demonstrates using the [[noreturn]] attribute by defining a
-function that never returns.
-#include <cstdio>
-#include <stdexcept>
-[[noreturn]] void pitcher() {
-throw std::runtime_error{ "Knuckleball." };
-}
-int main() {
-try {
-pitcher();
-} catch(const std::exception& e) {
-printf("exception: %s\n", e.what());
-}
-}
-Exception: Knuckleball.
-Listing 8-12: A program illustrating the use of the [[noreturn]] attribute
+demonstrates using the [[noreturn]] attribute by defining a function that never returns.
+
+  #include <cstdio>
+  #include <stdexcept>
+
+  [[noreturn]] void pitcher() {
+    throw std::runtime_error{ "Knuckleball." };
+  }
+
+  int main() {
+    try {
+      pitcher();
+    } catch(const std::exception& e) {
+      printf("exception: %s\n", e.what());
+    }
+  }
+
+Output:
+
+  Exception: Knuckleball.
 
 First, you declare the pitcher function with the [[noreturn]] attribute. Within this function, you throw an exception. Because you always throw an exception, pitcher never returns (hence the [[noreturn]] attribute).
-Within main, you invoke pitcher and handle the caught exception. Of
-course, this listing works without the [[noreturn]] attribute. But giving this
-information to the compiler allows it to reason more completely on your
+
+Within main, you invoke pitcher and handle the caught exception. Of course, this listing works without the [[noreturn]] attribute. But giving this information to the compiler allows it to reason more completely on your
 code (and potentially to optimize your program).
+
 The situations in which you’ll need to use an attribute are rare, but they
 convey useful information to the compiler nonetheless.

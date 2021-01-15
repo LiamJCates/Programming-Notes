@@ -1,10 +1,15 @@
 ## Syntax
 https://en.wikipedia.org/wiki/Syntax_(programming_languages)
-Just as human languages have grammar to dictate the rules of the language, a programming language has syntax. The syntax is the rules for how we structure a program using a given language.
+Just as human languages have grammar to dictate the rules of the language, a programming language has syntax.
 
-To represent language constructs, syntax rules define the combinations of symbols that are considered to be correctly structured statements or expressions in that language.
+In natural language, sentences are constructed according to specific grammatical rules. The rules that govern how sentences are constructed in a language is called syntax.
 
-The smallest individual unit of a program written in any language is called a token. Larger programmatic units are comprised of combinations of tokens.
+In computer science, the syntax of a computer language is defined to be the set of rules that defines the combinations of symbols that are considered to be correctly structured.
+
+
+
+### Tokens
+The smallest individual unit of a program written in any language is called a token. Larger programmatic units are comprised of combinations of symbols called tokens.
 
 Common Token Elements
   Character Set

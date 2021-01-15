@@ -60,13 +60,13 @@ int main() {
 A scope resolution operator without a scope qualifier refers to the global namespace.
 C++
 
-namespace NamespaceA{
+  namespace NamespaceA{
     int x;
-}
+  }
 
-int x;
+  int x;
 
-int main() {
+  int main() {
     int x;
 
     // the x in main()
@@ -76,48 +76,48 @@ int main() {
 
     // The x in the A namespace
     NamespaceA::x = 2;
-}
+  }
 
 You can use the scope resolution operator to identify a member of a namespace, or to identify a namespace that nominates the member’s namespace in a using directive. In the example below, you can use NamespaceC to qualify ClassB, even though ClassB was declared in namespace NamespaceB, because NamespaceB was nominated in NamespaceC by a using directive.
 C++
 
-namespace NamespaceB {
+  namespace NamespaceB {
     class ClassB {
     public:
         int x;
     };
-}
+  }
 
-namespace NamespaceC{
+  namespace NamespaceC{
     using namespace NamespaceB;
-}
+  }
 
-int main() {
+  int main() {
     NamespaceB::ClassB b_b;
     NamespaceC::ClassB c_b;
 
     b_b.x = 3;
     c_b.x = 4;
-}
+  }
 
 You can use chains of scope resolution operators. In the following example, NamespaceD::NamespaceD1 identifies the nested namespace NamespaceD1, and NamespaceE::ClassE::ClassE1 identifies the nested class ClassE1.
 C++
 
-namespace NamespaceD{
+  namespace NamespaceD{
     namespace NamespaceD1{
-        int x;
+      int x;
     }
-}
+  }
 
-namespace NamespaceE{
+  namespace NamespaceE{
     class ClassE{
     public:
         class ClassE1{
         public:
-            int x;
+          int x;
         };
     };
-}
+  }
 
 int main() {
     NamespaceD:: NamespaceD1::x = 6;
@@ -130,31 +130,31 @@ Use :: for static members
 You must use the scope resolution operator to call static members of classes.
 C++
 
-class ClassG {
-public:
+  class ClassG {
+  public:
     static int get_x() { return x;}
     static int x;
-};
+  };
 
-int ClassG::x = 6;
+  int ClassG::x = 6;
 
-int main() {
+  int main() {
 
     int gx1 = ClassG::x;
     int gx2 = ClassG::get_x();
-}
+  }
 
 Use :: for scoped enumerations
 
 The scoped resolution operator is also used with the values of a scoped enumeration Enumeration declarations, as in the following example:
 C++
 
-enum class EnumA{
+  enum class EnumA{
     First,
     Second,
     Third
-};
+  };
 
-int main() {
+  int main() {
     EnumA enum_value = EnumA::First;
-}
+  }

@@ -41,7 +41,6 @@ C++ Operators
 
 
 
-
 ## Operator Aliases
 C++ defines keywords to act as aliases for a number of operators:
 
@@ -115,7 +114,7 @@ Precedence is a compile time concept that drives how operators bind to operands.
 
 Evaluation order is a runtime concept that drives the scheduling of operator execution.
 
-In general, C++ has no clearly specified execution order for operands. Although operators bind to operands in the well-defined way explained above, those operands evaluate in an undefined order. 
+In general, C++ has no clearly specified execution order for operands. Although operators bind to operands in the well-defined way explained above, those operands evaluate in an undefined order.
 
 The compiler can order operand evaluation however it likes.
 

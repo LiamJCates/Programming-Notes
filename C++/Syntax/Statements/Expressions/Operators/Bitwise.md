@@ -22,6 +22,8 @@ These operands perform bitwise evaluation between corresponding operand bits.
 Both operands to the bitwise operator must have integral types. The usual arithmetic conversions are applied to the operands:
 [C++\Semantics\Types&Values\Conversions\StandardConversions.md]
 
+
+
 ## Bitwise Shift Operators
 | Name | Syntax | Overloadable |
 |------|--------|--------------|

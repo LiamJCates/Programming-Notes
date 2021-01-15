@@ -1,27 +1,32 @@
 ## Namespaces
+
 Namespaces prevent naming conflicts.
 
 A namespace statement declares the name of a namespace and causes the source code that follows the declaration to be compiled within the scope encompassed by that namespace.
 
-Namespaces are names given to parts of code.
+Namespaces are names given to regions of code.
 
-The reason you use std::cout in a program and not only cout is that the artifact (cout) that you want to invoke is in the standard (std) namespace.
-
-By invoking std::cout, you are telling the compiler to use that one unique cout that is available in the std namespace.
+For example, the reason you use std::cout in a program and not only cout is that the artifact (cout) that you want to invoke is in the standard (std) namespace. By invoking std::cout, you are telling the compiler to use that one unique cout that is available in the std namespace.
 
 You use the std (pronounced “standard”) namespace to invoke functions, streams, and utilities that have been ratified by the ISO Standards Committee.
 
 
+Types of Namespace declarations:
+  Nested
+  Alias
+  Anonymous
+  Inline
+
 ### Naming Conflict
 Assume that you didn’t use the namespace qualifier in invoking cout and assume that cout existed in two locations known to the compiler — which one should the compiler invoke?
+
 This causes a conflict and the compilation fails.
 
-This is where namespaces get useful.
-Namespaces help in reducing the potential for a naming conflict.
+This is where namespaces get useful. Namespaces help in reducing the potential for a naming conflict.
 
 By telling the compiler that you are using the namespace std, you don’t need to explicitly mention the namespace when using std::cout or std::endl:
 
-using namespace std;
+  using namespace std;
 
 The effect of this statement is that, when compiling, for any unrecognized name, the compiler will try prepending std:: to it to see if it exists in the std namespaces.
 
@@ -38,10 +43,10 @@ ANSI/ISO Standard C++ tries to solve this problem of overlapping global identifi
 
 The general syntax of the statement namespace is:
 
-namespace namespace_name
-{
-  //members
-}
+  namespace namespace_name
+  {
+    //members
+  }
 
 where members is usually named constants, variable declarations, functions, or
 another namespace.
@@ -50,6 +55,7 @@ Note that namespace_name follows the rules for C++ identifier.
 
 For more information on C++ identifier see:
 [C++\Syntax\Statements\Declarations\Identifiers.md]
+
 
 
 ### Scope Resolution
@@ -85,10 +91,11 @@ any namespace qualifiers.
 To place a symbol within a namespace other than the global namespace,
 you declare the symbol within a namespace block. A namespace block has the
 following form:
-namespace Namespace1 {
-// All symbols declared within this block
-// belong to the Namespace1 namespace
-}
+
+  namespace Namespace1 {
+    // All symbols declared within this block
+    // belong to the Namespace1 namespace
+  }
 
 
 It’s legal to declare namespace blocks in multiple locations (either across multiple files, or multiple places within the same file). All declarations within the namespace are considered part of the namespace.
@@ -102,22 +109,22 @@ Note that this capability also means you could add your own functionality to the
 
 Namespaces can be nested in one of two ways.
 
-
 nest namespace blocks:
 
-namespace Namespace1 {
-  namespace Namespace2 {
-  // All symbols declared within this block
-  // belong to the Namespace1::Namespace2 namespace
+  namespace Namespace1 {
+    namespace Namespace2 {
+    // All symbols declared within this block
+    // belong to the Namespace1::Namespace2 namespace
+    }
   }
-}
 
 Use the scope-resolution operator:
 
-namespace Namespace1::Namespace2 {
-  // All symbols declared within this block
-  // belong to the Namespace1::Namespace2 namespace
-}
+  namespace Namespace1::Namespace2 {
+    // All symbols declared within this block
+    // belong to the Namespace1::Namespace2 namespace
+  }
+
 The latter approach is more succinct.
 
 
@@ -125,12 +132,11 @@ The latter approach is more succinct.
 ### Namespace Aliasing
 Existing namespaces can be aliased with new names, with the following syntax:
 
-namespace new_name = current_name;
+  namespace new_name = current_name;
 
 
 ### Accessing Namespaces
 The scope of a namespace member is local to the namespace. You can usually access a namespace member outside the namespace in one of two ways, as described below.
-
 
 
 
@@ -189,8 +195,7 @@ After the using statement, to access a namespace member, you do not have to put 
 
 
 
-
-Cancelling or replacing a using statement
+### Cancelling or replacing a using statement
 
 Once a using statement has been declared, there’s no way to cancel or replace it with a different using statement within the scope in which it was declared.
 
@@ -222,10 +227,6 @@ The best you can do is intentionally limit the scope of the using statement from
   }
 
 Of course, all of this headache can be avoided by explicitly using the scope resolution operator (::) in the first place.
-
-
-
-
 
 
 
@@ -287,64 +288,30 @@ It's also interesting to note what happens if Foo is in namespace Outer, rather 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-C++ supports two permutations on regular namespaces that are worth at least knowing about. We won’t build on these, so consider this lesson optional for now.
-
-Unnamed (anonymous) namespaces
+#### Unnamed (anonymous) namespaces
 
 An unnamed namespace (also called an anonymous namespace) is a namespace that is defined without a name, like so:
 
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
+  #include <iostream>
 
-#include <iostream>
-
-namespace // unnamed namespace
-{
+  namespace // unnamed namespace
+  {
     void doSomething() // can only be accessed in this file
     {
         std::cout << "v1\n";
     }
-}
+  }
 
-int main()
-{
+  int main()
+  {
     doSomething(); // we can call doSomething() without a namespace prefix
 
     return 0;
-}
+  }
 
-This prints:
+Output:
 
-v1
+  v1
 
 All content declared in an unnamed namespace is treated as if it is part of the parent namespace. So even though function doSomething is defined in the unnamed namespace, the function itself is accessible from the parent namespace (which in this case is the global namespace), which is why we can call doSomething from main without any qualifiers.
 
@@ -352,69 +319,44 @@ This might make unnamed namespaces seem useless. But the other effect of unnamed
 
 For functions, this is effectively the same as defining all functions in the unnamed namespace as static functions. The following program is effectively identical to the one above:
 
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
+  #include <iostream>
 
-#include <iostream>
-
-static void doSomething() // can only be accessed in this file
-{
+  static void doSomething() // can only be accessed in this file
+  {
     std::cout << "v1\n";
-}
+  }
 
-int main()
-{
+  int main()
+  {
     doSomething(); // we can call doSomething() without a namespace prefix
 
     return 0;
-}
+  }
 
 Unnamed namespaces are typically used when you have a lot of content that you want to ensure stays local to a given file, as it’s easier to cluster such content in an unnamed namespace than individually mark all declarations as static. Unnamed namespaces will also keep user-defined types (something we’ll discuss in a later lesson) local to the file, something for which there is no alternative equivalent mechanism to do.
 
-Inline namespaces
+
+
+
+### Inline namespaces
 
 Now consider the following program:
 
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
+  #include <iostream>
 
-#include <iostream>
-
-void doSomething()
-{
+  void doSomething()
+  {
     std::cout << "v1\n";
-}
+  }
 
-int main()
-{
+  int main()
+  {
     doSomething();
 
     return 0;
-}
+  }
 
-This prints:
+Output:
 
 v1
 
@@ -428,63 +370,35 @@ An alternative is to use an inline namespace. An inline namespace is a namespace
 
 To define an inline namespace, we use the inline keyword:
 
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
+  #include <iostream>
 
-#include <iostream>
-
-inline namespace v1 // declare an inline namespace named v1
-{
+  inline namespace v1 // declare an inline namespace named v1
+  {
     void doSomething()
     {
         std::cout << "v1\n";
     }
-}
+  }
 
-namespace v2 // declare a normal namespace named v2
-{
+  namespace v2 // declare a normal namespace named v2
+  {
     void doSomething()
     {
         std::cout << "v2\n";
     }
-}
+  }
 
-int main()
-{
+  int main()
+  {
     v1::doSomething(); // calls the v1 version of doSomething()
     v2::doSomething(); // calls the v2 version of doSomething()
 
     doSomething(); // calls the inline version of doSomething() (which is v1)
 
     return 0;
-}
+  }
 
-This prints:
+Output:
 
 v1
 v2
@@ -494,63 +408,35 @@ In the above example, callers to doSomething will get the v1 (the inline version
 
 Alternatively, if you want to push the newer version:
 
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
+  #include <iostream>
 
-#include <iostream>
-
-namespace v1 // declare a normal namespace named v1
-{
+  namespace v1 // declare a normal namespace named v1
+  {
     void doSomething()
     {
         std::cout << "v1\n";
     }
-}
+  }
 
-inline namespace v2 // declare an inline namespace named v2
-{
+  inline namespace v2 // declare an inline namespace named v2
+  {
     void doSomething()
     {
         std::cout << "v2\n";
     }
-}
+  }
 
-int main()
-{
+  int main()
+  {
     v1::doSomething(); // calls the v1 version of doSomething()
     v2::doSomething(); // calls the v2 version of doSomething()
 
     doSomething(); // calls the inline version of doSomething() (which is v2)
 
     return 0;
-}
+  }
 
-This prints:
+Output:
 
 v1
 v2

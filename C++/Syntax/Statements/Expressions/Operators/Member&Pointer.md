@@ -7,6 +7,7 @@ Member and Pointer Operators
 | Address-of | &a | Yes |
 
 
+
 ### Indirection
 The unary indirection operator (*) dereferences a pointer; that is, it converts a pointer value to an l-value. The operand of the indirection operator must be a pointer to a type. The result of the indirection expression is the type from which the pointer type is derived.
 

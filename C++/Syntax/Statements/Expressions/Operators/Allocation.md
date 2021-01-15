@@ -9,29 +9,27 @@ C++ supports dynamic allocation and deallocation of objects using the new and de
 
 The new function in the C++ Standard Library supports the behavior specified in the C++ standard, which is to throw a std::bad_alloc exception if the memory allocation fails.
 
-
 If the request is for zero bytes of storage, operator new returns a pointer to a distinct object. That is, repeated calls to operator new return different pointers. If there's insufficient memory for the allocation request, operator new throws a std::bad_alloc exception.
 
 
 
-
-new
+### new
 Allocates memory for an object or array of objects of type-name from the free store and returns a suitably typed, nonzero pointer to the object.
 
 [::] new [placement] new-type-name [new-initializer]
 [::] new [placement] ( type-name ) [new-initializer]
 
 
-
-
 Scope for operator new functions
 
-::operator new 	              Global
-class-name ::operator new     Class
+:: operator new 	             Global
+class-name :: operator new     Class
 
 The first argument to operator new must be of type size_t, defined in <stddef.h>, and the return type is always void*.
 
-The global operator new function is called when the new operator is used to allocate objects of built-in types, objects of class type that don't contain user-defined operator new functions, and arrays of any type. When the new operator is used to allocate objects of a class type where an operator new is defined, that class's operator new is called.
+The global operator new function is called when the new operator is used to allocate objects of built-in types, objects of class type that don't contain user-defined operator new functions, and arrays of any type.
+
+When the new operator is used to allocate objects of a class type where an operator new is defined, that class's operator new is called.
 
 An operator new function defined for a class is a static member function (which can't be virtual) that hides the global operator new function for objects of that class type.
 

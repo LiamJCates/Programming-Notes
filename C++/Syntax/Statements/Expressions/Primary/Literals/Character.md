@@ -71,10 +71,22 @@ Character literals are encoded differently based their prefix.
   e.g. L'β' or L'貓'.
   A character literal that begins with the L prefix is a wide-character literal. The value of a wide-character literal containing a single character, escape sequence, or universal character name has a value equal to the numerical value of its encoding in the execution wide-character set unless the character literal has no representation in the execution wide-character set, in which case the value is implementation-defined. The value of a wide-character literal containing multiple characters, escape sequences, or universal character names is implementation-defined.
   Such literal has type wchar_t and the value equal to the value of c-char in the execution wide character set. If c-char is not representable in the execution character set (e.g. a non-BMP value on Windows where wchar_t is 16-bit), the value of the literal is implementation-defined.
+  If a wide character literal prefixed with L contains a multicharacter sequence, the value is taken from the first character, and the compiler raises warning C4066. Subsequent characters are ignored, unlike the behavior of the equivalent ordinary multicharacter literal.
+  wchar_t w1 = L'\100';   // L'@'
+  wchar_t w2 = L'\1000';  // C4066 L'@', 0 ignored
+  wchar_t w3 = L'\009';   // C4066 L'\0', 9 ignored
+  wchar_t w4 = L'\089';   // C4066 L'\0', 89 ignored
+  wchar_t w5 = L'\qrs';   // C4129, C4066 L'q' escape, rs ignored
+  wchar_t w6 = L'\x0050'; // L'P'
+  wchar_t w7 = L'\x0pqr'; // C4066 L'\0', pqr ignored
 
 6) Multicharacter literal
   e.g. 'AB'
   has type int and implementation-defined value.
+  To create a value from a narrow multicharacter literal, the compiler converts the character or character sequence between single quotes into 8-bit values within a 32-bit integer. Multiple characters in the literal fill corresponding bytes as needed from high-order to low-order. The compiler then converts the integer to the destination type following the usual rules. For example, to create a char value, the compiler takes the low-order byte. To create a wchar_t or char16_t value, the compiler takes the low-order word. The compiler warns that the result is truncated if any bits are set above the assigned byte or word.
+  char c0    = 'abcd';    // C4305, C4309, truncates to 'd'
+  wchar_t w0 = 'abcd';    // C4305, C4309, truncates to '\x6364'
+  int i0     = 'abcd';    // 0x61626364
 
 Notes
 
@@ -92,8 +104,6 @@ int main()
 
     // Multicharacter literals
     auto m0 = 'abcd'; // int, value 0x61626364
-
-
 }
 
 
@@ -128,10 +138,30 @@ There are three kinds of escape sequences: simple, octal, and hexadecimal.
 | \nnn | octal | byte nnn |
 | \xnn | hexadecimal |byte nn |
 
+
+#### Octal
 Octal escape sequences have a limit of three octal digits, but terminate at the first character that is not a valid octal digit if encountered sooner.
 The highest possible octal value is \377, as this is decimal 255.
+An octal escape sequence that appears to contain more than three digits is treated as a 3-digit octal sequence, followed by the subsequent digits as characters in a multicharacter literal, which can give surprising results. For example:
+char c1 = '\100';   // '@'
+char c2 = '\1000';  // C4305, C4309, truncates to '0'
 
+Escape sequences that appear to contain non-octal characters are evaluated as an octal sequence up to the last octal character, followed by the remaining characters as the subsequent characters in a multicharacter literal. Warning C4125 is generated if the first non-octal character is a decimal digit. For example:
+char c3 = '\009';   // '9'
+char c4 = '\089';   // C4305, C4309, truncates to '9'
+char c5 = '\qrs';   // C4129, C4305, C4309, truncates to 's'
+
+An octal escape sequence that has a higher value than \377 causes error C2022: 'value-in-decimal': too big for character.
+
+
+
+#### Hexadecimal
 Hexadecimal escape sequences have no length limit and terminate at the first character that is not a valid hexadecimal digit. If the value represented by a single hexadecimal escape sequence does not fit the range of values represented by the character type used in this string literal (char, char8_t (since C++20), char16_t, char32_t (since C++11), or wchar_t), the result is unspecified.  Leading zeroes are ignored. In an ordinary or u8-prefixed character literal, the highest hexadecimal value is 0xFF. In an L-prefixed or u-prefixed wide character literal, the highest hexadecimal value is 0xFFFF. In a U-prefixed wide character literal, the highest hexadecimal value is 0xFFFFFFFF.
+
+An escape sequence that appears to have hexadecimal and non-hexadecimal characters is evaluated as a multicharacter literal that contains a hexadecimal escape sequence up to the last hexadecimal character, followed by the non-hexadecimal characters. A hexadecimal escape sequence that contains no hexadecimal digits causes compiler error C2153: "hex literals must have at least one hex digit".
+char c6 = '\x0050'; // 'P'
+char c7 = '\x0pqr'; // C4305, C4309, truncates to 'r'
+
 
 
 #### Universal character names
@@ -156,66 +186,6 @@ char u2 = '\101';       // octal, 'A'
 char u3 = '\x41';       // hexadecimal, 'A'
 char u4 = '\u0041';     // \u UCN 'A'
 char u5 = '\U00000041'; // \U UCN 'A'
-
-
-
-
-
-
-
-
-
-
-
-
-To create a value from a narrow multicharacter literal, the compiler converts the character or character sequence between single quotes into 8-bit values within a 32-bit integer. Multiple characters in the literal fill corresponding bytes as needed from high-order to low-order. The compiler then converts the integer to the destination type following the usual rules. For example, to create a char value, the compiler takes the low-order byte. To create a wchar_t or char16_t value, the compiler takes the low-order word. The compiler warns that the result is truncated if any bits are set above the assigned byte or word.
-char c0    = 'abcd';    // C4305, C4309, truncates to 'd'
-wchar_t w0 = 'abcd';    // C4305, C4309, truncates to '\x6364'
-int i0     = 'abcd';    // 0x61626364
-
-An octal escape sequence that appears to contain more than three digits is treated as a 3-digit octal sequence, followed by the subsequent digits as characters in a multicharacter literal, which can give surprising results. For example:
-char c1 = '\100';   // '@'
-char c2 = '\1000';  // C4305, C4309, truncates to '0'
-
-Escape sequences that appear to contain non-octal characters are evaluated as an octal sequence up to the last octal character, followed by the remaining characters as the subsequent characters in a multicharacter literal. Warning C4125 is generated if the first non-octal character is a decimal digit. For example:
-char c3 = '\009';   // '9'
-char c4 = '\089';   // C4305, C4309, truncates to '9'
-char c5 = '\qrs';   // C4129, C4305, C4309, truncates to 's'
-
-An octal escape sequence that has a higher value than \377 causes error C2022: 'value-in-decimal': too big for character.
-
-An escape sequence that appears to have hexadecimal and non-hexadecimal characters is evaluated as a multicharacter literal that contains a hexadecimal escape sequence up to the last hexadecimal character, followed by the non-hexadecimal characters. A hexadecimal escape sequence that contains no hexadecimal digits causes compiler error C2153: "hex literals must have at least one hex digit".
-char c6 = '\x0050'; // 'P'
-char c7 = '\x0pqr'; // C4305, C4309, truncates to 'r'
-
-If a wide character literal prefixed with L contains a multicharacter sequence, the value is taken from the first character, and the compiler raises warning C4066. Subsequent characters are ignored, unlike the behavior of the equivalent ordinary multicharacter literal.
-wchar_t w1 = L'\100';   // L'@'
-wchar_t w2 = L'\1000';  // C4066 L'@', 0 ignored
-wchar_t w3 = L'\009';   // C4066 L'\0', 9 ignored
-wchar_t w4 = L'\089';   // C4066 L'\0', 89 ignored
-wchar_t w5 = L'\qrs';   // C4129, C4066 L'q' escape, rs ignored
-wchar_t w6 = L'\x0050'; // L'P'
-wchar_t w7 = L'\x0pqr'; // C4066 L'\0', pqr ignored
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

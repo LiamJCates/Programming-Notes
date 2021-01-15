@@ -101,4 +101,6 @@ If both operands to a multiplication, division, or modulus expression have the s
 
 Since the conversions performed by the multiplicative operators do not provide for overflow or underflow conditions, information may be lost if the result of a multiplicative operation cannot be represented in the type of the operands after conversion.
 
-The relationship between the multiplicative operators is given by the identity (e1 / e2) * e2 + e1 % e2 == e1.
+The relationship between the multiplicative operators is given by the identity:
+
+  (e1 / e2) * e2 + e1 % e2 == e1.

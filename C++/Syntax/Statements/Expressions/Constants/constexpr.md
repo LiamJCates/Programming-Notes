@@ -1,4 +1,5 @@
 ### constexpr
+
 Constant expressions are expressions that can be evaluated at compile time.
 
 Whenever all the information required to compute an expression is present at compile time, the compiler is compelled to do so if that expression is marked constexpr. This simple commitment can enable a surprisingly large impact on code readability and runtime performance.
@@ -38,7 +39,7 @@ constexpr double s2 = sum(v); // error : sum(v) is not a constant expression
 
 
 ### constexpr Functions
-For a function to be usable in a constant expression, that is, in an expression that will be evaluated by the compiler, it must be defined constexpr:
+For a function to be usable in a constant expression, that is, in an expression that will be evaluated by the compiler, it must be defined by the prefix constexpr:
 
   constexpr double square(double x) { return x∗x; }
 
@@ -50,7 +51,11 @@ For a function to be usable in a constant expression, that is, in an expression 
   constexpr double max2 = 1.4∗square(var);
   // error : var is not a constant expression
 
-A constexpr function can be used for non-constant arguments, but when that is done the result is not a constant expression. We allow a constexpr function to be called with non-constant-expression arguments in contexts that do not require constant expressions. That way, we don’t have to define essentially the same function twice: once for constant expressions and once for variables.
+A constexpr function can be used for non-constant arguments, but when that is done the result is not a constant expression.
+
+We allow a constexpr function to be called with non-constant-expression arguments in contexts that do not require constant expressions. That way, we don’t have to define essentially the same function twice: once for constant expressions and once for variables.
+
+
 
 Keyword constexpr allows function-like declaration of constants:
 

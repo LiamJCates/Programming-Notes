@@ -2,7 +2,7 @@ Volatile Expressions
 
 volatile is a type qualifier which prevents the compiler from optimizing away instructions that access a given variable.
 
-The volatile keyword tells the compiler that every access made through this expression must be treated as a visible side effect. This means access cannot be optimized out or reordered with another visible side effect.
+The volatile keyword tells the compiler that every access made through a qualified variable must be treated as a visible side effect. This means access cannot be optimized out or reordered with another visible side effect.
 
 This keyword is crucial in some settings, like embedded programming, where reads and writes to some special portions of memory have effects on the underlying system. The volatile keyword keeps the compiler from optimizing such accesses away.
 

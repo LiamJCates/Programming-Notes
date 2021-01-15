@@ -8,5 +8,5 @@ Literal constants in C++ are further divided into:
   Character constants
   String constants
 
-For more information about constants see:
+For more information about literals see:
 [C++\Syntax\Statements\Expressions\Primary\Literals]

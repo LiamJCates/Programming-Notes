@@ -98,6 +98,7 @@ Examples:
 0101llu      // unsigned long long specified as octal literal
 
 
+
 ### Binary
 A binary literal can be specified by the use of the 0B or 0b prefix, followed by a sequence of 1's and 0's
 

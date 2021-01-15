@@ -2,12 +2,12 @@
 
 Constants are expressions with a fixed value, a value that doesn't change.
 
-Constants in C++ can be
+Constants in C++ can be:
   Literal constants
-  Named Constants: constants declared using the const keyword
-  Constant expressions using the constexpr keyword (new since C++11)
-  Enumerated constants using the enum keyword
-  Defined constants that are not recommended and deprecated
+  Named Constants
+  Constant expressions (since C++11)
+  Enumerated constants
+  Defined constants
 
 
 C++ provides two keywords to enable you to express immutable objects, the intent that an object is not to be modified:

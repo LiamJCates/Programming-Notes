@@ -9,7 +9,20 @@ Preprocessor directives always start with a hash sign #
 
 These preprocessor directives extend only across a single line of code. As soon as a newline character is found, the preprocessor directive is ends. No semicolon (;) is expected at the end of a preprocessor directive. The only way a preprocessor directive can extend through more than one line is by preceding the newline character at the end of the line by a backslash (\).
 
+
+
 ### #include
+
+Source file inclusion (#include)
+This directive has been used assiduously in other sections of this tutorial. When the preprocessor finds an #include directive it replaces it by the entire content of the specified header or file. There are two ways to use #include:
+
+  #include <header>
+  #include "file"
+
+In the first case, a header is specified between angle-brackets <>. This is used to include headers provided by the implementation, such as the headers that compose the standard library (iostream, string,...). Whether the headers are actually files or exist in some other form is implementation-defined, but in any case they shall be properly included with this directive.
+
+The syntax used in the second #include uses quotes, and includes a file. The file is searched for in an implementation-defined manner, which generally includes the current path. In the case that the file is not found, the compiler interprets the directive as a header inclusion, just as if the quotes ("") were replaced by angle-brackets (<>).
+
 You use preprocessor directives and the names of header files to tell the computer the locations of the code provided in libraries.
 
 To use a header file in a C++ program, use the preprocessor directive include.
@@ -26,7 +39,7 @@ Every library has a name and is referred to by a header file. For example, the d
 
 if an artifact declared in FileA needs to be used in FileB, you need to include the former in the latter using this include statement in FileA:
 
- #include "...relative path \FileB"
+  #include "...relative path \FileB"
 
 We use quotes in this case and not angle brackets in including
 a self-programmed header.
@@ -36,13 +49,13 @@ Preprocessor directives to include header files are placed in the first few line
 program.
 
 
-The NULL macro
+### The NULL macro
 
 In C++, there is a special preprocessor macro called NULL (defined in the <cstddef> header). This macro was inherited from C, where it is commonly used to indicate a null pointer.
 
-#include <cstddef> // for NULL
+  #include <cstddef> // for NULL
 
-double *ptr { NULL }; // ptr is a null pointer
+  double *ptr { NULL }; // ptr is a null pointer
 
 The value of NULL is implementation defined, but is usually defined as the integer constant 0. Note: as of C++11, NULL can be defined as nullptr instead (which we’ll discuss in a bit).
 
@@ -53,12 +66,16 @@ Because NULL is a preprocessor macro with an implementation defined value, avoid
 https://www.learncpp.com/cpp-tutorial/header-files/
 https://www.learncpp.com/cpp-tutorial/header-guards/
 
+
+
 ### define
 The #define directive specifies a preprocessor macro.
 
 In C++, a macro is a rule that defines how input text is converted into replacement output text.
 
 There are two basic types of macros: object-like macros, and function-like macros.
+
+
 
 #### Object macros
 
@@ -68,6 +85,8 @@ Object-like macros can be defined in one of two ways:
   #define identifier substitution_text
 
 The top definition has no substitution text, whereas the bottom one does. Because these are preprocessor directives (not statements), note that neither form ends with a semicolon.
+
+
 
 ##### Object-like macros with substitution text
 
@@ -289,7 +308,8 @@ This provides a convenient way to “comment out” code that contains multi-lin
 
 
 
-Line control (#line)
+### Line control (#line)
+
 When we compile a program and some error happens during the compiling process, the compiler shows an error message with references to the name of the file where the error happened and a line number, so it is easier to find the code generating the error.
 
 The #line directive allows us to control both things, the line numbers within the code files as well as the file name that we want that appears when an error takes place. Its format is:
@@ -314,17 +334,9 @@ This directive aborts the compilation process when it is found, generating a com
 
 This example aborts the compilation process if the macro name __cplusplus is not defined (this macro name is defined by default in all C++ compilers).
 
-Source file inclusion (#include)
-This directive has been used assiduously in other sections of this tutorial. When the preprocessor finds an #include directive it replaces it by the entire content of the specified header or file. There are two ways to use #include:
 
-  #include <header>
-  #include "file"
 
-In the first case, a header is specified between angle-brackets <>. This is used to include headers provided by the implementation, such as the headers that compose the standard library (iostream, string,...). Whether the headers are actually files or exist in some other form is implementation-defined, but in any case they shall be properly included with this directive.
-
-The syntax used in the second #include uses quotes, and includes a file. The file is searched for in an implementation-defined manner, which generally includes the current path. In the case that the file is not found, the compiler interprets the directive as a header inclusion, just as if the quotes ("") were replaced by angle-brackets (<>).
-
-Pragma directive (#pragma)
+### Pragma directive (#pragma)
 This directive is used to specify diverse options to the compiler. These options are specific for the platform and the compiler you use. Consult the manual or the reference of your compiler for more information on the possible parameters that you can define with #pragma.
 
 If the compiler does not support a specific argument for #pragma, it is ignored - no syntax error is generated.
