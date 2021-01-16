@@ -1,4 +1,5 @@
 Classes
+
 POD classes contain only data members, and sometimes that’s all you want from a class. However, designing a program using only PODs can create a lot of complexity. You can fight such complexity with abstraction, by placing related functions and data together and providing a user friendly interface for the clients of a class.
 
 Classes are an expanded concept of POD structures: like POD structures, they can contain data members, but they can also contain functions as members.
@@ -9,28 +10,26 @@ First, you can put related code in one place, which helps you to reason about yo
 
 Second, when you bundle class’s code and data you can abstract the implementation for use by the rest of your program. Rather than having users interact with class data directly, the programmer can provide functionality which simplifies these operations for the user, this is known as providing an interface.
 
-
 Having the data specified separately from the operations on it has advantages, such as the ability to use the data in arbitrary ways. However, a tighter connection between the representation and the operations is needed for a user-defined type to have all the properties expected of a ‘‘real type.’’
 
 
 
 
-
-
 ## The class Keyword
+
 You can replace the struct keyword with the class keyword, which declares members private by default. Aside from default access control, classes declared with the struct keyword and those declared with the class keyword are basically the same.
 
 ### Declaring a Class
 
 Classes are defined using either keyword class or keyword struct, with the following syntax:
 
-class class_name {
-  access_specifier_1:
-    member1;
-  access_specifier_2:
-    member2;
-  ...
-} object_names;
+  class class_name {
+    access_specifier_1:
+      member1;
+    access_specifier_2:
+      member2;
+    ...
+  } object_names;
 
 Where class_name is a valid identifier for the class, object_names is an optional list of names for objects of this class. The body of the declaration contains its member list.
 
@@ -48,6 +47,7 @@ Classes can have member types which are enumerations, nested types and type alia
 
 
 ### Member List
+
 An optional member list declares subobjects called class members.
 
 The member list follows the class name and is placed between braces.
@@ -67,9 +67,8 @@ You must specify all dimensions of a nonstatic array member.
 
 
 
-
-
 ### Classes defined with struct and union
+
 Classes can be defined not only with keyword class, but also with keywords struct and union.
 
 The keyword struct, generally used to declare plain data structures, can also be used to declare classes that have member functions, with the same syntax as with keyword class. The only difference between both is that members of classes declared with the keyword struct have public access by default, while members of classes declared with the keyword class have private access by default. For all other purposes both keywords are equivalent in this context.
@@ -79,15 +78,8 @@ Conversely, the concept of unions is different from that of classes declared wit
 
 
 
-
-
-
-
-
-
-
-
 ### Creating Instances
+
 A program or software that uses and manipulates the objects of a class is called a client of that class.
 
 Creating an object of type class is similar to creating an instance of another type, say double:
@@ -106,6 +98,7 @@ Alternatively, you would dynamically create an instance of class Human using new
 
 
 ### Accessing Class Members
+
 Once an object of a class is declared, it can access the members of the class using member access operators . and -> .
 
 The general syntax for an object to access a member of a class is:
@@ -133,20 +126,3 @@ As with structs, when we have a pointer to a class instance we can use the membe
 Operator sizeof() is used to determine the memory requirement of a specific type, in bytes. This operator is valid for classes, too, and basically reports the sum of bytes consumed by each data attribute contained within the class declaration.
 
 Depending on the compiler you use, sizeof() might or might not include padding for certain attributes on word boundaries.
-
-
-
-
-
-
-
-
-The order of allocation of nonstatic class members separated by an access_specifier is implementation-dependent.
-
-The order of allocation of nonstatic class members separated by an access_specifier is implementation-dependent. The compiler allocates class members in the order in which they are declared.
-Suppose A is a name of a class. The following class members of A must have a name different from A:
-
-    All data members
-    All type members
-    All enumerators of enumerated type members
-    All members of all anonymous union members

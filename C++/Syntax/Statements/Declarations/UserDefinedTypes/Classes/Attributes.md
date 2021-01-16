@@ -18,17 +18,7 @@ Composition is a “has-a” relation; for example, “every person has a date o
 
 
 
-
-
-
-
-
-
-
-
-
-
-Non-static member initialization
+### Non-static member initialization
 
 When writing a class that has multiple constructors (which is most of them), having to specify default values for all members in each constructor results in redundant code. If you update the default value for a member, you need to touch each constructor.
 
@@ -152,3 +142,15 @@ length: 4.0, width: 1.0
 Note that initializing members using non-static member initialization requires using either an equals sign, or a brace (uniform) initializer -- the direct initialization form doesn’t work here.
 
 Favor use of non-static member initialization to give default values for your member variables.
+
+
+### Allocation Order of Non-Static Attributes
+
+The order of allocation of nonstatic class members separated by an access_specifier is implementation-dependent. The compiler allocates class members in the order in which they are declared.
+
+Suppose A is a name of a class. The following class members of A must have a name different from A:
+
+    All data members
+    All type members
+    All enumerators of enumerated type members
+    All members of all anonymous union members

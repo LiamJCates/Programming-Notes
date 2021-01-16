@@ -22,20 +22,21 @@ private, protected, or virtual inheritance), and no user-defined constructors ar
 
 Thus, the following struct fulfills the prerequisites of being an aggregate and their initializations follow their declarations:
 
-struct Aggregate1
-{
-  int num;
-  double pi;
-};
+  struct Aggregate1
+  {
+    int num;
+    double pi;
+  };
 
-Aggregate1 a1{ 2017, 3.14 };
+  Aggregate1 a1{ 2017, 3.14 };
 
 Another example:
-struct Aggregate2
-{
-  int num;
-  char hello[6];
-  int impYears[5];
-};
+
+  struct Aggregate2
+  {
+    int num;
+    char hello[6];
+    int impYears[5];
+  };
 
 Aggregate2 a2 {42, {'h', 'e', 'l', 'l', 'o'}, {1998, 2003, 2011, 2014, 2017}};

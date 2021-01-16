@@ -1,4 +1,5 @@
 ## auto
+The new C++ standards have made it possible to use auto as a placeholder for types in various contexts and let the compiler deduce the actual type. In C++11, auto can be used for declaring local variables and for the return type of a function with a trailing return type. In C++14, auto can be used for the return type of a function without specifying a trailing type and for parameter declarations in lambda expressions. Future standard versions are likely to expand the use of auto to even more cases.
 
 When defining a variable, you don’t need to state its type explicitly when it can be deduced from the initializer:
 
@@ -31,7 +32,10 @@ We use auto where we don’t have a specific reason to mention the type explicit
 
 Using auto, we avoid redundancy and writing long type names. This is especially important in generic programming where the exact type of an object can be hard for the programmer to know and the type names can be quite long.
 
+
+
 ### Using auto whenever possible
+
 Automatic type deduction is one of the most important and widely used features in modern C++. The new C++ standards have made it possible to use auto as a placeholder for types in various contexts and let the compiler deduce the actual type. In C++11, auto can be used for declaring local variables and for the return type of a function with a trailing return type. In C++14, auto can be used for the return type of a function without specifying a trailing type and for parameter declarations in lambda expressions. Future standard versions are likely to expand the use of auto to even more cases. The use of auto in these contexts has several important benefits. Developers should be aware of them, and prefer auto whenever possible.
 
 An actual term was coined for this by Andrei Alexandrescu and promoted by Herb Sutter - almost always auto (AAA).
