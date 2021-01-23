@@ -41,6 +41,77 @@ You do not delete stack variables. The computer calls the destructor when the fu
 
 
 
+
+
+
+
+
+
+
+### Memory Management
+If you’ve been programming in an application language, chances are you’ve used an automatic memory manager, or a garbage collector. At runtime, programs create objects. Periodically, the garbage collector determines which objects are no longer required by the program and safely deallocates them. This approach frees the programmer from worrying about managing an object’s life cycle, but it incurs several costs, including runtime performance, and requires some powerful programming techniques like deterministic resource management.
+
+C++ takes a more efficient approach. The trade-off is that C++ programmers must have intimate knowledge of storage durations. It’s our job, not the garbage collector’s, to craft object lifetimes.
+
+
+Memory Allocation
+The variables discussed so far have followed two simple rules:
+1. Memory for global variables remains allocated as long as the program
+executes.
+2. Memory for a variable declared within a block is allocated at block
+entry and deallocated at block exit. For example, memory for the formal parameters and local variables of a function is allocated when the
+function is called and deallocated when the function exits.
+
+The value contained in memory where the deleted object resided is
+undefined, meaning the compiler can produce code that leaves anything
+there. In practice, major compilers will try to be as efficient as possible, so
+typically the object’s memory will remain untouched until the program
+reuses it for some other purposes. You would have to implement a custom
+destructor to, for example, zero out sensitive content.
+
+N O T E
+Because the compiler doesn’t typically clean up memory after an object is deleted, a subtle and potentially serious type of bug called a use after free can occur. If you delete an object and accidentally reuse it, your program might appear to function correctly because the deallocated memory might still contain reasonable values. In some
+situations, the problems don’t manifest until the program has been in production for a
+long time—or until a security researcher finds a way to exploit the bug and discloses it!
+
+Memory Leaks
+With privilege comes responsibility, so you must make sure that dynamic
+objects you allocate are also deallocated. Failure to do so causes memory
+leaks in which memory that is no longer needed by your program isn’t
+released. When you leak memory, you use up a resource in your environment that you’ll never reclaim. This can cause performance problems
+or worse.
+
+N O T E
+
+In practice, your program’s operating environment might clean up leaked resources for you. For example, if you’ve written user-mode code, modern operating systems will
+clean up the resources when the program exits. However, if you’ve written kernel code,
+those operating systems won’t clean up the resources. You’ll only reclaim them when
+the computer reboots.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 Avoiding naked new in modern C++
 
 The old-days way of acquiring memory resources is to have a pair of malloc and free calls. The C++’s addition, the new and delete keywords simplified the syntax, but did not eliminate the problem of proper memory management.

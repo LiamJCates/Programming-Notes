@@ -8,6 +8,47 @@ and in fact it has been a major source of cost and bugs since 1972 when this mec
 introduced into C
 
 
+
+Modules (since C++20)
+
+Modules help divide large amounts of code into logical parts.
+
+Modules are orthogonal to namespaces.
+
+// helloworld.cpp
+export module helloworld;  // module declaration
+import <iostream>;         // import declaration
+
+export void hello() {      // export declaration
+    std::cout << "Hello world!\n";
+}
+
+// main.cpp
+import helloworld;  // import declaration
+
+int main() {
+    hello();
+}
+
+Syntax
+export(optional) module module-name module-partition(optional) attr(optional) ; 	(1) 	
+export declaration 	(2) 	
+export { declaration-seq(optional) } 	(3) 	
+export(optional) import module-name attr(optional) ; 	(4) 	
+export(optional) import module-partition attr(optional) ; 	(5) 	
+export(optional) import header-name attr(optional) ; 	(6) 	
+module ; 	(7) 	
+module : private ; 	(8) 	
+1) Module declaration. Declares that the current translation unit is a module unit.
+2,3) Export declaration. Export all namespace-scope declarations in declaration or declaration-seq.
+4,5,6) Import declaration. Import a module unit/module partition/header unit.
+7) Starts a global module fragment.
+8) Starts a private module fragment.
+
+
+
+
+
 We are finally about to get a better way of expressing physical modules in C++. The language
 feature, called modules is not yet ISO C++, but it is an ISO Technical Specification [ModulesTS]
 and will be part of C++20. Implementations are in use, so I risk recommending it here even though

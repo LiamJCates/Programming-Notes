@@ -44,6 +44,6 @@ public:
         for (; x; x /= 10)
             result = result * 10 + (x % 10);
 
-        return (result >= (long) INT_MAX || result <= (long) INT_MIN) ? 0 : result;
+        return (result >= INT_MAX || result <= INT_MIN) ? 0 : result;
     }
 };

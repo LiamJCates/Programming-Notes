@@ -1,3 +1,29 @@
+Exception specifications
+
+Older code may contain dynamic exception specifications. They are now deprecated in C++, but still supported. A dynamic exception specification follows the declaration of a function, appending a throw specifier to it:
+
+  double myfunction (char param) throw (int);
+
+This declares a function called myfunction, which takes one argument of type char and returns a value of type double. If this function throws an exception of some type other than int, the function calls std::unexpected instead of looking for a handler or calling std::terminate.
+
+If this throw specifier is left empty with no type, this means that std::unexpected is called for any exception. Functions with no throw specifier (regular functions) never call std::unexpected, but follow the normal path of looking for their exception handler.
+
+int myfunction (int param) throw(); // all exceptions call unexpected
+int myfunction (int param);         // normal exception handling
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 The noexcept Keyword
 
 The keyword noexcept is another exception-related term you should know.

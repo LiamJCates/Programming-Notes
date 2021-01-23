@@ -1,7 +1,8 @@
 1. What is the output of the code?
 
-  #include<iostream>
+  #include <iostream>
   using namespace std;
+
   class cons {
     public:
       int m;
@@ -15,14 +16,15 @@
 
 
 Answer: 9
-The function 'cons()'is a special function called' constructor'. A constructor has the same name as the class and should be in public scope. It doesn't have any return type. It will be called every time when an object of the class is created at any scope.
+The function 'cons()'is a special function called 'constructor'. A constructor has the same name as the class and should be in public scope. It doesn't have any return type. It will be called every time when an object of the class is created at any scope.
 
 
 
 2. What will be the error thrown by the code?
 
-  #include<iostream>
+  #include <iostream>
   using namespace std;
+
   class cons {
     cons() { m = 9; }
   public:
@@ -42,8 +44,9 @@ In order for a client to directly instantiate a class instance, constructors mus
 
 3. What will be the error thrown by the code?
 
-  #include<iostream>
+  #include <iostream>
   using namespace std;
+
   class cons {
     protected:
       cons() { m = 9; }
@@ -64,8 +67,9 @@ In order for a client to directly instantiate a class instance, constructors mus
 
 4. What will be the error thrown by the code?
 
-  #include<iostream>
+  #include <iostream>
   using namespace std;
+
   class cons {
     protected:
       cons() { m = 9; }
@@ -87,8 +91,9 @@ To successfully overload a constructor we must specify a different parameter per
 
 5. What is the output of the code?
 
-  #include<iostream>
+  #include <iostream>
   using namespace std;
+
   class cons {
     public:
       int m;
@@ -110,8 +115,9 @@ Here the function 'cons'()' is treated as a normal member function as the functi
 
 6. What is the output of the code?
 
-  #include<iostream>
+  #include <iostream>
   using namespace std;
+
   class cons {
     public:
       int m;
@@ -132,8 +138,9 @@ This is due to two constructors having the same permutation of parameters.
 
 7. What is the output of the code?
 
-  #include<iostream>
+  #include <iostream>
   using namespace std;
+
   class cons {
     public:
       int m;
@@ -154,8 +161,9 @@ Such a constructor definition, using the scope resolution operator to define a d
 
 8. What is the output of the code?
 
-  #include<iostream>
+  #include <iostream>
   using namespace std;
+
   class cons {
     public:
       int m;
@@ -177,15 +185,15 @@ In the previous question there was a declaration of the constructor. It just ind
 
 
 
+9. What is the output of the code?
 
-10. What is the output of the code?
-
-  #include<iostream>
+  #include <iostream>
   using namespace std;
+
   class cons {
     public:
       int m;
-    cons() { cout << "constructor";}
+      cons() { cout << "constructor";}
   };
 
   int main()
@@ -201,10 +209,12 @@ Constructors cannot be called explicitly by the object.
 
 
 
-12. What is the output of the code?
 
-  #include<iostream>
+10. What is the output of the code?
+
+  #include <iostream>
   using namespace std;
+
   class cons {
     public:
       int m;
@@ -223,10 +233,11 @@ Constructors cannot have return type, see question 5.
 
 
 
-13. What is the output of the code?
+11. What is the output of the code?
 
-  #include<iostream>
+  #include <iostream>
   using namespace std;
+
   class cons {
     public:
       int m;
@@ -245,10 +256,11 @@ Constructors can call other member functions of the class.
 
 
 
-14. What is the output of the code?
+12. What is the output of the code?
 
-  #include<iostream>
+  #include <iostream>
   using namespace std;
+
   class cons {
     public:
       int m;
@@ -265,17 +277,18 @@ Constructors have constraints over their scope of accessibility and cannot call 
 
 
 
-16. What is the output of the code?
+13. What is the output of the code?
 
-  #include<iostream>
+  #include <iostream>
   using namespace std;
+
   class cons {
     public:
       int m;
-    cons() {
-      void init() {cout << "class initiated";}
-      init();
-    }
+      cons() {
+        void init() {cout << "class initiated";}
+        init();
+      }
   };
 
   int main() { cons S; }
@@ -288,33 +301,36 @@ C++ does not allow function definition inside any function, including constructo
 
 
 
-17. What will be the error thrown by the code?
+14. What will be the error thrown by the code?
 
-  #include<iostream>
+  #include <iostream>
   using namespace std;
+
   class cons {
     public:
       int m;
-    cons() {
-      void init();
-      init();
-    }
+      cons() {
+        void init();
+        init();
+      }
   };
 
   void cons::init() { cout << "class initiated"; }
 
   int main() { cons S; }
 
-Answer:
+Answer: error
 error: no declaration matches ‘void cons::init()’
+
 C++ does not allow member functions declaration or definition inside any function, including constructors.
 
 
 
-18. What will be the error thrown by the code?
+15. What will be the error thrown by the code?
 
-  #include<iostream>
+  #include <iostream>
   using namespace std;
+
   class cons {
     public:
       int m;
@@ -333,14 +349,13 @@ Answer:
 In function 'cons::cons()': ...
 ...undefined reference to 'init()'
 
-See following question
 
 
+16. What is the output of the code?
 
-19. What is the output of the code?
-
-  #include<iostream>
+  #include <iostream>
   using namespace std;
+
   class cons {
     public:
       int m;
@@ -351,6 +366,8 @@ See following question
   void cons::init() { cout << "class initiated"; }
 
   int main() { cons S; }
+
+
 Answer: class initiated
 Constructors can call a member function.
 
@@ -358,10 +375,11 @@ If we remove the declaration of init() inside of cons() the code compiles correc
 
 
 
-20. What is the output of the code?
+17. What is the output of the code?
 
-  #include<iostream>
+  #include <iostream>
   using namespace std;
+
   class cons {
     public:
       class nested {
@@ -379,10 +397,11 @@ Constructors can call the member functions of nested classes.
 
 
 
-21. What is the output of the code?
+18. What is the output of the code?
 
-  #include<iostream>
+  #include <iostream>
   using namespace std;
+
   class cons {
     public:
       int m;
@@ -400,10 +419,11 @@ Constructors can be recursively called.
 
 
 
-22. What is the output of the code?
+19. What is the output of the code?
 
-  #include<iostream>
+  #include <iostream>
   using namespace std;
+
   class cons {
     public:
       int m;
@@ -423,10 +443,11 @@ Constructors can be called from other member function of the same class.
 
 
 
-23. What is the output of the code?
+20. What is the output of the code?
 
-  #include<iostream>
+  #include <iostream>
   using namespace std;
+
   class cons {
     public:
       int m;
@@ -444,10 +465,11 @@ Constructor cannot call function that are out of scope. So it cannot call 'main'
 
 
 
-24. What is the output of the code?
+21. What is the output of the code?
 
-  #include<iostream>
+  #include <iostream>
   using namespace std;
+
   class cons {
     public:
       int m;
@@ -466,10 +488,11 @@ error: ‘class cons’ has no member named ‘d’
 
 
 
-25. What is the output of the code?
+22. What is the output of the code?
 
-  #include<iostream>
+  #include <iostream>
   using namespace std;
+
   class cons {
     public:
       int m;
@@ -484,27 +507,12 @@ This is a form of overloaded constructor. It accepts objects with parameters.
 
 
 
-26. What is the output of the code?
 
-  #include<iostream>
+23. What is the output of the code?
+
+  #include <iostream>
   using namespace std;
-  class cons {
-    public:
-      int m;
-      cons(int d) { cout << "constructor with parameters"; }
-  };
 
-  int main() { cons S(3); }
-
-Answer: constructor with parameters
-As the object requires only a constructor with an argument, skipping basic constructor doesn't matter.
-
-
-
-27. What is the output of the code?
-
-  #include<iostream>
-  using namespace std;
   class cons {
     public:
       int m;
@@ -521,10 +529,11 @@ Here the default constructor is invoked to handle an instantiation with no param
 
 
 
-29. What is the output of the code?
+24. What is the output of the code?
 
-  #include<iostream>
+  #include <iostream>
   using namespace std;
+
   class cons {
     public:
       int m;
@@ -541,16 +550,17 @@ Here the default constructor is invoked to handle an instantiation with no param
 
 Answer: error
 error: call of overloaded ‘cons(double)’ is ambiguous
-  The literal value 3.34 defaults to a double and throws an error regarding mismatching constructor arguments.
+  The literal value 3 defaults to a double and throws an error regarding mismatching constructor arguments.
 error: redeclaration of ‘cons S’
   An object with the name S is declared twice.
 
 
 
-31. What is the output of the code?
+25. What is the output of the code?
 
-  #include<iostream>
+  #include <iostream>
   using namespace std;
+
   class cons {
     public:
       int m;
@@ -565,10 +575,11 @@ As 3.34 is a double the constructor argument matches to the appropriate definiti
 
 
 
-32. What is the output of the code?
+26. What is the output of the code?
 
-  #include<iostream>
+  #include <iostream>
   using namespace std;
+
   class cons {
     public:
       int m;
@@ -583,10 +594,11 @@ Here, no ambiguity is present as only one definition is available.
 
 
 
-33. What is the output of the code?
+27. What is the output of the code?
 
-  #include<iostream>
+  #include <iostream>
   using namespace std;
+
   class cons {
     public:
       int m;
@@ -604,10 +616,11 @@ Changing the variable name of the parameter doesn't change the two definitions. 
 
 
 
-34. What is the output of the code?
+28. What is the output of the code?
 
-  #include<iostream>
+  #include <iostream>
   using namespace std;
+
   class cons {
     public:
       int m;
@@ -625,10 +638,11 @@ error: no matching function for call to ‘cons::cons()’
 
 
 
-36. What is the output of the code?
+29. What is the output of the code?
 
-  #include<iostream>
+  #include <iostream>
   using namespace std;
+
   class cons {
     public:
       int m;
@@ -644,10 +658,11 @@ So cons(void) acts as the default constructor.
 
 
 
-37. What is the output of the code?
+30. What is the output of the code?
 
-  #include<iostream>
+  #include <iostream>
   using namespace std;
+
   class cons {
     public:
       int m;
@@ -665,10 +680,11 @@ A constructor can be called from an overloaded constructor.
 
 
 
-38. What is the output of the code?
+31. What is the output of the code?
 
-  #include<iostream>
+  #include <iostream>
   using namespace std;
+
   class cons {
     public:
       int m;
@@ -688,10 +704,11 @@ The call is correct, but the infinite recursion causes this.
 
 
 
-39. What is the output of the code?
+32. What is the output of the code?
 
-  #include<iostream>
+  #include <iostream>
   using namespace std;
+
   class cons {
     public:
       int m;
@@ -709,10 +726,11 @@ It works normally as expected.
 
 
 
-40. What is the output of the code?
+33. What is the output of the code?
 
-  #include<iostream>
+  #include <iostream>
   using namespace std;
+
   class cons {
     public:
       int m;
@@ -726,14 +744,15 @@ It works normally as expected.
   int main() { cons S(); }
 
 Answer: prints nothing
-Here' S()' in 'main' is not considered an object even if the bracket is empty.
+Here' S()' in 'main' is not considered an object, it is a forward declaration of a function S of return type cons.
 
 
 
-41. What is the output of the code?
+34. What is the output of the code?
 
-  #include<iostream>
+  #include <iostream>
   using namespace std;
+
   class cons {
     public:
       int m;
@@ -756,10 +775,11 @@ A copy constructor of a given type creates an object with the reference of anoth
 
 
 
-42. What is the output of the code?
+35. What is the output of the code?
 
-  #include<iostream>
+  #include <iostream>
   using namespace std;
+
   class cons {
     public:
       int m;
@@ -783,10 +803,11 @@ While sending the object as reference, the values cannot be directly used. The '
 
 
 
-44. What is the output of the code?
+36. What is the output of the code?
 
-  #include<iostream>
+  #include <iostream>
   using namespace std;
+
   class cons {
     public:
       int m;
@@ -805,10 +826,11 @@ Works as expected.
 
 
 
-45. What is the output of the code?
+37. What is the output of the code?
 
-  #include<iostream>
+  #include <iostream>
   using namespace std;
+
   class cons {
     public:
       int m;
@@ -831,10 +853,11 @@ Any form of constructor can manually call any other constructor easily.
 
 
 
-46. What is the output of the code?
+38. What is the output of the code?
 
-  #include<iostream>
+  #include <iostream>
   using namespace std;
+
   class sup {
     public:
       int a;
@@ -844,7 +867,8 @@ Any form of constructor can manually call any other constructor easily.
   class cons {
     public:
       int m;
-      cons(sup & d) {
+      cons(sup & d)
+      {
         m = d.a;
         cout << m;
       }
@@ -863,10 +887,11 @@ Here the object is created in reference to object of another class.
 
 
 
-47. What form of constructor is used last in the code?
+39. What form of constructor is used last in the code?
 
-  #include<iostream>
+  #include <iostream>
   using namespace std;
+
   class sup {
     public:
       int a;
@@ -894,10 +919,11 @@ Constructors are only of three types. The last constructor is used with an argum
 
 
 
-48. What is the output of the code?
+40. What is the output of the code?
 
-  #include<iostream>
+  #include <iostream>
   using namespace std;
+
   class cons {
     public:
       int m;
@@ -932,10 +958,11 @@ It is also to be noted that the same errors come even on passing object of 'sup'
 
 
 
-50. Why are errors thrown by the code?
+41. Why are errors thrown by the code?
 
-  #include<iostream>
+  #include <iostream>
   using namespace std;
+
   class cons {
     public:
       int m;
@@ -967,10 +994,11 @@ error: no matching function for call to ‘cons::cons(sup&)’
 
 
 
-51. What is the output of the code?
+42. What is the output of the code?
 
-  #include<iostream>
+  #include <iostream>
   using namespace std;
+
   class cons {
     public:
       int m;
@@ -985,10 +1013,11 @@ Destructor has the same name as the class with a prefix'~'. It is a special func
 
 
 
-52. What is the output of the code?
+43. What is the output of the code?
 
-  #include<iostream>
+  #include <iostream>
   using namespace std;
+
   class cons {
     public:
       int m;
@@ -1006,10 +1035,11 @@ A destructor can be called explicitly by the object from main. Even on calling i
 
 
 
-53. What is the output of the code?
+44. What is the output of the code?
 
-  #include<iostream>
+  #include <iostream>
   using namespace std;
+
   class cons {
     public:
       int m;
@@ -1026,10 +1056,11 @@ A destructor can call other member functions.
 
 
 
-54. What is the output of the code?
+45. What is the output of the code?
 
-  #include<iostream>
+  #include <iostream>
   using namespace std;
+
   class cons {
     public:
       int m;
@@ -1046,15 +1077,16 @@ A destructor cannot call functions defined outside its containing classes scope.
 
 
 
-55. What is the output of the code?
+46. What is the output of the code?
 
-  #include<iostream>
+  #include <iostream>
   using namespace std;
+
   class cons {
     public:
       int m;
-    void del() { ~cons(); }
-    ~cons() { cout << "destructor"; }
+      void del() { ~cons(); }
+      ~cons() { cout << "destructor"; }
   };
 
   int main()
@@ -1069,10 +1101,11 @@ error: no match for ‘operator~’ (operand type is ‘cons’)
 
 
 
-56. What is the output of the code?
+47. What is the output of the code?
 
-  #include<iostream>
+  #include <iostream>
   using namespace std;
+
   class cons {
     public:
       int m;
@@ -1090,18 +1123,19 @@ Destructor is of only one type and may not have parameters, thus it cannot be ov
 
 
 
-58. What is the output of the code?
+48. What is the output of the code?
 
-  #include<iostream>
+  #include <iostream>
   using namespace std;
+
   class cons {
     public:
       int m;
-    cons() { cout << "constructor"; }
-    ~cons() {
-      cout << "destructor";
-      cons();
-    }
+      cons() { cout << "constructor"; }
+      ~cons() {
+        cout << "destructor";
+        cons();
+      }
   };
 
   int main(){ cons F; }
@@ -1112,10 +1146,11 @@ This is because, every time a constructor is called an object's memory is alloca
 
 
 
-59. What is the output of the code?
+49. What is the output of the code?
 
-  #include<iostream>
+  #include <iostream>
   using namespace std;
+
   class cons {
     public:
       int m;
@@ -1136,10 +1171,11 @@ Actually, the class doesn't know that 'S' exists as it is defined only after the
 
 
 
-60. What is the output of the code?
+50. What is the output of the code?
 
-  #include<iostream>
+  #include <iostream>
   using namespace std;
+  
   class sup {
     public:
       ~sup() { cout << "sup destructor"; }

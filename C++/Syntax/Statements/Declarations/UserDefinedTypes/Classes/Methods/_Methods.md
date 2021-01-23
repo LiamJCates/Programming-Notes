@@ -9,6 +9,33 @@ char& String::operator[](int index); // type: char& String::(int)
 
 
 
+Method Types
+There are four types of methods. Class Methods, Instance Methods, Constructors and Destructors.
+
+By default, all the methods are instance methods.
+
+Class Methods (Static):
+The static modifier is used to create class methods. Class methods with static modifier with them should be invoked with the class name without the need of creating even a single instance of the class
+
+Instance Methods (Non-Static):
+These methods can only be invoked over an instance of the class.
+Some points regarding Instance methods and Class methods:
+  Instance methods can access other instance methods and instance variables directly.
+  Instance methods can access class methods and variables directly.
+  Class methods can access other class methods and class variables directly.
+  Class methods cannot access instance methods and instance variables directly. To access instance variable and methods they need to create and instance (object) of class.
+  The special keyword “this” is valid only inside instance methods (and invalid inside class methods) as “this“ refers to the current instance.
+
+Constructor:
+It is a special kind of method, which is invoked over objects when they are created. Constructor methods have the same name as the class. Constructor method is used to initialize the various fields of the object. For the class that does not have constructors, C++ language provides default constructors for them.
+
+Destructors:
+It is a special kind of method, which is invoked over object when they are destroyed. Destructors method are named “~” added by the name of the class. Destructors method is used to do the clean-up of the memory contained in the object. For the class that does not have Destructors C++ language provide default Destructors for it.
+
+
+
+
+
 ### Accessor
 A member function of a class that only accesses (that is, does not modify) the value(s) of the member variable(s).
 

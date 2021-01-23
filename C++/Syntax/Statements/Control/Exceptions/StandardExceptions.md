@@ -1,11 +1,7 @@
 Standard Exceptions
 C++ enables you to throw exceptions of any type, although in general it is recommended to throw types that are derived from std::exception.
 
-C++ provides a list of standard exceptions defined in <exception>.
-
-C++ provides support to handle exceptions via a hierarchy of classes.
-
-Classes are arranged into parent-child relationship hierarchy using inheritance.
+C++ provides a list of standard exceptions defined in <exception> and support to handle exceptions via a hierarchy of classes.
 
 The rules for exception handling are based on class inheritance. When
 an exception is thrown, a catch block handles the exception if the thrown
@@ -17,28 +13,24 @@ stdlib.
 
 This hierarchy has many types for exceptions that occur often and their use is recommended.
 
-
-
-
-
 <stdexcept>: Defines a set of standard exceptions that both the library and programs can use to report common errors.
 
 <exception>: Defines the base class (i.e., std::exception) for all exceptions thrown by the elements of the standard library, along with several types and utilities to assist handling exceptions.
 
-So, <exception> only defines the class std::exception, while <stdexcept> defines several classes that inherit from std::exception (e.g., std::logic_error, std::out_of_range). That is why <stdexcept> includes <exception>.
+<exception> only defines the class std::exception, while <stdexcept> defines several classes that inherit from std::exception (e.g., std::logic_error, std::out_of_range). That is why <stdexcept> includes <exception>.
 
 They are in separate headers because if you want to define your own exception class inheriting std::exception (and not use the classes from <stdexcept>), you can avoid unnecessary definitions.
 
 
 
 
-Standard Exception Classes
+### Standard Exception Classes
 The stdlib provides you with the standard exception classes in the <stdexcept>
 header. These should be your first port of call when you’re programming
 exceptions. The superclass for all the standard exception classes is the
 class std::exception. The class exception is the base of the classes designed to handle exceptions.
 
-All the subclasses in std::exception can be partitioned into three groups:
+All the subclasses in <stdexcept> can be partitioned into three groups:
   logic errors
   runtime errors
   language support errors
@@ -46,7 +38,7 @@ All the subclasses in std::exception can be partitioned into three groups:
 While language support errors are not generally relevant to you as a programmer, you’ll definitely encounter logic errors and runtime errors.
 
 Two classes are immediately derived from the class exception: logic_error and
-runtime_error. Both of these classes are defined in the header file stdexcept.
+runtime_error.
 
 
 Logic Errors

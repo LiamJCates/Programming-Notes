@@ -1,5 +1,7 @@
+/*
 Sum Array
 Write a method that will return the sum of all the elements of the integer array given array and its size as an argument.
+*/
 
 int SumArray(std::vector<int> &arr)
 {
@@ -17,9 +19,10 @@ int main()
   std::cout << "sum of all the values in array:" << SumArray(arr) << std::endl;
 }
 
+/*
 Output:
 sum of all values in array: 45
-
+*/
 
 
 
@@ -38,5 +41,7 @@ int main() {
   std::cout << "sum of all the values in array:" << Sum2DArray(arr) << std::endl;
 }
 
+/*
 Output:
 sum of all values in array: 45
+*/
