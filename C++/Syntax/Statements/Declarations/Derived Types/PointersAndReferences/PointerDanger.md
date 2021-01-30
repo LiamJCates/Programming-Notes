@@ -1,10 +1,12 @@
 ## Pointers Are Dangerous
+
 It’s not possible to convert a pointer to an array, which is a good thing. You
 shouldn’t need to, and besides it wouldn’t be possible in general for a compiler to recover the size of the array from a pointer. But the compiler can’t save you from all the dangerous things you might try to do.
 
 
 
-Buffer Overflows
+### Buffer Overflows
+
 For arrays and pointers, you can access arbitrary array elements with the
 bracket operator ([]) or with pointer arithmetic. These are very powerful
 tools for low-level programming because you can interact with memory

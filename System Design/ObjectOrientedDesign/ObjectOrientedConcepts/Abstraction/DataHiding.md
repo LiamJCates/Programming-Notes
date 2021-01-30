@@ -1,4 +1,4 @@
-Data/Information hiding takes encapsulation a step further to force the use of a programmatically defined abstraction. Information hiding mechanisms define a distinction between an encapsulated abstraction unit's (a classes') public interface and private internals. The internals of a component are then said to be "hidden" from the classes' clients.
+Data/Information hiding takes encapsulation a step further to force the use of the interface provided by a programmatically defined abstraction. Information hiding mechanisms define a distinction between an encapsulated abstraction unit's (a classes') public interface and private internals. The internals of a component are then said to be "hidden" from the classes' clients.
 
 Data hiding is a technique of protecting class members such that they are only manipulated inside the class, unauthorized access is prevented.
 
@@ -28,6 +28,10 @@ Hiding the internals of the object
 
 
 The internal complexity of an object is expressed via private members. Private members are not visible to the clients of a class and allow the hiding of specific information and control of access to the internal state of the object. Typically private members are bundled with methods that provide read or write access.
+
+To make a method available outside the class, we can use public members. A method that allows access from outside the class to retrieve private data is a getter. A method that allows access from outside the class to alter private data is a setter.
+
+A natural question at this point is why we need to bother having these getters and setters. Why can't we just leave data public and let anyone read and change them as they want? The reason is that keeping the data private and controlling access to it through methods will give us control.
 
 Through the mechanism of information hiding we can segregate the design decisions in a computer program that are most likely to change, thus protecting other parts of the program from modification. The protection involves providing and maintaining a stable interface which the remainder of the program interacts with.
 

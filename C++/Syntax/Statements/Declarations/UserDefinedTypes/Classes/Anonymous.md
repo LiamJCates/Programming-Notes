@@ -65,6 +65,8 @@ In this case, the expression 5 + 3 is evaluated to produce the result 8, which i
 
 Note how much cleaner this keeps our code -- we don’t have to litter the code with temporary variables that are only used once.
 
+
+
 Anonymous class objects
 
 Although our prior examples have been with built-in data types, it is possible to construct anonymous objects of our own class types as well. This is done by creating objects like normal, but omitting the variable name.

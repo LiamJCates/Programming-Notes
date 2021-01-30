@@ -1,4 +1,5 @@
 ## Overview
+
 The function get and it's various derivatives are used to read data on a character-by-character basis and does not skip any whitespace characters.
 
 getchar is recommended to read a single char from stdint
@@ -17,6 +18,7 @@ all functions are accessed by an #include <stdio.h>
 
 
 ## getc
+
 int getc ( FILE * stream );
 
 Get character from stream
@@ -31,7 +33,8 @@ stream
     Because some libraries may implement this function as a macro, and this may evaluate the stream expression more than once, this should be an expression without side effects.
 
 
-Return Value
+### Return Value
+
 On success, the character read is returned (promoted to an int value).
 The return type is int to accommodate for the special value EOF, which indicates failure:
 If the position indicator was at the end-of-file, the function returns EOF and sets the eof indicator (feof) of stream.

@@ -9,17 +9,14 @@ As a result of a lack of random access, you cannot use operator[] or at to acces
 
 The trade­off is that inserting and removing elements in a list is much faster.
 
-
-
 The STL implementation std::list is available from the <list> header. To use list in a program, the program must include the following statement:
-#include <list>
+
+	#include <list>
 
 
 List Constructor
 
 std::list<T> listName;      //default
-
-
 
 | Constructor | Description |
 |-------------|-------------|
@@ -108,17 +105,18 @@ list.pop_front() | Removes the first element from list.
 ## Operations
 | Expression  | Description |
 |-------------|-------------|
-list.remove(elem) | Removes all of the elements equal to elem.
-list.remove_if(oper) | Removes all of the elements for which oper is true.
-list.unique() | Removes consecutive list elements of the same value
-list.unique(oper) | Removes consecutive list elements for which oper is true.
-list1.splice(pos, list2) |  All list2 elements are moved to list1 before the position specified by the iterator pos. After this operation, list2 is empty.
-list1.splice(pos, list2, pos2) | All elements starting at pos2 of list2 are moved to list1 before the position specified by the iterator pos. list1.splice(pos, list2, beg, end) | All list2 elements in range beg...end−1 are moved to list1 before the position specified by the iterator pos. Both beg and end are iterators.
-list.sort() | list elements are sorted using sort criteria <
-list.sort(oper) | list elements are sorted using sort criteria specified by oper.
-list1.merge(list2) | Suppose that the elements of list1 and list2 are sorted. This operation moves all of the elements of list2 into list1. After this operation, the elements in list1 are sorted. Moreover, after this operation, list2 is empty.  
-list1.merge(list2, oper) | Suppose that the elements of list1 and list2 are sorted according to the sort criteria oper. This operation moves all of the elements of list2 into list1. After this operation, the elements in list1 are sorted according to the sort criteria oper.
-list.reverse() | The elements of list are reversed
+| list.remove(elem) | Removes all of the elements equal to elem. |
+| list.remove_if(oper) | Removes all of the elements for which oper is true. |
+| list.unique() | Removes consecutive list elements of the same value |
+| list.unique(oper) | Removes consecutive list elements for which oper is true. |
+| list1.splice(pos, list2) |  All list2 elements are moved to list1 before the position specified by the iterator pos. After this operation, list2 is empty. |
+| list1.splice(pos, list2, pos2) | All elements starting at pos2 of list2 are moved to list1 before the position specified by the iterator pos. list1.splice(pos, list2, beg, end) | All list2 elements in range beg...end−1 are moved to list1 before the position specified by the iterator pos. Both beg and end are iterators. |
+| list.sort() | list elements are sorted using sort criteria < |
+| list.sort(oper) | list elements are sorted using sort criteria specified by oper. |
+| list1.merge(list2) | Suppose that the elements of list1 and list2 are sorted. This operation moves all of the elements of list2 into list1. After this operation, the elements in list1 are sorted. Moreover, after this operation, list2 is empty.   |
+| list1.merge(list2, oper) | Suppose that the elements of list1 and list2 are sorted according to the sort criteria oper. This operation moves all of the elements of list2 into list1. After this operation, the elements in list1 are sorted according to the sort criteria oper. |
+| list.reverse() | The elements of list are reversed |
+
 
 
 Sorting and Removing Elements from a list That Contains Instances of a class

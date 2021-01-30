@@ -81,7 +81,13 @@ The static specifier is allowed in object (except in function parameter lists), 
 
 
 #### Static Local Object
-Local static variables are declared at function scope, just like automatic variables. However, their lifetimes begin upon the first invocation of the enclosing function and end when the program exits. Making local variables static allows them to maintain their values between function calls.
+Local static variables are declared at function scope, just like automatic variables. However, their lifetimes begin upon the first invocation of the enclosing function and end when the program exits. Making local variables static allows them to maintain their values between function calls, retaining its value even after the variable goes out of scope!
+
+Static variables offer some of the benefit of global variables (they don’t get destroyed until the end of the program) while limiting their visibility to block scope. This makes them safe for use even if you change their values regularly.
+
+Avoid static local variables unless the variable never needs to be reset. static local variables decrease reusability and make functions harder to reason about.
+
+Static local variables should only be used if in your entire program and in the foreseeable future of your program, the variable is unique and it wouldn’t make sense to reset the variable.
 
 
 #### Static Member

@@ -5,7 +5,9 @@
 | Deallocate storage | delete a | Yes |
 | Deallocate array storage | delete[] a | Yes |
 
-C++ supports dynamic allocation and deallocation of objects using the new and delete operators. These operators allocate memory for objects from a pool called the free store. The new operator calls the special function operator new, and the delete operator calls the special function operator delete.
+C++ supports dynamic allocation and deallocation of objects using the new and delete functions.
+
+These functions are a little different from other functions in that you don’t put parentheses around their parameter. For this reason, they are considered to be operators. These operators allocate memory for objects from a pool called the free store. The new operator calls the special function operator new, and the delete operator calls the special function operator delete.
 
 The new function in the C++ Standard Library supports the behavior specified in the C++ standard, which is to throw a std::bad_alloc exception if the memory allocation fails.
 
@@ -22,8 +24,8 @@ Allocates memory for an object or array of objects of type-name from the free st
 
 Scope for operator new functions
 
-:: operator new 	             Global
-class-name :: operator new     Class
+	:: operator new 	             Global
+	class-name :: operator new     Class
 
 The first argument to operator new must be of type size_t, defined in <stddef.h>, and the return type is always void*.
 
@@ -46,16 +48,15 @@ Syntax
 
 The cast-expression argument must be a pointer to a block of memory previously allocated for an object created with the new operator. The delete operator has a result of type void and therefore does not return a value.
 
-Using delete on a pointer to an object not allocated with new gives unpredictable results. You can, however, use delete on a pointer with the value 0. This provision means that, when new returns 0 on failure, deleting the result of a failed new operation is harmless.
-
-Using the delete operator on an object deallocates its memory. A program that dereferences a pointer after the object is deleted can have unpredictable results or crash.
+Memory that is dynamically allocated using the new operator can be freed using the delete operator. Using the delete operator on an object deallocates its memory. The delete operator calls the operator delete function, which frees memory back to the available pool.
 
 When delete is used to deallocate memory for a C++ class object, the object's destructor is called before the object's memory is deallocated (if the object has a destructor).
 
 If the operand to the delete operator is a modifiable l-value, its value is undefined after the object is deleted.
 
+Using delete on a pointer to an object not allocated with new gives unpredictable results. You can, however, use delete on a pointer with the value 0. This provision means that, when new returns 0 on failure, deleting the result of a failed new operation is harmless.
 
-Memory that is dynamically allocated using the new operator can be freed using the delete operator. The delete operator calls the operator delete function, which frees memory back to the available pool. Using the delete operator also causes the class destructor (if one exists) to be called.
+A program that dereferences a pointer after the object is deleted can have unpredictable results or crash.
 
 There are global and class-scoped operator delete functions. Only one operator delete function can be defined for a given class; if defined, it hides the global operator delete function. The global operator delete function is always called for arrays of any type.
 
@@ -69,7 +70,7 @@ Only one of the preceding two forms can be present for a given class. The first 
 
 The intent of the second form is to speed up searching for the correct size category of the object to delete. This information often isn't stored near the allocation itself, and is likely uncached. The second form is useful when an operator delete function from a base class is used to delete an object of a derived class.
 
-The operator delete function is static, so it can't be virtual. The operator delete function obeys access control, as described in Member-Access Control.
+The operator delete function is static, so it can't be virtual.
 
 
 

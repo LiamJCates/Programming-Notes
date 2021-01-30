@@ -8,6 +8,13 @@ Typically, we place the declarations that specify the interface to a module in a
 indicating its intended use.
 
 
+When a class is defined that can be used in a different file, a header can be used to separate the interface (the declaration) from the implementation (the
+definition of the member variables and functions) so the implementation can be
+changed without forcing a re-compile of the entire system. You
+achieve this end by putting the declaration for your new type in a
+header file.
+
+
 // Vector.h:
 class Vector {
 public:
@@ -63,7 +70,15 @@ unit. A program can consist of many thousand translation units.
 
 
 
-
+The asm keyword
+This is an escape mechanism that allows you to write assembly
+code for your hardware within a C++ program. Often you’re able
+to reference C++ variables within the assembly code, which means
+you can easily communicate with your C++ code and limit the
+assembly code to that necessary for efficiency tuning or to use
+special processor instructions. The exact syntax that you must use
+when writing the assembly language is compiler-dependent and
+can be discovered in your compiler’s documentation.
 
 
 Global constants

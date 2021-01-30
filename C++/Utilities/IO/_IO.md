@@ -2,12 +2,15 @@ The C++ I/O stream library provides formatted and unformatted buffered I/O of te
 
 C++ I/O uses a convenient abstraction called streams to perform input and output operations in sequential media such as the screen, the keyboard or a file.
 
+
+
 ### Streams
+
 A stream is an entity where a program can either insert or extract data to/from. A stream represents an infinite sequence of bytes, usually characters.
 
 The characters may be either normal characters (char) or wide characters (wchar_t).
 
-Thus, Streams provide a universal character-based interface to any type of storage medium (for example, a file). There is no need to know details about the media associated to the stream or any of its internal specifications. All we need to know is that streams are a source/destination of characters, and that these characters are provided/accepted sequentially (i.e., one after another).
+Streams provide a universal character-based interface to any type of storage medium (for example, a file). There is no need to know details about the media associated to the stream or any of its internal specifications. All we need to know is that streams are a source/destination of characters, and that these characters are provided/accepted sequentially (i.e., one after another).
 
 Streams work with built-in data types, and you can make user-defined types work with streams by overloading the insertion operator (<<) to put objects into streams, and the extraction operator (>>) to read objects from streams. Any object that can be written to one type of stream, can be written to all types of streams. In other words, as long as an object has a stream representation, any storage medium can accept objects with that stream representation.
 
@@ -47,6 +50,7 @@ To perform standard stream I/O, C++ programs use the header file iostream:
   #include <iostream>
 
 This header file contains, among others, the definitions of two data types:
+
   istream (input stream)  
   //converts a stream of characters (bytes) to typed objects
 
@@ -61,12 +65,12 @@ These variable declarations are similar to the following C++ statements:
   istream cin;
   ostream cout;
 
-use std::cout (pronounced “standard see-out”) to write simple text data to the console
+use std::cout (pronounced “standard see-out”) to write text data to the console
 use std::cin (“standard see-in”) to read text and numbers from the console.
 
 Variables of type istream are called input stream variables;
 Variables of type ostream are called output stream variables.
-A stream variable is either an input stream variable or an output stream variable.
+A stream variable is either an input stream or output stream variable.
 
 
 
@@ -82,21 +86,19 @@ Stream operators:
     std::cin >> Variable;                       //reads from stream
 
 
+
 I/O Library Header Files
 
 There are following header files important to C++ programs −
 
 <iostream>
-
-This file defines the cin, cout, cerr and clog objects, which correspond to the standard input stream, the standard output stream, the un-buffered standard error stream and the buffered standard error stream, respectively. 	
+  Contains <istream> and <ostream>. This file defines the cin, cout, cerr and clog objects, which correspond to the standard input stream, the standard output stream, the un-buffered standard error stream and the buffered standard error stream, respectively. 	
 
 <iomanip>
-
-This file declares services useful for performing formatted I/O with so-called parameterized stream manipulators, such as setw and setprecision.
+  This file declares services useful for performing formatted I/O with so-called parameterized stream manipulators, such as setw and setprecision.
 
 <fstream>
-
-This file declares services for user-controlled file processing.
+  This file declares services for user-controlled file processing.
 
 
 

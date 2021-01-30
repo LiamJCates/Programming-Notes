@@ -8,7 +8,8 @@ functions accessed by #include <stdio.h>
 
 
 ## scanf
-int scanf ( const char * format, ... );
+
+  int scanf ( const char * format, ... );
 
 Read formatted data from stdin
 Reads data from stdin and stores them according to the parameter format into the locations pointed by the additional arguments.
@@ -18,16 +19,16 @@ The additional arguments should point to already allocated objects of the type s
 Parameters
 
 format
-    C string that contains a sequence of characters that control how characters extracted from the stream are treated:
+C string that contains a sequence of characters that control how characters extracted from the stream are treated:
 
-        Whitespace character: the function will read and ignore any whitespace characters encountered before the next non-whitespace character (whitespace characters include spaces, newline and tab characters -- see isspace). A single whitespace in the format string validates any quantity of whitespace characters extracted from the stream (including none).
-        Non-whitespace character, except format specifier (%): Any character that is not either a whitespace character (blank, newline or tab) or part of a format specifier (which begin with a % character) causes the function to read the next character from the stream, compare it to this non-whitespace character and if it matches, it is discarded and the function continues with the next character of format. If the character does not match, the function fails, returning and leaving subsequent characters of the stream unread.
-        Format specifiers: A sequence formed by an initial percentage sign (%) indicates a format specifier, which is used to specify the type and format of the data to be retrieved from the stream and stored into the locations pointed by the additional arguments.
+Whitespace character: the function will read and ignore any whitespace characters encountered before the next non-whitespace character (whitespace characters include spaces, newline and tab characters -- see isspace). A single whitespace in the format string validates any quantity of whitespace characters extracted from the stream (including none).
+Non-whitespace character, except format specifier (%): Any character that is not either a whitespace character (blank, newline or tab) or part of a format specifier (which begin with a % character) causes the function to read the next character from the stream, compare it to this non-whitespace character and if it matches, it is discarded and the function continues with the next character of format. If the character does not match, the function fails, returning and leaving subsequent characters of the stream unread.
+Format specifiers: A sequence formed by an initial percentage sign (%) indicates a format specifier, which is used to specify the type and format of the data to be retrieved from the stream and stored into the locations pointed by the additional arguments.
 
 
-    A format specifier for scanf follows this prototype:
+A format specifier for scanf follows this prototype:
 
-    %[*][width][length]specifier
+  %[*][width][length]specifier
 
 <table>
     <thead>
@@ -60,7 +61,7 @@ format
             <td>f,e,g</td>
             <td rowspan="2">Floating point number</td>
             <td rowspan="2">A series of decimal digits, optionally containing a decimal point, optionally preceeded by a sign (+ or -) and optionally followed by the e or E character and a decimal integer (or some of the other sequences supported by strtod).
-Implementations complying with C99 also support hexadecimal floating-point format when preceded by 0x or 0X.</td>
+            Implementations complying with C99 also support hexadecimal floating-point format when preceded by 0x or 0X.</td>
         </tr>
         <tr>
             <td>a</td>
@@ -135,6 +136,7 @@ This alters the expected type of the storage pointed by the corresponding argume
 </table>
 
 This is a chart showing the types expected for the corresponding arguments where input is stored (both with and without a length sub-specifier):
+
 <table>
     <thead>
         <tr>
@@ -239,9 +241,10 @@ This is a chart showing the types expected for the corresponding arguments where
 
 
 ... (additional arguments)
-    Depending on the format string, the function may expect a sequence of additional arguments, each containing a pointer to allocated storage where the interpretation of the extracted characters is stored with the appropriate type.
-    There should be at least as many of these arguments as the number of values stored by the format specifiers. Additional arguments are ignored by the function.
-    These arguments are expected to be pointers: to store the result of a scanf operation on a regular variable, its name should be preceded by the reference operator (&) (see example).
+Depending on the format string, the function may expect a sequence of additional arguments, each containing a pointer to allocated storage where the interpretation of the extracted characters is stored with the appropriate type.
+There should be at least as many of these arguments as the number of values stored by the format specifiers. Additional arguments are ignored by the function.
+
+These arguments are expected to be pointers: to store the result of a scanf operation on a regular variable, its name should be preceded by the reference operator (&) (see example).
 
 
 Return Value
@@ -251,31 +254,31 @@ If a reading error happens or the end-of-file is reached while reading, the prop
 
 If an encoding error happens interpreting wide characters, the function sets errno to EILSEQ.
 
-/* scanf example */
-#include <stdio.h>
+  /* scanf example */
+  #include <stdio.h>
 
-int main ()
-{
-  char str [80];
-  int i;
+  int main ()
+  {
+    char str [80];
+    int i;
 
-  printf ("Enter your family name: ");
-  scanf ("%79s",str);  
-  printf ("Enter your age: ");
-  scanf ("%d",&i);
-  printf ("Mr. %s , %d years old.\n",str,i);
-  printf ("Enter a hexadecimal number: ");
-  scanf ("%x",&i);
-  printf ("You have entered %#x (%d).\n",i,i);
+    printf ("Enter your family name: ");
+    scanf ("%79s",str);  
+    printf ("Enter your age: ");
+    scanf ("%d",&i);
+    printf ("Mr. %s , %d years old.\n",str,i);
+    printf ("Enter a hexadecimal number: ");
+    scanf ("%x",&i);
+    printf ("You have entered %#x (%d).\n",i,i);
 
-  return 0;
-}
+    return 0;
+  }
 
 
 
 ## fscanf
 
-int fscanf ( FILE * stream, const char * format, ... );
+  int fscanf ( FILE * stream, const char * format, ... );
 
 Read formatted data from stream
 Reads data from the stream and stores them according to the parameter format into the locations pointed by the additional arguments.
@@ -290,21 +293,21 @@ stream
 
 ...Everything else is the same as scanf()
 
-/* fscanf example */
-#include <stdio.h>
+  /* fscanf example */
+  #include <stdio.h>
 
-int main ()
-{
-  char str [80];
-  float f;
-  FILE * pFile;
+  int main ()
+  {
+    char str [80];
+    float f;
+    FILE * pFile;
 
-  pFile = fopen ("myfile.txt","w+");
-  fprintf (pFile, "%f %s", 3.1416, "PI");
-  rewind (pFile);
-  fscanf (pFile, "%f", &f);
-  fscanf (pFile, "%s", str);
-  fclose (pFile);
-  printf ("I have read: %f and %s \n",f,str);
-  return 0;
-}
+    pFile = fopen ("myfile.txt","w+");
+    fprintf (pFile, "%f %s", 3.1416, "PI");
+    rewind (pFile);
+    fscanf (pFile, "%f", &f);
+    fscanf (pFile, "%s", str);
+    fclose (pFile);
+    printf ("I have read: %f and %s \n",f,str);
+    return 0;
+  }

@@ -4,11 +4,11 @@ str1 = str1 + str2;     str1 += srt2;
 
 You can concatenate a string, a string literal, a C-style string, or a character to a string. The standard string has a move constructor, so returning even long strings by value is efficient:
 
-string compose(const string& name, const string& domain)
-{
-  return name + '@' + domain;
-}
-auto addr = compose("dmr","bell−labs.com")
+  string compose(const string& name, const string& domain)
+  {
+    return name + '@' + domain;
+  }
+  auto addr = compose("dmr","bell−labs.com")
 
 In many applications, the most common form of concatenation is adding something to the end of a string. This is directly supported by the += operation.
 

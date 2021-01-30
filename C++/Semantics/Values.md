@@ -71,9 +71,9 @@ The assignment operator replaces the value contained by the operand to the left 
 
 There are two kinds of expressions in C++ −
 
-    lvalue − Expressions that refer to a memory location is called "lvalue" expression. An lvalue may appear as either the left-hand or right-hand side of an assignment.
+    lvalue − An lvalue is an expression that identifies a non-temporary object. Expressions that refer to a memory location is called "lvalue" expression. An lvalue may appear as either the left-hand or right-hand side of an assignment. As a general rule, if you have a name for a variable, it is an lvalue, regardless of whether it is modifiable.
 
-    rvalue − The term rvalue refers to a data value that is stored at some address in memory. An rvalue is an expression that cannot have a value assigned to it which means an rvalue may appear on the right- but not left-hand side of an assignment.
+    rvalue − An rvalue is an expression that identifies a temporary object or is a value (such as a literal constant) not associated with any object. The term rvalue refers to a data value that is stored at some address in memory. An rvalue is an expression that cannot have a value assigned to it which means an rvalue may appear on the right- but not left-hand side of an assignment. Intuitively, if the function call computes an expression whose value does not exist prior to the call and does not exist once the call is finished unless it is copied somewhere, it is likely to be an rvalue.
 
 Variables are lvalues and so may appear on the left-hand side of an assignment. Numeric literals are rvalues and so may not be assigned and can not appear on the left-hand side.
 

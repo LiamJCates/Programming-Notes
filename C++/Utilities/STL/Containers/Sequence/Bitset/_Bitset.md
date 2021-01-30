@@ -10,11 +10,32 @@ Instead of viewing objects as holding a single value, we can instead view them a
 
 To define a set of bit flags, we’ll typically use an unsigned integer of the appropriate size (8 bits, 16 bits, 32 bits, etc… depending on how many flags we have), or std::bitset.
 
+
+Bitsets
+
+A bitset is a data structure that stores a fixed­size bit sequence. You can
+manipulate each bit.
+
+The STL offers the std::bitset in the <bitset> header.
+
+  #include <bitset>
+
+The class template bitset takes a single template parameter corresponding to the desired size. You could achieve similar functionality using a bool array, but bitset is optimized for space efficiency and provides some special convenience operations.
+
+
+NOTE
+The STL specializes std::vector<bool>, so it might benefit from the same space efficiencies as bitset.
+
   #include <bitset> // for std::bitset
 
   std::bitset<8> mybitset {}; // 8 bits in size means room for 8 flags
 
 Bit manipulation is one of the few times when you should unambiguously use unsigned integers (or std::bitset).
+
+A default constructed bitset contains all zero (false) bits. To initialize
+bitsets with other contents, you can provide an unsigned long long value. This
+integer’s bitwise representation sets the value of bitset. You can access individual bits in the bitset using operator[].
+
 
 Bit numbering and bit positions
 
@@ -63,8 +84,27 @@ Bitset Operators
 C++ provides 6 bit manipulation operators, often called bitwise operators:
 [C++\Syntax\Statements\Expressions\Operators\Bitwise.md]
 
-
-
+| Operation | Notes |
+|-----------|-------| |
+| bitset<N>([val]) | Constructs a bitset with initial value val, which can be either a string of 0s and 1s or an unsigned long long. Default constructor initializes all bits to zero. |
+| bs[i] | Returns the value of the i-th bit: 1 returns true; 0 returns false. |
+| bs.test(i) | Returns the value of the i-th bit: 1 returns true; 0 returns false. Performs bounds checking; throws std::out_of_range. |
+| bs.set() | Sets all bits to 1. |
+| bs.set(i, val) | Sets the i-th bit to val. Performs bounds checking; throws |
+| std::out_of_range. |
+| bs.reset() | Sets all bits to 0. |
+| bs.reset(i) | Sets the i-th bit to zero. Performs bounds checking; throws std::out_of_range. |
+| bs.flip() | Flips all the bits: (0 becomes 1; 1 becomes 0). |
+| bs.flip(i) | Flips the i-th bit to zero. Performs bounds checking; throws std::out_of_range. |
+| bs.count() | Returns the number of bits set to 1. |
+| bs.size() | Returns the size N of the bitset. |
+| bs.any() | Returns true if any bits are set to 1. |
+| bs.none() | Returns true if all bits are set to 0. |
+| bs.all() | Returns true if all bits are set to 1. |
+| bs.to_string() | Returns the string representation of the bitset. |
+| bs.to_ulong() | Returns the unsigned long representation of the bitset. |
+| bs.to_ullong() | Returns the unsigned long long representation of the bitset |
+|
 
 
 When are bit flags most useful?

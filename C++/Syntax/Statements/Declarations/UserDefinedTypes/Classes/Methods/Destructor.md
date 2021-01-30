@@ -1,5 +1,9 @@
 ## Destructor
+
 A destructor, like a constructor, is a special function. A constructor is invoked at object instantiation, and a destructor is automatically invoked when an object is destroyed.
+
+It is a special kind of method, which is invoked over object when they are destroyed. Destructors method are indicated by a “~” prepended to the name of the class. Destructors method is used to do the clean-up of the memory contained in the object. For the class that does not have Destructors C++ language provide default Destructors for it.
+
 
 An object’s destructor is its cleanup function.
 
@@ -13,6 +17,7 @@ If you don’t define a destructor, a default destructor is automatically genera
 
 
 ## Declaring a Destructor
+
 A destructor is a function that is automatically invoked when an object is destroyed. A destructor is always invoked when an object of a class is destroyed when it goes out of scope or is deleted via delete. This property makes a destructor the ideal place to reset variables and release dynamically allocated memory and other resources.
 
 Several rules govern the declaration of destructors, destructors:
@@ -26,33 +31,35 @@ Several rules govern the declaration of destructors, destructors:
 
 So, class MyClass would have a destructor that is declared like this:
 
-class MyClass
-{
-  ~MyClass(); // declaration of a destructor
-};
+  class MyClass
+  {
+    ~MyClass(); // declaration of a destructor
+  };
 
 This destructor can either be implemented inline in the class or externally outside the class declaration. An implementation or definition inside the class looks like this:
 
-class MyClass
-{
-public:
-  ~MyClass()
+  class MyClass
   {
-  // destructor code here
-  }
-};
+  public:
+    ~MyClass()
+    {
+      // destructor code here
+    }
+  };
 
 A variant enabling you to define the destructor outside the class’s declaration looks like this:
-class MyClass
-{
-public:
-~MyClass(); // destructor declaration
-};
-// destructor definition (implementation)
-MyClass::~MyClass()
-{
-// destructor code here
-}
+
+  class MyClass
+  {
+    public:
+    ~MyClass(); // destructor declaration
+  };
+
+  // destructor definition (implementation)
+  MyClass::~MyClass()
+  {
+    // destructor code here
+  }
 
 
 If you forget to implement a destructor, the compiler creates and invokes a dummy destructor, that is, an empty one (that does no cleanup of dynamically allocated memory).
@@ -60,7 +67,7 @@ If you forget to implement a destructor, the compiler creates and invokes a dumm
 
 
 
-## Implementing a Constructor
+## Implementing a Destructor
 
 Consider
 
@@ -83,14 +90,15 @@ After the object is destroyed, the string previously available from its data mem
 This is a problem with objects that have data members pointing to dynamically allocated locations. To avoid the problem, the class definition should include a definition of a destructor.
 
 For the class Node, a destructor can be defined as
-~Node() {
-  if (name != 0)
-  free(name);
-}
+
+  ~Node() {
+    if (name != 0)
+    free(name);
+  }
 
 
 
-Using destructors
+## Using destructors
 
 Destructors are called when one of the following events occurs:
 
@@ -112,7 +120,9 @@ There are two restrictions on the use of destructors:
 
     Derived classes do not inherit the destructor of their base class.
 
-Order of destruction
+
+
+## Order of destruction
 
 When an object goes out of scope or is deleted, the sequence of events in its complete destruction is as follows:
 

@@ -4,27 +4,22 @@ Encapsulation is a fundamental concept of object-oriented programming.
 
 "the process of compartmentalizing the elements of an abstraction that constitute its structure and behavior; encapsulation serves to separate the contractual interface of an abstraction and its implementation."
 
+Encapsulation is an implementation technique used reduce the complexity of system by separating logically distinct components into individual abstraction units.
 
-Encapsulation is a technique used to abstract components of a system to reduce its complexity.
+Successful encapsulation enforces a clear separation between the abstract properties of an abstraction unit and the concrete details of its implementation.
 
-Related data and behavior that comprise a logical component are said to be encapsulated by extracting them and placing them into their own unit of abstraction.
+The abstract properties are those that are visible to client code and specify a stable interface.
+
+Related data and behavior that comprise the implementation of a logical component are said to be encapsulated by extracting them and placing them into their own unit of abstraction.
+
+The concrete implementation is kept entirely private, and can change. The idea is that such changes, for example to incorporate efficiency improvements over time, have no impact on client code, since they involve no difference in the abstract behavior utilized through a stable interface.
 
 The aggregate system has to be concerned with the interface to a unit of abstraction rather than the complexity of managing that unit.
 
+Abstraction solves problem at design level while encapsulation solves problem at implementation level. Thus, abstraction is focused mainly on what should be done, encapsulation is focused on how it should be done. Abstraction hides the irrelevant details found in the code whereas encapsulation helps developers to organize their code.
 
 
-An suitable example of an encapsulated object is a watch.
-
-We are aware that there are gears and springs inside the watch, but we usually know very little about why all these parts are in a particular configuration.
-
-As users, we are interested in the watches interface
-The initial input required is a watch battery and the current time
-The output is what the hands show
-
-With this interface we can use a watch without worrying about the complexity of the inner workings, the watch's implementation.
-
-
-
+## Example
 
 The basic unit of abstraction in a class.
 
@@ -32,25 +27,16 @@ As a developer, there are two main reasons why you would choose to abstract the 
 
 1) provide a simplified and understandable interface to use your object without the need to understand the complexity inside.
 
-A driver doesn't need to know how an internal combustion engine works.
-Think of an interface as the collection of things you can do to the car without knowing how each works.
-It is sufficient to know how to start the car, engage the transmission, provide fuel, turning off the engine. These basic operations form an interface for the car.
-Hiding the complexity of the car from the user allows anyone, not just a mechanic, to drive a car.
-
-In the same way, hiding the complex functionality of your object from the user allows anyone to use it and to find ways to reuse it in the future regardless of their knowledge of the internal workings.
+Think of an interface as the collection of things you can do to the car without knowing how each works. A driver doesn't need to know how an internal combustion engine works. It is sufficient to know how to start the car, engage the transmission, provide fuel, turning off the engine. These basic operations form an interface for the car. Hiding the complexity of the car from the user allows anyone, not just a mechanic, to drive a car. In the same way, hiding the complex functionality of your object from the user allows anyone to use it and to find ways to reuse it in the future regardless of their knowledge of the internal workings.
 
 2) To manage change.
+
 Today most of us who drive use a vehicle with a gasoline-powered internal combustion engine. However, there a gas-electric hybrids, pure electric motors, and a variety of internal combustion engines that use alternative fuels. Each of those engine types has a different internal mechanism yet we are able to drive each of them because that complexity has been hidden. This means that, even though the mechanism which propels the car changes, the system itself functions the same way from the user's perspective.
 
 
 
+## Advantages of Encapsulation
 
-
-
-
-
-
-Encapsulation promotes
 Bundling code into individual software objects provides a number of benefits, including:
 
 Code-Reuse

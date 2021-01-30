@@ -1,5 +1,29 @@
 
-
+Declarations vs. definitions
+It’s important to understand the difference between declarations and
+definitions because these terms will be used precisely throughout
+the book. Essentially all C and C++ programs require declarations.
+Before you can write your first program, you need to understand
+the proper way to write a declaration.
+A declaration introduces a name – an identifier – to the compiler. It
+tells the compiler “This function or this variable exists somewhere,
+and here is what it should look like.” A definition, on the other
+hand, says: “Make this variable here” or “Make this function here.”
+It allocates storage for the name. This meaning works whether
+you’re talking about a variable or a function; in either case, at the
+point of definition the compiler allocates storage. For a variable, the
+compiler determines how big that variable is and causes space to be
+generated in memory to hold the data for that variable. For a
+function, the compiler generates code, which ends up occupying
+storage in memory.
+You can declare a variable or a function in many different places,
+but there must be only one definition in C and C++ (this is
+sometimes called the ODR: one-definition rule). When the linker is
+uniting all the object modules, it will usually complain if it finds
+more than one definition for the same function or variable.
+A definition can also be a declaration. If the compiler hasn’t seen
+the name x before and you define int x;, the compiler sees the name
+as a declaration and allocates storage for it all at once.
 
 a declaration is a language construct that specifies properties of an identifier: it declares what a word (identifier) "means". Declarations are most commonly used for functions, variables, constants, and classes
 

@@ -1,4 +1,5 @@
 ## Using Constructors to Convert Types
+
 Constructors can be overloaded, that is, they may take one or more parameters.
 
 This feature is often used to convert one type to another.
@@ -22,6 +23,8 @@ This constructor allows a conversion:
 
   Human kid(10); // convert integer in to a Human
   DoSomething(kid);
+
+Thus a conversion constructor is a specialized parameterized constructor.
 
 Such converting constructors allow implicit conversions:
 

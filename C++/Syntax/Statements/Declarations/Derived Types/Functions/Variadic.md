@@ -14,6 +14,7 @@ Instead, you access individual arguments using the utility functions in the
   <cstdarg> header.
 
 Utility Functions in the <cstdarg> Header
+
 | Function | Description |
 |----------|-------------|
 | va_list | Used to declare a local variable representing the variadic arguments |

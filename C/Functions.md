@@ -63,11 +63,11 @@ the error will be detected by the compiler. But if (as is more likely) atof were
 compiled separately, the mismatch would not be detected, atof would return a
 double that main would treat as an int, and meaningless answers would
 result.
-In the light of what we have said about how declarations must match definitions, this might seem surprising. The reason a mismatch can happen is that if
-there is no function prototype, a function is implicitly declared by its first
+In the light of what we have said about how declarations must match definitions, this might seem surprising. The reason a mismatch can happen is that if there is no function prototype, a function is implicitly declared by its first
 appearance in an expression, such as
 sum += atof(line)
-If a name that has .not been previously declared occurs in an expression and is
+
+If a name that has not been previously declared occurs in an expression and is
 followed by a left parenthesis, it is declared by context to be a function name,
 the function is assumed to return an int, and nothing is assumed about its
 arguments. Furthermore, if a function declaration does not include arguments,
@@ -278,15 +278,15 @@ A function can be declared before it is defined, called a function prototype.
 Function prototypes have the form:
 return-type function-name(parameter declaration);
 
-It is an error if the definition of a function or any uses of it do not agree with its
-prototype.
-
+It is an error if the definition of a function or any uses of it do not agree with its prototype.
 
 The word void must be used for function prototypes with an explicitly empty list.
 
-Parameter names in prototypes and definitions need not agree. Indeed, parameter names are optional in a function prototype
+Parameter names in prototypes and definitions need not agree and parameter names are optional in a function prototype
 
-
+The order and type of
+the arguments must match in the declaration, definition, and
+function call.
 
 
 

@@ -30,3 +30,23 @@ Any decidable type system involves a trade-off: while it rejects many incorrect 
 In order to bypass this downside, a number of languages have type loopholes, usually unchecked casts that may be used by the programmer to explicitly allow a normally disallowed operation between different types.
 
 In most typed languages, the type system is used only to type check programs, but a number of languages, usually functional ones, infer types, relieving the programmer from the need to write type annotations.
+
+The compiler performs type checking during the first pass. Type
+checking tests for the proper use of arguments in functions and
+prevents many kinds of programming errors. Since type checking
+occurs during compilation instead of when the program is running,
+it is called static type checking.
+Some object-oriented languages (notably Java) perform some type
+checking at runtime (dynamic type checking). If combined with static
+type checking, dynamic type checking is more powerful than static
+type checking alone. However, it also adds overhead to program
+execution.
+C++ uses static type checking because the language cannot assume
+any particular runtime support for bad operations. Static type
+checking notifies the programmer about misuses of types during
+compilation, and thus maximizes execution speed. As you learn
+C++, you will see that most of the language design decisions favor
+the same kind of high-speed, production-oriented programming
+the C language is famous for.
+You can disable static type checking in C++. You can also do your
+own dynamic type checking – you just need to write the code.

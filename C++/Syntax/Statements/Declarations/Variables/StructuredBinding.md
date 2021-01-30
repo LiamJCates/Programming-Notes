@@ -1,6 +1,8 @@
 Structured Bindings
 
-Structured binding is one of the newest features of C++17 that binds the specified names to subobjects or elements of initializer. In simple words, Structured Bindings give us the ability to declare multiple variables initialized from a tuple or struct. The main purpose of Structured Bindings in C++ 17 is to make the code clean and easy to understand. Like a reference, a structured binding is an alias to an existing object. Unlike a reference, the type of a structured binding does not have to be a reference type.
+Structured binding is a feature of C++17 that binds the specified names to subobjects or elements of an initializer.
+
+In simple words, Structured Bindings give us the ability to declare multiple variables initialized from a tuple or struct. The main purpose of Structured Bindings in C++ 17 is to make the code clean and easy to understand. Like a reference, a structured binding is an alias to an existing object. Unlike a reference, the type of a structured binding does not have to be a reference type.
 
 Syntax :
   auto ref-operator(optional)[identifier-list] = expression;

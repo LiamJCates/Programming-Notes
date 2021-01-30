@@ -9,7 +9,9 @@ Thusly, a computer program is a set of instructions that the computer can execut
 
 While modern programming languages use characters that are common to the alphabet of human languages, these characters are translated into values that the computer can understand and execute using mathematic principles. This is because computers only understand values made of ones and zeros, called binary. The collection of binary values understood by a given computer is known as its machine language.
 
-
+All computer languages are translated from something that tends
+to be easy for a human to understand (source code) into something
+that is executed on a computer (machine instructions).
 
 ### Why Binary
 The computer only works with numbers in the binary form, that is why we often hear that a computer only understands zeros and ones.
@@ -398,6 +400,27 @@ For now we can categorize programming languages into those that are interpreted 
   Compiled languages use a compiler to transform the entirety of the source code into an machine code executable before it can be executed.
 
 
+
+
+
+Tools for separate compilation
+
+Separate compilation is particularly important when building large
+projects. Separate compilation allows a program to be created in small,
+manageable, independently tested pieces. The most fundamental
+tool for breaking a program up into pieces is the ability to create
+named subroutines or subprograms. A subprogram, subroutine, or function is the pieces of code that can be placed in different files, enabling separate compilation. Put another way, the function is the atomic unit of code, since you cannot have part of a function in one file and another part in a different file; the entire function must be placed in a single file (although files can
+and do contain more than one function).
+When you call a function, you typically pass it some arguments,
+which are values you’d like the function to work with during its
+execution. When the function is finished, you typically get back a
+return value, a value that the function hands back to you as a result.
+It’s also possible to write functions that take no arguments and
+return no values.
+To create a program with multiple files, functions in one file must
+access functions and data in other files. When compiling a file, the compiler must know about the functions and data in the other files, in particular their names and proper usage. The compiler ensures that functions and data are used correctly. This process of “telling the compiler” the names of external functions and data and what they should look like is called declaration. Once
+you declare a function or variable, the compiler knows how to
+check to make sure it is used properly.
 
 
 

@@ -3,21 +3,25 @@ C++ defines variables to store values that the program processes
 Information on values:
 [C++\Semantics\Values.md]
 
-Objects and variables
 
-All computers have memory, called RAM (short for random access memory), that is available for your programs to use. You can think of RAM as a series of mailboxes that can be used to hold data while the program is running. A single piece of data, stored in memory somewhere, is called a value.
 
-In some older programming languages (like Apple Basic), you could directly access these mailboxes (a statement could say something like go get the value stored in mailbox number 7532).
+### Objects and variables
 
-In C++, direct memory access is not allowed. Instead, we access memory indirectly through an object. An object is a region of storage (usually memory) that has a value and other associated properties (that we’ll cover in future lessons). When an object is defined, the compiler automatically determines where the object will be placed in memory. As a result, rather than say go get the value stored in mailbox number 7532, we can say, go get the value stored by this object and the compiler knows where in memory to look for that value. This means we can focus on using objects to store and retrieve values, and not have to worry about where in memory they’re actually being placed.
+All computers have memory, called RAM (short for random access memory), that is available for your programs to use. You can think of RAM as a series of mailboxes that can be used to hold data while the program is running. Each mailbox has a unique address that can be used to both send information to it for storage and retrieve information stored there. A single piece of data, stored at a given memory address, is called a value.
+
+In some older programming languages (like Apple Basic), allow direct access to these mailboxes (a statement could say something like go get the value stored in mailbox address 7532).
+
+In C++, direct memory access is not allowed. Instead, we access memory indirectly through an object. An object is a region of storage (usually memory) that has a value and other associated properties. When an object is defined, the compiler automatically determines where the object will be placed in memory, giving it an address. As a result, rather than say go get the value stored in mailbox address 7532, we can say, go get the value stored by this object and the compiler knows where in memory to look for that value. This means we can focus on using objects to store and retrieve values, and not have to worry about where in memory they’re actually being placed.
 
 Objects can be named or unnamed (anonymous). A named object is called a variable, and the name of the object is called an identifier. In our programs, most of the objects we create will be variables.
 
 In general programming, the term object typically refers to a variable, data structure in memory, or function. In C++, the term object has a narrower definition that excludes functions.
 
-In order to create a variable, we use a special kind of declaration statement called a definition (we’ll clarify the difference between a declaration and definition later).
 
-Variable Declaration:
+
+### Variable Declaration
+
+In order to create a variable, we use a special kind of declaration statement called a definition; syntax:
 
   VariableType VariableName;
 
@@ -55,22 +59,31 @@ Is equal to:
   int secondNumber;
   int multiplicationResult;
 
-When the variables in the example above are declared, they have an undetermined value until they are assigned a value for the first time. But it is possible for a variable to have a specific value from the moment it is declared. This is called the initialization of the variable.
+
+
+### Variable Values
 
 After a variable has been defined, you can give it a value using the = operator. This process is called copy assignment (or just assignment) for short.
 
-int width; // define an integer variable named width
-width = 5; // copy assignment of value 5 into variable width
+  int width; // define an integer variable named width
+  width = 5; // copy assignment of value 5 into variable width
 
-Copy assignment is named such because it copies the value on the right-hand side of the = operator to the variable on the left-hand side of the operator. The = operator is called the assignment operator.
+Copy assignment is named such because it copies the value on the right-hand side of the = operator to the variable on the left-hand side of the operator.
+
+The = operator is called the assignment operator.
 
 One downside of assignment is that it requires at least two statements: one to define the variable, and one to assign the value.
 
-These two steps can be combined. When a variable is defined, you can also provide an initial value for the variable at the same time. This is called initialization.
+When the variables in the examples above are declared, they have an undetermined value until they are assigned a value for the first time. But it is possible for a variable to have a specific value from the moment it is declared.
+
+These two steps can be combined. When a variable is defined, you can also provide an initial value for the variable at the same time. This is called the initialization of the variable.
 
 For more information about initialization see:
 [C++\Types&Values\Initialization.md]
 
+
+
+### Types of Variables
 
 The C++ programming language defines three kinds of variables:
 
@@ -79,3 +92,6 @@ The C++ programming language defines three kinds of variables:
 2. Class Variables (Static): A class variable is any field with the static modifier. These variables are linked with the class not with the objects of the class. There is exactly one copy of these variables regardless of how many instances of the class are created.
 
 3. Local Variables: the temporary variables in a method are called local variables. The local variables are only visible to the method in which they are declared. The parameters that are passed to the methods are also local variables of the called method.
+
+For more information regarding static variables, see:
+[C++\Semantics\ScopeLinkage&Duration\Storage.md]
