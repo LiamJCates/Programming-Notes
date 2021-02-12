@@ -9,7 +9,7 @@ Usually, the value represented by postfix-expression is a pointer value, such as
 
 the expression nArray[2] is identical to 2[nArray]. The reason is that the result of a subscript expression e1[e2] is given by:
 
-*((e2) + (e1))
+  *((e2) + (e1))
 
 The address yielded by the expression is not e2 bytes from the address e1. Rather, the address is scaled to yield the next object in the array e2.
 
