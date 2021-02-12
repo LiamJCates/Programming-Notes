@@ -2,6 +2,10 @@ Volatile Expressions
 
 volatile is a type qualifier which prevents the compiler from optimizing away instructions that access a given variable.
 
+“This data may change outside the knowledge of the compiler.” Somehow, the environment is changing the data (possibly through multitasking, multithreading or interrupts), and volatile tells the compiler not to make any assumptions about that data, especially during optimization.
+
+If the compiler says, “I read this data into a register earlier, and I haven’t touched that register,” normally it wouldn’t need to read the data again. But if the data is volatile, the compiler cannot make such an assumption because the data may have been changed by another process, and it must reread that data rather than optimizing the code to remove what would normally be a redundant read.
+
 The volatile keyword tells the compiler that every access made through a qualified variable must be treated as a visible side effect. This means access cannot be optimized out or reordered with another visible side effect.
 
 This keyword is crucial in some settings, like embedded programming, where reads and writes to some special portions of memory have effects on the underlying system. The volatile keyword keeps the compiler from optimizing such accesses away.
@@ -39,3 +43,12 @@ Now the compiler will emit instructions to perform each of the reads
 and writes you’ve programmed.
 
 A common misconception is that volatile has to do with concurrent programming. It does not. Variables marked volatile are not generally thread safe.
+
+
+### const
+You can also create const volatile objects, which can’t be changed by the client programmer but instead change through some outside agency.
+
+
+As with const, you can use volatile for data members, member
+functions, and objects themselves. You can only call volatile
+member functions for volatile objects.

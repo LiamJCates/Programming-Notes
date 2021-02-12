@@ -24,12 +24,13 @@ where indexExp1, indexExp2, . . ., and indexExpn are expressions yielding nonneg
 
 
 ## Two-Dimensions
-arrayType arrayName [rows] [columns];
 
-int solarPanels [2][3] = {{0, 1, 2}, {3, 4, 5}};
+  arrayType arrayName [rows] [columns];
 
-|0|1|2|
-|3|4|5|
+  int solarPanels [2][3] = {{0, 1, 2}, {3, 4, 5}};
+
+  |0|1|2|
+  |3|4|5|
 
 Even though C++ enables us to model multidimensional arrays, the memory where the array is contained is one-dimensional. So, the compiler maps the multidimensional array into the memory space, which expands only in one direction.
 
@@ -70,7 +71,7 @@ is equivalent to the following statement:
 
 
 
-### PROCESSING TWO-DIMENSIONAL ARRAYS
+### Processing Two-Dimensional Arrays
 
 A two-dimensional array can be processed in four ways:
   Process a single element.
@@ -113,7 +114,7 @@ Two-dimensional arrays can be passed as parameters to a function, and they are p
 
 In the case of a one-dimensional array, when declaring it as a formal parameter, we usually omit the size of the array. Because C++ stores two-dimensional arrays in row order form, to compute the address of a component correctly, the compiler must know where one row ends and the next row begins.
 
-Thus, when declaring a twodimensional array as a formal parameter, you can omit the size of the first dimension, but not the second; that is, you must specify the number of columns.
+Thus, when declaring a two-dimensional array as a formal parameter, you can omit the size of the first dimension, but not the second; that is, you must specify the number of columns.
 
 Suppose we have the following declaration:
 
@@ -122,51 +123,52 @@ Suppose we have the following declaration:
 
 Consider the following definition of the function printMatrix:
 
-void printMatrix(int matrix[][NUMBER_OF_COLUMNS], int noOfRows)
-{
-  for (int row = 0; row < noOfRows; row++)
+  void printMatrix(int matrix[][NUMBER_OF_COLUMNS], int noOfRows)
   {
-  for (int col = 0; col < NUMBER_OF_COLUMNS; col++)
-    cout << setw(5) << matrix[row][col] << " ";
-    cout << endl;
+    for (int row = 0; row < noOfRows; row++)
+    {
+    for (int col = 0; col < NUMBER_OF_COLUMNS; col++)
+      cout << setw(5) << matrix[row][col] << " ";
+      cout << endl;
+    }
   }
-}
 
 This function takes as a parameter a two-dimensional array of an unspecified number of rows and five columns, and outputs the content of the two-dimensional array. During the function call, the number of columns of the actual parameter must match the number of columns of the formal parameter.
 
 Similarly, the following function outputs the sum of the elements of each row of a two-dimensional array whose elements are of type int:
 
-void sumRows(int matrix[][NUMBER_OF_COLUMNS], int noOfRows)
-{
-  int sum;
-  //Sum of each individual row
-  for (int row = 0; row < noOfRows; row++)
+  void sumRows(int matrix[][NUMBER_OF_COLUMNS], int noOfRows)
   {
-    sum = 0;
-    for (int col = 0; col < NUMBER_OF_COLUMNS; col++)
-      sum = sum + matrix[row][col];
-    cout << "Sum of row " << (row + 1) << " = " << sum << endl;
+    int sum;
+    //Sum of each individual row
+    for (int row = 0; row < noOfRows; row++)
+    {
+      sum = 0;
+      for (int col = 0; col < NUMBER_OF_COLUMNS; col++)
+        sum = sum + matrix[row][col];
+      cout << "Sum of row " << (row + 1) << " = " << sum << endl;
+    }
   }
-}
 
 The following function determines the largest element in each row:
 
-void largestInRows(int matrix[][NUMBER_OF_COLUMNS], int noOfRows)
-{
-  int largest;
-  //Largest element in each row
-  for (int row = 0; row < noOfRows; row++)
+  void largestInRows(int matrix[][NUMBER_OF_COLUMNS], int noOfRows)
   {
-    largest = matrix[row][0]; //Assume that the first element
-    //of the row is the largest.
-    for (int col = 1; col < NUMBER_OF_COLUMNS; col++)
-      if (largest < matrix[row][col])
-        largest = matrix[row][col];
-    cout << "Largest element of row " << (row + 1) << " = " << largest << "\n";
+    int largest;
+    //Largest element in each row
+    for (int row = 0; row < noOfRows; row++)
+    {
+      largest = matrix[row][0]; //Assume that the first element
+      //of the row is the largest.
+      for (int col = 1; col < NUMBER_OF_COLUMNS; col++)
+        if (largest < matrix[row][col])
+          largest = matrix[row][col];
+      cout << "Largest element of row " << (row + 1) << " = " << largest << "\n";
+    }
   }
-}
 
 Likewise, you can write a function to find the sum of the elements of each column, read the data into a two-dimensional array, find the largest and/or smallest element in each row or column, and so on.
+
 
 
 ### Another Way to Declare a Two-Dimensional Array
@@ -201,122 +203,82 @@ By first defining a data type, you do not need to keep checking the exact number
 
 
 
+### Two-dimensional dynamically allocated arrays
+An understanding of the mechanics of dynamic allocation and dynamic array allocation are required to understand the following content.
 
+For information regarding dynamic memory allocation, see:
+[C++\Syntax\Statements\Declarations\Derived Types\PointersAndReferences\DynamicMemory.md]
 
-
-
-
-
-
-
-
-
-
-
-
-
-Two-dimensional dynamically allocated arrays
-
-Another common use for pointers to pointers is to facilitate dynamically allocated multidimensional arrays (see 9.5 -- Multidimensional Arrays for a review of multidimensional arrays).
+Another common use for pointers to pointers is to facilitate dynamically allocated multidimensional arrays.
 
 Unlike a two dimensional fixed array, which can easily be declared like this:
 
-1
-
-int array[10][5];
+  int array[10][5];
 
 Dynamically allocating a two-dimensional array is a little more challenging. You may be tempted to try something like this:
 
-1
-
-int **array = new int[10][5]; // won’t work!
+  int **array = new int[10][5]; // won’t work!
 
 But it won’t work.
 
 There are two possible solutions here. If the rightmost array dimension is a compile-time constant, you can do this:
 
-1
-
-int (*array)[5] = new int[10][5];
+  int (*array)[5] = new int[10][5];
 
 The parenthesis are required here to ensure proper precedence. In C++11 or newer, this is a good place to use automatic type deduction:
 
-1
-
-auto array = new int[10][5]; // so much simpler!
+  auto array = new int[10][5]; // so much simpler!
 
 Unfortunately, this relatively simple solution doesn’t work if any non-leftmost array dimension isn’t a compile-time constant. In that case, we have to get a little more complicated. First, we allocate an array of pointers (as per above). Then we iterate through the array of pointers and allocate a dynamic array for each array element. Our dynamic two-dimensional array is a dynamic one-dimensional array of dynamic one-dimensional arrays!
 
-1
-2
-3
-
-int **array = new int*[10]; // allocate an array of 10 int pointers — these are our rows
-for (int count = 0; count < 10; ++count)
-    array[count] = new int[5]; // these are our columns
+  // allocate an array of 10 int pointers — these are our rows
+  int **array = new int*[10];
+  for (int count = 0; count < 10; ++count)
+      array[count] = new int[5]; // these are our columns
 
 We can then access our array like usual:
 
-1
-
-array[9][4] = 3; // This is the same as (array[9])[4] = 3;
+  array[9][4] = 3; // This is the same as (array[9])[4] = 3;
 
 With this method, because each array column is dynamically allocated independently, it’s possible to make dynamically allocated two dimensional arrays that are not rectangular. For example, we can make a triangle-shaped array:
 
-1
-2
-3
-
-int **array = new int*[10]; // allocate an array of 10 int pointers — these are our rows
-for (int count = 0; count < 10; ++count)
-    array[count] = new int[count+1]; // these are our columns
+  // allocate an array of 10 int pointers — these are our rows
+  int **array = new int*[10];
+  for (int count = 0; count < 10; ++count)
+      array[count] = new int[count+1]; // these are our columns
 
 In the above example, note that array[0] is an array of length 1, array[1] is an array of length 2, etc…
 
 Deallocating a dynamically allocated two-dimensional array using this method requires a loop as well:
 
-1
-2
-3
+  for (int count = 0; count < 10; ++count)
+      delete[] array[count];
 
-for (int count = 0; count < 10; ++count)
-    delete[] array[count];
-delete[] array; // this needs to be done last
+  delete[] array; // this needs to be done last
 
 Note that we delete the array in the opposite order that we created it (elements first, then the array itself). If we delete array before the array elements, then we’d have to access deallocated memory to delete the array elements. And that would result in undefined behavior.
 
+
+
+### Flattened Arrays
+
 Because allocating and deallocating two-dimensional arrays is complex and easy to mess up, it’s often easier to “flatten” a two-dimensional array (of size x by y) into a one-dimensional array of size x * y:
 
-1
-2
-3
-4
-5
-6
-7
+  // Instead of this:
+  // allocate an array of 10 int pointers — these are our rows
+  int **array = new int*[10];
+  for (int count = 0; count < 10; ++count)
+      array[count] = new int[5]; // these are our columns
 
-// Instead of this:
-int **array = new int*[10]; // allocate an array of 10 int pointers — these are our rows
-for (int count = 0; count < 10; ++count)
-    array[count] = new int[5]; // these are our columns
-
-// Do this
-int *array = new int[50]; // a 10x5 array flattened into a single array
+  // Do this
+  int *array = new int[50]; // a 10x5 array flattened into a single array
 
 Simple math can then be used to convert a row and column index for a rectangular two-dimensional array into a single index for a one-dimensional array:
 
-1
-2
-3
-4
-5
-6
-7
+  int getSingleIndex(int row, int col, int numberOfColumnsInArray)
+  {
+       return (row * numberOfColumnsInArray) + col;
+  }
 
-int getSingleIndex(int row, int col, int numberOfColumnsInArray)
-{
-     return (row * numberOfColumnsInArray) + col;
-}
-
-// set array[9,4] to 3 using our flattened array
-array[getSingleIndex(9, 4, 5)] = 3;
+  // set array[9,4] to 3 using our flattened array
+  array[getSingleIndex(9, 4, 5)] = 3;

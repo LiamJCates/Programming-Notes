@@ -1,4 +1,5 @@
 ## Function Pointers
+
 C++ allows operations with pointers to functions. The typical use of this is for passing a function as an argument to another function.
 
 Functions occupy memory, just like objects. You can refer to this memory address via usual pointer mechanisms. However, unlike objects, you cannot modify the pointed-to function. In this respect, functions are conceptually similar to const objects. You can take the address of functions and invoke them, and that’s about it.
@@ -6,40 +7,42 @@ Functions occupy memory, just like objects. You can refer to this memory address
 
 
 ### Declaring a Function Pointer
+
 To declare a function pointer, use the following ugly syntax:
-return-type (*pointer-name)(arg-type1, arg-type2, ...);
+
+  return-type (*pointer-name)(arg-type1, arg-type2, ...);
 
 This has the same appearance as a function declaration where the function name is replaced (*pointer-name).
 
 As usual, you can employ the address-of operator & to take the address of a function. This is optional, however; you can simply use the function name as a pointer.
 
-#include <cstdio>
-float add(float a, int b) {
-  return a + b;
-}
+  #include <cstdio>
+  float add(float a, int b) {
+    return a + b;
+  }
 
-float subtract(float a, int b) {
-  return a - b;
-}
-int main() {
-  const float first{ 100 };
-  const int second{ 20 };
-  float(*operation)(float, int) {};
-  printf("operation initialized to 0x%p\n", operation);
-  operation = &add;
-  printf("&add = 0x%p\n", operation);
-  printf("%g + %d = %g\n", first, second, operation(first, second));
-  operation = subtract;
-  printf("&subtract = 0x%p\n", operation);
-  printf("%g - %d = %g\n", first, second, operation(first, second));
-}
+  float subtract(float a, int b) {
+    return a - b;
+  }
+  int main() {
+    const float first{ 100 };
+    const int second{ 20 };
+    float(*operation)(float, int) {};
+    printf("operation initialized to 0x%p\n", operation);
+    operation = &add;
+    printf("&add = 0x%p\n", operation);
+    printf("%g + %d = %g\n", first, second, operation(first, second));
+    operation = subtract;
+    printf("&subtract = 0x%p\n", operation);
+    printf("%g - %d = %g\n", first, second, operation(first, second));
+  }
 
 Output:
-operation initialized to 0x0000000000000000
-&add = 0x00007FF6CDFE1070
-100 + 20 = 120
-&subtract = 0x00007FF6CDFE10A0
-100 - 20 = 80
+  operation initialized to 0x0000000000000000
+  &add = 0x00007FF6CDFE1070
+  100 + 20 = 120
+  &subtract = 0x00007FF6CDFE10A0
+  100 - 20 = 80
 
 (Due to address space layout randomization, addresses will vary at runtime.)
 
@@ -63,7 +66,7 @@ Many comparison-based sorting algorithms work on a similar concept: the sorting 
 
 
 
-Providing default functions
+#### Providing default functions
 
 If you’re going to allow the caller to pass in a function as a parameter, it can often be useful to provide some standard functions for the caller to use for their convenience. For example, in the selection sort example above, providing the ascending() and descending() function along with the selectionSort() function would make the caller’s life easier, as they wouldn’t have to rewrite ascending() or descending() every time they want to use them.
 
@@ -81,10 +84,8 @@ In this case, as long as the user calls selectionSort normally (not through a fu
 Type aliases provide a neat way to program with function pointers.
 
 Syntax:
-using alias-name = return-type(*)(arg-type1, arg-type2, ...)
 
-
-using operation_func = float(*)(float, int);
+  using alias-name = return-type(*)(arg-type1, arg-type2, ...)
 
 This is especially useful if you’ll be using function pointers of the same
 type; it can really clean up the code.
@@ -92,7 +93,7 @@ type; it can really clean up the code.
 
 
 
-Type inference for function pointers
+#### Type inference for function pointers
 
 Much like the auto keyword can be used to infer the type of normal variables, the auto keyword can also infer the type of a function pointer.
 

@@ -1,6 +1,7 @@
 1. What is the output of the code?
-  #include<iostream>
+  #include <iostream>
   using namespace std;
+
   class student
   {
     public:
@@ -19,8 +20,9 @@ Answer: 90 'S' is the object / instance of the class. It can access the 'public'
 
 
 2. What is the output of the code?
-  #include<iostream>
+  #include <iostream>
   using namespace std;
+
   class student
   {
     private:
@@ -42,8 +44,9 @@ Classes default to the 'private' access specifier, meaning that it's data is to 
 
 3. What is the output of the code?
 
-  #include<iostream>
+  #include <iostream>
   using namespace std;
+
   class student
   {
     protected:
@@ -66,8 +69,9 @@ error: ‘void student::percent()’ is protected within this context
 
 
 4. What is the output of the code?
-  #include<iostream>
+  #include <iostream>
   using namespace std;
+
   class student
   {
     public:
@@ -82,13 +86,14 @@ error: ‘void student::percent()’ is protected within this context
 
 Answer: 4
 Only member variables will be allocated memory and an int is allocated 4 bytes
-Members need not be initialised, memory is allocated once the variable is created.
+Members need not be initialized, memory is allocated once the variable is created.
 
 
 
 5. What is the output of the code?
-  #include<iostream>
+  #include <iostream>
   using namespace std;
+
   class student
   {
     int marks;
@@ -106,7 +111,7 @@ Even though the members are not accessible by the object, each object will have 
 
 
 6. What is the output of the code?
-  #include<iostream>
+  #include <iostream>
   using namespace std;
   class student
   {
@@ -126,8 +131,9 @@ Answer: 5 This works normally.
 
 
 7. What is the output of the code?
-  #include<iostream>
+  #include <iostream>
   using namespace std;
+
   class student
   {
   public:
@@ -147,8 +153,9 @@ Answer: 8 a
 
 
 8. What is the output of the code?
-  #include<iostream>
+  #include <iostream>
   using namespace std;
+
   class student
   {
   public:
@@ -170,8 +177,9 @@ section is private and thus throws an error on access by client code.
 
 
 9. What is the output of the code?
-  #include<iostream>
+  #include <iostream>
   using namespace std;
+
   class student
   {
     public:
@@ -196,8 +204,9 @@ Same access specifier can be given multiple times.
 
 
 10. What is the output of the code?
-  #include<iostream>
+  #include <iostream>
   using namespace std;
+
   class student
   {
     private:
@@ -210,7 +219,7 @@ Same access specifier can be given multiple times.
 
   int main()
   {
-    S.m=8;
+    S.m = 8;
     cout<<S.m;
   }
 
@@ -220,8 +229,9 @@ Public members are accessible by client code.
 
 
 11. What is the output of the code?
-  #include<iostream>
+  #include <iostream>
   using namespace std;
+
   class student
   {
     private:
@@ -231,7 +241,7 @@ Public members are accessible by client code.
 
   int main()
   {
-    S.m=8;
+    S.m = 8;
     cout<<S.m;
   }
 
@@ -241,8 +251,9 @@ A specifier block can be empty.
 
 
 12. What is the output of the code?
-  #include<iostream>
+  #include <iostream>
   using namespace std;
+
   class student
   {
     private, public:
@@ -251,7 +262,7 @@ A specifier block can be empty.
 
   int main()
   {
-    S.m=8;
+    S.m = 8;
     cout<<S.m;
   }
 
@@ -265,8 +276,9 @@ This is not legal. But it is to be noted that still the specifiers exist as keyw
 
 
 13. What is the output of the code?
-  #include<iostream>
+  #include <iostream>
   using namespace std;
+
   class student
   {
     private:public:
@@ -275,7 +287,7 @@ This is not legal. But it is to be noted that still the specifiers exist as keyw
 
   int main()
   {
-    S.m=8;
+    S.m = 8;
     cout<<S.m;
   }
 
@@ -284,7 +296,7 @@ This works normally as specified above.
 
 
 14. What is the output of the code?
-  #include<iostream>
+  #include <iostream>
   using namespace std;
   int m;
   class student
@@ -295,7 +307,7 @@ This works normally as specified above.
 
   int main()
   {
-    S.m=8;
+    S.m = 8;
     cout<<S.m;
   }
 
@@ -309,7 +321,7 @@ Here 'm' is not a member of a class. So it cannot be declared again inside the c
 
 15. What will be the error thrown the code?
 
-  #include<iostream>
+  #include <iostream>
   using namespace std;
   int m;
   class student
@@ -320,7 +332,7 @@ Here 'm' is not a member of a class. So it cannot be declared again inside the c
 
   int main()
   {  
-    S.m=8;
+    S.m = 8;
     m=0;
     cout<<S.m<< " "<<m;
   }
@@ -331,8 +343,9 @@ It throws no error. It is allowed in classes.
 
 
 16. What is the output of the code?
-  #include<iostream>
+  #include <iostream>
   using namespace std;
+
   class student
   {
     public:
@@ -351,8 +364,9 @@ Class object can be same as a member variable.
 
 
 17. What is the output of the code?
-  #include<iostream>
+  #include <iostream>
   using namespace std;
+
   class student
   {
     int m;
@@ -362,7 +376,7 @@ Class object can be same as a member variable.
 
   int main()
   {
-    S.m=8;
+    S.m = 8;
     cout<<S.m;
   }
 
@@ -376,8 +390,9 @@ Before declaring 'm' as public it is declared as private.
 
 
 18. What will be the error thrown by the code?
-  #include<iostream>
+  #include <iostream>
   using namespace std;
+
   class student
   {
   public:
@@ -387,7 +402,7 @@ Before declaring 'm' as public it is declared as private.
 
   int main()
   {
-    S.m=8;
+    S.m = 8;
     cout<<S.m;
   }
 
@@ -399,8 +414,9 @@ Redeclaration of variable inside the class is not possible.
 
 
 19. What is the output of the code?
-  #include<iostream>
+  #include <iostream>
   using namespace std;
+
   class student
   {
   public:
@@ -421,15 +437,16 @@ Type cannot be given separately inside class for declaration.
 
 
 20. What is the output of the code?
-  #include<iostream>
+  #include <iostream>
   using namespace std;
+
   class student
   { }S;
   int student::m;
 
   int main()
   {
-    S.m=8;
+    S.m = 8;
     cout<<S.m;
   }
 
@@ -442,8 +459,9 @@ This has a different meaning. It is related with 'static' members of class.
 
 
 21. What is the output of the code?
-  #include<iostream>
+  #include <iostream>
   using namespace std;
+
   class student
   {
   public:
@@ -453,7 +471,7 @@ This has a different meaning. It is related with 'static' members of class.
 
   int main()
   {
-    S.m=8;
+    S.m = 8;
     cout<<S.m;
   }
 
@@ -467,8 +485,9 @@ Compiler treats "S.m;" as a new variable declaration, and throws errors.
 
 22. What is the output of the code ?
 
-  #include<iostream>
+  #include <iostream>
   using namespace std;
+
   class student {
     public:
       int m;
@@ -490,8 +509,9 @@ Declaring variables after the class with member names doesn't affect the declara
 
 23. What is the output of the code ?
 
-  #include<iostream>
+  #include <iostream>
   using namespace std;
+
   class student {
     public:
       int m = 9;
@@ -512,12 +532,14 @@ Such initializations can be done only to static members(that to outside the clas
 
 24. What is the output of the code ?
 
-  #include<iostream>
+  #include <iostream>
   using namespace std;
+
   class student {
     public:
       int m = 9;
   }S;
+
   int main()
   {
       S.m = 8;
@@ -531,8 +553,9 @@ It works normally.
 
 25. What is the output of the code ?
 
-  #include<iostream>
+  #include <iostream>
   using namespace std;
+
   class student {
     public:
       int m;
@@ -551,8 +574,9 @@ We have created multiple objects, the first we assign a value to it's member m a
 
 26. What is the output of the code ?
 
-  #include<iostream>
+  #include <iostream>
   using namespace std;
+
   class student {
     public:
       int m = 9;
@@ -571,8 +595,9 @@ The class supplies a default initializer for member m, for S we reassign m's val
 
 27. What is the output of the code ?
 
-  #include<iostream>
+  #include <iostream>
   using namespace std;
+
   class student {
     public:
       int m;
@@ -592,13 +617,15 @@ This is a legal declaration of student instance S inside main().
 
 28. What is the output of the code ?
 
-  #include<iostream>
+  #include <iostream>
   using namespace std;
+
   class student;
   class student {
     public:
       int m;
   };
+
   int main()
   {
     student S;
@@ -611,10 +638,11 @@ The statement 'class student;' is called forward declaration of the class. This 
 
 
 
-46. What is the output of the code ?
+29. What is the output of the code ?
 
-  #include<iostream>
+  #include <iostream>
   using namespace std;
+
   class student {
     public:
       int m;
@@ -632,10 +660,11 @@ The object 'S' inside main is local variable and the object after the class decl
 
 
 
-47. What is the output of the code ?
+30. What is the output of the code ?
 
-  #include<iostream>
+  #include <iostream>
   using namespace std;
+
   class student {
     public:
       int m;
@@ -654,10 +683,11 @@ The scope clashes and throws error.
 
 
 
-49. What is the output of the code ?
+31. What is the output of the code ?
 
-  #include<iostream>
+  #include <iostream>
   using namespace std;
+
   class student {
     public:
       int m;
@@ -676,15 +706,17 @@ The compiler knows 'student' is a class and is not complete at the point that S 
 
 
 
-51. What is the output of the code ?
+32. What is the output of the code ?
 
-  #include<iostream>
+  #include <iostream>
   using namespace std;
+
   class student {
     public:
       int m;
   }
   S;
+
   int main()
   {
     S.m = 8;
@@ -696,10 +728,11 @@ It works normally. Even though 'S;' is given in next line, the whitespace is dis
 
 
 
-52. What is the output of the code ?
+33. What is the output of the code ?
 
-  #include<iostream>
+  #include <iostream>
   using namespace std;
+
   class student {
     public:
       int m;
@@ -710,7 +743,8 @@ It works normally. Even though 'S;' is given in next line, the whitespace is dis
       S.m = 8;
       cout << S.m;
   }
-  (a) 8(b) Error(c) Unpredictable(d) None of the above
+
+
 Answer: error
 error: expected initializer before ‘S’
 error: ‘S’ was not declared in this scope
@@ -718,10 +752,11 @@ This is not legal.
 
 
 
-55. What is the output of the code ?
+34. What is the output of the code ?
 
-  #include<iostream>
+  #include <iostream>
   using namespace std;
+
   class student {
     public:
       int m;
@@ -741,10 +776,11 @@ Answer: 8
 A class can be inside another class, called a nested class.
 
 
-56. What is the output of the code ?
+35. What is the output of the code ?
 
-  #include<iostream>
+  #include <iostream>
   using namespace std;
+
   class student {
     public:
       int m;
@@ -767,10 +803,11 @@ Here the object is inside the outer class, a nested class instance cannot be acc
 
 
 
-58. What is the output of the code ?
+36. What is the output of the code ?
 
-  #include<iostream>
+  #include <iostream>
   using namespace std;
+
   class student {
     public:
       int m;
@@ -791,10 +828,11 @@ Answer: A
 
 
 
-59. What is the output of the code ?
+37. What is the output of the code ?
 
-  #include<iostream>
+  #include <iostream>
   using namespace std;
+
   class student {
     public:
       int m;
@@ -819,10 +857,11 @@ The class defined inside another class is not accessible by other classes.
 
 
 
-61. What is the output of the code ?
+38. What is the output of the code ?
 
-  #include<iostream>
+  #include <iostream>
   using namespace std;
+
   class student {
     public: int m;
     class subject {
@@ -845,10 +884,11 @@ This is not a legal way of creating nested class instances
 
 
 
-63. What will be the error thrown by the code ?
+39. What will be the error thrown by the code ?
 
-  #include<iostream>
+  #include <iostream>
   using namespace std;
+
   class student {
     public:
       int m;
@@ -872,10 +912,11 @@ A nested class cannot have the same name as its outer class
 
 
 
-65. What is the output of the code ?
+40. What is the output of the code ?
 
-  #include<iostream>
+  #include <iostream>
   using namespace std;
+
   class student {
     public:
       int m;
@@ -898,10 +939,11 @@ error: redefinition of ‘class student’
 Multiple classes declared in the same scope cannot have same name.
 
 
-66. What is the output of the code ?
+41. What is the output of the code ?
 
-  #include<iostream>
+  #include <iostream>
   using namespace std;
+
   class student {
     public: int m;
   }S;
@@ -923,9 +965,10 @@ Multiple classes declared in the same scope cannot have same object name.
 
 
 
-68. What is the output of the code?
-  #include<iostream>
+42. What is the output of the code?
+  #include <iostream>
   using namespace std;
+
   class student {
     public:
       int m;
@@ -936,8 +979,8 @@ Multiple classes declared in the same scope cannot have same object name.
     class subject {
       public:
         int g;
-    }
-    sb;
+    }sb;
+
     sb.g = 9;
     cout << sb.g;
   }
@@ -947,10 +990,11 @@ This is a local class declaration. It is accessible only inside main.
 
 
 
-69. What is the output of the code ?
+43. What is the output of the code ?
 
-  #include<iostream>
+  #include <iostream>
   using namespace std;
+
   class student {
     public:
       int m;
@@ -961,8 +1005,8 @@ This is a local class declaration. It is accessible only inside main.
     class student {
       public:
         int g;
-    }
-    sb;
+    }sb;
+
     sb.g = 9;
     cout << sb.g;
   }
@@ -972,10 +1016,11 @@ The local 'class' doesn't clash with the global class.
 
 
 
-70. What is the output of the code?
+44. What is the output of the code?
 
-  #include<iostream>
+  #include <iostream>
   using namespace std;
+
   class student {
     public:
       int m;
@@ -997,10 +1042,11 @@ The scope plays the separating role and the local 'student' class doesn't clash 
 
 
 
-71. What is the output of the code ?
+45. What is the output of the code ?
 
-  #include<iostream>
+  #include <iostream>
   using namespace std;
+
   class student {
     public:
       int m;
@@ -1024,10 +1070,11 @@ The instance of student's member m in the local scope is assigned 9.
 
 
 
-72. What is the output of the code?
+46. What is the output of the code?
 
-  #include<iostream>
+  #include <iostream>
   using namespace std;
+
   class student {
     public:
       int m;
@@ -1049,10 +1096,11 @@ Even if the name is not clashing, '::' can be used to point to global scope vari
 
 
 
-73. What is the output of the code ?
+47. What is the output of the code ?
 
-  #include<iostream>
+  #include <iostream>
   using namespace std;
+
   class student {
     public:
       int m;
@@ -1066,38 +1114,19 @@ Even if the name is not clashing, '::' can be used to point to global scope vari
   }
 
 Answer: 9
-This is a way of creating member functions.
 
 
 
-74. What is the output of the code ?
 
-  #include<iostream>
+48. What is the output of the code ?
+
+  #include <iostream>
   using namespace std;
-  class student {
-    void fun(){ cout << m; }
-    public:
-      int m;
-  }S;
 
-  int main()
-  {
-    S.m = 9;
-  }
-
-Answer: prints nothing
-Member functions can also be private.
-
-
-
-75. What is the output of the code ?
-
-  #include<iostream>
-  using namespace std;
   class student {
     public:
       int m;
-    void fun();
+      void fun();
   }S;
 
   void student::fun(){ cout << m; }
@@ -1113,10 +1142,11 @@ This is the way of declaring functions inside the class and defining them outsid
 
 
 
-76. What is the output of the code ?
+49. What is the output of the code ?
 
-  #include<iostream>
+  #include <iostream>
   using namespace std;
+
   class student {
     void fun();
     public:
@@ -1134,10 +1164,11 @@ private functions can be defined using the scope resolution operator.
 
 
 
-77. What is the output of the code ?
+50. What is the output of the code ?
 
-  #include<iostream>
+  #include <iostream>
   using namespace std;
+
   class student {
     public:
       int m;
@@ -1153,12 +1184,16 @@ private functions can be defined using the scope resolution operator.
   }
 
 Answer: error
-When the return type of the definition is not specified, it will be treated as 'int'.As the definition and declaration is not the same, it throws errors.
+When the return type of the definition is not specified, it will be treated as 'int'. As the definition and declaration is not the same, it throws errors.
 
-78. What is the output of the code ?
 
-  #include<iostream>
+
+
+51. What is the output of the code ?
+
+  #include <iostream>
   using namespace std;
+
   class student {
     public:
       int m;
@@ -1181,11 +1216,13 @@ This is not the legal way of defining functions via the scope resolution operato
 
 
 
-80. What is the output of the code ?
+52. What is the output of the code ?
 
-  #include<iostream>
+  #include <iostream>
   using namespace std;
+
   void student::fun(){ cout << m; }
+
   class student {
     public:
       int m;
@@ -1207,15 +1244,15 @@ As 'student' is not defined before the function definition, it gives errors.
 
 
 
-82. What is the output of the code ?
+53. What is the output of the code ?
 
-  #include<iostream>
+  #include <iostream>
   using namespace std;
 
   class student {
     public:
       int m;
-    void fun();
+      void fun();
   }S;
 
   void fun(){ cout << m; }
@@ -1233,9 +1270,9 @@ error: ‘m’ was not declared in this scope; did you mean ‘tm’?
 Global functions and member functions with same name doesn't map together. The class member 'fun' is not mapped to definition of global 'fun'. scope resolution is required.
 
 
-83. What will be the error thrown by the code ?
+54. What will be the error thrown by the code ?
 
-  #include<iostream>
+  #include <iostream>
   using namespace std;
 
   class student {
@@ -1260,10 +1297,11 @@ While we have eliminated the error related to a global declaration of fun() acce
 
 
 
-84. What is the output of the code ?
+55. What is the output of the code ?
 
-  #include<iostream>
+  #include <iostream>
   using namespace std;
+
   class student {
     public:
       int m;
@@ -1285,10 +1323,11 @@ One member should be defined only once.
 
 
 
-86. What will be the error thrown by the code ?
+56. What will be the error thrown by the code ?
 
-  #include<iostream>
+  #include <iostream>
   using namespace std;
+
   class student {
     public:
       int m;
@@ -1308,10 +1347,11 @@ Member function cannot be declared outside.
 
 
 
-87. What is the output of the code ?
+57. What is the output of the code ?
 
-  #include<iostream>
+  #include <iostream>
   using namespace std;
+
   class student {
     public:
       int m;
@@ -1331,10 +1371,11 @@ error: ‘class student’ has no member named ‘fun’
 
 
 
-89. What is the output of the code ?
+58. What is the output of the code ?
 
-  #include<iostream>
+  #include <iostream>
   using namespace std;
+
   class student {
     public:
       int m;
@@ -1359,10 +1400,11 @@ error: ISO C++ forbids declaration of ‘fun’ with no type [-fpermissive]
 
 
 
-91. What is the output of the code ?
+59. What is the output of the code ?
 
-  #include<iostream>
+  #include <iostream>
   using namespace std;
+
   class student {
     public:
       int m;
@@ -1378,14 +1420,17 @@ error: ISO C++ forbids declaration of ‘fun’ with no type [-fpermissive]
   }
 
 Answer: error
-The same errors as above
+error: no declaration matches ‘void student::fun()’
+error: ‘class student’ has no member named ‘fun’
+  All class members must be declared inside the class definition.
 
 
 
-92. What is the output of the code ?
+60. What is the output of the code ?
 
-  #include<iostream>
+  #include <iostream>
   using namespace std;
+
   class student {
     public:
       int m;
@@ -1405,10 +1450,11 @@ error: ‘int student::m’ is not a static data member of ‘class student’
 Only static data members can be given like this.
 
 
-93. What is the output of the code ?
+61. What is the output of the code ?
 
-  #include<iostream>
+  #include <iostream>
   using namespace std;
+
   class student {
     public:
       int m;
@@ -1423,14 +1469,15 @@ Only static data members can be given like this.
   }
 
 Answer: Unpredictable
-Data member's values are closed to the object. Undefined data members in a local scope give some garbage values. Unlike 'C' here the undefined values are not initiated to 0.
+Data member's values are closed to the object. Undefined data members in a local scope are uninitialized and thus contain garbage values. Unlike 'C' here the undefined values are not initiated to 0.
 
 
 
-94. What is the output of the code ?
+62. What is the output of the code ?
 
-  #include<iostream>
+  #include <iostream>
   using namespace std;
+
   class student {
     public:
       int m;
@@ -1446,15 +1493,18 @@ Data member's values are closed to the object. Undefined data members in a local
 
 Answer: 0
 Object can be equated to other objects.
-The global scoped 'S' gets the value 9 only after equating to 's'. So 's' gets 0 as the global scoped 'S' is default initialized.
+The default copy constructor is invoked to initialize 's'.
+'s' gets 0 as the global scoped 'S' is default initialized.
+The global scoped 'S' gets the value 9 after equating to 's'.
 
 
 
 
-95. What is the output of the code ?
+63. What is the output of the code ?
 
-  #include<iostream>
+  #include <iostream>
   using namespace std;
+
   class student {
     public:
       int m;
@@ -1474,10 +1524,11 @@ This works as expected.
 
 
 
-96. What is the output of the code ?
+64. What is the output of the code ?
 
-  #include<iostream>
+  #include <iostream>
   using namespace std;
+
   class student {
     public:
       int m;
@@ -1496,14 +1547,15 @@ This is a way of creating object from another object.
 
 
 
-97. What is the output of the code ?
+65. What is the output of the code ?
 
-  #include<iostream>
+  #include <iostream>
   using namespace std;
+
   class student {
     public:
       int m;
-    void fun() { cout << m; }
+      void fun() { cout << m; }
   }S;
 
   int main()
@@ -1518,10 +1570,11 @@ Answer: 9
 A change in new object doesn't reflect on the referenced object value.
 
 
-98. What is the output of the code ?
+66. What is the output of the code ?
 
-  #include<iostream>
+  #include <iostream>
   using namespace std;
+
   class student {
     protected:
       int m;
@@ -1543,10 +1596,11 @@ A class member can access 'protected' members.
 
 
 
-99. What is the output of the code ?
+67. What is the output of the code ?
 
-  #include<iostream>
+  #include <iostream>
   using namespace std;
+
   class student {
     private:
       int m;
@@ -1568,10 +1622,11 @@ A class member can access 'private' members.
 
 
 
-100. What is the output of the code ?
+68. What is the output of the code ?
 
-  #include<iostream>
+  #include <iostream>
   using namespace std;
+
   class student {
     void game(){ m = 8; }
     private:
@@ -1594,10 +1649,11 @@ A member function can call any member function. A function can access any data m
 
 
 
-101. What is the output of the code ?
+69. What is the output of the code ?
 
-  #include<iostream>
+  #include <iostream>
   using namespace std;
+
   class student {
     protected:
       int m;
@@ -1623,10 +1679,11 @@ error: ‘game’ was not declared in this scope
 error: ‘int student::m’ is protected within this context
 
 
-102. What is the output of the code ?
+70. What is the output of the code ?
 
-  #include<iostream>
+  #include <iostream>
   using namespace std;
+
   class student {
     public:
       class nested {
@@ -1646,10 +1703,11 @@ Nested class functions are accessible from main. But here the inner class has th
 
 
 
-103. What is the output of the code ?
+71. What is the output of the code ?
 
-  #include<iostream>
+  #include <iostream>
   using namespace std;
+
   class student {
     public:
       class nested {
@@ -1668,10 +1726,11 @@ Now the function can be accessed.
 
 
 
-105. What is the output of the code ?
+72. What is the output of the code ?
 
-  #include<iostream>
+  #include <iostream>
   using namespace std;
+
   class student {
     class nested {
       public:
@@ -1690,10 +1749,11 @@ This is also correct. Even though the class is defined in private scope, the obj
 
 
 
-106. What is the output of the code ?
+73. What is the output of the code ?
 
-  #include<iostream>
+  #include <iostream>
   using namespace std;
+
   class student {
     class nested {
       public:
@@ -1714,10 +1774,11 @@ error: cannot define member function ‘student::nested::fun’ within ‘studen
 
 
 
-107. What is the output of the code ?
+74. What is the output of the code ?
 
-  #include<iostream>
+  #include <iostream>
   using namespace std;
+
   class student {
     class nested {
       public: void nested();
@@ -1737,10 +1798,11 @@ This is a proper definition. As the class is confined to scope of inner class, w
 
 
 
-108. What will be the error thrown by the code ?
+75. What will be the error thrown by the code ?
 
-  #include<iostream>
+  #include <iostream>
   using namespace std;
+
   class student {
     class nested {
       public:
@@ -1763,10 +1825,11 @@ It just checks if the function called is available in the current scope.
 
 
 
-109. What is the output of the code ?
+76. What is the output of the code ?
 
-  #include<iostream>
+  #include <iostream>
   using namespace std;
+
   class student {
     class nested {
       public:
@@ -1789,16 +1852,17 @@ A function of the outer class can access the variable declared in the class. Her
 
 
 
-110. What is the output of the code ?
+77. What is the output of the code ?
 
-  #include<iostream>
+  #include <iostream>
   using namespace std;
+
   class student {
     public:
       class nested {
       public:
         void fun() { cout << "nested-class"; }
-    };
+      };
     void game()
     {
       nested d;
@@ -1817,10 +1881,11 @@ It will be deleted once the function has completed execution.
 
 
 
-111. What is the output of the code ?
+78. What is the output of the code ?
 
-  #include<iostream>
+  #include <iostream>
   using namespace std;
+
   class student {
     public:
       class nested {
@@ -1843,10 +1908,12 @@ Answer: nested-class
 This works normally.
 
 
-112. What is the output of the code ?
 
-  #include<iostream>
+79. What is the output of the code ?
+
+  #include <iostream>
   using namespace std;
+
   class student {
     public:
       int c;
@@ -1865,31 +1932,11 @@ class members can also be pointers.
 
 
 
-113. What is the output of the code ?
+80. What is the output of the code ?
 
-  #include<iostream>
+  #include <iostream>
   using namespace std;
-  class student {
-    public:
-      int * f;
-  }S;
 
-  int main()
-  {
-    int c = 3;
-    S.f = & c;
-    cout << * (S.f);
-  }
-
-Answer: 3
-Pointer members can also point to non - members.
-
-
-
-114. What is the output of the code ?
-
-  #include<iostream>
-  using namespace std;
   class student {
     public:
       int c;
@@ -1908,17 +1955,41 @@ Answer: 3
 
 
 
-115. What is the output of the code ?
+81. What is the output of the code ?
 
-  #include<iostream>
+  #include <iostream>
   using namespace std;
+
   class student {
     public:
       int * f;
-    int fun()
-    {
-      return 3;
-    }
+  }S;
+
+  int main()
+  {
+    int c = 3;
+    S.f = & c;
+    cout << * (S.f);
+  }
+
+Answer: 3
+Pointer members can also point to non - members.
+
+
+
+
+82. What is the output of the code ?
+
+  #include <iostream>
+  using namespace std;
+
+  class student {
+    public:
+      int *f;
+      int fun()
+      {
+        return 3;
+      }
   }S;
 
   int main()
@@ -1933,13 +2004,15 @@ This indirectly points a constant which is not possible.
 
 
 
-117. What is the output of the code ?
+83. What is the output of the code ?
 
-  #include<iostream>
+  #include <iostream>
   using namespace std;
+
   class stud {
-    public: int f;
-    void fun(){cout << f;}
+    public:
+      int f;
+      void fun(){cout << f;}
   }S;
 
   int main()
@@ -1959,10 +2032,13 @@ Objects can have pointers, but it should not be used like this for accessing.
 for these statements to work \*C. would have to be replaced by (*C).
 
 
-119. What is the output of the code ?
 
-  #include<iostream>
+
+84. What is the output of the code ?
+
+  #include <iostream>
   using namespace std;
+
   class stud {
     public:
       int f;
@@ -1982,10 +2058,11 @@ The '->' is called arrow operator. This must be used for pointers of class objec
 
 
 
-121. What is the output of the code ?
+85. What is the output of the code ?
 
-  #include<iostream>
+  #include <iostream>
   using namespace std;
+
   class stud {
     public:
       int f;
@@ -1999,35 +2076,40 @@ The '->' is called arrow operator. This must be used for pointers of class objec
   }
 
 Answer: 2
-The usage the 'this pointer' points to the class specified in parenthesis. Instead of directly calling the member this is preferred to avoid confusion in advanced concepts like inheritance.
+The usage of 'this pointer' points to the class specified in parenthesis. Instead of directly calling the member this is preferred to avoid confusion in advanced concepts like inheritance.
 
 
 
-122. What is the output of the code ?
 
-  #include<iostream>
+86. What is the output of the code ?
+
+  #include <iostream>
   using namespace std;
+
   class stud {
     public:
       int f;
       void fun() { cout << this.f; }
   }S;
+
   int main()
   {
     S.f = 2;
     S.fun();
   }
-  (a) 2(b) Error(c) Unpredictable(d) None of the above
+
+
 Answer: error
 error: request for member ‘f’ in ‘(stud\*)this’, which is of pointer type ‘stud*’ (maybe you meant to use ‘->’ ?)
 This is not an appropriate usage of 'this' pointer.
 
 
 
-124. What is the output of the code ?
+87. What is the output of the code ?
 
-  #include<iostream>
+  #include <iostream>
   using namespace std;
+
   class stud {
     public:
       int f;
@@ -2049,10 +2131,11 @@ error: invalid use of ‘this’ in non-member function
 
 
 
-126. What is the output of the code ?
+88. What is the output of the code ?
 
-  #include<iostream>
+  #include <iostream>
   using namespace std;
+
   class stud {
   public:
     int f;
@@ -2072,10 +2155,11 @@ Answer: this is different class
 'this' pointer can also be used in a different and unrelated class.
 
 
-127. What is the output of the code ?
+89. What is the output of the code ?
 
-  #include<iostream>
+  #include <iostream>
   using namespace std;
+
   class stud {
     public:
       int f;
@@ -2098,10 +2182,11 @@ But 'this' pointer calls the general function and not the specific to 'S'.
 
 
 
-128. What is the output of the code ?
+90. What is the output of the code ?
 
-  #include<iostream>
+  #include <iostream>
   using namespace std;
+
   class stud {
     public:
       static int f;
@@ -2123,10 +2208,11 @@ Answer: 3
 
 
 
-129. What is the output of the code ?
+91. What is the output of the code ?
 
-  #include<iostream>
+  #include <iostream>
   using namespace std;
+
   class stud {
     public:
       int f;
@@ -2143,15 +2229,16 @@ Answer: 3
     D.fun();
   }
 
-Answer: Unpredictable
+Answer: '0''garbage value'
 When an object is specifically declared and generally called, the variable gets garbage value.
 
 
 
-130. What is the output of the code ?
+92. What is the output of the code ?
 
-  #include<iostream>
+  #include <iostream>
   using namespace std;
+
   class stud {
     public:
       int f;
@@ -2179,40 +2266,12 @@ It tries to get a value from a 'void' function and print it.
 
 
 
-131. What is the output of the code ?
 
-  #include<iostream>
+93. What is the output of the code ?
+
+  #include <iostream>
   using namespace std;
-  class stud {
-    public:
-      int f;
-    void fun(){cout << f;}
-  }S;
 
-  class blo {
-    public:
-      void fun(int a) {
-        if (a % 2 == 0)
-          ((stud * ) this) -> fun();
-        else
-          cout << ((stud * ) this) -> fun();
-      }
-  }D;
-  int main()
-  {
-    D.fun(6);
-  }
-
-Answer: error
-error: no match for ‘operator<<’ (operand types are ‘std::ostream’ {aka ‘std::basic_ostream<char>’} and ‘void’)
-Even though it doesn 't access the value, it has a block that accesses it.So again throws the same errors.
-
-
-
-132. What is the output of the code ?
-
-  #include<iostream>
-  using namespace std;
   class stud {
     public:
       int f;
@@ -2234,16 +2293,17 @@ Even though it doesn 't access the value, it has a block that accesses it.So aga
     D.fun(7);
   }
 
-Answer: '0''garbage value'.
+Answer: '0''garbage value'
 The same as in 'C', when an 'int' function doesn't explicitly return a value, the compiler automatically returns 0 on success.
 Because the << operator is left associative the return value is printed before the garbage value.
 
 
 
-133. What is the output of the code ?
+94. What is the output of the code ?
 
-  #include<iostream>
+  #include <iostream>
   using namespace std;
+
   class stud {
     public:
       blo *s;
@@ -2252,7 +2312,7 @@ Because the << operator is left associative the return value is printed before t
   class blo {
     public:
       int b;
-    void fun(int a) {cout << ((stud * ) this) -> s -> b;}
+      void fun(int a) {cout << ((stud * ) this) -> s -> b;}
   }S;
 
   int main()
@@ -2268,14 +2328,15 @@ error: ‘blo’ does not name a type
 
 
 
-135. What is the output of the code ?
+95. What is the output of the code ?
 
-  #include<iostream>
+  #include <iostream>
   using namespace std;
+
   class blo {
     public:
       int b;
-    void fun(int a) { cout << ((stud * ) this) -> s -> b;}
+      void fun(int a) { cout << ((stud * ) this) -> s -> b;}
   }S;
 
   class stud {
@@ -2296,14 +2357,15 @@ Here usage of 'stud' causes the error as it is not yet defined.
 
 
 
-136. What will be the error thrown by the code ?
+96. What will be the error thrown by the code ?
 
-  #include<iostream>
+  #include <iostream>
   using namespace std;
+
   class blo {
     public:
       int b;
-    void fun(int a) { cout << ((stud * ) this) -> s -> b; }
+      void fun(int a) { cout << ((stud * ) this) -> s -> b; }
   }B;
 
   class stud {
@@ -2326,17 +2388,19 @@ This is because the compiler treats 'stud' as an undefined variable and not a fu
 
 
 
-137. What is the output of the code ?
+97. What is the output of the code ?
 
-  #include<iostream>
+  #include <iostream>
   using namespace std;
+
   class stud;
+
   class blo {
     public:
       int b;
-    void fun(int a) {
-      cout << ((stud * ) this) -> s -> b;
-    }
+      void fun(int a) {
+        cout << ((stud * ) this) -> s -> b;
+      }
   }S;
 
   class stud {
@@ -2360,11 +2424,13 @@ While there is no error in the forward declaration, still as the error is in inc
 
 
 
-139. What is the output of the code ?
+98. What is the output of the code ?
 
-  #include<iostream>
+  #include <iostream>
   using namespace std;
+
   class blo;
+
   class stud {
     public:
       blo * s;
@@ -2373,7 +2439,7 @@ While there is no error in the forward declaration, still as the error is in inc
   class blo {
     public:
       int b;
-    void fun(int a) { cout << ((stud * ) this) -> s -> b; }
+      void fun(int a) { cout << ((stud * ) this) -> s -> b; }
   }S;
 
   int main()

@@ -1,0 +1,113 @@
+Extreme programming
+I have studied analysis and design techniques, on and off, since I
+was in graduate school. The concept of Extreme Programming (XP) is
+the most radical, and delightful, that I’ve seen. You can find it
+chronicled in Extreme Programming Explained by Kent Beck
+(Addison-Wesley 2000) and on the Web at www.xprogramming.com.
+XP is both a philosophy about programming work and a set of
+guidelines to do it. Some of these guidelines are reflected in other
+recent methodologies, but the two most important and distinct
+contributions, in my opinion, are “write tests first” and “pair
+programming.” Although he argues strongly for the whole process,
+Beck points out that if you adopt only these two practices you’ll
+greatly improve your productivity and reliability.
+Write tests first
+Testing has traditionally been relegated to the last part of a project,
+after you’ve “gotten everything working, but just to be sure.” It’s
+implicitly had a low priority, and people who specialize in it have
+not been given a lot of status and have often even been cordoned
+off in a basement, away from the “real programmers.” Test teams1: Introduction to Objects 67
+have responded in kind, going so far as to wear black clothing and
+cackling with glee whenever they broke something (to be honest,
+I’ve had this feeling myself when breaking C++ compilers).
+XP completely revolutionizes the concept of testing by giving it
+equal (or even greater) priority than the code. In fact, you write the
+tests before you write the code that’s being tested, and the tests stay
+with the code forever. The tests must be executed successfully
+every time you do an integration of the project (which is often,
+sometimes more than once a day).
+Writing tests first has two extremely important effects.
+First, it forces a clear definition of the interface of a class. I’ve often
+suggested that people “imagine the perfect class to solve a
+particular problem” as a tool when trying to design the system. The
+XP testing strategy goes further than that – it specifies exactly what
+the class must look like, to the consumer of that class, and exactly
+how the class must behave. In no uncertain terms. You can write all
+the prose, or create all the diagrams you want describing how a
+class should behave and what it looks like, but nothing is as real as
+a set of tests. The former is a wish list, but the tests are a contract
+that is enforced by the compiler and the running program. It’s hard
+to imagine a more concrete description of a class than the tests.
+While creating the tests, you are forced to completely think out the
+class and will often discover needed functionality that might be
+missed during the thought experiments of UML diagrams, CRC
+cards, use cases, etc.
+The second important effect of writing the tests first comes from
+running the tests every time you do a build of your software. This
+activity gives you the other half of the testing that’s performed by
+the compiler. If you look at the evolution of programming
+languages from this perspective, you’ll see that the real
+improvements in the technology have actually revolved around
+testing. Assembly language checked only for syntax, but C imposed
+some semantic restrictions, and these prevented you from making68 Thinking in C++ www.BruceEckel.com
+certain types of mistakes. OOP languages impose even more
+semantic restrictions, which if you think about it are actually forms
+of testing. “Is this data type being used properly? Is this function
+being called properly?” are the kinds of tests that are being
+performed by the compiler or run-time system. We’ve seen the
+results of having these tests built into the language: people have
+been able to write more complex systems, and get them to work,
+with much less time and effort. I’ve puzzled over why this is, but
+now I realize it’s the tests: you do something wrong, and the safety
+net of the built-in tests tells you there’s a problem and points you to
+where it is.
+But the built-in testing afforded by the design of the language can
+only go so far. At some point, you must step in and add the rest of
+the tests that produce a full suite (in cooperation with the compiler
+and run-time system) that verifies all of your program. And, just
+like having a compiler watching over your shoulder, wouldn’t you
+want these tests helping you right from the beginning? That’s why
+you write them first, and run them automatically with every build
+of your system. Your tests become an extension of the safety net
+provided by the language.
+One of the things that I’ve discovered about the use of more and
+more powerful programming languages is that I am emboldened to
+try more brazen experiments, because I know that the language
+will keep me from wasting my time chasing bugs. The XP test
+scheme does the same thing for your entire project. Because you
+know your tests will always catch any problems that you introduce
+(and you regularly add any new tests as you think of them), you
+can make big changes when you need to without worrying that
+you’ll throw the whole project into complete disarray. This is
+incredibly powerful.
+Pair programming
+Pair programming goes against the rugged individualism that
+we’ve been indoctrinated into from the beginning, through school
+
+(where we succeed or fail on our own, and working with our
+neighbors is considered “cheating”) and media, especially
+Hollywood movies in which the hero is usually fighting against
+mindless conformity. 
+
+Programmers, too, are considered paragons of individuality – “cowboy coders” as Larry Constantine likes to say. And yet XP, which is itself battling against conventional thinking, says that code should be written with two people per
+workstation. And that this should be done in an area with a group
+of workstations, without the barriers that the facilities design
+people are so fond of. In fact, Beck says that the first task of
+converting to XP is to arrive with screwdrivers and Allen wrenches
+and take apart everything that gets in the way.
+
+(This will require a
+manager who can deflect the ire of the facilities department.)
+The value of pair programming is that one person is actually doing
+the coding while the other is thinking about it. The thinker keeps
+the big picture in mind, not only the picture of the problem at hand,
+but the guidelines of XP. If two people are working, it’s less likely
+that one of them will get away with saying, “I don’t want to write
+the tests first,” for example. And if the coder gets stuck, they can
+swap places. If both of them get stuck, their musings may be
+overheard by someone else in the work area who can contribute.
+Working in pairs keeps things flowing and on track. Probably more
+important, it makes programming a lot more social and fun.
+I’ve begun using pair programming during the exercise periods in
+some of my seminars and it seems to significantly improve
+everyone’s experience.

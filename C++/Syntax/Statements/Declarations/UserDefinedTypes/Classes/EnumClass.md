@@ -2,15 +2,15 @@ Enumeration Classes
 
 in C++, it is possible to create real enum types that are neither implicitly convertible to int and that neither have enumerator values of type int, but of the enum type itself, thus preserving type safety. They are declared with enum class (or enum struct) instead of just enum:
 
-enum class RainbowColors {
-Violet,
-Indigo,
-Blue,
-Green,
-Yellow,
-Orange,
-Red
-};
+  enum class RainbowColors {
+    Violet,
+    Indigo,
+    Blue,
+    Green,
+    Yellow,
+    Orange,
+    Red
+  };
 
 To initialize an enumeration variable to a value, use the name of the type followed by two colons :: and the desired value as each of the enumerator values of an enum class type needs to be scoped into its type (this is actually also possible with enum types, but it is only optional).
 
@@ -32,7 +32,9 @@ Enumerated types declared with enum class also have more control over their unde
 Here, Eyecolor is a distinct type with the same size of a char (1 byte).
 
 
+
 ## Supercharging enums with Classes
+
 When you work with classes, you can use a technique called wrapping, which helps you manage a resource.
 
 An instance where this is useful is printing an enumeration. Attempting to do this you don’t see the word, such as red or blue; you see a number. The wrapping example below essentially helps you convert the number into a human readable form, which is a kind of resource management.

@@ -140,7 +140,6 @@ Member functions can be overloaded on their constness: i.e., a class may have tw
 
 
 
-.
 Const class objects and member functions
 By Alex on September 11th, 2007 | last modified by Alex on December 21st, 2020
 

@@ -35,11 +35,13 @@ File I/O is a five-step process:
 We will now describe these five steps in detail.
 
 Step 1 requires that the header file fstream be included in the program:
-#include <fstream>
+
+  #include <fstream>
 
 Step 2 requires you to declare file stream variables:
-ifstream inData;
-ofstream outData;
+
+  ifstream inData;
+  ofstream outData;
 
 The first statement declares inData to be an input file stream variable.
 The second statement declares outData to be an output file stream variable.
@@ -47,9 +49,26 @@ The second statement declares outData to be an output file stream variable.
 Step 3 requires you to associate file stream variables with the I/O sources. This step is called opening the files. The stream member function open is used to open files.
 
 The syntax for opening a file is:
-fileStreamVariable.open(sourceName);
+
+  fileStreamVariable.open(sourceName);
 
 Here, fileStreamVariable is a file stream variable, and sourceName is the name of the I/O file.
+
+Variables of type string can also be used to read and store the names of input/output files. However, the argument to the function open must be a null-terminated string.
+
+Values of type std::string are not null terminated like C-strings. Therefore, if we use a variable of type string to read the name of an input/output file and then use this variable to open a file, the value of the variable must (first) be converted to a C-string  using c_str:
+
+  strVar.c_str()
+
+The following statements illustrate how to use variables of type string to read the names of the input/output files during program execution and open those files:
+
+  ifstream infile;
+  string fileName;
+  cout << "Enter the input file name: ";
+  cin >> fileName;
+  infile.open(fileName.c_str()); //open the input file
+
+Of course, you must also include the header file string in the program. The output file has similar conventions.
 
 Suppose you include the declaration from Step 2 in a program.
 
@@ -80,36 +99,44 @@ On some systems, it is not necessary to close the files. When the program termin
 
 Also, if you want to use the same file stream variable to open another file, you must close the first file opened with that file stream variable.
 
-  include <fstream>
+  #include <fstream>
+  #include <string>
   using namespace std;
 
   int main()
   {
     //Declare file stream variables such as the following
-    ifstream inData;
-    ofstream outData;
-    .
-    .
-    .
-    //Open the files
-    inData.open("prog.dat"); //open the input file
-    outData.open("prog.out"); //open the output file
+    ifstream inFile;
+    ofstream outFile;
+
+    string inFileName;
+    cout << "Enter the input file name: ";
+    cin >> inFileName;
+    inFile.open(inFileName.c_str()); //open the input file
+
+    string outFileName;
+    cout << "Enter the output file name: ";
+    cin >> outFileName;
+    outFile.open(outFileName.c_str()); //open the input file
+
+
     //Code for data manipulation
+
     //Close files
-    inData.close();
-    outData.close();
+    inFile.close();
+    outFile.close();
     return 0;
   }
 
 Also, for comparison purposes, someone might want to process each file separately and then store the output in separate files. To accomplish this task efficiently, the user would prefer to specify the name of the input and/or output file at execution time rather than in the programming code. C++ allows the user to do so. Consider the following statements:
 
-cout << "Enter the input file name: ";
-cin >> fileName;
-infile.open(fileName); //open the input file
-...
-cout << "Enter the output file name: ";
-cin >> fileName;
-outfile.open(fileName); //open the output file
+  cout << "Enter the input file name: ";
+  cin >> fileName;
+  infile.open(fileName); //open the input file
+  ...
+  cout << "Enter the output file name: ";
+  cin >> fileName;
+  outfile.open(fileName); //open the output file
 
 
 
@@ -250,20 +277,29 @@ Reading from a file can also be performed in the same way that we did with cin:
 
 This last example reads a text file and prints out its content on the screen. We have created a while loop that reads the file line by line, using getline. The value returned by getline is a reference to the stream object itself, which when evaluated as a boolean expression (as in this while-loop) is true if the stream is ready for more operations, and false if either the end of the file has been reached or if some other error occurred.
 
-Checking state flags
-The following member functions exist to check for specific states of a stream (all of them return a bool value):
 
-bad()
-    Returns true if a reading or writing operation fails. For example, in the case that we try to write to a file that is not open for writing or if the device where we try to write has no space left.
-fail()
-    Returns true in the same cases as bad(), but also in the case that a format error happens, like when an alphabetical character is extracted when we are trying to read an integer number.
-eof()
-    Returns true if a file open for reading has reached the end.
-good()
-    It is the most generic state flag: it returns false in the same cases in which calling any of the previous functions would return true. Note that good and bad are not exact opposites (good checks more state flags at once).
+program breaks up the input into whitespace-separated words instead of lines:
 
+  #include <string>
+  #include <iostream>
+  #include <fstream>
+  #include <vector>
+  using namespace std;
 
-The member function clear() can be used to reset the state flags.
+  int main() {
+    vector<string> words;
+    ifstream in("GetWords.cpp");
+    string word;
+
+    while(in >> word)
+      words.push_back(word);
+
+    for(int i = 0; i < words.size(); i++)
+      cout << words[i] << endl;
+  }
+
+gets the input one “word” at a time, and when this expression evaluates to “false” it means the end of the file has been reached. Of course, delimiting words by whitespace is quite crude, but it makes for a simple example.
+
 
 get and put stream positioning
 All i/o streams objects keep internally -at least- one internal position:

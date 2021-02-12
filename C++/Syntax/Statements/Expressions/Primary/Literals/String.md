@@ -6,8 +6,9 @@ Since the initial versions of C++ had only the "low-level" C string handling fun
 In your source code, you express the content of your string literals using a character set. Universal character names and escape characters allow you to express any string using only the basic source character set. A raw string literal enables you to avoid using escape characters, and can be used to express all types of string literals. You can also create std::string literals without having to perform extra construction or conversion steps.
 
 
-Declare a basic string literal by enclosing text in quotation marks ("").
-std::cout << "Hello World" << std::endl;
+Declare a basic string literal by enclosing text in quotation marks (""):
+
+  std::cout << "Hello World" << std::endl;
 
 
 The C-Style Character String
@@ -117,13 +118,14 @@ goodbye)";
 std::string literals (C++14)
 
 std::string literals are Standard Library implementations of user-defined literals (see below) that are represented as "xyz"s (with a s suffix). This kind of string literal produces a temporary object of type std::string, std::wstring, std::u32string, or std::u16string, depending on the prefix that is specified. When no prefix is used, as above, a std::string is produced. L"xyz"s produces a std::wstring. u"xyz"s produces a std::u16string, and U"xyz"s produces a std::u32string.
-//#include <string>
-//using namespace std::string_literals;
-string str{ "hello"s };
-string str2{ u8"Hello World" };
-wstring str3{ L"hello"s };
-u16string str4{ u"hello"s };
-u32string str5{ U"hello"s };
+
+  //#include <string>
+  //using namespace std::string_literals;
+  string str{ "hello"s };
+  string str2{ u8"Hello World" };
+  wstring str3{ L"hello"s };
+  u16string str4{ u"hello"s };
+  u32string str5{ U"hello"s };
 
 The s suffix may also be used on raw string literals:
 u32string str6{ UR"(She said "hello.")"s };
@@ -144,12 +146,14 @@ Because string literals (not including std::string literals) are constants, tryi
 Microsoft-specific
 
 In Microsoft C++, you can use a string literal to initialize a pointer to non-const char or wchar_t. This non-const initialization is allowed in C99 code, but is deprecated in C++98 and removed in C++11. An attempt to modify the string causes an access violation, as in this example:
-wchar_t* str = L"hello";
-str[2] = L'a'; // run-time error: access violation
+
+  wchar_t* str = L"hello";
+  str[2] = L'a'; // run-time error: access violation
 
 You can cause the compiler to emit an error when a string literal is converted to a non-const character pointer when you set the /Zc:strictStrings (Disable string literal type conversion) compiler option. We recommend it for standards-compliant portable code. It's also a good practice to use the auto keyword to declare string literal-initialized pointers, because it resolves to the correct (const) type. For example, this code example catches an attempt to write to a string literal at compile time:
-auto str = L"hello";
-str[2] = L'a'; // C3892: you cannot assign to a variable that is const.
+
+  auto str = L"hello";
+  str[2] = L'a'; // C3892: you cannot assign to a variable that is const.
 
 In some cases, identical string literals may be pooled to save space in the executable file. In string-literal pooling, the compiler causes all references to a particular string literal to point to the same location in memory, instead of having each reference point to a separate instance of the string literal. To enable string pooling, use the /GF compiler option.
 
@@ -161,9 +165,11 @@ In some cases, identical string literals may be pooled to save space in the exec
 
 
 ### Continuation
+
 The backslash character (\) is a line-continuation character. When you need a long string, you can use the continuation marker \ (backslash) before a line break. The preprocessor scans the source file before compilation and concatenates lines that are broken by a continuation marker. Thus, the compiler sees such lines as if they were typed without a break. Note that the line break (a hard return/enter) should appear immediately after the backslash.
 
 ### Consecutive String Literals
+
 This statement is written as two string literals:
 std::cout << "Hello "
 "World" << std::endl;

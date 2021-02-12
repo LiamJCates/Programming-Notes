@@ -28,10 +28,6 @@ If we are not in debug mode, the assert() is not checked. That’s pretty crude 
 
 
 
-
-
-
-
 https://www.modernescpp.com/index.php/c-core-guidelines-a-detour-to-contracts
 
 

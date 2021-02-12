@@ -1,4 +1,4 @@
-Printing inherited classes using operator<<
+Printing inherited classes using operator <<
 By Alex on November 23rd, 2016 | last modified by Alex on December 21st, 2020
 
 Consider the following program that makes use of a virtual function:

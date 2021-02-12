@@ -1,6 +1,8 @@
 Structured Bindings
 
-Structured binding is one of the newest features of C++17 that binds the specified names to subobjects or elements of initializer. In simple words, Structured Bindings give us the ability to declare multiple variables initialized from a tuple or struct. The main purpose of Structured Bindings in C++ 17 is to make the code clean and easy to understand. Like a reference, a structured binding is an alias to an existing object. Unlike a reference, the type of a structured binding does not have to be a reference type.
+Structured binding is a feature of C++17 that binds the specified names to subobjects or elements of an initializer.
+
+In simple words, Structured Bindings give us the ability to declare multiple variables initialized from a tuple or struct. The main purpose of Structured Bindings in C++ 17 is to make the code clean and easy to understand. Like a reference, a structured binding is an alias to an existing object. Unlike a reference, the type of a structured binding does not have to be a reference type.
 
 Syntax :
   auto ref-operator(optional)[identifier-list] = expression;
@@ -11,13 +13,17 @@ Parameters :
   auto : auto
   ref operator : either & or &&
   identifier-list : List of comma separated variable names.
-  expression : An expression that does not have the comma operator at the top level (i.e, an assignment-expression), and has either array or non-union class type.
+  expression : An expression that does not have the comma operator at the top level (i.e, an assignment-expression), either array or non-union class type.
 
 
 
-Let E denote the type of the initializer expression. E shall be either a specialization of std::tuple, or a type whose non-static data members are all accessible and are declared in the same base class of E. A structured binding declaration performs the binding in one of three possible ways, depending on E.
-  Case 1 : if E is an array type, then the names are bound to the array elements.
+Let E denote the type of the initializer expression. E shall be either a specialization of std::tuple, or a type whose non-static data members are all accessible and are declared in the same base class of E.
+
+A structured binding declaration performs the binding in one of three possible ways, depending on E.
+  Case 1 : if E is an array type, the names are bound to the array elements.
+
   Case 2 : if E is a non-union class type and tuple_size is a complete type, then the “tuple-like” binding protocol is used.
+
   Case 3 : if E is a non-union class type but tuple_size is not a complete type, then the names are bound to the public data members of E.
 
 
@@ -44,11 +50,11 @@ You have two options for handling errors:
 
 Let’s explore the second option.
 
-struct TextFile {
-  bool success;
-  const char* contents;
-  size_t n_bytes;
-};
+  struct TextFile {
+    bool success;
+    const char* contents;
+    size_t n_bytes;
+  };
 
 First, a flag communicates to the caller whether the function call was a success. Next is the contents of the file and its size n_bytes.
 
@@ -74,6 +80,7 @@ its parts within your program:
       sizeof(contents)
     };
   }
+
   int main() {
     const auto [success, contents, length] = read_text_file("REAMDE.txt");
     if (success) {

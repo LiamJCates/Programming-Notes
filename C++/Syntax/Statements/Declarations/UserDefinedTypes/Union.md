@@ -1,4 +1,5 @@
-# Unions
+### Unions
+
 A union is a special class type where only one of the non-static data members is active at a time.
 
 Unions allow one portion of memory to be accessed as different data types. Its declaration and use is similar to that of structures, but its functionality is totally different.
@@ -7,7 +8,9 @@ A union's members are allocated at the same address so that the union occupies o
 
 The union is a cousin of the POD that puts all of its members in the same place. You can think of unions as different views or interpretations of a block of memory.
 
-Declaring a Union
+
+### Declaring a Union
+
 A union is declared using keyword union, followed by the name of the union and its data members within braces:
 
   union type_name {

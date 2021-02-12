@@ -1,6 +1,8 @@
 Container Types
 A class with the main purpose of holding objects is commonly called a container.
 
+Containers are a library feature that they operate in a similar way to built-in arrays, except that they allow being copied (an actually expensive operation that copies the entire block of memory, and thus to use with care) and decay into pointers only when explicitly told to do so (by means of its member data).
+
 Most computing involves creating collections of values and then manipulating such collections. Providing suitable containers for a given task and supporting them with useful fundamental operations are important steps in the construction of any program.
 
 Formally, a container is a data structure that holds some objects that are usually of the same type.
@@ -155,7 +157,7 @@ Container adapters are special predefined containers that are adapted to specifi
 
     A stack is a container where elements operate in a LIFO (Last In, First Out) context, where elements are inserted (pushed) and removed (popped) from the end of the container. Stacks default to using deque as their default sequence container (which seems odd, since vector seems like a more natural fit), but can use vector or list as well.
     A queue is a container where elements operate in a FIFO (First In, First Out) context, where elements are inserted (pushed) to the back of the container and removed (popped) from the front. Queues default to using deque, but can also use list.
-    A priority queue is a type of queue where the elements are kept sorted (via operator<). When elements are pushed, the element is sorted in the queue. Removing an element from the front returns the highest priority item in the priority queue. 
+    A priority queue is a type of queue where the elements are kept sorted (via operator<). When elements are pushed, the element is sorted in the queue. Removing an element from the front returns the highest priority item in the priority queue.
 
 
 

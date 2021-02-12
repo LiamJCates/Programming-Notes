@@ -39,21 +39,21 @@ Return Value
 On success, the character written is returned.
 If a writing error occurs, EOF is returned and the error indicator (ferror) is set.
 
-/* putc example: alphabet writer */
-#include <stdio.h>
+  /* putc example: alphabet writer */
+  #include <stdio.h>
 
-int main ()
-{
-  FILE * pFile;
-  char c;
+  int main ()
+  {
+    FILE * pFile;
+    char c;
 
-  pFile=fopen("alphabet.txt","wt");
-  for (c = 'A' ; c <= 'Z' ; c++) {
-    putc (c , pFile);
-    }
-  fclose (pFile);
-  return 0;
-}
+    pFile=fopen("alphabet.txt","wt");
+    for (c = 'A' ; c <= 'Z' ; c++) {
+      putc (c , pFile);
+      }
+    fclose (pFile);
+    return 0;
+  }
 
 
 ## putchar
@@ -76,16 +76,16 @@ Return Value
 On success, the character written is returned.
 If a writing error occurs, EOF is returned and the error indicator (ferror) is set.
 
-/* putchar example: printing the alphabet */
-#include <stdio.h>
+  /* putchar example: printing the alphabet */
+  #include <stdio.h>
 
-int main ()
-{
-  char c;
-  for (c = 'A' ; c <= 'Z' ; c++) putchar (c);
+  int main ()
+  {
+    char c;
+    for (c = 'A' ; c <= 'Z' ; c++) putchar (c);
 
-  return 0;
-}
+    return 0;
+  }
 
 
 
@@ -111,24 +111,24 @@ Return Value
 On success, the character written is returned.
 If a writing error occurs, EOF is returned and the error indicator (ferror) is set.
 
-/* fputc example: alphabet writer */
-#include <stdio.h>
+  /* fputc example: alphabet writer */
+  #include <stdio.h>
 
-int main ()
-{
-  FILE * pFile;
-  char c;
+  int main ()
+  {
+    FILE * pFile;
+    char c;
 
-  pFile = fopen ("alphabet.txt","w");
-  if (pFile!=NULL) {
+    pFile = fopen ("alphabet.txt","w");
+    if (pFile!=NULL) {
 
-    for (c = 'A' ; c <= 'Z' ; c++)
-      fputc ( c , pFile );
+      for (c = 'A' ; c <= 'Z' ; c++)
+        fputc ( c , pFile );
 
-    fclose (pFile);
+      fclose (pFile);
+    }
+    return 0;
   }
-  return 0;
-}
 
 
 
@@ -153,14 +153,14 @@ Return Value
 On success, a non-negative value is returned.
 On error, the function returns EOF and sets the error indicator (ferror).
 
-/* puts example : hello world! */
-#include <stdio.h>
+  /* puts example : hello world! */
+  #include <stdio.h>
 
-int main ()
-{
-  char string [] = "Hello world!";
-  puts (string);
-}
+  int main ()
+  {
+    char string [] = "Hello world!";
+    puts (string);
+  }
 
 
 
@@ -187,18 +187,18 @@ Return Value
 On success, a non-negative value is returned.
 On error, the function returns EOF and sets the error indicator (ferror).
 
-/* fputs example */
-#include <stdio.h>
+  /* fputs example */
+  #include <stdio.h>
 
-int main ()
-{
-   FILE * pFile;
-   char sentence [256];
+  int main ()
+  {
+     FILE * pFile;
+     char sentence [256];
 
-   printf ("Enter sentence to append: ");
-   fgets (sentence,256,stdin);
-   pFile = fopen ("mylog.txt","a");
-   fputs (sentence,pFile);
-   fclose (pFile);
-   return 0;
-}
+     printf ("Enter sentence to append: ");
+     fgets (sentence,256,stdin);
+     pFile = fopen ("mylog.txt","a");
+     fputs (sentence,pFile);
+     fclose (pFile);
+     return 0;
+  }

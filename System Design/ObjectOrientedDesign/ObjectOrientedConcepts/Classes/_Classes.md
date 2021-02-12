@@ -2,7 +2,13 @@ Object-oriented programming models the entities of a domain as a collection of o
 
 Concisely, objects group together related state, behavior, and an identity.
 
-Objects of the same type are defined using a common class. A class is a contract that defines the state and behavior of a classification of objects. A class definition is a template, or a piece of software that includes the specification of its object's variables which compose the objects state and functions which provides behavior relative to the state.
+Objects of the same type are defined using a common abstraction unit. For the majority of object oriented languages a "class" is defined to be the basic abstraction unit.
+
+Even though it acts like built-in data type, we refer to classes or user-defined types, as abstract data types, perhaps because they allows us to abstract a concept from the problem space into the solution space.
+
+
+
+A class is a contract that defines the state and behavior of a classification of objects. A class definition is a template, or a piece of software that includes the specification of its object's member variables which compose the objects state and member functions which provides behavior relative to the state.
 
 The relationship between classes and objects is analogous to the relationship between an apple-pie recipe and apple pies: You can make many unique apple pies as you want from a single recipe.
 
@@ -12,13 +18,9 @@ When an instance of an object is created from a class template, called instantia
 
 	Object state is modeled by data variables, known as attributes, fields, properties, or data members.
 	Object behavior is modeled by procedures, known as methods, member functions, or function members.
-	Object identity is modeled by an object reference
+	Object identity is modeled by an object reference that is associated with a unique memory region
 
 
-Example:
-"Door" object has
-state, "opened" or "closed"
-methods such as "open" and "close"
 
 
 

@@ -31,3 +31,37 @@ After writing the source code for a C++ program, the next step is to turn your s
 3. The linker generates programs from object files.
 
     Linkers are also responsible for finding the libraries you’ve included within your source code. For example, the linker will find the cstdio library and include everything your program needs to use it's functions. Note that the cstdio header is distinct from the cstdio library. The header contains information about how to use the library.
+
+
+
+
+
+
+Sometimes we need to know what C++ standard a compiler is using. To get this information, we use the __cplusplus macro, which produces one of values below:
+
+| Standard | __cplusplus output |
+|----------|--------------------|
+| C++ pre C++98 | 1 |
+| C++98 | 199711L |
+| C++11 | 201103L |
+| C++14 | 201402L |
+| C++17 | 201703L |
+
+Example Usage:
+
+  #include <iostream>
+  using namespace std;
+
+  int main() {
+
+    switch(__cplusplus) {
+      case 201703L: cout << "C++17"; break;
+      case 201402L: cout << "C++14"; break;
+      case 201103L: cout << "C++11"; break;
+      case 199711L: cout << "C++98"; break;
+      case 1:       cout << "pre-98 C++"; break;
+      default:      cout << "non-standard"; break;
+    }
+
+    cout << endl;
+  }

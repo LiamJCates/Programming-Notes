@@ -3,8 +3,7 @@ For classes with pointer member variables, three things are normally done:
 2. Overload the assignment operator for the class
 3. Include the copy constructor
 
-
-Constructors, destructors, and copy and move operations for a type are not logically separate. We must define them as a matched set or suffer logical or performance problems.
+Constructors, destructors, copy, and move operations for a type are not logically separate. We must define them as a matched set or suffer logical or performance problems.
 
 If a class X has a destructor that performs a nontrivial task, such as free-store deallocation or lock release, the class is likely to need the full complement of functions:
 
@@ -38,6 +37,7 @@ A good rule of thumb (sometimes called the rule of zero) is to either define all
 
 
 Compiler-Generated Methods
+
 Five methods govern move and copy behavior:
 •	 The destructor
 •	 The copy constructor

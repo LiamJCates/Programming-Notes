@@ -1,17 +1,8 @@
+A map is known as an associative array or a dictionary.
 
+The standard-library map is a container of pairs of values optimized for lookup, implemented as a balanced binary tree.  
 
-a map is known as an associative array or a dictionary. It is implemented as a balanced binary tree.
-The standard-library map is a container of pairs of values optimized for lookup. We can use the
-same initializer as for vector and list
-
-
-When indexed by a value of its first type (called the key), a map returns the corresponding value of
-the second type (called the value or the mapped type).
-
-If a key isn’t found, it is entered into the map with a default value for its value.
-
-To avoid this use find() and insert() instead of [ ]
-
+When indexed by a value of its first type (called the key), a map returns the corresponding value of the second type (called the value or the mapped type).
 
 Maps are associative containers that store elements formed by a combination of a key value and a mapped value, following a specific order.
 

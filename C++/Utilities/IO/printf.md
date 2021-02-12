@@ -193,32 +193,33 @@ If a writing error occurs, the error indicator (ferror) is set and a negative nu
 
 If a multibyte character encoding error occurs while writing wide characters, errno is set to EILSEQ and a negative number is returned.
 
-/* printf example */
-#include <stdio.h>
+  /* printf example */
+  #include <stdio.h>
 
-int main()
-{
-   printf ("Characters: %c %c \n", 'a', 65);
-   printf ("Decimals: %d %ld\n", 1977, 650000L);
-   printf ("Preceding with blanks: %10d \n", 1977);
-   printf ("Preceding with zeros: %010d \n", 1977);
-   printf ("Some different radices: %d %x %o %#x %#o \n", 100, 100, 100, 100, 100);
-   printf ("floats: %4.2f %+.0e %E \n", 3.1416, 3.1416, 3.1416);
-   printf ("Width trick: %*d \n", 5, 10);
-   printf ("%s \n", "A string");
-   return 0;
-}
+  int main()
+  {
+     printf ("Characters: %c %c \n", 'a', 65);
+     printf ("Decimals: %d %ld\n", 1977, 650000L);
+     printf ("Preceding with blanks: %10d \n", 1977);
+     printf ("Preceding with zeros: %010d \n", 1977);
+     printf ("Some different radices: %d %x %o %#x %#o \n", 100, 100, 100, 100, 100);
+     printf ("floats: %4.2f %+.0e %E \n", 3.1416, 3.1416, 3.1416);
+     printf ("Width trick: %*d \n", 5, 10);
+     printf ("%s \n", "A string");
+     return 0;
+  }
 
 
 Output:
-Characters: a A
-Decimals: 1977 650000
-Preceding with blanks:       1977
-Preceding with zeros: 0000001977
-Some different radices: 100 64 144 0x64 0144
-floats: 3.14 +3e+000 3.141600E+000
-Width trick:    10
-A string
+
+  Characters: a A
+  Decimals: 1977 650000
+  Preceding with blanks:       1977
+  Preceding with zeros: 0000001977
+  Some different radices: 100 64 144 0x64 0144
+  floats: 3.14 +3e+000 3.141600E+000
+  Width trick:    10
+  A string
 
 
 
@@ -240,27 +241,28 @@ stream
 ...Everything else is the same as printf()
 
 
-#include <stdio.h>
+  #include <stdio.h>
 
-int main ()
-{
-   FILE * pFile;
-   int n;
-   char name [100];
+  int main ()
+  {
+     FILE * pFile;
+     int n;
+     char name [100];
 
-   pFile = fopen ("myfile.txt","w");
-   for (n=0 ; n<3 ; n++)
-   {
-     puts ("please, enter a name: ");
-     gets (name);
-     fprintf (pFile, "Name %d [%-10.10s]\n",n+1,name);
-   }
-   fclose (pFile);
+     pFile = fopen ("myfile.txt","w");
+     for (n=0 ; n<3 ; n++)
+     {
+       puts ("please, enter a name: ");
+       gets (name);
+       fprintf (pFile, "Name %d [%-10.10s]\n",n+1,name);
+     }
+     fclose (pFile);
 
-   return 0;
-}
+     return 0;
+  }
 
-output:
-Name 1 [John      ]
-Name 2 [Jean-Franc]
-Name 3 [Yoko      ]
+Output:
+
+  Name 1 [John      ]
+  Name 2 [Jean-Franc]
+  Name 3 [Yoko      ]

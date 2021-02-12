@@ -47,8 +47,8 @@ A function declaration's parameter list does not need to include the parameter n
 #### Example
 For example, a function called protofunction with two int parameters can be declared with either of these statements:
 
-int protofunction (int first, int second);
-int protofunction (int, int);
+  int protofunction (int first, int second);
+  int protofunction (int, int);
 
 
 
@@ -99,7 +99,7 @@ Some terminology classifying functions:
 
   //A non-member void function
   void print_square(double x) {
-  cout << "the square of " << x << " is " << square(x) << "\n";
+    cout << "the square of " << x << " is " << square(x) << "\n";
   }
 
   int main() {

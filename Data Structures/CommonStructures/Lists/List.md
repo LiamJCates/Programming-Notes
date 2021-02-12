@@ -1,7 +1,21 @@
-List
+## List
 
 A list is an ordered, nonunique, linear collection of dynamic size containing values of a certain type
 
+The list is often compared to another basic linear collection, the array.
+
+The key differences between the List and Array ADTs follow
+
+List Advantages
+  Dynamic
+    Linked lists are dynamic data structures; that is, they can grow or shrink during the execution of the program.
+  Memory Efficient
+    Memory is allocated whenever it is required, and it is de-allocated whenever it is no longer needed.
+
+
+
+
+### Notation
 List indexing is of the general form: A<sub>0</sub>, A<sub>1</sub>, A<sub>2</sub>, ..., A<sub>N-1</sub><br/>
 The size of this list is N.<br/>
 A list of size 0 is the empty list.<br/>

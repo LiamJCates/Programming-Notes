@@ -1,4 +1,5 @@
-Sequence Container: deque
+deque
+
 A deque (pronounced “deck”) is a sequential container with fast insert and
 remove operations from the front and back.
 
@@ -7,18 +8,17 @@ Deque is a portmanteau of double-ended queue.
 Deque containers are implemented as dynamic arrays in such a way that the elements can be inserted at both ends efficiently. Inserting elements in the middle, however, is time consuming because the elements in the queue need to be shifted.
 
 The STL implementation std::deque is available from the <deque> header. To use a deque container in a program, the program must include the following statement:
-#include <deque>
 
-A vector and a deque have very similar interfaces, but internally their
-storage models are totally different. A vector guarantees that all elements
-are sequential in memory, whereas a deque’s memory is usually scattered
+  #include <deque>
+
+A vector and a deque have very similar interfaces, but internally their storage models are totally different. A vector guarantees that all elements are sequential in memory, whereas a deque’s memory is usually scattered
 about, like a hybrid between a vector and a list. This makes large resizing
 operations more efficient and enables fast element insertion/deletion at the
 container’s front.
-Constructing and accessing members are identical operations for vectors
-and deques.
-Because the internal structure of deque is complex, it doesn’t expose a
-data method. In exchange, you gain access to push_front and emplace_front,
+
+Constructing and accessing members are identical operations for vectors and deques.
+
+Because the internal structure of deque is complex, it doesn’t expose a data method. In exchange, you gain access to push_front and emplace_front,
 which mirror the push_back and emplace_back that you’re familiar with from
 vector.
 
