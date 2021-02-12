@@ -1,163 +1,85 @@
 Printing inherited classes using operator <<
-By Alex on November 23rd, 2016 | last modified by Alex on December 21st, 2020
 
 Consider the following program that makes use of a virtual function:
 
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
+	class Base
+	{
+	public:
+		virtual void print() const { std::cout << "Base";  }
+	};
 
-class Base
-{
-public:
-	virtual void print() const { std::cout << "Base";  }
-};
+	class Derived : public Base
+	{
+	public:
+		virtual void print() const override { std::cout << "Derived"; }
+	};
 
-class Derived : public Base
-{
-public:
-	virtual void print() const override { std::cout << "Derived"; }
-};
-
-int main()
-{
-	Derived d{};
-	Base &b{ d };
-	b.print(); // will call Derived::print()
-
-	return 0;
-}
+	int main()
+	{
+		Derived d{};
+		Base &b{ d };
+		b.print(); // will call Derived::print()
+	}
 
 By now, you should be comfortable with the fact that b.print() will call Derived::print() (because b is pointing to a Derived class object, Base::print() is a virtual function, and Derived::print() is an override).
 
 While calling member functions like this to do output is okay, this style of function doesn’t mix well with std::cout:
 
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
+	#include <iostream>
+	int main()
+	{
+		Derived d{};
+		Base &b{ d };
 
-#include <iostream>
-int main()
-{
-	Derived d{};
-	Base &b{ d };
+    std::cout << "b is a ";
+    b.print(); // messy, we have to break our print statement to call this function
+    std::cout << '\n';
+	}
 
-        std::cout << "b is a ";
-        b.print(); // messy, we have to break our print statement to call this function
-        std::cout << '\n';
-
-	return 0;
-}
-
-In this lesson, we’ll look at how to override operator<< for classes using inheritance, so that we can use operator<< as expected, like this:
-
-1
+In this lesson, we’ll look at how to override operator, <<, for classes using inheritance, so that we can use operator<< as expected, like this:
 
 std::cout << "b is a " << b << '\n'; // much better
 
-The challenges with operator<<
 
-Let’s start by overloading operator<< in the typical way:
 
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-36
+### The challenges with operator<<
 
-#include <iostream>
-class Base
-{
-public:
-	virtual void print() const { std::cout << "Base";  }
+Let’s start by overloading operator, <<, in the typical way:
 
-	friend std::ostream& operator<<(std::ostream &out, const Base &b)
-        {
-            out << "Base";
-            return out;
-        }
-};
+	#include <iostream>
+	class Base
+	{
+	public:
+		virtual void print() const { std::cout << "Base";  }
 
-class Derived : public Base
-{
-public:
-	virtual void print() const override { std::cout << "Derived"; }
+		friend std::ostream& operator<<(std::ostream &out, const Base &b)
+	        {
+	            out << "Base";
+	            return out;
+	        }
+	};
 
-	friend std::ostream& operator<<(std::ostream &out, const Derived &d)
-        {
-            out << "Derived";
-            return out;
-        }
+	class Derived : public Base
+	{
+	public:
+		virtual void print() const override { std::cout << "Derived"; }
 
-};
+		friend std::ostream& operator<<(std::ostream &out, const Derived &d)
+	        {
+	            out << "Derived";
+	            return out;
+	        }
 
-int main()
-{
-    Base b{};
-    std::cout << b << '\n';
+	};
 
-    Derived d{};
-    std::cout << d << '\n';
+	int main()
+	{
+	    Base b{};
+	    std::cout << b << '\n';
 
-    return 0;
-}
+	    Derived d{};
+	    std::cout << d << '\n';
+	}
 
 Because there is no need for virtual function resolution here, this program works as we’d expect, and prints:
 
@@ -166,27 +88,16 @@ Derived
 
 Now, consider the following main() function instead:
 
-1
-2
-3
-4
-5
-6
-7
-8
+	int main()
+	{
+	  Derived d{};
+	  Base &bref{ d };
+	  std::cout << bref << '\n';
+	}
 
-int main()
-{
-    Derived d{};
-    Base &bref{ d };
-    std::cout << bref << '\n';
+Output:
 
-    return 0;
-}
-
-This program prints:
-
-Base
+	Base
 
 That’s probably not what we were expecting. This happens because our version of operator<< that handles Base objects isn’t virtual, so std::cout << bref calls the version of operator<< that handles Base objects rather than Derived objects.
 
@@ -211,51 +122,6 @@ The answer, as it turns out, is surprisingly simple.
 First, we set up operator<< as a friend in our base class as usual. But instead of having operator<< do the printing itself, we delegate that responsibility to a normal member function that can be virtualized!
 
 Here’s the full solution that works:
-
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-36
-37
-38
-39
-40
-41
-42
-43
-44
 
 #include <iostream>
 class Base
