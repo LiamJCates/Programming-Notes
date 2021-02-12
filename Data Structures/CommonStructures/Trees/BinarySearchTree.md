@@ -1,19 +1,15 @@
 Binary Search Tree BST
 
-Binary trees are used to implement binary search trees, which are used for efficient searching and sorting.
+Binary trees are often used to implement binary search trees
 
-The data stored at each BST node has a distinguished key which is unique in the tree and belongs to a total order
+In addition to the properties satisfied by binary trees, binary search trees are unique, ordered structures that support efficient searching.
+	The uniqueness property is satisfied by the data stored at each BST node having a distinguished key which is unique in the tree
+	The ordered property is satisfied by the key values which belong to a total order.
 
-Typically this ordering places nodes in the left subtree that have a value less than that of the root node. Similarly, all the nodes in the right subtree have a value more than that of the root node.
+The binary search tree is also known as an ordered binary tree. Typically this ordering places nodes in the left subtree that have a key value less than that of the root node. Similarly, all the nodes in the right subtree have a key value more than that of the root node.
 
-The binary search tree is also known as an ordered binary tree
+Binary Search Tree structures matches that of a standard binary tree, see:
+[Data Structures\CommonStructures\Trees\BinaryTree.md]
 
-The left and the right subtrees are also binary search trees, and thus the same property is applicable on every subtree in the binary search tree.
-
-
-each of the subtrees is ordered. Thus, it becomes easier to
-search for an element in the tree, and as a result, time is also reduced by
-a great margin.
-
-Binary Search Tree Operations:
+For information regarding Binary Search Tree operations, see:
 [Algorithms\Trees\BSTOperations.md]

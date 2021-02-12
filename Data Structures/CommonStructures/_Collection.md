@@ -3,7 +3,7 @@ The most general data structure is a Collection
 Collection types can be partitioned to Linear Collections, Associative Collections, and Graphs
 
 Collection
-In computer science, a collection is a grouping of some variable number of data items (possibly zero) that have some shared significance to the problem being solved and need to be operated upon together in some controlled fashion.
+In computer science, a collection is a grouping of some variable number of data items (possibly zero), generally called elements, that have some shared significance to the problem being solved and need to be operated upon together in some controlled fashion.
 
 Generally, a collection's data items will be of the same type or, in languages supporting inheritance, derived from some common ancestor type. A collection is the implementation of the Container abstract data types, and does not prescribe a specific implementation as a concrete data structure, though often there is a conventional choice.
 

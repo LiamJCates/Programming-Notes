@@ -48,7 +48,7 @@ Here class 'dev' inherits class 'base' functionalities in 'public' mode. The col
 
 Answer: error
 
-'protected' members of base class will be inherited as 'protected' members of derived class in 'public' inheritance. 'protected' members cannot be directly accessed by an object.
+'protected' members of base class will be inherited as 'protected' members of derived class in 'public' inheritance. 'protected' members cannot be directly accessed by an object and are only available to the objects member functions.
 
 
 
@@ -79,7 +79,7 @@ Answer: error
 
 Answer: 4
 
-In public inheritance, 'protected' members can be called by 'public' members.
+In public inheritance, 'protected' members can be accessed by 'public' members.
 
 
 
@@ -2546,36 +2546,36 @@ This works as expected.
 
 104. What is the output of the code?
 
-#include <iostream>
-using namespace std;
+	#include <iostream>
+	using namespace std;
 
-class base
-{
-public:
-	int b;
-	void fun()
+	class base
 	{
-		cout<< b<< " ";
+	public:
+		int b;
+		void fun()
+		{
+			cout<< b<< " ";
+		}
+	};
+
+	class dev1 : virtual public base
+	{}S;
+
+	class dev2 : virtual public dev1
+	{}D;
+
+	class dev3 : virtual public dev1
+	{}E;
+
+	class dev4 : virtual public dev2, virtual public dev3
+	{}F;
+
+	int main()
+	{
+		F.b = 3;
+		F.fun();
 	}
-};
-
-class dev1 : virtual public base
-{}S;
-
-class dev2 : virtual public dev1
-{}D;
-
-class dev3 : virtual public dev1
-{}E;
-
-class dev4 : virtual public dev2, virtual public dev3
-{}F;
-
-int main()
-{
-	F.b = 3;
-	F.fun();
-}
 
 Answer: 3
 
@@ -2585,36 +2585,36 @@ This also works fine, but the 'virtual' specified while inheriting dev4 goes use
 
 105. What is the output of the code?
 
-		#include <iostream>
-		using namespace std;
+	#include <iostream>
+	using namespace std;
 
-		class base
+	class base
+	{
+	public:
+		int b;
+		void fun()
 		{
-		public:
-			int b;
-			void fun()
-			{
-			cout<< b<< " ";
-			}
-		};
-
-		class dev1 : public base
-		{}S;
-
-		class dev2 : virtual public dev1
-		{}D;
-
-		class dev3 : virtual public dev1
-		{}E;
-
-		class dev4 : public dev2, public dev3
-		{}F;
-
-		int main()
-		{
-			F.b = 3;
-			F.fun();
+		cout<< b<< " ";
 		}
+	};
+
+	class dev1 : public base
+	{}S;
+
+	class dev2 : virtual public dev1
+	{}D;
+
+	class dev3 : virtual public dev1
+	{}E;
+
+	class dev4 : public dev2, public dev3
+	{}F;
+
+	int main()
+	{
+		F.b = 3;
+		F.fun();
+	}
 
 
 Answer: 3
@@ -2691,7 +2691,8 @@ class dev5 : public dev4
 
 int main()
 {
-//block }
+//block
+}
 
 (a) Hybrid
 (b) Hierarchical

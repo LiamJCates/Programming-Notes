@@ -20,9 +20,9 @@ public:
 
     bool isEmpty();
     int length();
-    void insert(int idx);
     void prepend(T data);
     void append(T data);
+    void insert(int idx, T data);
     void delete(int idx);
     void delete(T value);
     bool search(T value);
@@ -66,6 +66,7 @@ int template <typename T> SinglyLinkedList :: length()
     return this->length;
 }
 
+
 void template <typename T> SinglyLinkedList :: prepend(T data)
 {
   //create the node
@@ -102,6 +103,29 @@ void template <typename T> SinglyLinkedList :: append(T data)
   this->length++;
 }
 
+void template <typename T> SinglyLinkedList ::
+insert(int index, T data)
+{
+  if (idx > 0 || idx >= this->length)
+  {
+    if(index == 0)
+      prepend(data);
+    if(index == length)
+      append(data);
+
+    Node<T> *tmp = new Node<T>(data);
+    Node<T> *next = this->head;
+    Node<T> *prev;
+    while(index--)
+    {
+      prev = next;
+      next = next->next;
+    }
+    prev->next = tmp;
+    tmp->next = next;
+    this->length++;
+  }
+}
 
 void template <typename T> SinglyLinkedList :: delete(T data)
 {
@@ -161,7 +185,7 @@ void template <typename T> SinglyLinkedList :: delete(T data)
 void template <typename T> SinglyLinkedList :: delete(int idx)
 {
   //if the index exists in the list
-  if (idx < 0 || idx >= this->length)
+  if (idx > 0 || idx <= this->length)
   {
     //create a traversal pointer
     Node<T> *current = this->head;

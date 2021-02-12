@@ -56,3 +56,26 @@ class Point
 }
 
 In this second example, the actual implementation is completely hidden: the client doesn't know whether the internal representation of the point is in rectangular or polar coordinates but can use an interface to interact with a point option regardless of the internal implementation.
+
+
+
+
+
+
+
+
+
+
+I’ve been told to never use protected data, and instead to always use private data with protected access functions. Is that a good rule?  
+
+Nope.
+
+Whenever someone says to you, “You should always make data private,” stop right there — it’s a one-size-fits-all rule. The real world isn’t that simple.
+
+If I expect derived classes, I should ask this question: who will create them? If the people who will create them will be outside your team, or if there are a huge number of derived classes, then and only then is it worth creating a protected interface and using private data. If I expect the derived classes to be created by my own team and to be reasonable in number, it’s just not worth the trouble: use protected data. And hold your head up, don’t be ashamed: it’s the right thing to do!
+
+The benefit of protected access functions is that you won’t break your derived classes as often as you would if your data was protected. Put it this way: if you believe your users will be outside your team, you should do a lot more than just provide get/set methods for your private data. You should actually create another interface. You have a public interface for one set of users, and a protected interface for another set of users. But they both need an interface that is carefully designed — designed for stability, usability, performance, etc. And at the end of the day, the real benefit of privatizing your data (including providing an interface that is coherent and, as much as possible, opaque) is to avoid breaking your derived classes when you change that data structure.
+
+But if your own team is creating the derived classes, and there are a reasonably small number of them, it’s simply not worth the effort: use protected data. Some purists (translation: people who’ve never stepped foot in the real world, people who’ve spent their entire lives in an ivory tower, people who don’t understand words like “customer” or “schedule” or “deadline” or “ROI”) think that everything ought to be reusable and everything ought to have a clean, easy to use interface. Those kinds of people are dangerous: they often make your project late, since they make everything equally important. They’re basically saying, “We have 100 tasks, and I have carefully prioritized them: they are all priority 1.” They make the notion of priority meaningless.
+
+You simply will not have enough time to make life easy for everyone, so the very best you can do is make life easy for a subset of the world. Prioritize. Select the people that matter most and spend time making stable interfaces for them. You may not like this, but everyone is not created equal; some people actually do matter more than others. We have a word for those important people. We call them “customers.”

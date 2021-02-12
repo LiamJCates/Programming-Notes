@@ -1,11 +1,11 @@
-## Prefix Modifiers
-You can provide a number of optional modifiers (or specifiers) to functions.
-Modifiers alter a function’s behavior in some way. Some modifiers appear at
-the beginning in the function’s declaration or definition (prefix modifiers),
-whereas others appear at the end (suffix modifiers). The prefix modifiers
-appear before the return type. The suffix modifiers appear after the argument list.
+## Prefix Specifiers
+You can provide a number of optional specifiers (or modifiers) to functions.
+Specifiers alter a function’s behavior in some way. Some specifiers appear at
+the beginning in the function’s declaration or definition (prefix specifiers),
+whereas others appear at the end (suffix specifiers). The prefix specifiers
+appear before the return type. The suffix specifiers appear after the argument list.
 
-There isn’t a clear language reason why certain modifiers appear as
+There isn’t a clear language reason why certain specifiers appear as
 prefixes or suffixes: because C++ has a long history, these features evolved
 incrementally
 
@@ -87,7 +87,7 @@ This informs the compiler that when concatenate is called, the program prefers t
 Note that most compilers already optimize code to generate inline functions when they see an opportunity to improve efficiency, even if not explicitly marked with the inline specifier. Therefore, this specifier merely indicates the compiler that inline is preferred for this function, although the compiler is free to not inline it, and optimize otherwise. In C++, optimization is a task delegated to the compiler, which is free to generate any code for as long as the resulting behavior is the one specified by the code.
 
 
-## Suffix Modifiers
+## Suffix specifiers
 
 ### noexcept
 indicates that the function will never throw an exception. It enables certain optimizations.

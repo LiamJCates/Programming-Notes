@@ -1,3 +1,6 @@
+All the types of searches possible in trees have analogs in graphs. The graph equivalents are usually
+slightly more complex due to the possibility of cycles.
+
 Graph Traversal
 Traversing a graph means systematically following the edges of the graph to visit its vertices
 
@@ -6,7 +9,7 @@ There are two types of standard graph traversal techniques:
 2. Depth First Search (DFS)
 
 A breadth-first search (BFS) algorithm visits the immediate children
-of a node before it goes any deeper. 
+of a node before it goes any deeper.
 
 A depth-first search (DFS) goes as deep as it can down a path before visiting sibling nodes (that is, before visiting nodes that share the same parent).
 
