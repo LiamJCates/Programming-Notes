@@ -1,9 +1,9 @@
 For information on the general definition of data abstraction see:
-[System Design\ObjectOrientedDesign\ObjectOrientedConcepts\Abstraction\DataAbstraction.md]
+[System Design\ObjectOrientedDesign\Concepts\Abstraction\DataAbstraction.md]
 
 Data Abstraction separates code into interface and implementation.
 
-A stable public interface is independent of specific implementation detail such that a change to the underlying implementation does not effect client code that utilizes the interface.
+A stable public interface is independent of specific implementation details such that a change to the underlying implementation does not effect client code that utilizes the interface.
 
 In C++, classes provide data abstraction through sufficient public methods to utilize functionality and manipulate object data without actually knowing how class has been implemented internally.
 
