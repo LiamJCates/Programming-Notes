@@ -1,8 +1,6 @@
 ## Derived Object Usage
 
-Derived classes inherit non­private members from their base classes. Classes
-can use inherited members just like normal members. The supposed benefit of member inheritance is that you can define functionality once in a
-base class and not have to repeat it in the derived classes.
+Derived classes inherits access to non­private members from their base classes. Classes can use inherited members just like normal members. The supposed benefit of member inheritance is that you can define functionality once in a base class and not have to repeat it in the derived classes.
 
 To understand how interactions with derived objects are carried out we must understand how derived objects interact with the classes they are based on.
 
@@ -10,6 +8,20 @@ When we create a Derived object, it contains
   members for each Base class (which is constructed first)
   members for each Derived class (which is constructed second).
 
+Why can’t my derived class access private base class members?  
+
+To protect you from future changes to the base class.
+
+Derived classes do not get access to private members of a base class. This effectively “seals off” the derived class from any changes made to the private members of the base class.
+
+How can I protect derived classes from breaking when I change the internal parts of the base class?  
+
+A class has two distinct interfaces for two distinct sets of clients:
+
+  It has a public interface that serves unrelated classes
+  It has a protected interface that serves derived classes
+
+Unless you expect all your derived classes to be built by your own team, you should declare your base class’s data members as private and use protected inline access functions by which derived classes will access the private data in the base class. This way the private data declarations can change, but the derived class’s code won’t break (unless you change the protected access functions).
 
 
 ### Example of a Derived Class
@@ -77,10 +89,24 @@ Output:
   pDerived is a Derived and has value 5
 
 
+It is okay to convert a pointer from a derived class to its base class if they implement public inheritance
+
+As an object of a derived class is a kind of the base class. Therefore the conversion from a derived class pointer to a base class pointer is perfectly safe, and happens all the time. For example, if I am pointing at a Car object that publicly inherits from the Vehicle class, I am in fact pointing at a vehicle, so converting a Car type pointer to a Vehicle type pointer is perfectly safe and normal:
+
+    void f(Vehicle* v);
+    void g(Car* c) { f(c); }  // Perfectly safe implicit conversion; no cast
+
+Should I pointer-cast from a private derived class to its base class?  
+
+Generally, No. From a member function or friend of a privately derived class, the relationship to the base class is known, and the upward conversion from PrivatelyDervived\* to Base\* (or PrivatelyDerived& to Base&) is safe; no cast is needed or recommended.
+
+However users of PrivatelyDerived should avoid this unsafe conversion, since it is based on a private decision of PrivatelyDerived, and is subject to change without notice.
+
+
 
 ### Base pointer or reference to a derived object
 
-However, since Derived has a Base part, a more interesting question is whether C++ will let us set a Base pointer or reference to a Derived object. It turns out, we can!
+However, since Derived has a Base part, an interesting question is whether C++ will let us set a Base pointer or reference to a Derived object. It turns out, we can!
 
   #include <iostream>
 

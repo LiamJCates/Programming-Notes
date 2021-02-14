@@ -6,3 +6,4 @@ Topic Order:
 	Method Override
 	Modes of Inheritance
 	Modes of Inheritance Examples
+	Inheritance Relationships
