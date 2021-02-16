@@ -105,6 +105,7 @@ A basic trait for types is the categories in which they can be classified. This 
 				<td>floating point</td>
 			</tr>
 			<tr>
+			<td rowspan="10">compound</td>
 				<td>pointer</td>
 				<td></td>
 			</tr>
