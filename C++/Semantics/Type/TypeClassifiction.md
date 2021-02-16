@@ -56,24 +56,19 @@ The C++ type system consists of the following types:
 			pointer-to-data-member
 			pointer-to-member-function  
 
-	  Array
+		Array
 
 		Function
 
 		Enumeration
 
 		Class types
-	    non-union
-	    union
+			non-union
+			union
 
 For every type other than reference and function, the type system supports three additional cv-qualified versions of that type (const, volatile, and const volatile).
 
-
-
-
-
-
-A basic trait for types is the categories in which they can be classified. This is a chart on how these categories overlap:
+The following chart depicts how these categories overlap:
 
 <table>
     <thead>
