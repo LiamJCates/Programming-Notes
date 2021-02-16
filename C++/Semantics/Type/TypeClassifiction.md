@@ -152,7 +152,7 @@ A basic trait for types is the categories in which they can be classified. This 
 				<td></td>
 			</tr>
 		</tbody>
-
+</table>
 
 fundamental	void			
 		scalar	object
