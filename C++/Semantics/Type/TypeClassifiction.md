@@ -154,22 +154,6 @@ A basic trait for types is the categories in which they can be classified. This 
 		</tbody>
 </table>
 
-fundamental	void			
-		scalar	object
-integral	arithmetic
-floating point
-compound	pointer
-member object pointer	member pointer
-member function pointer
-enum
-union		
-class*		
-array		
-l-value reference	reference		
-r-value reference		
-function			
-* = excluding unions
-
 
 
 
