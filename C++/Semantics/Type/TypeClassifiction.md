@@ -6,65 +6,65 @@ Type classification
 
 The C++ type system consists of the following types:
 
-Fundamental Types
-	void
-	nullptr (C++11)
+	Fundamental Types
+		void
+		nullptr (C++11)
 
-	Arithmetic Types
+		Arithmetic Types
 
-		Floating-Point Types
-			float
-			double
-			long double
+			Floating-Point Types
+				float
+				double
+				long double
 
-		Integral Types
-			bool
+			Integral Types
+				bool
 
-			Character Types
+				Character Types
 
-				Narrow Character Types
-					char (signed/unsigned)
-					char8_t (C++20)
+					Narrow Character Types
+						char (signed/unsigned)
+						char8_t (C++20)
 
-				Wide Character Types
-					wchar_t
-					char16_t (C++11)
-					char32_t (C++11)
+					Wide Character Types
+						wchar_t
+						char16_t (C++11)
+						char32_t (C++11)
 
-			Integer Types	(signed/unsigned)
-				short int		
-				int
-				long int
-				long long int
+				Integer Types	(signed/unsigned)
+					short int		
+					int
+					long int
+					long long int
 
-Compound Types
+	Compound Types
 
-	Reference Type
-		Lvalue Reference Types
-			lvalue reference to object
-			lvalue reference to function
+		Reference Type
+			Lvalue Reference Types
+				lvalue reference to object
+				lvalue reference to function
 
-		Rvalue Reference Types
-			rvalue reference to object
-			rvalue reference to function
+			Rvalue Reference Types
+				rvalue reference to object
+				rvalue reference to function
 
-	Pointer Types
-		pointer-to-object
-		pointer-to-function
+		Pointer Types
+			pointer-to-object
+			pointer-to-function
 
-	Pointer-to-Member Types
-		pointer-to-data-member
-		pointer-to-member-function  
+		Pointer-to-Member Types
+			pointer-to-data-member
+			pointer-to-member-function  
 
-  Array
+	  Array
 
-	Function
+		Function
 
-	Enumeration
+		Enumeration
 
-	Class types
-    non-union
-    union
+		Class types
+	    non-union
+	    union
 
 For every type other than reference and function, the type system supports three additional cv-qualified versions of that type (const, volatile, and const volatile).
 
