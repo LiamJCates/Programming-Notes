@@ -80,7 +80,7 @@ A basic trait for types is the categories in which they can be classified. This 
         <tr>
 					<th></th>
 					<th> Primary Categories</th>
-					<th rowspan="3">Composite Categories</th>
+					<th colspan="3">Composite Categories</th>
 				</tr>
 		</thead>
 		<tbody>
