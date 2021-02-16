@@ -9,9 +9,10 @@ Standard conversions:
 
 Note
 
-User-defined types can specify their own conversions. Conversion of user-defined types must be defined by their classes.
+
 
 The result of a conversion is an l-value only if it produces a reference type. For example, a user-defined conversion declared as operator int&() returns a reference and is an l-value. However, a conversion declared as operator int() returns an object and isn't an l-value.
+
 Integral promotions
 
 Objects of an integral type can be converted to another wider integral type, that is, a type that can represent a larger set of values. This widening type of conversion is called integral promotion. With integral promotion, you can use the following types in an expression wherever another integral type can be used:

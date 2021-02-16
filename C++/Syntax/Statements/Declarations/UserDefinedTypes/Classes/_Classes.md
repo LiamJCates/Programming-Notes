@@ -2,7 +2,7 @@ Classes
 
 POD classes contain only data members, and sometimes that’s all you want from a class. However, designing a program using only PODs can create a lot of complexity. You can fight such complexity with abstraction, by placing related functions and data together and providing a user friendly interface for the clients of a class.
 
-Classes are an expanded concept of POD structures: like POD structures, they can contain data members, but they can also contain functions as members.
+Classes expand POD structures. Like POD structures, they can contain data members, but they can also contain user defined member functions.
 
 This helps to simplify code in at least two ways.
 

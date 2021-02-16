@@ -4,55 +4,6 @@ When dealing with polymorphism, you’ll often encounter cases where you have a 
 
 Consider the following (slightly contrived) program:
 
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-36
-37
-38
-39
-40
-41
-42
-43
-44
-45
-46
-47
-48
-49
 
 #include <iostream>
 #include <string>
@@ -63,10 +14,7 @@ protected:
 	int m_value{};
 
 public:
-	Base(int value)
-		: m_value{value}
-	{
-	}
+	Base(int value) : m_value{value}{}
 
 	virtual ~Base() = default;
 };
@@ -77,20 +25,14 @@ protected:
 	std::string m_name{};
 
 public:
-	Derived(int value, const std::string& name)
-		: Base{value}, m_name{name}
-	{
-	}
+	Derived(int value, const std::string& name) : Base{value}, m_name{name} {}
 
 	const std::string& getName() const { return m_name; }
 };
 
 Base* getObject(bool bReturnDerived)
 {
-	if (bReturnDerived)
-		return new Derived{1, "Apple"};
-	else
-		return new Base{2};
+	return bReturnDerived ? new Derived{1, "Apple"} : new Base{2};
 }
 
 int main()
@@ -110,43 +52,35 @@ One way would be to add a virtual function to Base called getName() (so we could
 
 We know that C++ will implicitly let you convert a Derived pointer into a Base pointer (in fact, getObject() does just that). This process is sometimes called upcasting. However, what if there was a way to convert a Base pointer back into a Derived pointer? Then we could call Derived::getName() directly using that pointer, and not have to worry about virtual function resolution at all.
 
-dynamic_cast
+
+
+### dynamic_cast
 
 C++ provides a casting operator named dynamic_cast that can be used for just this purpose. Although dynamic casts have a few different capabilities, by far the most common use for dynamic casting is for converting base-class pointers into derived-class pointers. This process is called downcasting.
 
 Using dynamic_cast works just like static_cast. Here’s our example main() from above, using a dynamic_cast to convert our Base pointer back into a Derived pointer:
 
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
+	int main()
+	{
+		Base *b{ getObject(true) };
 
-int main()
-{
-	Base *b{ getObject(true) };
+		// use dynamic cast to convert Base pointer into Derived pointer
+	  Derived \*d{ dynamic_cast<Derived*>(b) };
 
-        Derived *d{ dynamic_cast<Derived*>(b) }; // use dynamic cast to convert Base pointer into Derived pointer
+	  std::cout << "The name of the Derived is: " << d->getName() << '\n';
 
-        std::cout << "The name of the Derived is: " << d->getName() << '\n';
+		delete b;
 
-	delete b;
+		return 0;
+	}
 
-	return 0;
-}
-
-This prints:
+Output:
 
 The name of the Derived is: Apple
 
-dynamic_cast failure
+
+
+### dynamic_cast failure
 
 The above example works because b is actually pointing to a Derived object, so converting b into a Derived pointer is successful.
 
@@ -158,28 +92,15 @@ Because we haven’t checked for a null pointer result, we access d->getName(), 
 
 In order to make this program safe, we need to ensure the result of the dynamic_cast actually succeeded:
 
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-
 int main()
 {
 	Base *b{ getObject(true) };
 
-        Derived *d{ dynamic_cast<Derived*>(b) }; // use dynamic cast to convert Base pointer into Derived pointer
+	// use dynamic cast to convert Base pointer into Derived pointer
+  Derived *d{ dynamic_cast<Derived*>(b) };
 
-        if (d) // make sure d is non-null
-            std::cout << "The name of the Derived is: " << d->getName() << '\n';
+  if (d) // make sure d is non-null
+      std::cout << "The name of the Derived is: " << d->getName() << '\n';
 
 	delete b;
 
@@ -197,7 +118,9 @@ Also note that there are several cases where downcasting using dynamic_cast will
 2) For classes that do not declare or inherit any virtual functions (and thus don’t have a virtual table).
 3) In certain cases involving virtual base classes (see this page for an example of some of these cases, and how to resolve them).
 
-Downcasting with static_cast
+
+
+### Downcasting with static_cast
 
 It turns out that downcasting can also be done with static_cast. The main difference is that static_cast does no runtime type checking to ensure that what you’re doing makes sense. This makes using static_cast faster, but more dangerous. If you cast a Base* to a Derived*, it will “succeed” even if the Base pointer isn’t pointing to a Derived object. This will result in undefined behavior when you try to access the resulting Derived pointer (that is actually pointing to a Base object).
 

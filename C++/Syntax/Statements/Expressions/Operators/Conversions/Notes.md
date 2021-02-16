@@ -129,8 +129,7 @@ This is the least safe of the casting mechanisms, and the one most
 likely to produce bugs. A reinterpret_cas pretends that an object is t
 just a bit pattern that can be treated (for some dark purpose) as if it
 were an entirely different type of object. This is the low-level bit
-twiddling that C is notorious for. You’ll virtually always need to3: The C in C++ 185
-reinterpret_cas back to the original type (or otherwise treat the t
+twiddling that C is notorious for. You’ll virtually always need to reinterpret_cas back to the original type (or otherwise treat the t
 variable as its original type) before doing anything else with it.
 //: C03:reinterpret_cast.cpp
 #include <iostream>
