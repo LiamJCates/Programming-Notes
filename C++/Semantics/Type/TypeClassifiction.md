@@ -99,7 +99,7 @@ A basic trait for types is the categories in which they can be classified. This 
 			</tr>
 			<tr>
 				<td>integral</td>
-				<td rowspan="2"></td>
+				<td rowspan="2">arithmetic</td>
 			</tr>
 			<tr>
 				<td>floating point</td>
