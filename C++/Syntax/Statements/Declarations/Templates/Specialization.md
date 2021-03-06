@@ -1,4 +1,5 @@
 Template specialization
+
 It is possible to define a different implementation for a template when a specific type is passed as template argument. This is called a template specialization.
 
 For example, let's suppose that we have a very simple class called mycontainer that can store one element of any type and that has just one member function called increase, which increases its value. But we find that when it stores an element of type char it would be more convenient to have a completely different implementation with a function member uppercase, so we decide to declare a class template specialization for that type:

@@ -1,48 +1,26 @@
 C++ explicit casts
-Casts should be used carefully, because what you are actually
-doing is saying to the compiler “Forget type checking – treat it as
-this other type instead.” That is, you’re introducing a hole in the
-C++ type system and preventing the compiler from telling you that
-you’re doing something wrong with a type. What’s worse, the
-compiler believes you implicitly and doesn’t perform any other
-checking to catch errors. Once you start casting, you open yourself
-up for all kinds of problems. In fact, any program that uses a lot of
-casts should be viewed with suspicion, no matter how much you
-are told it simply “must” be done that way. In general, casts should
-be few and isolated to the solution of very specific problems.
-Once you understand this and are presented with a buggy
-program, your first inclination may be to look for casts as culprits.
-But how do you locate C-style casts? They are simply type names
-inside of parentheses, and if you start hunting for such things you’ll
-discover that it’s often hard to distinguish them from the rest of
-your code.
-Standard C++ includes an explicit cast syntax that can be used to
-completely replace the old C-style casts (of course, C-style casts
-cannot be outlawed without breaking code, but compiler writers
-could easily flag old-style casts for you). The explicit cast syntax is
-such that you can easily find them, as you can see by their names:
-static_cast For “well-behaved” and
-“reasonably well-behaved” casts,
-including things you might now
-do without a cast (such as an
-automatic type conversion).
-const_cast To cast away const and/or
-volatile.
-reinterpret_cast To cast to a completely different
-meaning. The key is that you’ll182 Thinking in C++ www.BruceEckel.com
-need to cast back to the original
-type to use it safely. The type you
-cast to is typically used only for
-bit twiddling or some other
-mysterious purpose. This is the
-most dangerous of all the casts.
-dynamic_cast For type-safe downcasting (this
-cast will be described in Chapter
-15).
-The first three explicit casts will be described more completely in
-the following sections, while the last one can be demonstrated only
-after you’ve learned more, in Chapter 15.
+
+
+Standard C++ includes an explicit cast syntax that can be used to completely replace the old C-style casts (of course, C-style casts cannot be outlawed without breaking code, but compiler writers could easily flag old-style casts for you). The explicit cast syntax is such that you can easily find them, as you can see by their names:
+
 static_cast
+For “well-behaved” and “reasonably well-behaved” casts, including things you might now do without a cast (such as an automatic type conversion).
+
+const_cast
+To cast away const and/or volatile.
+
+reinterpret_cast
+To cast to a completely different meaning. The key is that you’ll need to cast back to the original type to use it safely. The type you cast to is typically used only for bit twiddling or some other mysterious purpose. This is the
+most dangerous of all the casts.
+
+dynamic_cast
+For type-safe downcasting.
+
+The first three explicit casts will be described more completely in the following sections, while the last one can be demonstrated only
+after you’ve learned more, in Chapter 15.
+
+static_cast
+
 A static_castis used for all conversions that are well-defined. These
 include “safe” conversions that the compiler would allow you to do
 without a cast and less-safe conversions that are nonetheless welldefined. The types of conversions covered by static_castinclude
@@ -124,6 +102,7 @@ If you take the address of a const object, you produce a pointer to a
 const, and this cannot be assigned to a nonconst pointer without a
 cast. The old-style cast will accomplish this, but the const_castis
 the appropriate one to use. The same holds true for volatile.
+
 reinterpret_cast
 This is the least safe of the casting mechanisms, and the one most
 likely to produce bugs. A reinterpret_cas pretends that an object is t

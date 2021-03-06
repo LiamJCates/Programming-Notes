@@ -12,8 +12,15 @@ Syntax
   typeid(type-id)
   typeid(expression)
 
+Type-id may be used in the following situations:
 
-
+  to specify the target type in cast expressions;
+  as arguments to sizeof, alignof, alignas, new, and typeid;
+  on the right-hand side of a type alias declaration;
+  as the trailing return type of a function declaration;
+  as the default argument of a template type parameter;
+  as the template argument for a template type parameter;
+  in dynamic exception specification.
 
 
 The result of typeid is a const type_info&. The value is a reference to a type_info object that represents either the type-id or the type of the expression, depending on which form of typeid is used.

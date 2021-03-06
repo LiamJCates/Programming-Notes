@@ -1,7 +1,7 @@
 For more general information on Polymorphism see:
 [System Design\ObjectOrientedDesign\ObjectOrientedConcepts\Polymorphism.md]
 
-In the context of OOP Polymorphism means that the same function name denotes many functions that are members of different objects.
+In the context of OOP Polymorphism means that the same function name is used to resolve to difference behavior depending on the invoking objects.
 
 Polymorphic behavior that can be implemented in C++ via the inheritance hierarchy, also known as subtype polymorphism.
 

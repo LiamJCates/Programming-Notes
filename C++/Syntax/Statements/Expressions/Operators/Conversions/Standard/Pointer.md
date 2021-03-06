@@ -2,6 +2,13 @@ Pointer conversions
 
 Pointers can be converted during assignment, initialization, comparison, and other expressions.
 
+pointers in general allow the following conversions:
+  Null pointers can be converted to pointers of any type
+  Pointers to any type can be converted to void pointers.
+  Pointer upcast: pointers to a derived class can be converted to a pointer of an accessible and unambiguous base class, without modifying its const or volatile qualification.
+
+For non-fundamental types, arrays and functions implicitly convert to pointers.
+
 Pointer to classes
 
 There are two cases in which a pointer to a class can be converted to a pointer to a base class.
