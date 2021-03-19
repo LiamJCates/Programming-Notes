@@ -13,8 +13,10 @@ Operation Types
 
   Unary:
     Arithmetic
+    Bitwise
 
   Ternary
+    Conditional
 
 
 
@@ -42,6 +44,25 @@ Binary operator: An operator that has two operands.
 Ternary operator: An operator that has three operands.
 
 Most programming languages support a standard variety of binary operators and a few unary operators, with some supporting more operands, such as the ? : operator, which is ternary.
+
+Binary
+A binary operator requires two operands, one before the operator and one after the operator:
+
+operand1 operator operand2
+
+For example, 3+4 or x*y.
+
+Unary
+A unary operator requires a single operand, either before or after the operator:
+
+operator operand
+
+or
+
+operand operator
+
+For example, x++ or ++x.
+
 
 
 Operand Coercion

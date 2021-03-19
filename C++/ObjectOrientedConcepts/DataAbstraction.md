@@ -29,8 +29,8 @@ Data abstraction in C++ is primarily achieved through
 
     Members defined with a private label are not accessible to code that uses the class. The private sections hide the implementation from code that uses the type.
 
-  For information on the syntactic declaration of C++ access controls see:
-  [C++\Syntax\Statements\Declarations\UserDefinedTypes\Classes\AccessControls.md]
+For information on the syntactic declaration of C++ access controls see:
+[C++\Syntax\Statements\Declarations\UserDefinedTypes\Classes\AccessControls.md]
 
 
 

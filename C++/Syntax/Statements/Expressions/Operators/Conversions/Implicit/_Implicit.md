@@ -1,6 +1,8 @@
 Implicit Type Conversion
 
-The word “implicit” means ‘understood’ or ‘embedded’. In implicit C++ type casting, also called automatic type conversion or coercion, the data type in which the value is to be converted is not specified in the program. Implicit type conversion is a background transformation automatically handled by the C++ compiler.
+The word “implicit” means ‘understood’ or ‘embedded’.
+
+In implicit C++ type casting, also called automatic type conversion or coercion, the data type in which the value is to be converted is not specified in the program. Implicit type conversion is a background transformation automatically handled by the C++ compiler.
 
 Implicit type conversion is performed whenever one data type is expected by an expression, but a data of a different data type is specified by the source code. If the compiler can figure out how to do the conversion between the two types, it will do so without the need of any explicit operator. If it doesn’t know how, then it will fail with a compile error.
 

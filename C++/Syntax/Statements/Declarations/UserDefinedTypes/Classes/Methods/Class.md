@@ -1,6 +1,6 @@
 Class Methods (Static):
 
-Class methods are often called static methods as they use the static modifier and .
+Class methods are often called static methods as they use the static modifier
 
 Static members are members of a class that aren’t associated with a particular
 instance of the class. Like other static variables, static members have only a single instance.

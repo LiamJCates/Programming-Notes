@@ -1,5 +1,11 @@
 ## static_cast
 
+For “well-behaved” and “reasonably well-behaved” casts, including things you might now do without a cast (such as an automatic type conversion).
+
+A static_cast is used for all conversions that are well-defined. These
+include “safe” conversions that the compiler would allow you to do
+without a cast and less-safe conversions that are nonetheless welldefined. The types of conversions covered by static_cast include typical castless conversions, narrowing (information-losing) conversions, forcing a conversion from a void*, implicit type conversions, and static navigation of class hierarchies
+
 https://en.cppreference.com/w/cpp/language/static_cast
 
 static_cast can perform conversions between pointers to related classes, not only upcasts (from pointer-to-derived to pointer-to-base), but also downcasts (from pointer-to-base to pointer-to-derived). No checks are performed during runtime to guarantee that the object being converted is in fact a full object of the destination type. Therefore, it is up to the programmer to ensure that the conversion is safe. On the other side, it does not incur the overhead of the type-safety checks of dynamic_cast.
@@ -44,6 +50,86 @@ Additionally, static_cast can also perform the following:
     Convert to rvalue references.
     Convert enum class values into integers or floating-point values.
     Convert any type to void, evaluating and discarding the value.
+
+
+
+
+
+
+
+
+
+
+
+
+void func(int) {}
+
+int main()
+{
+	int i = 0x7fff; // Max pos value = 32767
+	long l;
+	float f;
+
+	// (1) Typical castless conversions:
+	l = i;
+	f = i;
+
+	// Also works:
+	l = static_cast<long>(i);
+	f = static_cast<float>(i);
+	3 : The C in C++ 183
+
+	// (2) Narrowing conversions:
+	i = l; // May lose digits
+	i = f;	   // May lose info
+
+	// Says "I know," eliminates warnings:
+	i = static_cast<int>(l);
+	i = static_cast<int>(f);
+	char c = static_cast<char>(i);
+
+	// (3) Forcing a conversion from void* :
+	void *vp = &i;
+
+	// Old way produces a dangerous conversion:
+	float *fp = (float *)vp;
+
+	// The new way is equally dangerous:
+	fp = static_cast<float *>(vp);
+
+	// (4) Implicit type conversions, normally performed by the compiler:
+	double d = 0.0;
+	int x = d;				   // Automatic type conversion
+	x = static_cast<int>(d);   // More explicit
+	func(d);				   // Automatic type conversion
+	func(static_cast<int>(d)); // More explicit
+}
+
+In Section (1), you see the kinds of conversions you’re used to doing in C, with or without a cast. Promoting from an int to a long or float is not a problem because the latter can always hold every value that an int can contain. Although it’s unnecessary, you can use static_castto highlight these promotions.
+
+Converting back the other way is shown in (2). Here, you can lose data because an int is not as “wide” as a long or a float; it won’t hold numbers of the same size. Thus these are called narrowing conversions. The compiler will still perform these, but will often give you a warning. You can eliminate this warning and indicate that you really did mean it using a cast.
+
+Assigning from a void* is not allowed without a cast in C++ (unlike C), as seen in (3). This is dangerous and requires that programmers know what they’re doing. The static_cast, at least, is easier to locate than the old standard cast when you’re hunting for bugs.
+
+Section (4) of the program shows the kinds of implicit type
+conversions that are normally performed automatically by the
+compiler. These are automatic and require no casting, but again
+static_casthighlights the action in case you want to make it clear
+what’s happening or hunt for it later.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 static_cast

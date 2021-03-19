@@ -8,7 +8,7 @@ Java is currently one of the most popular programming languages in use. Accordin
 
 Java Programming Language
 The Java programming language is a high-level language that can be characterized as:
-Object oriented
+Object Oriented
 Distributed
 Multithreaded
 Dynamic

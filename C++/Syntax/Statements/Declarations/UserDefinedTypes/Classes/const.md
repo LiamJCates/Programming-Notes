@@ -1,5 +1,68 @@
 the const keyword can be used for a number of purposes throughout the declaration of a class.
 
+You
+may want to create a local const in a class to use inside constant
+expressions that will be evaluated at compile time. However, the
+meaning of const is different inside classes, so you must
+understand the options in order to create const data members of a
+class.
+
+You can also make an entire object const. But
+preserving the constness of an object is more complex. The
+compiler can ensure the constness of a built-in type but it cannot
+monitor the intricacies of a class. To guarantee the constness of a
+class object, the const member function is introduced: only a const
+member function may be called for a const object.
+
+
+The use of const inside a class means
+“This is constant for the lifetime of the object.” However, each
+different object may contain a different value for that constant.
+Thus, when you create an ordinary (non-static) const inside a class,
+you cannot give it an initial value. This initialization must occur in
+the constructor, of course, but in a special place in the constructor.
+Because a const must be initialized at the point it is created, inside
+the main body of the constructor the const must already be
+initialized. Otherwise you’re left with the choice of waiting until
+some point later in the constructor body, which means the const
+would be un-initialized for a while. Also, there would be nothing to
+keep you from changing the value of the const at various places in
+the constructor body.
+
+
+
+The constructor initializer list
+The special initialization point is called the constructor initializer list,
+and it was originally developed for use in inheritance (covered in
+Chapter 14). The constructor initializer list – which, as the name
+implies, occurs only in the definition of the constructor – is a list of
+“constructor calls” that occur after the function argument list and a8: Constants 375
+colon, but before the opening brace of the constructor body. This is
+to remind you that the initialization in the list occurs before any of
+the main constructor code is executed. This is the place to put all
+const initializations. The proper form for const inside a class is
+shown here:
+//: C08:ConstInitialization.cpp
+// Initializing const in classes
+#include <iostream>
+using namespace std;
+class Fred {
+const int size;
+public:
+Fred(int sz);
+void print();
+};
+Fred::Fred(int sz) : size(sz) {}
+void Fred::print() { cout << size << endl; }
+int main() {
+Fred a(1), b(2), c(3);
+a.print(), b.print(), c.print();
+} ///:~
+The form of the constructor initializer list shown above is confusing
+at first because you’re not used to seeing a built-in type treated as if
+it has a constructor.
+
+
 
 ### const Member Variables
 You can mark member variables const by adding the keyword to the member’s type. The const member variables cannot be modified after their initialization.
@@ -131,8 +194,168 @@ Member functions can be overloaded on their constness: i.e., a class may have tw
 
 
 
+const objects & member functions
+Class member functions can be made const. What does this mean?
+To understand, you must first grasp the concept of const objects.
+A const object is defined the same for a user-defined type as a builtin type. For example:
+const int i = 1;
+const blob b(2);8: Constants 381
+Here, b is a const object of type blob. Its constructor is called with
+an argument of two. For the compiler to enforce constness, it must
+ensure that no data members of the object are changed during the
+object’s lifetime. It can easily ensure that no public data is modified,
+but how is it to know which member functions will change the data
+and which ones are “safe” for a const object?
+If you declare a member function const, you tell the compiler the
+function can be called for a const object. A member function that is
+not specifically declared const is treated as one that will modify
+data members in an object, and the compiler will not allow you to
+call it for a const object.
+It doesn’t stop there, however. Just claiming a member function is
+const doesn’t guarantee it will act that way, so the compiler forces
+you to reiterate the const specification when defining the function.
+(The const becomes part of the function signature, so both the
+compiler and linker check for constness.) Then it enforces constness
+during the function definition by issuing an error message if you
+try to change any members of the object or call a non-const member
+function. Thus, any member function you declare const is
+guaranteed to behave that way in the definition.
+To understand the syntax for declaring const member functions,
+first notice that preceding the function declaration with const
+means the return value is const, so that doesn’t produce the desired
+results. Instead, you must place the const specifier after the
+argument list. For example,
+//: C08:ConstMember.cpp
+class X {
+int i;
+public:
+X(int ii);
+int f() const;
+};
+X::X(int ii) : i(ii) {}
+int X::f() const { return i; }382 Thinking in C++ www.BruceEckel.com
+int main() {
+X x1(10);
+const X x2(20);
+x1.f();
+x2.f();
+} ///:~
+Note that the const keyword must be repeated in the definition or
+the compiler sees it as a different function. Since f( ) is a const
+member function, if it attempts to change i in any way or to call
+another member function that is not const, the compiler flags it as
+an error.
+You can see that a const member function is safe to call with both
+const and non-const objects. Thus, you could think of it as the most
+general form of a member function (and because of this, it is
+unfortunate that member functions do not automatically default to
+const). Any function that doesn’t modify member data should be
+declared as const, so it can be used with const objects.
+Here’s an example that contrasts a const and non-const member
+function:
+//: C08:Quoter.cpp
+// Random quote selection
+#include <iostream>
+#include <cstdlib> // Random number generator
+#include <ctime> // To seed random generator
+using namespace std;
+class Quoter {
+int lastquote;
+public:
+Quoter();
+int lastQuote() const;
+const char* quote();
+};
+Quoter::Quoter(){
+lastquote = -1;
+srand(time(0)); // Seed random number generator8: Constants 38
 
 
+
+mutable: bitwise vs. logical const
+What if you want to create a const member function, but you’d still
+like to change some of the data in the object? This is sometimes
+referred to as the difference between bitwise const and logical const
+(also sometimes called memberwise const). Bitwise const means that
+every bit in the object is permanent, so a bit image of the object will
+never change. Logical const means that, although the entire object
+is conceptually constant, there may be changes on a member-bymember basis. However, if the compiler is told that an object is
+const, it will jealously guard that object to ensure bitwise constness.
+To effect logical constness, there are two ways to change a data
+member from within a const member function.
+The first approach is the historical one and is called casting away
+constness. It is performed in a rather odd fashion. You take this (the
+keyword that produces the address of the current object) and cast it
+to a pointer to an object of the current type. It would seem that this
+is already such a pointer. However, inside a const member function
+it’s actually a const pointer, so by casting it to an ordinary pointer,
+you remove the constness for that operation. Here’s an example:
+//: C08:Castaway.cpp
+// "Casting away" constness
+class Y {
+int i;
+public:
+Y();
+void f() const;
+};
+Y::Y() { i = 0; }
+void Y::f() const {
+//! i++; // Error -- const member function
+((Y*)this)->i++; // OK: cast away const-ness
+// Better: use C++ explicit cast syntax:
+(const_cast<Y*>(this))->i++;
+}8: Constants 385
+int main() {
+const Y yy;
+yy.f(); // Actually changes it!
+} ///:~
+This approach works and you’ll see it used in legacy code, but it is
+not the preferred technique. The problem is that this lack of
+constness is hidden away in a member function definition, and you
+have no clue from the class interface that the data of the object is
+actually being modified unless you have access to the source code
+(and you must suspect that constness is being cast away, and look
+for the cast). To put everything out in the open, you should use the
+mutablekeyword in the class declaration to specify that a
+particular data member may be changed inside a const object:
+//: C08:Mutable.cpp
+// The "mutable" keyword
+class Z {
+int i;
+mutable int j;
+public:
+Z();
+void f() const;
+};
+Z::Z() : i(0), j(0) {}
+void Z::f() const {
+//! i++; // Error -- const member function
+j++; // OK: mutable
+}
+int main() {
+const Z zz;
+zz.f(); // Actually changes it!
+} ///:~
+This way, the user of the class can see from the declaration which
+members are likely to be modified in a const member function.386 Thinking in C++ www.BruceEckel.com
+ROMability
+If an object is defined as const, it is a candidate to be placed in readonly memory (ROM), which is often an important consideration in
+embedded systems programming. Simply making an object const,
+however, is not enough – the requirements for ROMability are
+much stricter. Of course, the object must be bitwise-const, rather
+than logical-const. This is easy to see if logical constness is
+implemented only through the mutablekeyword, but probably not
+detectable by the compiler if constness is cast away inside a const
+member function. In addition,
+1. The class or structmust have no user-defined constructors or
+destructor.
+2. There can be no base classes (covered in Chapter 14) or
+member objects with user-defined constructors or
+destructors.
+The effect of a write operation on any part of a const object of a
+ROMable type is undefined. Although a suitably formed object
+may be placed in ROM, no objects are ever required to be placed in
+ROM.
 
 
 
@@ -141,55 +364,35 @@ Member functions can be overloaded on their constness: i.e., a class may have tw
 
 
 Const class objects and member functions
-By Alex on September 11th, 2007 | last modified by Alex on December 21st, 2020
 
-In lesson 4.13 -- Const, constexpr, and symbolic constants, you learned that fundamental data types (int, double, char, etc…) can be made const via the const keyword, and that all const variables must be initialized at time of creation.
+Fundamental data types (int, double, char, etc…) can be made const via the const keyword, and that all const variables must be initialized at time of creation.
 
 In the case of const fundamental data types, initialization can be done through copy, direct, or uniform initialization:
 
-1
-2
-3
-
+```cpp
 const int value1 = 5; // copy initialization
 const int value2(7); // direct initialization
 const int value3 { 9 }; // uniform initialization (C++11)
+```
 
-Const classes
+### Const classes
 
 Similarly, instantiated class objects can also be made const by using the const keyword. Initialization is done via class constructors:
 
-1
-2
-3
+```cpp
+const Date date1;
+// initialize using default constructor
 
-const Date date1; // initialize using default constructor
-const Date date2(2020, 10, 16); // initialize using parameterized constructor
-const Date date3 { 2020, 10, 16 }; // initialize using parameterized constructor (C++11)
+const Date date2(2020, 10, 16);
+// initialize using parameterized constructor
+
+const Date date3 { 2020, 10, 16 };
+// initialize using parameterized constructor (C++11)
+```
 
 Once a const class object has been initialized via constructor, any attempt to modify the member variables of the object is disallowed, as it would violate the const-ness of the object. This includes both changing member variables directly (if they are public), or calling member functions that set the value of member variables. Consider the following class:
 
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-
+```cpp
 class Something
 {
 public:
@@ -210,18 +413,20 @@ int main()
 
     return 0;
 }
+```
 
 Both of the above lines involving variable something are illegal because they violate the constness of something by either attempting to change a member variable directly, or by calling a member function that attempts to change a member variable.
 
 Just like with normal variables, you’ll generally want to make your class objects const when you need to ensure they aren’t modified after creation.
 
-Const member functions
+
+
+
+### Const member functions
 
 Now, consider the following line of code:
 
-1
-
-   std::cout << something.getValue();
+  std::cout << something.getValue();
 
 Perhaps surprisingly, this will also cause a compile error, even though getValue() doesn’t do anything to change a member variable! It turns out that const class objects can only explicitly call const member functions, and getValue() has not been marked as a const member function.
 
@@ -229,19 +434,7 @@ A const member function is a member function that guarantees it will not modify 
 
 To make getValue() a const member function, we simply append the const keyword to the function prototype, after the parameter list, but before the function body:
 
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-
+```cpp
 class Something
 {
 public:
@@ -254,29 +447,13 @@ public:
 
     int getValue() const { return m_value; } // note addition of const keyword after parameter list, but before function body
 };
+```
 
 Now getValue() has been made a const member function, which means we can call it on any const objects.
 
 For member functions defined outside of the class definition, the const keyword must be used on both the function prototype in the class definition and on the function definition:
 
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-
+```cpp
 class Something
 {
 public:
@@ -294,17 +471,11 @@ int Something::getValue() const // and here
 {
     return m_value;
 }
+```
 
 Futhermore, any const member function that attempts to change a member variable or call a non-const member function will cause a compiler error to occur. For example:
 
-1
-2
-3
-4
-5
-6
-7
-
+```cpp
 class Something
 {
 public:
@@ -312,6 +483,7 @@ public:
 
     void resetValue() const { m_value = 0; } // compile error, const functions can't change member variables.
 };
+```
 
 In this example, resetValue() has been marked as a const member function, but it attempts to change m_value. This will cause a compiler error.
 
@@ -321,7 +493,9 @@ Rule
 
 Make any member function that does not modify the state of the class object const, so that it can be called by const objects.
 
-Const references
+
+
+### Const references
 
 Although instantiating const class objects is one way to create const objects, a more common way is by passing an object to a function by const reference.
 

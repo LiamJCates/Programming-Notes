@@ -1,5 +1,7 @@
 const_cast
 
+To cast away const and/or volatile.
+
 https://en.cppreference.com/w/cpp/language/const_cast
 
 This type of casting manipulates the constness of the object pointed by a pointer, either to be set or to be removed. For example, in order to pass a const pointer to a function that expects a non-const argument:
@@ -91,7 +93,26 @@ Trivially, you can use const_cast to add const to an object’s type, but you sh
 
 
 
-
+const_cast
+If you want to convert from a const to a nonconst or from a volatile
+to a nonvolatile, you use const_cast. This is the only conversion
+allowed with const_cast; if any other conversion is involved it must
+be done using a separate expression or you’ll get a compile-time
+error.
+//: C03:const_cast.cpp
+int main() {
+const int i = 0;
+int* j = (int*)&i; // Deprecated form
+j = const_cast<int*>(&i); // Preferred
+// Can't do simultaneous additional casting:
+//! long* l = const_cast<long*>(&i); // Error
+volatile int k = 0;
+int* u = const_cast<int*>(&k);
+} ///:~
+If you take the address of a const object, you produce a pointer to a
+const, and this cannot be assigned to a nonconst pointer without a
+cast. The old-style cast will accomplish this, but the const_castis
+the appropriate one to use. The same holds true for volatile.
 
 
 

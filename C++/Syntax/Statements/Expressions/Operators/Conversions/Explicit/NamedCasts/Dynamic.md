@@ -1,5 +1,7 @@
 dynamic_cast
 
+For type-safe downcasting.
+
 https://en.cppreference.com/w/cpp/language/dynamic_cast
 
 dynamic_cast can only be used with pointers and references to classes (or with void*). Its purpose is to ensure that the result of the type conversion points to a valid complete object of the destination pointer type.

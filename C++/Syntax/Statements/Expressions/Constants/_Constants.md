@@ -14,11 +14,21 @@ C++ provides two keywords to enable you to express immutable objects, the intent
   const
   constexpr
 
-const
-meaning roughly ‘‘I promise not to change this value.’’ This is used primarily as a type qualifier to specify interfaces so that data passed to functions using pointers and references isn't modified. The value of a const can be calculated at run time.
 
-constexpr
-meaning roughly ‘‘to be evaluated at compile time.’’ This is used primarily to specify constants, to allow placement of data in read-only memory (where it is unlikely to be corrupted), and for performance. The value of a constexpr must be calculated by the compiler.
+
+### const
+meaning roughly ‘‘I promise not to change this value.’’
+
+const is used primarily as a type qualifier to specify interfaces so that data passed to functions using pointers and references isn't modified. The value of a const can be calculated at run time.
+
+
+
+### constexpr
+meaning roughly ‘‘to be evaluated at compile time.’’
+
+constexpr is used primarily to specify constants, to allow placement of data in read-only memory (where it is unlikely to be corrupted), and for performance.
+
+The value of a constexpr must be calculated by the compiler.
 
 
 

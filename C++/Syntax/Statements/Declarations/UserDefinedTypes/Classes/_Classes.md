@@ -1,12 +1,12 @@
 Classes
 
-POD classes contain only data members, and sometimes that’s all you want from a class. However, designing a program using only PODs can create a lot of complexity. You can fight such complexity with abstraction, by placing related functions and data together and providing a user friendly interface for the clients of a class.
+Basic structures are also classes, called plain-old-data classes (PODs). POD classes contain only data members, and sometimes that’s all you want from a class. However, designing a program using only PODs can create a lot of complexity. You can fight such complexity with abstraction, by placing related functions and data together and providing a user friendly interface for the clients of a class.
 
 Classes expand POD structures. Like POD structures, they can contain data members, but they can also contain user defined member functions.
 
 This helps to simplify code in at least two ways.
 
-First, you can put related code in one place, which helps you to reason about your program. You can understand how a code segment works because it describes in one place both program state and how your code modifies that state.
+First, you can put related code in one place, which helps you to reason about your program. You can understand how a code segment works because it describes both program state and how your code modifies that state, in one place.
 
 Second, when you bundle class’s code and data you can abstract the implementation for use by the rest of your program. Rather than having users interact with class data directly, the programmer can provide functionality which simplifies these operations for the user, this is known as providing an interface.
 
@@ -23,17 +23,34 @@ You can replace the struct keyword with the class keyword, which declares member
 
 Classes are defined using either keyword class or keyword struct, with the following syntax:
 
-  class class_name {
-    access_specifier_1:
-      member1;
-    access_specifier_2:
-      member2;
+  class class_name
+  {
+    member_list
     ...
   } object_names;
 
 Where class_name is a valid identifier for the class, object_names is an optional list of names for objects of this class. The body of the declaration contains its member list.
 
-Classes have the same format as plain data structures, except that their members can also include methods, types, and access specifiers.
+
+
+### Member List
+
+class class_name
+{
+  access_specifier_1:
+    member1;
+  access_specifier_2:
+    member2;
+  ...
+} object_names;
+
+An optional member list declares subobjects called class members.
+
+The member list follows the class name and is placed between braces.
+
+A member list is the only place where you can declare class members and you may not declare a member twice in a member list.
+
+Class members can be data, functions, and member types.
 
 Attributes
 Attributes are a classes' data members.
@@ -44,17 +61,7 @@ Methods are a classes' member functions. They create an explicit connection amon
 Member Types
 Classes can have member types which are enumerations, nested types and type aliases.
 
-
-
-### Member List
-
-An optional member list declares subobjects called class members.
-
-The member list follows the class name and is placed between braces.
-
-A member list is the only place where you can declare class members and you may not declare a member twice in a member list. Class members can be data, functions, and member types.
-
-You may declare a nested class, a member class template, or a member function, and define it outside the class.
+You may declare a nested class, a member class template, or a member function, in the member list, then define it outside the class.
 
 You may declare a data member or member function as static but not auto, extern, or register.
 
@@ -73,8 +80,13 @@ Classes can be defined not only with keyword class, but also with keywords struc
 
 The keyword struct, generally used to declare plain data structures, can also be used to declare classes that have member functions, with the same syntax as with keyword class. The only difference between both is that members of classes declared with the keyword struct have public access by default, while members of classes declared with the keyword class have private access by default. For all other purposes both keywords are equivalent in this context.
 
+For information regarding struct, see:
+[C++\Syntax\Statements\Declarations\UserDefinedTypes\Structures.md]
+
 Conversely, the concept of unions is different from that of classes declared with struct and class, since unions only store one data member at a time, but nevertheless they are also classes and can thus also hold member functions. The default access in union classes is public.
 
+For more information regarding union, see:
+[C++\Syntax\Statements\Declarations\UserDefinedTypes\Union.md]
 
 
 

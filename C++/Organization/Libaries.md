@@ -1,25 +1,24 @@
 Creating your own libraries with the librarian
-You can collect your own functions together into a library. Most
-programming packages come with a librarian that manages groups
-of object modules. Each librarian has its own commands, but the
-general idea is this: if you want to create a library, make a header
-file containing the function prototypes for all the functions in your
-library. Put this header file somewhere in the preprocessor’s search
-path, either in the local directory (so it can be found by #include
-"header") or in the include directory (so it can be found by
-  #include <header>). Now take all the object modules and hand
-them to the librarian along with a name for the finished library
-(most librarians require a common extension, such as .lib or .a).
-Place the finished library where the other libraries reside so the
-linker can find it. When you use your library, you will have to add
-something to the command line so the linker knows to search the
-library for the functions you call. You must find all the details in
-your local manual, since they vary from system to system.
 
-Productivity, in computer programming terms, means that fewer
-people can make much more complex and impressive programs in
-less time. There are certainly other issues when it comes to
-choosing a language, such as efficiency (does the nature of the
+You can collect your own functions together into a library. Most programming packages come with a librarian that manages groups of object modules. Each librarian has its own commands, but the general idea is this:
+
+Make a header file containing the function prototypes for all the functions in your library.
+
+Put this header file somewhere in the preprocessor’s search path,
+  either in the local directory (so it can be found by #include "header")
+  in the include directory (so it can be found by #include <header>).
+
+Now take all the object modules and hand them to the librarian along with a name for the finished library (most librarians require a common extension, such as .lib or .a).
+
+Place the finished library where the other libraries reside so the linker can find it.
+
+When you use your library, you will have to add something to the command line so the linker knows to search the library for the functions you call.
+
+You must find all the details in your local manual, since they vary from system to system.
+
+
+
+Productivity, in computer programming terms, means that fewer people can make much more complex and impressive programs in less time. There are certainly other issues when it comes to choosing a language, such as efficiency (does the nature of the
 language cause slowdown and code bloat?), safety (does the
 language help you ensure that your program will always do what
 you plan, and handle errors gracefully?), and maintenance (does

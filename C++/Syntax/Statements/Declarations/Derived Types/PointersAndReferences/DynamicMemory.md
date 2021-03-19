@@ -97,6 +97,22 @@ For more information regarding the new and delete operations, see:
 [C++\Syntax\Statements\Expressions\Operators\Allocation.md]
 
 
+### Heap Management
+Note that the heap manager is fairly primitive. It gives you chunks
+of memory and takes them back when you delete them. There’s no
+inherent facility for heap compaction, which compresses the heap to
+provide bigger free chunks. If a program allocates and frees heap
+storage for a while, you can end up with a fragmented heap that has
+lots of memory free, but without any pieces that are big enough to';[p]
+allocate the size you’re looking for at the moment. A heap
+compactor complicates a program because it moves memory
+chunks around, so your pointers won’t retain their proper values.
+Some operating environments have heap compaction built in, but
+they require you to use special memory handles (which can be
+temporarily converted to pointers, after locking the memory so the heap compactor can’t move it) instead of pointers. You can also
+build your own heap-compaction scheme, but this is not a task to
+be undertaken lightly.
+
 
 #### Dynamically allocating single variables
 

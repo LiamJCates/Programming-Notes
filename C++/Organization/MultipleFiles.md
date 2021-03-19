@@ -1,18 +1,13 @@
 Separate Compilation
-C++ supports a notion of separate compilation where user code sees only declarations of the types
-and functions used. The definitions of those types and functions are in separate source files and are
-compiled separately. This can be used to organize a program into a set of semi-independent code
-fragments. Such separation can be used to minimize compilation times and to strictly enforce separation of logically distinct parts of a program (thus minimizing the chance of errors). A library is
-often a collection of separately compiled code fragments (e.g., functions).
-Typically, we place the declarations that specify the interface to a module in a file with a name
-indicating its intended use.
+
+C++ supports a notion of separate compilation where user code sees only declarations of the types and functions used. The definitions of those types and functions are in separate source files and are compiled separately. This can be used to organize a program into a set of semi-independent code fragments. Such separation can be used to minimize compilation times and to strictly enforce separation of logically distinct parts of a program (thus minimizing the chance of errors). A library is often a collection of separately compiled code fragments (e.g., functions).
+
+Typically, we place the declarations that specify the interface to a module in a file with a name indicating its intended use.
 
 
 When a class is defined that can be used in a different file, a header can be used to separate the interface (the declaration) from the implementation (the
 definition of the member variables and functions) so the implementation can be
-changed without forcing a re-compile of the entire system. You
-achieve this end by putting the declaration for your new type in a
-header file.
+changed without forcing a re-compile of the entire system. You achieve this end by putting the declaration for your new type in a header file.
 
 
 // Vector.h:
@@ -26,7 +21,9 @@ private:
   int sz;
 };
 
-This declaration would be placed in a file Vector.h. Users then include that file, called a header file, to access that interface. For example:
+This declaration is placed in the file Vector.h.
+
+Users then include that file, called a header file, to access that interface. For example:
 
 // user.cpp:
  #include "Vector.h" //Vector’s interface
@@ -44,6 +41,7 @@ To help the compiler ensure consistency, the .cpp file providing the implementat
 
 // Vector.cpp:
  #include "Vector.h" // get Vector’s interface
+
 Vector::Vector(int s)
 : elem{new double[s]}, sz{s} // initialize members
 {}
@@ -60,12 +58,12 @@ int Vector::siz e()
 
 The code in user.cpp and Vector.cpp shares the Vector interface information presented in Vector.h, but the two files are otherwise independent and can be separately compiled.
 
-Strictly speaking, using separate compilation isn’t a language issue; it is an issue of how best to
-take advantage of a particular language implementation. However, it is of great practical importance. The best approach to program organization is to think of the program as a set of modules
-with well-defined dependencies, represent that modularity logically through language features, and
+Strictly speaking, using separate compilation isn’t a language issue; it is an issue of how best to take advantage of a particular language implementation. However, it is of great practical importance. The best approach to program organization is to think of the program as a set of modules with well-defined dependencies, represent that modularity logically through language features, and
 then exploit the modularity physically through files for effective separate compilation.
-A .cpp file that is compiled by itself (including the h files it #includes) is called a translation
-unit. A program can consist of many thousand translation units.
+
+A .cpp file that is compiled by itself (including the h files it #includes) is called a translation unit.
+
+A program can consist of many thousand translation units.
 
 
 

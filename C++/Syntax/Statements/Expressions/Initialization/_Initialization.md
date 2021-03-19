@@ -1,10 +1,10 @@
 ## initialization
-The initial value may be provided in the initializer section of a declarator or  new expression. It also takes place during function calls: function parameters and the function return values are also initialized.
+The initial value may be provided in the initializer section of a declarator or new expression. It also takes place during function calls: function parameters and the function return values are also initialized.
 
 For each declarator, the initializer may be one of the following:
 
 
-In C++, there are three ways to initialize variables. They are a result of the language's  evolution and are all equivalent:
+In C++, there are three ways to initialize variables. They are a result of the language's evolution and are all equivalent:
 
   Copy Initialization
   Constructor Initialization
@@ -16,9 +16,9 @@ In C++, there are three ways to initialize variables. They are a result of the l
 
 copy initialization consists of appending an equal sign followed by the value to which the variable is initialized:
 
-  type identifier = initial_value;
+  [type] [identifier] = initial_value;
 
-Much like copy assignment, this copies the value on the right-hand side of the equals to the variable being created on the left-hand side.
+This copies the value on the right-hand side of the equals to the variable being created on the left-hand side. Much like copy assignment, copy initialization occurs when a variable is defined for the first time rather than when a previously defined variable is used.
 
 For example, to declare a variable of type int called x and initialize it to a value of zero from the same moment it is declared, we can write:
 
@@ -64,7 +64,7 @@ Initializing a variable with empty braces indicates value initialization. Value 
 
 
 
-### Narrowing Conversions
+#### Narrowing Conversions
 
 Braced initialization will generate warnings whenever implicit narrowing conversions are encountered. This is a nice feature that can save you from nasty bugs. Consider the following example:
 

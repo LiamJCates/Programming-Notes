@@ -2,17 +2,39 @@
 
 declaring a variable as const effectively ensures that value of the variable is fixed as the initialization value for the life of the variable. The value of a const-variable cannot be changed, and therefore it cannot be used as an l-value.
 
-Pointers are variables, too, and hence the const keyword that is relevant to variables is relevant to pointers as well. However, pointers are a special kind of variable as they contain a memory address and are used to modify memory at that address. Thus, when it comes to pointers and constants, you have the following cases.
+Pointers are variables, too, and hence the const keyword that is relevant to variables is relevant to pointers as well.
+
+Pointers can be made const.
+
+The compiler will still endeavor to prevent storage allocation and do constant folding when dealing with const pointers, but these features seem less useful in this case.
+
+More importantly, the compiler will tell you if you attempt to change a const pointer, which adds a great deal of safety.
+
+When using const with pointers, you have two options:
+  const can be applied to what the pointer is pointing to, a pointer to constant data
+  the const can be applied to the address stored in the pointer itself, a pointer with constant address
 
 
 #### A Pointer to Const Data
 
-A pointer to a const value is a (non-const) pointer that points to a constant value.
+A pointer to a const value is a (non-const) pointer that points to a constant value. Such a pointer does not allow modification of the data through the pointer.
 
-Such a pointer does not allow modification of the data through the pointer. The declaration of const data merely requires that the const precede the *, so either of the following two declarations are valid.
+The trick with a pointer definition, as with any complicated definition, is to read it starting at the identifier and work your way out. The const specifier binds to the thing it is “closest to.” So if you want to prevent any changes to the element you are pointing to, you write a definition like this:
 
-  const type* variable;
-  type const * variable;
+  const type* identifier;
+
+Starting from the identifier, we read “identifier is a pointer, which points to a const of type.” Here, no initialization is required because you’re saying that it can point to anything (that is, it is not const), but the thing it points to cannot be changed.
+
+Here’s the mildly confusing part. You might think that to make the pointer itself unchangeable, that is, to prevent any change to the address contained inside the pointer, you would simply move the const to the other side of the int like this:
+
+type const* identifier;
+
+The declaration of const data merely requires that the const precede the *, so the above declaration is also valid.
+
+It’s not all that crazy to think that this should read “identifier is a const pointer of type.”
+
+However, the way it actually reads is “identifier is an ordinary pointer of type that happens to be const.” That is, the const has bound itself to the type again, and the effect is the same as the previous definition. The fact that these two definitions are the same is the confusing point; to prevent this confusion on the part of your reader, you should probably stick to the first form.
+
 
 The memory address stored in a pointer to constant data cannot be assigned into regular pointers (that is, pointers to non-const data) without a const cast.
 
@@ -69,7 +91,18 @@ ptr = &value2; // okay, ptr now points at some other const int
 
 Pointers with a constant memory address are declared by including the const after the *. Because the address is const, the pointer must be assigned a value immediately.
 
-  type * const variable = some memory address;
+  type * const identifier = some memory address;
+
+This declaration reads: “identifier is a pointer, which is const, that points to a value of type.”
+
+Because the pointer itself is now the const, the compiler requires that it be given an initial value that will be unchanged for the life of that pointer.
+
+It’s OK, however, to change what that value points to by saying
+
+int d = 1;
+int* const w = &d;
+
+*w = 2;
 
 Data pointed to is constant and cannot be changed, yet the address contained in the pointer can be changed — that is, the pointer can also point elsewhere:
 
@@ -111,6 +144,14 @@ To combine the two modes of const-ness with pointers, you can simply include con
   const type * const variable = some memory address;
   type const * const variable = some memory address;
 
+An example of a const pointer to a const object using either of two legal forms:
+
+  int d = 1;
+  const int* const x = &d; // (1)
+  int const* const x2 = &d; // (2)
+
+Now neither the pointer nor the object can be changed.  Some people argue that the second form is more consistent because  the const is always placed to the right of what it modifies. You’ll have to decide which is clearer for your particular coding style.
+
 Both the address contained in the pointer and the value being pointed to are
 constant and cannot be changed (most restrictive variant):
 
@@ -128,6 +169,44 @@ It is possible to declare a const pointer to a const value by using the const ke
 
 A const pointer to a const value can not be set to point to another address, nor can the value it is pointing to be changed through the pointer.
 
+
+### Assignment and type checking
+C++ is very particular about type checking, and this extends to pointer assignments. You can assign the address of a non-const object to a const pointer because you’re simply promising not to change something that is OK to change. However, you can’t assign the address of a const object to a non-const pointer because then you’re saying you might change the object via the pointer. Of course, you can always use a cast to force such an assignment, but this is bad programming practice because you are then breaking the constness of the object, along with any safety promised by the const.
+
+For example:
+
+```cpp
+//: C08:PointerAssignment.cpp
+int d = 1;
+const int e = 2;
+int* u = &d; // OK -- d not const
+//! int* v = &e; // Illegal -- e const
+int* w = (int*)&e; // Legal but bad practice
+int main() {}
+```
+Although C++ helps prevent errors it does not protect you from yourself if you want to break the safety mechanisms.
+
+
+Character array literals
+The place where strict constness is not enforced is with character
+array literals. You can say
+char* cp = "howdy";
+and the compiler will accept it without complaint. This is
+technically an error because a character array literal (“howdy”in
+this case) is created by the compiler as a constant character array,
+and the result of the quoted character array is its starting address in
+memory. Modifying any of the characters in the array is a runtime
+error, although not all compilers enforce this correctly.
+So character array literals are actually constant character arrays. Of
+course, the compiler lets you get away with treating them as nonconst because there’s so much existing C code that relies on this.
+However, if you try to change the values in a character array literal,
+the behavior is undefined, although it will probably work on many
+machines.
+If you want to be able to modify the string, put it in an array:
+char cp[] = "howdy";
+Since compilers often don’t enforce the difference you won’t be
+reminded to use this latter form and so the point becomes rather
+subtle.
 
 
 ### Recapping
@@ -153,4 +232,4 @@ Keeping the declaration syntax straight can be challenging. Just remember that t
   int *const ptr2 = &value;
 
   // ptr3 points to a "const int", so this is a const pointer to a const value.
-  const int *const ptr3 = &value; 
+  const int *const ptr3 = &value;

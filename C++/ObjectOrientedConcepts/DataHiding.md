@@ -5,12 +5,8 @@ Data encapsulation is a mechanism of bundling the data, and the functions that u
 Encapsulation promotes data abstraction
 
 
-For the car that we drive, most of us want to know how to start the car and drive it.
-Most people are not concerned with the complexity of how the engine works. By
-separating the design details of a car’s engine from its use, the manufacturer helps
-the driver focus on how to drive the car. Our daily life has other similar examples. For
-the most part, we are concerned only with how to use certain items, rather than with
-how they work.
+For the car that we drive, most of us want to know how to start the car and drive it. Most people are not concerned with the complexity of how the engine works. By separating the design details of a car’s engine from its use, the manufacturer helps the driver focus on how to drive the car. Our daily life has other similar examples. For the most part, we are concerned only with how to use certain items, rather than with how they work.
+
 Separating the design details (that is, how the car’s engine works) from its use is
 called abstraction. In other words, abstraction focuses on what the engine does
 and not on how it works. Thus, abstraction is the process of separating the logical

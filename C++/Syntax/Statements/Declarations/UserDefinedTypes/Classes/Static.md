@@ -2,8 +2,21 @@ We can define class members static using static keyword.
 
 A class can contain static members, either data or functions.
 
+static members solve the problem of: “how do you make a compile-time constant inside a class?”
 
+The static keyword, in this
+situation, means “there’s only one instance, regardless of how
+many objects of the class are created,” which is precisely what we
+need here: a member of a class which is constant, and which cannot
+change from one object of the class to another. Thus, a static const
+of a built-in type can be treated as a compile-time constant.
 
+There is one feature of static cons when used inside classes which t
+is a bit unusual: you must provide the initializer at the point of
+definition of the static cons. This is something that only occurs t
+with the static cons; as much as you might like to use it in other t
+situations it won’t work because all other data members must be
+initialized in the constructor or in other member functions.
 
 ### Static Data Members
 A static data member of a class is also known as a "class variable", because there is only one common variable for all the objects of that same class, sharing the same value: i.e., its value is not different from one object of this class to another.

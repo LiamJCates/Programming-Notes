@@ -16,6 +16,16 @@ They change the boundary for all the declarations that follow them:
 
 Invalid access will result in a compile time error.
 
+class class_name
+{
+  private:
+    // private_member_list
+  protected:
+    // protected_member_list
+  public:
+    // public_member_list
+}
+
 Syntax Rules:
   Access specifier are followed by a colon.
   There are no restrictions on how often an access label may appear.

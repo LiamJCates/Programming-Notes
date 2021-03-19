@@ -69,6 +69,86 @@ When not to use return by reference:
     When returning a built-in array or pointer value (use return by address)
 
 
+### const
+
+If you are returning an object of a user-defined
+type by value as a const, it means the returned value cannot be
+modified. If you are passing and returning addresses, const is a
+promise that the destination of the address will not be changed.
+
+
+Returning by const value
+A similar truth holds for the return value. If you say that a
+function’s return value is const:
+const int g();
+you are promising that the original variable (inside the function
+frame) will not be modified. And again, because you’re returning it
+by value, it’s copied so the original value could never be modified
+via the return value.
+At first, this can make the specification of const seem meaningless.
+You can see the apparent lack of effect of returning consts by value
+in this example:
+//: C08:Constval.cpp
+// Returning consts by value
+// has no meaning for built-in types
+int f3() { return 1; }
+const int f4() { return 1; }
+int main() {
+const int j = f3(); // Works fine
+int k = f4(); // But this works fine too!
+} ///:~
+For built-in types, it doesn’t matter whether you return by value as
+a const, so you should avoid confusing the client programmer and
+leave off the const when returning a built-in type by value.
+Returning by value as a const becomes important when you’re
+dealing with user-defined types. If a function returns a class object
+by value as a const, the return value of that function cannot be an8: Constants 367
+lvalue (that is, it cannot be assigned to or otherwise modified). For
+example:
+//: C08:ConstReturnValues.cpp
+// Constant return by value
+// Result cannot be used as an lvalue
+class X {
+int i;
+public:
+X(int ii = 0);
+void modify();
+};
+X::X(int ii) { i = ii; }
+void X::modify() { i++; }
+X f5() {
+return X();
+}
+const X f6() {
+return X();
+}
+void f7(X& x) { // Pass by non-const reference
+x.modify();
+}
+int main() {
+f5() = X(1); // OK -- non-const return value
+f5().modify(); // OK
+// Causes compile-time errors:
+//! f7(f5());
+//! f6() = X(1);
+//! f6().modify();
+//! f7(f6());
+} ///:~
+f5( ) returns a non-const X object, while f6( ) returns a const X
+object. Only the non-const return value can be used as an lvalue.368 Thinking in C++ www.BruceEckel.com
+Thus, it’s important to use const when returning an object by value
+if you want to prevent its use as an lvalue.
+The reason const has no meaning when you’re returning a built-in
+type by value is that the compiler already prevents it from being an
+lvalue (because it’s always a value, and not a variable). Only when
+you’re returning objects of user-defined types by value does it
+become an issue.
+The function f7( ) takes its argument as a non-const reference (an
+additional way of handling addresses in C++ and the subject of
+Chapter 11). This is effectively the same as taking a non-const
+pointer; it’s just that the syntax is different. The reason this won’t
+compile in C++ is because of the creation of a temporary.
+
 
 ### Mixing return references and values
 

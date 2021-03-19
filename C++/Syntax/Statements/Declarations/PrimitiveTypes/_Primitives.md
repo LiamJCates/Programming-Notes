@@ -102,6 +102,62 @@ Here is the complete list of fundamental types in C++:
  </tr>
 </table>
 
+
+
+Specifiers modify the meanings of the basic built-in types and
+expand them to a much larger set. There are four specifiers: long,
+short, signed, and unsigned.
+
+long and short modify the maximum and minimum values that a data type will hold. A plain int must be at least the size of a short. The size hierarchy for integral types is: short int, int, long int. All the sizes could conceivably be the same, as long as they satisfy the minimum/maximum value requirements. On a machine with a 64-bit word, for instance, all the data types might be 64 bits.
+
+The size hierarchy for floating point numbers is: float, double, and long double. “long float” is not a legal type. There are no short floating-point numbers.
+
+The signed and unsigned specifiers tell the compiler how to use
+the sign bit with integral types and characters (floating-point
+numbers always contain a sign). An unsignednumber does not
+keep track of the sign and thus has an extra bit available, so it can
+store positive numbers twice as large as the positive numbers that
+can be stored in a signed number. signed is the default and is only
+necessary with char; char may or may not default to signed. By
+specifying signed char, you force the sign bit to be used.
+
+  // Demonstrates the use of specifiers
+  #include <iostream>
+  using namespace std;
+  int main()
+  {
+  	char c;
+  	unsigned char cu;
+  	int i;
+  	unsigned int iu;
+  	short int is;
+  	short iis; // Same as short int
+  	unsigned short int isu;
+  	unsigned short iisu;
+  	long int il;
+  	long iil; // Same as long int
+  	unsigned long int ilu;
+  	unsigned long iilu;
+  	float f;
+  	double d;
+  	long double ld;
+  	cout
+  		<< "\n char= " << sizeof(c)
+  		<< "\n unsigned char = " << sizeof(cu)
+  		<< "\n int = " << sizeof(i)
+  		<< "\n unsigned int = " << sizeof(iu)
+  		<< "\n short = " << sizeof(is)
+  		<< "\n unsigned short = " << sizeof(isu)
+  		<< "\n long = " << sizeof(il)
+  		<< "\n unsigned long = " << sizeof(ilu)
+  		<< "\n float = " << sizeof(f)
+  		<< "\n double = " << sizeof(d)
+  		<< "\n long double = " << sizeof(ld)
+  		<< endl;
+  }
+
+Be aware that the results you get by running this program will probably be different from one machine/operating system/compiler to the next, since (as mentioned previously) the only thing that must be consistent is that each different type hold the minimum and maximum values specified in the Standard.
+
 The names of certain integer types can be abbreviated
   int can be removed in the case of a short, long, or long long
   signed can be removed as all integer types are signed by default

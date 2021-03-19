@@ -19,6 +19,10 @@ Explicit Casting Operators
 | C-Style Conversion | (type)a | Yes |
 | Functional Conversion | type(a) | No |
 
+
+
+Standard C++ includes an explicit cast syntax that can be used to completely replace the old C-style casts (of course, C-style casts cannot be outlawed without breaking code, but compiler writers could easily flag old-style casts for you). The explicit cast syntax is such that you can easily find them, as you can see by their names:
+
 Standard Named Conversions
 
 | Name | Syntax | Overloadable |
@@ -33,7 +37,7 @@ Some third-party libraries support additional named conversions.
 
 
 
-Using an explicit cast instructs the compiler to convert a value of one type to another type. 
+Using an explicit cast instructs the compiler to convert a value of one type to another type.
 
 Casts should be used carefully, because what you are actually doing is saying to the compiler “Forget type checking – treat it as this other type instead.”
 

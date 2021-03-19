@@ -1,5 +1,8 @@
 reinterpret_cast
 
+To cast to a completely different meaning. The key is that you’ll need to cast back to the original type to use it safely. The type you cast to is typically used only for bit twiddling or some other mysterious purpose. This is the
+most dangerous of all the casts.
+
 https://en.cppreference.com/w/cpp/language/reinterpret_cast
 
 reinterpret_cast converts any pointer type to any other pointer type, even of unrelated classes. The operation result is a simple binary copy of the value from one pointer to the other. All pointer conversions are allowed: neither the content pointed nor the pointer type itself is checked.
@@ -158,3 +161,63 @@ Output:
 64829
 
 The reinterpret_cast allows the pointer to be treated as an integral type. The result is then bit-shifted and XORed with itself to produce a unique index (unique to a high degree of probability). The index is then truncated by a standard C-style cast to the return type of the function.
+
+
+
+
+
+
+
+
+
+
+
+
+
+reinterpret_cast
+This is the least safe of the casting mechanisms, and the one most
+likely to produce bugs. A reinterpret_cas pretends that an object is t
+just a bit pattern that can be treated (for some dark purpose) as if it
+were an entirely different type of object. This is the low-level bit
+twiddling that C is notorious for. You’ll virtually always need to reinterpret_cas back to the original type (or otherwise treat the t
+variable as its original type) before doing anything else with it.
+//: C03:reinterpret_cast.cpp
+#include <iostream>
+using namespace std;
+const int sz = 100;
+struct X { int a[sz]; };
+void print(X* x) {
+for(int i = 0; i < sz; i++)
+cout << x->a[i] << ' ';
+cout << endl << "--------------------" << endl;
+}
+int main() {
+X x;
+print(&x);
+int* xp = reinterpret_cast<int*>(&x);
+for(int* i = xp; i < xp + sz; i++)
+*i = 0;
+// Can't use xp as an X* at this point
+// unless you cast it back:
+print(reinterpret_cast<X*>(xp));
+// In this example, you can also just use
+// the original identifier:
+print(&x);
+} ///:~
+In this simple example, struct Xjust contains an array of int, but
+when you create one on the stack as in X x, the values of each of the
+ints are garbage (this is shown using the print( )function to display
+the contents of the struct). To initialize them, the address of the X is
+taken and cast to an int pointer, which is then walked through the
+array to set each int to zero. Notice how the upper bound for i is
+calculated by “adding” sz to xp; the compiler knows that you
+actually want sz pointer locations greater than xp and it does the
+correct pointer arithmetic for you.
+The idea of reinterpret_cas is that when you use it, what you get is t
+so foreign that it cannot be used for the type’s original purpose unless you cast it back. Here, we see the cast back to an X* in the
+call to print, but of course since you still have the original identifier
+you can also use that. But the xp is only useful as an int*, which is
+truly a “reinterpretation” of the original X.
+A reinterpret_cas often indicates inadvisable and/or nonportable t
+programming, but it’s available when you decide you have to use
+it.

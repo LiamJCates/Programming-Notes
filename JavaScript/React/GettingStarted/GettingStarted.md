@@ -13,78 +13,1392 @@ By the end of this course, you should be comfortable working with function and c
 The Basics
 Introduction
 
-Hello, and welcome to the React.js: Getting Started course, from Pluralsight. This course was first published shortly after the React.js library was open sourced, but I've rerecorded the entire course to work with the latest version of React today. All the examples we do in this course should work on any React version greater than 16.8. In this course, we're covering the fundamentals of the React.js library. No previous React.js experience is required to take this course. We will be starting from level 0. But you do need some JavaScript experience first. To be specific about that requirement, you need to know how to define and use JavaScript variables, holding scalar values, objects, and the rays. You need to know how to define and use functions and classes. You need to know the basics of working with loops and conditionals. I have some resources here for you if you don't feel completely comfortable with the basics of the JavaScript language. I have a book and a bunch of interactive labs that you can try as well. The book is for the complete beginner and the labs cover some important fundamental concepts in JavaScript like function, scopes, and closures. I recommend that you check them out first. If you're coming to React with some previous knowledge of JavaScript, but you have not used the modern features of the language that were added in the past few years, that is not a problem. This course has a module to introduce these features. In that course module, I'll cover things like arrow functions, destructuring, REST, spread operators, classes, and more. We will not be using advanced JavaScript. A basic knowledge of the language will be enough for you to survive this course. However, you're likely to run into problems that are related to the language syntax rather than the React.js API. I've written an article on jsComplete about the common problems learners usually face when working with the React.js library. Scan through this article quick and keep it for your reference when you run into a problem while taking this course. Also remember that you can always ask for help in the Discussions tab available in this course page. Pluralsight mentors actively monitor these discussion forums, but please be as descriptive as you can when you ask a question. Share your code, list any errors you're getting, and share a screenshot if you can. And when sharing your code, don't paste it directly here. This discussion tool is not good for that. Use a GitHub gist or something similar. Quick side note about the very important pause button in your video player. You're going to need to use it a lot in this course. I often get complaints that my Pluralsight courses are a bit fast and it's hard for people to keep up. This is not because I talk fast. This is because the courses are tightly edited with no breaks. A lot of content is intentionally jammed into a short course. You should use the pause and rewind buttons and control the play speed if you need to. Every time I ask you a question, pause the video and think about it. Every time I use something that you've never seen before, pause the video and google it. Rewind and watch things many times if you need to. If you're used to the pace of on‑site workshops, you'll find the pace here much faster. The pause and rewind buttons are your best friends. Also, in some of the modules of this course, I'll be presenting you with challenges. Pause videos and do these challenges. The best way to learn is really to do. I'll also ask a lot of questions in this course, and I'll answer these questions right after, but I want you to imagine yourself in an interview for a job about React.js and treat these questions as if they were your interview questions. Try to answer them first before you listen to me answering them. Here's your first interview question. Why do you like React? Whether you have formed an opinion about React or not, as a React developer, you should know the strengths and weaknesses of the library. Let's talk about that next.
+If you're coming to React with some previous knowledge of JavaScript, but you have not used the modern features of the language that were added in the past few years, that is not a problem. This course has a module to introduce these features. In that course module, I'll cover things like arrow functions, destructuring, REST, spread operators, classes, and more.
+
+We will not be using advanced JavaScript. A basic knowledge of the language will be enough for you to survive this course.
+
+Here's your first interview question. Why do you like React? Whether you have formed an opinion about React or not, as a React developer, you should know the strengths and weaknesses of the library. Let's talk about that next.
+
 Why React?
 
-I'm a big fan of starting with why? So before you dive in and write your first React component, let me make sure that you know why committing to learning React is a very good thing that you're doing. If you've already formed your opinion about React, you can skip this video. Let's start with React's official definition. It states that it is a JavaScript library for building user interfaces. It is important to understand the two different parts of this definition. React is a JavaScript library and not a framework. The words library and framework mean different things in different contexts, and this could be a point for or against React. What's important to remember here is that React is small, and it's not a complete solution. You will need to use other libraries with React to form solutions. React does not assume anything about the other parts in any full solution. It focuses on just one thing, which is the second part of the definition, building user interfaces. A user interface is anything we put in front of users to have them interact with a machine. User interfaces are everywhere, from the simple buttons on a microwave to the dashboard of a space shuttle. If the device we're trying to interface can understand JavaScript, we can use React to describe a user interface for it. Since web browsers understand JavaScript, we can use React to describe web user interfaces. I like to use the word describe here because that is what we basically do with React. We just tell React what we want, and it will build the actual user interfaces on our behalf in the web browser. Without React or similar libraries, we would need to manually build user interfaces with native web APIs in JavaScript, and that is not as easy. When you hear the statement that React is declarative, this is exactly what it means. We describe user interfaces with React and tell it what we want, not how to do it. React will take care of the how and translate our declarative descriptions, which we write in the React language to actual user interfaces in the browser. Of course, HTML itself is a declarative language, but with React, we get to be declarative for HTML interfaces that represent dynamic data, not just static content. Let's go back to React being a library and not a framework, and let me answer this question. How exactly is not being a framework a good thing? Frameworks serve a great purpose, especially for young teams and startups. When working with a framework, many smart design decisions are already made for you, which gives you a clear path to focus on writing good application‑level logic. However, frameworks come with some disadvantages as well. For experienced developers working on large codebases, these disadvantages are sometimes a deal breaker. Let me name two of the important disadvantages about using a framework. Frameworks are not flexible, although some claim to be. Frameworks want you to code everything a certain way. If you try to deviate from that way, the framework usually ends up fighting you about it. Frameworks are also large and full of features, and that makes them hard to customize for specialized cases. If you need to use only a small piece of a framework, you usually have to include the whole thing. This is changing today, but it is still not ideal. Some frameworks are going modular, which I think is great, but I am a big fan of the pure UNIX philosophy to write programs that do one thing and do it well. And React follows this philosophy because it is a small library that focuses on just one thing, enabling developers to declaratively describe their user interfaces and model the state of these interfaces. Here's a summary of the reasons why I think React gained this massive popularity. Working with the DOM API is hard. React basically gives developers the ability to work with a virtual browser that is friendlier than the real browser. When React was first released, I remember there was a lot of buzz around the performance of its virtual DOM, which we will talk about shortly. The virtual DOM performance is certainly a nice plus, but I think what developers like more about this is the fact that they wouldn't need to deal with the DOM API. Some people don't like this second point, but you'll often hear that React is just JavaScript. What that means is that there is a very small React API to learn, and after that, your JavaScript skills are what make you a better React developer. This is a big advantage over libraries with bigger APIs. Learning React pays off big time for iOS and Android mobile applications as well. React Native allows you to use your same React skills to build native mobile applications. You can even share some logic between your web iOS and Android applications. The React team at Facebook tests all improvements and new features that get introduced to React right there on facebook.com, which increases the trust in the library among the community. It is rare to see big and serious bugs in React releases because they only get released after thorough production testing at Facebook. Most importantly, remember the one thing that React does exceptionally well. React established a new language between developers and browsers that allowed developers to declaratively describe stateful user interfaces. This means instead of coming up with steps for the transactions on their interfaces, developers just describe the interfaces in terms of a final state, like a function. When transactions happen to that state, React takes care of updating the user interfaces based on that. If someone asked you to give one reason why React is worth learning, this last one is the one. If you need to convince someone about React, you can send them to this article, which summarizes what we covered in this video. However, to keep the course short, I'll stop babbling about the why and get you started on the what and the how next.
-React's Basic Concepts
+Why use React?
 
-React has three simple and fundamental concepts that you need to understand. The first concept is its components. With React, we describe user interfaces using components. If the term components sounds scary to you, you can really think of components as just functions. In fact, simple React components are actually just vanilla JavaScript functions, as we'll see in the next video. In any programming language, we invoke functions with some input, and they give us some output in return. We can reuse functions as needed and compose bigger functions from smaller ones. React components are exactly the same. They receive certain input objects, and they output a description of a user interface. We can reuse a single component in multiple user interfaces, and components can contain other components. However, you don't really invoke a React component. You just use it in your HTML as if it was just a regular HTML element. Also, unlike pure functions, a React component can have a private state to hold any data that may change over the lifecycle of the component. This ties to the second concept about React, it's nature of reactive updates. React's name is a simple explanation for this concept. When the state of a React component, the input, changes, the user interface it represents, the output, changes as well. This change in the description of the user interface has to be reflected in the device we are working with. In a browser, we need to regenerate the HTML views in the DOM tree. With React, we don't need to worry about how to reflect these changes or even manage when to take changes to the browser. React will simply react to the changes in a component's state and automatically update the parts of the DOM that need to be updated. The third concept about React is its virtual representation of views in memory. Okay, this might sound a bit weird, but to build HTML web applications with React, we don't write HTML at all. We use JavaScript to generate HTML. Let me tell you why. When your web application receives just the data from the server in the background with AJAX, you need something more than HTML to work with that data, and you have two options. You can use an enhanced HTML template that has loops and conditionals, or you can rely on the power of JavaScript itself to generate the HTML from the data. Both approaches have advantages and disadvantages. React embraces the latter one and eliminates the extra step needed to parse and enhance the HTML template. One big advantage for this HTML in JavaScript approach is how it enables React to keep and use a virtual representation of HTML views in memory, which is commonly known as the virtual DOM, or the tree reconciliation algorithm. React uses the virtual DOM to compare versions of the UI in memory before it acts on them. I'll show you the practical value of that once we're comfortable with the basic syntax of React. Let's go back to the concept of the component. A React component can be one of two types. It can be either a function component or a class component. Both types can be stateful and have side effects, or they can be purely presentational. You should learn them both, but prefer to use function components over class components because they're really much simpler. Class components, however, are a bit more powerful. In this course, I'll use a mix of these two types so that we can learn them both. Both types can be compared to regular functions when it comes to their contract. They use a set of props and state as their input, and they output what looks like HTML, but is really a special JavaScript syntax called JSX. The props input is an explicit one. It is similar to the list of attributes an HTML element can have. The state input is an internal one, but is really the more interesting one because of how React uses it to auto‑reflect changes in the browser. These two input objects have one important difference. Within a component, the state object can be changed while the props object represents fixed values. Props are immutable. Components can only change their internal state, not their properties. This is a core idea to understand in React, and I'll have many examples for you to bring it home. Okay, let's talk about this syntax that looks like HTML, but is not really HTML. Here's a full example. This is a simple React class component without any input, so no props or state, and with a simple h1 in a div output. On the left side, the component is written in the special JSX syntax. Remember how I said we don't write HTML at all in React, and instead we use the React API to generate our views? In a way, this JSX syntax that you see on the left is the compromise to that rule. It makes our task of using the React API as close as possible to writing HTML, but it is not HTML. It simply gets compiled to the pure JavaScript calls that you see here on the right. These React.createElement calls that you see on the right are what we ship to browsers. They are the JavaScript representation of this component's DOM, and they are what React can efficiently translate into actual DOM operations to be performed by the browser. This is important to understand, but how about we stop with the theory and slides and write some code to understand all these concepts better.
-Your First React Component
+React states that it is a JavaScript library for building user interfaces.
 
-Let's implement this simple React component, a button with a numeric label, and clicking that button increments it's numeric label to count how many times the button was clicked. Ready to do that? Don't worry, we'll take it one step at a time. First, let me tell you about this interface that you see here. Before you can create a React application, you'll need to do some environment configurations, and that might be a bit overwhelming for someone who is just starting to explore. Before we go that route, we'll use this interface that I especially created for this course. It will help you learn the React way without the complexities of configuring a ton of tools to have a React environment. This playground is a good first step for quickly exploring React, but it stops being useful once the size of your application grows. This is why the last module of this course will be about configuring your own React environment. But until we're ready for that, we'll use this playground. This is the point in the course where you need to start doing things with me and not just watch me. Go to jscomplete.com/playground and follow along with what I do. I kept this interface as simple as possible. You have an editor and a display. You type in some JavaScript code in the editor, for example, math.random, and you press Ctrl+Enter and your could will be executed and its results displayed on the right. Just like a simple REPL, run, eval, print, loop, that you can use to test quick JavaScript expressions. To show more things in the display, you can use the HTML element with the ID of mountNode. You can grab a reference to this element using document.getElementById and specify mountNode as the ID. This is a DOM API call to select the display element. And once you do that, anything you put inside this mountNode HTML element will be displayed to the right. The more important thing about this playground is that the latest version of both React and ReactDOM are already preloaded here. In addition, the playground understands the JSX syntax. And it will also work with the modern JavaScript features, which we will be using with React. Guess what I used to build this playground? React, of course. You can actually tell that this playground is written in React, looking at this little icon here in my browser. This icon is coming from the React DevTools extension, which is something you should install right away, by the way. So if you don't have this icon in your browser, pause the video right here and go Google for React DevTools extension and add the extension to your browser. Once the extension is active, relaunch the jscomplete playground and make sure the icon is showing up here. The React DevTools extension allows us to inspect and interact with any React application on any website. Let's inspect the jscomplete playground while we're here. Open your browser's DevTools. There should now be a new tab for React. This has been added by the React DevTools extension. You'll see that the extension is showing up two nodes here. The weird one is the main component for the jscomplete playground React app. You don't see normal component names here because the code is minified, but you can still see the structure of the app and you can see the properties and state of every component in the DOM tree, and you can interact with everything here. For example, this editor area here can be resized by dragging the separator. And this UI state is managed with React. If you can find the component responsible for that, you'll see how there is a state element that gets changed when the separator is dragged. You can even change this state directly from the DevTools and trigger the resize based on the new value. How cool is that? Take a moment and familiarize yourself with this extension. It is going to be a great asset for you when you start writing React applications. Every video in this course will start with a URL at jsdrops.com. That will take you to the starting point of that video. This way you can start from the exact point where I am. And if you're coding along in the video and you code did not work as expected at the end of the video, you can simply compare your code to the code available when you go to the next jsdrops URL in sequence. Here is the first URL. If you go to jsdrops.com/rgs1.1, rgs is for React Getting Started, you should see the exact code that I now have on the screen. Make sure that works for you. When this code is executed, you should see a Hello React line in the display. Let me go over what is going on here. We have a simple React function component named Hello. It returns a div. This component has no input. It's also a peer component, no state here. To display a React component in a browser, we need to instruct the ReactDOM library on how to do that. The function designed to do that is ReactDOM.render, which takes in two arguments. The first is the component to render, in our case it is the Hello component. Look how I used it here as if it was just another DOM element with a self closing tag. The second argument to the ReactDOM.render function is the DOM element in the browser where we wish the React component to show up. In this playground, we're using the mountNode display element. If we were to do this in a regular React environment, this element has to exist in the already rendered HTML before this code. You can think of this element as the entry point for React. We're telling React to take over this element and render all of the content within it. Time for another interview question. Explain what exactly is going on here on line 2. How are we writing HTML inside a JavaScript function? And why is this working and not throwing an error? This is not valid JavaScript. If you copy this code and try to execute it anywhere JavaScript can be executed, it will throw on error for sure. However, in the playground, the code works fine because the playground is equipped with a special JavaScript extension named JSX. That should be the gist of your answer. This line is not HTML, it is JSX. It will not be executed by the browser. It will be executed by the JSX extension and compiled to something else, something the browser can understand. This absolutely means that what this browser is currently executing is not what you see on the screen. The playground is using a special compiler named Babel to convert JSX into React API calls. You can see exactly what Babel is doing to our JSX, if you go to the Babel REPL here under try it out. Make sure this React preset is selected, and paste in here the JSX value that we're testing in the playground. Babel compiles that into a call to the createElement function in the React top level API. That's it. That's the magic of JSX. You write what looks like HTML and Babel converts into React API calls. So in the good example we have here, the browser is not really executing this. Instead, it's executing the following, React.createElement, and this takes many arguments. The first argument is the element to be created, in this case, a div. The second argument is any attributes this element will have, the div element has no attributes. And the third argument is the child of that div element, in our case, it's just the string Hello React! Let me add a few more here to make sure this is working, and go ahead and execute this. And check it out, it is working. You see this line in React applications, but the browser is really executing this line instead. And this is true here as well, this line is also JSX. In this case, the conversion would be React.createElement, and it is a hello element here, this is not an HTML element, this is a React element. And it also doesn't have any attributes and it doesn't have any children. So this is the equivalent line in this case, and this will work as well. While you can totally use React this way, without JSX, it would be a lot harder to code and maintain. So let's stick with JSX. Let's now update this code to make it into the button counter example that I showed you at the beginning of this video. Instead of a Hello component, let's name our component Button, uppercase B button. You'll have to do this change to the function name and where we used it here in the JSX line, Button. Instead of returning a div, let's make it return a button HTML element, lowercase button here. Start that buttons label as TEST. Ctrl+Enter to execute, and you should see a button with a label of TEST. Now I intentionally rendered a button component and the button element in this example. This is to make you aware that the capitalization here is not optional. React has some rules here. A component name has to start with an uppercase letter, because if you don't do that, React will think you meant an HTML element. For example, if we named our React component lowercase b button and tried to render that here, React will just render an empty button element here, and it will really not use this function up here at all. This is a beginner mistake. Always name your components with an uppercase first letter. This rendered button here is not interactive yet. To make it so, we'll need to introduce some state to this component. We'll use the simple and powerful React hooks to do that in the next video.
+It is important to understand the two different parts of this definition.
+
+### Framework
+React is a JavaScript library and not a framework.
+The words library and framework mean different things in different contexts. What's important to remember here is that React is small, and it's not a complete solution. You will need to use other libraries with React to form solutions. React does not assume anything about the other parts in any full solution.
+
+How exactly is not being a framework a good thing?
+Frameworks serve a great purpose, especially for young teams and startups. When working with a framework, many smart design decisions are already made for you, which gives you a clear path to focus on writing good application‑level logic. However, frameworks come with some disadvantages as well. For experienced developers working on large codebases, these disadvantages are sometimes a deal breaker. Let me name two of the important disadvantages about using a framework. Frameworks are not flexible, although some claim to be. Frameworks want you to code everything a certain way. If you try to deviate from that way, the framework usually ends up fighting you about it. Frameworks are also large and full of features, and that makes them hard to customize for specialized cases. If you need to use only a small piece of a framework, you usually have to include the whole thing. While some frameworks are going modular, they still stand in contrast to the pure UNIX philosophy to write programs that do one thing and do it well. React follows this philosophy because it is a small library that focuses on just one thing, enabling developers to declaratively describe their user interfaces and model the state of these interfaces.
+
+### User Interface
+A user interface is anything we put in front of users to have them interact with a machine. If the device we're trying to interface can understand JavaScript, we can use React to describe a user interface for it. Since web browsers understand JavaScript, we can use React to describe web user interfaces. I like to use the word describe here because that is what we basically do with React. We just tell React what we want, and it will build the actual user interfaces on our behalf in the web browser. Without React or similar libraries, we would need to manually build user interfaces with native web APIs in JavaScript, and that is not as easy. When you hear the statement that React is declarative, this is exactly what it means. We describe user interfaces with React and tell it what we want, not how to do it. React will take care of the how and translate our declarative descriptions, which we write in the React language to actual user interfaces in the browser. Of course, HTML itself is a declarative language, but with React, we get to be declarative for HTML interfaces that represent dynamic data, not just static content.
+
+
+
+
+### React Popularity
+Some reasons React gained popularity.
+
+#### Working with the DOM API is hard
+React basically gives developers the ability to work with a virtual browser that is friendlier than the real browser. When React was first released, I remember there was a lot of buzz around the performance of its virtual DOM, which we will talk about shortly. The virtual DOM performance is certainly a nice plus, but I think what developers like more about this is the fact that they wouldn't need to deal with the DOM API.
+
+#### React is just JavaScript
+there is a very small React API to learn
+JavaScript skills are what make you a better React developer.
+This is a big advantage over libraries with bigger APIs.
+
+#### React skills are transferable
+Learning React pays off big time for iOS and Android mobile applications as well. React Native allows you to use your same React skills to build native mobile applications. You can even share some logic between your web iOS and Android applications.
+
+#### All react updates are tested
+The React team at Facebook tests all improvements and new features that get introduced to React right there on facebook.com, which increases the trust in the library among the community. It is rare to see big and serious bugs in React releases because they only get released after thorough production testing at Facebook.
+
+#### Declarative Language
+React established a new language between developers and browsers that allowed developers to declaratively describe stateful user interfaces. This means instead of coming up with steps for the transactions on their interfaces, developers just describe the interfaces in terms of a final state, like a function. When transactions happen to that state, React takes care of updating the user interfaces based on that.
+
+
+
+## React's Basic Concepts
+
+React has three simple and fundamental concepts that you need to understand.
+	Components
+	Reactive Updates
+	Virtual Views in Memory
+
+### Components
+With React, we describe user interfaces using components.
+React components are like functions:
+	They receive certain input objects, and they output a description of a user interface.
+	We can reuse a single component in multiple user interfaces
+	components can contain other components.
+
+However, you don't really invoke a React component. You just use it in your HTML as if it was just a regular HTML element. Also, unlike pure functions, a React component can have a private state to hold any data that may change over the lifecycle of the component.
+
+
+### Reactive Updates
+React's name is a simple explanation for this concept. When the state of a React component, the input, changes, the user interface it represents, the output, changes as well. This change in the description of the user interface has to be reflected in the device we are working with. In a browser, we need to regenerate the HTML views in the DOM tree. With React, we don't need to worry about how to reflect these changes or even manage when to take changes to the browser. React will simply react to the changes in a component's state and automatically update the parts of the DOM that need to be updated.
+
+
+### Virtual views in memory
+To build HTML web applications with React, we don't write HTML at all. We use JavaScript to generate HTML. When your web application receives just the data from the server in the background with AJAX, you need something more than HTML to work with that data, and you have two options. You can use an enhanced HTML template that has loops and conditionals, or you can rely on the power of JavaScript itself to generate the HTML from the data. Both approaches have advantages and disadvantages. React embraces the latter one and eliminates the extra step needed to parse and enhance the HTML template. One big advantage for this HTML in JavaScript approach is how it enables React to keep and use a virtual representation of HTML views in memory, which is commonly known as the virtual DOM, or the tree reconciliation algorithm. React uses the virtual DOM to compare versions of the UI in memory before it acts on them. I'll show you the practical value of that once we're comfortable with the basic syntax of React.
+
+
+
+Let's go back to the concept of the component.
+A React component can be one of two types. It can be either a function component or a class component. Both types can be stateful and have side effects, or they can be purely presentational. You should learn them both, but prefer to use function components over class components because they're really much simpler. Class components, however, are a bit more powerful.
+```js
+const MyComponent = (props) => {
+	return(
+		<domElementOrComponent ... />
+		);
+}
+
+class MyComponent extends React.Component {
+	render () {
+		return (
+		<domElementOrComponent ... />
+		);
+	}
+}
+```
+Both types can be compared to regular functions when it comes to their contract. They use a set of props and state as their input, and they output what looks like HTML, but is really a special JavaScript syntax called JSX.
+
+The props input is an explicit one. It is similar to the list of attributes an HTML element can have.
+The state input is an internal one, but is really the more interesting one because of how React uses it to auto‑reflect changes in the browser.
+
+These two input objects have one important difference.
+Props are immutable.
+Components can only change their internal state, not their properties.
+
+
+Okay, let's talk about this syntax that looks like HTML, but is not really HTML. Here's a full example.
+
+```js
+class Hello extends React.Component {
+	render () {
+		return (
+			<div className ="container">
+				<h1> Getting Started<h1>
+			</div>
+		);
+	}
+}
+
+ReactDOM.render(<Hello />, mountNode);
+```
+
+This is a simple React class component without any input, so no props or state, and with a simple h1 in a div output.
+
+```js
+class Hello extends React.Component {
+	render () {
+		return (
+			React.createElement("div", {className: "container"},
+				React.createElement("h1", null, "Getting Started")
+			)
+		);
+	}
+}
+
+ReactDOM.render(React.createElement(Hello, null), mountNode);
+```
+
+This component is written in the special JSX syntax. Remember how I said we don't write HTML at all in React, and instead we use the React API to generate our views? This JSX syntax is the compromise to that rule. It makes our task of using the React API as close as possible to writing HTML, but it is not HTML. This gets compiled to the pure JavaScript calls in the previous codeblock.
+
+These React.createElement calls are what we ship to browsers. They are the JavaScript representation of this component's DOM, and they are what React can efficiently translate into actual DOM operations to be performed by the browser.
+
+
+## Your First React Component
+
+Before you can create a React application, you'll need to do some environment configurations, and that might be a bit overwhelming for someone who is just starting to explore.
+
+This is one of many online editors that interpret React source code:
+https://jscomplete.com/playground
+
+These will help you learn the React way without the complexities of configuring a ton of tools to have a React environment.
+
+
+You type in some JavaScript code in the editor, for example, Math.random(), and you press Ctrl+Enter and your could will be executed and its results displayed on the right. Just like a simple REPL, run, eval, print, loop, that you can use to test quick JavaScript expressions.
+
+To show more things in the display, you can use the HTML element with the ID of mountNode. You can grab a reference to this element using:
+
+```js
+document.getElementById("mountNode").innerHTML = 'Hello!';
+```
+
+This is a DOM API call to select the display element, anything you put inside this mountNode HTML element will be displayed to the right.
+
+The more important thing about this playground is that the latest version of both React and ReactDOM are already preloaded here. In addition, the playground understands the JSX syntax. And it will also work with the modern JavaScript features, which we will be using with React.
+
+Also useful is the React DevTools extension
+The React DevTools extension allows us to inspect and interact with any React application on any website. Take a moment and familiarize yourself with this extension. It is going to be a great asset for you when you start writing React applications.
+
+Every example will start with a URL at jsdrops.com, that will supply the starting point. If you're coding along in the video and you code did not work as expected at the end of the video, you can simply compare your code to the code available when you go to the next jsdrops URL in sequence.
+
+Here is the first URL:
+https://jscomplete.com/playground/rgs1.1
+
+You should see this code:
+```js
+function Hello() {
+	return <div>Hello React!</div>;
+}
+
+ReactDOM.render(
+  <Hello />,
+  document.getElementById('mountNode'),
+);
+```
+When this code is executed, you should see a Hello React! line in the display.
+
+We have a simple React function component named Hello. It returns a div. This component has no input. It's also a peer component, no state here.
+
+To display a React component in a browser, we need to instruct the ReactDOM library on how to do that. The function designed to do that is ReactDOM.render, which takes in two arguments.
+
+	The first is the component to render, in our case it is the Hello component. Which looks as if it was just another DOM element with a self closing tag.
+
+	The second argument to the ReactDOM.render function is the DOM element in the browser where we wish the React component to show up. In this playground, we're using the mountNode display element. If we were to do this in a regular React environment, this element has to exist in the already rendered HTML before this code. You can think of this element as the entry point for React. We're telling React to take over this element and render all of the content within it.
+
+Time for another interview question. Explain what exactly is going on here on line 2. How are we writing HTML inside a JavaScript function? And why is this working and not throwing an error? This is not valid JavaScript. If you copy this code and try to execute it anywhere JavaScript can be executed, it will throw on error for sure. However, in the playground, the code works fine?
+
+This is because the playground is equipped with a special JavaScript extension named JSX. That should be the gist of your answer. This line is not HTML, it is JSX. It will not be executed by the browser. It will be executed by the JSX extension and compiled to something else, something the browser can understand. This absolutely means that what this browser is currently executing is not what you see on the screen. The playground is using a special compiler named Babel to convert JSX into React API calls.
+
+You can see exactly what Babel is doing to our JSX, if you go to:
+https://babeljs.io/repl
+
+Make sure this React preset is selected, and paste in here the JSX value that we're testing in the playground.
+```js
+<div>Hello React!</div>;
+```
+
+Babel compiles that into
+```js
+React.createElement("div", null, "Hello React!");
+```
+
+a call to the createElement function in the React top level API.
+
+That's it. That's the magic of JSX. You write what looks like HTML and Babel converts into React API calls.
+
+The browser is not executing the JSX.
+
+Instead, it's executing the React.createElement, and this takes many arguments. The first argument is the element to be created, in this case, a div.
+The second argument is any attributes this element will have, the div element has no attributes.
+The third argument is the child of that div element, in our case, it's just the string Hello React!
+
+The ReactDOM.render() function and it's parameters are JSX as well. For example the first parameter.
+
+The Hello element is not an HTML element, this is a React element.
+```js
+<Hello />
+```
+
+In this case, the conversion would be React.createElement that doesn't have any attributes and it doesn't have any children.
+```js
+React.createElement(Hello, null);
+```
+So this is the equivalent line in this case, and this will work as well. While you can totally use React this way, without JSX, it would be a lot harder to code and maintain. So let's stick with JSX.
+
+
+Let's implement a simple React component, a button with a numeric label, and clicking that button increments it's numeric label to count how many times the button was clicked.
+
+Instead of a Hello component, let's name our component Button, uppercase B button.
+You'll have to do this change to the function name and where we used it in the ReactDOM.render() parameter.
+
+Instead of the Button function returning a div, let's make it return a button HTML element, lowercase button here. Change the button's label to TEST.
+```js
+function Button() {
+    return <button>TEST</button>
+}
+
+ReactDOM.render(
+  <Button />,
+  document.getElementById('mountNode'),
+);
+```
+
+Ctrl+Enter to execute, and you should see a button with a label of TEST.
+
+NOTE: CapItAliZatiOn MatTerS
+Always name your components with an uppercase first letter.
+This example intentionally renders a button component and the button element in this example. This is to make you aware that the capitalization here is not optional. React has some rules here. A component name has to start with an uppercase letter, because if you don't do that, React will think you meant an HTML element. For example, if we named our React component lowercase b button and tried to render that here, React will just render an empty button element here, and it will really not use this function up here at all.
+
+
+This rendered button here is not interactive yet. To make it so, we'll need to introduce some state to this component.
+
 Your First React Hook
 
-Continuing with what we started in the previous video, the current code is available under this URL, and our component currently renders a stateless button. We now need to make the button increment a counter every time it's clicked. We need a state object. To use a state object, react has a special function named useState. This is also globally available here in the playground. So we're going to be invoking this function. This useState function is going to return two items for us. The first item is a state object, and the second item is a function to change that state object. The state object can be of any time you wish it to be. It could be a string, a number, or an array, or anything else. For this use case, we need it to be a number. I'm going to name this state object counter and name its updater function setCounter. The syntax you need here might look a bit weird, but since JavaScript functions can only return a single value, the useState function returns an array with exactly the two elements here. To make this work, we need a variable‑defining keyword before this syntax. I'm going to use const. This special syntax here is using JavaScript destructuring feature to capture these two variables in one line. It's not magic or anything; useState returns an array with two elements, and in here we're destructuring these two elements into variables in our Button component. The argument to useState is the initial value for the state element, counter in our case. Since we want that counter to be a number, we'll set that to 0. To use the two new variables that we introduced, let me tell you a nice little thing about JSX. It supports displaying dynamic expressions if you place them within curly braces anywhere inside JSX. So if I make the button's label into curly braces, and inside these curly braces put any JavaScript expression I want, I'll use Math.random, and execute the code, the button will have random value every time I render this component. So to use this new state element, all we have to do is put the counter variable within curly braces and make that the label of the button element. The button will now be rendered with a label of 0. This is the same 0 that's coming from the initial value we specified for useState. So any value initialized here will show up as the button's label, but we'll keep it as 0. Now to use the setCounter updater function, every time we click on this button, we need to introduce an event handler. This is going to look similar to the way we can do this with the DOM API. We define an onClick attribute on the button element. This onClick attribute is also case sensitive. It has to be camelCase like this. And unlike the DOM version of the onClick, which receives a string, this react onClick attribute receives a function reference. So you always specify that inside curly braces as well. In here, we're going to specify a function reference. Let me create a dummy function here, function. I'm going to name it logRandom, and we'll make this function console.log(Math.random). Very simple. To use this function as the onClick event handler, we pass in here the functions reference, its name, just like this. To see the console.log messages, we need to bring up the browser's console here. And after executing this code, every time I now click on that button, the console will print a random value. Note that when we passed in the logRandom function here, we did not invoke the function. This will not work. You just need to pass in the pointer to the function. You can also inline the function definition right here inside the curly braces. So, basically, you paste in the function definition, and this will work as well. We can make this more concise by using the new arrow function syntax, which can fit in a single line here, () =>, and then the body of the function directly after that. This highlighted part is an inline arrow function definition. We're not invoking the function here. We're defining it and passing this new reference to the onClick prop. This will work as well. So now that we saw how to wire an onClick event, what we need to do to make the counter count is to use the setCounter updater function that we got from useState. So instead of console logging a random value here, I'm going to use setCounter, invoke that function, and the argument to setCounter will become the new value of counter here. So if we pass in counter+1 as the argument just like this and execute this code, then every time the onClick event is triggered now, the counter will be incremented, and you'll see the button behaving as we wanted it to. This useState function is called a hook in the react world. It is similar to a mix‑in or a module, but it is a stateful one that hooks this simple component into a state. What I need you to notice here is that to reflect the new value of the counter variable in the browser here, we did nothing. We just managed the state of the counter value. React is automatically updating the browser for us thanks to its reactive nature. We did not implement any transactions on this UI. We implemented the transactions on a JavaScript counter object in memory. Our UI implementation was basically telling React that we want the label of the button to always reflect the value of that counter object. We didn't do any DOM updates. React did. You're going to need a few more examples to appreciate this power. So let's add some more features to this basic example. Let's make our UI show many buttons and make all the buttons increment a single counter. But before we do that, let me give you a quick challenge. Instead of a simple counter, change this component to start the button with a label of 5, then double that value on each click. Go ahead and try to make this simple change, and you can see my solution under this URL.
+Continuing, the current code is available under this URL:
+https://jscomplete.com/playground/rgs1.1
+
+The component currently renders a stateless button. We now need to make the button increment a counter every time it's clicked. We need a state object.
+
+To use a state object, react has a special function named useState. This useState function is going to return two items for us.
+	a state object, a getter
+	a function to change that state object, a setter
+
+The state object can be of any time you wish it to be. It could be a string, a number, or an array, or anything else. For this use case, we need it to be a number. I'm going to name this state object counter and name its updater function setCounter. The syntax you need here might look a bit weird, but since JavaScript functions can only return a single value, the useState function returns an array with exactly the two elements here. To make this work, we need a variable‑defining keyword before this syntax. I'm going to use const.
+
+```js
+function Button() {
+	const [counter, setCounter] = useState();
+  return <button>TEST</button>
+}
+```
+
+const [currentStateValue, functionToSetNewStateValue] =
+	useState(initialStateValue)
+
+This special syntax here is using JavaScript destructuring feature to capture these two variables in one line. It's not magic or anything; useState returns an array with two elements, and in here we're destructuring these two elements into variables in our Button component.
+
+JSX supports displaying dynamic expressions if you place them within curly braces anywhere inside JSX. So if I make the button's label into curly braces, and inside these curly braces put any JavaScript expression I want, I'll use Math.random, and execute the code, the button will have random value every time I render this component.
+```js
+function Button() {
+    return <button>{Math.random()}</button>
+}
+```
+
+
+So to use this new state element
+Set the argument to useState as the desired initial value for the state element, counter in our case. Since we want that counter to be a number, we'll set that to 0.
+Put the counter variable within curly braces and make that the label of the button element. The button will now be rendered with a label of 0. This is the same 0 that's coming from the initial value we specified for useState. So any value initialized here will show up as the button's label, but we'll keep it as 0.
+Now to use the setCounter updater function, every time we click on this button, we need to introduce an event handler. This is going to look similar to the way we can do this with the DOM API.
+
+We define an onClick attribute on the button element. This onClick attribute is also case sensitive. It has to be camelCase like this.
+
+onClick = {functionRef}
+
+And unlike the DOM version of the onClick, which receives a string, this react onClick attribute receives a function reference. So you always specify that inside curly braces as well.
+
+return <button onClick={...}>{counter}</buttono>;
+
+Where the elipses "..." occures, we're going to specify a function reference.
+
+We will first  a dummy function here, function. I'm going to name it logRandom, and we'll make this function console.log(Math.random).
+```js
+function logRandom() {
+	console.log(Math.random());
+}
+```
+
+Very simple. To use this function as the onClick event handler, we pass in here the functions reference, its name, just like this.
+
+```js
+function Button() {
+  const[counter, setCounter] = useState(0);
+  return <button onClick={logRandom}>{counter}</button>;
+}
+```
+
+To see the console.log messages, we need to bring up the browser's console here. And after executing this code, every time I now click on that button, the console will print a random value.
+
+Note that when we passed in the logRandom function here, we did not invoke the function. This will not work:
+
+onClick={logRandom()}
+
+You just need to pass in the pointer to the function.
+
+You can also inline the function definition right here inside the curly braces.
+```js
+function Button() {
+  const[counter, setCounter] = useState(0);
+  return <button onClick={
+    function logRandom() {
+      console.log(Math.random());
+    }
+  }>{counter}</button>;
+}
+```
+So, basically, you paste in the function definition, and this will work as well.
+
+We can make this more concise by using the new arrow function syntax, which can fit in a single line here, () =>, and then the body of the function directly after that.
+
+```js
+function Button() {
+  const[counter, setCounter] = useState(0);
+  return <button onClick={ () => { console.log(Math.random())} }>{counter}</button>;
+}
+```
+
+So now that we saw how to wire an onClick event, what we need to do to make the counter count is to use the setCounter updater function that we got from useState:
+
+```js
+function Button() {
+  const[counter, setCounter] = useState(0);
+  return <button onClick={ () => { setCounter(counter+1)} }>{counter}</button>;
+}
+
+ReactDOM.render(
+  <Button />,
+  document.getElementById('mountNode'),
+);
+```
+
+So instead of console logging a random value here, I'm going to use setCounter, invoke that function, and the argument to setCounter will become the new value of counter. So if we pass in counter+1 as the argument just like this and execute this code, then every time the onClick event is triggered now, the counter will be incremented, and you'll see the button behaving as we wanted it to.
+
+This useState function is called a hook in the react world. It is similar to a mix‑in or a module, but it is a stateful one that hooks this simple component into a state. What I need you to notice here is that to reflect the new value of the counter variable in the browser here, we did nothing. We just managed the state of the counter value. React is automatically updating the browser for us thanks to its reactive nature. We did not implement any transactions on this UI. We implemented the transactions on a JavaScript counter object in memory. Our UI implementation was basically telling React that we want the label of the button to always reflect the value of that counter object. We didn't do any DOM updates. React did. You're going to need a few more examples to appreciate this power. So let's add some more features to this basic example. Let's make our UI show many buttons and make all the buttons increment a single counter. But before we do that, let me give you a quick challenge. Instead of a simple counter, change this component to start the button with a label of 5, then double that value on each click. Go ahead and try to make this simple change, and you can see my solution under this URL.
+
 Your First One-way Data Flow
 
-In the previous video, we made a simple stateful Button component that renders an HTML button element and increments its numeric label when that button element is clicked. We introduced the useState React hook to manage a counter state. Let's improve this component. First, don't use long lines like this. They're hard to read. So let me format this return value to make it more readable. There we go. Note how I used parentheses here, not curly braces. We're not returning an object here. We're returning a function call, remember, a React.createElement function call. Second Improvement. Instead of an inline function here, let's create an official click handler function. This new function has to be defined inside the Button component because it needs access to the counter and setCounter variables. You can use any name here, but it's commonly named handleClick. We can just paste the code we had inline before here as the body of this function. And in the onClick attribute here, we pass a reference to handleClick. Make sure this is all good and the button is still incriminating. So far, we've only worked with one component. Let's add more. Let's split our one Button component into two. We'll keep the Button component to be just the incrementer, and let's add a new Display component, which is going to just display the value of the counter. This new Display component is going to be a pure presentational one. It will not have a state of its own. That's normal. Not every React component has to have a stateful hook. So to create a new component, we define a function named Display, and we'll make it return some HTML element. For now, let me just put a placeholder div in here and execute. Notice that this new Display component did not show up because I have not included it in the rendered element yet. I just defined it. Let's include it. So remember to include a component, we need to use it like that. However, you can't just add it here as an adjacent sibling to the Button element. This will not work. Question, why does that not work? And the answer is because each one of these elements get translated into a function call. You have few options here to fix this problem. First, you can render an array of elements here and insert into that array as many React elements as you wish. This will work. This is usually a good solution when all the elements you're rendering are coming from the same component in a dynamic way. It's not ideal for the case we're doing here. The other option is to make these two React elements the children of another React element. For example, we can just enclose them in a div, create a div element, then render the Button and the Display inside this div element. The React API supports this. In fact, React has a special object. If you need to enclose multiple elements like this without introducing a new div parent, you can use React.Fragment. This will do exactly the same thing that the div did, but no new DOM parent will be introduced. This case is so common in React that the JSX extension has a shortcut for it. Instead of typing React.Fragment, you can just have an empty tag. This empty tag, if supported in the environment, will get compiled to the React.Fragment version. For the case that we're doing here, I think a div here is okay, so I'm going to keep that. Question, what can we do to make this better? And the answer is we should really extract this code into its own component. This new component can have any name, but you can just use App here. Go ahead and try to create this app component on your own. Make it return this DOM and use it in the ReactDOM.render call instead of what we have. We take the section, create a new function, name it App, make this function return the exact DOM tree that we have down under. And then in here, instead of all that, we can just render the App component just like that. Since we're going to display the counter's value in the new Display component, we no longer need to show the counter's value as the label of this button. Instead, I'm going to change the label to just +1. Now we need to display the counter value as the message in the Display component. But we have a problem. We actually have two problems. The first problem is that the counter is currently a state element in the Button component, and we need to access it in the Display component, which is a sibling of the Button component in the current tree. So this is not going to work. The state in a React component can be accessed only by that component itself and no one else. To make this counter state accessible to both sibling components, we need to lift it one level up and put it in their parent component, which is the App component that we just introduced. We just move this useState line down to the App component right here. I'll initialize the counter with a different value here to make sure things are working. The logic of this handleClick function will need to change. We will come back to that in a minute. Let's just comment it out for now. Now that we have the counter state element in the App compartment, which is the parent of the Display component, we can flow some data from the parent to the child. In this case, we need to flow the value of the counter state into the Display component, which brings us to the mighty props object. We haven't really used it yet, so let me tell you about it. To pass a prop to a component, you specify an attribute here, just like in HTML. You can name the props of the component anything you want. For example, I'll make the Display component to receive a prop named message, and the value of that message is the counter variable that's coming from the useState hook. The Display component can now use its props object, which is the argument to the function here, and it's usually named props. You don't really have to name it props, but that's the convention. All function components receive this object even when they have no attributes. So the Button component is currently receiving its props object, and that object so far has been empty. Because a component can receive many attributes, this props object will have a key value pair for each attribute. This means to access the message prop and place its value within the display div, we do curly braces and use props.message. Let me test that real quick, and we have an error, handleClick is not defined because we've used it here and commented it out here. So let me just put an empty function here to get things working, and here we go. A counter value of 42 is now getting displayed. This is coming from the Display component. And what we did here is called the one‑way flow of data. Parent components can flow their data down to children components. Parent components can also flow down behavior to their children, which is what we need to do next. In the App component, since the counter state is here now, we need a function on this level to handle updating this state. Let's name this function incrementCounter. The logic for this function is actually the exact same logic that we had before in the handleClick function in the Button component. So we can just move it in here. This new function is going to update the App component's counter state to increment the counter value using the previous counter value. The onClick handler in the Button component now has to change. We want it to execute the incrementCounter function that's in the App component, but a component can only access its own functions. So to make the Button component able to invoke the incrementCounter function in the App component, we can pass a reference to incrementCounter to the Button component as a prop. Yes, props can hold functions as well, not just data. Functions are just objects in JavaScript, and you can pass any object value as a prop. We can name this new prop anything. I'll name it onClickFunction and pass it a value of incrementCounter, which is the reference to the function we defined in the App component. We can use this new pass down behavior directly in the onClick value. It will be a prop on this component, so we can access it with props.onClickFunction. Testing, all is good. Something very powerful is happening here. The onClickFunction property allowed the button to invoke the App component's incrementCounter function. It's like when we click that button, the Button component reaches out to the App component and says hey parent, go ahead and invoke that incrementCounter behavior now. In reality, the App component is the one in control here, and the Button component is just following generic rules. If you analyze the code as it is now, you'll realize how the Button component has no clue what happens when it gets clicked. It just follows the rules defined by the parent and invokes a generic onClick function. The parent controls what goes into that generic behavior. That's basically the concept of responsibility isolation. Each component here has certain responsibilities, and they get to focus on that. Look at the Display component too. From its point of view, the message value is not a state. It's just a value that the App component is passing to it. The Display component will always display that message. This is also a separation of responsibilities. As the designer of these components, you get to choose the level of responsibilities. For example, if we want to, we can make the responsibility of displaying the counter value part of the App component itself and not use a new Display component for that, but I like it this way. This App component has the responsibility of managing the counter state. That's an important design decision that we made, and it is one you're going to have to make a lot in a React application, where to define the state. And the answer is usually simple, down in a tree as close as possible to the children who need to access that value on the state.
+Let's improve this component.
+
+First improment
+Don't use long lines.
+
+```js
+function Button() {
+  const[counter, setCounter] = useState(0);
+  return (
+    <button onClick={ () => { setCounter(counter+1)} }>
+      {counter}
+    </button>
+  );
+}
+```
+Note the use of parentheses here, not curly braces. We're not returning an object here. We're returning a function call, remember, a React.createElement function call.
+
+Second Improvement.
+
+Instead of an inline function here, let's create an official click handler function:
+```js
+function Button() {
+  const[counter, setCounter] = useState(0);
+  const handleClick = () => setCounter(counter+1);
+  return (
+    <button onClick={handleClick}>
+      {counter}
+    </button>
+  );
+}
+```
+This new function has to be defined inside the Button component because it needs access to the counter and setCounter variables. You can use any name here, but it's commonly named handleClick. We can just paste the code we had inline before here as the body of this function. And in the onClick attribute here, we pass a reference to handleClick. Make sure this is all good and the button is still incriminating.
+
+
+So far, we've only worked with one component. Let's add more. Let's split our one Button component into two. We'll keep the Button component to be just the incrementer, and let's add a new Display component, which is going to just display the value of the counter. This new Display component is going to be a pure presentational one. It will not have a state of its own. That's normal. Not every React component has to have a stateful hook.
+
+
+So to create a new component, we define a function named Display, and we'll make it return some HTML element. For now, let me just put a placeholder div.
+```js
+function Display () {
+  return(
+      <div>...</div>
+  );
+}
+```
+For this new Display component to show up we have to included it in the rendered element. You can't just add it as an adjacent sibling to the Button element.
+```js
+ReactDOM.render(
+  <Button /><Display />,
+  document.getElementById('mountNode'),
+);
+```
+
+This will not work. Question, why does that not work? And the answer is because each one of these elements get translated into a function call.
+
+You have few options here to fix this problem.
+First, you can render an array of elements here and insert into that array as many React elements as you wish.
+
+```js
+ReactDOM.render(
+  [<Button />, <Display />],
+  document.getElementById('mountNode'),
+);
+```
+
+This will work. This is usually a good solution when all the elements you're rendering are coming from the same component in a dynamic way. It's not ideal for the case we're doing here.
+
+The other option is to make these two React elements the children of another React element. For example, we can just enclose them in a div, create a div element, then render the Button and the Display inside this div element.
+```js
+ReactDOM.render(
+  <div>
+    <Button />
+    <Display />
+  </div>,
+  document.getElementById('mountNode'),
+);
+```
+
+The React API supports this. In fact, React has a special object. If you need to enclose multiple elements like this without introducing a new div parent, you can use React.Fragment. This will do exactly the same thing that the div did, but no new DOM parent will be introduced.
+```js
+ReactDOM.render(
+  <React.Fragment>
+    <Button />
+    <Display />
+  </React.Fragment>,
+  document.getElementById('mountNode'),
+);
+```
+
+This case is so common in React that the JSX extension has a shortcut for it. Instead of typing React.Fragment, you can just have an empty tag.
+```js
+ReactDOM.render(
+  <>
+    <Button />
+    <Display />
+  </>,
+  document.getElementById('mountNode'),
+);
+```
+
+This empty tag, if supported in the environment, will get compiled to the React.Fragment version.
+
+For the case that we're doing here, I think a div here is okay, so I'm going to keep that. Question, what can we do to make this better? And the answer is we should really extract this code into its own component.
+
+```js
+function App () {
+  return (
+  <div>
+    <Button />
+    <Display />
+  </div>
+  );
+}
+
+ReactDOM.render(
+  <App />,
+  document.getElementById('mountNode'),
+);
+```
+
+This new component can have any name, but you can just use App here.
+
+
+Since we're going to display the counter's value in the new Display component, we no longer need to show the counter's value as the label of this button. Instead, I'm going to change the label to just +1. Now we need to display the counter value as the message in the Display component. But we have a problem. We actually have two problems. The first problem is that the counter is currently a state element in the Button component, and we need to access it in the Display component, which is a sibling of the Button component in the current tree. So this is not going to work. The state in a React component can be accessed only by that component itself and no one else. To make this counter state accessible to both sibling components, we need to lift it one level up and put it in their parent component, which is the App component that we just introduced.
+
+
+
+We move the useState and handleClick lines down to the App component.
+
+Now we can flow some data from the parent to the child. In this case, we need to flow the value of the counter state into the Display component, and the eventHandler into the button component, which brings us to the mighty props object.
+
+To pass a prop to a component, you specify an attribute just like in HTML. You can name the props of the component anything you want. For example, I'll make the Display component to receive a prop named message, and the value of that message is the counter variable that's coming from the useState hook.
+```js
+<Display message={counter}/>
+```
+
+The Display component can now use its props object, which is the argument to the function here, and it's usually named props. You don't really have to name it props, but that's the convention. All function components receive this object even when they have no attributes.
+
+So the Button component is currently receiving its props object, and that object so far has been empty. Because a component can receive many attributes, this props object will have a key value pair for each attribute. This means to access the message prop and place its value within the display div, we do curly braces and use props.message.
+
+```js
+function Display (props) {
+  return(
+      <div>{props.message}</div>
+  );
+}
+```
+
+What we did here is called the one‑way flow of data. Parent components, in this case App can flow their data down to children components, in this case Display.
+
+Parent components can also flow down behavior to their children, which is what we need to do next.
+```js
+function App () {
+  const[counter, setCounter] = useState(0);
+  const handleClick = () => setCounter(counter+1);
+  return (
+  <div>
+    <Button onClickFunction = {handleClick}/>
+    <Display message={counter}/>
+  </div>
+  );
+}
+```
+In the App component, since the counter state and the function to handle updating this state has been moved here the onClick handler in the Button component now has to change. We want it to execute the handleClick function that's in the App component, but a component can only access its own functions. To allow the Button componet to invoke the handleClick function in the App component, we can pass a reference to handleClick to the Button component as a prop. Yes, props can hold functions as well, not just data. Functions are just objects in JavaScript, and you can pass any object value as a prop. We can name this new prop anything. We name it onClickFunction and pass it a value of handleClick, which is the reference to the function we defined in the App component.
+```js
+<Button onClickFunction = {handleClick}/>
+```
+We can use this new pass down behavior directly in the onClick value. It will be a prop on this component, so we can access it with props.onClickFunction.
+```js
+function Button(props) {
+  return (
+    <button onClick={props.onClickFunction}>
+      +1
+    </button>
+  );
+}
+```
+Testing, all is good. Something very powerful is happening here. The onClickFunction property allowed the button to invoke the App component's handleClick function. It's like when we click that button, the Button component reaches out to the App component and says hey parent, go ahead and invoke that handleClick behavior now.
+
+In reality, the App component is the one in control here, and the Button component is just following generic rules. If you analyze the code as it is now, you'll realize how the Button component has no clue what happens when it gets clicked. It just follows the rules defined by the parent and invokes a generic onClick function. The parent controls what goes into that generic behavior. That's basically the concept of responsibility isolation. Each component here has certain responsibilities, and they get to focus on that.
+
+Look at the Display component too. From its point of view, the message value is not a state. It's just a value that the App component is passing to it. The Display component will always display that message. This is also a separation of responsibilities. As the designer of these components, you get to choose the level of responsibilities. For example, if we want to, we can make the responsibility of displaying the counter value part of the App component itself and not use a new Display component for that, but I like it this way. This App component has the responsibility of managing the counter state. That's an important design decision that we made, and it is one you're going to have to make a lot in a React application, where to define the state. And the answer is usually simple, down in a tree as close as possible to the children who need to access that value on the state.
+
+
+
 Components Reusability
 
-One of the selling points about components is reusability, making a component generic enough so that we can reuse it in different cases. Let's do that. Let's make the Button component more generic. Let's assume that we can pass in an increment value here, and the Button component will use that value instead of the hard coded one. So we'll use the more generic Button component to create a +1 button, a +5 button, and so on. We need to upgrade this +1 here to something dynamic. It will be a property of the component, the amount to increment, and we'll pass it down from the parent. Let's name this new attributes increment, and the value we need to pass here is a number. Since the value here is not a string, we'll need to use a set of curly braces here as well. So, for example, we can pass in 5. One quick note about this syntax here. We could pass the number like this, but the Button component in this case will see and work with that value as a string. So don't do that. Keep it this way so the Button component receives it as a numeric value, not a string. To use this new increment prop, we can just access it here as props.increment. There we go. We've got a +5. So let me go ahead and add a few more buttons here and use increment values of 1, 5, 10, and 100. Let's initialize this back to 0. And there we go. The UI rendered four buttons now with different labels, but they're not going to work yet. In fact, all of them would still increment with a +1 at this point because we did not change their handlers. So the challenge now is to make each button increment the globally displayed counter by its increment value, not just 1. Do you think you can do that on your own? Give it a try. I saved the code as of now for you under 1.5 here. Here's how I'd solve this challenge. This incrementCounter function here will now need to receive an increment value, and we can use its argument to do that. So receive incrementValue in here, and instead of using +1 we'll use the new incrementValue. Now we can invoke the incrementCounter function with different values. The incrementCounter function is aliased as onClickFunction for the button. So the Button component needs to invoke the onClick function with an argument now, which is its own increment value, and that can be accessed using props.increment. But we can't just pass the argument here like this, because remember, we need a function reference for the onClickEvent handler, and what I have on the screen right now is not a reference. It's an invocation of a function. This will not work. But we can simply wrap this invocation in an inline function to make it into a reference, and through the magic of JavaScript closures, this will work just fine. But again, it's a bit cleaner to do this logic inside the handleClick local function here. So let me go back to handleClick and put this new logic inside handleClick, just like that. Make sure this is still working, and all is good. This is the final code of this example, and I saved it here under 1.6 for you. Through this example, we've touched on the many basic React concepts, but this is still a relatively simple example. Let's build something a bit more useful next. But first, I need you to absolutely understand the value you're getting from using React's tree reconciliation under the hood That's the next video.
+One of the selling points about components is reusability, making a component generic enough so that we can reuse it in different cases.
+
+Let's make the Button component more generic.
+```js
+function Button(props) {
+  return (
+    <button onClick={props.onClickFunction}>
+      +1
+    </button>
+  );
+}
+```
+Let's assume that we can pass in an increment value, and the Button component will use that value instead of the hard coded one.
+```js
+function Button(props) {
+  return (
+    <button onClick={props.onClickFunction}>
+      +{props.increment}
+    </button>
+  );
+}
+```
+We upgraded the +1 to something dynamic, a property of the component, the amount to increment, passed down from the parent. We named this new attribute increment, and the value we need to pass here is a number. Since the value here is not a string, we'll need to use a set of curly braces here as well.
+```js
+<Button onClickFunction = {handleClick} increment={5}/>
+```
+So, for example, we can pass in 5. One quick note about this syntax here. We could pass the number like this increment="5", but the Button component in this case will see and work with that value as a string. So don't do that. Keep it this way, increment={5}, so the Button component receives it as a numeric value, not a string. To use this new increment prop, we access it here as props.increment. There we go. We've got a +5. So let me go ahead and add a few more buttons here and use increment values of 1, 5, 10, and 100.
+```js
+function App () {
+  const[counter, setCounter] = useState(0);
+  const handleClick = () => setCounter(counter+1);
+  return (
+  <div>
+    <Button onClickFunction = {handleClick} increment={1}/>
+    <Button onClickFunction = {handleClick} increment={5}/>
+    <Button onClickFunction = {handleClick} increment={10}/>
+    <Button onClickFunction = {handleClick} increment={100}/>
+    <Display message={counter}/>
+  </div>
+  );
+}
+```
+
+The UI rendered four buttons now with different labels, but they're not going to work yet. In fact, all of them would still increment with a +1 at this point because we did not change their handlers. So the challenge now is to make each button increment the globally displayed counter by its increment value, not just 1.
+
+This incrementCounter function here will now need to receive an increment value, and we can use its argument to do that.
+```js
+const incrementCounter = (incrementValue) => setCounter(counter+incrementValue);
+```
+So receive incrementValue in here, and instead of using +1 we'll use the new incrementValue. Now we can invoke the incrementCounter function with different values. The incrementCounter function is aliased as onClickFunction for the button. So the Button component needs to invoke the onClick function with an argument now, which is its own increment value, and that can be accessed using props.increment. But we can't just pass the argument to onClickFunction like this onClickFunction(props.increment) because remember, we need a function reference for the onClickEvent handler, and what this is not a reference. It's an invocation of a function.
+
+But we can simply wrap this invocation in an inline function to make it into a reference, and through the magic of JavaScript closures, this will work just fine.
+```js
+<button onClick={() => props.onClickFunction(props.increment)}>
+```
+But again, it's a bit cleaner to do this logic inside the handleClick local function here. So let me go back to handleClick and put this new logic inside handleClick:
+
+```js
+function Button(props) {
+  const handleClick = () => props.onClickFunction(props.increment);
+  return (
+    <button onClick={handleClick}>
+      +{props.increment}
+    </button>
+  );
+}
+```
+Make sure this is still working, and all is good.
+
+This is the final code of this example:
+https://jscomplete.com/playground/rgs1.6
+
+
+Through this example, we've touched on the many basic React concepts, but this is still a relatively simple example. Let's build something a bit more useful next. But first, I need you to absolutely understand the value you're getting from using React's tree reconciliation under the hood That's the next video.
+
+
+
 Tree Reconciliation in Action
 
-You know the basics of React, and you've probably formed your initial impression about it. My initial impression was why go for all this trouble? Why use JavaScript to generate HTML? What exactly is the value I am getting from doing all that? Let me show you that value in action. In this example, which starts at 1.7 here, we have two simple DOM nodes, one being controlled with the native DOM web API directly using innerHTML and another being controlled with the React API, which in turn uses the DOM API. The only major difference between the ways we are building these two nodes in the browser is that in the HTML version, we used a string to represent the content, while in the React version, we used pure JavaScript calls and represented the content with an object instead of a string. There's no JSX, and I will also use a regular JavaScript interval timer here to create some UI state so that we can do a stateful change for both versions. No matter how complicated the HTML user interface is going to get, when using React, every HTML element will be represented with a JavaScript object using a React.createElement call. Let's now add some more features to this simple UI. Let's add an input box that we can type into. To nest elements in our HTML template, it is straightforward in the HTML version. We can just add an input element like this, and it will render. We can do the same in React by adding more arguments after the third argument for React.createElement. To match what we did in the native HTML node, we can add a fourth argument here that is another React.createElement call that renders an input element. This input element has no attributes and no children. There we go. Okay, not too bad so far. Let's add another node to both trees. This time, let's render the current time. I have a JavaScript line here that you can use to display the current time. Just include this in both versions. Since the first version is a template string here, if you notice these are backticks and not single quotes, so this makes the innerHTML a template string, and I can use a dollar sign syntax here and include the JavaScript line to render the time. Let me put this value inside a pre tag just to give it some monospaced font. Test that. The time is showing up. To add the timestamp in the React version, we add a fifth element to the top‑level div element. This new fifth element is another React.createElement call. This time it's a pre tag as we used in the HTML version, no attributes as well, and the new date String for content. Both the HTML and React versions are still rendering the exact same HTML in the browser. But as you can see, the React way is a lot more complicated than the native DOM way. So let me ask you the question again. Why go for all this trouble? What is it that React does so well that is worth giving up the familiar HTML and having to learn a new API to write what can be simply written in HTML? The answer is not about rendering the first HTML view. It's about what we need to do to update any existing views in the DOM. So let's do an update operation on the DOM that we have so far. Let's simply make the timestamp tick every second. We can easily repeat a JavaScript call in the browser using the set interval web timer API. So let's put all of our DOM manipulations for both the HTML and the React versions into a function. I'm going to name this function render. This can be a simple arrow function just like that. And I'll copy all of this code and put it inside the render function. We can then use this setInterval call to invoke the render function every second. So this should work now. When we refresh the display area, the timestamp string should be ticking every second in both versions. We are now updating our user interface in the DOM, and this is the moment when React will potentially blow your mind. If you try to type something in the text box of the HTML version, you will not be able to. This is very much expected because we are basically throwing away the whole DOM node on every tick and regenerating it. However, if you try to type something in the text box that is rendered with React, you can certainly do that. Although the whole React rendering code is within our ticking timer, React is changing only the timestamp text and not the whole DOM node. This is why the text input was not regenerated and we were able to type in it. You can see the different ways we are updating the DOM visually if you inspect the two DOM nodes in the Chrome DevTools elements panel. The Chrome DevTools highlight any DOM elements that get updated. You will see how we are regenerating the entire first mountNode element with every tick, while React is smartly only regenerating the content of the pre element in the second mountNode. This is React's smart diffing algorithm in action. It only regenerates in its DOM node what actually needs to be regenerated, while it keeps everything else the same. This diffing process is possible because of React's virtual DOM and the fact that we have a representation of our user interface in memory because we wrote it in JavaScript. For every tick in this example, React keeps the last UI version in memory, and when it has a new one to take to the browser, that new UI version will also be in memory. So React can compute the difference between the new and the old versions. In this example, the difference was the content of the pre element. React will then instruct the browser to update only the computed diff and not the whole DOM node. No matter how many times we regenerate our interface, React will take to the browser only the new partial updates. Note that the HTML version can be easily changed with a few more lines to make it update only the content of the pre element as well instead of the whole thing. But that requires some imperative programming. We'll first have to find the element that needs changing in the DOM tree and add some more imperative logic to change its content. We are not doing that in React. We're being declarative in React. We just told React that we'd like a pre element with the date string. No imperative logic is here, and yet we're still getting the efficiency of a tuned‑up imperative alternative. This is the subtle power here. The React way is not only a lot more efficient, but it also removes a big layer of complexity about the way we think about updating user interfaces. Having React do all the computations about whether we should or should not update the DOM enables us to focus on thinking about our data and state and the way to model that state. We then only manage the updates that's needed on the state without worrying about the steps needed to reflect these updates in the actual user interface in the browser because we know React will do exactly that for us, and it will do it in an efficient way.
+You know the basics of React, and you've probably formed your initial impression about it. My initial impression was why go for all this trouble? Why use JavaScript to generate HTML? What exactly is the value I am getting from doing all that? Let me show you that value in action.
+
+https://jscomplete.com/playground/rgs1.7
+
+In this example, we have two simple DOM nodes, one being controlled with the native DOM web API directly using innerHTML and another being controlled with the React API, which in turn uses the DOM API.
+
+The only major difference between the ways we are building these two nodes in the browser is that
+in the HTML version, we used a string to represent the content
+in the React version, we used pure JavaScript calls and represented the content with an object instead of a string.
+
+There's no JSX, and I will also use a regular JavaScript interval timer here to create some UI state so that we can do a stateful change for both versions. No matter how complicated the HTML user interface is going to get, when using React, every HTML element will be represented with a JavaScript object using a React.createElement call.
+
+Let's now add some more features to this simple UI. Let's add an input box that we can type into. To nest elements in our HTML template, it is straightforward in the HTML version. We can just add an input element like this, and it will render. We can do the same in React by adding more arguments after the third argument for React.createElement. To match what we did in the native HTML node, we can add a fourth argument here that is another React.createElement call that renders an input element. This input element has no attributes and no children. There we go. Okay, not too bad so far. Let's add another node to both trees. This time, let's render the current time. The JavaScript currentTime line at the bottom is used to display the current time. Just include this in both versions. Since the first version is a template string here, if you notice these are backticks and not single quotes, so this makes the innerHTML a template string, and I can use a dollar sign syntax here and include the JavaScript line to render the time. Let me put this value inside a pre tag just to give it some monospaced font. Test that. The time is showing up. To add the timestamp in the React version, we add a fifth element to the top‑level div element. This new fifth element is another React.createElement call. This time it's a pre tag as we used in the HTML version, no attributes as well, and the new date String for content. Both the HTML and React versions are still rendering the exact same HTML in the browser.
+```js
+document.getElementById('mountNode').innerHTML = `
+	<div>
+    Hello HTML
+    <input />
+    <pre>${(new Date).toLocaleTimeString()}</pre>
+  </div>
+`;
+
+ReactDOM.render(
+  React.createElement(
+    'div',
+    null,
+    'Hello React',
+    React.createElement('input', null),
+    React.createElement('pre', null, (new Date).toLocaleTimeString())
+  ),
+  document.getElementById('mountNode2'),
+);
+```
+But as you can see, the React way is a lot more complicated than the native DOM way.
+
+So, why go for all this trouble? What is it that React does so well that is worth giving up the familiar HTML and having to learn a new API to write what can be simply written in HTML? The answer is not about rendering the first HTML view. It's about what we need to do to update any existing views in the DOM.
+
+So let's do an update operation on the DOM that we have so far. Let's simply make the timestamp tick every second. We can easily repeat a JavaScript call in the browser using the set interval web timer API. So let's put all of our DOM manipulations for both the HTML and the React versions into a simple arrow function called render.
+
+const render = () => {}
+
+copy all of the previous code and put it inside the render function, then use the setInterval call at the bottom to invoke the render function every second:
+
+```js
+const render = () => {
+  document.getElementById('mountNode').innerHTML = `
+    <div>
+      Hello HTML
+      <input />
+      <pre>${(new Date).toLocaleTimeString()}</pre>
+    </div>
+  `;
+
+  ReactDOM.render(
+    React.createElement(
+      'div',
+      null,
+      'Hello React',
+      React.createElement('input', null),
+      React.createElement('pre', null, (new Date).toLocaleTimeString())
+    ),
+    document.getElementById('mountNode2'),
+  );
+}
+setInterval(render, 1000);
+```
+
+So this should work now. When we refresh the display area, the timestamp string should be ticking every second in both versions. We are now updating our user interface in the DOM, and this is the moment when React will potentially blow your mind. If you try to type something in the text box of the HTML version, you will not be able to. This is very much expected because we are basically throwing away the whole DOM node on every tick and regenerating it. However, if you try to type something in the text box that is rendered with React, you can certainly do that. Although the whole React rendering code is within our ticking timer, React is changing only the timestamp text and not the whole DOM node. This is why the text input was not regenerated and we were able to type in it.
+
+You can see the different ways we are updating the DOM visually if you inspect the two DOM nodes in the Chrome DevTools elements panel. The Chrome DevTools highlight any DOM elements that get updated. You will see how we are regenerating the entire first mountNode element with every tick, while React is smartly only regenerating the content of the pre element in the second mountNode.
+
+This is React's smart diffing algorithm in action. It only regenerates in its DOM node what actually needs to be regenerated, while it keeps everything else the same. This diffing process is possible because of React's virtual DOM and the fact that we have a representation of our user interface in memory because we wrote it in JavaScript. For every tick in this example, React keeps the last UI version in memory, and when it has a new one to take to the browser, that new UI version will also be in memory. So React can compute the difference between the new and the old versions. In this example, the difference was the content of the pre element. React will then instruct the browser to update only the computed diff and not the whole DOM node. No matter how many times we regenerate our interface, React will take to the browser only the new partial updates.
+
+Note that the HTML version can be easily changed with a few more lines to make it update only the content of the pre element as well instead of the whole thing. But that requires some imperative programming. We'll first have to find the element that needs changing in the DOM tree and add some more imperative logic to change its content. We are not doing that in React. We're being declarative in React. We just told React that we'd like a pre element with the date string. No imperative logic is here, and yet we're still getting the efficiency of a tuned‑up imperative alternative. This is the subtle power here. The React way is not only a lot more efficient, but it also removes a big layer of complexity about the way we think about updating user interfaces. Having React do all the computations about whether we should or should not update the DOM enables us to focus on thinking about our data and state and the way to model that state. We then only manage the updates that's needed on the state without worrying about the steps needed to reflect these updates in the actual user interface in the browser because we know React will do exactly that for us, and it will do it in an efficient way.
+
 Wrap Up
 
-A React application is a set of reusable components. Components are just like functions. They take input and they output a description of a user interface in the form of a React element. The ReactDOM library enables us to render those React elements in the browser, and it will rerender them for us automatically when their in‑memory state changes. To accomplish this, we write the component's markup using the React JavaScript API. Writing HTML in JavaScript is a lot different than what we're used to. But luckily, React has a way to write the virtual DOM in a syntax very close to the HTML syntax we're used to. This special React syntax is called JSX. Once we have the virtual DOM description in JSX, we can pre‑transform it to valid React API calls before shipping it to the browser. Browsers do not have to deal with JSX. The input for a component is a set of properties you can access inside the component with its first argument object, which is usually named props, and also a set of state elements that a component can hook into with the special useState function. A component state can be changed inside that component, and every time a component changes its state, React rerenders it. The props of a component cannot be changed by the component, but the whole component can be rerendered with different props by the component's parent. The syntax to mount a React component in the browser is ReactDOM.render, and that takes two arguments, the component to render and the HTML element to hold the React‑rendered markup. React also comes with normalized events that work across all browsers in a standard way. We've seen the onClickEvent handler in this course module, and there are other onSomething events like onChange and onSubmit, and many others. React actually has two types of components, function and class components. We've only seen function components, but I'll be covering class components in future videos as well. However, before we start another application on React, let's get you comfortable with all the modern JavaScript syntax that's usually used in the React ecosystem. That's our next course module.
-Modern JavaScript Crash Course
-ECMAScript and TC39
+A React application is a set of reusable components.
+Components are just like functions. They take input and they output a description of a user interface in the form of a React element.
 
-React developers love modern JavaScript and use most of its new features. We'll review these features in this course module, which you can totally skip if you think you're comfortable with the topic. JavaScript is a very different language than it used to be just a few years ago. ECMAScript, which is the official specification that JavaScript conforms to, has improved a lot in the past few years after a rather long period of no updates to the language at all. Today, the ECMAScript Technical Committee, which is known as TC39, makes yearly releases of ECMAScript, and modern browsers shortly follow by implementing the new features introduced in each year. This has started with ECMAScript 2015, or its other commonly known name, ES6. Since then, we've had yearly releases named ES plus the current year. Some of these releases were big, and others were very small, but the language now has a continuous update cycle that drives more innovative features and phases out the famous problems JavaScript had over the years. In this module, we'll go over some of the features that are usually used in React applications. This will not be a complete coverage of all the modern ECMAScript features. If you want to expand on this topic, check out The Complete Introduction to Modern JavaScript in the beginner collection at jsComplete.
-Variables and Block Scopes
+The ReactDOM library enables us to render those React elements in the browser, and it will rerender them for us automatically when their in‑memory state changes.
 
-First up, let's talk about variables and block scopes. Here's one of my favorite JavaScript trick questions. Is this a valid JavaScript line of code? Testing it in the playground seems to work fine. There are no errors, which means it's valid. So now the question is, what did it do? These are nested block scopes. We could write code in here like var v = 42 and then access the v variable right after, and it would work fine. JavaScript does not really care about the spacing or new lines in here. A block scope is created with a pair of curly braces, just like this example here. This also applies to if statements and for statements as well. These also get their own block scopes. Block scopes are a bit different than function scopes, which are created for each function. You can see one difference when using the var keyword to define variables. Variables defined with var inside a function scope are okay. They don't leak out of that scope. If you try to access them outside of that scope, you can't. As you can see here, we cannot access the result variable that was defined inside the sum function's scope. However, when you define variables with var in a block scope, you can totally access them outside that scope afterward, which is a bit problematic. And here's one practical example of that. This for loop has an index variable that ticks from 1 to 10. You can access that variable inside the loop normally, but you can also access the same variable outside the loop. After all the iterations are done, the value of i here will be reported as 11, which is a bit weird. This is why the more recommended way to declare variables in modern JavaScript is by using the let keyword instead of the var keyword. When defining variables with let, we won't have this weird out of scope access problem. If we replace this var here with let and redo the same test and try to access i after that, you'll get the error that i is not defined. This makes sense because we're outside of the scope where it was defined, so this is much better. Block scopes, like function scopes, can also be nested, like the trick question we started with. This is a nested block scoop. Within each level, the scope will protect the variables defined in it as long as we use the let keyword or the const keyword, which behaves in a good way like the let keyword, We use const when the reference assigned to a variable is meant to be a constant one. References assigned with const cannot be changed. Note how I'm saying references here and not values, because defining an object with const does not make it an immutable object. It just means constant reference to it. We can still change that object just like we can do within functions that receive objects as arguments. If the variable defined with const is a scaler one, like a string or an integer, you can think of it as an immutable object. Because these scaler values in JavaScript are immutable, we can't mutate the value of a string or an integer in JavaScript. And when we use const with these scalar values, we can't change the references either. However, placing an array or object in a const is a different story. The const will guarantee that the variable is pointing to the same array or object, but the content of the array or object can still be mutated. So be careful here, and keep that in mind. Variables defined with const are much better than those defined with let for scaler values and functions because you get a guarantee that the value did not accidentally change. Looking at this code example here and assuming that between the first and last line there is a big program, on the last line, if the program runs without any errors, we can confidently say that the answer variable still holds the 42 value. For the same example with let, we would have to parse through the code to figure out if the answer variable still holds the 42 value. If you need a variable to hold a changing scaler value, like a counter, for example, then using let is okay. However, for most other cases, it's probably much better for you to stick with using const for all your variables.
-Arrow Functions
+To accomplish this, we write the component's markup using the React JavaScript API. Writing HTML in JavaScript is a lot different than what we're used to. But luckily, React has a way to write the virtual DOM in a syntax very close to the HTML syntax we're used to. This special React syntax is called JSX. Once we have the virtual DOM description in JSX, we can pre‑transform it to valid React API calls before shipping it to the browser. Browsers do not have to deal with JSX.
 
-There are many ways to define a function in JavaScript, and the modern specification introduced a new way, arrow functions. It is a way to define a function without typing the keyword function, but rather by using an arrow symbol like this. This shorter syntax is preferable not only because it's shorter, but also because it behaves more predictably with closures. Let me tell you about that. An arrow function does not care who calls it, while a regular function cares very much about that. A regular function, like X here, always binds the value for its this keyword for its caller. If it didn't have an explicit caller, the value of the this keyword will be determined by the calling environment. In the playground here, it's the global window object. An arrow function, on the other hand, like Y here, not caring about who called it, will close over the value of the this keyword for its scope at the time it was defined. Let me say that one more time. An arrow function will close over the value of the this keyword for its scope at the time it was defined. This makes it great for delayed execution cases like events and listeners because it gives easy access to the defining environment, not the calling environment. This is important, so let's take a look at an example. In this playground, the top‑level this keyword is associated with a special object, which has the ID of REPL. Now, I've prepared this tester object that defines two similar functions. In both functions, I am logging the value of the this keyword to the display. Func1 is defined with the regular syntax, while func2 is defined with the arrrow syntax. When func1 is called, it's this keyword will be associated with its caller, which in this case, is the tester object itself. This is why you see the printed value for the this keyword in func1 representing the tester object itself. However, when func2 is called, it's this keyword will be associated with the same this keyword that was available in the function's scope when it was defined. It was this playground's REPL object that we've seen on the top level. This is a big benefit when working with listeners and event handlers, and it's why you'll see me using arrow functions often. One other cool thing about arrow functions is that if the function only has a single line that returns something, you can make it even more concise by removing the curly braces and the return keyword altogether. You can also remove the parentheses around the argument if the function receives a single argument, making it really short. This syntax is usually popular for functions that get passed to array methods, like map, reduce, and filter, and functional programming in general.
-Object Literals
+The input for a component is a set of properties you can access inside the component with its first argument object, which is usually named props, and also a set of state elements that a component can hook into with the special useState function.
 
-You can create a JavaScript object in a few different ways, but the most common way is to use an object literal. Here's an example of that. This is a lot easier than doing something like new object, which you can do if you want to. Literal initiation is very common in JavaScript. We use it for objects, arrays, strings, numbers, and even things like regular expressions. The object literal syntax supports a few modern goodies. Here's a simple example where this object defined two regular properties. If you need to define a property that holds a function, you can use this short syntax with object liberals. Of course, if you need an arrow function, you can still use this regular property syntax. Modern object literals also support dynamic properties using this syntax. It looks like an array literal, but don't confuse it with that. JavaScript will evaluate what's within the square brackets and make the result of that the new property name. So, assuming we have a variable named mystery defined before this X object, here's a JavaScript interview question. What is the value of obj.mystery? It's undefined because this mystery property was defined with a dynamic property syntax. This means JavaScript will evaluate the mystery expression first, and whatever that expression evaluates to will become the object's property. For this case, the object will have a property named answer with the value of 42. Another widely popular feature about object liberals is available to you when you need to define an object with property names to map values that exist in the current scope with the exact same name. Here's an example. If we have a variable named InverseOfPI, we would like obj here to have a property named InverseOfPI holding the same value as the variable InverseOfPI. Instead of typing that name twice, you can use the shorter syntax by removing the second part. This shorter syntax is equivalent to what I had before. Objects are very popular in JavaScript. They are used to manage and communicate data, and using these features will make the code a bit shorter and easier to read.
-Destructuring and Rest/Spread
+(props) => {}
+[val, setVal] = useState(initialVal)
 
-The destructuring syntax is really simple, but I've seen it confuse many people before. Let me make sure that does not happen to you. Destructuring works for both arrays and objects. Here's an example for objects using the built‑in Math object in JavaScript. When you have an object like Math, and you want to extract values out of this object into the enclosing scope, for example, instead of using Math.PI, you'd like to have a constant named PI to hold the value of Math.PI, which is easy because you can have a line like this for PI and another one for E if you need the same for E and so on. With the destructuring syntax, these three lines are equivalent to this single line. It destructures the three properties out of its right‑hand object and into the current scope. This is useful when you need to use a few properties out of a bigger object. For example, here's a line to destructure Component, Fragment, and useState out of the React API. After this line, I can use the useState method directly like this. If I don't use destructuring here, I'll have to type a lot more characters and lines. Destructuring also works inside function arguments. If the argument passed to a function is an object, instead of using the name of the object every time you want to access its properties, you can use the destructuring syntax within the function parentheses to destructure just the properties that you're interested in and make them local to that function. This generally improves the readability of functions, and you'll see it used a lot for the props argument in React function components. So here we have a circleArea function, which expects an object as its argument, and it expects that object to have a radius property. We're destructuring the radius property out of that object and using it locally in the function. If we call this circleArea function with an object like circle here, it will use its radius property inside of its calculation. Let's go ahead and test that. You'll see the circleArea calculation working as expected. Destructured arguments can also be defined with defaults, like regular arguments. Say I'd like to use a default value of 2 for a precision property here. Let's define a second options argument for this circleArea function here, and lets destructure our precisions out of that argument to use it in the function's body. If I'd like to use a default value of 2 for the precision property, I can just use the equal sign here after destructuring precision, and that means the default for precision, if not specified, will be 2. I can also make this whole second argument optional using an equal sign after the destructuring syntax. The same call here will use an empty object for the second argument of the function, and then it will use a default value of 2 for the precision property that is now used in the function. Of course, if we invoke the circleArea function with a second argument that has the precision property, that value will be used inside the function. As you can see, this destructuring feature offers a good alternative to using named arguments in functions, which is much better than relying on positional arguments. Destructuring, whether you do it in function arguments or directly with variables, also works for arrays. If you have an array of values and you want to extract these values into local variables, you can use the item's positions to destructure their values into local variables just like this. Note how I used double commas here to skip destructuring the third item in the array. The destructured variable fourth here will hold the value of 40. In React, the useState function returns an array of two items. We use array destructuring with useState to capture these two items into local variables. Array destructuring is useful when combined with the rest operator, which has an example here. By using these three dots, we are asking JavaScript to destructure only one item out of this array and then create a new array under the name restOfItems to hold the rest of the items after removing the first one. Let's test that. So first, here will be 10, and rest of items will be an array of 20, 30, and 40. This is powerful for splitting the array, and it's also even more powerful when working with objects to filter out certain properties from an object. Here's an example of that. Say that we have this data object that has a few temp properties, and we'd like to create a new object that has the same data except for temp1 and temp2. We can destructure temp1 and temp2 and then use the rest operator to get the remaining properties into a new object called person. Just like the three dots of rest, you can use the three dots to spread one array or object into a new array or object. This is useful for copying arrays and objects. You can spread the items in an array into a new array, like in this example. NewArray here will be a copy of the restOfItems array that we destructured above. Similarly, you can also spread the key‑value pairs of an object into a new object, like this example. The newObject here will be a copy of the person object. Note that these copies are shallow copies. Any nested objects or arrays will be shared between these copies. Don't forget that.
-Template Strings
+A component state can be changed inside that component, and every time a component changes its state, React rerenders it.
+The props of a component cannot be changed by the component, but the whole component can be rerendered with different props by the component's parent.
 
-Template strings are one of my favorite new features that were introduced to the JavaScript language a few years ago. Let me tell you about them. You can define strings in JavaScript using either single quotes or double quotes. These two ways to define string literals in JavaScript are equivalent. Modern JavaScript has a third way to define strings, and that's using the backtick character. Strings defined with the backtick character are called template strings because they can be used as a template with dynamic values. They support what we call interpolation. You can inject any dynamic expression in JavaScript within these dollar sign curly braces holders. For example, we can use Math.random here, and the final string will have the value of the expression included exactly where it was injected in the string. With template strings, you can also have multiple lines in the string, something that was not possible with the regular quoted strings. Backticks look very similar to single quotes, so make sure to train your eyes to spot template strings when they are used in examples.
-Classes
+ReactDOM.render
 
-JavaScript offers many programming paradigms, and object‑oriented programming is one of them. Everything in JavaScript is an object, including functions. Modern JavaScript also added support for the class syntax. A class is a template or blueprint for you to define shared structure and behavior between similar objects. You can define new classes, make them extend other classes, and instantiate objects out of them using the new keyword, You can customize the construction of every object and define shared functions between these objects. Here's a standard class example that demonstrate all these features. We have a Person class and a Student class that extends the Person class. Every student is also a person. Both classes define a constructor function. The constructor function is a special one that gets called every time we instantiate an object out of the class, which we do using the new keyword, as you can see here. We are instantiating one object from the Person class and two other objects from the Student class. The arguments we pass here when we instantiate these objects are accessible in the constructor function of the class. The Person class expects a name argument, and it stores that value on the instance using the this keyword here. The Student class expects a name argument and the level argument. It stores the level value on its instance, and since it extends the Person class, it will call the super method with the name argument, which will invoke the Person class constructor function and store the name as well. Both classes defined a greet function that uses the values they store on each instance. In the third object, which we instantiated from the Student class here, I also defined a greet function directly on the object. When we test this script, o1 will ease the greet method from its class, the Person class, o2 will use the great method from the Student class, and o3 will use its own directly defined greet method.
-Promises and Async/Await
+The syntax to mount a React component in the browser is ReactDOM.render, and that takes two arguments, the component to render and the HTML element to hold the React‑rendered markup.
 
-When you need to work with asynchronous operations, usually have to deal with promise objects. A promise is an object that might deliver data at a later point in the program. An example of an async function that returns a promise is the web fetch API that's natively available in some browsers. Here we're fetching information from the top‑level GitHub API. Since fetch returns a promise, to consume that promise, we do at .then call on the result of fetch and supply a callback function in here. This callback function will receive the data from the API. The fetch API has a raw response. If you need to parse the data as JSON, you need to call the json method on the response object, and that json method is also on asynchronous one, so it returns a promise as well. To get the data, we need another .then call on the result of the json method, and in the callback of that, we can access the data. As you can see, this syntax might get complicated with more nesting of asynchronous operations or when we need to combine this with any looping logic. You can simplify the nesting here by making each promise callback return the promise object, but the whole .then syntax is a bit less readable than the modern way to consume promises in JavaScript, which is using async await. Let me show you that. You just await on the asynchronous call that returns a promise, and that will give you back the response object. Then you can await on the json method to access the JSON data, just like this. And to make these await calls, you need to label the function as async, and this will work exactly the same. The async await syntax is just a way for us to consume promises without having to nest .then calls. It's a bit simpler to read, but keep in mind that once you await on anything in a function like fetchData here, this function itself becomes asynchronous, and it will return a promise object.
+React also comes with normalized events that work across all browsers in a standard way. We've seen the onClickEvent handler, and there are other onSomething events like onChange and onSubmit, and many others.
+
+React actually has two types of components, function and class components. We've only seen function components, but I'll be covering class components in future videos as well.
+
+
+
+
+
+
 The GitHub Cards App
 What We Are Building
 
-We've seen simple components, we worked with multiple components, and we've seen how and when to use state and props of a component. However, we haven't really worked with any real data yet. We're going to be doing exactly that in this course module, and we'll use the GitHub public REST API for it. We're going to build a simple GitHub profile card component that displays information about lists of GitHub profiles. There's a form here where the user can type in another GitHub handle and use the Add card to add a new profile to the list of displayed profiles. So we will be learning how to take input from the user here and how to use that input to make calls to an API, the GitHub API for this example. And the goal of this app is to get you comfortable working with data objects. But the other thing about this app is that we're going to use React class components in here. While the React team might eventually decide to phase out class components in favor of stateful functions, although no plans for that yet, but class components have been the norm in React for a long time, and many React projects will continue to use them. As a React developer, you're expected to understand and be comfortable with both function and class components. This is going to be the only example we'll write using the class components in this course. After that, the bigger game application will be entirely written with function components and hooks, and I am certain that you're going to like working with function components a lot more than class ones, but you still need to learn them both.
+We'll work with data using a GitHub public REST API.
+We're going to build a simple GitHub profile card component that displays information about lists of GitHub profiles.
+
+Using a form here where the user can type in a GitHub handle and use the Add card to add a new profile to the list of displayed profiles.
+
+So we will be learning
+	how to take input from the user here
+	how to use that input to make calls to an API
+	how to use React class components
+
+
 React Class Components
 
-Let's get started. At jsdrops.com/rgs2.1 I prepared a tiny App function component and rendered it to the DOM. We'll use this one to contain all of the other components in this app. I've also included some styles for the app here under the CSS editor just to space things out a bit. The first decision you need to make in a React application is the component structure. You need to decide how many components to use and what each component should describe. This is often easy if you have the full picture of the application you're building, but practically you don't. I usually start with what makes sense for me at the beginning and keep an open mind about it while making progress. I rename components a lot, and sometimes I remove them if I find no reason for them to stick around. There isn't a right or wrong answer here, but there are good and better answers, and you'll only get better with experience. So just start with something, and see where that takes you. Our application will eventually be a list of GitHub cards. That's your first clue that you need a component to represent a single card and another component to represent the list itself. You can start coding either one of these components. I like to start from the bottom up or from the deepest point in the tree, but it's sometimes useful to start with a top to bottom approach, especially when you know most of the components in the tree. Before we introduce new components, let's learn how to use the class syntax for components. Let's start by converting this App function component into a class one. This is simple. Instead of a function component, you define a class with the same name and make it extend a special class in React, the React.Component class. Uppercase component here. This extending of React.Component makes your App JavaScript class an official React component. And just like function components, class components also map data to view. They do that using a few concepts related to class components. We're going to learn about two main concepts in this example, the concept of the constructor and the concept of the this keyword in classes. I'll explain them as we need them, but for now, you need to know that each React component must have a render function. A class can have as many functions as needed, but the render function in a React component is the only function that's required. You make the render function return the virtual DOM description of your component. This is the same as what the original function component returned, so we can return it here as is. However, instead of receiving props as arguments, in class components, both the props and the state are managed on an instance of the class. Now that we're using a class, we are creating instances of them, and each instance gets its props and state. So this title prop here needs to become this.props.title, and this will just work. Let me do some cleanups, and now we have an App class component. Let's now create the card component, so class Card extends React.Component, render function, and a return, and let's make it return a div placeholder. I'm going to give it a class of github‑profile. Let me put it on multi lines and put a placeholder. And to render this card component, we need to include it in the App component that gets rendered in the DOM. So do the same here, multi line, top‑level div container. I'll put the header that we had before, and we'll render a Card component. Using a class component is exactly the same as using a function component. There's no difference here. There we go. The Card component is showing up on the screen. I've prepared some markup for this Card, so we're just going to use it. This uses an img placeholder and simple div for information that contains the name and the company. Note how I've given many elements class names here. These class names, for me personally, make the code a little bit more readable. But it's also handy for us to quickly reference them in CSS style sheets and give them some styles. And this is exactly what I did here in the CSS style sheet. I've added some styling using the class names that I used in the markup. I saved the code we have so far here under rgs2.2.
+https://jscomplete.com/playground/rgs2.1
+```js
+const App = ({title}) => (
+  <div className="header">{title}</div>
+);
+
+ReactDOM.render(
+	<App title="The GitHub Cards App" />,
+  mountNode,
+);
+```
+I prepared a tiny App function component and rendered it to the DOM. We'll use this one to contain all of the other components in this app.
+
+I've also included some styles for the app here under the CSS editor just to space things out a bit.
+```css
+.github-profile {
+	margin: 1rem;
+  img {
+    width: 75px;
+  }
+  .info {
+    display: inline-block;
+    margin-left: 12px;
+		.name {
+    	font-size: 1.25rem;
+      font-weight: bold;
+    }
+  }
+}
+
+form {
+	border: thin solid #ddd;
+  background-color: #fbfbfb;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: center;
+}
+
+.header {
+	text-align: center;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+```
+
+The first decision you need to make in a React application is the component structure. You need to decide how many components to use and what each component should describe.
+
+This is often easy if you have the full picture of the application you're building, but practically you don't. I usually start with what makes sense for me at the beginning and keep an open mind about it while making progress. I rename components a lot, and sometimes I remove them if I find no reason for them to stick around. There isn't a right or wrong answer here, but there are good and better answers, and you'll only get better with experience. So just start with something, and see where that takes you.
+
+
+Our application will eventually be a list of GitHub cards. That's your first clue that you need a component to represent a single card and another component to represent the list itself. You can start coding either one of these components. I like to start from the bottom up or from the deepest point in the tree, but it's sometimes useful to start with a top to bottom approach, especially when you know most of the components in the tree.
+
+Before we introduce new components, let's learn how to use the class syntax for components. Let's start by converting this App function component into a class one. This is simple. Instead of a function component, you define a class with the same name and make it extend a special class in React, the React.Component class. Uppercase component here. This extending of React.Component makes your App JavaScript class an official React component. And just like function components, class components also map data to view.
+```js
+class App extends React.Component{
+  render (){
+    return (
+      <div className="header">{this.props.title}</div>
+    )
+  }
+}
+```
+We're going to learn about two main concepts in this example, the concept of the constructor and the concept of the this keyword in classes. I'll explain them as we need them, but for now, you need to know that each React component must have a render function. A class can have as many functions as needed, but the render function in a React component is the only function that's required. You make the render function return the virtual DOM description of your component. This is the same as what the original function component returned, so we can return it here as is. However, instead of receiving props as arguments, in class components, both the props and the state are managed on an instance of the class. Now that we're using a class, we are creating instances of them, and each instance gets its props and state. So this title prop here needs to become this.props.title, and this will just work.
+
+Let's now create the card component
+```js
+class Card extends React.Component {
+  render (){
+    return (
+      <div className="github-profile">
+				One Github Profile...
+      </div>
+    )
+  }
+}
+```
+so class Card extends React.Component, render function, and a return, and let's make it return a div placeholder. I'm going to give it a class of github‑profile. Let me put it on multi lines and put a placeholder.
+
+And to render this card component, we need to include it in the App component that gets rendered in the DOM.
+```js
+class App extends React.Component{
+  render (){
+    return (
+      <div>
+        <div className="header">{this.props.title}</div>
+        <Card />
+      </div>
+    )
+  }
+}
+```
+So do the same here, multi line, top‑level div container. I'll put the header that we had before, and we'll render a Card component. Using a class component is exactly the same as using a function component. There's no difference here. There we go. The Card component is showing up on the screen.
+
+I've prepared some markup for this Card.
+```js
+class Card extends React.Component {
+  render (){
+    return (
+      <div className="github-profile">
+          <img src="https://placehold.it/75"/>
+          <div className="info">
+            <div className="name">Name here...</div>
+            <div className="company">Comapny here...</div>   
+          </div>
+      </div>
+    )
+  }
+}
+```
+This uses an img placeholder and simple div for information that contains the name and the company. Note how I've given many elements class names here. These class names, for me personally, make the code a little bit more readable. But it's also handy for us to quickly reference them in CSS style sheets and give them some styles. And this is exactly what I did here in the CSS style sheet. I've added some styling using the class names that I used in the markup.
+
+I saved the code we have so far here under:
+https://jscomplete.com/playground/rgs2.1
+
+
+
 Styling React Components
 
-Before we get into working with data, let me tell you a bit about an alternative way to style your React components without using a global CSS style sheet. Let me actually scratch the global CSS sheet and lose all the styling for what we have so far. Now with this alternatively to style React components, you don't really need to have a className in here, so you can actually get rid of all these classNames if you want to. Instead, you pass a style property. Now, this is a special React property. It is not like the HTML style property that's usually frowned upon. Just like events, instead of passing a string, we pass this special React property, a JavaScript object. So we use curly braces for a dynamic value, and then we use another set of curly braces to start an object literal. This is not a special double curly brace syntax. This is just an object literal inside the normal JSX dynamic expression syntax that we do with curly braces. Inside the style object we can specify any styles we want this element to have using the JavaScript API for styles. For example, if I want to give this GitHub profile card some margin, I can use margin and put the value in here in a string. So this would be 1rem, for example. Similarly, here is an example style to give the info class a display of inline‑block and a marginLeft of 10 pixels. Let's also give the name here a bigger fontSize and test all that. Note the syntax here. It's all JavaScript. It's camel case for property names and it's strings for values. It is not the same as what you use in the regular CSS. Now, there is a lot of debate around this method. It feels like using inline styles, and some people call it that, but it's quite different, the difference being this is JavaScript, not strings. We can generate it and reuse it, and we have the complete power of JavaScript to do that. We can use conditional styles here without having to deal with conditional class names, which is usually a better deal. But this method also has its disadvantages. I often use a mix of JavaScript styles and global styles in my projects. JavaScript styles are excellent for conditional styling. Instead of using different class names based on a certain condition, with JavaScript styles, you can just output different objects, which, I think it's a bit cleaner. Here is a non‑related example about that specific use case. This component will output its text in either green or red colors randomly about half the time. The logic for that is right here in the component. I like that. This is easier to work with than conditionally using a class name and then go track what that class name is doing in the global CSS style sheet. I'm pretty sure we're going to need to use this in some styles in the upcoming examples, so keep this in mind. The styling methods we talked about here are really the most basic ones. They sure have a lot of limits and challenges. To mention one example, it would be a big challenge to implement media queries with JavaScript style objects. The good news is there are a lot more solutions that offer more powerful ways. You can see a good list of the available options in this GitHub repository here. Some of these options are deprecated, so don't let this long list scare you. You can find the popular options here, judging by the number of stars, but you should really take a look at CSS modules, which has a few options here. But this babel‑plugin‑css‑in‑js one is probably a good starting point. There's also React Native for Web, which would make sense if you're planning to use React Native as well.
+Before we get into working with data, let me tell you a bit about an alternative way to style your React components without using a global CSS style sheet. Let me actually scratch the global CSS sheet and lose all the styling for what we have so far. Now with this alternatively to style React components, you don't really need to have a className in here, so you can actually get rid of all these classNames if you want to. Instead, you pass a style property.
+```js
+<div className="github-profile" style={{ }}>
+```
+Now, this is a special React property. It is not like the HTML style property that's usually frowned upon. Just like events, instead of passing a string, we pass this special React property, a JavaScript object. So we use curly braces for a dynamic value, and then we use another set of curly braces to start an object literal. This is not a special double curly brace syntax. This is just an object literal inside the normal JSX dynamic expression syntax that we do with curly braces.
+
+Inside the style object we can specify any styles we want this element to have using the JavaScript API for styles. For example, if I want to give this GitHub profile card some margin, I can use margin and put the value in here in a string. So this would be 1rem, for example.
+```js
+<div className="github-profile" style={{ margin: '1rem' }}>
+```
+
+Similarly, here is an example style to give the info class a display of inline‑block and a marginLeft of 10 pixels. Let's also give the name here a bigger fontSize and test all that.
+```js
+class Card extends React.Component {
+	render() {
+  	return (
+    	<div className="github-profile" style={{ margin: '1rem' }}>
+    		<img src="https://placehold.it/75" />
+        <div className="info" style={{ display: 'inline-block' marginLeft: 10 }}>
+          <div className="name" style={{ fontSize: '125%' }}>Name here...</div>
+          <div className="company">Company here...</div>
+        </div>
+    	</div>
+    );
+  }
+}
+```
+Note the syntax here. It's all JavaScript. It's camel case for property names and it's strings for values. It is not the same as what you use in the regular CSS.
+
+Now, there is a lot of debate around this method. It feels like using inline styles, and some people call it that, but it's quite different, the difference being this is JavaScript, not strings. We can generate it and reuse it, and we have the complete power of JavaScript to do that. We can use conditional styles here without having to deal with conditional class names, which is usually a better deal. But this method also has its disadvantages. I often use a mix of JavaScript styles and global styles in my projects.
+
+JavaScript styles are excellent for conditional styling. Instead of using different class names based on a certain condition, with JavaScript styles, you can just output different objects, which, I think it's a bit cleaner.
+
+Here is a non‑related example about that specific use case. This component will output its text in either green or red colors randomly about half the time.
+
+```js
+class ConditionalStyle extends React.Component {
+	render() {
+  	return (
+    	<div style={{ color: Math.random() < 0.5 ? 'green': 'red' }}>
+    	  Conditional Style
+    	</div>
+    );
+  }
+}
+
+ReactDOM.render(
+	<ConditionalStyle />,
+  mountNode,
+);
+```
+
+
+The logic for that is right here in the component. I like that. This is easier to work with than conditionally using a class name and then go track what that class name is doing in the global CSS style sheet. I'm pretty sure we're going to need to use this in some styles in the upcoming examples, so keep this in mind.
+
+The styling methods we talked about here are really the most basic ones. They sure have a lot of limits and challenges. To mention one example, it would be a big challenge to implement media queries with JavaScript style objects. The good news is there are a lot more solutions that offer more powerful ways.
+
+You can see a good list of the available options in this GitHub repository here.
+https://github.com/MicheleBertoli/css-in-js
+
+Some of these options are deprecated, so don't let this long list scare you. You can find the popular options here, judging by the number of stars, but you should really take a look at CSS modules, which has a few options here. But the babel‑plugin‑css‑in‑js one is probably a good starting point. There's also React Native for Web, which would make sense if you're planning to use React Native as well.
+
+
+
 Working with Data
 
-Under the rgs2.3 link here, I added a temporary testData array for us to work with. This data was copied from the GitHub API so that once we're done testing our app with this fake test data, it will just work with the real API data. The URL I used to copy the GitHub data is api.github.com/users , and then you put any GitHub user name, and you'll see their data as a JSON object. Since we want to render multiple cards, we need another component to hold the different cards. We'll name this new component CardList. We can potentially manage the state of the application in this CardList component, but until we make that decision, we'll keep this component simple. I am going to actually write this component as a function component, just for you to be comfortable mixing these two components styles together. Not all components in the same React application have to be one type or the other. The CardList function component will receive the standard props argument and let's make it return a div that will hold our list of cards. So inside this div we'll render a Card component, just like that, and we'll need to change the app component to render the CardList instead of the Card. Make sure things are still working. Now let's put some real data in the Card component. We'll use the testData array for that. So we need to uncomment this part to make the test data available in the scope. And inside the render function for the Card component, I'm going to create a local variable here, call it profile, and grab the first element of the test data array. Now we need to change the place holder data here with dynamic values from the profile variable. So we need curly braces, and for the image we're going to use profile.avatar_url. For the name, we need profile.name. And for the company name, we need profile.company. Let's test that. There we go. Dan's profile information is ready. Now that we have an idea how a card is going to look like, let's make it reusable. If we want to render multiple cards right now, they will all render Dan's information because we are fetching the same profile in the Card component itself. So instead of doing this, we'll make the Card component receive its data through its props. So, for example, it will receive name property, like this, and a company property, and so on. One way of doing that is to take the object that holds the props and spread it inside the Card component element, like this. When we use the spread operator with an object like this in the React component, all the properties of that object will become props for this component. So let me spread two objects here to test, we'll spread 0 and 1. And to make this work in the Card component, the profile variable becomes this.props. Capture all the props coming for the Card component as a profile object, and we're already using that for data. Let's test. There we go, progress. The this keyword in here refers to an instance of the Card component. That's something that you need to understand. A beginner question here might be, what exactly is an instance? I mean, you probably know that objects can be instantiated from classes, and we call every object an instance. But what is an instance in a React application? Well, every time we use a class component, like we're doing here twice, React internally creates an instance from the component and uses it to render the element. That instance is something that React keeps in memory for each rendered element. It's not really in the browser. What's in the browser is the result of the DOM operation React came up with using that instance render method, which came from the component. Don't worry if you don't completely understand that. What you need to keep in mind for now is that each time we use a component, we get a different instance to work with. So the this keyword in the first card is different from the this keyword in the second card. And that's why React places the different props for each card on their different instance. And by using generic props in the Card component, we made it reusable. This means we can now use it to render any card, but we're still hard coding values in the CardList component. So let's fix that. And what we need here is to take an array of objects, as in the testData array in here, and map it into an array of card elements. So in here, instead of the hard coded cards, we can start with testData. This testData is an array, so we can map it into another array. This gives us access to a single profile object in the array of profiles. We can map that into a Card element just like this. And as props for this mapped Card element, we can spread the profile variable that was exposed from the map, and we don't need the hard coded values, and this should work. This line here is a mix of JavaScript and React. This map function here is a JavaScript function that you can invoke on arrays. It takes a function as an argument, and then it uses this function to convert one array into another array, using the return values in the function. So this map line is converting the testData object into something like this, an array of Cards elements because it's returning the Card element inside its function. And an array of Card elements is just an array of React.create element calls, and React is okay with that, React understands arrays. It will just join the array of Card components on automatically render them all. Now that we have a tested card, we can build the form for the user to type in a GitHub user name, query the GitHub API for that user name's data, and append it in the array of data that this app is using. We'll do that next.
+https://jscomplete.com/playground/rgs2.3
+
+Under the rgs2.3 link here, I added a temporary testData array for us to work with. This data was copied from the GitHub API so that once we're done testing our app with this fake test data, it will just work with the real API data. The URL I used to copy the GitHub data is api.github.com/users , and then you put any GitHub user name, and you'll see their data as a JSON object.
+
+Since we want to render multiple cards, we need another component to hold the different cards. We'll name this new component CardList. We can potentially manage the state of the application in this CardList component, but until we make that decision, we'll keep this component simple. I am going to actually write this component as a function component, just for you to be comfortable mixing these two components styles together. Not all components in the same React application have to be one type or the other. The CardList function component will receive the standard props argument and let's make it return a div that will hold our list of cards. So inside this div we'll render a Card component.
+```js
+const CardList = (props) => (
+  <div>
+    <Card />
+  </div>
+);
+```
+
+We'll need to change the app component to render the CardList instead of the Card.
+```js
+class App extends React.Component {
+	render() {
+  	return (
+    	<div>
+    	  <div className="header">{this.props.title}</div>
+        <CardList />
+    	</div>
+    );
+  }
+}
+```
+
+Now let's put some real data in the Card component. We'll use the testData array for that.
+```js
+const testData = [
+{name: "Dan Abramov", avatar_url: "https://avatars0.githubusercontent.com/u/810438?v=4", company: "@facebook"},
+{name: "Sophie Alpert", avatar_url: "https://avatars2.githubusercontent.com/u/6820?v=4", company: "Humu"},
+{name: "Sebastian Markbåge", avatar_url: "https://avatars2.githubusercontent.com/u/63648?v=4", company: "Facebook"},
+];
+```
+
+And inside the render function for the Card component, I'm going to create a local variable, call it profile, and grab the first element of the test data array. Now we need to change the place holder data here with dynamic values from the profile variable. So we need curly braces, and for the image we're going to use profile.avatar_url. For the name, we need profile.name. And for the company name, we need profile.company.
+```js
+class Card extends React.Component {
+	render() {
+    const profile = testData[0];
+  	return (
+    	<div className="github-profile">
+    	  <img src={profile.avatar_url} />
+        <div className="info">
+          <div className="name">{profile.name}</div>
+          <div className="company">{profile.company}</div>
+        </div>
+    	</div>
+    );
+  }
+}
+```
+
+Let's test that. There we go. Dan's profile information is ready. Now we'll make the Card component receive its data through its props.
+```js
+const CardList = (props) => (
+  <div>
+    <Card profile={testData[0]}/>
+  </div>
+);
+
+class Card extends React.Component {
+	render() {
+  	return (
+    	<div className="github-profile">
+    	  <img src={this.props.profile.avatar_url} />
+        <div className="info">
+          <div className="name">{this.props.profile.name}</div>
+          <div className="company">{this.props.profile.company}</div>
+        </div>
+    	</div>
+    );
+  }
+}
+```
+So, for example, it will receive name property, a company property and so on, via this.props.
+
+One way of doing that is to take the object that holds the props and spread it inside the Card component element:
+```js
+<Card {...testData[0]}/>
+```
+When we use the spread operator with an object like this in the React component, all the properties of that object will become props for this component. So let me spread two objects here to test, we'll spread 0 and 1.
+
+```js
+const CardList = (props) => (
+  <div>
+    <Card {...testData[0]}/>
+		<Card {...testData[1]}/>
+  </div>
+);
+```
+
+And to make this work in the Card component, the profile variable becomes this.props.
+```js
+class Card extends React.Component {
+	render() {
+  	return (
+    	<div className="github-profile">
+    	  <img src={this.props.avatar_url} />
+        <div className="info">
+          <div className="name">{this.props.name}</div>
+          <div className="company">{this.props.company}</div>
+        </div>
+    	</div>
+    );
+  }
+}
+```
+The this keyword in here refers to an instance of the Card component. That's something that you need to understand.
+
+A beginner question here might be, what exactly is an instance? I mean, you probably know that objects can be instantiated from classes, and we call every object an instance. But what is an instance in a React application? Well, every time we use a class component, like the Card component, as we're doing here twice, React internally creates an instance from the component and uses it to render the element. That instance is something that React keeps in memory for each rendered element. It's not really in the browser. What's in the browser is the result of the DOM operation React came up with using that instance render method, which came from the component.
+
+Don't worry if you don't completely understand that. What you need to keep in mind for now is that each time we use a component, we get a different instance to work with. So the this keyword in the first card is different from the this keyword in the second card. And that's why React places the different props for each card on their different instance. And by using generic props in the Card component, we made it reusable.
+
+This means we can now use it to render any card, but we're still hard coding values in the CardList component. So let's fix that. And what we need here is to take an array of objects, as in the testData array in here, and map it into an array of card elements.
+```js
+const CardList = (props) => (
+  <div>
+    {testData.map(profile => <Card {...profile}/>)}
+  </div>
+);
+```
+
+So in here, instead of the hard coded cards, we can start with testData. This testData is an array, so we can map it into another array. This gives us access to a single profile object in the array of profiles. We can map that into a Card element just like this. And as props for this mapped Card element, we can spread the profile variable that was exposed from the map, and we don't need the hard coded values, and this should work. This line is a mix of JavaScript and React. This map function here is a JavaScript function that you can invoke on arrays. It takes a function as an argument, and then it uses this function to convert one array into another array, using the return values in the function. So this map line is converting the testData object into an array of Cards elements because it's returning the Card element inside its function. And an array of Card elements is just an array of React.create element calls, and React is okay with that, React understands arrays. It will just join the array of Card components on automatically render them all.
+
+
+
 Initializing and Reading the State Object
 
-To eventually take input from the user, we can use a simple HTML form with an input and a button. Let's create a new React component. I'm going to call it Form, and this needs to extend React.Component. It needs a render function, and it needs to return some kind of DOM. I'll make it return a form HTML element. And in there, let's use an input element, give it a placeholder, something like GitHub username. And we'll render a button to Add new card. Very simple. To make this component show up in the browser, we need to include it somewhere in what we're rendering, and it can be included in many places. For example, I can put it inside the CardList component, render the Form component, and it will show up. But that would be completely wrong to do. This Form component is not part of a card listing logic. Every component has its own separate responsibility. The CardList component renders a list of cards, and the Form component renders an input form. So we should not mix them together. It would be so much better to render the Form component in the top‑level App component as a sibling to the CardList component. The App component will handle the connection between the CardList component and the Form component. Testing that, both components now show up, and we did not mix their logic. The data array driving the code we have so far is still a global variable, which is not a good thing. Your component should avoid reading global variables. This is a test data object though, so it is a temporary thing that we're going to get rid of. But instead of reading it directly from the CardList component, let's make it part of the App component and make the CardList component receive it as a prop. I'll name this prop profiles and initialize it from the testData. Now in the CardList component, instead of testData directly here, we need to use props.profiles because it's now a property that's coming from the parent, and this CardList component is no longer depending on anything global. Remember, always test your changes as soon as you can. Now, since we want React to re‑render the CardList component every time a new record is added to this profile's array, the easiest way to trigger this re‑render is to place the profiles array on the special state object. After that, all we need to do is just add a new record to the array and React will react and reflect the new change in the UI. The question is which component should hold this new state? So far, the profiles array is only used by the CardList component. So we can manage the state of the profiles in the CardList component itself. But remember that the Form component will need to append a record to this profiles array, and it can't do that if the owner of the array is its sibling, the CardList component. To allow both the CardList and the Form component to access the profiles array, we should put it on the state of the top‑level App component itself. In a class component, the state is also managed on the in‑memory instance that React associates with every mounted component. To initialize a state object for the App component, we need to tap into the native class constructor method, which gets called for every instantiated object. This special constructor method receives the instance props as well. It has to call the JavaScript super method. This is a JavaScript thing. This super method is needed to honor the link between the App class and the class that it extends from, React.Component. And React will complain if you don't do that. You should also pass the props object to the super method. Once inside the constructor, we have access to the special state object that React manages for each class component. We can initialize it here by using a call to this.state = and put an object here. Unlike useState in function components, this state instance property has to be an object in class components. It can't be a string or an integer, for example. Now we can place the profiles array directly within this object. So this is going to start as an empty array eventually. But we're testing with our testData, so let's just place testData in here. To read this new state element, because the CardList component needs it, we can flow it down using this.state.profiles. State is an object on the instance, and the profiles array is a property on that object. Test and make sure we did not break anything. Before we move on, let me show you a simpler and shorter syntax for this extra code that we have to deal with. Instead of all this, we can simply use a class field like this without a constructor call. So this is definitely so much simpler than dealing with a constructor object. This is not yet part of the official JavaScript language, but it is going to be. The syntax works in here because the JS complete playground uses Babel to transpile things to normal JavaScript that the browser will understand. This class field syntax also has some power when combined with arrow functions as we'll shortly see. When you configure your own React application, you'll have to use something like Babel anyway to compile JSX into JavaScript. So it's a big, easy win to also include and use the JavaScript features that are well on their way to become an official part of the language. So I'm just going to keep this syntax. Let's implement the logic of the Form component next. We need to read the value of the text box every time we click on the ad button. Simple, right? Except when we type into this text box, we're changing the state of the UI as well, and it is currently being changed natively, not through React.
+To eventually take input from the user, we can use a simple HTML form with an input and a button. Let's create a new React component. I'm going to call it Form, and this needs to extend React.Component. It needs a render function, and it needs to return some kind of DOM. I'll make it return a form HTML element. And in there, let's use an input element, give it a placeholder, something like GitHub username. And we'll render a button to Add new card. Very simple.
+```js
+class Form extends React.Component {
+  render () {
+    return (
+      <form action="">
+          <input type="text" placeholder="Github username"/>
+          <button>Add card</button>
+      </form>
+    )
+  }
+}
+```
+To make this component show up in the browser, we need to include it somewhere in what we're rendering, and it can be included in many places. For example, I can put it inside the CardList component, render the Form component, and it will show up. But that would be completely wrong to do. This Form component is not part of a card listing logic. Every component has its own separate responsibility. The CardList component renders a list of cards, and the Form component renders an input form. So we should not mix them together. It would be so much better to render the Form component in the top‑level App component as a sibling to the CardList component.
+```js
+class App extends React.Component {
+	render() {
+  	return (
+    	<div>
+    	  <div className="header">{this.props.title}</div>
+        <Form />
+        <CardList />
+    	</div>
+    );
+  }
+}
+```
+The App component will handle the connection between the CardList component and the Form component. Testing that, both components now show up, and we did not mix their logic.
+
+The data array driving the code we have so far is still a global variable, which is not a good thing. Your component should avoid reading global variables. This is a test data object though, so it is a temporary thing that we're going to get rid of. But instead of reading it directly from the CardList component, let's make it part of the App component and make the CardList component receive it as a prop.  
+```
+class App extends React.Component {
+	render() {
+  	return (
+    	<div>
+    	  <div className="header">{this.props.title}</div>
+        <Form />
+        <CardList profiles={testData}/>
+    	</div>
+    );
+  }
+}
+```
+We name this prop profiles and initialize it from the testData.
+
+Now in the CardList component, instead of testData directly here, we need to use props.profiles because it's now a property that's coming from the parent, and this CardList component is no longer depending on anything global.
+```js
+const CardList = (props) => (
+	<div>
+  	{props.profiles.map(profile => <Card {...profile}/>)}
+	</div>
+);
+```
+Remember, always test your changes as soon as you can.
+
+
+Now, since we want React to re‑render the CardList component every time a new record is added to this profile's array, the easiest way to trigger this re‑render is to place the profiles array on the special state object. After that, all we need to do is just add a new record to the array and React will react and reflect the new change in the UI. The question is which component should hold this new state? So far, the profiles array is only used by the CardList component. So we can manage the state of the profiles in the CardList component itself. But remember that the Form component will need to append a record to this profiles array, and it can't do that if the owner of the array is its sibling, the CardList component. To allow both the CardList and the Form component to access the profiles array, we should put it on the state of the top‑level App component itself. In a class component, the state is also managed on the in‑memory instance that React associates with every mounted component. To initialize a state object for the App component, we need to tap into the native class constructor method, which gets called for every instantiated object. This special constructor method receives the instance props as well. It has to call the JavaScript super method. This is a JavaScript thing. This super method is needed to honor the link between the App class and the class that it extends from, React.Component. And React will complain if you don't do that. You should also pass the props object to the super method. Once inside the constructor, we have access to the special state object that React manages for each class component. We can initialize it here by using a call to this.state = and put an object here. Unlike useState in function components, this state instance property has to be an object in class components. It can't be a string or an integer, for example. Now we can place the profiles array directly within this object. So this is going to start as an empty array eventually. But we're testing with our testData, so let's just place testData in here. To read this new state element, because the CardList component needs it, we can flow it down using this.state.profiles. State is an object on the instance, and the profiles array is a property on that object.
+```js
+class App extends React.Component {
+	constructor(props){
+    super(props);
+    this.state = {
+      profiles : testData,
+    };
+  }
+  render() {
+  	return (
+    	<div>
+    	  <div className="header">{this.props.title}</div>
+        <Form />
+        <CardList profiles={this.state.profiles}/>
+    	</div>
+    );
+  }
+}
+```
+Test and make sure we did not break anything.
+
+Before we move on, let me show you a simpler and shorter syntax for this extra code that we have to deal with. Instead of all this, we can simply use a class field like this without a constructor call.
+```js
+class App extends React.Component {
+  state = {
+    profiles : testData,
+  };
+  render() {
+  	return (
+    	<div>
+    	  <div className="header">{this.props.title}</div>
+        <Form />
+        <CardList profiles={this.state.profiles}/>
+    	</div>
+    );
+  }
+}
+```
+So this is definitely so much simpler than dealing with a constructor object. This is not yet part of the official JavaScript language, but it is going to be. The syntax works in here because the JS complete playground uses Babel to transpile things to normal JavaScript that the browser will understand.
+
+This class field syntax also has some power when combined with arrow functions as we'll shortly see. When you configure your own React application, you'll have to use something like Babel anyway to compile JSX into JavaScript. So it's a big, easy win to also include and use the JavaScript features that are well on their way to become an official part of the language. So I'm just going to keep this syntax. Let's implement the logic of the Form component next. We need to read the value of the text box every time we click on the ad button. Simple, right? Except when we type into this text box, we're changing the state of the UI as well, and it is currently being changed natively, not through React.
+
+
 Taking Input from the User
 
-To take input from the user, we need to define an event handler in the React UI. We can define an onClick event here on the Add card button, but I prefer to handle this with an onSubmit event for the HTML form element itself. By using onSubmit, you can utilize native form submission features. For example, you can make this input required, and the onSubmit event will honor that in modern browsers. Let's define an instance function here on the form component. I'm going to use the exact same class field syntax that we used for the state in the app component. Let's call this new function handleSubmit, and we'll make it an arrow function and wire it to be triggered onSubmit. So in here we do this.handleSubmit. Every React event function receives an event argument. You can name this anything; it doesn't have to be event. This is just the last argument that the function receives. And for React events, this argument is just a wrapper around the native JavaScript event object. All the methods available on the native event object are also available here. For example, since we want to take over the HTML submit logic, we should prevent the default form submission behavior here using event.preventDefault. This is important when you're working with forms because without preventing default, if you submit the form, your page is going to refresh. So just be aware of that. Now, to read the value that the user types in this box, we can simply use the DOM API. We can give the input here an ID attribute and use getElementById to read its value. React has a special property named ref that we can use to get a reference to this element. This is kind of like a fancy ID that React keeps in‑memory and associates with every rendered element. To use a ref, you need to instantiate an object here. You can name it anything. I'll name it userNameInput, and we do a React.createRef call in here. And to use this ref, since it is part of the instance now, we can just do this.userNameInput, just like that. And here it is on multiple lines. We added ref this.userNameInput, which is the result of calling the createRef method from the React API. Now, inside the handleSubmit, let's console.log the value. The value is we grab the reference using this.userNameInput, and this is a ref object. The current value is stored under .current, and this .current reference is the HTML input element itself, so we can do .value on it to read the value that the user types. Let's test. Type in something, submit, and we can read the value that I typed. So this is how we use refs. But React has another method to work with this input element, which is to control their values directly through React itself, rather than reading it from the DOM elements. This method is often labeled as controlled components, and it has some more advantages over the simple ref property. However, it does require a little bit more code, but it's still simple, so let's use it. So I'll remove this ref attribute. We will not be able to read it this way. We're going to have to find another way to read it. And we don't need the ref attribute on the input element at all. Instead of all that, we introduce a state object, and in the state object, we define an element to handle the input value of the userName field, so maybe something like userName. And we'll initialize it as an empty string. Then, we use this new state element as the value of the input element. So we do value= this.state.userName. And this immediately creates a controlled element. Now, we're controlling the value of the input. However, once you do that, you can't really type in this field anymore because React is now controlling the value. This is why you need an onChange event so that the DOM can tell React that something has changed in this input and you should reflect it in the UI as well. And I'm going to use an inline function here for the onChange event. This function receives the event object as its argument, and it needs to do one simple thing. It needs to change the value of the userName state element into what was typed in the text box. To do that, in the class component we use this.setState and pass it an object that has the new state. In this case, we need to pass it to userName is and in here grab the value that the user typed directly from the DOM. So we can do that using event.target.value. So this is the syntax that we need to use in order to change the state of a class component. It's a little bit different than function component hooks because this function is always named setState and it always receives an object, and it will merge this object with the current state of the component. So now, if we've done everything correctly, we can access the value that the user types using this.state.userName directly, like this. Let's test that. And there we go. So basically, the onChange event happened on every character that we typed here, and it made React aware of this element state change and React reflected the change back to the element itself because it's a regular React state change. So what exactly is the benefit of doing all this instead of just a simple ref? Well, you can see that clearly if you open the dev tools and find this input element, right here it's on the form component, and observe as you type something here, you'll see how React is aware of this state change for every single character, while previously React was not aware of what was being typed in the input box. So this method is valuable if you need to provide some kind of feedback for the user as the user is typing. One example of that would be a password strength indicator or the count of characters as the user is typing, as in Twitter's Tweet form. Because now that this whole state is in React, we can add a UI description on it as well. And we don't need to read the value from the DOM, it's in React's memory. So that's simply the story of controlling a component to force its UI state through React rather than through the native DOM, and that keeps things in sync for React. There's nothing wrong about reading form data from the DOM if you don't need React to be aware of that data. This should just be a different tool in your box when you need it.
+To take input from the user, we need to define an event handler in the React UI. We can define an onClick event here on the Add card button, but I prefer to handle this with an onSubmit event for the HTML form element itself. By using onSubmit, you can utilize native form submission features. For example, you can make this input required, and the onSubmit event will honor that in modern browsers.
+```js
+class Form extends React.Component {
+  render () {
+    return (
+      <form action="" onSubmit={}>
+          <input type="text" placeholder="Github username" required/>
+          <button>Add card</button>
+      </form>
+    );
+  }
+}
+```
+
+Let's define an instance function here on the form component. I'm going to use the exact same class field syntax that we used for the state in the app component. Let's call this new function handleSubmit, and we'll make it an arrow function and wire it to be triggered onSubmit. So in here we do this.handleSubmit. Every React event function receives an event argument. You can name this anything; it doesn't have to be event. This is just the last argument that the function receives. And for React events, this argument is just a wrapper around the native JavaScript event object. All the methods available on the native event object are also available here. For example, since we want to take over the HTML submit logic, we should prevent the default form submission behavior here using event.preventDefault. This is important when you're working with forms because without preventing default, if you submit the form, your page is going to refresh. So just be aware of that.
+```js
+class Form extends React.Component {
+  handleSubmit = (event) => {
+    event.preventDefault();
+  };
+  render () {
+    return (
+      <form action="" onSubmit={this.handleSubmit}>
+          <input type="text" placeholder="Github username" required/>
+          <button>Add card</button>
+      </form>
+    );
+  }
+}
+```
+
+Now, to read the value that the user types in this box, we can simply use the DOM API. We can give the input here an ID attribute and use getElementById to read its value. React has a special property named ref that we can use to get a reference to this element. This is kind of like a fancy ID that React keeps in‑memory and associates with every rendered element. To use a ref, you need to instantiate an object here. You can name it anything. I'll name it userNameInput, and we do a React.createRef call in here. And to use this ref, since it is part of the instance now, we can just do this.userNameInput, just like that. And here it is on multiple lines. We added ref this.userNameInput, which is the result of calling the createRef method from the React API. Now, inside the handleSubmit, let's console.log the value. The value is we grab the reference using this.userNameInput, and this is a ref object. The current value is stored under .current, and this .current reference is the HTML input element itself, so we can do .value on it to read the value that the user types.
+```js
+class Form extends React.Component {
+  userNameInput = React.createRef();
+  handleSubmit = (event) => {
+    event.preventDefault();
+    console.log(
+      this.userNameInput.current.value
+    )
+  };
+  render () {
+    return (
+      <form action="" onSubmit={this.handleSubmit}>
+          <input
+            type="text"
+            placeholder="Github username"
+            ref={this.userNameInput}
+            required
+          />
+          <button>Add card</button>
+      </form>
+    );
+  }
+}
+```
+
+Let's test. Type in something, submit, and we can read the value that I typed. So this is how we use refs.
+
+
+But React has another method to work with this input element, which is to control their values directly through React itself, rather than reading it from the DOM elements. This method is often labeled as controlled components, and it has some more advantages over the simple ref property. However, it does require a little bit more code, but it's still simple, so let's use it. So I'll remove this ref attribute. We will not be able to read it this way. We're going to have to find another way to read it. And we don't need the ref attribute on the input element at all. Instead of all that, we introduce a state object, and in the state object, we define an element to handle the input value of the userName field, so maybe something like userName. And we'll initialize it as an empty string. Then, we use this new state element as the value of the input element. So we do value= this.state.userName. And this immediately creates a controlled element. Now, we're controlling the value of the input. However, once you do that, you can't really type in this field anymore because React is now controlling the value. This is why you need an onChange event so that the DOM can tell React that something has changed in this input and you should reflect it in the UI as well. And I'm going to use an inline function here for the onChange event. This function receives the event object as its argument, and it needs to do one simple thing. It needs to change the value of the userName state element into what was typed in the text box. To do that, in the class component we use this.setState and pass it an object that has the new state. In this case, we need to pass it to userName is and in here grab the value that the user typed directly from the DOM. So we can do that using event.target.value. So this is the syntax that we need to use in order to change the state of a class component. It's a little bit different than function component hooks because this function is always named setState and it always receives an object, and it will merge this object with the current state of the component. So now, if we've done everything correctly, we can access the value that the user types using this.state.userName directly, like this.
+```js
+class Form extends React.Component {
+  state = {userName : ''}
+  handleSubmit = (event) => {
+    event.preventDefault();
+    console.log(this.state.userName)
+  };
+  render () {
+    return (
+      <form action="" onSubmit={this.handleSubmit}>
+        <input
+          type="text"
+          value = {this.state.userName}
+          onChange = {
+            event => this.setState({userName : event.target.value})
+          }
+          placeholder="Github username"
+          required
+        />
+        <button>Add card</button>
+      </form>
+    );
+  }
+}
+```
+Let's test that. And there we go. So basically, the onChange event happened on every character that we typed here, and it made React aware of this element state change and React reflected the change back to the element itself because it's a regular React state change. So what exactly is the benefit of doing all this instead of just a simple ref? Well, you can see that clearly if you open the dev tools and find this input element, right here it's on the form component, and observe as you type something here, you'll see how React is aware of this state change for every single character, while previously React was not aware of what was being typed in the input box. So this method is valuable if you need to provide some kind of feedback for the user as the user is typing. One example of that would be a password strength indicator or the count of characters as the user is typing, as in Twitter's Tweet form. Because now that this whole state is in React, we can add a UI description on it as well. And we don't need to read the value from the DOM, it's in React's memory. So that's simply the story of controlling a component to force its UI state through React rather than through the native DOM, and that keeps things in sync for React. There's nothing wrong about reading form data from the DOM if you don't need React to be aware of that data. This should just be a different tool in your box when you need it.
+
+https://jscomplete.com/playground/rgs2.6
+
+
+
 Working with Ajax Calls
 
-Now that we can read the input that the user typed, we are ready to ask the GitHub API for a single profile data using this type input. We can use the native fetch call available in browsers to do an AJAX call. But this playground also has the axios library, and axios is a simple one to use here. So in the handleSubmit function, all we need to do is axios.get and then specify the API endpoint where the data is, and this is the API input that we need. So in here, if we're to fetch Dan's profile information again, we just use this syntax. But because we want this to be a dynamic part, we'll go ahead and make this whole thing into a template string, note backticks in here, and inside this, we can inject the value of the username that the user inputted in the box, which is this.state.userName. We put that in here. Okay, that's how you do an axios call. Now axios.get returns back a promise. So to consume this promise, we can await on it, and this will give us back a response object. To make this await call work, we need to label this handleSubmit as async. Now we can console.log the response object, let's go ahead and test that. So in here, type any valid GitHub username, click Add card, and the handleSubmit will go and fetch that particular username's profile data, and it will print back the response. Now this response has a data attribute that has the actual profile information from GitHub. So what we need here is response.data. This is just the way axios works. It returns a response object and then a data attribute on that response object that has the JSON data parsed and ready for us. Now all we need to do next is append this data object that we get from the API to the profiles array that we have on the app state, and when we do that, react will re‑render the App component and show the new GitHub profile. However, this Form component can't access the profiles state elements directly here because react components have a one‑way flow of data, and a component can't change the state of its parent. But remember that the App component can pass properties to its Form child component, and those properties can be simple primitive values or function references. So if the App component passes a function reference to the Form component, we can change the state of the App component in that function, and the Form component will be able to invoke that function because it will be part of its props object. Let's define a new function here on the App component. I'm going to name it addNewProfile, make it an arrow function, and this function will simply receive the new profileData as an argument, so this will be the profileData, and it will do something with it. For now, let's just console.log this profile data to make sure things are working in the App component. Then we pass to the Form component a new prop. Let's name this prop here onSubmit and pass it this.addNewProfile. So the addNewProfile is a function that we defined on the instance of this component, and in here we are making it available as a new prop on the Form component. So within this handleSubmit function, instead of console.log here, we can access the new prop that became part of the Form component. And to do that, we do this.props.onSubmit. This is a new prop, and it holds a function reference. And that function reference is an alias to the addNewProfile function in the App component. And as an argument, we pass it the data attribute that's coming from the axios response. If we test now and type in a valid GitHub username, you will see the App component console log line, and you'll see the GitHub profile data ready for us here. So here, instead of console.log, we need to put this new profileData on the state of the App component. We need to append this object to the array of objects that we have stored as profiles here on the state. And to do that, we have a few options. We do need to invoke setState. Remember, this is the function that we need to change the state of a react class component, and in here we can pass either an object or a function. The updater function syntax is the same here, so I'm going to use a function. This function will give you access to the previous state. And what you return here from this function becomes the new state. So I'm going to return profiles:, and in here I will spread the existing profiles. That is something that we can read using prevState.profiles, and then append the new profileData. This is equivalent to doing a concat operation on the profiles array. This is the spread operator syntax. And with that, I think we're ready to test. So starting with the testData, we can now add a fourth card. There you go. So now we can remove all the testData and start the profiles array as an empty one like this and remove the testData from the scope. We don't need that anymore. I have included the GitHub username I've been testing with here. So now you can test from an empty card and add one card at a time. Notice how the username stayed here after we added the card. So one small improvement that we can do on this is to reset the username field after we're done adding it to the profiles array. So we can simply just have another setState call in here and pass in a userName value of empty string, and that would reset the userName state value that react is using to track the username that gets typed into the box. So let's test one more time. And now, after adding the card, the username here should reset. There's another important improvement that we need. When you start adding data to this form, react will give you a warning about the key prop. This key prop is something react needs whenever you render a dynamic list of children like we're doing here in the CardList component. React will give you a warning that if you don't specify some kind of identity for this dynamic element, then react will just assume that the position of the element is its identity, and that might cause problems if you start re‑ordering those elements. So to avoid issues like this, you just pass a key property here to react, and this key property has to be unique in this particular DOM node. So the GitHub data comes with an ID that's unique, so we can just use that. We can do profile.id, and if you do that, that warning should go away. And I think we have the GitHub cards app. You can use it to add as many cards as you need. It's all driven from a single array, and it fetches information directly from GitHub. Now there are a lot of improvements that we can do to this code, but there is one very important thing that we did not do. We did not handle errors. What should the UI do if the user types in an invalid GitHub handle? What should the UI do if the request of data fails over the network? What should the UI do if the request is taking too long? In fact, if you were in an interview doing an exercise like this, you should voice these concerns right away. These concerns are not really beginner level, so I'm going to keep them as an exercise for you. I cover examples of them in my book, React.js Beyond the Basics at jscomplete. There are other simple improvements you can make to this code. For example, here in handleSubmit, we have some logic to fetch data from an API. Then we have some application logic about what to do with that data that's coming from the API. This is a bad mix. A component should not have this much responsibility. Your whole app should not really depend directly on a library like axios for example. You should have a small agent‑type module that has one responsibility to communicate with external APIs and make your code only depend on that agent module. Another thing you could do is extract this logic about managing the state of the username input into its own component as well. And this would simplify the Form component's code. I think this is a good stopping point for this example. Play around with the final code, which I saved here under jsdrops.com/rgs2.7. One quick exercise you can do, convert all the class components into function components. So instead of state here, you use a hook, and instead of this.setState, you use the updater function from the hook.
+Now that we can read the input that the user typed, we are ready to ask the GitHub API for a single profile data using this type input. We can use the native fetch call available in browsers to do an AJAX call. But this playground also has the axios library, and axios is a simple one to use here. So in the handleSubmit function, all we need to do is axios.get and then specify the API endpoint where the data is, and this is the API input that we need. So in here, if we're to fetch Dan's profile information again, we just use this syntax. But because we want this to be a dynamic part, we'll go ahead and make this whole thing into a template string, note backticks in here, and inside this, we can inject the value of the username that the user inputted in the box, which is this.state.userName.
+```js
+axios.get(`https://api.github.com/users/${this.state.userName}`);
+```
+
+Okay, that's how you do an axios call. Now axios.get returns back a promise. So to consume this promise, we can await on it, and this will give us back a response object. To make this await call work, we need to label this handleSubmit as async. Now we can console.log the response object
+```js
+handleSubmit = async (event) => {
+	event.preventDefault();
+	const resp = await
+		axios.get(`https://api.github.com/users/${this.state.userName}`);
+	console.log(resp);
+};
+```
+So in here, type any valid GitHub username, click Add card, and the handleSubmit will go and fetch that particular username's profile data, and it will print back the response.
+
+Now this response has a data attribute that has the actual profile information from GitHub. So what we need here is response.data. This is just the way axios works. It returns a response object and then a data attribute on that response object that has the JSON data parsed and ready for us.
+```js
+console.log(resp.data);
+```
+
+Now all we need to do next is append this data object that we get from the API to the profiles array that we have on the app state, and when we do that, react will re‑render the App component and show the new GitHub profile. However, this Form component can't access the profiles state elements directly here because react components have a one‑way flow of data, and a component can't change the state of its parent. But remember that the App component can pass properties to its Form child component, and those properties can be simple primitive values or function references. So if the App component passes a function reference to the Form component, we can change the state of the App component in that function, and the Form component will be able to invoke that function because it will be part of its props object. Let's define a new function here on the App component. I'm going to name it addNewProfile, make it an arrow function, and this function will simply receive the new profileData as an argument, so this will be the profileData, and it will do something with it. For now, let's just console.log this profile data to make sure things are working in the App component. Then we pass to the Form component a new prop. Let's name this prop here onSubmit and pass it this.addNewProfile. So the addNewProfile is a function that we defined on the instance of this component, and in here we are making it available as a new prop on the Form component.
+
+```js
+class App extends React.Component {
+  state = {
+    profiles: testData,
+  };
+  addNewProfile = (profileData) => {
+    console.log('App',profileData);
+  };
+
+	render() {
+  	return (
+    	<div>
+    	  <div className="header">{this.props.title}</div>
+        <Form onSubmit={this.addNewProfile}/>
+        <CardList profiles={this.state.profiles} />
+    	</div>
+    );
+  }
+}
+```
+
+So within this handleSubmit function, instead of console.log here, we can access the new prop that became part of the Form component. And to do that, we do this.props.onSubmit. This is a new prop, and it holds a function reference. And that function reference is an alias to the addNewProfile function in the App component. And as an argument, we pass it the data attribute that's coming from the axios response.
+```js
+class Form extends React.Component {
+	state = { userName: '' };
+	handleSubmit = async (event) => {
+  	event.preventDefault();
+    const resp = await
+      axios.get(`https://api.github.com/users/${this.state.userName}`);
+    this.props.onSubmit(resp.data);
+  };
+	render() {
+  	return (
+    	<form onSubmit={this.handleSubmit}>
+    	  <input
+          type="text"
+          value={this.state.userName}
+          onChange={event => this.setState({ userName: event.target.value })}
+          placeholder="GitHub username"
+          required
+        />
+        <button>Add card</button>
+    	</form>
+    );
+  }
+}
+```
+If we test now and type in a valid GitHub username, you will see the App component console log line, and you'll see the GitHub profile data ready for us here. So here, instead of console.log, we need to put this new profileData on the state of the App component. We need to append this object to the array of objects that we have stored as profiles here on the state. And to do that, we have a few options. We do need to invoke setState. Remember, this is the function that we need to change the state of a react class component, and in here we can pass either an object or a function. The updater function syntax is the same here, so I'm going to use a function. This function will give you access to the previous state. And what you return here from this function becomes the new state. So I'm going to return profiles:, and in here I will spread the existing profiles. That is something that we can read using prevState.profiles, and then append the new profileData. This is equivalent to doing a concat operation on the profiles array. This is the spread operator syntax.
+```js
+class App extends React.Component {
+  state = {
+    profiles: testData,
+  };
+  addNewProfile = (profileData) => {
+    this.setState(prevState => ({
+      profiles: [...prevState.profiles, profileData]
+    }));
+  };
+
+	render() {
+  	return (
+    	<div>
+    	  <div className="header">{this.props.title}</div>
+        <Form onSubmit={this.addNewProfile}/>
+        <CardList profiles={this.state.profiles} />
+    	</div>
+    );
+  }
+}
+```
+So starting with the testData, we can now add a fourth card. There you go. So now we can remove all the testData and start the profiles array as an empty one like this and remove the testData from the scope.
+
+```js
+state = {
+    profiles: [],
+  };
+```
+So now you can test from an empty card and add one card at a time.
+
+Notice how the username stayed here after we added the card. So one small improvement that we can do on this is to reset the username field after we're done adding it to the profiles array. So we can simply just append another setState call to the end of hadleSubmit and pass in a userName value of empty string, and that would reset the userName state value that react is using to track the username that gets typed into the box.
+```js
+this.setState({ userName : ''});
+```
+So let's test one more time. And now, after adding the card, the username here should reset.
+
+There's another important improvement that we need. When you start adding data to this form, react will give you a warning about the key prop. This key prop is something react needs whenever you render a dynamic list of children like we're doing here in the CardList component. React will give you a warning that if you don't specify some kind of identity for this dynamic element, then react will just assume that the position of the element is its identity, and that might cause problems if you start re‑ordering those elements. So to avoid issues like this, you just pass a key property here to react, and this key property has to be unique in this particular DOM node. So the GitHub data comes with an ID that's unique, so we can just use that. We can do profile.id, and if you do that, that warning should go away.
+```js
+const CardList = (props) => (
+	<div>
+  	{props.profiles.map(profile => <Card key={profile.id} {...profile}/>)}
+	</div>
+);
+```
+And I think we have the GitHub cards app. You can use it to add as many cards as you need. It's all driven from a single array, and it fetches information directly from GitHub. Now there are a lot of improvements that we can do to this code, but there is one very important thing that we did not do. We did not handle errors. What should the UI do if the user types in an invalid GitHub handle? What should the UI do if the request of data fails over the network? What should the UI do if the request is taking too long? In fact, if you were in an interview doing an exercise like this, you should voice these concerns right away. These concerns are not really beginner level, so I'm going to keep them as an exercise for you. I cover examples of them in my book, React.js Beyond the Basics at jscomplete. There are other simple improvements you can make to this code. For example, here in handleSubmit, we have some logic to fetch data from an API. Then we have some application logic about what to do with that data that's coming from the API. This is a bad mix. A component should not have this much responsibility. Your whole app should not really depend directly on a library like axios for example. You should have a small agent‑type module that has one responsibility to communicate with external APIs and make your code only depend on that agent module. Another thing you could do is extract this logic about managing the state of the username input into its own component as well. And this would simplify the Form component's code. I think this is a good stopping point for this example. Play around with the final code, which I saved here under jsdrops.com/rgs2.7. One quick exercise you can do, convert all the class components into function components. So instead of state here, you use a hook, and instead of this.setState, you use the updater function from the hook.
 Wrap Up
 
 We've built a few simple React components in this module, a Card component to render information about a GitHub profile, a CardList component to convert an array of records into an array of Card components, that form component to read input from the user, and an app component to manage the relation between all the other components. We've managed the records array as a state element on the top level App component, which allowed us to share data between multiple components, and it allowed us to append new GitHub profiles to the UI by simply appending the GitHub API response to that state element. In the Form component, we explored how to access an element in the DOM from React directly using the special ref attribute, and we've explored how to read from an input element using React's state itself, with the help of an unchanged event. Components written with this latter method are known as controlled components. In the next module, we'll build a simple game for kids. Here's a preview of it. The player gets a random number of stars between 1 and 9, and the set of numbers from 1 to 9. They need to select the numbers that sum up to the current random number of stars. When they pick the right sum, a new random number of stars will appear and they need to pick again, and keep doing that until all the numbers are used.

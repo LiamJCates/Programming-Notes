@@ -48,8 +48,8 @@ intPointer was assigned the address of intValue using the address-of operator (&
 
 If you try to declare multiple pointers on a single line be aware that as the indirection operator (*) modifies the identifier and not the type the operator is required before each pointer:
 
-  int * pointer1, pointer2, pointer3;     //pointer2 and pointer3 are ints
-  int * pointer1, \*pointer2, *pointer3;  //all are integer pointers
+  int *pointer1, pointer2, pointer3;     //pointer2 and pointer3 are ints
+  int \*pointer1, \*pointer2, *pointer3;  //all are integer pointers
 
 
 
