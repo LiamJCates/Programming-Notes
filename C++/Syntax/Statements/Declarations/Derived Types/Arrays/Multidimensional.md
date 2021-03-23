@@ -36,6 +36,8 @@ Even though C++ enables us to model multidimensional arrays, the memory where th
 
 If matrix is the name of a two-dimensional array, then matrix[0][0] is the first component of matrix.
 
+
+### Element Ordering
 When storing a two-dimensional array in the computer’s memory, C++ uses the row
 order form. That is, the first row is stored first, followed by the second row, followed by the third row, and so on.
 
@@ -259,6 +261,213 @@ Deallocating a dynamically allocated two-dimensional array using this method req
 Note that we delete the array in the opposite order that we created it (elements first, then the array itself). If we delete array before the array elements, then we’d have to access deallocated memory to delete the array elements. And that would result in undefined behavior.
 
 
+
+
+
+
+### Dynamic 2D Arrays
+Malik offers two ways of creating a dynamic two-dimensional array.
+
+In the first method, you declare a variable to be an array of pointers, where each pointer is of type integer. ex.
+
+int *board[4];
+
+..and then use a for-loop to create the 'columns' while using the array of pointers as 'rows'.
+
+The second method, you use a pointer to a pointer.
+
+int **board;
+board = new int* [10];
+
+example:
+
+
+int row, col;
+
+cout << "Enter row size:";
+cin >> row;
+cout << "\ncol:";
+cin >> col;
+
+int *p_board[row];
+for (int i=0; i < row; i++)
+    p_board[i] = new int[col];
+
+for (int i=0; i < row; i++)
+{
+    for (int j=0; j < col; j++)
+    {
+        p_board[i][j] = j;
+        cout << p_board[i][j] << " ";
+    }
+    cout << endl;
+}
+cout << endl << endl;
+
+int **p_p_board;
+p_p_board = new int* [row];
+for (int i=0; i < row; i++)
+    p_p_board[i] = new int[col];
+
+for (int i=0; i < row; i++)
+{
+    for (int j=0; j < col; j++)
+    {
+        p_p_board[i][j] = j;
+        cout << p_p_board[i][j] << " ";
+    }
+    cout << endl;
+}
+
+
+
+In both cases your inner dimension may be dynamically specified (i.e. taken from a variable), but the difference is in the outer dimension.
+
+This question is basically equivalent to the following:
+
+    Is int* x = new int[4]; "better" than int x[4]?
+
+The answer is: "no, unless you need to choose that array dimension dynamically."
+
+
+
+The first method cannot be used to create a truly dynamic 2D arrays because by doing:
+
+int *board[4];
+
+you essentially allocated an array of 4 pointers to int on stack. Therefore, if you now populate each of these 4 pointers with a dynamic array:
+
+for (int i = 0; i < 4; ++i) {
+  board[i] = new int[10];
+}
+
+what you end-up with is a 2D array with static number of rows (in this case 4) and dynamic number of columns (in this case 10). So it is not fully dynamic because when you allocate an array on stack you should specify a constant size, i.e. known at compile-time. Dynamic array is called dynamic because its size is not necessary to be known at compile-time, but can rather be determined by some variable in runtime.
+
+Once again, when you do:
+
+int *board[4];
+
+or:
+
+const int x = 4; // <--- const qualifier is absolutely needed in this case!
+int *board[x];
+
+you supply a constant known at compile-time (in this case 4 or x) so that compiler can now pre-allocate this memory for your array, and when your program is loaded into the memory it would already have this amount of memory for the board array, that's why it is called static, i.e. because the size is hard-coded and cannot be changed dynamically (in runtime).
+
+On the other hand, when you do:
+
+int **board;
+board = new int*[10];
+
+or:
+
+int x = 10; // <--- Notice that it does not have to be const anymore!
+int **board;
+board = new int*[x];
+
+the compiler does not know how much memory board array will require, and therefore it does not pre-allocate anything. But when you start your program, the size of array would be determined by the value of x variable (in runtime) and the corresponding space for board array would be allocated on so-called heap - the area of memory where all programs running on your computer can allocate unknown beforehand (at compile-time) amounts memory for personal usage.
+
+As a result, to truly create dynamic 2D array you have to go with the second method:
+
+int **board;
+board = new int*[10]; // dynamic array (size 10) of pointers to int
+
+for (int i = 0; i < 10; ++i) {
+  board[i] = new int[10];
+  // each i-th pointer is now pointing to dynamic array (size 10) of actual int values
+}
+
+We've just created an square 2D array with 10 by 10 dimensions. To traverse it and populate it with actual values, for example 1, we could use nested loops:
+
+for (int i = 0; i < 10; ++i) {   // for each row
+  for (int j = 0; j < 10; ++j) { // for each column
+    board[i][j] = 1;
+  }
+}
+
+
+
+
+### Dynamic 2D Array In Class
+
+```cpp
+#include <iostream>
+
+class Array2D
+{
+public:
+    Array2D();                                  //default
+    Array2D(int rows, int cols);                //fill
+    Array2D(Array2D &A, int rows, int cols);    //copy
+
+
+    int ** fill_array(int rows, int cols);
+    int ** copy_array(Array2D &A, int rows, int cols);
+
+    int **D;
+};
+
+
+int ** Array2D::fill_array(int rows, int cols)
+{
+    int **board;
+    board = new int*[rows];
+    for (int i = 0; i < 10; ++i) {
+        board[i] = new int[cols];
+    }
+    for (int i = 0; i < rows; ++i) {   // for each row
+        for (int j = 0; j < cols; ++j) { // for each column
+            board[i][j] = 1;
+        }
+    }
+
+    return board;
+}
+
+int ** Array2D::copy_array(Array2D &A, int rows, int cols)
+{
+    int **board;
+    board = new int*[rows];
+    for (int i = 0; i < 10; ++i) {
+        board[i] = new int[cols];
+    }
+
+    for (int i = 0; i < rows; ++i) {   // for each row
+        for (int j = 0; j < cols; ++j) { // for each column
+            board[i][j] = A.D[i][j];
+        }
+    }
+
+    return board;
+}
+
+Array2D::Array2D()
+{
+    int rows = 10, cols = 10;
+
+    this->D = fill_array(rows, cols);
+}
+
+Array2D::Array2D(int rows, int cols)
+{
+    this->D = fill_array(rows, cols);
+}
+
+Array2D::Array2D(Array2D &A, int rows, int cols)
+{
+    this->D = copy_array(A, rows, cols);
+}
+
+int main()
+{
+    Array2D A(10, 10);
+    std::cout << A.D[8][8];
+    Array2D B(10, 10);
+    std::cout << B.D[8][8];
+    Array2D C(B, 10, 10);
+    std::cout << C.D[8][8];
+}
+```
 
 ### Flattened Arrays
 

@@ -1,16 +1,39 @@
 ### As Parameters
 
+C++ does not allow to pass an entire array as an argument to a function. However, You can pass a pointer to an array by specifying the array's name without an index.
+
+If you want to pass a single-dimension array as an argument in a function, you would have to declare function formal parameter in one of following three ways and all three declaration methods produce similar results because each tells the compiler that an integer pointer is going to be received.
+
+Formal parameters as a pointer as follows −
+
+void myFunction(int *param);
+
+Formal parameters as a sized array as follows −
+
+void myFunction(int param[10]);
+
+Formal parameters as an unsized array as follows −
+
+void myFunction(int param[]);
+
+
+
 By reference only: In C++, arrays are passed by reference only.
 
+For more information regarding the handling of function parameters, see:
+[C++\Syntax\Statements\Declarations\Derived Types\Functions\Parameters]
+
+Because array are only passed by reference, it is said that arrays "decay" into pointers.
+
+When an array decays, it loses its the loss of type and dimensions of an array. This generally occurs when we pass the array into a function.
+
+What it does is, it sends first address to the array which is a pointer, hence the size of array is not the original one, but the one occupied by the pointer in the memory.
+
 Because arrays are passed by reference only, you do not use the symbol & when declaring an array as a formal parameter.
-When declaring a one-dimensional array as a formal parameter, the size of the array is usually omitted. If you specify the size of a one-dimensional array when it is declared as a formal parameter, the size is ignored by the compiler.
 
-Consider the following function:
+A typical solution to handle decay is to pass size of array as a parameter.
 
-  void funcArrayAsParam(int listOne[], double listTwo[])
-  {
-    ...
-  }
+While we might typically use sizeof to find the total size of the array then divide this by the size of the type of the elements in the array, once the array has decayed into a pointer sizeof(arrayName) will only return the size of the pointer and not the size of the array.
 
 To write a function to process such arrays, in addition to declaring an array as a formal parameter, we declare another formal parameter specifying the number of elements in the array, as in the following function:
 

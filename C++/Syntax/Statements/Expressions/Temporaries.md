@@ -6,6 +6,7 @@ These are objects like any other: they require storage and they must be construc
 
 But there is one thing about temporaries: they’re automatically const. Because you usually won’t be able to get your hands on a temporary object, telling it to do something that will change that temporary is almost certainly a mistake because you won’t be able to use that information. By making all temporaries automatically const, the compiler informs you when you make that mistake.
 
+```cpp
 class X {
 	int i;
 	public:
@@ -14,18 +15,24 @@ class X {
 };
 
 X f() {
-return X();
+	return X();
 }
+
 const X g() {
-return X();
+	return X();
 }
-void f7(X& x) { // Pass by non-const reference
-x.modify();
+
+void f7(X& x) // Pass by non-const reference
+{
+	x.modify();
 }
+```
 
 In an example, if f( ) returns a non-const X object. But in the
 expression:
+
 g(f());
+
 the compiler must manufacture a temporary object to hold the
 return value of f( ) so it can be passed to h( ). This would be fine if
 h( ) took its argument by value; then the temporary would be

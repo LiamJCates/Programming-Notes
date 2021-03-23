@@ -1,6 +1,7 @@
 For general information related to programming language syntax, see:
 [Programming Methods\Fundamentals\Constructs\Syntax.md]
 
+
 When you compile a C++ program, the compiler is responsible for making sure your program follows the syntax rules of the language. Violation of syntax rules results in a syntax error during compilation.
 
 Thus, a syntax error is a compiler error that occurs at compile-time when your program violates the grammar rules of the C++ language.
