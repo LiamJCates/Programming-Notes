@@ -1,13 +1,31 @@
 ## Prefix Specifiers
 You can provide a number of optional specifiers (or modifiers) to functions.
-Specifiers alter a function’s behavior in some way. Some specifiers appear at
-the beginning in the function’s declaration or definition (prefix specifiers),
-whereas others appear at the end (suffix specifiers). The prefix specifiers
-appear before the return type. The suffix specifiers appear after the argument list.
 
-There isn’t a clear language reason why certain specifiers appear as
-prefixes or suffixes: because C++ has a long history, these features evolved
-incrementally
+Specifiers alter a function’s behavior in some way.
+
+prefix specifiers: appear at the beginning of the function’s declaration or definition, before the return type in the function.
+suffix specifiers: appear after the argument list.
+
+The syntax is as follows:
+
+```cpp
+[prefix] return_type function_name( parameter_list ) [suffix];
+
+[prefix] return_type function_name( parameter_list ) [suffix]
+{
+  //statements
+}
+```
+
+where
+  [prefix] indicates the location of prefix specifiers
+  [suffix] indicates the location of suffix specifiers
+
+There isn’t a definite reason for why certain specifiers appear as
+prefixes or as suffixes. Relative to other languages, C++ has a long history, the location of the various specifiers evolved incrementally along with it. Modern programmers must ensure that their usage follows the syntax defined by the C++ language specification.
+
+
+## Prefix Specifiers
 
 ### static
 indicates that a function that isn’t a member of a class has internal linkage, meaning the function won’t be used outside of this translation unit. Unfortunately, this keyword does double duty: if it modifies a method (that is, a function inside a class), it indicates that the function isn’t associated with an instantiation of the class but rather with the class itself.
@@ -19,7 +37,7 @@ indicates that a method can be overridden by a child class. The override modifie
 indicates that the function should be evaluated at compile time if possible.
 
 ### [[noreturn]]
-indicates that this function won’t return. Recall that this attribute helps the compiler to optimize your code.
+indicates that this function won’t return. This attribute helps the compiler to optimize your code.
 
 
 ### inline
@@ -42,9 +60,11 @@ Adding inline to a function doesn’t change its behavior; it’s purely an expr
 
 If your function is a very simple one like the following:
 
+```cpp
   int Max(int x, int y) {
      return (x > y)? x : y;
   }
+```
 
 The overhead of performing an actual function call on this might be quite high for the amount of time spent actually executing Max.
 
@@ -54,7 +74,8 @@ Compilers typically see this keyword as a request to place the contents of the f
 
 To inline a function, place the keyword inline before the function name and define the function before any calls are made to the function. The compiler can ignore the inline qualifier in case defined function is more than a line.
 
- #include <iostream>
+```cpp
+#include <iostream>
 
 using namespace std;
 
@@ -70,6 +91,7 @@ int main() {
 
    return 0;
 }
+```
 
 Calling a function generally causes a certain overhead (stacking arguments, jumps, etc...), and thus for very short functions, it may be more efficient to simply insert the code of the function where it is called, instead of performing the process of formally calling a function.
 
@@ -77,10 +99,12 @@ Preceding a function declaration with the inline specifier informs the compiler 
 
 For example, the concatenate function above may be declared inline as:
 
+```cpp
   inline string concatenate (const string& a, const string& b)
   {
     return a+b;
   }
+```
 
 This informs the compiler that when concatenate is called, the program prefers the function to be expanded inline, instead of performing a regular call. inline is only specified in the function declaration, not when it is called.
 
@@ -112,14 +136,12 @@ Whenever you’re using interface inheritance, you should mark implementing clas
 ### volatile
 A volatile object’s value can change at any time, so the compiler must treat all accesses to volatile objects as visible side effects for optimization purposes. The volatile keyword indicates that a method can be invoked on volatile objects. This is analogous to how const methods can be applied to const objects. Together, these two keywords define a method’s const/volatile qualification (or sometimes cv qualification).
 
-Just like you cannot invoke a non-const
-method on a const object, you cannot invoke a non-volatile method on a
-volatile object. Consider what would happen if you could perform such an
-operation: a non-volatile method is a candidate for all kinds of compiler
-optimizations for the reasons outlined in Chapter 7: many kinds of memory
-accesses can be optimized away without changing the observable side effects
-of your program.
+Just like you cannot invoke a non-const method on a const object, you cannot invoke a non-volatile method on a volatile object.
+
+Consider what would happen if you could perform such an operation: a non-volatile method is a candidate for all kinds of compiler optimizations: many kinds of memory accesses can be optimized away without changing the observable side effects of your program.
+
 How should the compiler treat a contradiction arising from you using a
 volatile object—which requires that all its memory accesses are treated as
-observable side effects—to invoke a non-volatile method? The compiler’s
-answer is that it calls this contradiction an error.
+observable side effects — to invoke a non-volatile method?
+
+The compiler’s answer is that it calls this contradiction an error.

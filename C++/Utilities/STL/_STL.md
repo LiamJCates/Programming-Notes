@@ -2,6 +2,8 @@ The main objective of a program is to manipulate data and generate results. Achi
 
 ANSI/ISO Standard C++ is equipped with a portion of the stdlib called the Standard Template Library (STL).
 
+The C++ Standard Library is a library file, a collection of precompiled code that has been “packaged up” as part of C++, for reuse in other programs. It contains common functionality for reuse in programs.
+
 The STL provides a C++ Collection Framework, which is a set of reliable, reusable, high performance data-structures called containers, the algorithms to manipulate them, and iterators that serve as the interface between the two.
 
 
