@@ -42,19 +42,19 @@ To help the compiler ensure consistency, the .cpp file providing the implementat
 // Vector.cpp:
  #include "Vector.h" // get Vector’s interface
 
-Vector::Vector(int s)
-: elem{new double[s]}, sz{s} // initialize members
-{}
+ Vector::Vector(int s)
+ : elem{new double[s]}, sz{s} // initialize members
+ {}
 
-double& Vector::operator[](int i)
-{
-  return elem[i];
-}
+ double& Vector::operator[](int i)
+ {
+   return elem[i];
+ }
 
-int Vector::siz e()
-{
-  return sz;
-}
+ int Vector::size()
+ {
+   return sz;
+ }
 
 The code in user.cpp and Vector.cpp shares the Vector interface information presented in Vector.h, but the two files are otherwise independent and can be separately compiled.
 

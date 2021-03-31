@@ -35,6 +35,30 @@ However, these drawbacks are fairly minor compared with the power and flexibilit
 
 
 ### Function Templates
+
+
+template <class T>
+T max(T const& t1, T const& t2)
+{
+  return t1 < t2? t2: t1;
+}
+
+You can see the first line says template, angle brackets, class T, close angle brackets. And that is the indicator that this is a templated function. Then the T that you see everywhere else in the function signature is that placeholder type. It's just a convention to use a capital letter T, but it's a very popular one.
+
+So what this code declares is that the function is called max and it returns some type T, whatever this is the templated of, it takes a T by constant reference called t1 and another T by constant reference called t2.
+
+Because you might be using this template to compare two integers, you might think, oh, I'll just take them by value, but you could also be using this template to compare two purchase orders that might be large and expensive to copy, so it makes sense to take them by reference. Since it doesn't change the parameters that it's passed, it's a good idea to take by const reference. And if you don't take by const reference, you wouldn't be able to pass a literal, like 0, as one of the parameters. So, T const ref is the right signature here.
+
+The body is using the immediate if operator, the ternary operator. It checks to see if t1 is less than t2. If it is, and t2 is the larger one, and we'll return t2, and then after the colon comes what we return if the condition was false, we'll return t1. The way this one's coded, if you pass two things the same, it will always return the first one as the answer.
+
+In C++, it's very common for templates to rely on operator overloads. When you use operator overloads, you can implement operator<(const T &t1, const T &t2) and all the other operators for your classes, then the template can use the operator overload, and it'll work for fundamentals types, as well as for the classes that you write. 
+
+For more information on overloading operators, see:
+[C++\Syntax\Overloading\Operators]
+
+
+
+
 We can write a function that calculates the sum of the element values of any sequence that a range for can traverse (e.g., a container) like this:
 
 template<typename Sequence, typename Value>

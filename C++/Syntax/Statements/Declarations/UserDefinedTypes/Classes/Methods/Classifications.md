@@ -22,6 +22,8 @@ A function definition in a class definition is an inline function definition by 
 ### const
 The const specifiers on the functions indicate that a function does not modify the object for which it is called. A const member function can be invoked for both const and non-const objects, but a non-const member function can only be invoked for non-const objects.
 
+It is generally recommended that all methods be marked const if they can be.
+
 
 ### constexpr
 It is possible to define a constructor as a constant expression too, using keyword constexpr. In special cases where such a construct would be useful from a performance point of view, you would use it at the constructor declaration.

@@ -1,7 +1,7 @@
 Resource Management
 
 
-
+When you create an object it has a lifetime. As control reaches the line on which the object is declared the constructor is called, and memory is allocated. It's common to say that this memory is on the stack and we sometimes describe these objects as having stack semantics. That object then has a scope, it lasts until the close brace of whatever block it was declared in, and at that point when control reaches that close brace, which could be the end of main in these very simple little demos, the memory is freed and a special function called the destructor runs. Now destructors are optional, there isn't necessarily anything that needs to be done when an object goes out of scope, but the existence of the constructor and the destructor and the fact that they're guaranteed to run in pairs sets up a very powerful C++ concept with a rather awful name of Resource Acquisition Is Initialization. And it is a pattern where you acquire certain resources in the constructor. For example, you open a file, you make a database connection, and then you release that resource in the destructor, for example you close the file or you close the database connection. You cannot forget to call a destructor. It's called for you when the object goes out of scope, and so Resource Acquisition Is Initialization is a very powerful way to ensure that you don't have dangling resources that were not properly cleaned up when you're finished using them. 
 
 When we call new, a special member function called a constructor allocates the elements and initializes the members appropriately.
 

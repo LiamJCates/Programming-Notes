@@ -1,11 +1,13 @@
 ## Derived Object Declaration
 
-To define a derived class in C++ we use:
+To define a derived class in C++ we use the general syntax:
 
-  class derived-class : access-specifier base-class
-  {
-    //class members
-  };
+```cpp
+class derived-class : access-specifier base-class
+{
+  //members
+};
+```
 
 Where the name of the derived class, derived-class, is followed by a colon, :, and a base class inheritance type.
 
@@ -27,15 +29,17 @@ For specific information about inheritance access specifiers, see:
 
 The most basic mode of inheritance is single inheritance which is specified syntactically as follows:
 
-	class Base
-	{
-	  // ... base class members
-	};
+```cpp
+class Base
+{
+  //base members
+};
 
-	class Derived : access-specifier Base
-	{
-	  // ... derived class members
-	};
+class Derived : access-specifier Base
+{
+  //derived members
+};
+```
 
 For information regarding various modes of inheritance, see:
 [C++\ObjectOrientedConcepts\Relationships\Inheritance\Modes.md]
