@@ -1,56 +1,10 @@
-Overloading the comparison operators
-By Alex on October 4th, 2007 | last modified by Alex on December 21st, 2020
-
 Overloading the comparison operators is comparatively simple (see what I did there?), as they follow the same patterns as we’ve seen in overloading other operators.
 
 Because the comparison operators are all binary operators that do not modify their left operands, we will make our overloaded comparison operators friend functions.
 
 Here’s an example Car class with an overloaded operator== and operator!=.
 
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-36
-37
-38
-39
-40
-41
-42
-43
-
+```cpp
 #include <iostream>
 #include <string>
 
@@ -94,10 +48,16 @@ int main()
 
     return 0;
 }
-
+```
 The code here should be straightforward. Because the result of operator!= is the opposite of operator==, we define operator!= in terms of operator==, which helps keep things simpler, more error free, and reduces the amount of code we have to write.
 
-What about operator< and operator>? What would it mean for a Car to be greater or less than another Car? We typically don’t think about cars this way. Since the results of operator< and operator> would not be immediately intuitive, it may be better to leave these operators undefined.
+
+
+
+
+What about operator< and operator>?
+
+What would it mean for a Car to be greater or less than another Car? We typically don’t think about cars this way. Since the results of operator< and operator> would not be immediately intuitive, it may be better to leave these operators undefined.
 
 Recommendation: Don’t define overloaded operators that don’t make sense for your class.
 
@@ -107,63 +67,7 @@ Some of the container classes in the standard library (classes that hold sets of
 
 Here’s a different example with an overloaded operator>, operator<, operator>=, and operator<=:
 
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-36
-37
-38
-39
-40
-41
-42
-43
-44
-45
-46
-47
-48
-49
-50
-51
-52
-53
-54
-55
-56
-
+```cpp
 #include <iostream>
 
 class Cents
@@ -220,40 +124,22 @@ int main()
 
     return 0;
 }
+```
 
 This is also pretty straightforward.
 
 Note that there is some redundancy here as well. operator> and operator<= are logical opposites, so one could be defined in terms of the other. operator< and operator>= are also logical opposites, and one could be defined in terms of the other. In this case, I chose not to do so because the function definitions are so simple, and the comparison operator in the function name line up nicely with the comparison operator in the return statement.
 
-Quiz time
+For the Cents example above, we can also rewrite operators < and <= in terms of other overloaded operators.
 
-1) For the Cents example above, rewrite operators < and <= in terms of other overloaded operators.
+  < would mean that the Cents are not < and not ==
+  <= would mean that the Cents are not <
 
-Show Solution
 
-2) Add an overloaded operator<< and operator< to the Car class at the top of the lesson so that the following program compiles:
+We could also add an overloaded operator<< and operator< to the Car class at the top of the lesson so that the following program compiles:
 
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
+For information regarding overloading the operator<<, see:
+[C++\Syntax\Overloading\Operators\IO.md]
 
 #include <algorithm>
 #include <iostream>

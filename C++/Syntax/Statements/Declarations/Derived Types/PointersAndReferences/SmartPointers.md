@@ -1,13 +1,14 @@
 Pointers are very low-level objects. Although they play a central role in most C programs, C++ offers higher-level, sometimes more efficient, constructs that obviate the need to deal with memory addresses directly.
 
-Smart Pointers
-Dynamic objects have the most flexible lifetimes. With great flexibility comes great responsibility, so you must make sure each dynamic object gets destructed exactly once. This might not look daunting with small programs, but looks can be deceiving. Just consider how exceptions factor
+
+
+### Smart Pointers
+
+Dynamic objects have the most flexible lifetimes. With great flexibility comes great responsibility, so you must make sure each dynamic object gets destructed exactly once. This might not look daunting with small programs, but looks can be deceiving. Just consider how exceptions factor into dynamic memory management. Each time an error or an exception could occur, you need to keep track of which allocations you’ve made successfully and be sure to release them in the correct order.
 
 If you want to do a few small things right, do them yourself.
 If you want to do great things and make a big impact, learn to delegate.
 —John C. Maxwell
-
-into dynamic memory management. Each time an error or an exception could occur, you need to keep track of which allocations you’ve made successfully and be sure to release them in the correct order.
 
 Fortunately, you can use RAII to handle such tedium. By acquiring dynamic storage in the constructor of the RAII object and releasing dynamic storage in the destructor, it’s relatively difficult to leak (or double free) dynamic memory. This enables you to manage dynamic object lifetimes using move and copy semantics.
 
@@ -37,19 +38,10 @@ C++ Crash Course pg 342
 
 
 Intro to smart pointers and move semantics
-By Alex on February 17th, 2017 | last modified by Alex on December 21st, 2020
 
 Consider a function in which we dynamically allocate a value:
 
-1
-2
-3
-4
-5
-6
-7
-8
-
+```cpp
 void someFunction()
 {
     Resource *ptr = new Resource(); // Resource is a struct or class
@@ -58,27 +50,11 @@ void someFunction()
 
     delete ptr;
 }
+```
 
 Although the above code seems fairly straightforward, it’s fairly easy to forget to deallocate ptr. Even if you do remember to delete ptr at the end of the function, there are a myriad of ways that ptr may not be deleted if the function exits early. This can happen via an early return:
 
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-
+```cpp
 #include <iostream>
 
 void someFunction()
@@ -96,27 +72,11 @@ void someFunction()
 
     delete ptr;
 }
+```
 
 or via a thrown exception:
 
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-
+```cpp
 #include <iostream>
 
 void someFunction()
@@ -134,6 +94,7 @@ void someFunction()
 
     delete ptr;
 }
+```
 
 In the above two programs, the early return or throw statement execute, causing the function to terminate without variable ptr being deleted. Consequently, the memory allocated for variable ptr is now leaked (and will be leaked again every time this function is called and returns early).
 
@@ -141,7 +102,7 @@ At heart, these kinds of issues occur because pointer variables have no inherent
 
 Smart pointer classes to the rescue?
 
-One of the best things about classes is that they contain destructors that automatically get executed when an object of the class goes out of scope. So if you allocate (or acquire) memory in your constructor, you can deallocate it in your destructor, and be guaranteed that the memory will be deallocated when the class object is destroyed (regardless of whether it goes out of scope, gets explicitly deleted, etc…). This is at the heart of the RAII programming paradigm that we talked about in lesson 11.9 -- Destructors.
+One of the best things about classes is that they contain destructors that automatically get executed when an object of the class goes out of scope. So if you allocate (or acquire) memory in your constructor, you can deallocate it in your destructor, and be guaranteed that the memory will be deallocated when the class object is destroyed (regardless of whether it goes out of scope, gets explicitly deleted, etc…). This is at the heart of the RAII programming paradigm
 
 So can we use a class to help us manage and clean up our pointers? We can!
 
@@ -149,49 +110,7 @@ Consider a class whose sole job was to hold and “own” a pointer passed to it
 
 Here’s a first draft of the idea:
 
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-36
-37
-38
-39
-40
-41
-42
-
+```cpp
 #include <iostream>
 
 template<class T>
@@ -234,6 +153,7 @@ int main()
 
 	return 0;
 } // res goes out of scope here, and destroys the allocated Resource for us
+```
 
 This program prints:
 

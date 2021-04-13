@@ -98,49 +98,63 @@ outData.close();
 On some systems, it is not necessary to close the files. When the program terminates, the files are closed automatically. Nevertheless, it is a good practice to close the files yourself.
 
 Also, if you want to use the same file stream variable to open another file, you must close the first file opened with that file stream variable.
+```cpp
+//STEP 1 : include the header file
+#include <fstream>
+#include <string>
+using namespace std;
 
-  #include <fstream>
-  #include <string>
-  using namespace std;
-
-  int main()
-  {
-    //Declare file stream variables such as the following
-    ifstream inFile;
-    ofstream outFile;
-
-    string inFileName;
-    cout << "Enter the input file name: ";
-    cin >> inFileName;
-    inFile.open(inFileName.c_str()); //open the input file
-
-    string outFileName;
-    cout << "Enter the output file name: ";
-    cin >> outFileName;
-    outFile.open(outFileName.c_str()); //open the input file
+int main()
+{
+  //STEP 2: Declare file stream variables such as the following
+  ifstream inFile;
+  ofstream outFile;
 
 
-    //Code for data manipulation
 
-    //Close files
-    inFile.close();
-    outFile.close();
-    return 0;
-  }
-
-Also, for comparison purposes, someone might want to process each file separately and then store the output in separate files. To accomplish this task efficiently, the user would prefer to specify the name of the input and/or output file at execution time rather than in the programming code. C++ allows the user to do so. Consider the following statements:
-
+  //STEP 2.B: prompt the user for a file name
+  string inFileName;
   cout << "Enter the input file name: ";
-  cin >> fileName;
-  infile.open(fileName); //open the input file
-  ...
+  cin >> inFileName;
+  // This step is unnecessary if your program uses a hard-coded filename in a sting variable
+  // EX: string filename = "File.txt";
+
+
+
+  //STEP 3 (input):  Associate the file stream variables with the I/O sources.
+  // Filename must use C type strings, the function c_str() converts a C++ string to a C string
+  inFile.open(inFileName.c_str()); //open the input file
+
+
+  //Alternative to STEP 2 / 3
+  ifstream myInfile ("example.txt");
+
+
+  //STEP 2.B: for output to a file
+  string outFileName;
   cout << "Enter the output file name: ";
-  cin >> fileName;
-  outfile.open(fileName); //open the output file
+  cin >> outFileName;
+  // This step is unnecessary if your program uses a hard-coded filename in a sting variable
+  // EX: string filename = "File.txt";
 
 
+  //STEP 3 (output):  Associate the file stream variables with the I/O sources.
+  // Filename must use C type strings, the function c_str() converts a C++ string to a C string
+  outFile.open(outFileName.c_str()); //open the output file
 
 
+  //Alternative to STEP 2 / 3
+  ofstream myOutfile ("example.txt");
+
+  //STEP 4: Code for data manipulation
+  // ... explained below
+
+  //STEP 5: Close files
+  inFile.close();
+  outFile.close();
+  return 0;
+}
+```
 
 
 Let's see an example:
@@ -163,9 +177,10 @@ Writing this to a file.
 
 This code creates a file called example.txt and inserts a sentence into it in the same way we are used to do with cout, but using the file stream myfile instead.
 
-But let's go step by step:
 
-Open a file
+
+### File Flags
+
 The first operation generally performed on an object of one of these classes is to associate it to a real file. This procedure is known as to open a file. An open file is represented within a program by a stream (i.e., an object of one of these classes; in the previous example, this was myfile) and any input or output operation performed on this stream object will be applied to the physical file associated to it.
 
 In order to open a file with a stream object we use its member function open:
@@ -210,7 +225,11 @@ To check if a file stream was successful opening a file, you can do it by callin
 
 if (myfile.is_open()) { /* ok, proceed with output */ }
 
-Closing a file
+
+
+
+### Closing a file
+
 When we are finished with our input and output operations on a file we shall close it so that the operating system is notified and its resources become available again. For that, we call the stream's member function close. This member function takes flushes the associated buffers and closes the file:
 
 myfile.close();
@@ -219,27 +238,32 @@ Once this member function is called, the stream object can be re-used to open an
 
 In case that an object is destroyed while still associated with an open file, the destructor automatically calls the member function close.
 
-Text files
+
+
+
+### Example Text Files
 Text file streams are those where the ios::binary flag is not included in their opening mode. These files are designed to store text and thus all values that are input or output from/to them can suffer some formatting transformations, which do not necessarily correspond to their literal binary value.
 
 Writing operations on text files are performed in the same way we operated with cout:
 
-  // writing on a text file
-  #include <iostream>
-  #include <fstream>
-  using namespace std;
+```cpp
+// writing on a text file
+#include <iostream>
+#include <fstream>
+using namespace std;
 
-  int main () {
-    ofstream myfile ("example.txt");
-    if (myfile.is_open())
-    {
-      myfile << "This is a line.\n";
-      myfile << "This is another line.\n";
-      myfile.close();
-    }
-    else cout << "Unable to open file";
-    return 0;
+int main () {
+  ofstream myfile ("example.txt");
+  if (myfile.is_open())
+  {
+    myfile << "This is a line.\n";
+    myfile << "This is another line.\n";
+    myfile.close();
   }
+  else cout << "Unable to open file";
+  return 0;
+}
+```
 
   [file example.txt]
   This is a line.
@@ -247,29 +271,30 @@ Writing operations on text files are performed in the same way we operated with 
 
 Reading from a file can also be performed in the same way that we did with cin:
 
-  // reading a text file
-  #include <iostream>
-  #include <fstream>
-  #include <string>
-  using namespace std;
+```cpp
+// reading a text file
+#include <iostream>
+#include <fstream>
+#include <string>
+using namespace std;
 
-  int main () {
-    string line;
-    ifstream myfile ("example.txt");
-    if (myfile.is_open())
+int main () {
+  string line;
+  ifstream myfile ("example.txt");
+  if (myfile.is_open())
+  {
+    while ( getline (myfile,line) )
     {
-      while ( getline (myfile,line) )
-      {
-        cout << line << '\n';
-      }
-      myfile.close();
+      cout << line << '\n';
     }
-
-    else cout << "Unable to open file";
-
-    return 0;
+    myfile.close();
   }
 
+  else cout << "Unable to open file";
+
+  return 0;
+}
+```
 
 
   This is a line.
@@ -280,29 +305,60 @@ This last example reads a text file and prints out its content on the screen. We
 
 program breaks up the input into whitespace-separated words instead of lines:
 
-  #include <string>
-  #include <iostream>
-  #include <fstream>
-  #include <vector>
-  using namespace std;
+```cpp
+#include <string>
+#include <iostream>
+#include <fstream>
+#include <vector>
+using namespace std;
 
-  int main() {
-    vector<string> words;
-    ifstream in("GetWords.cpp");
-    string word;
+int main() {
+  vector<string> words;
+  ifstream in("GetWords.cpp");
+  string word;
 
-    while(in >> word)
-      words.push_back(word);
+  while(in >> word)
+    words.push_back(word);
 
-    for(int i = 0; i < words.size(); i++)
-      cout << words[i] << endl;
-  }
+  for(int i = 0; i < words.size(); i++)
+    cout << words[i] << endl;
+}
+```
 
 gets the input one “word” at a time, and when this expression evaluates to “false” it means the end of the file has been reached. Of course, delimiting words by whitespace is quite crude, but it makes for a simple example.
 
 
-get and put stream positioning
-All i/o streams objects keep internally -at least- one internal position:
+
+
+
+### Buffers and Synchronization
+
+When we operate with file streams, these are associated to an internal buffer object of type streambuf. This buffer object may represent a memory block that acts as an intermediary between the stream and the physical file.
+
+For example, with an ofstream, each time the member function put (which writes a single character) is called, the character may be inserted in this intermediate buffer instead of being written directly to the physical file with which the stream is associated.
+
+The operating system may also define other layers of buffering for reading and writing to files.
+
+When the buffer is flushed, all the data contained in it is written to the physical medium (if it is an output stream). This process is called synchronization and takes place under any of the following circumstances:
+
+##### When the file is closed:
+before closing a file, all buffers that have not yet been flushed are synchronized and all pending data is written or read to the physical medium.
+
+##### When the buffer is full:
+Buffers have a certain size. When the buffer is full it is automatically synchronized.
+
+##### Explicitly, with manipulators:
+When certain manipulators are used on streams, an explicit synchronization takes place. These manipulators are: flush and endl.
+
+##### Explicitly, with member function sync():
+Calling the stream's member function sync() causes an immediate synchronization. This function returns an int value equal to -1 if the stream has no associated buffer or in case of failure. Otherwise (if the stream buffer was successfully synchronized) it returns 0.
+
+
+
+
+### get and put stream positioning
+
+All I/O streams objects keep internally -at least- one internal position:
 
 ifstream, like istream, keeps an internal get position with the location of the element to be read in the next input operation.
 
@@ -428,15 +484,3 @@ file.read (memblock, size);
 file.close();
 
 At this point we could operate with the data obtained from the file. But our program simply announces that the content of the file is in memory and then finishes.
-
-Buffers and Synchronization
-When we operate with file streams, these are associated to an internal buffer object of type streambuf. This buffer object may represent a memory block that acts as an intermediary between the stream and the physical file. For example, with an ofstream, each time the member function put (which writes a single character) is called, the character may be inserted in this intermediate buffer instead of being written directly to the physical file with which the stream is associated.
-
-The operating system may also define other layers of buffering for reading and writing to files.
-
-When the buffer is flushed, all the data contained in it is written to the physical medium (if it is an output stream). This process is called synchronization and takes place under any of the following circumstances:
-
-    When the file is closed: before closing a file, all buffers that have not yet been flushed are synchronized and all pending data is written or read to the physical medium.
-    When the buffer is full: Buffers have a certain size. When the buffer is full it is automatically synchronized.
-    Explicitly, with manipulators: When certain manipulators are used on streams, an explicit synchronization takes place. These manipulators are: flush and endl.
-    Explicitly, with member function sync(): Calling the stream's member function sync() causes an immediate synchronization. This function returns an int value equal to -1 if the stream has no associated buffer or in case of failure. Otherwise (if the stream buffer was successfully synchronized) it returns 0.

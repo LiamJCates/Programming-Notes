@@ -2,7 +2,9 @@
 
 When you type make (or whatever the name of your “make” program happens to be), the make program looks in the current directory for a file named makefile, which you’ve created if it’s your project.
 
-This file lists dependencies between source code files. make looks at the dates on files. If a dependent file has an older date than a file it depends on, make executes the rule given after the dependency.
+A make file lists dependencies between source code files.
+
+The make program looks at the dates on files. If a dependent file has an older date than a file it depends on, make executes the rule given after the dependency.
 
 As a simple example, the makefile for a program called “hello” might contain:
 
@@ -40,9 +42,9 @@ The = is used to identify CPP as a macro, and the $ and parentheses expand the m
 In this case, the expansion means that the macro call $(CPP) will be replaced with the string mycompiler.
 
 With the macro above, if you want to change to a different compiler called
-cpp, you just change the macro to:
+g++, you just change the macro to:
 
-	CPP = cpp
+	CPP = g++
 
 You can also add compiler flags, etc., to the macro, or use separate macros to add compiler flags.
 
