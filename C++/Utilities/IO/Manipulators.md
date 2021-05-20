@@ -1,4 +1,4 @@
-Manipulator
+## Manipulators
 
 iostream manipulators don’t print anything, but change the state of the output stream.
 
@@ -163,3 +163,145 @@ Instead of cout << left, you can use:
 Instead of cout << right, you can use:
 
   cout.setf(ios::right);
+
+
+
+### Boolalpha
+
+The manipulator std::boolalpha (declared in <ios>, so you get it for free from
+<iostream>) tells a stream to interpret bool values as words. By default, the words are true and false.
+
+```cpp
+#include <iostream>
+
+int main()
+{
+std::cout << "true=" << true << '\n';
+std::cout << "false=" << false << '\n';
+std::cout << std::boolalpha;
+std::cout << "true=" << true << '\n';
+std::cout << "false=" << false << '\n';
+}
+```
+
+
+By default, when an input stream has to read a bool value, it actually reads an integer, and if the integer’s
+value is 1, the stream interprets that as true. The value 0 is false, and any other value results in an error.
+With the std::boolalpha manipulator, the input stream requires the exact text true or false. Integers
+are not allowed, nor are any case differences. The input stream accepts only those exact words.
+Use the std::noboolalpha manipulator to revert to the default numeric Boolean values. Thus, you can
+mix alphabetic and numeric representations of bool in a single stream, as follows:
+bool a{true}, b{false};
+std::cin >> std::boolalpha >> a >> std::noboolalpha >> b;
+std::cout << std::boolalpha << a << ' ' << std::noboolalpha << b;
+By default, std::format() converts a bool value to a string, like boolalpha. You can also format a bool
+as an integer to format the value 0 or 1.
+std::cout << std::format("{} {:d}\n", a, b);
+
+
+
+
+
+We can also call manipulators as functions on a stream variable.
+
+```cpp
+#include <iostream>
+#include <iomanip>
+
+int main()
+{
+    double toPrint[] = {1.0000, 2.000001, 3.123, 4.123456};
+    std::cout.precision(3);
+    std::cout.width(6);
+    std::cout.fill('0');
+    std::cout.setf(std::ios_base::left, std::ios_base::adjustfield);
+
+    for(auto d : toPrint)
+        std::cout << d << std::endl;
+
+
+    std::cout.precision(6);
+    std::cout.width(10);
+    std::cout.fill('-');
+    std::cout.setf(std::ios_base::right, std::ios_base::adjustfield);
+
+    for(auto d : toPrint)
+        std::cout << d << std::endl;
+}
+```
+
+all manipulators are sticky. Except setw/width which seems to be reset after use.
+
+the only reason that setw/width appears to behave differently is because there are requirements on formatted output operations to explicitly call width(0) on the output stream.
+
+Because of this, after the first array element is printed the width goes back to 0.
+
+
+
+
+
+
+
+
+
+
+### Custom Manipulator
+
+Here is an Example how an object can be used to temporaily change the state then put it back by the use of an object:
+
+```cpp
+#include <iostream>
+#include <iomanip>
+
+// Private object constructed by the format object PutSquareBracket
+struct SquareBracktAroundNextItem
+{
+    SquareBracktAroundNextItem(std::ostream& str)
+        :m_str(str)
+    {}
+    std::ostream& m_str;
+};
+
+// New Format Object
+struct PutSquareBracket
+{};
+
+// Format object passed to stream.
+// All it does is return an object that can maintain state away from the
+// stream object (so that it is not STICKY)
+SquareBracktAroundNextItem operator<<(std::ostream& str,PutSquareBracket const& data)
+{
+    return SquareBracktAroundNextItem(str);
+}
+
+// The Non Sticky formatting.
+// Here we temporariy set formating to fixed with a precision of 10.
+// After the next value is printed we return the stream to the original state
+// Then return the stream for normal processing.
+template<typename T>
+std::ostream& operator<<(SquareBracktAroundNextItem const& bracket,T const& data)
+{
+    std::ios_base::fmtflags flags               = bracket.m_str.flags();
+    std::streamsize         currentPrecision    = bracket.m_str.precision();
+
+    bracket.m_str << '[' << std::fixed << std::setprecision(10) << data << std::setprecision(currentPrecision) << ']';
+
+    bracket.m_str.flags(flags);
+
+    return bracket.m_str;
+}
+
+
+int main()
+{
+
+    std::cout << 5.34 << "\n"                        // Before
+              << PutSquareBracket() << 5.34 << "\n"  // Temp change settings.
+              << 5.34 << "\n";                       // After
+}
+```
+
+> ./a.out
+5.34
+[5.3400000000]
+5.34

@@ -135,14 +135,12 @@ A special lookup table that the database search engine uses to speed up data ret
 
 
 Keys
-Relational Database tables use specialized columns called keys to form relationships between tables.
+Relational Database tables use specialized columns, called keys, to form relationships within and between tables.
 
-Keys are special columns that play very specific roles within a table. The
-type of key determines its purpose within the table. Although a table
-might contain several types of keys, I will limit my discussion to the two
-most important ones: the primary key and the foreign key.
+Keys are a column or set of columns that play very specific roles within a table. A key that consists of a set of columns is called a compound key or composite key.
 
-
+The type of key determines its purpose within the table. Although a table
+might contain several types of keys, an elementary discussion consists of the two most important ones: the primary key and the foreign key.
 
 
 
@@ -156,15 +154,12 @@ most important ones: the primary key and the foreign key.
 
 
 
+Primary Key (PK)
+A single or multi-column key used to uniquely identify a row for searching within a given table. Every table row must have a unique primary key that identifies it. When implemented efficiently, primary keys are the fastest way to find a row. The uniqueness of primary key columns is enforced.
 
+A primary key's value must be unique for each row, each row must have values for all columns in the key set, each column must be necessary for uniqueness (don't use more rows than you must to achieve uniqueness)
 
-
-
-
-Primary key
-A column (or set of columns) whose values uniquely identify every row in a table.
-
-A primary key that consists of a set of columns is called a compound key
+We can designate a key as primary or nonprimary.
 
 Though they are not required, database designers ensure that every table they create has a primary key so that future data manipulation is possible and manageable.
 
@@ -175,23 +170,26 @@ Always define Primary Keys that meet the following conditions:
 • Every row must have a primary key value. (No NULL)
 • Primary key values should never be reused or reassigned or modified
 
-
 When multiple columns are used as a primary key, rules listed above must apply to all columns, and the values of all columns together must be unique
 
-Individual columns of a multicolumn primary key are not required to have unique values, but they must be unique as a collection
+Individual columns of a multicolumn primary key are not required to have unique values, but they must be unique as a collection.
 
-A primary key consists of one or more columns that uniquely identify
-each row within a table. (When a primary key is composed of two or
-more columns, it is known as a composite primary key.) The primary key
-is the most important for two reasons: Its value identifies a specific row
-throughout the entire database, and its column identifies a given table
-throughout the entire database. Primary keys also enforce table-level
-integrity and help establish relationships with other tables. Every table
-in your database should have a primary key.
+The primary key is the most important for two reasons:
+  Its value identifies a specific row throughout the entire database
+  its column identifies a given table throughout the entire database.
+
+Primary keys also enforce table-level integrity and help establish relationships with other tables. Every table in your database should have a primary key.
+
+
 
 
 
 Foreign Key
+Primary keys are used as the target of foreign keys from other tables.
+
+
+Keys form links between tables by including the column values of the primary key of one table in related rows of another table, called a foreign key.
+
 When you determine that a pair of tables has a relationship to each
 other, you typically establish the relationship by taking a copy of the
 primary key from the first table and inserting it into the second table,
@@ -208,6 +206,13 @@ foreign key must be drawn from the values of the primary key to which
 it refers. Foreign keys also help you avoid the dreaded “orphaned rows,”
 a classic example of which is an order row without an associated customer. If you don’t know who placed the order, you can’t process it, and
 you obviously can’t invoice it. That’ll throw off your quarterly sales!
+
+A FOREIGN KEY constraint does not have to be linked only to a PRIMARY KEY constraint in another table; it can also be defined to reference the columns of a UNIQUE constraint in another table.
+
+
+
+
+
 
 
 Views

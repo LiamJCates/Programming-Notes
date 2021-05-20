@@ -12,3 +12,5 @@ Compound statement syntax:
     ...
     statement_n
   }
+
+Compound statements do more than simply group multiple statements into a single statement. You can also group definitions within the block. Any variable that you define in a block is visible only within the confines of the block. The region where you can use a variable is known as the variable’s scope. 

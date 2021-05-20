@@ -1,0 +1,767 @@
+Threads
+
+The std::thread class represents a thread of execution and is available in the <thread> header. std::thread can work with regular functions, lambdas and functors (a class implementing operator()). Moreover, it allows you to pass any number of parameters to the thread function.
+
+
+#include <thread>
+
+void func()
+{
+   // do some work
+}
+
+int main()
+{
+   std::thread t(func);
+   t.join();
+
+   return 0;
+}
+
+In this example, t is a thread object representing the thread under which function func() runs. The call to join blocks the calling thread (in this case, the main thread) until the joined thread finishes execution. If the thread function returns a value, it is ignored.
+
+However, the function can take any number of parameters.
+
+
+void func(int i, double d, const std::string& s)
+{
+    std::cout << i << ", " << d << ", " << s << std::endl;
+}
+
+int main()
+{
+   std::thread t(func, 1, 12.50, "sample");
+   t.join();
+
+   return 0;
+}
+
+Even though it's possible to pass any number of parameters to the thread function, all parameters are passed by value. If the function needs to take parameters by reference, the passed arguments must be wrapped in a std::ref or std::cref like in the following example.
+
+
+void func(int& a)
+{
+   a++;
+}
+
+int main()
+{
+   int a = 42;
+   std::thread t(func, std::ref(a));
+   t.join();
+
+   std::cout << a << std::endl;
+
+   return 0;
+}
+
+The program prints 43, but without wrapping a in a std::ref, the output would be 42.
+
+
+
+
+
+
+Apart from the join method, the thread class provides a couple more operations:
+
+swap: exchanges the underlying handles of two thread objects
+detach: allows a thread of execution to continue independently of the thread object. Detached threads are no longer joinable (you cannot wait for them).
+C++
+Copy Code
+
+int main()
+{
+    std::thread t(funct);
+    t.detach();
+
+    return 0;
+}
+
+
+
+
+
+
+
+An important thing to note is that if a thread function throws an exception, it won't be caught with a regular try-catch block. In other words, this won't work:
+
+
+try
+{
+    std::thread t1(func);
+    std::thread t2(func);
+
+    t1.join();
+    t2.join();
+}
+catch(const std::exception& ex)
+{
+    std::cout << ex.what() << std::endl;
+}
+
+To propagate exceptions between threads, you could catch them in the thread function and store them in a place where it can be accessed later.
+
+
+std::mutex                       g_mutex;
+std::vector<std::exception_ptr>  g_exceptions;
+
+void throw_function()
+{
+   throw std::exception("something wrong happened");
+}
+
+void func()
+{
+   try
+   {
+      throw_function();
+   }
+   catch(...)
+   {
+      std::lock_guard<std::mutex> lock(g_mutex);
+      g_exceptions.push_back(std::current_exception());
+   }
+}
+
+int main()
+{
+   g_exceptions.clear();
+
+   std::thread t(func);
+   t.join();
+
+   for(auto& e : g_exceptions)
+   {
+      try
+      {
+         if(e != nullptr)
+         {
+            std::rethrow_exception(e);
+         }
+      }
+      catch(const std::exception& e)
+      {
+         std::cout << e.what() << std::endl;
+      }
+   }
+
+   return 0;
+}
+
+For more information about catching and propagating exceptions, you can read Handling C++ exceptions thrown from worker thread in the main thread and How can I propagate exceptions between threads?
+
+Before going further, it is worth noting that the <thread> header provides some helper functions in namespace std::this_thread:
+
+    get_id: returns the id of the current thread
+    yield: tells the scheduler to run other threads and can be used when you are in a busy waiting state
+    sleep_for: blocks the execution of the current thread for at least the specified period
+    sleep_util: blocks the execution of the current thread until the specified moment of time has been reached
+
+
+
+
+
+
+
+Locks
+
+In the last example, I needed to synchronize the access to the g_exceptions vector to make sure only one thread at a time can push a new element. For this, I used a mutex and a lock on the mutex. A mutex is a core synchronization primitive and in C++11, it comes in four flavors in the <mutex> header.
+
+    mutex: provides the core functions lock() and unlock() and the non-blocking try_lock() method that returns if the mutex is not available.
+    recursive_mutex: allows multiple acquisitions of the mutex from the same thread.
+    timed_mutex: similar to mutex, but it comes with two more methods try_lock_for() and try_lock_until() that try to acquire the mutex for a period of time or until a moment in time is reached.
+    recursive_timed_mutex: is a combination of timed_mutex and recusive_mutex.
+
+Here is an example for using a std::mutex (notice the use of the get_id() and sleep_for() helper functions mentioned earlier).
+
+
+#include <iostream>
+#include <thread>
+#include <mutex>
+#include <chrono>
+
+std::mutex g_lock;
+
+void func()
+{
+    g_lock.lock();
+
+    std::cout << "entered thread " << std::this_thread::get_id() << std::endl;
+    std::this_thread::sleep_for(std::chrono::seconds(rand() % 10));
+    std::cout << "leaving thread " << std::this_thread::get_id() << std::endl;
+
+    g_lock.unlock();
+}
+
+int main()
+{
+    srand((unsigned int)time(0));
+
+    std::thread t1(func);
+    std::thread t2(func);
+    std::thread t3(func);
+
+    t1.join();
+    t2.join();
+    t3.join();
+
+    return 0;
+}
+
+The output looks like this:
+
+
+entered thread 10144
+leaving thread 10144
+entered thread 4188
+leaving thread 4188
+entered thread 3424
+leaving thread 3424
+
+The lock() and unlock() methods should be straight forward. The first locks the mutex, blocking if the mutex is not available, and the later unlocks the mutex.
+
+The next example shows a simple thread-safe container (using std::vector internally). This container has methods like add() that adds a single element and addrange() that adds multiple elements, and internally just calls add().
+
+Note: However, as pointed in the comments below, this is not a thread-safe container for several reasons including the use of va_args. Also, the dump() method should not belong to the container and in a real implementation, it would be a helper (stand-alone) function. The purpose of this example is merely to teach some concepts about mutexes and not to make a full fledged, error-free, thread-safe container.
+C++
+Shrink ▲   Copy Code
+
+template <typename T>
+class container
+{
+    std::mutex _lock;
+    std::vector<T> _elements;
+public:
+    void add(T element)
+    {
+        _lock.lock();
+        _elements.push_back(element);
+        _lock.unlock();
+    }
+
+    void addrange(int num, ...)
+    {
+        va_list arguments;
+
+        va_start(arguments, num);
+
+        for (int i = 0; i < num; i++)
+        {
+            _lock.lock();
+            add(va_arg(arguments, T));
+            _lock.unlock();
+        }
+
+        va_end(arguments);
+    }
+
+    void dump()
+    {
+        _lock.lock();
+        for(auto e : _elements)
+            std::cout << e << std::endl;
+        _lock.unlock();
+    }
+};
+
+void func(container<int>& cont)
+{
+    cont.addrange(3, rand(), rand(), rand());
+}
+
+int main()
+{
+    srand((unsigned int)time(0));
+
+    container<int> cont;
+
+    std::thread t1(func, std::ref(cont));
+    std::thread t2(func, std::ref(cont));
+    std::thread t3(func, std::ref(cont));
+
+    t1.join();
+    t2.join();
+    t3.join();
+
+    cont.dump();
+
+    return 0;
+}
+
+When you execute this program, it runs into a deadlock. The reason is the container attempts to acquire the mutex multiple times before releasing it and that is not possible. That is where std::recursive_mutex come into the picture. It allows a thread to acquire the same mutex multiple times. The maximum number of times the mutex can be acquired is not specified, but if that number is reached, calling lock would throw a std::system_error. Therefore to fix the problem in the code above (apart from changing the implementation of addrange not to call lock and unlock) is to replace the mutex with a std::recursive_mutex.
+
+
+template <typename T>
+class container
+{
+    std::recursive_mutex _lock;
+    // ...
+};
+
+Then, you get an output like this:
+Copy Code
+
+6334
+18467
+41
+6334
+18467
+41
+6334
+18467
+41
+
+The astute reader will notice the same numbers are generated in each call to func(). That is because the seed is thread local, and the call to srand() only initializes the seed from the main thread. In the other worker threads, it doesn't get initialized, and therefore you get the same numbers every time.
+
+Explicit locking and unlocking can lead to problems, such as forgetting to unlock or incorrect order of locks acquiring that can generate deadlocks. The standard provides several classes and functions to help with this problems. The wrapper classes allow consistent use of the mutexes in a RAII-style with auto locking and unlocking within the scope of a block. These wrappers are:
+
+    lock_guard: when the object is constructed, it attempts to acquire ownership of the mutex (by calling lock()) and when the object is destructed, it automatically releases the mutex (by calling unlock()). This is a non-copyable class.
+    unique_lock: is a general purpose mutex wrapper that unlike lock_quard also provides support for deferred locking, time locking, recursive locking, transfer of lock ownership and use of condition variables. This is also a non-copyable class, but it is moveable.
+
+With these wrappers, we can rewrite the container class like this:
+C++
+Shrink ▲   Copy Code
+
+template <typename T>
+class container
+{
+    std::recursive_mutex _lock;
+    std::vector<T> _elements;
+public:
+    void add(T element)
+    {
+        std::lock_guard<std::recursive_mutex> locker(_lock);
+        _elements.push_back(element);
+    }
+
+    void addrange(int num, ...)
+    {
+        va_list arguments;
+
+        va_start(arguments, num);
+
+        for (int i = 0; i < num; i++)
+        {
+            std::lock_guard<std::recursive_mutex> locker(_lock);
+            add(va_arg(arguments, T));
+        }
+
+        va_end(arguments);
+    }
+
+    void dump()
+    {
+        std::lock_guard<std::recursive_mutex> locker(_lock);
+        for(auto e : _elements)
+            std::cout << e << std::endl;
+    }
+};
+
+One can argue though that the dump() method should be made const, since it does not alter the state of the container. But if you mark the method const, you get the following compiler error:
+Copy Code
+
+‘std::lock_guard<_Mutex>::lock_guard(_Mutex &)' : cannot convert parameter 1
+                from ‘const std::recursive_mutex' to ‘std::recursive_mutex &'
+
+A mutex (regardless which implementation is used) must be acquired and released and that implies calls to the non-constant lock() and unlock() methods. So the argument to lock_guard cannot be logically const (as the mutex would be if the method was const). The solution to this problem is to make the mutex mutable. Mutable allows changing state from const functions. It should however be used only for hidden or "meta" state (imagine caching computed or looked-up data so a next call can complete immediately, or altering bits like a mutex that only complement the actual state of an object).
+
+
+template <typename T>
+class container
+{
+   mutable std::recursive_mutex _lock;
+   std::vector<T> _elements;
+public:
+   void dump() const
+   {
+      std::lock_guard<std::recursive_mutex> locker(_lock);
+      for(auto e : _elements)
+         std::cout << e << std::endl;
+   }
+};
+
+The constructors of these wrapper guards have overloads that take an argument indicating the locking strategy. The available strategies are:
+
+    defer_lock of type defer_lock_t: do not acquire ownership of the mutex
+    try_to_lock of type try_to_lock_t: try to acquire ownership of the mutex without blocking
+    adopt_lock of type adopt_lock_t: assume the calling thread already has ownership of the mutex
+
+These strategies are declared like this:
+
+
+struct defer_lock_t { };
+struct try_to_lock_t { };
+struct adopt_lock_t { };
+
+constexpr std::defer_lock_t defer_lock = std::defer_lock_t();
+constexpr std::try_to_lock_t try_to_lock = std::try_to_lock_t();
+constexpr std::adopt_lock_t adopt_lock = std::adopt_lock_t();
+
+Apart from these wrappers for mutexes, the standard also provides a couple of methods for locking one or more mutexes.
+
+    lock: locks the mutexes using a deadlock avoiding algorithm (by using calls to lock(), try_lock() and unlock()).
+    try_lock: tries to call the mutexes by calling try_lock() in the order of which mutexes were specified.
+
+Here is an example of a deadlock case: we have a container of elements and we have a function exchange() that swaps one element from a container into the other container. To be thread-safe, this function synchronizes the access to the two containers, by acquiring a mutex associated with each container.
+C++
+Shrink ▲   Copy Code
+
+template <typename T>
+class container
+{
+public:
+    std::mutex _lock;
+    std::set<T> _elements;
+
+    void add(T element)
+    {
+        _elements.insert(element);
+    }
+
+    void remove(T element)
+    {
+        _elements.erase(element);
+    }
+};
+
+void exchange(container<int>& cont1, container<int>& cont2, int value)
+{
+    cont1._lock.lock();
+    std::this_thread::sleep_for(std::chrono::seconds(1)); // <-- forces context switch
+                                                          // to simulate the deadlock
+    cont2._lock.lock();
+
+    cont1.remove(value);
+    cont2.add(value);
+
+    cont1._lock.unlock();
+    cont2._lock.unlock();
+}
+
+Suppose this function is called from two different threads, from the first, an element is removed from container 1 and added to container 2, and in the second, it is removed from container 2 and added to container 1. This can lead to a deadblock (if the thread context switches from one thread to another just after acquiring the first lock).
+
+
+int main()
+{
+    srand((unsigned int)time(NULL));
+
+    container<int> cont1;
+    cont1.add(1);
+    cont1.add(2);
+    cont1.add(3);
+
+    container<int> cont2;
+    cont2.add(4);
+    cont2.add(5);
+    cont2.add(6);
+
+    std::thread t1(exchange, std::ref(cont1), std::ref(cont2), 3);
+    std::thread t2(exchange, std::ref(cont2), std::ref(cont1), 6);
+
+    t1.join();
+    t2.join();
+
+    return 0;
+}
+
+To fix the problem, you can use std::lock that guaranties the locks are acquired in a deadlock-free way:
+
+
+void exchange(container<int>& cont1, container<int>& cont2, int value)
+{
+    std::lock(cont1._lock, cont2._lock);
+
+    cont1.remove(value);
+    cont2.add(value);
+
+    cont1._lock.unlock();
+    cont2._lock.unlock();
+}
+
+Condition Variables
+
+Another synchronization primitive for which C++11 provides support is the condition variable that enables blocking of one or more threads until either a notification is received from another thread or a timeout or a spurious wake-up occurs. There are two implementations for condition variables available in the <condition_variable> header:
+
+    condition_variable: requires any thread that wants to wait on it to acquire a std::unique_lock first.
+    condition_variable_any: is a more general implementation that works with any type that satisfies the condition of a basic lock (an implementation that provides a lock() and unlock() method). This might be more expensive to use (in terms of performance and operating system resources), therefore it should be preferred only if the additional flexibility it provides is necessary.
+
+The following describes how condition variables work:
+
+    There must be at least one thread that is waiting for a condition to become true. The waiting thread must first acquire a unique_lock. This lock is passed to the wait() method, that releases the mutex and suspends the thread until the condition variable is signaled. When that happens, the thread is awoken and the lock is re-acquired.
+    There must be at least one thread that is signaling that a condition becomes true. The signaling can be done with notify_one() which unblocks one thread (any) that is waiting for the condition to be signaled or with notify_all() which unblocks all the threads that are waiting for the condition.
+    Because of some complications in making the condition wake-up completely predictable on multiprocessor systems, spurious wake-ups can occur. That means a thread is awoken even if nobody signaled the condition variable. Therefore, it is necessary to check if the condition is still true after the thread has awaken. And since spurious wake-ups can occur multiple times, that check must be done in a loop.
+
+The code below shows an example of using a condition variable to synchronize threads: several "worker" threads may produce an error during their work and they put the error code in a queue. A "logger" thread processes these error codes, by getting them from the queue and printing them. The workers signal the logger when an error occurred. The logger is waiting on the condition variable to be signaled. To avoid spurious wakeups, the wait happens in a loop where a boolean condition is checked.
+C++
+Shrink ▲   Copy Code
+
+#include <thread>
+#include <mutex>
+#include <condition_variable>
+#include <iostream>
+#include <queue>
+#include <random>
+
+std::mutex              g_lockprint;
+std::mutex              g_lockqueue;
+std::condition_variable g_queuecheck;
+std::queue<int>         g_codes;
+bool                    g_done;
+bool                    g_notified;
+
+void workerfunc(int id, std::mt19937& generator)
+{
+    // print a starting message
+    {
+        std::unique_lock<std::mutex> locker(g_lockprint);
+        std::cout << "[worker " << id << "]\trunning..." << std::endl;
+    }
+
+    // simulate work
+    std::this_thread::sleep_for(std::chrono::seconds(1 + generator() % 5));
+
+    // simulate error
+    int errorcode = id*100+1;
+    {
+        std::unique_lock<std::mutex> locker(g_lockprint);
+        std::cout  << "[worker " << id << "]\tan error occurred: " << errorcode << std::endl;
+    }
+
+    // notify error to be logged
+    {
+        std::unique_lock<std::mutex> locker(g_lockqueue);
+        g_codes.push(errorcode);
+        g_notified = true;
+        g_queuecheck.notify_one();
+    }
+}
+
+void loggerfunc()
+{
+    // print a starting message
+    {
+        std::unique_lock<std::mutex> locker(g_lockprint);
+        std::cout << "[logger]\trunning..." << std::endl;
+    }
+
+    // loop until end is signaled
+    while(!g_done)
+    {
+        std::unique_lock<std::mutex> locker(g_lockqueue);
+
+        while(!g_notified) // used to avoid spurious wakeups
+        {
+            g_queuecheck.wait(locker);
+        }
+
+        // if there are error codes in the queue process them
+        while(!g_codes.empty())
+        {
+            std::unique_lock<std::mutex> locker(g_lockprint);
+            std::cout << "[logger]\tprocessing error:  " << g_codes.front()  << std::endl;
+            g_codes.pop();
+        }
+
+        g_notified = false;
+    }
+}
+
+int main()
+{
+    // initialize a random generator
+    std::mt19937 generator((unsigned int)
+                 std::chrono::system_clock::now().time_since_epoch().count());
+
+    // start the logger
+    std::thread loggerthread(loggerfunc);
+
+    // start the working threads
+    std::vector<std::thread> threads;
+    for(int i = 0; i < 5; ++i)
+    {
+        threads.push_back(std::thread(workerfunc, i+1, std::ref(generator)));
+    }
+
+    // work for the workers to finish
+    for(auto& t : threads)
+        t.join();
+
+    // notify the logger to finish and wait for it
+    g_done = true;
+    loggerthread.join();
+
+    return 0;
+}
+
+Running this code produces an output that looks like this (notice this output is different with each run because each worker thread works, i.e., sleeps, for a random interval):
+
+
+[logger]        running...
+[worker 1]      running...
+[worker 2]      running...
+[worker 3]      running...
+[worker 4]      running...
+[worker 5]      running...
+[worker 1]      an error occurred: 101
+[worker 2]      an error occurred: 201
+[logger]        processing error:  101
+[logger]        processing error:  201
+[worker 5]      an error occurred: 501
+[logger]        processing error:  501
+[worker 3]      an error occurred: 301
+[worker 4]      an error occurred: 401
+[logger]        processing error:  301
+[logger]        processing error:  401
+
+The wait() method seen above has two overloads:
+
+    one that only takes a unique_lock; this one releases the lock, blocks the thread and adds it to the queue of threads that are waiting on this condition variable; the thread wakes up when the condition variable is signaled or when a spurious wakeup occurs. When any of those happen, the lock is reacquired and the function returns.
+    one that in addition to the unique_lock also takes a predicate that is used to loop until it returns false; this overload may be used to avoid spurious wakeups. It is basically equivalent to:
+    C++
+    Copy Code
+
+    while(!predicate())
+       wait(lock);
+
+As a result, the use of the boolean flag g_notified in the example above can be avoided by using the wait overload that takes a predicate that verifies the state of the queue (empty or not):
+C++
+Shrink ▲   Copy Code
+
+void workerfunc(int id, std::mt19937& generator)
+{
+    // print a starting message
+    {
+        std::unique_lock<std::mutex> locker(g_lockprint);
+        std::cout << "[worker " << id << "]\trunning..." << std::endl;
+    }
+
+    // simulate work
+    std::this_thread::sleep_for(std::chrono::seconds(1 + generator() % 5));
+
+    // simulate error
+    int errorcode = id*100+1;
+    {
+        std::unique_lock<std::mutex> locker(g_lockprint);
+        std::cout << "[worker " << id << "]\tan error occurred: " << errorcode << std::endl;
+    }
+
+    // notify error to be logged
+    {
+        std::unique_lock<std::mutex> locker(g_lockqueue);
+        g_codes.push(errorcode);
+        g_queuecheck.notify_one();
+    }
+}
+
+void loggerfunc()
+{
+    // print a starting message
+    {
+        std::unique_lock<std::mutex> locker(g_lockprint);
+        std::cout << "[logger]\trunning..." << std::endl;
+    }
+
+    // loop until end is signaled
+    while(!g_done)
+    {
+        std::unique_lock<std::mutex> locker(g_lockqueue);
+
+        g_queuecheck.wait(locker, [&](){return !g_codes.empty();});
+
+        // if there are error codes in the queue process them
+        while(!g_codes.empty())
+        {
+            std::unique_lock<std::mutex> locker(g_lockprint);
+            std::cout << "[logger]\tprocessing error:  " << g_codes.front() << std::endl;
+            g_codes.pop();
+        }
+    }
+}
+
+In addition to this wait() overloaded method, there are two more waiting methods, both with similar overloads that take a predicate to avoid spurious wake-ups:
+
+    wait_for: blocks the thread until the condition variable is signaled or the specified timeout occurred
+    wait_until: blocks the thread until the condition variable is signaled or the specified moment in time was reached
+
+The overload without a predicate of these two functions returns a cv_status that indicates whether a timeout occurred or the wake-up happened because the condition variable was signaled or because of a spurious wake-up.
+
+The standard also provides a function called notify_all_at_thread_exit that implements a mechanism to notify other threads that a given thread has finished, including destroying all thread_local objects. This was introduced because waiting on threads with other mechanisms than join() could lead to incorrect and fatal behavior when thread_locals were used, since their destructors could have been called even after the waiting thread resumed and possible also finished (see N3070 and N2880 for more). Typically, a call to this function must happen just before the thread exists. Below is an example of how notify_all_at_thread_exit can be used together with a condition_variable to synchronize two threads:
+C++
+Shrink ▲   Copy Code
+
+std::mutex              g_lockprint;
+std::mutex              g_lock;
+std::condition_variable g_signal;
+bool                    g_done;
+
+void workerfunc(std::mt19937& generator)
+{
+   {
+      std::unique_lock<std::mutex> locker(g_lockprint);
+      std::cout << "worker running..." << std::endl;
+   }
+
+   std::this_thread::sleep_for(std::chrono::seconds(1 + generator() % 5));
+
+   {
+      std::unique_lock<std::mutex> locker(g_lockprint);
+      std::cout << "worker finished..." << std::endl;
+   }
+
+   std::unique_lock<std::mutex> lock(g_lock);
+   g_done = true;
+   std::notify_all_at_thread_exit(g_signal, std::move(lock));
+}
+
+int main()
+{
+   // initialize a random generator
+   std::mt19937 generator((unsigned int)
+        std::chrono::system_clock::now().time_since_epoch().count());
+
+   std::cout << "main running..." << std::endl;
+
+   std::thread worker(workerfunc, std::ref(generator));
+   worker.detach();
+
+   std::cout << "main crunching..." << std::endl;
+
+   std::this_thread::sleep_for(std::chrono::seconds(1 + generator() % 5));
+
+   {
+      std::unique_lock<std::mutex> locker(g_lockprint);
+      std::cout << "main waiting for worker..." << std::endl;
+   }
+
+   std::unique_lock<std::mutex> lock(g_lock);
+   while(!g_done) // avoid spurious wake-ups
+      g_signal.wait(lock);
+
+   std::cout << "main finished..." << std::endl;
+
+   return 0;
+}
+
+If the worker finishes work before the main thread, then the output would be:
+Copy Code
+
+main running...
+worker running...
+main crunching...
+worker finished...
+main waiting for worker...
+main finished...
+
+If the main thread finishes before the worker thread, then the output would be:
+
+
+main running...
+worker running...
+main crunching...
+main waiting for worker...
+worker finished...
+main finished...
+
+Conclusions
+
+The C++11 standard enables C++ developers to write multi-threading code in a standard, platform independent way. This article is a walk-through of the standard support for threads and synchronization mechanisms. The <thread> header provides the class with the same name (and additional helpers) that represents a thread of execution. Header <mutex> provides implementation of several mutexes and wrappers for synchronizing access to threads. Header <condition_variable> provides two implementation of condition variables that enable blocking of one or more threads until either a notification is received from another thread or a timeout or a spurious wake-up occurs. Additional readings are recommended for more details on these topics.

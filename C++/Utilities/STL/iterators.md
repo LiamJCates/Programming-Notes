@@ -15,6 +15,8 @@ Iterators supplied by STL can be broadly classified into the following:
 
 	Output iterator — One that allows the programmer to write to the collection. Output iterators of the strictest types guarantee write access only.
 
+	output iterators move forward only. You can use the increment operator (prefix or postfix), but not decrement.
+
 The basic iterator types mentioned in the preceding list are further refined into the following:
 	Forward iterator — A refinement of the input and output iterators allowing both input and output. Forward iterators may be constant, allowing for read-only access to the object the iterator points to, and otherwise allow for both read and write operations, making it mutable. A forward iterator would typically find use in a singly linked list.
 
@@ -28,13 +30,15 @@ An iterator is an object used to reference an element stored in a container. Thu
 
 An iterator allows for accessing information included in a container so that desired operations can be performed on these elements.
 
-As a generalization of pointers, iterators retain the same dereferencing notation. For example, *i is an element referenced by iterator i. Also, iterator arithmetic is similar to pointer arithmetic, although all operations on iterators are not allowed in all containers.
+As a generalization of pointers, iterators retain the same dereferencing notation. For example, *i is an element referenced by iterator i.
+
+Iterator arithmetic is similar to pointer arithmetic, although all operations on iterators are not allowed in all containers.
 
 
 
-What are iterators really? Any particular iterator is an object of some type. There are, however,
-many different iterator types, because an iterator needs to hold the information necessary for doing
-its job for a particular container type. These iterator types can be as different as the containers and
+What are iterators really? Any particular iterator is an object of some type.
+
+There are, however, many different iterator types, because an iterator needs to hold the information necessary for doing its job for a particular container type. These iterator types can be as different as the containers and
 the specialized needs they serve.
 
 Iterators come in various flavors, but they all support at least the following operations:
@@ -46,6 +50,7 @@ Iterators come in various flavors, but they all support at least the following o
 
 
 
+Ranges come in different flavors, depending on the type of the iterator and the nature of the ranged data.
 
 For all functions in C++ that specify a range with the help of iterators, the start() iterator is usually inclusive, and the end() iterator is usually exclusive, unless specified otherwise.
 
@@ -62,6 +67,63 @@ const_iterator is a const version of the normal iterator. If
 the container is declared to be a const, its functions that are related to iterators, such as begin() and end(), return const_iterator.
 
 reverse_iterator allows us to traverse the array in the reverse direction. So, its functions, such as the increment operator (++) and advance, are inverses of such operations for normal iterators.
+
+
+
+
+
+A vector is an example of a sized range, that is, a range with a size that the C++ library can determine in
+constant time. Suppose a program defines a range of lines of text read from a file; the number of lines cannot
+be known beforehand, so such a range could not be a sized range.
+The flavor of range also depends on the iterator type. C++ has six different kinds of iterators, but you can
+broadly group them into two categories: read and write.
+A read iterator refers to a position in a sequence of values that enables reading from the sequence. Most
+algorithms require a read iterator with a corresponding sentinel in order to obtain the input data. Some
+algorithms are read-only and others can modify the iterated values.
+Most algorithms also require a write iterator, more commonly known as an output iterator. Most
+algorithms use only the single output iterator instead of an output range. This is because the size of the
+output range is not necessarily known until the algorithm has run its course over its input.
+If the input range is sized, an algorithm could use that information to set the size of an output range, but
+not all output ranges are sized. For example, writing the values of a vector to an output stream has a sized
+input but not a sized output. In order to keep algorithms generic, they rarely require a sized range as input
+and rarely accept a range as output.
+Because a typical algorithm does not and cannot check for overflow of the output iterator, you must
+ensure the output sequence has sufficient room to accommodate everything the algorithm will write.
+For example, the std::ranges::copy algorithm copies values from an input range to an output iterator.
+The function takes two arguments: an input range and output iterator. You must ensure the output has
+enough capacity. Call the resize member function to set the size of the output vector
+
+Demonstrating the std::ranges::copy Function
+#include <cassert>
+import <algorithm>;
+import <vector>;
+int main()
+{
+std::vector<int> input{ 10, 20, 30 };
+std::vector<int> output{};
+output.resize(input.size());
+std::ranges::copy(input, output.begin());
+// Now output has a complete copy of input.
+assert(input == output);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -137,8 +199,48 @@ accumulate the sum of each element.
 
 
 
+Being able to call resize() is fine if the output is a vector, but you can also use an output iterator to
+write values to a file or console. Take an output file such as std::cout and construct a std::ostream_
+iterator<int>{std::cout} object to turn it into an output iterator that prints int values. (Use import
+<iterator> to get declarations of the iterator-related declarations.) Even better, you can pass a string as a
+second argument, and the iterator writes that string after every value it writes.
+
+Demonstrating the std::ostream_iterator Class
+#include <algorithm>
+#include <iostream>
+#include <iterator>
+#include <ranges>
+#include <vector>
+
+int main()
+{
+  std::vector<int> data;
+  std::ranges::copy(std::ranges::istream_view<int>(std::cin),
+                    std::back_inserter(data));
+  std::ranges::sort(data);
+  std::ranges::copy(data, std::ostream_iterator<int>{std::cout, "\n"});
+}
 
 
+
+
+
+
+Just as you can use the ostream_iterator to write a range to the standard output, you can also use the
+standard library to read values from the standard input directly into a range.
+with a std::ranges::istream_view.
+
+A view is a kind of range that is easy to copy or assign. By naming this type a
+view, it tells you that you can assign an istream_view variable without incurring a runtime penalty.
+
+The job is now to use the std::ranges::copy() function to copy a range of int values from std::cin
+to the data vector. But here we run into a problem of setting the size of data to match the number of input
+values.
+
+The emplace_back() function extends the size of a vector to accommodate the new value, so how do we arrange to call emplace_back() for every element that is read from the istream_view?
+
+The answer is a special kind of output iterator called std::back_inserter. Pass data as the argument to
+back_inserter, and every value written to the output iterator is added to the end of data.
 
 
 
@@ -168,9 +270,41 @@ The iterators provide a unified interface across all of the dynamically iterable
 
 
 
+### Output Iterator
 
+```cpp
+//Reversing the Input Order
+#include <algorithm>
+#include <iostream>
+#include <iterator>
+#include <ranges>
+#include <vector>
 
+int main()
+{
+  std::vector<int> data{};
+  std::ranges::copy(std::ranges::istream_view<int>(std::cin),
+                    std::back_inserter(data));
 
+  for (auto start{data.begin()}, end{data.end()};
+       start != end and start != --end;
+       ++start)
+  {
+      std::iter_swap(start, end);
+  }
+
+  std::ranges::copy(data, std::ostream_iterator<int>(std::cout, "\n"));
+}
+
+```
+
+The start iterator points to the beginning of the data vector, and end initially points to one past the
+end. If the vector is empty, the for loop terminates without executing the loop body. Then the loop body
+decrements end so that it points to an actual element of the vector.
+Notice that the program is careful to compare start != end after each increment and again after
+each decrement operation. If the program had only one comparison, it would be possible for start and
+end to pass each other. The loop condition would never be true, and the program would exhibit undefined
+behavior
 
 
 

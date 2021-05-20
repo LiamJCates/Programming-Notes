@@ -1,3 +1,8 @@
+https://wiki.qt.io/RaspberryPi2EGLFS
+
+http://www.heavybaremetal.com/index.php/blog/6-how-to-cross-compile-qt-5-for-raspberry-pi-3
+
+
 Setting put WSL2 to Raspberry Pi Cross Compiler Environment
 
 Install Ubuntu from Windows store

@@ -42,3 +42,41 @@ Put another way,
 1. Call-by-value is appropriate for small objects that should not be altered by the function.
 2. Call-by-constant-reference is appropriate for large objects that should not be altered by the function and are expensive to copy.
 3. Call-by-reference is appropriate for all objects that may be altered by the function.
+
+
+
+
+
+```cpp
+#include <iostream>
+using namespace std;
+
+void getValue(int&);
+void doesntGetValue(int);
+
+int main()
+{
+  int value = 0;
+
+  cout << "Initial value: " << value << endl;
+
+  doesntGetValue(value);
+
+  cout << "Value after dgv function: " << value << endl;
+
+  getValue(value);
+
+  cout << "Value after gv function: " << value << endl;
+}
+
+void doesntGetValue(int value)
+{
+  value = 2;
+  cout << "Value in dgv function: " <<value << endl;
+}
+
+void getValue(int & value)
+{
+  value = 2;
+}
+```

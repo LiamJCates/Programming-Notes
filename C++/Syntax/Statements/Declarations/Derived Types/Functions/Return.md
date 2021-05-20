@@ -55,9 +55,38 @@ When not to use return by address:
 
 ### Return by reference
 
-Similar to return by address, values returned by reference must be variables. When a variable is returned by reference, a reference to the variable is passed back to the caller. The caller can then use this reference to continue modifying the variable. Return by reference is also fast, which can be useful when returning structs and classes.
+Similar to return by address, values returned by reference must be variables.
 
-However, just like return by address, you should not return local variables by reference. You should not return a reference to a literal or an expression that resolves to a temporary value, as those will go out of scope at the end of the function and you’ll end up returning a dangling reference. Return by reference is typically used to return arguments passed by reference to the function back to the caller.
+When a variable is returned by reference, a reference to the variable is passed back to the caller. The caller can then use this reference to continue modifying the variable.
+```cpp
+int & f(int &i)
+{
+  return ++i;
+}
+
+int main()
+{
+  int i = 5;
+  printf("i: %d\n", i); //5
+  f(i) = 42;
+  printf("i: %d\n", i); //42
+}
+```
+
+Return by reference is also fast, which can be useful when returning structs and classes.
+
+However, just like return by address, you should not return local variables by reference. You should not return a reference to a literal or an expression that resolves to a temporary value, as those will go out of scope at the end of the function and you’ll end up returning a dangling reference.
+
+```cpp
+//This causes problems as i is local
+int & f()
+{
+  int i;
+  return i;
+}
+```
+
+Return by reference is typically used to return arguments passed by reference to the function back to the caller.
 
 When to use return by reference:
     When returning a reference parameter

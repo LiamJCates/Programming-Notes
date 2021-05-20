@@ -1,4 +1,4 @@
-a statement is a complete "something" that a database engine can understand and produce a result set for.
+A statement is a complete "something" that a database engine can understand and produce a result set for.
 
 Statements may have a persistent effect on schemata and data, or may control transactions, program flow, connections, sessions, or diagnostics.
 

@@ -11,7 +11,81 @@ Declare a basic string literal by enclosing text in quotation marks (""):
   std::cout << "Hello World" << std::endl;
 
 
-The C-Style Character String
+### The String Class in C++
+
+The standard C++ library provides a string class used to store a sequence of characters. This is not a built-in type, but it behaves like one in its most basic usage.
+
+To use strings, you must include an additional header file in the source code, the <string> library:
+```cpp
+// Include the string library
+#include <string>
+using namespace std;
+
+// Create a string variable
+string greeting;
+
+// Output uninitialized string value
+cout << greeting << endl;
+
+// Assign a value
+greeting = "Hello";
+
+// Output string value
+cout << greeting << endl;
+```
+
+#### Greeting String
+When greeting is first declared, we are omitting an initial value, which leaves the variable uninitialized. This would typically which would be an error, because no value is assigned. You are not allowed to print or otherwise access the value of an uninitialized variable.
+
+But std::string is different. The lack of an initializer in this case is the same as empty brace definition; namely, the variable is initialized to an empty string, and we see a blank line printed, rather than an error.
+
+
+
+#### Continuation Character
+
+The backslash character (\) is a line-continuation character. When you need a long string, you can use the continuation marker \ (backslash) before a line break. The preprocessor scans the source file before compilation and concatenates lines that are broken by a continuation marker. Thus, the compiler sees such lines as if they were typed without a break. Note that the line break (a hard return/enter) should appear immediately after the backslash.
+
+```cpp
+string str = "This is a very long string therefore we should probably use a \
+string continuation character";
+```
+
+#### Consecutive String Literals
+
+This statement is written as two string literals:
+std::cout << "Hello "
+"World" << std::endl;
+
+
+Adjacent wide or narrow string literals are concatenated. This declaration:
+char str[] = "12" "34";
+
+is identical to this declaration:
+char atr[] = "1234";
+
+and to this declaration:
+char atr[] =  "12\
+34";
+
+Consecutive string literals get concatenated together, and any intervening whitespaces or newlines get ignored. So, you can place string literals on multiple lines in your source, and the compiler will treat them as one:
+  #include <cstdio>
+
+  int main() {
+    char house[] = "a "
+    "house "
+    "of " "gold.";
+    printf("A book holds %s\n ", house);
+  }
+
+Usually, such constructions are useful for readability only when you
+have a long string literal that would span multiple lines in your source code.
+
+
+The compiler notices two adjacent string literals and concatenates them.
+
+
+
+### The C-Style Character String
 
 The C-style character string originated within the C language and continues to be supported within C++. This string is actually a one-dimensional array of characters which is terminated by a null character '\0'. Thus a null-terminated string contains the characters that comprise the string followed by a null.
 
@@ -56,7 +130,7 @@ C-style strings are used in a lot of old or low-level code, because they have a 
 
 
 
-
+### String Literal Types
 
 A string literal represents a sequence of characters that together form a null-terminated string.
 
@@ -67,20 +141,23 @@ There are the following kinds of string literals:
   Raw string Literals
   std::string literals
 
-Narrow string literals
+
+#### Narrow string literals
 A narrow string literal is a non-prefixed, double-quote delimited, null-terminated array of type const char[n], where n is the length of the array in bytes. A narrow string literal may contain any graphic character except the double quotation mark ("), backslash (\), or newline character. A narrow string literal may also contain the escape sequences listed above, and universal character names that fit in a byte.
 const char *narrow = "abcd";
 
 // represents the string: yes\no
 const char *escaped = "yes\\no";
 
-UTF-8 encoded strings
+
+#### UTF-8 encoded strings
 
 A UTF-8 encoded string is a u8-prefixed, double-quote delimited, null-terminated array of type const char[n], where n is the length of the encoded array in bytes. A u8-prefixed string literal may contain any graphic character except the double quotation mark ("), backslash (\), or newline character. A u8-prefixed string literal may also contain the escape sequences listed above, and any universal character name.
 const char* str1 = u8"Hello World";
 const char* str2 = u8"\U0001F607 is O:-)";
 
-Wide string literals
+
+#### Wide string literals
 
 A wide string literal is a null-terminated array of constant wchar_t that is prefixed by 'L' and contains any graphic character except the double quotation mark ("), backslash (\), or newline character. A wide string literal may contain the escape sequences listed above and any universal character name.
 const wchar_t* wide = L"zyxw";
@@ -92,7 +169,8 @@ C++11 introduces the portable char16_t (16-bit Unicode) and char32_t (32-bit Uni
 auto s3 = u"hello"; // const char16_t*
 auto s4 = U"hello"; // const char32_t*
 
-Raw string literals (C++11)
+
+#### Raw string literals (C++11)
 
 A raw string literal is a null-terminated array—of any character type—that contains any graphic character, including the double quotation mark ("), backslash (\), or newline character. Raw string literals are often used in regular expressions that use character classes, and in HTML strings and XML strings. For examples, see the following article: Bjarne Stroustrup's FAQ on C++11.
 // represents the string: An unescaped \ character
@@ -115,18 +193,20 @@ You can construct a raw string literal that contains a newline (not the escaped 
 const wchar_t* newline = LR"(hello
 goodbye)";
 
-std::string literals (C++14)
+
+#### std::string literals (C++14)
 
 std::string literals are Standard Library implementations of user-defined literals (see below) that are represented as "xyz"s (with a s suffix). This kind of string literal produces a temporary object of type std::string, std::wstring, std::u32string, or std::u16string, depending on the prefix that is specified. When no prefix is used, as above, a std::string is produced. L"xyz"s produces a std::wstring. u"xyz"s produces a std::u16string, and U"xyz"s produces a std::u32string.
-
-  //#include <string>
-  //using namespace std::string_literals;
+```cpp
+  #include <string>
+  using namespace std;
+  using namespace std::string_literals;
   string str{ "hello"s };
   string str2{ u8"Hello World" };
   wstring str3{ L"hello"s };
   u16string str4{ u"hello"s };
   u32string str5{ U"hello"s };
-
+```
 The s suffix may also be used on raw string literals:
 u32string str6{ UR"(She said "hello.")"s };
 
@@ -158,57 +238,7 @@ You can cause the compiler to emit an error when a string literal is converted t
 In some cases, identical string literals may be pooled to save space in the executable file. In string-literal pooling, the compiler causes all references to a particular string literal to point to the same location in memory, instead of having each reference point to a separate instance of the string literal. To enable string pooling, use the /GF compiler option.
 
 
-
-
-
-
-
-
-### Continuation
-
-The backslash character (\) is a line-continuation character. When you need a long string, you can use the continuation marker \ (backslash) before a line break. The preprocessor scans the source file before compilation and concatenates lines that are broken by a continuation marker. Thus, the compiler sees such lines as if they were typed without a break. Note that the line break (a hard return/enter) should appear immediately after the backslash.
-
-### Consecutive String Literals
-
-This statement is written as two string literals:
-std::cout << "Hello "
-"World" << std::endl;
-
-
-Adjacent wide or narrow string literals are concatenated. This declaration:
-char str[] = "12" "34";
-
-is identical to this declaration:
-char atr[] = "1234";
-
-and to this declaration:
-char atr[] =  "12\
-34";
-
-Consecutive string literals get concatenated together, and any intervening whitespaces or newlines get ignored. So, you can place string literals on multiple lines in your source, and the compiler will treat them as one:
-  #include <cstdio>
-
-  int main() {
-    char house[] = "a "
-    "house "
-    "of " "gold.";
-    printf("A book holds %s\n ", house);
-  }
-
-Usually, such constructions are useful for readability only when you
-have a long string literal that would span multiple lines in your source code.
-
-
-The compiler notices two adjacent string literals and concatenates them.
-
-
-
-
-
-
-
-
-### Unicode
+#### Unicode
 Like character literals, string literals support Unicode: just prepend the literal with the appropriate prefix, such as L.
 
 
@@ -221,46 +251,21 @@ wprintf in the <cwchar> header.
 
 
 
-
-The String Class in C++
-
-The standard C++ library provides a string class used to store a sequence of characters. This is not a built-in type, but it behaves like one in its most basic usage.
-
-To use strings, you must include an additional header file in the source code, the <string> library:
-
-// Include the string library
-#include <string>
-
-// Create a string variable
-string greeting = "Hello";
-
-// Output string value
-cout << greeting;
-
-
-
-
-
-
-
+### String Type Summary
 String literals can have no prefix, or u8, L, u, and U prefixes to denote narrow character (single-byte or multi-byte), UTF-8, wide character (UCS-2 or UTF-16), UTF-16 and UTF-32 encodings, respectively. A raw string literal can have R, u8R, LR, uR, and UR prefixes for the raw version equivalents of these encodings. To create temporary or static std::string values, you can use string literals or raw string literals with an s suffix.
 
 
 
 
+### String Example
 
 
-
-
-
-
-
+```cpp
 #include <string>
 using namespace std::string_literals; // enables s-suffix for std::string literals
 
 int main()
 {
-
   // String literals
   auto s0 =   "hello"; // const char*
   auto s1 = u8"hello"; // const char*, encoded as UTF-8
@@ -298,7 +303,7 @@ int main()
   auto S9 =  UR"("Hello \ world")"s;
   // std::u32string from raw const char32_t*, encoded as UTF-32
 }
-
+```
 
 
 Using embedded hexadecimal escape codes to specify string literals can cause unexpected results. The following example seeks to create a string literal that contains the ASCII 5 character, followed by the characters f, i, v, and e:
@@ -310,12 +315,13 @@ The actual result is a hexadecimal 5F, which is the ASCII code for an underscore
 "\x05" "five"  // Use string splicing.
 
 std::string literals, because they're std::string types, can be concatenated with the + operator that is defined for basic_string types. They can also be concatenated in the same way as adjacent string literals. In both cases, the string encoding and the suffix must match:
-auto x1 = "hello" " " " world"; // OK
-auto x2 = U"hello" " " L"world"; // C2308: disagree on prefix
-auto x3 = u8"hello" " "s u8"world"s; // OK, agree on prefixes and suffixes
-auto x4 = u8"hello" " "s u8"world"z; // C3688, disagree on suffixes
+auto x1 = "hello " " world"; // OK
+auto x2 = U"hello " L"world"; // C2308: disagree on prefix
+auto x3 = u8"hello "s u8"world"s; // OK, agree on prefixes and suffixes
+auto x4 = u8"hello "s u8"world"z; // C3688, disagree on suffixes
 
-String literals with universal character names
+
+### String literals with universal character names
 
 Native (non-raw) string literals may use universal character names to represent any character, as long as the universal character name can be encoded as one or more characters in the string type. For example, a universal character name representing an extended character can't be encoded in a narrow string using the ANSI code page, but it can be encoded in narrow strings in some multi-byte code pages, or in UTF-8 strings, or in a wide string. In C++11, Unicode support is extended by the char16_t* and char32_t* string types:
 // ASCII smiling face

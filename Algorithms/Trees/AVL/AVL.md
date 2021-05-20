@@ -1,6 +1,7 @@
 AVL Operations:
-Searching a node
-Inserting a node
+Search
+Insert
+Delete
 
 ## Searching
 The process of searching a node in an AVL tree is the same as for a
@@ -11,22 +12,23 @@ binary search tree.
 The process of inserting a new node in an AVL tree is quite similar to
 that of binary search trees. The new node is always inserted as a terminal/
 leaf node in the AVL tree. But the insertion of a new node can disturb the
-balance of the AVL tree, as the balance factor may be disturbed. Thus, for
-the tree to remain balanced, the insertion process is followed by a rotation process. The rotation process is usually done to restore the balance
-factor of the tree. If the balance factor of each node is -1, 0, or 1 after the
-insertion process, then the rotation is not required, as the tree is already
-balanced; otherwise, rotation is required.
+balance of the AVL tree, as the balance factor may be disturbed.
+
+Thus, for the tree to remain balanced, the insertion process is followed by a balance factor check for every node.
+
+If the balance factor of all nodes is
+  within the range -1 <= BF <= 1, then there is nothing more to be done.
+  out of the range -1 <= BF <= 1 then a suitabe Rotation is made
+
 
 ### AVL Rotations
-Rotation is done when the balance factor of the node becomes disturbed after inserting a new node. We know that the new node which is
-inserted will always have a balance factor of 0, as it will be a leaf node.
-Hence, the nodes whose balance factors will be disturbed are the ones
-which lie in the path of the root node to the newly inserted node. So,
-we will perform the rotation process only on those nodes whose balance
-factors will be disturbed. In the rotation process, our first work is to find
-the critical node in the AVL tree. The critical node is the nearest ancestor
-node from the newly inserted node to the root node which does not have
-a balance factor of -1, 0, or 1.
+Rotations are used to preserve the balance porperty of the tree
+
+For any node that is inserted the balance factor us 0, as it will be a leaf node with no children. Hence, the nodes whose balance factors will be disturbed are the ones which lie in the path of the root node to the newly inserted node.
+
+So, we will perform the rotation process only on those nodes whose balance factors will be disturbed. In the rotation process, our first work is to find the critical node in the AVL tree.
+
+The critical node is the nearest ancestor node from the newly inserted node to the root node which does not have a balance factor of -1, 0, or 1.
 
 There are four types of rotations which are:
 1. Left-Left Rotation (LL Rotation) – New node is inserted in the left
@@ -37,6 +39,8 @@ a
    \
     c
 
+Where c has BF of 0, b has BF of -1, and a has BF of -2
+
 2. Right-Right Rotation (RR Rotation) – New node is inserted in the
 right subtree of the right subtree of the critical node.
     c
@@ -44,6 +48,8 @@ right subtree of the right subtree of the critical node.
   b
  /
 a
+
+Where a has BF of 0, b has BF of 1, and c has BF of 2
 
 3. Right-Left Rotation (RL Rotation) – New node is inserted in the left
 subtree of the right subtree of the critical node.
@@ -53,6 +59,8 @@ a
  \
   b
 
+Where b has BF of 0, a has BF of -1, and c has BF of -2
+
 4. Left-Right Rotation (LR Rotation) – New node is inserted in the right
 subtree of the left subtree of critical node.
 a
@@ -61,7 +69,9 @@ a
  /
 b
 
-After rotations all tree will have the form
+Where b has BF of 0, c has BF of 1, and a has BF of -2
+
+After rotations all trees will have the form
 
   b
  / \
@@ -128,11 +138,7 @@ LR_ROTATION(ROOT)
   RETURN ROOT
 
 
-
-
-
-
-
+#### BALANCE
 
 BALANCE(ROOT)  
   LHEIGHT = (!ROOT->LEFT) ? 0 : ROOT->LEFT->HEIGHT + 1
@@ -149,7 +155,7 @@ BALANCE(ROOT)
     RR_ROTATION(p) : RL_ROTATION(p)
 
 
-
+#### INSERT
 INSERT(ROOT, VALUE)
   IF(ROOT == NULL)
     Allocate memory for ROOT node

@@ -14,6 +14,24 @@ Only one entity can exist with a particular name in a particular scope.
 
 
 
+
+A good programming practice is to limit the scope to as small a region as possible. Limiting the scope of a variable serves several purposes:
+
+• Preventing mistakes: You can’t accidentally use a variable’s name outside of its scope.
+
+• Communicating intent: Anyone who reads your code can tell how a variable is used. If variables are defined at the broadest scope possible, whoever reads your code must spend more time and effort trying to determine where different variables are used.
+
+• Reusing names: How many times can you use the variable i as a loop control variable? You can use and reuse it as often as you like, provided each time you limit the variable’s scope to its loop.
+
+• Reusing memory: When execution reaches the end of a block, all the variables defined in that block are destroyed, and the memory is available to be used again. Thus, if your code creates many large objects but needs only one at a time, you can define each variable in its own scope, so only one large object exists at a time.
+
+
+
+
+
+
+
+
 ### Scope Types
 A declaration introduces a name into one of six scope types:
 

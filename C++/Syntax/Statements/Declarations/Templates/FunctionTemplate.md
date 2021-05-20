@@ -36,14 +36,30 @@ However, these drawbacks are fairly minor compared with the power and flexibilit
 
 ### Function Templates
 
-
+```cpp
 template <class T>
 T max(T const& t1, T const& t2)
 {
   return t1 < t2? t2: t1;
 }
 
-You can see the first line says template, angle brackets, class T, close angle brackets. And that is the indicator that this is a templated function. Then the T that you see everywhere else in the function signature is that placeholder type. It's just a convention to use a capital letter T, but it's a very popular one.
+int main() {
+
+    int result1;
+    double result2;
+    // calling with int parameters
+    result1 = max<int>(2, 3);
+    cout << result1 << endl;
+
+    // calling with double parameters
+    result2 = max<double>(2.2, 3.3);
+    cout << result2 << endl;
+
+    return 0;
+}
+```
+
+You can see the first line says template, angle brackets, class T, close angle brackets. And that is the indicator that this is a templated function. Then the T that you see everywhere else in the function signature is called a template parameter that is the placeholder for the type that will be used in the function. It's conventional to use a capital letter T.
 
 So what this code declares is that the function is called max and it returns some type T, whatever this is the templated of, it takes a T by constant reference called t1 and another T by constant reference called t2.
 
@@ -51,7 +67,7 @@ Because you might be using this template to compare two integers, you might thin
 
 The body is using the immediate if operator, the ternary operator. It checks to see if t1 is less than t2. If it is, and t2 is the larger one, and we'll return t2, and then after the colon comes what we return if the condition was false, we'll return t1. The way this one's coded, if you pass two things the same, it will always return the first one as the answer.
 
-In C++, it's very common for templates to rely on operator overloads. When you use operator overloads, you can implement operator<(const T &t1, const T &t2) and all the other operators for your classes, then the template can use the operator overload, and it'll work for fundamentals types, as well as for the classes that you write. 
+In C++, it's very common for templates to rely on operator overloads. When you use operator overloads, you can implement operator<(const T &t1, const T &t2) and all the other operators for your classes, then the template can use the operator overload, and it'll work for fundamentals types, as well as for the classes that you write.
 
 For more information on overloading operators, see:
 [C++\Syntax\Overloading\Operators]
@@ -60,7 +76,7 @@ For more information on overloading operators, see:
 
 
 We can write a function that calculates the sum of the element values of any sequence that a range for can traverse (e.g., a container) like this:
-
+```cpp
 template<typename Sequence, typename Value>
 Value sum(const Sequence& s, Value v)
 {
@@ -68,9 +84,10 @@ Value sum(const Sequence& s, Value v)
     v+=x;
   return v;
 }
-
+```
 The Value template argument and the function argument v are there to allow the caller to specify the type and initial value of the accumulator (the variable in which to accumulate the sum):
 
+```cpp
 void user(Vector<int>& vi, list<double>& ld, vector<complex<double>>& vc)
 {
   int x = sum(vi,0); // the sum of a vector of ints (add ints)
@@ -78,6 +95,7 @@ void user(Vector<int>& vi, list<double>& ld, vector<complex<double>>& vc)
   double dd = sum(ld,0.0); // the sum of a list of doubles
   auto z = sum(vc,complex{0.0,0.0}); // the sum of a vector of complex<double>
 }
+```
 
 The point of adding ints in a double would be to gracefully handle a number larger than the largest int. Note how the types of the template arguments for sum<Sequence ,Value> are deduced from the function arguments. Fortunately, we do not need to explicitly specify those types.
 

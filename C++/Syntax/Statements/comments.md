@@ -3,7 +3,9 @@ There are two common types of comments in a C++ program:
   single-line comments
   multiple-line comments
 
+All comments are removed from the program at translation phase 3 by replacing each comment with a single whitespace character.
 
+A comment cannot nest within a comment of the same style, but you can nest one style of comment in comments of the other style.
 
 
 ### Single-line comments
@@ -33,6 +35,11 @@ std::cout << "Yeah!\n";
 
 
 
+Three Slash comment ///
+
+In Visual Studio the /// indicates documentation not just comments. Following your link the explanation is the same. It is used to adorn comments that will be specifically formatted via your editor or some other tool as documentation for a class, method, namespace, etc.
+
+
 
 ### Multi-line Comments
 
@@ -48,11 +55,10 @@ The compiler ignores anything that appears between /* and */
 
 Since everything between the symbols is ignored, you will sometimes see programmers “beautify” their multi-line comments:
 
-
-/* This is a multi-line comment.
- \* the matching asterisks to the left
- \* can make this easier to read
- */
+/*  This is a multi-line comment.
+    the matching asterisks to the left
+    can make this easier to read
+*/
 
 Multi-line style comments can not be nested. Consequently, the following will have unexpected results:
 
@@ -62,3 +68,6 @@ Multi-line style comments can not be nested. Consequently, the following will ha
 When the compiler tries to compile this, it will ignore everything from the first /* to the first */. Since “this is not inside the comment */” is not considered part of the comment, the compiler will try to compile it. That will inevitably result in a compile error.
 
 This is one place where using a syntax highlighter can be really useful, as the different coloring for comment should make clear what’s considered part of the comment vs not.
+
+
+/** and */ are often used to indicate documentation blocks; this is legal because the second asterisk is simply treated as part of the comment.

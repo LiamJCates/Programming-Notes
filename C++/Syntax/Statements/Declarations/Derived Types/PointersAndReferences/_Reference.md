@@ -5,7 +5,11 @@ A reference is an alias for a variable. When you declare a reference, you need t
   VarType original = Value;
   VarType& ReferenceVariable = original;
 
-In a declaration, the unary suffix & means ‘‘reference to.’’ A reference is similar to a pointer, except that you don’t need to use a prefix ∗ to access the value referred to by the reference. Also, a reference cannot be made to refer to a different object after its initialization.
+In a declaration, the unary suffix & means ‘‘reference to.’’ A reference is similar to a pointer, except that you don’t need to use a prefix ∗ to access the value referred to by the reference.
+
+NOTE
+A reference must be initialized to a variable.
+A reference cannot be made to refer to a different object after its initialization.
 
 
 
@@ -64,6 +68,7 @@ The following two statements are thus identical:
   ref = 5;
 
 This can help keep your code cleaner and more readable.
+
 
 
 

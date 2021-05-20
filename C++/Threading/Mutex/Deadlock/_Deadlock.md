@@ -1,0 +1,6 @@
+### Deadlock
+A situation called deadlock occurs when each member of a group is waiting for some other member to take action. As a result, neither member is able to make progress.
+
+Avoiding deadlock is a common challenge in concurrent programs that use mutual exclusion mechanisms to protect critical sections of code. We want our program to be free from deadlock to guarantee liveness, which is a set of properties that require concurrent programs to make progress. Some processes or threads may have to take turns in a critical section but a well-written program with liveness guarantees that all processes will eventually make progress.
+
+imagine something like a banking application with a set of bank accounts where each one has its own mutex to ensure that only one thread will be withdrawing from or depositing funds to that account at a time. To transfer funds between two accounts, a thread needs to acquire the locks for both the sender and the receiver since it would be modifying the value of both accounts. If there are multiple threads concurrently making transfers between the accounts then there's a real chance that they could end up competing for the same locks and run into this sort of deadlock scenario.

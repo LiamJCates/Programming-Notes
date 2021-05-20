@@ -1,6 +1,6 @@
 MySQL Workbench
 
-There are three major workspaces in my sMySQL Workbench,
+There are three major workspaces in my MySQL Workbench,
 SQL development
     Open Database Connection
     Explore Database

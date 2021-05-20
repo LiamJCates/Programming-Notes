@@ -1,5 +1,5 @@
 ### Catching Exceptions
-In order for an exception to be "caught" by an exception handler, the throw-expression has to be inside the scope of a try-block.
+In order for an exception to be "caught" by a given exception handler, a throw-expression of a type that matches the parameter of the exception handler sepcified by a catch block has to be executed inside the scope of a try-block for which the catch block is associated.
 
 A catch block following a try block catches a specified exception type.
 
@@ -51,7 +51,7 @@ and catch like this:
 
 #### ... Handler
 
-If you want to specify that a catch block should handle any type of exception that is thrown in a try block, you must put an ellipsis, ..., between the parentheses enclosing the exception declaration.
+If you want to specify that a catch block should handle any type of exception that is thrown in a try block, you must specify an ellipsis, ..., as the parameter of the exception handling declaration.
 
 The following special handler catches any exception regardless of its type:
 

@@ -38,6 +38,7 @@ then run using:
   ./[executable name]
 
 
+
 The previous program, while a complete program, will produce no obvious effect, to ensure that you have correctly formatted, compiled, and executed a C++ program copy and paste the following text and repeat the process above:
 
 ```cpp
@@ -45,3 +46,7 @@ The previous program, while a complete program, will produce no obvious effect, 
 
  int main() {std::cout << "Hello world" << std::endl;}
 ```
+
+
+A note on file type extensions
+Several different file-name extensions are popular for C++ programs. I like to use .cpp, where the p means “plus.” Other common extensions are .cxx and .cc. Some compilers recognize .C (uppercase C) as a C++ file extension, but I don’t recommend using it, because it is too easy to confuse with .c (lowercase c), the default extension for C programs. Many desktop environments do not distinguish between uppercase and lowercase file names, further compounding the problem. Pick your favorite and stick with it.

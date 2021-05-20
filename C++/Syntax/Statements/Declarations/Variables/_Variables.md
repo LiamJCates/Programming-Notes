@@ -79,7 +79,7 @@ When the variables in the examples above are declared, they have an undetermined
 These two steps can be combined. When a variable is defined, you can also provide an initial value for the variable at the same time. This is called the initialization of the variable.
 
 For more information about initialization see:
-[C++\Types&Values\Initialization.md]
+[C++\Syntax\Statements\Expressions\Initialization]
 
 
 
