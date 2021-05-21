@@ -1,10 +1,42 @@
 ## String Views
 The most common use of a sequence of characters is to pass it to some function to read. This can be achieved by passing a string by value, a reference to a string, or a C-style string. In many systems there are further alternatives, such as string types not offered by the standard. In all of these cases, there are extra complexities when we want to pass a substring.
 
-To address this, the standard library offers string_view; a string_view is basically a (pointer,length) pair denoting a sequence of
-characters:
+Strings present a unique opportunity. It is common practice to pass const strings to functions, but there is an unfortunate mismatch between C++ and its ancestor, C, when it comes to strings.
+
+C lacks a built-in string type. Nor does it have any string type in its standard library. A quoted string literal is equivalent to a char array to which the compiler appends a NUL character ('\0') to denote the end of the string.
+
+When a program constructs a C++ std::string from a quoted literal string, the std::string object must copy the contents of the string literal. What this means is that if a function declares a parameter with type std::string const& in order to avoid copying the argument, and the caller passes a string literal,
+that literal gets copied anyway.
+
+The proccess above requires constructing a std::string object, copying the string literal into that object, and then passing the object to the function.
+
+A solution to this problem was added to C++ 17 in the std::string_view class
+
+The compiler can build and pass a string_view without copying any data. A string_view object is a lightweight read-only view of an existing string. You can usually treat a string_view the same way you would a const std::string.
+
+A string_view does not copy anything. Instead, it is a small, fast way to refer to a std::string or quoted string literal.
+
+Use string_view whenever you want to pass a read-only string to a function; the function argument can be a quoted string literal, another string_view, or a std::string object. The only caveat to using string_view
+is that the standard library still has not caught on to string_view and there are many parts of the library that accept only string and not string_view.
+
+
+So you can use std::string_view as a function parameter type as follows:
+
+int prompted_read(std::string_view prompt)
+{
+  std::cout << prompt;
+  int x{0};
+  std::cin >> x;
+  ignore_line();
+  return x;
+}
+
+
+
+To address this, the standard library offers string_view; a string_view is basically a (pointer,length) pair denoting a sequence of characters:
 
 A string_view gives access to a contiguous sequence of characters.
+
 The characters can be stored in many possible ways, including in a string and in a C-style string.
 
 A string_view is like a pointer or a reference in that it does not own the characters it points to. In that, it resembles an STL pair of iterators.

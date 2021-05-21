@@ -90,6 +90,9 @@ For example, a function called protofunction with two int parameters can be decl
   int protofunction (int, int);
 
 
+In a function call, all arguments are evaluated before the function is called. Each argument is copied to the corresponding parameter in the function, then the function body begins to run.
+
+When the function executes a return statement, the value in the statement is copied back to the caller, which can then use the value in an expression, assign it to a variable, and so on.
 
 ### Defining Functions
 A function’s definition, in addition to the elements included in the declaration, defines its implementation, which consists of the statements the function executes, the name of zero or more parameters used during that execution and optionally a return statement that specifies the value to return to the calling function and must be of the type that matches the return type defined by the function signature:

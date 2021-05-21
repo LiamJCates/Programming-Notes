@@ -29,7 +29,29 @@ Terms that pertain to parameter passing methods include:
 
 
 
+Variables and literals fall into different categories of expressions. In general terms, a variable is an
+lvalue, as are references. A literal is called an rvalue, and expressions that are built up from operators and
+function calls usually result in rvalues. When a parameter is a reference, the argument in the function call
+must be an lvalue. If the parameter is call-by-value, you can pass an rvalue.
+
+C++ automatically converts any lvalue to an rvalue when it needs to and can only do the reverse in some circumstances, explained below.
+
+
 ### const
+
+In functions that take parameters by reference can modify the parameter. This opens a window for programming errors. To prevent such errors, you can revert to call-by-value, but you would still have a memory problem if the argument is large. Ideally, you would be able to pass an argument by reference, but still prevent the function from modifying its parameter. Well, as it turns out, such a method does exist.
+
+C++ lets you declare a function parameter const too.
+
+The compiler stops you from modifying a const parameter.
+
+Standard practice is to use references to pass any large data structure, such as vector, map, or string. If the function has no intention of making changes, declare the reference as a const. For small objects, such
+as int, use pass-by-value.
+
+If a parameter is a reference to const, you can pass an rvalue as an argument.
+
+This is the exception that lets you convert an rvalue to an lvalue. The more precise rule is that you can convert an rvalue to a const lvalue, but not to a non-const lvalue.
+
 
 The const prefix can be used to alter both of these passing methods listed above.  By qualifying parameters as const, the function is forbidden to modify the values. This is useful for several reasons:
 

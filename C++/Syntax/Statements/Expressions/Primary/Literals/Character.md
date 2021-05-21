@@ -200,6 +200,19 @@ The most common are the:
   Unicode
 
 
+the numeric value of a character, such as 'A', depends on the character
+set. The compiler must decide which character set to use at compile time and at runtime. This is typically based on preferences that the end user selects in the host operating system. Character-set issues rarely arise for the basic subset of characters—such as letters, digits, and
+punctuation symbols—that are used to write C++ source code. You will most likely find yourself using one
+or more character sets that share some common characteristics. For example, all ISO 8859 character sets
+use the same numeric values for the letters of the Roman alphabet, digits, and basic punctuation. Even most
+Asian character sets preserve the values of these basic characters.
+Thus, most programmers blithely ignore the character-set issue. We use character literals, such as '%',
+and assume the program will function the way we expect it to, on any system, anywhere in the world—and
+we are usually right. But not always.
+
+
+
+
 ### ASCII
 The American Standard Code for Information Interchange (ASCII) table assigns integers to characters.
 

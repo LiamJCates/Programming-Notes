@@ -74,9 +74,43 @@ Note that the std::greater{} needs the curly braces because it is not a callable
 
 
 Since C++20 there is also std::ranges::sort
+```cpp
+/** Listing 22-4. Sorting into Descending Order */
+#include <algorithm>
+#include <iostream>
+#include <iterator>
+#include <vector>
 
+/** Predicate for sorting into descending order. */
+int descending(int a, int b)
+{
+  return a > b;
+}
 
+int main()
+{
+  std::vector<int> data{std::istream_iterator<int>(std::cin),
+                        std::istream_iterator<int>()};
 
+  std::ranges::sort(data, descending);
+
+  std::ranges::copy(data, std::ostream_iterator<int>(std::cout, "\n"));
+}
+```
+
+Range pipelines are nifty, but sort() needs the entire range to be stored in a container such as std::vector.
+
+You can use istream_view to read the data, but you still need to store the values in a vector.
+
+But you cannot make a vector object directly from an istream_view or any other range. Instead, you can initialize a vector from begin and end iterators.
+
+The default comparison that sort uses (the < operator) is the standard for comparison throughout the standard library. The standard library uses < as the ordering function for anything and everything that can be ordered.
+
+For example, map uses < to compare keys. The lower_bound functions use the < operator to perform a binary search. The standard library even uses < to compare objects for equality when dealing with ordered values, such as a map or a binary search. (Algorithms and containers that are not inherently ordered use == to determine when two objects are equal.)
+
+To test if two items, a and b, are the same, these library functions use a < b and b < a. If both comparisons are false, then a and b must be the same, or in C++ terms, equivalent.
+
+If you supply a comparison predicate (pred), the library considers a and b to be equivalent if pred(a, b) is false and pred(b, a) is false.
 
 
 

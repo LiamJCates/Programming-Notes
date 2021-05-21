@@ -202,6 +202,33 @@ std::cout << std::format("{} {:d}\n", a, b);
 
 
 
+### Character Manipulators
+The get function reads a single character without treating white space specially. You can do the same thing with a normal input operator, but you must use the std::noskipws manipulator.
+
+To restore the default behavior, use the std::skipws manipulator (declared in <ios>).
+
+After turning off the skipws flag, the input stream does not skip over leading white space characters. For instance, if you were to try to read an integer, and the stream is positioned at white space, the read would fail.
+If you were to try to read a string, the string would be empty, and the stream position would not advance. So you have to consider carefully whether to skip white space. 
+
+Typically, you would do that only when reading individual characters.
+
+Remember that an input stream uses the >> operator (Exploration 5), even for manipulators. Using >>
+for manipulators seems to break the mnemonic of transferring data to the right, but it follows the convention
+of always using >> with an input stream.
+
+```cpp
+#include <iostream>
+int main()
+{
+  std::cin >> std::noskipws;
+  char ch{};
+  while (std::cin >> ch)
+    std::cout << ch;
+}
+```
+
+
+
 We can also call manipulators as functions on a stream variable.
 
 ```cpp

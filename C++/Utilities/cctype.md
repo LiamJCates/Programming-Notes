@@ -1,5 +1,9 @@
 <cctype> Header
 
+NOTE this is the C version of the header, mostly provided for cross/legacy compatability, C++ extends the functionalities in this header and groups it in the locale header.
+
+[C++\Utilities\locale.md]
+
 This header contains function prototypes that are mainly used for converting the character to upper/lower case or to check if a character is a digit etc.
 
 Function prototypes included in <cctype> header are listed as below:

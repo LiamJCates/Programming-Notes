@@ -34,7 +34,7 @@ greeting = "Hello";
 cout << greeting << endl;
 ```
 
-#### Greeting String
+#### Empty Initialization
 When greeting is first declared, we are omitting an initial value, which leaves the variable uninitialized. This would typically which would be an error, because no value is assigned. You are not allowed to print or otherwise access the value of an uninitialized variable.
 
 But std::string is different. The lack of an initializer in this case is the same as empty brace definition; namely, the variable is initialized to an empty string, and we see a blank line printed, rather than an error.

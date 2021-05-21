@@ -61,3 +61,96 @@ bool isPalindrom(const std::string& str) {
 
 	return std::equal(str.begin(), str.begin() + str.length() / 2, str.rbegin(), cmp);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+/** Listing 22-5. Testing for Palindromes using range and transform */
+#include <algorithm>
+#include <iostream>
+#include <locale>
+#include <ranges>
+#include <string>
+#include <string_view>
+
+/** Test for letter.
+ * @param ch the character to test
+ * @return true if @p ch is a letter
+ */
+bool letter(char ch)
+{
+  return std::isalpha(ch, std::locale{});
+}
+
+/** Convert to lowercase.
+ * @param ch the character to test
+ * @return the character converted to lowercase
+ */
+char lowercase(char ch)
+{
+  return std::tolower(ch, std::locale{});
+}
+
+/** Determine whether @p str is a palindrome.
+ * Only letter characters are tested. Spaces and punctuation don't count.
+ * Empty strings are not palindromes because that's just too easy.
+ * @param str the string to test
+ * @return true if @p str is the same forward and backward
+ */
+bool is_palindrome(std::string_view str)
+{
+  auto half{ str.size() / 2 };
+  auto letters_only{ str | std::views::filter(letter) };
+  auto reversed{ letters_only | std::views::reverse | std::views::take(half) };
+  return std::ranges::equal(letters_only | std::views::take(half), reversed);
+}
+
+int main()
+{
+  std::locale::global(std::locale{""});
+  std::cin.imbue(std::locale{});
+  std::cout.imbue(std::locale{});
+
+  std::string line{};
+  while (std::getline(std::cin, line))
+    if (is_palindrome(line))
+      std::cout << line << '\n';
+}
+
+
+
+
+
+/** Listing 23-5. Testing for Palindromes */
+/** Determine whether @p str is a palindrome.
+ * Only letter characters are tested. Spaces and punctuation don't count.
+ * @param str the string to test
+ * @return true if @p str is the same forward and backward
+ */
+bool is_palindrome(std::string_view str)
+{
+  if (str.empty())
+    return true;
+  for (auto left{str.begin()}, right{str.end() - 1}; left < right;) {
+    if (not letter(*left))
+      ++left;
+    else if (not letter(*right))
+      --right;
+    else if (lowercase(*left) != lowercase(*right))
+      return false;
+    else {
+      ++left;
+      --right;
+    }
+  }
+  return true;
+}

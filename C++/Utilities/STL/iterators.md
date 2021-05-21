@@ -66,6 +66,27 @@ The container.data() function returns a pointer to the actual buffer stored insi
 const_iterator is a const version of the normal iterator. If
 the container is declared to be a const, its functions that are related to iterators, such as begin() and end(), return const_iterator.
 
+One additional trick you have to know when using const parameters: if you need an iterator, use const_iterator instead of iterator. A const variable of type iterator is not very useful, because you cannot
+modify its value, so the iterator cannot advance. You can still modify the element by assigning to the
+dereferenced iterator (e.g., *iter). Instead, a const_iterator can be modified and advanced, but when you
+dereference the iterator, the resulting object is const. Thus, you can read values but not modify them. This
+means you can safely use a const_iterator to iterate over a const container.
+
+```cpp
+void print_vector(std::vector<int> const &v)
+{
+    std::cout << "{ ";
+    std::string separator{};
+    for (std::vector<int>::const_iterator i{v.begin()}, end{v.end()}; i != end; ++i)
+    {
+        std::cout << separator << *i;
+        separator = ", ";
+    }
+    std::cout << "}\n";
+}
+```
+
+
 reverse_iterator allows us to traverse the array in the reverse direction. So, its functions, such as the increment operator (++) and advance, are inverses of such operations for normal iterators.
 
 
@@ -241,6 +262,19 @@ The emplace_back() function extends the size of a vector to accommodate the new 
 
 The answer is a special kind of output iterator called std::back_inserter. Pass data as the argument to
 back_inserter, and every value written to the output iterator is added to the end of data.
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
