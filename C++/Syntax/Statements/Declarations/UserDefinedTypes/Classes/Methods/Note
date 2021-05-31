@@ -590,7 +590,6 @@ int main () {
 bar's area: 200
 
 
-Edit & Run
 
 
 Here, Rectangle can be constructed either with two int arguments or be default-constructed (with no arguments). It cannot however be copy-constructed from another Rectangle object, because this function has been deleted. Therefore, assuming the objects of the last example, the following statement would not be valid:

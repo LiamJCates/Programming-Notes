@@ -11,7 +11,7 @@ that will square its int argument:
 
 The lambda takes a single int x and uses it within the lambda’s body to
 perform the squaring.
-
+```cpp
   #include <cstdio>
   #include <cstdint>
 
@@ -32,12 +32,13 @@ perform the squaring.
     for (size_t i{}; i < len; i++)
       printf("Element %zd: %d %d %d\n", i, a[i], b[i], c[i]);
   }
-
+```
 Output:
-  Element 0: 1 1 15
-  Element 1: 1 2 25
-  Element 2: 1 3 35
-
+```
+Element 0: 1 1 15
+Element 1: 1 2 25
+Element 2: 1 3 35
+```
 The transform template function accepts four arguments: a function object fn, an in array, an out array, and the corresponding length of those arrays. Within transform, you invoke fn on each element of in and assign the result to the corresponding element of out.
 
 
@@ -51,6 +52,23 @@ The third call to transform multiplies the argument by 10 and adds 5. The result
 Notice that transform is declared as a template function, allowing it's reuse with any function object.
 
 
+Example using C++20 features
+ 
+```cpp
+#include <iostream>
+#include <iterator>
+#include <ranges>
+
+int main()
+{
+   auto data{ std::ranges::istream_view<int>(std::cin)
+              | std::views::transform([](int i) { return i * 2; })
+              | std::views::transform([](int i) { return i + 3; })
+   };
+   for (auto element : data)
+      std::cout << element << '\n';
+}
+```
 
 ### Default Arguments
 You can provide default arguments to a lambda. Default lambda parameters

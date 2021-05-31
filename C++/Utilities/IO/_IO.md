@@ -77,17 +77,22 @@ A stream variable is either an input stream or output stream variable.
 Operations on istreams and ostreams are typesafe, type-sensitive, and extensible to handle user-defined types
 
 Stream operators:
-  insertion operator <<:
+insertion operator (<<):
+```cpp
+std::cout << "Hello World" << std::endl;    //sends to stream
+```
+extraction operator (>>):
+```cpp
+std::cin >> Variable;                       //reads from stream
+```
 
-    std::cout << "Hello World" << std::endl;    //sends to stream
+These I/O operators are just like any other operators in C++, and you can overload them to handle a given object type in the way you overload any other operator.
 
-  extraction operator >>:
+The input operator, also known as an extractor (because it extracts data from a stream), takes std::istream& as its first parameter. It must be a non-const reference, because the function will modify the stream object. The second parameter must also be a non-const reference, because you will store the input value there.
 
-    std::cin >> Variable;                       //reads from stream
+By convention, the return type is std::istream&, and the return value is the first parameter. That lets you combine multiple input operations in a single expression.
 
-
-
-I/O Library Header Files
+### I/O Library Header Files
 
 There are following header files important to C++ programs −
 

@@ -1,7 +1,8 @@
 Overloading the assignment operator
-By Alex on June 5th, 2016 | last modified by Alex on December 24th, 2020
 
 The assignment operator (operator=) is used to copy values from one object to another already existing object.
+
+The right-hand operand can be anything you want it to be.
 
 Assignment vs Copy constructor
 
@@ -12,69 +13,14 @@ The difference between the copy constructor and the assignment operator causes a
     If a new object has to be created before the copying can occur, the copy constructor is used (note: this includes passing or returning objects by value).
     If a new object does not have to be created before the copying can occur, the assignment operator is used.
 
-Overloading the assignment operator
 
-Overloading the assignment operator (operator=) is fairly straightforward, with one specific caveat that we’ll get to. The assignment operator must be overloaded as a member function.
+Assigning objects is similar to copying them. After an assignment, the target and source must contain identical values. The key difference between assignment and copying is that copying starts with a blank slate: an object under construction. Assignment begins with an existing object, and you may have to clean up the old value before you can assign the new value.
 
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-36
-37
-38
-39
-40
-41
-42
-43
-44
-45
-46
-47
-48
-49
-50
-51
-52
-53
-54
-55
-56
-57
-58
+### Overloading the assignment operator
 
+Overloading the assignment operator (operator=) is fairly straightforward, with one specific caveat. The assignment operator must be overloaded as a member function.
+
+```cpp
 #include <cassert>
 #include <iostream>
 
@@ -133,24 +79,20 @@ int main()
 
     return 0;
 }
-
-This prints:
-
+```
+Output:
+```
 5/3
+```
+This should all be pretty straightforward by now.
 
-This should all be pretty straightforward by now. Our overloaded operator= returns *this, so that we can chain multiple assignments together:
+The convention for assignment operators is to return a reference to the enclosing type. The value to return is the object itself. You can obtain the object with the expression *this (this is a reserved keyword).
 
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
+Because (*this) is the object itself, another way to refer to members is to use the dot operator (e.g., (*this).member) instead. Another way to write it is this->member. The meaning is the same; the alternative syntax is mostly a convenience. Writing this-> is not necessary for these simple functions, but it’s often a good idea. When you read a member function, and you have trouble discerning the members from the nonmembers, that’s a signal that you have to help the reader by using this-> before all the member names.
 
+Our overloaded operator= returns *this, so that we can chain multiple assignments together:
+
+```cpp
 int main()
 {
     Fraction f1(5,3);
@@ -161,19 +103,13 @@ int main()
 
     return 0;
 }
+```
 
-Issues due to self-assignment
+### Issues due to self-assignment
 
 Here’s where things start to get a little more interesting. C++ allows self-assignment:
 
-1
-2
-3
-4
-5
-6
-7
-
+```cpp
 int main()
 {
     Fraction f1(5,3);
@@ -181,72 +117,13 @@ int main()
 
     return 0;
 }
+```
 
 This will call f1.operator=(f1), and under the simplistic implementation above, all of the members will be assigned to themselves. In this particular example, the self-assignment causes each member to be assigned to itself, which has no overall impact, other than wasting time. In most cases, a self-assignment doesn’t need to do anything at all!
 
 However, in cases where an assignment operator needs to dynamically assign memory, self-assignment can actually be dangerous:
 
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-36
-37
-38
-39
-40
-41
-42
-43
-44
-45
-46
-47
-48
-49
-50
-51
-52
-53
-54
-55
-56
-57
-58
-59
-60
-
+```cpp
 #include <iostream>
 
 class MyString
@@ -307,20 +184,11 @@ int main()
 
     return 0;
 }
-
+```
 First, run the program as it is. You’ll see that the program prints “Alex” as it should.
 
 Now run the following program:
-
-1
-2
-3
-4
-5
-6
-7
-8
-
+```cpp
 int main()
 {
     MyString alex("Alex", 5); // Meet Alex
@@ -329,7 +197,7 @@ int main()
 
     return 0;
 }
-
+```
 You’ll probably get garbage output. What happened?
 
 Consider what happens in the overloaded operator= when the implicit object AND the passed in parameter (str) are both variable alex. In this case, m_data is the same as str.m_data. The first thing that happens is that the function checks to see if the implicit object already has a string. If so, it needs to delete it, so we don’t end up with a memory leak. In this case, m_data is allocated, so the function deletes m_data. But because str is the same as *this, the string that we wanted to copy has been deleted and m_data (and str.m_data) are dangling.
@@ -340,27 +208,7 @@ Detecting and handling self-assignment
 
 Fortunately, we can detect when self-assignment occurs. Here’s an updated implementation of our overloaded operator= for the MyString class:
 
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-
+```cpp
 MyString& MyString::operator= (const MyString& str)
 {
 	// self-assignment check
@@ -381,6 +229,7 @@ MyString& MyString::operator= (const MyString& str)
 	// return the existing object so we can chain this operator
 	return *this;
 }
+```
 
 By checking if the address of our implicit object is the same as the address of the object being passed in as a parameter, we can have our assignment operator just return immediately without doing any other work.
 
@@ -392,21 +241,7 @@ First, there is no need to check for self-assignment in a copy-constructor. This
 
 Second, the self-assignment check may be omitted in classes that can naturally handle self-assignment. Consider this Fraction class assignment operator that has a self-assignment guard:
 
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-
+```cpp
 // A better implementation of operator=
 Fraction& Fraction::operator= (const Fraction &fraction)
 {
@@ -421,7 +256,7 @@ Fraction& Fraction::operator= (const Fraction &fraction)
     // return the existing object so we can chain this operator
     return *this;
 }
-
+```
 If the self-assignment guard did not exist, this function would still operate correctly during a self-assignment (because all of the operations done by the function can handle self-assignment properly).
 
 Because self-assignment is a rare event, some prominent C++ gurus recommend omitting the self-assignment guard even in classes that would benefit from it. We do not recommend this, as we believe it’s a better practice to code defensively and then selectively optimize later.
@@ -432,49 +267,7 @@ Unlike other operators, the compiler will provide a default public assignment op
 
 Just like other constructors and operators, you can prevent assignments from being made by making your assignment operator private or using the delete keyword:
 
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-36
-37
-38
-39
-40
-41
-42
-
+```cpp
 #include <cassert>
 #include <iostream>
 
@@ -517,3 +310,14 @@ int main()
 
     return 0;
 }
+```
+
+
+
+### Default
+If you do not write an assignment operator, the compiler writes one for you. In the case of the simple rational type, it turns out that the compiler writes one that works exactly like the one in Listing 32-2, so there
+was actually no need to write it yourself (except for instructional purposes).
+
+When the compiler writes code for you, it is hard for the human reader to know which functions are actually defined. Also, it is harder to document the implicit functions. C++ lets you state explicitly that you want the compiler to supply a special function for you, by following a declaration (not a definition) with =default instead of a function body.
+
+typeName& operator=(typeName const&) = default;

@@ -1,12 +1,13 @@
 Default constructors
 
 A default constructor is a constructor which can be called with no arguments (either defined with an empty parameter list, or with default arguments provided for every parameter). A type with a public default constructor is DefaultConstructible.
+
 Syntax
-class_name ( ) ; 	(1) 	
-class_name :: class_name ( ) body 	(2) 	
-class_name() = delete ; 	(3) 	(since C++11)
-class_name() = default ; 	(4) 	(since C++11)
-class_name :: class_name ( ) = default ; 	(5) 	(since C++11)
+(1)	class_name ( ) ; 	 	
+(2)	class_name :: class_name ( ) body 	
+(3)	class_name() = delete ; 	 								(since C++11)
+(4)	class_name() = default ;									(since C++11)
+(5)	class_name :: class_name ( ) = default ;	(since C++11)
 
 Where class_name must name the current class (or current instantiation of a class template), or, when declared at namespace scope or in a friend declaration, it must be a qualified class name.
 Explanation
@@ -138,3 +139,28 @@ int main()
 //  F f; // compile error as F has a member of reference type without a default initializer.
 }
 ```
+
+
+
+If you do not supply any constructors, the compiler implicitly writes a default constructor and a copy
+constructor. If you write at least one constructor of any variety, the compiler does not implicitly write a
+default constructor, but it still gives you a copy constructor if you don’t write one yourself.
+You can take control over the compiler’s implicit behavior without writing any of your own constructors.
+Write a function header without a body for the constructor, and use =default to get the compiler’s implicit
+definition. Use =delete to suppress that function. For example, if you don’t want anyone creating copies of a
+class, note the following:
+struct dont_copy
+{
+dont_copy(dont_copy const&) = delete;
+};
+More common is letting the compiler write its copy constructor but telling the human reader
+explicitly. As you learn more about C++, you will learn that the rules for which constructors the compiler
+writes for you, and when it writes them, are more complicated than what I’ve presented so far. I urge you
+to get into the habit of stating when you ask the compiler to implicitly provide a constructor, even if it
+seems trivially obvious.
+struct point
+{
+point() = default;
+point(point const&) = default;
+int x, y;
+};

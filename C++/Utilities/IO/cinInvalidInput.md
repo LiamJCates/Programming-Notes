@@ -1,10 +1,92 @@
 ## std::cin and handling invalid input
 
-Most programs that have a user interface of some kind need to handle user input. In the programs that you have been writing, you have been using std::cin to ask the user to enter text input. Because text input is so free-form (the user can enter anything), it’s very easy for the user to enter input that is not expected.
+Most programs that have a user interface of some kind need to handle user input.
+
+Because text input is so free-form, it’s very easy for the user to enter input that is not expected.
 
 As you write programs, you should always consider how users will (unintentionally or otherwise) misuse your programs. A well-written program will anticipate how users will misuse it, and either handle those cases gracefully or prevent them from happening in the first place (if possible). A program that handles error cases well is said to be robust.
 
 In this lesson, we’ll take a look specifically at ways the user can enter invalid text input via std::cin, and show you some different ways to handle those cases.
+
+
+Proper error-handling is difficult, but the basics are easy. Every stream has a state mask that keeps track of errors
+
+I/O State Flags
+badbit  Unrecoverable error
+eofbit  End-of-file
+failbit Invalid input or output
+goodbit No errors
+
+
+If the input is not valid, the input function sets the failbit in the stream’s error state.
+
+inputStream.setstate(std::ios_base::failbit);
+
+When the caller tests whether the stream has the fail bit set using .fail(), it tests the error state.
+
+if(!inputStream.fail())
+
+If failbit is set, the above check fails. (The test also fails if an unrecoverable error occurs, such as a hardware malfunction, but that’s not pertinent to the current topic.)
+
+
+every stream has a mask of error flags. You can test these flags, set them, or clear them.
+
+Testing the flags is a little unusual. The way most programs test for error conditions on a stream is to use the stream itself or an input operation as a condition.
+
+As an input operator function returns the stream, these two approaches are equivalent.
+
+A stream converts to a bool result by returning the inverse of its fail() function, which returns true, if failbit or badbit is set.
+
+In the normal course of an input loop, the program progresses until the input stream is exhausted. The
+stream sets eofbit when it reaches the end of the input stream. The stream’s state is still good, in that fail()
+returns false, so the loop continues. However, the next time you try to read from the stream, it sees that no
+more input is available, sets failbit, and returns an error condition. The loop condition is false, and the
+loop exits.
+The loop might also exit if the stream contains invalid input, such as non-numeric characters for integer
+input, or the loop can exit if there is a hardware error on the input stream (such as a disk failure).
+
+
+First, you can test for a hardware or similar error by calling the bad() member function, which returns
+true if badbit is set. That means something terrible happened to the file, and the program can’t do anything
+to fix the problem.
+
+Next, test for normal end-of-file by calling the eof() member function, which is true only when
+eofbit is set. If bad() and eof() are both false and fail() is true, this means the stream contains invalid
+input. How your program should handle an input failure depends on your particular circumstances. Some
+programs must exit immediately; others may try to continue. For example, your test program can reset the
+error state by calling the clear() member function, then continue running. After an input failure, you may
+not know the stream’s position, so you don’t know what the stream is prepared to read next. This simple test
+program skips to the next line.
+
+
+```cpp
+/// Tests for failbit only
+bool iofailure(std::istream &in)
+{
+    return in.fail() and not in.bad();
+}
+int main()
+{
+    rational r{0};
+    while (std::cin)
+    {
+        if (std::cin >> r)
+            // Read succeeded, so no failure state is set in the stream.
+            std::cout << r << '\n';
+        else if (not std::cin.eof())
+        {
+            // Only failbit is set, meaning invalid input. Clear the state,
+            // and then skip the rest of the input line.
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<int>::max(), '\n');
+        }
+    }
+    if (std::cin.bad())
+        std::cerr << "Unrecoverable input failure\n";
+}
+```
+
+
 
 ### std::cin, buffers, and extraction
 

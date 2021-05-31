@@ -372,6 +372,70 @@ Note that using our Accumulator looks just like making a normal function call, b
 
 You may wonder why we couldn’t do the same thing with a normal function and a static local variable to preserve data between function calls. We could, but because functions only have one global instance, we’d be limited to using it for one thing at a time. With functors, we can instantiate as many separate functor objects as we need and use them all simultaneously.
 
+
+
+Write a functor class to generate successive integers, so
+the functor can be used with the generate algorithm. Name the class sequence. The constructor takes two
+arguments: the first specifies the initial value of the sequence, and the second is the increment. Each time
+you call the function call operator, it returns the generator value, then increments that value, which will be
+the value returned on the next invocation of the function call operator.
+
+```cpp
+#include <algorithm>
+#include <iostream>
+#include <iterator>
+#include <vector>
+
+class sequence
+{
+public:
+  /// Construct the functor.
+  /// @param start the first value the generator returns
+  /// @param step increment the value by this much for each call
+  inline sequence(int start, int step ) : value_{start}, step_{step} {}
+  inline sequence(int start) : sequence{start, 1} {}
+  inline sequence() : sequence{0} {}
+
+  /// Return the current value in the sequence, and increment the value.
+  int operator()()
+  {
+    int result(value_);
+    value_ = value_ + step_;
+    return result;
+  }
+private:
+  int value_;
+  int const step_;
+};
+
+int main()
+{
+  int size{};
+  std::cout << "How many integers do you want? ";
+  std::cin >> size;
+  int first{};
+  std::cout << "What is the first integer? ";
+  std::cin >> first;
+  int step{};
+  std::cout << "What is the interval between successive integers? ";
+  std::cin >> step;
+
+  std::vector<int> data(size);
+  // Generate the integers to fill the vector.
+  std::ranges::generate(data, sequence(first, step));
+
+  // Print the resulting integers, one per line.
+  std::ranges::copy(data, std::ostream_iterator<int>(std::cout, "\n"));
+}
+```
+
+
+
+
+
+
+
+
 Conclusion
 
 Operator() is sometimes overloaded with two parameters to index multidimensional arrays, or to retrieve a subset of a one dimensional array (with the two parameters defining the subset to return). Anything else is probably better written as a member function with a more descriptive name.

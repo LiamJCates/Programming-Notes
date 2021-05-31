@@ -1,4 +1,10 @@
 Move Semantics
+
+Sometimes, you don’t want to make an exact copy. I know I wrote that assignment should make an exact
+copy, but you can break that rule by having assignment move a value from the source to the target. The result
+leaves the source in an unknown state (typically empty), and the target gets the original value of the source.
+
+
 Copying can be quite time-consuming at runtime when a large amount of data is involved. Often, you just want to transfer ownership of resources from one object to another. You could make a copy and destroy the original, but
 this is often inefficient. Instead, you can move.
 
@@ -27,6 +33,7 @@ You can communicate to the compiler that a function accepts lvalues or rvalues u
 
 Fortunately, the compiler does an excellent job of determining whether an object is an lvalue or an rvalue. In fact, you can define multiple functions with the same name but with different parameters, and the compiler will automatically call the correct version depending on what arguments you provide when you invoke the function.
 
+```cpp
 #include <cstdio>
 void ref_type(int &x)
 {
@@ -44,11 +51,15 @@ int main() {
   ref_type(2);
   ref_type(x + 2);
 }
+```
 
 Output:
+
+```
 lvalue reference 1
 rvalue reference 2
 rvalue reference 3
+```
 
 The int &x version takes an lvalue reference
 The int &&x version takes an rvalue reference.
@@ -59,7 +70,8 @@ ref_type is invoked three times:
   Third, the result of adding 2 to x is not bound to a name, so it’s an rvalue.
 
 
-The std::move Function
+### The std::move Function
+
 You can cast an lvalue reference to an rvalue reference using the std::move
 function from the <utility> header.
 
@@ -67,7 +79,7 @@ function from the <utility> header.
 --snip--
 int main() {
   auto x = 1;
-  ref_type(std::move(x)); u
+  ref_type(std::move(x));
   ref_type(2);
   ref_type(x + 2);
 }
@@ -85,3 +97,45 @@ perform two actions on a moved-from object: destroy it or reassign it.
 How lvalue and rvalue semantics enable move semantics should now be
 clear. If an lvalue is at hand, moving is suppressed. If an rvalue is at hand,
 moving is enabled.
+
+
+
+Force a move assignment by calling std::move (declared in <utility>):
+
+std::string source{"string"}, target{};
+target = std::move(source);
+
+After the assignment, source is in an unknown, but valid, state. Typically, it will be empty, but you cannot write code that assumes it is empty. In practical terms, the string contents of source are moved into target without copying any of the string contents. Moving is fast and independent of the amount of data
+stored in a container.
+
+You can also move an object in an initializer, as follows:
+
+std::string source{"string"};
+std::string target{std::move(source)};
+
+Moving works with strings and most containers, including std::vector. Consider the program in
+
+```cpp
+#include <iostream>
+#include <utility>
+#include <vector>
+
+void print(std::vector<int> const& vector)
+{
+  std::cout << "{ ";
+  for (int i : vector)
+    std::cout << i << ' ';
+  std::cout << "}\n";
+}
+
+int main()
+{
+  std::vector<int> source{1, 2, 3 };
+  print(source);
+  std::vector<int> copy{source};
+  print(copy);
+  std::vector<int> move{std::move(source)};
+  print(move);
+  print(source);
+}
+```

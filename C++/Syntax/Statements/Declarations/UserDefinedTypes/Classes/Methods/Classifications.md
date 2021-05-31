@@ -19,6 +19,14 @@ C++ inline function is a powerful concept that is commonly used with classes. If
 
 A function definition in a class definition is an inline function definition by default.
 
+
+The inline keyword is a hint to the compiler that it should optimize speed over size by trying to expand a function at its point of call. You can use inline with member functions too. Indeed, for trivial functions, such as those that return a data member and do nothing else, making the function inline can improve speed and program size. When you define a function inside the class definition, the compiler automatically adds the inline keyword. If you separate the definition from the declaration, you can still make the function inline by adding the inline keyword to the function declaration or definition. Common practice is to place the inline keyword only on the definition, but I recommend putting the keyword in both places, to help the human reader. Remember that inline is just a hint. The compiler does not have to heed the hint. Modern compilers are becoming better and better at making these decisions for themselves. My personal guideline is to define one-line functions in the class definition. Longer functions or functions that are complicated to read usually belong outside the class definition. Some functions are too long to fit in the class definition but are short and simple enough that they should be inline. Organizational coding styles usually include guidelines for inline functions. For example, directives for large projects may eschew inline functions because they increase coupling between software components. Thus, inline may be allowed only on a function-by-function basis, when performance measurements demonstrate their need.
+
+Don’t agonize over deciding which functions should be inline. When in doubt, don’t bother. Make
+functions inline only if performance measures show that the function is called often and the function call
+overhead is significant. In all other aspects, I regard the matter as one of aesthetics and clarity: I find one-line
+functions are easier to read when they are inside the class definition.
+
 ### const
 The const specifiers on the functions indicate that a function does not modify the object for which it is called. A const member function can be invoked for both const and non-const objects, but a non-const member function can only be invoked for non-const objects.
 

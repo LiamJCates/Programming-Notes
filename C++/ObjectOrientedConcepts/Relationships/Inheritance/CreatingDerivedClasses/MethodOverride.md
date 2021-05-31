@@ -23,6 +23,13 @@ public:
 Thus, if method DoSomething() were to be invoked using an instance of Derived, then it would not invoke the functionality in class Base
 
 
+A derived class inherits all members of the base class. This means a derived class can call any public member function and access any public data member.
+
+If a derived class declares a member function with the same name as the base class, the derived class function is the only one visible in the derived class.
+
+The function in the derived class is said to shadow the function in the base class. As a rule, you want to avoid this situation, but there are several cases in which you
+very much want to use the same name, without shadowing the base class function.
+
 
 ### Invoking Overridden Methods of a Base Class
 

@@ -1,4 +1,4 @@
-Copy Constructor
+## Copy Constructor
 copy construction creates a copy and assigns it to a brand-new object.
 
 If a copy constructor is not defined in a class, the compiler itself defines one. If the class has pointer variables and has some dynamic memory allocations, then it is a must to have a copy constructor.
@@ -18,12 +18,12 @@ The second line invokes the copy constructor of MyObject with a to yield a_copy.
 
 
 ## Copy Constructor Declaration
-
+```cpp
 class MyObject {
   --snip--
   MyObject(const MyObject& other);
 };
-
+```
 NOTE
 Notice that other is const. You’re copying from some original MyObject, and you have no reason to modify it.
 
@@ -326,48 +326,7 @@ One interesting note: You’ve already seen a few examples of overloaded operato
 Preventing copies
 
 We can prevent copies of our classes from being made by making the copy constructor private:
-
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-36
-37
-38
-39
-40
-
+```cpp
 #include <cassert>
 #include <iostream>
 
@@ -408,54 +367,14 @@ int main()
 	Fraction fCopy(fiveThirds); // Copy constructor is private, compile error on this line
 	std::cout << fCopy << '\n';
 }
-
+```
 Now when we try to compile our program, we’ll get a compile error since fCopy needs to use the copy constructor, but can not see it since the copy constructor has been declared as private.
 
 The copy constructor may be elided
 
 Now consider the following example:
 
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-36
-37
-38
-39
-40
-
+```cpp
 #include <cassert>
 #include <iostream>
 
@@ -496,7 +415,7 @@ int main()
 	std::cout << fiveThirds;
 	return 0;
 }
-
+```
 Consider how this program works. First, we direct initialize an anonymous Fraction object, using the Fraction(int, int) constructor. Then we use that anonymous Fraction object as an initializer for Fraction fiveThirds. Since the anonymous object is a Fraction, as is fiveThirds, this should call the copy constructor, right?
 
 Run this and compile it for yourself. You’d probably expect to get this result (and you may):

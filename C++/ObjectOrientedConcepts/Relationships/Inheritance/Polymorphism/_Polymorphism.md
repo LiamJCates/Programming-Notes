@@ -18,42 +18,42 @@ While implementing inheritance, we can consider how Tuna inherits public method 
 
 As a Tuna is also a Fish, if a user with an instance of Tuna uses the base class type to invoke Fish::Swim(), he ends up executing only the generic part Fish::Swim() and not Tuna::Swim(), even though that base class instance Fish is a part of a Tuna.
 
+```cpp
+#include <iostream>
+using namespace std;
 
-	#include <iostream>
-	using namespace std;
+class Fish
+{
+public:
+	void Swim() { cout << "Fish swims! " << endl; }
+};
 
-	class Fish
-	{
-	public:
-		void Swim() { cout << "Fish swims! " << endl; }
-	};
+class Tuna:public Fish
+{
+public:
+	// override Fish::Swim
+	void Swim() { cout << "Tuna swims!" << endl; }
+};
 
-	class Tuna:public Fish
-	{
-	public:
-		// override Fish::Swim
-		void Swim() { cout << "Tuna swims!" << endl; }
-	};
+void MakeFishSwim(Fish& inputFish)
+{
+	// calling Fish::Swim
+	inputFish.Swim();
+}
 
-	void MakeFishSwim(Fish& inputFish)
-	{
-		// calling Fish::Swim
-		inputFish.Swim();
-	}
+int main()
+{
+	Tuna myDinner;
 
-	int main()
-	{
-		Tuna myDinner;
+	// calling Tuna::Swim
+	myDinner.Swim();
 
-		// calling Tuna::Swim
-		myDinner.Swim();
+	// sending Tuna as Fish
+	MakeFishSwim(myDinner);
 
-		// sending Tuna as Fish
-		MakeFishSwim(myDinner);
-
-		return 0;
-	}
-
+	return 0;
+}
+```
 C++ polymorphism means that a call to a member function will cause a different function to be executed depending on the type of object that invokes the function.
 
 Consider the following example where a base class has been derived by other two classes

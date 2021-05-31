@@ -44,7 +44,10 @@ void display12HourTime(int hrs, int min, int sec)
 {
     cout << "*       ";
     cout << (hrs > 12 ? "PM " : "AM ");
-    displayTime(hrs%12, min, sec);
+
+		if (hrs > 12)      hrs -= 12;
+		else if (hrs == 0) hrs = 12;
+    displayTime(hrs, min, sec);
     cout << "       *";
 }
 
@@ -59,8 +62,9 @@ void display24HourTime(int hrs, int min, int sec)
 
 void timeOutput()
 {
-    time_t ttime = time(0);
-    tm *time = localtime(&ttime);
+  time_t ttime = time(0);
+  struct tm *time;
+  localtime_r(&ttime, time);
 
     int totalSeconds = time->tm_sec + seconds;
     int sec = totalSeconds % 60;
@@ -78,8 +82,8 @@ void timeOutput()
     display12HourTime(hrs, min, sec);
     cout << "    ";
     display24HourTime(hrs, min, sec);
-    cout << "***************************    ***************************" << endl
-    << endl;
+    cout << "***************************    ***************************" <<
+    endl << endl;
 }
 
 int displayMenu()

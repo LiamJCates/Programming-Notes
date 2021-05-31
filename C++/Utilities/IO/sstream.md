@@ -1,33 +1,39 @@
-The standard header <sstream> defines a type called stringstream that allows a string to be treated as a stream, and thus allowing extraction or insertion operations from/to strings in the same way as they are performed on cin and cout. This feature is most useful to convert strings to numerical values and vice versa. For example, in order to extract an integer from a string we can write:
+The standard header <sstream> defines a type called stringstream that allows a string to be treated as a stream, and thus allowing extraction or insertion operations from/to strings in the same way as they are performed on cin and cout.
 
+This feature is most useful to convert strings to numerical values and vice versa. For example, in order to extract an integer from a string we can write:
+
+```cpp
 string mystr ("1204");
 int myint;
 stringstream(mystr) >> myint;
+```
+The above code stores the numerical value 1204:
+The first line declares a string type object, mystr, initialized to a value of "1204"
+The second line declares an int variable, myint.
+The third line then initializes a stringstream object with the value of the string and uses the extraction operator to extract, convert, and store the integer expressed by the string.
 
-This declares a string with initialized to a value of "1204", and a variable of type int. Then, the third line uses this variable to extract from a stringstream constructed from the string. This piece of code stores the numerical value 1204 in the variable called myint.
+```cpp
+#include <iostream>
+#include <string>
+#include <sstream>
+using namespace std;
 
-  // stringstreams
-  #include <iostream>
-  #include <string>
-  #include <sstream>
-  using namespace std;
+int main ()
+{
+  string mystr;
+  float price=0;
+  int quantity=0;
 
-  int main ()
-  {
-    string mystr;
-    float price=0;
-    int quantity=0;
-
-    cout << "Enter price: ";
-    getline (cin,mystr);
-    stringstream(mystr) >> price;
-    cout << "Enter quantity: ";
-    getline (cin,mystr);
-    stringstream(mystr) >> quantity;
-    cout << "Total price: " << price*quantity << endl;
-    return 0;
-  }
-
+  cout << "Enter price: ";
+  getline (cin,mystr);
+  stringstream(mystr) >> price;
+  cout << "Enter quantity: ";
+  getline (cin,mystr);
+  stringstream(mystr) >> quantity;
+  cout << "Total price: " << price*quantity << endl;
+  return 0;
+}
+```
 
 Output:
 

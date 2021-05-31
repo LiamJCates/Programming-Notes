@@ -48,24 +48,25 @@ A class can have more than one constructor. All constructors of a class have the
 A constructor can be implemented either inline within the class or externally outside the class declaration.
 
 A definition inside the class' declaration looks like this:
-
-  class Human {
-  public:
-    Human() { // constructor code here }
-  };
-
+```cpp
+class Human {
+public:
+  Human() { // constructor code here }
+};
+```
 A definition outside the class’ declaration looks like this:
 
-  class Human {
-    public:
-    Human(); // constructor declaration
-  };
+```cpp
+class Human {
+  public:
+  Human(); // constructor declaration
+};
 
-  // constructor implementation (definition)
-  Human::Human() {
-    // constructor code here
-  }
-
+// constructor implementation (definition)
+Human::Human() {
+  // constructor code here
+}
+```
 An external declaration uses, ::, the scope resolution operator:
 
 For example, Human::dateOfBirth would refer to variable dateOfBirth declared within the scope of class Human.

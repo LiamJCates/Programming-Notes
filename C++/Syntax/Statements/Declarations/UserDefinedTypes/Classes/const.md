@@ -1,16 +1,8 @@
 the const keyword can be used for a number of purposes throughout the declaration of a class.
 
-You
-may want to create a local const in a class to use inside constant
-expressions that will be evaluated at compile time. However, the
-meaning of const is different inside classes, so you must
-understand the options in order to create const data members of a
-class.
+You may want to create a local const in a class to use inside constant expressions that will be evaluated at compile time. However, the meaning of const is different inside classes, so you must understand the options in order to create const data members of a class.
 
-You can also make an entire object const. But
-preserving the constness of an object is more complex. The
-compiler can ensure the constness of a built-in type but it cannot
-monitor the intricacies of a class. To guarantee the constness of a
+You can also make an entire object const. But preserving the constness of an object is more complex. The compiler can ensure the constness of a built-in type but it cannot monitor the intricacies of a class. To guarantee the constness of a
 class object, the const member function is introduced: only a const
 member function may be called for a const object.
 

@@ -135,3 +135,90 @@ prints:
 If the last input associated with the stream variable infile failed.
 
 Suppose an input stream variable tries to open a file for inputting data into a program.  If the input file does not exist, you can use the value of the input stream variable, in conjunction with the return statement, to terminate the program
+
+
+### Custom Extraction
+The I/O operators are just like any other operators in C++, and you can overload them the way you overload
+any other operator.
+
+The input operator, also known as an extractor (because it extracts data from a stream), takes std::istream& as its first parameter. It must be a non-const reference, because the function will modify the stream object.
+
+The second parameter must also be a non-const reference, because you will store the input value there. By convention, the return type is std::istream&, and the return value is the first parameter.
+
+That lets you combine multiple input operations in a single expression.
+
+The body of the function must do the work of reading the input stream, parsing the input, and deciding how to interpret that input for a given type.
+
+If the input is not valid, the input function sets failbit in the stream’s error state. When the caller tests whether the stream is okay, it tests the error state. If failbit is set, the check fails. (The test also fails if an unrecoverable error occurs, such as a hardware malfunction, but that’s not pertinent to the current topic.) Now you have to decide on a format for rational numbers. The format should be one that is flexible enough for a human to read and write easily but simple enough for a function to read and parse quickly. The input format must be able to read the output format and might be able to read other formats too. Let’s define the format as an integer, a slash (/), and another integer. White space can appear before or after any of these elements, unless the white space flag is disabled in the input stream. If the input contains an integer that is not followed by a slash, the integer becomes the resulting value (i.e., the implicit denominator is 1). The input operator has to “unread” the character, which may be important to the rest of the program. The unget() member function does exactly that. The input operator for integers will do the same thing: read as many characters as possible until reading a character that is not part of the integer, then unget that last character.   Notice how rat is not modified until the function has successfully read both the numerator and the denominator from the stream. The goal is to ensure that if the stream enters an error state, the function does not alter rat. 
+
+The input stream automatically handles white space.
+
+By default, the input stream skips leading white space in each input operation, which means the rational input operator skips white space before the numerator, the slash separator, and the denominator. If the program turns off the ws flag, the input stream does not skip white space, and all three parts must be contiguous.
+
+```cpp
+struct rational
+{
+    /// Constructs a rational object, given a numerator and a denominator.
+    /// Always reduces to normal form.
+    /// @param num numerator
+    /// @param den denominator
+    /// @pre denominator > 0
+    rational(int num, int den)
+        : numerator{num}, denominator{den}
+    {
+        reduce();
+    }
+
+    /// Assigns a numerator and a denominator, then reduces to normal form.
+    /// @param num numerator
+    /// @param den denominator
+    /// @pre denominator > 0
+    void assign(int num, int den)
+    {
+        numerator = num;
+        denominator = den;
+        reduce();
+    }
+
+    /// Reduces the numerator and denominator by their GCD.
+    void reduce()
+    {
+        assert(denominator != 0);
+        if (denominator < 0)
+        {
+            denominator = -denominator;
+            numerator = -numerator;
+        }
+        int div{std::gcd(numerator, denominator)};
+        numerator = numerator / div;
+        denominator = denominator / div;
+    }
+
+    int numerator;   ///< numerator gets the sign of the rational value
+    int denominator; ///< denominator is always positive
+};
+
+std::istream &operator>>(std::istream &in, rational &rat)
+{
+    int n{0}, d{0};
+    char sep{'\0'};
+    if (not(in >> n >> sep))
+        // Error reading the numerator or the separator character.
+        in.setstate(std::cin.failbit);
+    else if (sep != '/')
+    {
+        // Read numerator successfully, but it is not followed by /.
+        // Push sep back into the input stream, so the next input operation
+        // will read it.
+        in.unget();
+        rat.assign(n, 1);
+    }
+    else if (in >> d)
+        // Successfully read numerator, separator, and denominator.
+        rat.assign(n, d);
+    else
+        // Error reading denominator.
+        in.setstate(std::cin.failbit);
+    return in;
+}
+```

@@ -2,6 +2,28 @@
 
 When you begin solving a problem, don’t start writing code immediately. First, make sure you completely understand the problem. It may help to work through a simple, concrete example and then try to generalize the process to an algorithm. When you’re convinced you have the right algorithm, explain it clearly. Writing the code should be one of your final steps.
 
+Listen Carfully
+Draw an Example
+State a Brute Force solution
+Optimize
+Walk Through
+Implement
+Test
+
+
+
+Optimization Technique
+
+BUD
+looking for
+	Bottlenecks
+	Unnecessary Work
+	Duplicated Work
+
+
+
+
+
 ### Basic Steps
 
 The best way to solve an interview problem is to approach it methodically:

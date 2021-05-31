@@ -1,5 +1,5 @@
 Move constructors and move assignment
-By Alex on February 26th, 2017 | last modified by Alex on December 21st, 2020
+
 
 In lesson M.1 -- Intro to smart pointers and move semantics, we took a look at std::auto_ptr, discussed the desire for move semantics, and took a look at some of the downsides that occur when functions designed for copy semantics (copy constructors and copy assignment operators) are redefined to implement move semantics.
 

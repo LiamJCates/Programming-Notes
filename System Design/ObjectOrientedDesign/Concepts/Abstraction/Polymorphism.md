@@ -2,7 +2,7 @@ Generally, polymorphism refers to the ability of acquiring many forms.
 
 Polymorphism is one of the most powerful aspects of object-oriented programming.
 
-
+Before returning to C++-land, I want to present one more general principle. Suppose I hand you a box labeled “Mammal.” Inside the box can be any mammal: a dog, a cat, a person, and so on. You know the box cannot contain a bird, a fish, a rock, or a tree. It must contain a mammal. Programmers call the box polymorphic, from the Greek meaning “many forms.” The box can hold any one of many forms, that is, any one mammal, regardless of which form of mammal it is. Although many programmers use the general term polymorphism, this specific kind of polymorphism is type polymorphism, also known as subtyping polymorphism. That is, the type of a variable (or a box) determines which kinds of objects it can contain. A polymorphic variable (or box) can contain one of a number of types of objects. In particular, a variable with a base class type can refer to an object of the base class type or to an object of any type that is derived from that base class. According to the Substitution Principle, you can write code to use the base class variable, calling any of the member functions of the base class, and that code will work, regardless of the object’s true, derived type. Now that you have a fundamental understanding of the principles of OOP, it is time to see how they play out in C++.
 
 Polymorphism is the capability to provide multiple implementations of an action and to select the correct implementation based on the surrounding context.
 

@@ -2,6 +2,9 @@ The Problem of Slicing
 
 In C++, a derived class object can be assigned to a base class object, but the other way is not possible.
 
+When you pass an argument by value or assign a derived class object to a base class variable, you lose polymorphism. The data members that a derived class adds are sliced away when the object is copied to a base class variable. Another way to look at it is this: because the derived class members are sliced away, what is left is only a base object, so you cannot have polymorphism.
+
+```cpp
 class Base { int x, y; };
 
 class Derived : public Base { int z, w; };
@@ -11,6 +14,7 @@ int main()
     Derived d;
     Base b = d; // Object Slicing,  z and w of d are sliced off
 }
+```
 
 Object slicing happens when a derived class object is assigned to a base class object, additional attributes of a derived class object are sliced off to form the base class object.
 
@@ -21,10 +25,12 @@ Slicing happens when a programmer does the following:
 
 Or:
 
-  void UseBase(Base input);
-  ...
-  Derived objDerived;
-  UseBase(objDerived); // copy of objDerived will be sliced and sent
+```cpp
+void UseBase(Base input);
+...
+Derived objDerived;
+UseBase(objDerived); // copy of objDerived will be sliced and sent
+```
 
 In both cases, an object of type Derived is being copied into another of type Base, either explicitly via assignment or by passing as an argument.
 
@@ -37,58 +43,10 @@ We can avoid above unexpected behavior with the use of pointers or references. O
 Object slicing can be prevented by making the base class function pure virtual there by disallowing object creation. It is not possible to create the object of a class which contains a pure virtual method.
 
 
-
-
-
-
-
-
-
 Object slicing
-By Alex on November 19th, 2016 | last modified by Alex on December 21st, 2020
 
-Let’s go back to an example we looked at previously:
 
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-36
-37
-38
-39
-
+```cpp
 class Base
 {
 protected:
@@ -128,24 +86,20 @@ int main()
 
     return 0;
 }
+```
 
-In the above example, ref references and ptr points to derived, which has a Base part, and a Derived part. Because ref and ptr are of type Base, ref and ptr can only see the Base part of derived -- the Derived part of derived still exists, but simply can’t be seen through ref or ptr. However, through use of virtual functions, we can access the most-derived version of a function. Consequently, the above program prints:
-
+Output:
+```
 derived is a Derived and has value 5
 ref is a Derived and has value 5
 ptr is a Derived and has value 5
+```
+
+In the above example, ref references and ptr points to derived, which has a Base part, and a Derived part. Because ref and ptr are of type Base, ref and ptr can only see the Base part of derived -- the Derived part of derived still exists, but simply can’t be seen through ref or ptr. However, through use of virtual functions, we can access the most-derived version of a function.
 
 But what happens if instead of setting a Base reference or pointer to a Derived object, we simply assign a Derived object to a Base object?
 
-1
-2
-3
-4
-5
-6
-7
-8
-
+```cpp
 int main()
 {
     Derived derived{ 5 };
@@ -154,7 +108,7 @@ int main()
 
     return 0;
 }
-
+```
 Remember that derived has a Base part and a Derived part. When we assign a Derived object to a Base object, only the Base portion of the Derived object is copied. The Derived portion is not. In the example above, base receives a copy of the Base portion of derived, but not the Derived portion. That Derived portion has effectively been “sliced off”. Consequently, the assigning of a Derived class object to a Base class object is called object slicing (or slicing for short).
 
 Because variable base does not have a Derived part, base.getName() resolves to Base::getName().
@@ -165,32 +119,21 @@ base is a Base and has value 5
 
 Used conscientiously, slicing can be benign. However, used improperly, slicing can cause unexpected results in quite a few different ways. Let’s examine some of those cases.
 
-Slicing and functions
+### Slicing and functions
 
 Now, you might think the above example is a bit silly. After all, why would you assign derived to base like that? You probably wouldn’t. However, slicing is much more likely to occur accidentally with functions.
 
 Consider the following function:
 
-1
-2
-3
-4
-
+```cpp
 void printName(const Base base) // note: base passed by value, not reference
 {
     std::cout << "I am a " << base.getName() << '\n';
 }
+```
 
 This is a pretty simple function with a const base object parameter that is passed by value. If we call this function like such:
-
-1
-2
-3
-4
-5
-6
-7
-
+```cpp
 int main()
 {
     Derived d{ 5 };
@@ -198,30 +141,22 @@ int main()
 
     return 0;
 }
+```
 
-When you wrote this program, you may not have noticed that base is a value parameter, not a reference. Therefore, when called as printName(d), we might have expected base.getName() to call virtualized function getName() and print “I am a Derived”, that is not what happens. Instead, Derived object d is sliced and only the Base portion is copied into the base parameter. When base.getName() executes, even though the getName() function is virtualized, there’s no Derived portion of the class for it to resolve to. Consequently, this program prints:
-
-1
-
+Output:
+```
 I am a Base
+```
+
+When you wrote this program, you may not have noticed that base is a value parameter, not a reference. Therefore, when called as printName(d), we might have expected base.getName() to call virtualized function getName() and print “I am a Derived”, that is not what happens.
+
+Instead, Derived object d is sliced and only the Base portion is copied into the base parameter. When base.getName() executes, even though the getName() function is virtualized, there’s no Derived portion of the class for it to resolve to.
 
 In this case, it’s pretty obvious what happened, but if your functions don’t actually print any identifying information like this, tracking down the error can be challenging.
 
 Of course, slicing here can all be easily avoided by making the function parameter a reference instead of a pass by value (yet another reason why passing classes by reference instead of value is a good idea).
 
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-
+```cpp
 void printName(const Base &base) // note: base now passed by reference
 {
     std::cout << "I am a " << base.getName() << '\n';
@@ -234,30 +169,17 @@ int main()
 
     return 0;
 }
-
-This prints:
-
+```
+Outputs:
+```
 I am a Derived
+```
 
-Slicing vectors
+### Slicing vectors
 
 Yet another area where new programmers run into trouble with slicing is trying to implement polymorphism with std::vector. Consider the following program:
 
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-
+```cpp
 #include <vector>
 
 int main()
@@ -272,6 +194,7 @@ int main()
 
 	return 0;
 }
+```
 
 This program compiles just fine. But when run, it prints:
 

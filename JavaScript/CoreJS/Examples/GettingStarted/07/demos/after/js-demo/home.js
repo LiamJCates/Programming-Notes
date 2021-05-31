@@ -1,3 +1,0 @@
-
-changePercentOff( 32 );
-

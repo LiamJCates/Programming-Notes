@@ -194,7 +194,8 @@ public:
 
 The Standard C library functions have multiple representations for time, and these are all part of the Time class. However, it isn’t necessary to update all of them, so instead the time_t tis used as the base representation, and the tm localand ASCII character representation asciiRepeach have flags to indicate if they’ve been updated to the current time_t. The two privatefunctions
 updateLocal( and ) updateAscii( check the flags and conditionally )
-perform the update.9: Inline Functions 407
+perform the update.
+
 The constructor calls the mark( )function (which the user can also
 call to force the object to represent the current time), and this clears
 the two flags to indicate that the local time and ASCII

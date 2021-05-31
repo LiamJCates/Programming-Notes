@@ -1,5 +1,7 @@
 ### Lambda Captures
 
+Naming a local variable in the lambda’s square brackets is called capturing the variable’s value. If you do not capture a variable, you cannot use it in the lambda, so the lambda would be able to use only its function parameters.
+
 Lambda captures inject objects into the lambda.
 
 Unlike nested blocks, where any identifier defined in an outer block is accessible in the scope of the nested block, lambdas can only access specific kinds of identifiers: global identifiers, entities that are known at compile time, and entities with static storage duration. This is where the capture clause becomes useful.
@@ -104,6 +106,7 @@ You can capture all automatic variables used within a lambda using default captu
 
 To specify a default capture by value within a capture list, use a lone equal sign =.
 
+```cpp
 int main(){
 
   int x = 2, y = 3;
@@ -112,9 +115,11 @@ int main(){
 
   cout << add() << endl;
 }
+```
 
 To specify a default capture by reference, use a lone ampersand &.
 
+```cpp
 int main(){
 
   int x = 2, y = 3;
@@ -131,9 +136,21 @@ int main(){
 
   cout << x << " " << y << endl;
 }
+```
 
+To follow best practices, list individual capture names.
 
+The default is capture-by-value, so you must supply an ampersand for each name that you want to capture by reference.
 
+Feel free to mix capture-by-value and capture-by-reference.
+
+```cpp
+auto lambda =
+[by_value, &by_reference, another_by_value, &another_by_reference]() {
+by_reference = by_value;
+another_by_reference = another_by_value;
+};
+```
 
 ### mutable
 By default, variables are captured by const value. This means when the lambda is created, the lambda captures a constant copy of the outer scope variable, which means that the lambda is not allowed to modify them.

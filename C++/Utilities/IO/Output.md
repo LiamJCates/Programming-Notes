@@ -111,3 +111,72 @@ Q╠╠╠╠╜╡4;¿■A
 Why did it do this? Well, it assumed &c (which has type char*) was a string. So it printed the ‘Q’, and then kept going. Next in memory was a bunch of garbage. Eventually, it ran into some memory holding a 0 value, which it interpreted as a null terminator, so it stopped. What you see may be different depending on what’s in memory after variable c.
 
 This case is somewhat unlikely to occur in real-life (as you’re not likely to actually want to print memory addresses), but it is illustrative of how things work under the hood, and how programs can inadvertently go off the rails.
+
+
+
+
+### Custom Insertion
+The I/O operators are just like any other operators in C++, and you can overload them the way you overload any other operator.
+
+Writing the output operator, or inserter (so named because it inserts text into the output stream), has a number of hurdles, due to the plethora of formatting flags. You want to heed the desired field width and alignment, and you have to insert fill characters, as needed. Like any other output operator, you want to reset the field width but not change any other format settings.
+
+One way to write a complicated output operator is to use a temporary output stream that stores its text in a string. The std::ostringstream type is declared in the <sstream> module. Use ostringstream the way you would use any other output stream, such as cout. When you are done, the str() member function returns the finished string.
+
+To write the output operator for a rational number, create an ostringstream, and then write the numerator, separator, and denominator. Next, write the resulting string to the actual output stream. Let the stream itself handle the width, alignment, and fill issues when it writes the string. If you had written the numerator, slash, and denominator directly to the output stream, the width would apply only to the numerator, and the alignment would be wrong. Similar to an input operator, the first parameter has type std::ostream&, which is also the return type. The return value is the first parameter. The second parameter can use call-by-value, or you can pass a reference to const
+
+```cpp
+struct rational
+{
+    /// Constructs a rational object, given a numerator and a denominator.
+    /// Always reduces to normal form.
+    /// @param num numerator
+    /// @param den denominator
+    /// @pre denominator > 0
+    rational(int num, int den)
+        : numerator{num}, denominator{den}
+    {
+        reduce();
+    }
+
+    /// Assigns a numerator and a denominator, then reduces to normal form.
+    /// @param num numerator
+    /// @param den denominator
+    /// @pre denominator > 0
+    void assign(int num, int den)
+    {
+        numerator = num;
+        denominator = den;
+        reduce();
+    }
+
+    /// Reduces the numerator and denominator by their GCD.
+    void reduce()
+    {
+        assert(denominator != 0);
+        if (denominator < 0)
+        {
+            denominator = -denominator;
+            numerator = -numerator;
+        }
+        int div{std::gcd(numerator, denominator)};
+        numerator = numerator / div;
+        denominator = denominator / div;
+    }
+
+    int numerator;   ///< numerator gets the sign of the rational value
+    int denominator; ///< denominator is always positive
+};
+
+std::ostream &operator<<(std::ostream &out, rational const &rat)
+{
+    std::ostringstream tmp{};
+    tmp << rat.numerator;
+
+    if (rat.denominator != 1)
+        tmp << '/' << rat.denominator;
+
+    out << tmp.str();
+
+    return out;
+}
+```

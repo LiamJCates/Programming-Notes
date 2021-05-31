@@ -1,4 +1,14 @@
 ## Virtual Functions
+Recall fthat type polymorphism is the ability of a variable of type B to take the “form” of any class derived from B. The obvious question is “How?”
+
+The key in C++ is to use a reserved keyword to declare a member function in a base class and also implement the function in a derived class with a different
+reserved keyword.
+
+To turn a function into a polymorphic function is virtual, in the derived class, the function with the corresponding function siganture and return type is marked with override.
+
+The virtual keyword tells the compiler that you want to invoke type polymorphism, and the compiler implements the polymorphism magic.
+
+Define a variable of type reference-to-base class and initialize it with an object of derived class type. When you call the polymorphic function for the object, the compiled code checks the object’s actual type and calls the derived class implementation of the function.
 
 A "virtual function" is a special type of method that, when called, resolves to the most-derived match of that method that exists between the base and derived class. A derived function is considered a match if it is an override of the base class function; it has the same signature (name, parameter types, and whether it is const) and return type as the base version of the function.
 
@@ -13,6 +23,10 @@ Unlike a non-virtual function, when a virtual function is overridden the most-de
 
 This is in contrast to non-virtual functions, which can still be overridden in a derived class, but the "new" version will only be used by the derived class and below, but will not change the functionality of the base class at all.
 
+
+A derived class is not required to implement a virtual function. If it doesn’t, it inherits the base class function the same way it does for a non-virtual function. When a derived class implements a virtual function, it is said to override the function, because the derived class’s behavior overrides the behavior that would have been inherited from the base class.
+
+In the derived class, the override specifier is optional but helps to prevent mistakes. If you accidentally mistype the function’s name or parameters in the derived class, the compiler might think you are defining a brand-new function. By adding override, you tell the compiler that you intend to override a virtual function that was declared in the base class. If the compiler cannot find a matching function in the base class, it issues an error message.
 
 
 ### Virtual functions and polymorphism
@@ -30,36 +44,38 @@ If a function is marked as virtual, all matching overrides are also considered v
 
 
 ### Example
+```cpp
+#include <iostream>
+#include <string>
+using namespace std;
 
-  #include <iostream>
-  #include <string>
-  using namespace std;
+class Base
+{
+public:
+	// note virtual keyword specifies a virtual method
+	virtual std::string getName() const { return "Base"; }
+};
 
-  class Base
-  {
-  public:
-  	// note virtual keyword specifies a virtual method
-  	virtual std::string getName() const { return "Base"; }
-  };
+class Derived : public Base
+{
+public:
+	virtual std::string getName() const { return "Derived"; }
+};
 
-  class Derived : public Base
-  {
-  public:
-  	virtual std::string getName() const { return "Derived"; }
-  };
+int main()
+{
+	Derived derived;
+	Base &rBase{derived};
+	std::cout << "rBase is a " << rBase.getName() << '\n';
 
-  int main()
-  {
-  	Derived derived;
-  	Base &rBase{derived};
-  	std::cout << "rBase is a " << rBase.getName() << '\n';
-
-  	return 0;
-  }
+	return 0;
+}
+```
 
 Output:
-
-  rBase is a Derived
+```
+rBase is a Derived
+```
 
 Because rBase is a reference to the Base portion of a Derived object, when rBase.getName() is evaluated, it would normally resolve to Base::getName(). However, Base::getName() is virtual, which tells the program to go look and see if there are any more-derived versions of the function available between Base and Derived. In this case, it will resolve to Derived::getName()!
 
@@ -76,39 +92,39 @@ For an example use case of virtual functions, see:
 A derived class virtual function is only considered an override if its signature and return types match exactly. That can lead to inadvertent issues, where a function that was intended to be an override actually isn’t.
 
 Consider the following example:
+```cpp
+class A
+{
+public:
+	virtual const char* getName1(int x) { return "A"; }
+	virtual const char* getName2(int x) { return "A"; }
+};
 
-  class A
-  {
-  public:
-  	virtual const char* getName1(int x) { return "A"; }
-  	virtual const char* getName2(int x) { return "A"; }
-  };
+class B : public A
+{
+public:
+  // note: parameter is a short int
+	virtual const char* getName1(short int x) { return "B"; }
 
-  class B : public A
-  {
-  public:
-    // note: parameter is a short int
-  	virtual const char* getName1(short int x) { return "B"; }
+  // note: function is const
+  virtual const char* getName2(int x) const { return "B"; }
+};
 
-    // note: function is const
-    virtual const char* getName2(int x) const { return "B"; }
-  };
+int main()
+{
+	B b{};
+	A& rBase{ b };
+	std::cout << rBase.getName1(1) << '\n';
+	std::cout << rBase.getName2(2) << '\n';
 
-  int main()
-  {
-  	B b{};
-  	A& rBase{ b };
-  	std::cout << rBase.getName1(1) << '\n';
-  	std::cout << rBase.getName2(2) << '\n';
-
-  	return 0;
-  }
-
+	return 0;
+}
+```
 Output:
-
-  A
-  A
-
+```
+A
+A
+```
 Because rBase is an A reference to a B object, the intention here is to use virtual functions to access B::getName1() and B::getName2(). However, because B::getName1() takes a different parameter (a short int instead of an int), it’s not considered an override of A::getName1(). More insidiously, because B::getName2() is const and A::getName2() isn’t, B::getName2() isn’t considered an override of A::getName2().
 
 
@@ -138,7 +154,7 @@ To help address the issue of functions that are meant to be overrides but aren�
 
   int main()
   {
-  	return 0;
+  	return 0
   }
 
 The above program produces two compile errors: one for B::getName1(), and one for B::getName2(), because neither override a prior function. B::getName3() does override A::getName3(), so no error is produced for that line.
@@ -149,6 +165,13 @@ Rule
 
 Apply the override specifier to every intended override function you write.
 
+You may find it odd that the virtual keyword appears at the start of a function header and override appears at the end.
+
+You are witnessing the compromises that are often necessary when a language evolves. The override specifier was added to the language after its initial standardization. One way to add the override specifier would have been to add it to the list of function specifiers, like virtual. But adding a new keyword to a language is fraught with difficulty. Every existing program that uses override as a variable or other user-defined name would break.
+
+Programmers all over the world would have to check and possibly modify their software to avoid this new keyword.
+
+So the C++ standards committee devised a way to add override without making it a reserved keyword. The syntax of a function declaration puts the const qualifier in a special place. No other identifiers are allowed there, so it is easy to add override to the syntax for member functions in a manner similar to const, and with no risk of breaking existing code. Other new language features use existing keywords in new ways, such as =default and =delete for constructors. But a few new keywords were added, and they bring with them the risk of breaking existing code. so the committee tried to choose names that would be less likely to conflict with existing user-chosen names. You will see examples of some of these new keywords later in the book as well as other novel uses of special words in special contexts that avoid reserving those special words as keywords.
 
 
 #### Return types of virtual functions
@@ -232,47 +255,53 @@ You probably won’t use this very often, but it’s good to know it’s at leas
 
 ## Virtual destructors
 
-Although C++ provides a default destructor for your classes if you do not provide one yourself, it is sometimes the case that you will want to provide your own destructor (particularly if the class needs to deallocate memory). You should always make your destructors virtual if you’re dealing with inheritance. Consider the following example:
+Although C++ provides a default destructor for your classes if you do not provide one yourself, it is sometimes the case that you will want to provide your own destructor (particularly if the class needs to deallocate memory). You should always make your destructors virtual if you’re dealing with inheritance.
 
-	#include <iostream>
-	class Base
-	{
-	public:
-	   ~Base() // note: not virtual
-	   {
-	       std::cout << "Calling ~Base()\n";
-	   }
-	};
+Consider the following example:
 
-	class Derived: public Base
-	{
-	private:
-	   int* m_array;
+```cpp
+#include <iostream>
+class Base
+{
+public:
+   ~Base() // note: not virtual
+   {
+       std::cout << "Calling ~Base()\n";
+   }
+};
 
-	public:
-	   Derived(int length)
-	     : m_array{ new int[length] }
-	   {
-	   }
+class Derived: public Base
+{
+private:
+   int* m_array;
 
-	   ~Derived() // note: not virtual (your compiler may warn you about this)
-	   {
-	       std::cout << "Calling ~Derived()\n";
-	       delete[] m_array;
-	   }
-	};
+public:
+   Derived(int length)
+     : m_array{ new int[length] }
+   {
+   }
 
-	int main()
-	{
-	   Derived *derived { new Derived(5) };
-	   Base *base { derived };
+   ~Derived() // note: not virtual (your compiler may warn you about this)
+   {
+       std::cout << "Calling ~Derived()\n";
+       delete[] m_array;
+   }
+};
 
-	   delete base;
-	}
+int main()
+{
+   Derived *derived { new Derived(5) };
+   Base *base { derived };
+
+   delete base;
+}
+```
 
 Output:
 
-  Calling ~Base()
+```
+Calling ~Base()
+```
 
 We receive this output because base is a Base pointer, when base is deleted, the program looks to see if the Base destructor is virtual. As it is not, only the Base destructor is called.
 
@@ -281,48 +310,52 @@ If you compile the above example, your compiler may warn you about the non-virtu
 
 However, we really want the delete function to call Derived’s destructor (which will call Base’s destructor in turn), otherwise m_array will not be deleted. We do this by making Base’s destructor virtual:
 
-	#include <iostream>
-	class Base
-	{
-	public:
-	   virtual ~Base() // note: virtual
-	   {
-	       std::cout << "Calling ~Base()\n";
-	   }
-	};
+```cpp
+#include <iostream>
+class Base
+{
+public:
+   virtual ~Base() // note: virtual
+   {
+       std::cout << "Calling ~Base()\n";
+   }
+};
 
-	class Derived: public Base
-	{
-	private:
-	   int* m_array;
+class Derived: public Base
+{
+private:
+   int* m_array;
 
-	public:
-	   Derived(int length)
-	     : m_array{ new int[length] }
-	   {
-	   }
+public:
+   Derived(int length)
+     : m_array{ new int[length] }
+   {
+   }
 
-	   virtual ~Derived() // note: virtual
-	   {
-	       std::cout << "Calling ~Derived()\n";
-	       delete[] m_array;
-	   }
-	};
+   virtual ~Derived() // note: virtual
+   {
+       std::cout << "Calling ~Derived()\n";
+       delete[] m_array;
+   }
+};
 
-	int main()
-	{
-	   Derived *derived { new Derived(5) };
-	   Base *base { derived };
+int main()
+{
+   Derived *derived { new Derived(5) };
+   Base *base { derived };
 
-	   delete base;
+   delete base;
 
-	   return 0;
-	}
+   return 0;
+}
+```
 
 Output:
 
-  Calling ~Derived()
-  Calling ~Base()
+```cpp
+Calling ~Derived()
+Calling ~Base()
+```
 
 Rule: Whenever you are dealing with inheritance, you should make any explicit destructors virtual.
 

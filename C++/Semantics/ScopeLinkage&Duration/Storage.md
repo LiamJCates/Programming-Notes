@@ -92,9 +92,11 @@ Static local variables should only be used if in your entire program and in the 
 
 #### Static Member
 Static members are members of a class that aren’t associated with a particular
-instance of the class. Like other static variables, static members have only a single instance. All instances of a class with static members share the same member, so if you modify a static member, all class instances will observe the modification.
+instance of the class. Use the static keyword only in the data member’s declaration, not in its definition. Because static data members are not part of objects, do not list them in a constructor’s initializer list. Like other static variables, static members have only a single instance. All instances of a class type as well as its derived types share the same static member, so if you modify a static member, all class instances will observe the modification.
 
-Normal class members have lifetimes nested within the class’s lifetime, but static members have static storage duration. These members are essentially similar to static variables and functions declared at global scope; however, you must refer to them by the containing class’s name, using the scope resolution operator ::. In fact, you must initialize static members at global scope. There is an exception to the static member initialization rule: you can declare and define integral types within a class definition as long as they’re also const.
+Normal class members have lifetimes nested within the class’s lifetime, but static members have static storage duration. These members are essentially similar to static variables and functions declared at global scope; however, you must refer to them by the containing class’s name, using the scope resolution operator ::. By making the shared variable a data member, however, you can restrict access to the data member using the normal class access levels.
+
+You must initialize static members at global scope. There is an exception to the static member initialization rule: you can declare and define integral types within a class definition as long as they’re also const.
 
 
 #### Static Global Object

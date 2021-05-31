@@ -1,0 +1,2 @@
+The asm keyword
+This is an escape mechanism that allows you to write assembly code for your hardware within a C++ program. Often you’re able to reference C++ variables within the assembly code, which means you can easily communicate with your C++ code and limit the assembly code to that necessary for efficiency tuning or to use special processor instructions. The exact syntax that you must use when writing the assembly language is compiler-dependent and can be discovered in your compiler’s documentation.
