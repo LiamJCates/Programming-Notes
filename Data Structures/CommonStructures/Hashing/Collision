@@ -1,5 +1,5 @@
 Collision
-The hashing function maps a potentially infinite number of key values to some finite number of index locations. T
+The hashing function maps a potentially infinite number of key values to some finite number of index locations.
 
 A collision is a situation which occurs when a hash function maps two
 different keys to a single/same location in the hash table. Suppose we want

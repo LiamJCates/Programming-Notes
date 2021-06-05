@@ -1,5 +1,8 @@
 /*
-A contains_all method accepts two vectors and returns true if all values within the second vector are present within the first vector. 
+A contains_all method accepts two vectors and returns true if all values within the second vector are present within the first vector.
+
+For each number in the target numbers to search
+linearly search the list for that target
 */
 
 #include <vector>

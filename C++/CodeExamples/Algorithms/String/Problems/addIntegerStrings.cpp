@@ -12,10 +12,11 @@ A string representation of an integer will contain no characters besides the ten
 */
 
 #include <string>
+#include <iostream>
 
-std::string sum_strings(const std::string& a, const std::string& b)
+std::string add(const std::string& a, const std::string& b)
 {
-  
+
   std::string str = "";
   char digit;
 
@@ -36,4 +37,11 @@ std::string sum_strings(const std::string& a, const std::string& b)
   if(sum) str.insert(str.begin(), '1');
 
   return str;
+}
+
+int main()
+{
+  std::cout << add("123", "456") << std::endl;
+	std::cout << add("723", "456") << std::endl;
+  std::cout << add("0", "0") << std::endl;
 }

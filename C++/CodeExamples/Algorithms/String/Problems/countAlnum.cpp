@@ -35,5 +35,5 @@ Iterator
 */
 int countLettersAndDigits(std::string input)
 {
-    return std::count_if( input.begin(), input.end(), isalnum );
+    return std::count_if( input.begin(), input.end(), ::isalnum );
 }

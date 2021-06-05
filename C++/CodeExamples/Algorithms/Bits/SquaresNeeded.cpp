@@ -1,5 +1,5 @@
 /*
-There is an ancient legend of a young man that asks as compensation, for a single grain of rice with the stipulation that his payment double each time.  Recieveing 1 grain the first day, 2 grains for the second, 4 for the third, 8 for the fourth and so on, always doubling the previous.
+There is an ancient legend of a young man that requests, as compensation for labor, a single grain of rice with the stipulation that his payment double each for each subsequent payment.  Recieveing 1 grain the first day, 2 grains for the second, 4 for the third, 8 for the fourth and so on, always doubling the previous.
 
 Given an amount of grains, you need to return up to which day one should count in order to get at least as many.
 

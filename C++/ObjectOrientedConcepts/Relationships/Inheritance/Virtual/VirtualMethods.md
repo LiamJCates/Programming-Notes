@@ -1,16 +1,19 @@
 ## Virtual Functions
-Recall fthat type polymorphism is the ability of a variable of type B to take the “form” of any class derived from B. The obvious question is “How?”
+Recall that type polymorphism is the ability of a variable of type B to take the “form” of any class derived from B. This upholds the Liskov Substitutibility Principle. Because a derived class "is-a" base class instance as well.
 
-The key in C++ is to use a reserved keyword to declare a member function in a base class and also implement the function in a derived class with a different
-reserved keyword.
+To allow for containers, functions, and other language features that use polymophism to resolve base class references to derived class instances C++ has certain runtime polymophic functionality.
 
-To turn a function into a polymorphic function is virtual, in the derived class, the function with the corresponding function siganture and return type is marked with override.
+In particular, to allow a function call to be resolved in the desired way, C++ uses the reserved keyword virtual to allow a method call to exibit polymorphic behavior.
 
-The virtual keyword tells the compiler that you want to invoke type polymorphism, and the compiler implements the polymorphism magic.
+By using the virtual keyword as a prefix to the method signature in the base class, a function call on a base class reference that is associated to a derived class instance will resolve to the derived class method definition.
 
-Define a variable of type reference-to-base class and initialize it with an object of derived class type. When you call the polymorphic function for the object, the compiled code checks the object’s actual type and calls the derived class implementation of the function.
+The virtual keyword tells the compiler that you want to invoke type polymorphism, and the compiler implements the polymorphism magic. When a variable is defined of type reference-to-base class and is initialized with an object of derived class type. When you call the polymorphic function for the object, the compiled code checks the object’s actual type and calls the derived class implementation of the function.
 
-A "virtual function" is a special type of method that, when called, resolves to the most-derived match of that method that exists between the base and derived class. A derived function is considered a match if it is an override of the base class function; it has the same signature (name, parameter types, and whether it is const) and return type as the base version of the function.
+Non-virtual funcitons will not exhibit polymophic behavior and will always resolve to base class definition when a reference of a base class is used.
+
+A "virtual function" or "virtual method" is a special type of method that, when called, resolves to the most-derived match of that method that exists between the base and derived class. A derived function is considered a match if it is an override of the base class function; it has the same signature (name, parameter types, and whether it is const) and return type as the base version of the function.
+
+Be aware, when using a base class reference to make a function call, we can only call methods that are defined in the base class, virtual or otherwise.
 
 For more information regarding method override, see:
 [C++\ObjectOrientedConcepts\Relationships\Inheritance\CreatingDerivedClasses\MethodOverride.md]
@@ -22,7 +25,6 @@ To specify a virtual function, prepend the “virtual” keyword to the method s
 Unlike a non-virtual function, when a virtual function is overridden the most-derived version is used at all levels of the class hierarchy, rather than just the level at which it was created.
 
 This is in contrast to non-virtual functions, which can still be overridden in a derived class, but the "new" version will only be used by the derived class and below, but will not change the functionality of the base class at all.
-
 
 A derived class is not required to implement a virtual function. If it doesn’t, it inherits the base class function the same way it does for a non-virtual function. When a derived class implements a virtual function, it is said to override the function, because the derived class’s behavior overrides the behavior that would have been inherited from the base class.
 
@@ -212,11 +214,15 @@ For examples of construction and destruction order of class hierarchies see:
 
 Since most of the time you’ll want your functions to be virtual, why not just make all functions virtual?
 
-It’s inefficient -- resolving a virtual function call takes longer than resolving a regular one. Furthermore, the compiler also has to allocate an extra pointer for each class object that has one or more virtual functions.
+It’s inefficient --
+Calling a virtual function has a memory and runtime cost.
 
-Virtual functions can incur runtime overhead, although the cost is typically low (within 25 percent of a regular function call). The compiler generates virtual function tables (vtables) that contain function pointers. At runtime, a consumer of an interface doesn’t generally know its underlying type, but it knows how to invoke the interface’s methods (thanks to the vtable).
+There is a memory cost in generating the virtual funciton table needed to enable the direction of the call to the correct function. The compiler has to allocate a extra function pointers for each class object that has one or more virtual functions.
 
-In some circumstances, the linker can detect all uses of an interface and devirtualize a function call. This removes the function call from the vtable and thus eliminates associated runtime cost.
+Resolving a virtual function call can incur runtime overhead as compared to resolving a non-polymorphic function call. At runtime, a consumer code of an interface or derived class doesn’t generally know its underlying type, but it knows how to invoke the interface’s methods (thanks to the vtable). This cost is typically low (within 25 percent of a regular function call).
+
+
+However, in some circumstances, the linker can detect all uses of an interface and devirtualize a function call. This removes the function call from the vtable and thus eliminates associated runtime cost.
 
 
 

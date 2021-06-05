@@ -63,7 +63,9 @@ public:
         if (sum == 1){
             currentNode->next = new ListNode(1);
         }
-        return l3->next;
+        currentNode = l3->next;
+        delete l3;
+        return currentNode;
     }
 };
 

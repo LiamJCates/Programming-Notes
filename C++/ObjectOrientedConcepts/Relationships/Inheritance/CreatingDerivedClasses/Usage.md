@@ -137,7 +137,8 @@ It turns out that because rBase and pBase are a Base reference and pointer, they
 
 Note that this also means it is not possible to call Derived::getValueDoubled() using rBase or pBase. They are unable to see anything in Derived.
 
-
+#### Note:
+We cannot set the address value of a derived class pointer to the address of a base class instance. This is because the base class instance does not support all the capability the the derived class reference must support.
 
 ### Use for pointers and references to base classes
 

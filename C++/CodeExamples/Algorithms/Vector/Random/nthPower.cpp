@@ -12,19 +12,19 @@ Let's look at a few examples:
 #include <vector>
 #include <cmath> //std::pow
 
-int index(const std::vector<int> &vector, int n) {
+//Using pow()
+long index(const std::vector<int> &vector, int n) {
   return n >= vector.size() ? -1 : pow(vector[n], n);
 }
 
-int index(const std::vector<int> &vector, int n) {
+//Computing the power through multiplication
+long index(const std::vector<int> &vector, int n) {
 
-  if (vector.size() <= n)
-    return -1;
+  if (vector.size() <= n) return -1;
 
-  int i = 1, p = n;
+  long i = 1, p = n;
 
-  while(p--)
-    i *= vector.at(n);
+  while(p--) i *= vector.at(n);
 
   return i;
 }
