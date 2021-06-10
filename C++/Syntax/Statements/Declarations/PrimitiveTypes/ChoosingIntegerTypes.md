@@ -1,0 +1,19 @@
+What are the criteria for choosing between short / int / long data types?  
+
+Other related questions: If a short int is the same size as an int on my particular implementation, why choose one or the other? If I start taking the actual size in bytes of the variables into account, won’t I be making my code unportable (since the size in bytes may differ from implementation to implementation)? Or should I simply go with sizes much larger than I actually need, as a sort of safety buffer?
+
+Answer: It’s usually a good idea to write code that can be ported to a different operating system and/or compiler. After all, if you’re successful at what you do, someone else might want to use it somewhere else. This can be a little tricky with built-in types like int and short, since C++ doesn’t give guaranteed sizes. However C++ gives you two things that might help: guaranteed minimum sizes, and that will usually be all you need to know, and a standard C header that provides typedefs for sized integers.
+
+C++ guarantees a char is exactly one byte which is at least 8 bits, short is at least 16 bits, int is at least 16 bits, and long is at least 32 bits. It also guarantees the unsigned version of each of these is the same size as the original, for example, sizeof(unsigned short) == sizeof(short).
+
+When writing portable code, you shouldn’t make additional assumptions about these sizes. For example, don’t assume int has 32 bits. If you have an integral variable that needs at least 32 bits, use a long or unsigned long even if sizeof(int) == 4 on your particular implementation. On the other hand, if you have an integral variable quantity that will always fit within 16 bits and if you want to minimize the use of data memory, use a short or unsigned short even if you know sizeof(int) == 2 on your particular implementation.
+
+The other option is to use the following standard C header (which may or may not be provided by your C++ compiler vendor):
+
+    #include <stdint.h>  /* not part of the C++ standard */
+
+That header defines typedefs for things like int32_t and uint16_t, which are a signed 32-bit integer and an unsigned 16-bit integer, respectively. There are other goodies in there, as well. My recommendation is that you use these “sized” integral types only where they are actually needed. Some people worship consistency, and they are sorely tempted to use these sized integers everywhere simply because they were needed somewhere. Consistency is good, but it is not the greatest good, and using these typedefs everywhere can cause some headaches and even possible performance issues. Better to use common sense, which often leads you to use the normal keywords, e.g., int, unsigned, etc. where you can, and use of the explicitly sized integer types, e.g., int32_t, etc. where you must.
+
+Note that there are some subtle tradeoffs here. In some cases, your computer might be able to manipulate smaller things faster than bigger things, but in other cases it is exactly the opposite: int arithmetic might be faster than short arithmetic on some implementations. Another tradeoff is data-space against code-space: int arithmetic might generate less binary code than short arithmetic on some implementations. Don’t make simplistic assumptions. Just because a particular variable can be declared as short doesn’t necessarily mean it should, even if you’re trying to save space.
+
+Note that the C standard doesn’t guarantee that <stdint.h> defines intn_t and uintn_t specifically for n = 8, 16, 32 or 64. However if the underlying implementation provides integers with any of those sizes, <stdint.h> is required to contain the corresponding typedefs. Furthermore you are guaranteed to have typedefs for sizes n = 8, 16 and 32 if your implementation is POSIX compliant. Put all that together and it’s fair to say that the vast majority of implementations, though not all implementations, will have typedefs for those typical sizes.

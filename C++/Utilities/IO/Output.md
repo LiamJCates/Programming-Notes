@@ -163,8 +163,8 @@ struct rational
         denominator = denominator / div;
     }
 
-    int numerator;   ///< numerator gets the sign of the rational value
-    int denominator; ///< denominator is always positive
+    int numerator;   // numerator gets the sign of the rational value
+    int denominator; // denominator is always positive
 };
 
 std::ostream &operator<<(std::ostream &out, rational const &rat)

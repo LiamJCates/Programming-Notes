@@ -1,10 +1,10 @@
+#include <iostream>
+
+using namespace std;
+
 template <typename T>
 class SinglyLinkedList
 {
-
-    int length;
-    Node<T> *head;
-    Node<T> *tail;
 
     class Node {
         T data;
@@ -14,17 +14,22 @@ class SinglyLinkedList
         Node(T data, Node* next);
         ~Node();
     };
+    int length;
+    Node *head;
+    Node *tail;
+
+
 public:
     SinglyLinkedList();
     ~SinglyLinkedList();
 
     bool isEmpty();
-    int length();
+    int size();
     void prepend(T data);
     void append(T data);
     void insert(int idx, T data);
-    void delete(int idx);
-    void delete(T value);
+    void remove(int idx);
+    void remove(T value);
     bool search(T value);
     void reverse();
     void print();
@@ -32,20 +37,20 @@ public:
 };
 
 template <typename T> SinglyLinkedList<T> :: Node :: Node()
-: next(nullptr) { }
+: next(nullptr) { };
 
-template <typename T> SinglyLinkedList<T> :: Node :: Node(T element, Node* ptr = nullptr)
-: data(element), next(ptr) { }
+template <typename T> SinglyLinkedList<T> :: Node :: Node(T element, Node* ptr)
+: data(element), next(ptr) { };
 
-template <typename T> SinglyLinkedList<T> :: Node :: ~Node() {data = 0, next = NULL}
+template <typename T> SinglyLinkedList<T> :: Node :: ~Node() {data = 0, next = NULL;}
 
 template <typename T> SinglyLinkedList<T>::SinglyLinkedList()
-: length(0), head(nullptr), tail(nullptr) {}
+: length(0), head(nullptr), tail(nullptr) { };
 
 template <typename T> SinglyLinkedList<T> :: ~SinglyLinkedList()
 {
-  Node<T> *next = this->head;
-  Node<T> *current = nullptr;
+  Node *next = this->head;
+  Node *current = nullptr;
   while (next != nullptr) {
       current = next;
       next = next->next;
@@ -55,22 +60,24 @@ template <typename T> SinglyLinkedList<T> :: ~SinglyLinkedList()
 }
 
 //returns whether the list is empty
-bool template <typename T> SinglyLinkedList :: isEmpty()
+template <typename T>
+bool SinglyLinkedList<T> :: isEmpty()
 {
     return this->length;
 }
 
 //returns the list's length
-int template <typename T> SinglyLinkedList :: length()
+template <typename T>
+int SinglyLinkedList<T> :: size()
 {
     return this->length;
 }
 
-
-void template <typename T> SinglyLinkedList :: prepend(T data)
+template <typename T>
+void  SinglyLinkedList<T> :: prepend(T data)
 {
   //create the node
-  Node<T> *tmp = new Node<T>(data, this->head);
+  Node *tmp = new Node(data, this->head);
   //if the list was empty
   if(this->isEmpty()){
     //update tail
@@ -82,10 +89,11 @@ void template <typename T> SinglyLinkedList :: prepend(T data)
   this->length++;
 }
 
-void template <typename T> SinglyLinkedList :: append(T data)
+template <typename T>
+void  SinglyLinkedList<T> :: append(T data)
 {
   //create the node
-  Node<T> *tmp = new Node<T>(data);
+  Node *tmp = new Node(data);
 
   //if the list was empty
   if(this->isEmpty()){
@@ -103,19 +111,20 @@ void template <typename T> SinglyLinkedList :: append(T data)
   this->length++;
 }
 
-void template <typename T> SinglyLinkedList ::
+template <typename T>
+void  SinglyLinkedList<T> ::
 insert(int index, T data)
 {
-  if (idx > 0 || idx >= this->length)
+  if (index > 0 || index >= this->length)
   {
     if(index == 0)
       prepend(data);
     if(index == length)
       append(data);
 
-    Node<T> *tmp = new Node<T>(data);
-    Node<T> *next = this->head;
-    Node<T> *prev;
+    Node *tmp = new Node(data);
+    Node *next = this->head;
+    Node *prev;
     while(index--)
     {
       prev = next;
@@ -127,13 +136,14 @@ insert(int index, T data)
   }
 }
 
-void template <typename T> SinglyLinkedList :: delete(T data)
+template <typename T>
+void  SinglyLinkedList<T> :: remove(T data)
 {
   //if the list is not empty traverse the list for a value to delete
   if (!this->isEmpty())
   {
     //Set current to the list head
-    Node<T> *current = this->head;
+    Node *current = this->head;
     //if the data to delete is the list head
     if(current->data == data)
     {
@@ -151,7 +161,7 @@ void template <typename T> SinglyLinkedList :: delete(T data)
     else
     {
       //remember the node previous to current
-      Node<T> *previous = current;
+      Node *previous = current;
       //move current
       current = current->next;
       while(current != nullptr){
@@ -182,13 +192,14 @@ void template <typename T> SinglyLinkedList :: delete(T data)
   }
 }
 
-void template <typename T> SinglyLinkedList :: delete(int idx)
+template <typename T>
+void  SinglyLinkedList<T> :: remove(int idx)
 {
   //if the index exists in the list
   if (idx > 0 || idx <= this->length)
   {
     //create a traversal pointer
-    Node<T> *current = this->head;
+    Node *current = this->head;
     //if the node to delete is the head
     if (idx == 0)
     {
@@ -209,7 +220,7 @@ void template <typename T> SinglyLinkedList :: delete(int idx)
     else
     {
       //remember the node previous to current
-      Node<T> *previous = current;
+      Node *previous = current;
       //move current past head
       current = current->next;
       //locate the node at given index
@@ -233,17 +244,18 @@ void template <typename T> SinglyLinkedList :: delete(int idx)
   }
 }
 
-void template <typename T> SinglyLinkedList :: search(T data)
+template <typename T>
+bool SinglyLinkedList<T> :: search(T data)
 {
   //Set traversal pointer to the list head
-  Node<T> *current = this->head;
+  Node *current = this->head;
   //while there are elements to traverse
   while(current != nullptr){
     //if the current node holds the search value
     if(current->data == data)
     {
       //indicate serach value found
-      return true
+      return true;
     }
     //else search value not found
     else
@@ -252,11 +264,12 @@ void template <typename T> SinglyLinkedList :: search(T data)
       current = current->next;
     }
   }
-  //indicate search value cloud not be found
+  //indicate search value could not be found
   return false;
 }
 
-void template <typename T> SinglyLinkedList :: print(){
+template <typename T>
+void  SinglyLinkedList<T> :: print(){
   //if the list is empty
   if (this->isEmpty()) {
     //indicate empty list
@@ -264,7 +277,7 @@ void template <typename T> SinglyLinkedList :: print(){
   //else the list has members
   } else {
     //create traversal pointer
-    Node<T> *current = this->head;
+    Node *current = this->head;
     //indicate start of element sequence
     std::cout << "Singly linked list sequence:" << std::endl;
     //while there are members to traverse
@@ -278,12 +291,13 @@ void template <typename T> SinglyLinkedList :: print(){
   }
 }
 
-void template <typename T> SinglyLinkedList :: reverse()
+template <typename T>
+void  SinglyLinkedList<T> :: reverse()
 {
   //create traversal pointers
-  Node<T> *current = this->head;
-  Node<T> *previous = nullptr;
-  Node<T> *next = nullptr;
+  Node *current = this->head;
+  Node *previous = nullptr;
+  Node *next = nullptr;
   //while there are elements to reverse
   while(current != nullptr){
     //the next traversal pointer is updated to the link value of current
@@ -297,7 +311,8 @@ void template <typename T> SinglyLinkedList :: reverse()
   }
 }
 
-void template <typename T> SinglyLinkedList :: concatenate(SinglyLinkedList<T> second)
+template <typename T>
+void  SinglyLinkedList<T> :: concatenate(SinglyLinkedList<T> second)
 {
   this->tail->next = second->head;
   this->tail = second->tail;

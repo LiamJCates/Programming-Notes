@@ -1,4 +1,4 @@
 Linked List
 
-For information regarding Linked Lists, see:
+For information regarding the Linked List Data Structure, see:
 [Data Structures\CommonStructures\Lists\LinkedLists\LinkedList.md]
