@@ -29,6 +29,8 @@ When we consider the integers through the lens of the mathematical model capture
 All of this understanding of what an integer is and how to work with them is independent of their representation by the computer. We are free to imagine them operating as they would "normally" following the model of mathematics by which humans perform arithmetic calculations.
 
 
+
+
 ### Stack Example
 For an example of an ADT that originates from computer science and uses composite types rather than primitive, we explore the abstract stack.
 

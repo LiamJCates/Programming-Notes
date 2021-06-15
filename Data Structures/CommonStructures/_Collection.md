@@ -18,6 +18,31 @@ Examples of collections include lists, sets, multisets, trees and graphs.
 [DataStructures.png]
 
 
+
+Data Structures
+
+
+Linear
+Direct Access   
+Homogeneous: Array
+Heterogenous: Record
+
+Sequential Access  
+General: List
+LIFO: Stack
+FIFO: Queue
+
+Non-Linear
+Sets
+Heiarchical: Trees
+Associative: Maps
+Graphs
+
+
+
+
+
+
 | Characteristic | Description | Example |
 | --------------- | --------------- | --------------- |
 | Linear | Linear data structure's elements are arranged in a linear sequence. | Array |
