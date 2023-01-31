@@ -1,4 +1,13 @@
-A compiler is a software that converts a program written in a high-level language (in this case C++) into low-level machine language instructions which the computer can understand. Later, the computer executes each of these instructions to produce the desired results. This set of low-level machine instructions is called an Object code.
+
+
+A compiler is a software that converts a program written in a high-level language (in this case C++) into low-level machine language instructions which the computer can understand.
+
+Having written the program, we need to compile it. How you compile a program
+depends on your operating system and compiler. For details on how your particu-
+lar compiler works, check the reference manual or ask a knowledgeable colleague.
+
+Later, the computer executes each of these instructions to produce the desired results. 
+This set of low-level machine instructions is called an Object code.
 
 An executable program is created for a specific hardware/system combination; it is not portable, say, from a Mac to a Windows PC. When we talk about portability of C++ programs, we usually mean portability of source code; that is, the source code can be successfully compiled and run on a variety of systems.
 

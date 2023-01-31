@@ -6,7 +6,8 @@ For clarification of the subroutine terminology and concepts see:
 
 
 ### C++ Functions
-In C++, statements are grouped into units called functions.
+In C++, statements may be grouped into units called functions.
+Every C++ program contains one or more functions, one of which must be named main.
 
 Function: a named collection of statements which executes sequentially.
 

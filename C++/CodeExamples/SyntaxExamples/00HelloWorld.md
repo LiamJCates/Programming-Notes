@@ -1,16 +1,20 @@
 #include <iostream>
+
 int main()
 {
   std::cout << "Hello, World!" << std::endl;
 }
 
-It is tradition to discuss a HelloWorld program in the start which will print the phrase “Hello, World!” to the output screen.
+It is tradition to begin discussion with a HelloWorld program
+which prints the phrase “Hello, World!”
 
-This is a small program but it contains many common features of all the C++ programs.
+This is a small program that contains many of C++ program's common features:
 1. This program begins with “#include <iostream>”:
-a. This tells the compiler that we are going to use the functions defined in iostream file. Cpp language provide a number of predefined files, which contain functions that are commonly used by programmer.
-For example std::cout is defined inside iostream file which will be
-used to print “Hello, World!” to the output screen.
+a. This tells the compiler that we are going to use the functions defined in iostream file.
+Cpp language provide a number of predefined files, which contain functions that are commonly used by programmer.
+
+For this example std::cout and std::endl are defined by the iostream file
+used to print “Hello, World!”
 
 2. Next comes the method “int main()”:
 a. A method is a set of statements that are executed to give desire

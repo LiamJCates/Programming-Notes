@@ -14,6 +14,8 @@ Typically, main():
 
 ### main return value
 
+The main function is required to have a return type of int
+
 The integer value returned by main() is the program’s return value to ‘‘the system’’, called the exit status.
 
 What the values represent is environment defined. On modern desktop systems, for example, a zero return value corresponds with a successful program execution.  A nonzero value from main() indicates failure.

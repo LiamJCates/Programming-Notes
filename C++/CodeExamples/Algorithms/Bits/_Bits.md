@@ -1,66 +1,17 @@
-1. Given an unsigned int, swap the bits in odd and even positions
-
-Solution
-We seek to swap the bits in position 2n with those in 2n+1 for n>0
-
-Assume that an unsigned int is 32bits
-
-To select all the even bits we can AND with bitmask 0xAAAAAAAAAA,
- 	A 32 bit number with even bits set (0xA is decimal 10, 1010 binary)
-
-To select the odd bits we can AND with bitmask 0×55555555,
-	 	A 32 bit number with odd bits set (0x5 is decimal5, 0101 in binary).
-
-Then we need to shift left (respectively right) of one position and OR the two intermediate results.
-
-Code
-
-unsigned int swapBits(unsigned int x)
-{
-	unsigned int evenBits = x & 0xAAAAAAAA;
-	unsigned int oddBits = x & 0x55555555;
-
-	evenBits >>= 1;
-	oddBits <<= 1;
-	return (evenBits | oddBits);
-}
+Problems listed...
 
 
 
 
-2. Print the binary representation of an unsigned int
-
-Solution
-
-An easy solution is to AND the ith bit with the number 2^i
-
-Code
-
-	#include <iostream>
-
-	void bin(unsigned n)
-	{
-		for (unsigned i = 1 << 31; i > 0; i >>= 1)
-			std::cout << ((n & i) ? 1 : 0);
-	}
 
 
+TODO:
+For all Problems
 
-3. Compute whether or not an unsigned number is a power of two
-
-Solution
-Suppose that the number is nonzero. If it is a power of two, than the only bit set is in position i.
-
-In this case we subtract 1, so all the bits at the left of will be unset. Therefore a positive number is a power of 2 if and only if n & (n-1) is 0.
-
-Note that this check only works if n > 0
+larger types?
+signed types?
 
 
-Code
-bool isPowerOfTwo(unsigned n)
-{
-	return n && (!(n & (n - 1)));
-}
 
 
 

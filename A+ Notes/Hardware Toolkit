@@ -1,0 +1,27 @@
+The hardware toolkit recommendations in this section include the tools outlined on CompTIA’s A+ Proposed Hardware and Software List, as well as some additional tools you should know about.
+
+If there is need to purchase these items, it may be cost effective to search for repair bundles or kits, rather than buy the items individually.
+
+Screwdrivers
+Carry an assortment of Phillips head, flathead, and Torx screwdrivers, as well as varying sizes of nut drivers.
+
+  For working on laptops, a very small Phillips head screwdriver is the single most important tool in your set. Flathead screws are seldom used in modern computer equipment, but you may need to use a flathead blade to pry something open at some point.
+
+ESD protection
+An ESD wrist strap helps prevent damage from static electricity when working on any component except the power supply, monitor, and laser printers. We discussed ESD wrist straps in Chapter 1. An ESD mat provides a static charge with a path to ground and is designed for the desktop or floor of a workspace. While this mat may not fit in your toolkit, it is something that should be available at any PC technician’s workbench.
+
+FRUs
+Field-replaceable units (FRUs) should be included in your hardware toolkit. An FRU is any component that you can install into a system onsite. This includes such items as memory modules, heat sinks, motherboard batteries, various adapter cards, hard drives, optical drives, keyboards, mice, fans, AC adapters, spare cables and connectors, power supplies, and even spare motherboards. Of course, all of this depends on the scope of your job and how cost-effective it is to have these items on hand. If you support hundreds of computers that are all the same make and model, it may make sense to have spare parts; if you support a diverse fleet of devices, probably not.
+
+Multimeter
+A multimeter is indispensable in determining power problems from a power outlet or from the power supply.
+You’ll use this handheld device to perform cable continuity testing and measure the resistance, voltage, and/or current in computer components.
+A multimeter uses two probes (one negative, one positive) that you touch to power wires in the equipment you are testing.
+
+ Power supply tester A power supply tester is a specialized device for testing a power supply unit and is a bit safer to use than a multimeter for this purpose. A power supply tester comes with connectors compatible with the output connectors on a standard power supply, rather than with just the simple probes of a multimeter. An LCD display or LEDs show the test results.
+
+   Camera A digital camera or smartphone will enable you to document the condition of a computer before you begin troubleshooting. One important way we use a camera is to document the cabling and connections—both external and internal—before making any changes so that we can reconnect all components correctly. A camera is also handy for capturing low-level error messages that cannot be captured with a software screen capture utility and for capturing the model and serial number on a device.
+
+   Thermal paste Thermal paste is an electrically insulating, heat-conductive paste that helps increase the transfer of heat between a hot chip and a heat-dissipating fan or heat sink. It is also called thermal grease or heat sink compound. You apply it in a thin layer between the components. Depending on the type, it may or not have adhesive properties; usually when it aids in adhesion, it is called thermal adhesive. When it comes in a solid pad that you place between the heat sink and the chip, it’s called a thermal pad.
+
+   Drive adapter A SATA to USB connector enables you to use an internal hard drive (using a serial ATA connector) as an external hard drive (using a Universal Serial Bus connector). It may be called a drive enclosure if it contains a plastic shell into which you can mount the drive to make it easier to handle and transport.

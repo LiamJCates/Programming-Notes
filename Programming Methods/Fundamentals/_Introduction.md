@@ -1,17 +1,58 @@
 ## Introduction to Computer Programs
-Modern computers are incredibly fast, and getting faster all the time. However, computers have some significant constraints: they only natively understand a limited set of commands, and must be told exactly what to do.
+Modern computers are incredibly fast, and getting faster all the time.
 
-A computer program, commonly called an application, is a set of instructions that the computer can perform in order to perform some task. The process of creating a program is called programming. Programmers typically create programs by producing source code (commonly shortened to code), which is a list of commands typed into one or more text files.
+However, computers have some significant constraints:
+  they only natively understand a limited set of commands,
+  and must be told exactly what to do.
 
-The collection of physical computer parts that make up a computer and execute programs is called the hardware. When a computer program is loaded into memory and the hardware sequentially executes each instruction, this is called running or executing the program.
 
-Thusly, a computer program is a set of instructions that the computer can execute.
+A computer program is any sequence or set of instructions
+defining actions to be achieved by a computer system
+
+A computer program is specified by, or written in, a programming language.
+
+source code, or simply code, is written using a human-readable programming language,
+usually as a collection of plain text files.
+
+The source code of a program is specially designed to facilitate the work of computer programmers
+The process of creating a program is called programming.
+
+Computer programs are one component of software,
+which also includes documentation and other intangible data components of a computer system.
+
+This is in contrast to physical computer parts called hardware,
+from which the system is built, allowing it to perform work.
+
+
+the hardware loads a computer program into memory and
+sequentially performs each instruction, called running or executing the program.
+
+
+Thusly, a computer program is a set of instructions a computer can execute.
+
+
+
+
+
+
+Source code needs another computer program to execute because computers can only execute their native machine instructions. Therefore, source code may be translated to machine instructions using the language's compiler. (Machine language programs are translated using an assembler.) The resulting file is called an executable. Alternatively, source code may execute within the language's interpreter.[2]
+
+If the executable is requested for execution, then the operating system loads it into memory and starts a process.[3] The central processing unit will soon switch to this process so it can fetch, decode, and then execute each machine instruction.[4]
+
+If the source code is requested for execution, then the operating system loads the corresponding interpreter into memory and starts a process. The interpreter then loads the source code into memory to translate and execute each statement.[2] Running the source code is slower than running an executable. Moreover, the interpreter must be installed on the computer.
+
+
 
 While modern programming languages use characters that are common to the alphabet of human languages, these characters are translated into values that the computer can understand and execute using mathematic principles. This is because computers only understand values made of ones and zeros, called binary. The collection of binary values understood by a given computer is known as its machine language.
 
 All computer languages are translated from something that tends
 to be easy for a human to understand (source code) into something
 that is executed on a computer (machine instructions).
+
+
+https://en.wikipedia.org/wiki/Computer_program
+https://en.wikipedia.org/wiki/Software
+https://en.wikipedia.org/wiki/Computer_hardware
 
 ### Why Binary
 The computer only works with numbers in the binary form, that is why we often hear that a computer only understands zeros and ones.

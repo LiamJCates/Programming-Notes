@@ -1,12 +1,15 @@
 ## Comments
 There are two common types of comments in a C++ program:
   single-line comments
-  multiple-line comments
+  multiple-line comments (comment pairs)
 
 All comments are removed from the program at translation phase 3 by replacing each comment with a single whitespace character.
 
 A comment cannot nest within a comment of the same style, but you can nest one style of comment in comments of the other style.
 
+Programs typically contain a mixture of both comment forms.
+Comment pairs generally are used for multiline explanations, whereas double-slash comments
+tend to be used for half-line and single-line remarks:
 
 ### Single-line comments
 
@@ -16,7 +19,17 @@ Single-line comments begin with // and can be placed anywhere in a line:
 
 The compiler ignores anything that appears after // on the same line.
 
-Having comments to the right of a line can make both the code and the comment hard to read, particularly if the line is long. If the lines are fairly short, the comments can simply be aligned (usually to a tab stop), like so:
+
+A single-line comment:
+
+  starts with a double slash (//) and ends with a newline.
+
+
+A single-line comment can contain any text, including additional double slashes.
+
+Having comments to the right of a line can make both the code and the comment hard to read,
+particularly if the line is long.
+If the lines are fairly short, the comments can simply be aligned (usually to a tab stop), like so:
 
 std::cout << "Hello world!\n";        // std::cout lives in the iostream library
 std::cout << "Nice to meet you!\n";   // this is easy to read
@@ -43,7 +56,8 @@ In Visual Studio the /// indicates documentation not just comments. Following yo
 
 ### Multi-line Comments
 
-The /* and */ pair of symbols denotes a C-style multi-line comment.
+The /* and */ pair of symbols denotes a C-style multi-line or paired comment.
+
 
 Multiple-line comments are delimited between /* and */:
 
@@ -59,6 +73,15 @@ Since everything between the symbols is ignored, you will sometimes see programm
     the matching asterisks to the left
     can make this easier to read
 */
+
+As these comments can include anything that is not a */, including newlines. The compiler
+treats everything that falls between the /* and */ as part of the comment.
+A comment pair can be placed anywhere a tab, space, or newline is permitted.
+Comment pairs can span multiple lines of a program but are not required to do so.
+When a comment pair does span multiple lines, it is often a good idea to indicate
+visually that the inner lines are part of a multiline comment. Our style is to begin
+each line in the comment with an asterisk, thus indicating that the entire range is
+part of a multiline comment.
 
 Multi-line style comments can not be nested. Consequently, the following will have unexpected results:
 

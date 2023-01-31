@@ -1,4 +1,6 @@
 Programming Constructs
+A computer program is a sequence or set of instructions in a programming language for a computer to execute.
+
 In computer science, the syntax of a computer language is the set of rules that defines the combinations of symbols that are considered to be correctly structured statements or expressions in that language.
 
 A syntactically correct symbol sequence is known as a language construct.

@@ -1,0 +1,110 @@
+Safety is everyone’s job, even in an organization in which designated employees are assigned
+direct responsibility for safety compliance and implementation. Everyone in an organization
+must play an active role in maintaining a safe work environment, which includes being aware
+of common safety hazards and acting to remove them to avoid accidents that can harm
+people and equipment.
+
+Environmental Concerns or IT Proessionals
+As an IT professional, you will be concerned with the environment of the workplace and
+its effect on the health of people and equipment.
+
+Protection rom Dust, Debris, and Other Airborne ParticlesProtection rom Dust, Debris, and Other Airborne Particles
+
+When using canned compressed air
+to blow dust out of computers and peripherals, take care to keep the can upright while
+spraying and avoid tilting or turning the can upside down because the liquid gas that forces
+the air out may spill and cause freeze burns on your skin and/or damage components. Never
+use compressed air from an air compressor because the pressure is too high and it can
+damage delicate components.
+When cleaning computer equipment with compressed air or a vacuum, you might stir up
+a cloud of dust, debris, or other particles that you don’t want in your lungs. For example, toner
+(which is a blend of iron and plastic powder) can be hazardous to breathe in. The dust and debris
+that build up inside a PC case can also cause coughing and breathing difficulties if inhaled.
+When cleaning dusty items with compressed air, wear an air filtration mask and safety
+goggles to keep all that dust and debris out of your eyes, nose, and mouth.
+
+When using a vacuum to clean up spilled toner, make sure it is a model designed for
+electronics use, not a regular household vacuum. That’s because the electronics vacuum
+has a finer filter on it; on a standard vacuum, the particles can pass right through the air
+filter and circulate out into the air you breathe. Household vacuums also generate static
+electricity, which is harmful to electronics.
+
+Providing the Proper Temperature and Humidity
+Extremes of heat and humidity are damaging to computers and peripherals. A rough
+guideline: if you are not comfortable, the PC is not either. A general recommended
+operating environment is in the range of 50°F to 90°F (10°C to 32°C) with relative humidity
+between 50 and 80 percent. The lower end of that temperature range is preferable for high-
+performance components because they tend to run hot. To find the specific temperature
+and humidity guidelines for a device, look in its manual. Dust buildup on a component can
+reduce the airflow to it, making it run hotter,
+so cleaning the dust out of a computer case
+regularly can help keep it cooler.
+The best operating environment for
+computers is a climate-controlled room with an
+air filtration system to reduce dust. However,
+since this is not always possible, consider an
+appropriate enclosure or case that will provide
+good ventilation and air filtration.
+
+
+Providing Good Power
+When you consider a proper environment for computer equipment, you must also think
+of the power it receives. You should never plug critical equipment into a wall outlet without
+some provision to protect it from the vagaries of the power grid. While sags in power below
+the 120V U.S. standard can cause your computer to reboot or power off, a power surge can
+do significant damage. A power surge is a brief, potentially damaging increase in the amount
+of electrical power. A simple power strip offers no protection because it is nothing more
+than an extension cord with several power outlets. At a minimum, use a surge suppressor to
+protect all computer equipment, including modems and phone and cable lines.
+
+
+Surge Suppressor
+A surge suppressor (also called a surge protector) may look like an ordinary power strip, but
+it protects equipment from power surges. Your PC’s power supply will also do this for small
+power fluctuations above the 115V U.S. standard, but it will eventually fail if it is the first
+line of defense. Therefore, plug your PC into a surge suppressor that has a protection rating
+of more than 800 joules. (A joule is a unit of energy.) Look for a surge suppressor that carries
+the Underwriters Laboratories (UL) label showing that it complies with UL standard 1449.
+To distinguish a surge suppressor rom a simple power strip, look or the UL label
+showing a protection rating o more than 800 joules.
+
+
+Beyond Surge Suppressors
+Do not just buy the minimum; buy the best power protection you can afford, which
+should include protection from power fluctuations, brownouts, and blackouts. Power
+fluctuations involve all sorts of inconsistencies in the delivery of electrical power—both too
+much (surges) and too little. A brownout is a period during which heavy demand or other
+problems cause a reduced flow of power, which can cause computers to behave erratically
+and suddenly power off. A blackout is a complete loss of power. The duration of a brownout
+or blackout depends on the cause and the ability of responsible parties, such as electrical
+utilities, to correct the problem. Blackouts can last hours or days, and your first concern
+related to a brownout or blackout is to have enough time to safely save your data and shut
+down your computer. The most common device that protects from power brownouts and
+blackouts while giving you time for these tasks is an uninterruptible power supply (UPS). A
+UPS will also normally protect from power surges. A UPS is more expensive than a simple
+surge suppressor, but UPS prices have come down as more manufacturers have introduced
+consumer-level versions of these devices
+
+
+Plug your computer and display
+into the Battery Backup ports, and they will be
+doubly protected. Plug less critical equipment
+into the second type of port to protect it from
+surges only, not from power outages.
+To select a UPS, first determine the power requirements in watts for each device you will
+connect to the UPS and add them up. Then decide how much time you would require to
+save your data when main power fails.
+A computer or other device plugged into a UPS battery backup port is truly isolated from
+line power because during normal operation, the device runs directly off the battery through
+an inverter, which takes the direct current (DC) power stored in the battery and converts it
+to 110V, 60-cycle alternating current (AC) power. The battery is continually charging from
+line power, and when it loses line power, the battery continues to power the computer for
+a short period. The time the battery can power the computer is limited and varies by the
+capacity of the battery in the UPS and by how much power the computer draws. Unless line
+power comes back on quickly, you have a window of just minutes to save your data and to
+power down the computer. For this reason, a UPS device usually includes a data cable and
+software. Once the software is installed and the UPS senses a power outage, the software
+warns you to shut down. If no one is at the keyboard to respond, it will automatically save
+open data files, shut down the operating system, and power down the computer before the
+UPS itself runs out of battery power. A UPS is more expensive than a surge suppressor, but
+it gives excellent power protection.

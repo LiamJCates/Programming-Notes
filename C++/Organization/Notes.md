@@ -1,3 +1,57 @@
+Compiling and Executing Our Program
+Having written the program, we need to compile it. How you compile a program
+depends on your operating system and compiler. For details on how your particu-
+lar compiler works, check the reference manual or ask a knowledgeable colleague.
+Many PC-based compilers are run from an integrated development environ-
+ment (IDE) that bundles the compiler with build and analysis tools. These envi-
+ronments can be a great asset in developing large programs but require a fair bit
+of time to learn how to use effectively. Learning how to use such environments is
+well beyond the scope of this book.
+Most compilers, including those that come with an IDE, provide a command-
+line interface. Unless you already know the IDE, you may find it easier to start
+with the command-line interface. Doing so will let you concentrate on learning
+C++ first. Moreover, once you understand the language, the IDE is likely to be
+easier to learn.
+
+
+
+Program Source File Naming Convention
+Whether you use a command-line interface or an IDE, most compilers expect pro-
+gram source code to be stored in one or more files. Program files are normally
+4 Getting Started
+referred to as a source files. On most systems, the name of a source file ends with
+a suffix, which is a period followed by one or more characters. The suffix tells
+the system that the file is a C++ program. Different compilers use different suffix
+conventions; the most common include .cc, .cxx, .cpp, .cp, and .C.
+
+
+R UNNING THE GNU OR M ICROSOFT C OMPILERS
+The command used to run the C++ compiler varies across compilers and operating
+systems. The most common compilers are the GNU compiler and the Microsoft Visual
+Studio compilers. By default, the command to run the GNU compiler is g++:
+$ g++ -o prog1 prog1.cc
+Here $ is the system prompt. The -o prog1 is an argument to the compiler and names
+the file in which to put the executable file. This command generates an executable file
+named prog1 or prog1.exe, depending on the operating system. On UNIX, exe-
+cutable files have no suffix; on Windows, the suffix is .exe. If the -o prog1 is omit-
+ted, the compiler generates an executable named a.out on UNIX systems and a.exe
+on Windows. (Note: Depending on the release of the GNU compiler you are using,
+you may need to specify -std=c++0x to turn on C++ 11 support.)
+The command to run the Microsoft Visual Studio 2010 compiler is cl:
+C:\Users\me\Programs> cl /EHsc prog1.cpp
+Here C:\Users\me\Programs> is the system prompt and \Users\me\Programs is
+the name of the current directory (aka the current folder). The cl command invokes
+the compiler, and /EHsc is the compiler option that turns on standard exception han-
+dling. The Microsoft compiler automatically generates an executable with a name that
+corresponds to the first source file name. The executable has the suffix .exe and the
+same name as the source file name. In this case, the executable is named prog1.exe.
+Compilers usually include options to generate warnings about problematic con-
+structs. It is usually a good idea to use these options. Our preference is to use -Wall
+with the GNU compiler, and to use /W4 with the Microsoft compilers.
+For further information consult your compiler’s user’s guide.
+
+
+
 It's traditional to use different files for different classes.
 
 This means that you're going to have some code in one file that's going to use a class, maybe create an instance of it or call its functions and so on, using  code that is in another file.

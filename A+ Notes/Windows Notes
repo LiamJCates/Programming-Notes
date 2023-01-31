@@ -1,0 +1,109 @@
+windows logo key + x or right-clicking the Start
+  brings up Quick Link menu - extremely handy menu gives us quick access to most of the utilities and apps we need to keep Windows running smoothly.
+
+windows logo key + arrow
+  pin window to a location in the direction of the arrow key
+
+
+
+
+PowerShell
+
+command-line utilities
+
+dir  - displays all the files and folders in a specific director
+
+
+
+
+
+
+
+
+
+
+
+Windows File System
+
+The root of the tree is the drive or disk, followed by a folder, subfolder, sub-subfolder, and so on, until you get to the desired file. The drive or disk gets some designation, most usually a drive letter nomenclature
+that looks like “C:”.
+
+the file extension, hidden by default, that tells the OS which
+application to use with the file. This pairing of application with file extension is called
+file association.
+
+
+Accessing Folder Options in File Explorer — enables you to make changes in default behavior with the tool. To get to Folder Options in Windows 11,
+in the toolbar, click the three horizontal dots next to the View menu option and select Options. In Windows 10, select the View tab and click Options.
+
+On the General tab (General options in CompTIA speak), you can set the default
+folder to display each time File Explorer opens. You can change whether a folder opens in the same window or a separate window. You can change the click feature to open a folder
+on a single click rather than the default double click. You can adjust privacy settings here
+and clear the File Explorer history to cover your tracks.
+
+The View tab (see Figure 2-32), which CompTIA calls View options, presents Advanced
+settings where you can Show hidden files, folders, and drives. (File Explorer hides them by
+default.) You can toggle file extensions on here (deselect Hide extensions for known file
+types.)
+
+Windows hides the “\” characters at the beginning to make it prettier. File Explorer
+might show something like “Local Disk (C:) > Users > Mike.” This translates in proper
+fashion as C:\Users\Mike.
+
+C:\Program Files By default, most programs install some or all of their essential files
+into a subfolder of the Program Files folder. If you installed a program, it should have its
+own folder in here. Individual companies decide how to label their subfolders. Installing
+Photoshop made by Adobe, for example, creates the Adobe subfolder and then an Adobe
+Photoshop subfolder within it.
+
+C:\Program Files (x86) The 64-bit editions of Windows create two directory structures
+for program files. The 64-bit applications go into the C:\Program Files folder, whereas
+the 32-bit applications go into the C:\Program Files (x86) folder. The separation makes
+it easy to find the proper version of whatever application you seek.
+Personal Documents Windows uses subfolders in the C:\Users folder to organize files
+for each user on a PC. Figure 2-33 shows the default folders for a user named Mike. Let’s
+quickly survey the ones you most likely need to know for the CompTIA A+ exams:
+• C:\Users\Mike\Desktop This folder stores the files on the user’s Desktop.
+If you delete this folder, you delete all the files placed on the Desktop.
+• C:\Users\Mike\Documents This is the Documents or My Documents folder
+for that user. (Only Windows 7 uses My Documents. The others use Documents.)
+• C:\Users\Mike\Downloads Microsoft’s preferred download folder for
+applications to use. Most applications use this folder, but some do not.
+• C:\Users\Mike\Music This is the default location for music you download.
+My guess is that more people have music in iTunes, but that’s just me.
+• C:\Users\Mike\Pictures Pictures is the default location for images imported
+into the PC, although the Pictures library can (and does) draw from many
+folder locations.
+• C:\Users\Mike\Videos Videos is the default location for movies and homebrewed
+videos imported into a PC
+
+
+
+
+
+
+System Utilities
+
+Windows offers many tech tool areas, including Settings, Control Panel, and
+Administrative Tools. A lot of tools appear to be standalone tools, but they’re special-
+ized manifestations of a toolset called the Microsoft Management Console.
+
+Settings Settings provides a central location and a consistent interface for most of the
+important tech tools in Windows
+
+Control Panel The Control Panel, an ancient but still used launch point,
+provides access to many of the maintenance, upgrade, and configuration aspects of Windows.
+
+Administrative Tools (renamed Windows Tools in Windows 11) is one example of the
+many powerful utilities found in the Control Panel. The Administrative Tools utility
+enables you to set up hard drives, manage devices, test system performance, and much
+more
+
+Device Manager enables you to examine the state of all the
+hardware and drivers in a Windows computer.
+
+Many programs, called applets, populate the Control Panel. The names and selec-
+tion of applets vary depending on the version of Windows and whether any installed
+programs have added applets. But all versions of Windows have applets that enable you
+to control specific aspects of Windows, such as the appearance, installed applications,
+and system settings.

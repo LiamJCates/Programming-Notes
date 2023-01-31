@@ -41,7 +41,8 @@ The standard library defines a handful of stream objects that can be used to acc
 | cerr | standard error (output) stream |
 | clog | standard logging (output) stream |
 
-cerr and clog are also output streams, so they essentially work like cout, with the only difference being that they identify streams for specific purposes: error messages and logging; which, in many cases, in most environment setups, they actually do the exact same thing: they print on screen, although they can also be individually redirected.
+cerr and clog are also output streams, so they essentially work like cout,
+with the only difference being that they identify streams for specific purposes: error messages and logging; which, in many cases, in most environment setups, they actually do the exact same thing: they print on screen, although they can also be individually redirected.
 
 
 ## Using Standard Library Streams

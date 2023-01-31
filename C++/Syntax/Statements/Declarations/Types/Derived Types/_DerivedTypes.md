@@ -3,4 +3,5 @@ The data-types that are derived from the primitive or built-in datatypes are ref
 These can be of four types namely:
   Function
   Array
-  Pointers and References
+  Pointers
+  References

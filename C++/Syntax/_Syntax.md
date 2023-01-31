@@ -7,7 +7,13 @@ When you compile a C++ program, the compiler is responsible for making sure your
 Thus, a syntax error is a compiler error that occurs at compile-time when your program violates the grammar rules of the C++ language.
 
 ### Tokens
-A C++ token is the smallest element of a program that is meaningful to the compiler. C++’s tokens are divided into special symbols, keywords, identifiers, and literals.
+A C++ token is the smallest element of a program that is meaningful to the compiler.
+
+C++’s tokens are divided into
+  special symbols,
+  keywords,
+  identifiers,
+  and literals.
 
 ### Special Symbols
 The symbols that are used in C/C++ with some special meaning and for some specific function are called as Special Symbols.

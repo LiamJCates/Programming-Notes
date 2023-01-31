@@ -1,0 +1,325 @@
+
+
+Liting Techniques When Moving Equipment
+In the United States, lifting is the number-one cause of back injuries. When lifting and moving
+computer equipment or any objects, take the time to do it safely, protecting yourself and
+the equipment.
+
+Liting Weight Limits
+There are no government regulations about what an employee can lift, and the Occupational
+Safety and Health Administration (OSHA) has no standards written for many specific workplace
+lifting situations. This is because the actual circumstances differ widely, and weight is just one
+consideration.
+The National Institute for Occupational Safety and Health (NIOSH) publishes a lifting
+equation so that employers can evaluate the lifting tasks for employees and establish a
+recommended weight limit. This is a rather complicated equation requiring considerable
+effort to gather information about each situation. Government agencies and other organizations
+have created calculators based on this equation to help employees establish guidelines for
+lifting.
+
+Tips or Safe Lifting and Moving
+The best protection is common sense and very careful lifting. So when lifting a heavy object,
+protect your back by following these tips:
+■ Plan the move and clear the path before beginning.
+■ Move as close to the item as possible.
+■ Check the weight of the equipment to see if you need assistance in lifting and
+moving it.
+■ Keep your back straight and vertical to the floor.
+■ Keep your head up and look straight ahead.
+■ Do not stoop, but bend your knees.
+■ Carry the item close to your body.
+■ Tighten the abdominal muscles to help your back.
+■ Use slow, smooth movements, and do not twist your back while lifting.
+■ Don’t try to carry heavy items farther than a few feet without the aid of a utility cart.
+
+
+
+
+
+
+Avoiding Touch Hazards
+Whenever handling computer components, be careful of the sharp edges on sheet metal
+computer cases and in some peripherals. It is easy to cut yourself on these. Similarly, the
+backs of many circuit boards contain very sharp wire ends that can cause puncture wounds.
+Work gloves offer protection, even if they are a bit awkward to use while handling delicate
+computer equipment. If you cannot wear gloves, be cautious, checking each surface before
+positioning your hands.
+Heat can also be a hazard. Some components, such as a central processing unit (CPU)
+heat sink and a laser printer’s fuser, remain hot enough to burn you for several minutes after
+powering them down. Cautiously check for hot components by holding your hand near, but
+not on, computer components before you touch them.
+
+
+Avoiding Electric Shock
+Both high voltage and low voltage can be
+dangerous, so be sure to follow precautions when
+working around high- and low-voltage devices
+and avoid contact with them. Leave servicing
+high-voltage peripherals such as monitors, laser
+printers, and power supplies to technicians
+trained in that area. Even when unplugged for an
+extended period, such devices can store enough
+voltage to cause severe injury or death from electrical shock. Never use an electrostatic
+discharge (ESD) wristband or other antistatic equipment (discussed later in this chapter)
+when working with high-voltage devices.
+
+
+Working Saely with Printers
+When working on printers, remove or constrain anything that might dangle down into the
+moving parts. This includes long hair, clothing, jewelry, long sleeves, scarves, and neckties.
+A necktie or scarf itself can also build up a static charge that it can pass to the component if
+it touches it. When wearing a tie or scarf, make sure you either tuck it into your shirt or use a
+clip or tie tack.
+
+
+
+Working Saely with Power Supplies
+The power stored in the capacitors in a computer’s high-voltage power supply is enough
+to cause injury or death. Simply turning off the power switch is not enough. Even when
+turned off, the power supply in a computer or printer can provide electricity, and most
+motherboards continue to have power applied—a technology called soft power
+
+To be safe, unplug the power supply and never wear an ESD wrist
+strap (covered later in this chapter) when replacing or handling a power supply. Never open
+a power supply unless you are specially trained to do so because of the risk of electrocution;
+if a power supply or one of its fans isn’t working, replace the entire unit.
+
+Beore the introduction
+o the ATX motherboard design (1995),
+some technicians used to leave the power
+supply plugged in while they worked on the
+computer to allow static to bleed away rom
+the computer into the wall outlet’s ground
+wire. That worked because in those old AT
+motherboard systems, the motherboard
+received no power when the computer was
+of. In modern systems, the motherboard
+continues to receive power whenever the PC
+is plugged in, so there is a risk o electrical
+shock even when the computer is of. That’s
+why today’s technicians always unplug
+power beore servicing a PC.
+
+Working Saely with Display Devices
+Although flat-panel displays have replaced cathode ray tube (CRT) monitors, there are still a
+few CRTs out in the field. Remember—like power supplies, CRT monitors are high-voltage
+equipment and can store a harmful electrical charge, even when unplugged. Never open
+a CRT case, and never wear an ESD wrist strap when handling a CRT. You do not want to
+provide a path to ground through your body for this charge. Flat panel monitors are less
+hazardous (especially when off ), but you should not touch a liquid crystal display’s (LCD’s)
+inverter if the device is on. And be aware that traditional cold cathode fluorescent lamp
+(CCFL) backlights found in some LCD monitors carry several thousand volts.
+
+
+Protecting Equipment
+While personal safety is paramount, you are also responsible for protecting the equipment
+you handle to avoid repair and replacement costs
+
+
+Saely Transporting Equipment
+If you are unsure of the proper way to move a computer or peripheral, check out the
+manufacturer’s documentation. For instance, to protect fragile components, a scanner may
+have a transportation lock that you must engage before moving it. Some heavy devices, such
+as heavy-duty laser printers, may require two people to lift and carry.
+Power down each piece of equipment and disconnect it from power outlets before
+moving it—even when moving it from one side of a desk to another. This includes laptops!
+Yes, they are portable devices, but if a laptop has a conventional hard disk drive (HDD),
+moving it around while it is actively running can potentially harm the hard drive. This
+warning doesn’t apply to mobile devices with solid-state drive (SSD) storage only.
+After the computer powers down, unplug the power cord before moving it. This
+precaution is not just about electrical power but also about a device not being physically
+tethered to a wall when it is on the move. A trip and fall or fumble can result in the power
+cord being forcibly disconnected at one end or the other, potentially causing damage.
+
+Be especially careul when moving monitors. They can be ragile, and you must
+take care not to drop a monitor or put any pressure on its screen.
+
+
+
+
+
+
+
+The Dangers o ESD
+ESD happens when two objects of uneven electrical charge encounter one another.
+Electricity always travels from an area of higher charge to an area of lower charge, and
+the static shock that you feel is the result of electrons jumping from your skin to the other
+object. The same process can occur within a computer. If your body has a high electric
+potential, electrons will transfer to the first computer component that you touch.
+
+ESD can cause irreparable damage to your computer’s components and peripherals.
+Typical discharges range from 600 to 25,000 volts, although at tiny amperages. Damage to
+computer components can occur at as little as 30 volts—a charge you will not even detect
+because, under the right conditions, your body can withstand 25,000 volts.
+These very low-voltage static charges, or “hidden ESD,” can come from many sources,
+including dust buildup inside a computer. Dust and other foreign particles can hold an
+electric charge that slowly bleeds into nearby components, damaging them slowly over time.
+
+
+Protection rom ESD Damage and Injury
+There are many ways to prevent ESD from
+damaging computer equipment. Low humidity
+contributes to ESD, so when possible, keep
+computer equipment in a room in which the
+humidity is between 50 and 80 percent. Avoid
+cold and dry conditions, as that creates the ideal
+environment for ESD to occur. But do not allow
+the humidity to rise above 80 percent, or condensation could form on the equipment and
+cause it to short out.
+
+The American Society o Heating, Rerigerating and AirConditioning Engineers
+(ASHRAE) recommends an acceptable operating temperature range o 64° to 81°F
+(18° to 27°C), with 50 percent humidity being ideal.
+
+Never use an ESD prevention device in a manner that puts your body between a
+power source and ground, such as when working around highvoltage devices.
+
+
+Before you pick up a loose computer component, if you are not wearing or touching an
+antistatic device, discharge any static electricity on your body by touching something metal,
+such as a table leg or chair.
+Many computer assembly and repair shops use an ESD mat that discharges static when
+you stand on it. An ESD mat on a bench table is a safe place to put expansion cards or other
+
+internal components that you have removed from the computer. An ESD mat looks like a
+vinyl placemat, but it has a wire lead and (usually) an alligator clip to connect it to ground.
+Equipment placed on the mat will discharge static through it.
+ESD devices usually have cables that you must attach to a grounded metal object. Some
+have a single prong that you insert into the ground socket in a regular self-grounding wall
+outlet. In the United States and Canada, the ground socket is the single round socket offset
+from the two slender blade sockets. Other cables on ESD wrist or ankle straps or on ESD
+mats may use alligator clips for making this attachment.
+Circuit boards may come in antistatic packaging, often an antistatic bag, and you should
+store used components in antistatic bags if their original packaging is not available. Do not
+remove the item from the packaging or bag until you are prepared to install it.
+placing it on top of its antistatic packaging does not offer any protection.
+
+An antistatic bag provides no protection when used like a potholder to handle
+components. (Yes, we’ve seen people doing this.) There’s no protection provided
+on the outside o the bag. ESD protection occurs only when the component is
+inside the bag. That’s because the bag unctions as a Faraday cage. (Google that
+i needed.)
+
+
+In addition to the ESD/antistatic products mentioned in this section, there are others,
+including gloves, finger cots, labels, cleaners, bins, meters, and spray. 
+
+ESDProoing Your Workspace
+Whether your workspace is a cubicle or desk at which you do minor repairs, or a computer
+workbench where you do more extensive service on computers and peripherals, follow these
+simple steps to ESD-proof your workspace:
+1. Maintain the room’s humidity between 50 and 80 percent.
+2. Spray your clothing and the work area with antistatic spray. Never spray directly on
+the computer or any components or peripherals.
+3. Place an ESD mat on the workspace and attach its alligator clip to something
+stationary and metal, such as the leg of a metal table.
+4. Put an ESD strap around your wrist, and attach the other end to a stationary metal
+object (if it has an alligator clip) or plug it into a wall outlet’s ground socket (only if
+the grounding strap has an outlet prong).
+
+All computing devices use electricity
+
+As long as the electricity runs through the circuits and wires as designed, all is good.
+
+When electricity jumps from one place to another we call this an electromagnetic pulse (EMP).
+
+The EMP of most concern to techs is electrostatic discharge (ESD).
+
+ESD simply means the passage of a static electrical charge from one item to another.
+
+ESD will destroy the sensitive parts of any computing device, so
+it is essential that you take steps to avoid ESD when working on a PC or other comput-
+ing device.
+
+All computing devices are well protected against ESD on the outside.
+Unless you take a screwdriver or pry tool and open up a PC or other computing
+device, you don’t need to concern yourself with ESD.
+
+Antistatic Tools
+ESD only takes place when two objects that store different amounts of electrical potential,
+of static electricity, come in contact. To avoid ESD
+is to keep you and the parts of the computer you touch at the same electrical potential,
+otherwise known as grounding yourself to the computing device.
+
+You can accomplish
+this by connecting yourself to the computer via a handy little device called an electrostatic
+discharge (ESD) strap. This simple device consists of a wire that connects on one end to an
+alligator clip and on the other end to a small metal plate that secures to your wrist with
+an elastic strap. You snap the alligator clip onto any handy metal part of the computer
+and place the ESD strap on either wrist.
+
+The moment you take a piece out of the computer, it no
+longer has contact with the systems and may pick up static from other sources. Techs use
+antistatic mats to eliminate this risk. An electrostatic discharge mat—or ESD mat—acts
+as a point of common potential; it’s typical to purchase a combination ESD strap and
+mat that all connect to keep you, the computer, and any loose components at the same
+electrical potential
+
+ESD straps and mats use tiny resistors—devices that stop or resist the flow of
+electricity—to prevent a static charge from racing through the device. These resistors
+can fail over time, so it’s always a good idea to read the documentation that comes with
+your antistatic tools to see how to test those small resistors properly.
+Any electrical component not in a computer case needs to be stored in an antistatic
+bag, a specially designed bag that sheds whatever static electricity you have when you
+touch it, thus preventing any damage to components stored within
+
+Almost all components come in an antistatic bag when purchased. Experienced techs
+never throw these bags away, as you never know when you’ll want to pull a part out and
+place it on a shelf for a while.
+
+ind yourself in a situation where you lack the proper anti-
+static tools. This shouldn’t keep you from working on the computer—if you’re careful!
+Before working on a computer in such a situation, take a moment to touch the power supply to make sure you are at the same electrical potential as the computer. Repeat every once in a while as you work. Although
+not as safe as ESD tools, this "equipment grounding" is better than nothing at all.
+
+Use these tools for proper component handling and storage: ESD straps, ESD mats, antistatic bags, and equipment grounding
+
+Static electricity, and therefore the risk of ESD, is much more
+prevalent in dry, cool environments.
+
+Always disconnect power sources when performing maintenance
+
+Electromagnetic Interference (EMI)
+A magnetic field interfering with electronics is electromagnetic interference (EMI). EMI
+isn’t nearly as dangerous as ESD, but it can cause permanent damage to some compo-
+nents and erase data on some storage devices. You can prevent EMI by keeping magnets
+away from computer equipment. Certain components are particularly susceptible to
+EMI, especially storage devices like hard drives.
+The biggest problem with EMI is that we often use magnets without even knowing
+we are doing so. Any device with an electrical motor has a magnet. Many telephones
+have magnets. Power bricks for laptops and speakers also have magnets. Even a lowly
+screwdriver might have a magnet.
+
+
+Radio Frequency Interference (RFI)
+Do you ever hear strange noises on your speakers even though you aren’t playing any
+sounds? Do you ever get strange noises on your cell phone? If so, you’ve probably run
+into radio frequency interference (RFI). Many devices emit radio waves:
+• Cell phones
+• Wireless network cards/access points
+• Cordless phones
+• Baby monitors
+• Microwave ovens
+In general, the radio waves that these devices emit are very weak, and almost all
+electronic devices are shielded to prevent RFI. A few devices, speakers in particular, are
+susceptible to RFI. RFI will never cause any damage, but it can be incredibly irritating.
+The best way to prevent RFI is to keep radio-emitting devices as far away as possible
+from other electronics.
+RFI becomes a big problem when two devices share the same frequencies. Baby mon-
+itors, Internet of things (IoT) devices (like wireless surveillance cameras), and many
+wireless networks share the same range of frequencies. They sometimes interfere with
+each other, causing poor signals or even blocking signals completely. These devices need
+to be tuned to avoid stomping on each other’s frequencies.
+
+
+
+Computer gear manufacturers package their products in a variety of
+ways to shield against accidental damage, whether that’s physical damage,
+ESD, EMI, or RFI. The typical pink translucent computer bag is coated with a
+film that prevents the bag from producing static electricity and mildly protects
+the contents against physical contact (and thus damage). Two types of metal
+bags offer shielding against EMI and RFI as well as ESD. These are the silvery
+bags (such as shown previously in Figure 1-8) you’ll see hard drives packed in,
+for example, and the black-and-silver woven bags you’ll sometimes see. These
+bags are easy to purchase online and are a cheap insurance policy to protect
+your expensive components.
