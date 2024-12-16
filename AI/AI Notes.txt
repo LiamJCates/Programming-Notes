@@ -1,31 +1,167 @@
-Google Cloud Introduction to Generative AI
 
+
+
+Sources
+
+Books
+Artificial Intelligence A Modern Approach 4th Edition
+
+Videos
 https://www.cloudskillsboost.google/paths/118/course_templates/536/video/500791
+
+Wikis
+https://en.wikipedia.org/wiki/Intelligence
+https://en.wikipedia.org/wiki/Intelligent_agent
 
 
 Overview
 
-How to define generative AI
-Explain how generative AI works
-Describe generative AI model types 
-Describe generative AI applications
+Define Generative Artificial Intelligence (Gen AI)
+Explain how Gen AI works
+Describe Gen AI model types 
+Describe Gen AI applications
 
 
 
-How to define generative AI
+How to define Gen AI
 
 
 Heirarchy of terms:
 
-	Artificial Intelligence > Machine Learning > Deep Learning > Generative AI > Large Language Models
-
-Two common questions:
-What is artificial intelligence, and what is the difference between AI and machine learning?
+	Intelligence > Artificial Intelligence (AI) > Machine Learning (ML) > Deep Learning > Gen AI > Large Language Model (LLM)
 
 
-AI is a branch of computer science that deals with the creation of intelligent agents
-intelligent agents are systems that interpret data then act autonomously.
-Essentially, AI has to do with the theory and methods to build machines that act like humans.
+
+
+Intelligence can be described as the ability to...
+	perceive or infer information; 
+	retain it as knowledge
+	apply knowledge to adaptive behaviors within an environment or context.
+
+
+Intelligence in computers or other machines is called artificial intelligence. 
+
+There is controversy over how to define intelligence.
+
+Scholars describe its constituent abilities in various ways, 
+and differ in the degree to which they conceive of intelligence as quantifiable.
+
+
+
+
+The field of artificial intelligence, or AI, 
+is concerned with understanding and building intelligent entities
+machines that can compute how to act effectively and safely in a wide variety of novel situations.
+
+Historically, researchers have pursued several different versions of AI. 
+
+Some define intelligence in terms of fidelity to human performance, 
+others prefer an abstract, formal definition of intelligence called rationality — loosely speaking, doing the “right thing.” 
+
+The subject matter itself also varies: 
+some consider intelligence to be a property of internal thought processes and reasoning, 
+others focus on intelligent behavior, an external characterization.
+
+
+
+From these two dimensions — human vs. rational and thought vs. behavior — there are four
+possible combinations, and there have been adherents and research programs for all four.
+The methods used are necessarily different: the pursuit of human-like intelligence must be
+in part an empirical science related to psychology, involving observations and hypotheses
+about actual human behavior and thought processes; a rationalist approach, on the other
+hand, involves a combination of mathematics and engineering, and connects to statistics,
+control theory, and economics.
+
+
+Acting humanly: The Turing test approach
+
+The Turing test, proposed by Alan Turing (1950), was designed as a thought experiment
+that would sidestep the philosophical vagueness of the question “Can a machine think?” A
+computer passes the test if a human interrogator, after posing some written questions,
+cannot tell whether the written responses come from a person or from a computer. 
+
+
+The computer would need the following capabilities:
+natural language processing to communicate successfully in a human language;
+knowledge representation to store what it knows or hears;
+automated reasoning to answer questions and to draw new conclusions;
+machine learning to adapt to new circumstances and to detect and extrapolate patterns.
+
+Turing viewed the physical simulation of a person as unnecessary to demonstrate
+intelligence. However, other researchers have proposed a total Turing test, which requires
+interaction with objects and people in the real world. To pass the total Turing test, a robot
+will need
+
+computer vision and speech recognition to perceive the world;
+robotics to manipulate objects and move about.
+
+
+These six disciplines compose most of AI. Yet AI researchers have devoted little effort to
+passing the Turing test, believing that it is more important to study the underlying principles
+of intelligence. The quest for “artificial flight” succeeded when engineers and inventors
+stopped imitating birds and started using wind tunnels and learning about aerodynamics.
+Aeronautical engineering texts do not define the goal of their field as making “machines that
+fly so exactly like pigeons that they can fool even other pigeons.”
+
+
+Thinking humanly: The cognitive modeling approach
+
+
+To say a system thinks like a human,
+we must know how humans think. 
+
+We can learn about human thought in three ways:
+
+	introspection: trying to catch our own thoughts as they go by;
+	psychological experiments: observing a person in action;
+	brain imaging: observing the brain in action.
+
+Once we have a sufficiently precise theory of the mind, it becomes possible to express the
+theory as a computer program. If the program’s input–output behavior matches
+corresponding human behavior, that is evidence that some of the program’s mechanisms
+could also be operating in humans.
+
+
+
+Formally, AI is a branch of computer science that deals with the creation of Intelligent Agents (IAs)
+
+IAs are agent that perceives its environment, takes actions autonomously in order to achieve goals, 
+and may improve its performance with learning or acquiring knowledge. 
+
+An agent has an "objective function" which encapsulates all the IA's goals. 
+Such an agent is designed to create and execute whatever plan will, upon completion, 
+maximize the expected value of the objective function.
+
+An intelligent agent may be simple or complex: 
+A thermostat or other control system is considered an example of an intelligent agent, 
+as is a human being, 
+as is any system that meets the definition, such as a firm, a state, or a biome.
+
+
+For example, a reinforcement learning agent has a "reward function" 
+this fuction allows the programmers to shape the IA's desired behavior.
+
+An evolutionary algorithm's behavior is shaped by a "fitness function".
+
+Leading AI textbooks define "artificial intelligence" as 
+the "study and design of intelligent agents", 
+a definition that considers goal-directed behavior to be the essence of intelligence. 
+
+Goal-directed agents are also described using a term borrowed from economics, "rational agent".
+
+
+Intelligent agents are often described schematically as an abstract functional system
+similar to a computer program.
+
+Abstract descriptions of intelligent agents are called abstract intelligent agents (AIA)
+to distinguish them from their real-world implementations.
+
+An autonomous intelligent agent is designed to function in the absence of human intervention.
+Intelligent agents are also closely related to software agents.
+An autonomous computer program that carries out tasks on behalf of users. 
+
+
+
 
 Machine learning deals with programs or systems that trains a model from input data.
 A trained model makes useful predictions from new data with acceptable accuracy
@@ -94,7 +230,7 @@ and a large amount of unlabeled data.
 The labeled data helps the neural network to learn the basic concepts of the tasks,
 while the unlabeled data helps the neural network to generalize to new examples.
 
-Now we finally get to where generative AI fits into this AI discipline!
+Now we finally get to where Gen AI fits into this AI discipline!
 
 Gen AI is a subset of deep learning, which means it uses Artificial Neural Networks,
 can process both labeled and unlabeled data, using supervised, unsupervised, and semi-supervised
@@ -113,7 +249,7 @@ Once a discriminative model is trained, it can be used to predict the label for 
 
 A generative model generates new data instances based on a learned probability distribution of existing data.
 Generative models generate new content.
-Generative AI is a type of artificial intelligence technology that can produce various types
+Gen AI is a type of artificial intelligence technology that can produce various types
 of content, including text, imagery, audio, and synthetic data.
 
 A discriminative model ‌learns the conditional probability distribution
@@ -131,7 +267,7 @@ discriminative models discriminate between different kinds of data instances.
 A traditional machine learning model 
 attempts to learn the relationship between the data and the label (or what you want to predict).
 
-A Generative AI Model 
+A Gen AI Model 
 attempts to learn patterns on content so that it can generate new content.
 
 This illustration shows a good way to distinguish between what is GenAI and what is not.
@@ -153,7 +289,7 @@ As a reminder, inputs are the data,
 like comma separated value files, text files, audio files image files, etc...
 So, the model output is a function of all the inputs.
 
-If the “y” is a number - like predicted sales - it is not Generative AI.
+If the “y” is a number - like predicted sales - it is not Gen AI.
 If “y” is a sentence like “Define sales”, it is generative, as the question would elicit
 a text response.
 
@@ -164,9 +300,9 @@ to build a model.
 Depending on the use case or problem, the model can give you a prediction, classify
 something, or cluster something.
 
-Now let's check out how much more robust the Generative AI process is in comparison.
+Now let's check out how much more robust the Gen AI process is in comparison.
 
-The generative AI process can take training code, labeled data, and unlabeled data of
+The Gen AI process can take training code, labeled data, and unlabeled data of
 all data types and build a “foundation model”.
 
 The foundation model can then generate new content.
@@ -179,7 +315,7 @@ neural networks would take pictures of cats and dogs
 then ask it: “Is this a cat”?
 And it would predict a cat; or not a cat.
 
-With generative AI, we - as users - can generate our own
+With Gen AI, we - as users - can generate our own
 content - whether it be text, images, audio, video, or more.
 
 Models like Gemini (Google’s multimodal AI model) or LaMDA (Language Model for Dialogue Applications) 
@@ -191,7 +327,7 @@ we can then ask a question
 So, when you ask it “what’s a cat”, it can give you everything it has learned about a cat.
 
 
-What is Generative AI?
+What is Gen AI?
 GenAI is a type of Artificial Intelligence that creates new content based on what it
 has learned from existing content.
 
@@ -206,7 +342,7 @@ are similar to the data it was trained on.
 
 Thus, generative language models are pattern-matching systems.
 
-The power of Generative AI comes from the use of transformers.
+The power of Gen AI comes from the use of transformers.
 
 Transformers produced the 2018 revolution in Natural Language Processing.
 
@@ -299,13 +435,13 @@ Translate code from one language to another,
 Generate documentation and tutorials for source code.
 
 I'm going to tell you about three other ways Google Cloud can help you get more out of
-generative AI.
+Gen AI.
 
 The first is Vertex AI Studio.
-Vertex AI Studio lets you quickly explore and customize generative AI models that you
+Vertex AI Studio lets you quickly explore and customize Gen AI models that you
 can leverage in your applications on Google Cloud.
 
-Vertex AI Studio helps developers create and deploy generative AI models by providing a
+Vertex AI Studio helps developers create and deploy Gen AI models by providing a
 variety of tools and resources that make it easy to get started.
 
 For example, there is a: 
@@ -317,7 +453,7 @@ and community forum for developers to share ideas and collaborate.
 Next, we have Vertex AI which is particularly helpful for all of you who don't have much
 coding experience.
 
-You can build generative AI search and conversations for customers and employees with Vertex AI
+You can build Gen AI search and conversations for customers and employees with Vertex AI
 Agent Builder (formerly Vertex AI Search and Conversation).
 
 Build with little or no coding and no prior machine learning experience.

@@ -1,4 +1,9 @@
-The data types that are defined by the user are called abstract datatypes or user-defined derived data type.
+The data types that are defined by the user are called abstract, user-defined, or derived datatypes.
+
+C++ augments the built-in types and operations with
+a sophisticated set of abstraction mechanisms out of which programmers can build such high-level
+
+User-defined types are often preferred over built-in types because they are easier to use, less error-prone, and typically as efficient for what they do as direct use of built-in types, or even faster.
 
 These types include:
 

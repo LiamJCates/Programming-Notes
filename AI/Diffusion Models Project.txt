@@ -1,0 +1,14 @@
+https://www.coursera.org/learn/how-diffusion-models-work-projec
+
+How Diffusion Models Work
+
+vauge description, diffusion algorithms learn to subtract noise to generate an image
+
+This course will step through a complete implementation of image generation using a diffusion model
+
+we will learn about the current state and capabilities of diffusion models.
+understand the sampling pocess, starting with pure noise and refining it to produce a final image
+build programming skills to train a diffusion model,
+learn how to build a neural network that can predict noise in an image
+addd context to the model, to control where you want it to generate
+implement advanced algorithms to accelerate the sampling process by a factor of 10

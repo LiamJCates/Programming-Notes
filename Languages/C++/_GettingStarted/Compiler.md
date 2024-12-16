@@ -1,13 +1,20 @@
+C++ is a compiled language, this means, for a program to run, it's source code file has to be processed by a compiler.
 
+A compiler is software that converts a program written in a compiled language, typically a high-level language, into instructions which the computer can understand.
 
-A compiler is a software that converts a program written in a high-level language (in this case C++) into low-level machine language instructions which the computer can understand.
+a high-level programming language is a programming language with a high level of abstraction from the details of the computer. In contrast to low-level programming languages, it may use natural (human) language elements, be easier to use, or may automate (or even hide entirely) significant areas of computing systems, making the process of developing a program simpler and more understandable than when using a lower-level language. 
 
-Having written the program, we need to compile it. How you compile a program
-depends on your operating system and compiler. For details on how your particu-
-lar compiler works, check the reference manual or ask a knowledgeable colleague.
+The amount of abstraction provided defines how "high-level" a programming language is.
 
-Later, the computer executes each of these instructions to produce the desired results. 
-This set of low-level machine instructions is called an Object code.
+A low-level programming language is a programming language that provides little or no abstraction from a computer's instruction set architecture; commands or functions in the language are structurally similar to a processor's instructions. Generally, this refers to either machine code or assembly language. Because of the low (hence the word) abstraction between the language and machine language, low-level languages are sometimes described as being "close to the hardware". Programs written in low-level languages tend to be relatively non-portable, due to being optimized for a certain type of system architecture.
+
+How you compile a program depends on your operating system and compiler. For details on how your particular compiler works, check the reference manual, ask a knowledgeable colleague, or perform a websearch.
+
+For example, C++ source text files are processed by a compiler, producing object files, which are combined by a linker yielding an executable program. 
+
+The computer is then able to execute each of these instructions to produce the desired results. 
+
+The set of low-level machine instructions produced by a C++ compiler is called an Object code.
 
 An executable program is created for a specific hardware/system combination; it is not portable, say, from a Mac to a Windows PC. When we talk about portability of C++ programs, we usually mean portability of source code; that is, the source code can be successfully compiled and run on a variety of systems.
 
@@ -48,7 +55,8 @@ After writing the source code for a C++ program, the next step is to turn your s
 
 
 
-Sometimes we need to know what C++ standard a compiler is using. To get this information, we use the __cplusplus macro, which produces one of values below:
+Sometimes we need to know what C++ standard a compiler is using. 
+To get this information, we use the __cplusplus macro, which produces one of values below:
 
 | Standard | __cplusplus output |
 |----------|--------------------|

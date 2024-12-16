@@ -2,8 +2,7 @@ The arithmetic types represent characters, integers, boolean values, and floatin
 can be used in only a few circumstances, most commonly as the return type for
 functions that do not return a value.
 
-The arithmetic types are divided into two categories: integral types (which include
-character and boolean types) and floating-point types.
+The arithmetic types are divided into two categories: integral types (which include character and boolean types) and floating-point types.
 
 
 The size of—that is, the number of bits in—the arithmetic types varies across

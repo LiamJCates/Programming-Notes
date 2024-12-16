@@ -6,23 +6,20 @@ For clarification of the subroutine terminology and concepts see:
 
 
 ### C++ Functions
-In C++, statements may be grouped into units called functions.
-Every C++ program contains one or more functions, one of which must be named main.
-
-Function: a named collection of statements which executes sequentially.
+Functions are C++'s primary method of abstraction, turning a group of statements into a cohesive operation.
 
 For general information regarding functions, see:
 [Programming Methods\Fundamentals\Constructs\Declarations\Subroutine\_Subroutine.md]
 
-Like a C++ program, a function is a relationship that generally consists of input values, processing steps, and an output value.
+Function: a named collection of statements, which executes sequentially, defining a relationship that generally consists of input values, processing steps, and an output value
 
-A function takes some input values, performs some processing steps, and produces an output:
   The input, called parameters, are date values provided to the function when it is called by the program that uses the function.
+
   The processing steps are performed by the collection of statements called the function body.
+
   The output, called a return value, is the generally the outcome of the processing steps operating on the provided function input, and is returned to the program that called the function.
 
-
-C++ program execution begins with the first statement in a special function called main and typically terminates (finishes running) when the last statement inside function main is executed (though errors may cause the program to abort early).
+Every C++ program contains one or more functions. C++ program execution begins with the first statement in a special function called main and typically terminates (finishes running) when the last statement inside function main is executed (though errors may cause the program to abort early).
 
 While a simple program can theoretically do all computation necessary to complete a task within main, for all but the most simple of programs, this leads to code that is cluttered, difficult to debug, and hard to reuse.
 

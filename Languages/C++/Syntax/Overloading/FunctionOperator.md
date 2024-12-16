@@ -5,7 +5,7 @@ The primary reason you might want to make a user-defined type callable is to int
 
 When we create an asynchronous task with the std::async function, which accepts an arbitrary function object that can execute on a separate thread. It uses the function-call operator as the interface. The committee that invented std::async could have required you to expose, say, a run method, but they chose the function-call operator because it allows generic code to use identical notation to invoke a function or a function object.
 
-Listing 9-11 illustrates the function-call operator’s usage.
+
 struct type-name {
   return-type operator()(arg-type1 arg1, arg-type2 arg2, ...) {
     // Body of function-call operator

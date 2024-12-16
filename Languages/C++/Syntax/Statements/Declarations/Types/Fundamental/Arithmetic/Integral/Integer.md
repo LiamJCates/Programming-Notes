@@ -1,3 +1,16 @@
+The language guarantees that an int will be at least as large as short, a
+long at least as large as an int, and long long at least as large as long. The type long long was introduced by the new standard.
+
+
+The names of certain integer types can be abbreviated
+  int can be removed in the case of a short, long, or long long
+  signed can be removed as all integer types are signed by default
+
+I.e., signed short int can be abbreviated as signed short, short int, or simply short; they all identify the same fundamental type.
+
+
+Chooseing Between Integer Data Types
+
 What are the criteria for choosing between short / int / long data types?  
 
 Other related questions: If a short int is the same size as an int on my particular implementation, why choose one or the other? If I start taking the actual size in bytes of the variables into account, won’t I be making my code unportable (since the size in bytes may differ from implementation to implementation)? Or should I simply go with sizes much larger than I actually need, as a sort of safety buffer?

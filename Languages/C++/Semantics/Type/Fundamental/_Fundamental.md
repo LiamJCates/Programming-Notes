@@ -2,7 +2,9 @@
 Fundamental Data types are the most basic types of object.
 
 
-Fundamental types (also called built-in types) are specified by the C++ language standard and are built into the compiler. Fundamental types aren't defined in any header file.
+Fundamental types (also called built-in types) are specified by the C++ language standard and are built into the compiler. 
+
+Fundamental types aren't defined in any header file.
 
 A data type is called fundamental if variables of that type can store only one value at a time.
 

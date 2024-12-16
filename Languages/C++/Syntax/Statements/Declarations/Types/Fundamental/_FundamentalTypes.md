@@ -2,7 +2,13 @@ General Primitive Types
 [Programming Methods\Advanced\DataTypes\Primitives.md]
 
 
-C++ defines a set of primitive types that include the arithmetic types and a special type named void.
+C++ defines a set of fundamental types that include the arithmetic types and a special type named void.
+
+Fundamental means machine architecture bound. So anything that fits the data directly handled by the hardware in the CPU is fundamental.
+
+These are similar to the general 
+
+Primitive means language bound. The built-in types directly supported by the language without the need to write a class or struct. (Note that this includes string).
 
 The arithmetic types represent characters, integers, boolean values, and floating-point numbers.
 
@@ -12,7 +18,7 @@ integral types (which include character and boolean types) and floating-point ty
 
 
 
-Primitives:
+Fundamental:
 
 
 
@@ -167,3 +173,5 @@ essary and often entails considerable run-time cost.
 
 
 C++ supports a wide variety of types based on the fundamental types discussed above; these other types are known as compound data types, and are one of the main strengths of the C++ language.
+
+
