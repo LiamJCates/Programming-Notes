@@ -6,11 +6,9 @@ C++ I/O uses a convenient abstraction called streams to perform input and output
 
 ### Streams
 
-A stream is an entity where a program can either insert or extract data to/from. A stream represents an infinite sequence of bytes, usually characters.
+A stream represents an infinite sequence of bytes, usually characters, which a program can either insert or extract data to/from.
 
-The characters may be either normal characters (char) or wide characters (wchar_t).
-
-Streams provide a universal character-based interface to any type of storage medium (for example, a file). There is no need to know details about the media associated to the stream or any of its internal specifications. All we need to know is that streams are a source/destination of characters, and that these characters are provided/accepted sequentially (i.e., one after another).
+C++ Streams provide a universal character-based interface to any type of storage medium (for example, a file). There is no need to know details about the media associated to the stream or any of its internal specifications. All we need to know is that streams are a source/destination of characters, and that these characters are provided/accepted sequentially.
 
 Streams work with built-in data types, and you can make user-defined types work with streams by overloading the insertion operator (<<) to put objects into streams, and the extraction operator (>>) to read objects from streams. Any object that can be written to one type of stream, can be written to all types of streams. In other words, as long as an object has a stream representation, any storage medium can accept objects with that stream representation.
 

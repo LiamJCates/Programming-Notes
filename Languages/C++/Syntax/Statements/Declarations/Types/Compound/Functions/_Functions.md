@@ -11,64 +11,40 @@ Functions are C++'s primary method of abstraction, turning a group of statements
 For general information regarding functions, see:
 [Programming Methods\Fundamentals\Constructs\Declarations\Subroutine\_Subroutine.md]
 
-Function: a named collection of statements, which executes sequentially, defining a relationship that generally consists of input values, processing steps, and an output value
+In the context of C++ functions are a named collection of statements, which executes sequentially, defining a relationship that generally consists of an input, processing steps, and an output.
 
-  The input, called parameters, are date values provided to the function when it is called by the program that uses the function.
+  The input, called parameters, are data values provided to the function when it is called.
 
-  The processing steps are performed by the collection of statements called the function body.
+  The processing steps are performed on input data by a collection of statements called the function body.
 
-  The output, called a return value, is the generally the outcome of the processing steps operating on the provided function input, and is returned to the program that called the function.
+  The output, called a return value, is generally the outcome of the processing steps operating on the provided function input, and is returned to the program that called the function.
 
 Every C++ program contains one or more functions. C++ program execution begins with the first statement in a special function called main and typically terminates (finishes running) when the last statement inside function main is executed (though errors may cause the program to abort early).
 
-While a simple program can theoretically do all computation necessary to complete a task within main, for all but the most simple of programs, this leads to code that is cluttered, difficult to debug, and hard to reuse.
+While a program can theoretically do all computation necessary within main, for all but the most simple of programs, this leads to code that is cluttered, difficult to debug, and hard to reuse.
 
-To accomplish most tasks, programmers must learn to write their own functions.
-
-
-
-### Benefits
-Functions provide a number of benefits that make them extremely useful in programs of non-trivial length or complexity.
-
-#### Organization
-As programs grow in complexity, having all the code live inside the main() function becomes increasingly complicated. A function is almost like a mini-program that we can write separately from the main program, without having to think about the rest of the program while we write it. This allows us to reduce a complicated program into smaller, more manageable chunks, which reduces the overall complexity of our program.
-
-#### Reusability
-Once a function is written, it can be called multiple times from within the program. This avoids duplicated code (“Don’t Repeat Yourself”) and minimizes the probability of copy/paste errors. Functions can also be shared with other programs, reducing the amount of code that has to be written from scratch (and retested) each time.
-
-#### Testing
-Because functions reduce code redundancy, there’s less code to test in the first place. Also because functions are self-contained, once we’ve tested a function to ensure it works, we don’t need to test it again unless we change it. This reduces the amount of code we have to test at one time, making it much easier to find bugs (or avoid them in the first place).
-
-#### Extensibility
-When we need to extend our program to handle a case it didn’t handle before, functions allow us to make the change in one place and have that change take effect every time the function is called.
-
-#### Abstraction
-In order to use a function, you only need to know its name, inputs, outputs, and where it lives. You don’t need to know how it works, or what other code it’s dependent upon to use it. This lowers the amount of knowledge required to use other people’s code (including everything in the standard library).
+To accomplish most tasks, programmers write their own functions.
 
 
 
 ### Declaring a Function
-In C++, identifiers can only be used in expressions once they have been declared. For example, some variable x cannot be used before being declared with a statement, such as:
+Functions cannot be called before they are declared.
 
-  int x;
+Function declarations are optional if the function is defined before it is called.
 
-The same applies to functions. Functions cannot be called before they are declared.
+C++ programmers customarily place the function main( ... ) before all other user-defined functions. 
 
-The compiler reads files from top to bottom, so the function’s declaration must appear before its point of first use.
+However, this organization could produce a compilation error because functions are compiled in the order in which they appear in the program. For example, if the function main is placed before a function called "sortArray( ... )", the identifier "sortArray" will be undefined when the function main is compiled. 
 
-Typically, functions must be declared before the main function, the program entry point, from which other functions are called.
+To work around this problem of undeclared identifiers, we place function declarations before any function definition (including the definition of main).
 
-C++ programmers customarily place the function main before all other user-defined functions. However, this organization could produce a compilation error because functions are compiled in the order in which they appear in the program.
+While function declarations are optional, they allow a function to be called before the implementation is defined. Known as forward declaration, this allows us to tell the compiler about the existence of an identifier before actually defining the value of that identifier. 
 
-Function declarations are optional as long as the function is defined before it is called.
-
-For example, if the function main is placed before a function called "sortArray", the identifier "sortArray" will be undefined when the function main is compiled. To work around this problem of undeclared identifiers, we place function prototypes before any function definition (including the definition of main).
-
-While function declarations are optional, they allow you to declared functions before you define the implementation. Known as forward declaration, this allows us to tell the compiler about the existence of an identifier before actually defining the identifier. Once declared a function can be called so long as you provide a definition later in your program the compiler tool chain can direct execution appropriately.
+Once declared, a function can be called so long as you provide a definition somewhere in your program the compiler tool chain can direct execution appropriately.
 
 A function declaration specifies a function’s interface, also called the function signature, without actually defining the function completely.
 
-This interface includes all types involved (the return type and the type of its parameters), to indicate that this is a forward declaration only, a function prototype,  we replace the body of the function (the block of statements) with an ending semicolon and must define the function somewhere else in the source code:
+This interface includes all types involved (the return type and the type of its parameters), to indicate that this is a forward declaration only, known as a function prototype,  we replace the body of the function (the block of statements) with an ending semicolon and must define the function somewhere else in the source code:
 
   return-type function-name (parameter-type1, ..., parameter-typeN) ;
 
@@ -180,3 +156,83 @@ Some terminology classifying functions:
   int main() {
     print_square(1.234);
   }
+
+
+
+
+
+
+https://stackoverflow.com/questions/67728450/why-is-it-legal-to-change-function-prototype-after-its-definition
+
+int test();
+int test(){
+ return 5;
+}
+int test(int in);
+
+int main() {
+   return test();
+}
+
+I know it's ok to have multiple (and similar) declarations of a function, and only 1 single definition.
+
+My question is related to a declaration after its own definition. Does the compiler pick the last prototype it has encountered as the true prototype? even if it comes father its full definition?
+
+This doesn't compile with the error saying: error: too few arguments to function 'test'
+
+
+
+There are three declarations of test in your sample code:
+
+    int test(); is a declaration that is not a prototype1 or a definition2.
+    int test() { return 5; } is a declaration that is a definition of the function.
+    int test(int in); is a declaration that is a prototype for the function.
+
+The plain declaration, number 1, is incomplete.3 It leaves it unstated whether there are any parameters or what their types are. This declaration can be completed by either declaration 2 or declaration 3, but not by both. If both 2 and 3 are present, a compiler should give you a warning or error message.4
+
+Specifically, to answer your question “Why is it legal to change function prototype after its definition?”: After an incomplete declaration, you can change what is known about the function type by adding more information, using either an old-style definition or a modern prototype. You cannot make changes other than adding more information.5 (After a prototype or a definition, the function type is complete, and you cannot make any changes.)
+
+Declaration 2 matches an old style of function definition in which the parameters were defined after the closing ) and before the opening {:
+
+return-type name-of-function(names-of-parameters)
+declarations of parameters
+{
+    body-of-function
+}
+
+For example:
+
+int test(n, x)
+int n;
+double x;
+{
+    …
+}
+
+When there are no parameters in this style of definition, it means the function takes no parameters. Note the difference:
+
+    int test(); does not say what the parameters are, not even how many there are.
+    int test() { return 5; } says there are no parameters.
+
+As you can see, these are compatible: Not stating how many parameters there are is compatible with saying there are no parameters.6
+
+Declaration 3 is a modern declaration that says there is one parameter, with type int. As with 2, declarations 1 and 3 are compatible: Not stating how many parameters there are or what types they might have is compatible with saying there is one parameter of type int.
+
+However, declarations 2 and 3 are incompatible:
+
+    Declaration 2 says there are no parameters.
+    Declaration 3 says there is one parameter.
+
+Footnotes
+
+1 A function prototype declares the types of its parameters. Since () is empty, there are no parameter types declared. (Due to C history, () in a function declaration means nothing is said about the parameters, and (void) is a prototype saying there are no parameters.)
+
+2 A function definition includes the body of the function, the brace-enclosed compound-statement containing the code the function executes.
+
+3 “Incomplete” is used here in the ordinary English sense, not the sense in which the C standard applies to object types.
+
+4 This is required by the constraint in C 2018 6.7 4: “All declarations in the same scope that refer to the same object or function shall specify compatible types.”
+
+5 There may be some minor changes possible. For example, qualifiers such as const can be added to or removed from parameters, although this does not change the function type for purposes of compatibility.
+
+6 Specific rules for function type compatibility are in C 2018 6.7.6.3 15.

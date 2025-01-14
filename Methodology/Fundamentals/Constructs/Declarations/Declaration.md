@@ -1,8 +1,12 @@
 
 Declarations vs. definitions
-It’s important to understand the difference between declarations and
-definitions because these terms will be used precisely throughout
-the book. Essentially all C and C++ programs require declarations.
+
+It’s important to understand the difference between declarations and definitions because these terms are used precisely. 
+
+In some languages, typically those without type checking, definitions and declarations are often done at the same time.
+
+Essentially all C and C++ programs require declarations.
+
 Before you can write your first program, you need to understand
 the proper way to write a declaration.
 A declaration introduces a name – an identifier – to the compiler. It

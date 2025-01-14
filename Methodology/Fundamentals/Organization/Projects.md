@@ -1,4 +1,5 @@
 Working with software projects
+
 The term project can be used in two different ways when talking about software development:
   • A collaborative enterprise used to develop the actual program – in other words, as a group of people working together. For that, we need a project plan, a project leader, and so on.
 
