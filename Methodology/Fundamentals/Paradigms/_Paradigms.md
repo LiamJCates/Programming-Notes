@@ -1,4 +1,7 @@
-Programming paradigms are a way to classify programming languages based on their features. Languages can be classified into multiple paradigms.
+A programming paradigm is a model of programming based on distinct concepts that shapes the way programmers design, organize and write programs. 
+
+Programming paradigms are a way to classify programming languages based on their features. Languages can be classified into multiple paradigms. A multi-paradigm programming language allows programmers to choose a specific single approach or mix parts of different programming paradigms.
+
 
 Some paradigms are concerned mainly with implications for the execution model of the language, such as allowing side effects, or whether the sequence of operations is defined by the execution model. Other paradigms are concerned mainly with the way that code is organized, such as grouping a code into units along with the state that is modified by the code. Yet others are concerned mainly with the style of syntax and grammar.
 

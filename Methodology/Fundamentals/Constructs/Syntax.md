@@ -1,5 +1,6 @@
 ## Syntax
 https://en.wikipedia.org/wiki/Syntax_(programming_languages)
+
 Just as human languages have grammar to dictate the rules of the language, a programming language has syntax.
 
 In natural language, sentences are constructed according to specific grammatical rules. The rules that govern how sentences are constructed in a language is called syntax.

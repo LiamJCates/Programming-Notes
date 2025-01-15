@@ -1,12 +1,21 @@
 Writing code with readability in mind
 
+
+“Indeed, the ratio of time spent reading versus writing is well over 10 to 1. We are constantly reading old code as part of the effort to write new code. ...[Therefore,] making it easy to read makes it easier to write.”
+
+― Robert C. Martin, Clean Code: A Handbook of Agile Software Craftsmanship 
+
 Code that you write will not only be executed by the computer. It will also be read both by
-yourself and by others. Therefore, is it essential that you write code that is as easy to read
+yourself and others. Therefore, is it essential that you write code that is as easy to read
 and understand as possible.
+
 There are some simple rules we can follow that will assist in achieving readable code.
-Using comments and documentation wisely
+
+
+### Using comments and documentation wisely
+
 When creating code, you need an understanding what you do and why you do it. But
-when coming back to your code a couple of months later, it is not always as clear what
+when coming back to code later, it is not always as clear what
 these thoughts were and why you wrote things the way you did. Commenting on tricky
 lines of code is a great way to document your thoughts for both your future self and others
 that will read your code.

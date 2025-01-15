@@ -1,10 +1,12 @@
 Constants
+
 Generally, a constant is a named piece of memory with a value that cannot be changed during normal execution, i.e., while a program runs.
 
-When associated with an identifier, a constant is said to be "named," although the terms "constant" and "named constant" are often used interchangeably. This is contrasted with a variable, which is an identifier with a value that can be changed during normal execution, i.e., the value is variable
+When associated with an identifier, a constant is said to be "named," although the terms "constant" and "named constant" are often used interchangeably. This is contrasted with a variable, which is an identifier with a value that can be changed during normal execution, i.e., the value is variable.
 
 Constants are used for values that are unlikely to change, for example:
-PI ← 3.142
+
+PI = 3.14...
 
 Constants are useful because they are declared and assigned once, but can be referred to over and over again throughout the program. This means that if the programmer needs to change the value throughout the program code, they only need to make one change. This can help make a program easier to maintain.
 
@@ -26,10 +28,9 @@ There are several common ways to express a data value that doesn't change during
 Literals
 One very basic way is by simply writing a literal number, character, or string into the program code
 
-a literal is a notation for representing a fixed value in source code.
+A literal is a notation for representing a fixed value in source code.
 
-Literals come with a cost, however this can
-
+[See Literals]
 
 
 Another way is by defining a symbolic macro. Many high-level programming languages, and many assemblers, offer a macro facility where the programmer can define, generally at the beginning of a source file or in a separate definition file, names for different values. A preprocessor then replaces these names with the appropriate values before compiling, resulting in something functionally identical to using literals, with the speed advantages of immediate mode. Because it can be difficult to maintain code where all values are written literally, if a value is used in any repetitive or non-obvious way, it is often done as a macro.

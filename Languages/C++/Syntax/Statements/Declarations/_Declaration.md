@@ -9,12 +9,7 @@ In C++, identifiers can only be used in expressions once they have been declared
 The compiler reads files from top to bottom, so a declaration must appear before its point of first use.
 
 It specifies a type for the entity
-[see type]
-
-• A type defines a set of possible values and a set of operations (for an object).
-• An object is some memory that holds a value of some type.
-• A value is a set of bits interpreted according to a type.
-• A variable is a named object
+[see Types.md]
 
 
 Declarations
@@ -22,7 +17,7 @@ Declarations
 
   Constants
 
-  Primitive Types
+  Fundamental Types
 
   Derived Types
     Arrays

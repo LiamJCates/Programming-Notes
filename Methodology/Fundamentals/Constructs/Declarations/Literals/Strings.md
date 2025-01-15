@@ -9,6 +9,6 @@ where "string" is a string literal with value string. The double quotation marks
 See delimiters:
 [Programming Methods\Fundamentals\Delimiters.md]
 
-This representation is often contrasted by the use of a single quote delimiter (') for character literals. For example, 'a' indicates the single character a while "a" indicates the string a of length 1.
+This representation is often contrasted by the use of a single quote delimiter (') for character literals. For example, 'a' indicates the single character a while "a" indicates the string of length 1.
 
 However, there are numerous alternate notations for specifying string literals, particularly more complicated cases, and notation is programming language dependent.
