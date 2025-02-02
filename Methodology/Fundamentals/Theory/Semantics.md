@@ -1,7 +1,10 @@
 Semantics
 The term semantics refers to the meaning of languages, as opposed to their form (syntax).
 
+https://en.wikipedia.org/wiki/Semantics_(computer_science)
+
 Static semantics
+
 The static semantics defines restrictions on the structure of valid texts that are hard or impossible to express in standard syntactic formalisms. For compiled languages, static semantics essentially include those semantic rules that can be checked at compile time.
 Examples include checking that every identifier is declared before it is used (in languages that require such declarations) or that the labels on the arms of a case statement are distinct.[46] Many important restrictions of this type, like checking that identifiers are used in the appropriate context (e.g. not adding an integer to a function name), or that subroutine calls have the appropriate number and type of arguments, can be enforced by defining them as rules in a logic called a type system.
 

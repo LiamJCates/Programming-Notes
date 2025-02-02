@@ -1,5 +1,5 @@
 ## Abstract Data Type
-Abstract data types (ADT) dictate the logical properties of a data unit of a  given type and presents an interface to a data type's client.
+Abstract data types (ADT) dictate the logical properties of a data unit of a given type and presents an interface to a data type's client. An ADT is a model that defines operations and behaviors for a data type without specifying how these are implemented or how data is stored.
 
 An ADT encompasses:
 	the set of values belonging to the ADT, called the domain

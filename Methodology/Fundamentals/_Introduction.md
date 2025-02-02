@@ -2,57 +2,112 @@
 Modern computers are incredibly fast, and getting faster all the time.
 
 However, computers have some significant constraints:
+
   they only natively understand a limited set of commands,
   and must be told exactly what to do.
 
 
-A computer program is any sequence or set of instructions
-defining actions to be achieved by a computer system
+A computer program is any set of instructions defining actions to be achieved by a computer system. The process of creating a program is called programming.
 
-A computer program is specified by, or written in, a programming language.
+Generally, the computer hardware loads a program into memory and sequentially performs each instruction, called running or executing the program.
 
-source code, or simply code, is written using a human-readable programming language,
-usually as a collection of plain text files.
+These instructions are specified by, or written in, a programming language. In the most basic terms, a "programming language" is a means of communication between a human being (programmer) and a computer. A programmer uses this means of communication in order to provide the computer instructions to be executed. 
 
-The source code of a program is specially designed to facilitate the work of computer programmers
-The process of creating a program is called programming.
+Like the many natural languages we use to communicate with each other, there are many languages that a programmer can use to communicate with a computer. Each programming language has its own set of words or "tokens" and rules or "formal grammar", called the language syntax. To write a program, we have to use the syntax of our chosen language, otherwise we won't be understood, ultimately resulting in errors that prevent a computer from executing a program.
 
-Computer programs are one component of software,
-which also includes documentation and other intangible data components of a computer system.
+The set of tokens and formal grammar that comprises a programming language does not describe the meaning of any instruction, known as the semantics, or what can be done with them — it only defines the form of valid instructions, called statements. A collection of valid statements that compose a given program are known as the program's source code.
+
+Most source code, or simply code, is typically written using a human-readable language, usually as a collection of plain text files. A plain text file is a file that contains unformatted text, such as numbers, letters, punctuation, and special characters. Plain text files are often saved with the extension .txt, though most languages support their own file extensions to signify plain text files written in that language.
+
+
+
+
+### Machine Code
+
+
+### Compiled vs Interpreted
+
+
+Source code needs another computer program to execute because computers can only execute their native machine instructions. All computer languages must be translated from something that tends to be easy for a human to understand into something that is executed by the computer hardware, machine instructions.
+
+
+There are two primary methods by which such translation occurs:
+
+Source code may be translated to machine instructions using the language's compiler. The resulting file is called an executable. When a compiled program is requested for execution, then the operating system loads the executable into memory and starts a process. The central processing unit will soon switch to this process so it can fetch, decode, and then execute each machine instruction.
+
+Alternatively, source code may be interpreted. When code written in an interpreted language is interpreted, its syntax is read and then executed directly, with no compilation stage. A program called an interpreter reads each program statement, following the program flow, then decides what to do, and provides the computer the machine instructions to do it.
+
+If source code from an interpreted language is requested for execution, then the operating system loads the corresponding interpreter into memory and starts a process. The interpreter then loads the source code into memory to translate and execute each statement. Running the source code is slower than running an executable. Moreover, the interpreter must be installed on the computer.
+
+
+
+
+
+
+
+
+
+
+
+
+
+Basic parts of the Computational system
 
 This is in contrast to physical computer parts called hardware,
 from which the system is built, allowing it to perform work.
 
 
-the hardware loads a computer program into memory and
-sequentially performs each instruction, called running or executing the program.
+Basic parts of Software
+
+Computer programs are one component of software,
+which also includes documentation and other intangible data components of a computer system.
+
+The history of software is closely tied to the development of digital computers in the mid-20th century. Early programs were written in the machine language specific to the hardware. The introduction of high-level programming languages in 1958 allowed for more human-readable instructions, making software development easier and more portable across different computer architectures. 
 
 
-Thusly, a computer program is a set of instructions a computer can execute.
+Software in a programming language is run through a compiler or interpreter to execute on the architecture's hardware
+
+https://en.wikipedia.org/wiki/Software
+
+
+Computer software can be put into categories based on common function, type, or field of use. There are three broad classifications:
+
+    Application software is the general designation of computer programs for performing tasks. Application software may be general-purpose (word processing, web browsers, etc.) or have a specific purpose (accounting, truck scheduling, etc.).
+
+    System software is a generic term referring to the computer programs used to start and run computer systems including diverse application software and networks.
+    
+    Computer programming tools, such as compilers and linkers, are used to translate and combine computer program source code and libraries into executables.
+
+https://en.wikipedia.org/wiki/Software_categories
+
+
+There are two main types of software:
+
+    Operating systems are "the layer of software that manages a computer's resources for its users and their applications".[9] There are three main purposes that an operating system fulfills:[10]
+        Allocating resources between different applications, deciding when they will receive central processing unit (CPU) time or space in memory.[10]
+        Providing an interface that abstracts the details of accessing hardware details (like physical memory) to make things easier for programmers.[10][11]
+        Offering common services, such as an interface for accessing network and disk devices. This enables an application to be run on different hardware without needing to be rewritten.[12]
+    Application software runs on top of the operating system and uses the computer's resources to perform a task. There are many different types of application software because the range of tasks that can be performed with modern computers is so large. Applications account for most software[15] and require the environment provided by an operating system, and often other applications, in order to function.
 
 
 
 
-
-
-Source code needs another computer program to execute because computers can only execute their native machine instructions. Therefore, source code may be translated to machine instructions using the language's compiler. (Machine language programs are translated using an assembler.) The resulting file is called an executable. Alternatively, source code may execute within the language's interpreter.[2]
-
-If the executable is requested for execution, then the operating system loads it into memory and starts a process.[3] The central processing unit will soon switch to this process so it can fetch, decode, and then execute each machine instruction.[4]
-
-If the source code is requested for execution, then the operating system loads the corresponding interpreter into memory and starts a process. The interpreter then loads the source code into memory to translate and execute each statement.[2] Running the source code is slower than running an executable. Moreover, the interpreter must be installed on the computer.
 
 
 
 While modern programming languages use characters that are common to the alphabet of human languages, these characters are translated into values that the computer can understand and execute using mathematic principles. This is because computers only understand values made of ones and zeros, called binary. The collection of binary values understood by a given computer is known as its machine language.
 
-All computer languages are translated from something that tends
-to be easy for a human to understand (source code) into something
-that is executed on a computer (machine instructions).
 
 
 https://en.wikipedia.org/wiki/Computer_program
 https://en.wikipedia.org/wiki/Software
 https://en.wikipedia.org/wiki/Computer_hardware
+
+
+
+Traditionally, the first program people write in a new language is called "Hello World", because all it does is simply display the words Hello World, while revealing basic information about the language in the process.
+
+y
 
 ### Why Binary
 The computer only works with numbers in the binary form, that is why we often hear that a computer only understands zeros and ones.

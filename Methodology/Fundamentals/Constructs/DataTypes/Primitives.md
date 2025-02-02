@@ -1,3 +1,5 @@
+Primitive data types are basic types implemented directly by the language that represent the basic storage units supported natively by most systems.
+
 In computer science, a primitive is a fundamental data type that cannot be broken down into a more simple data type. Types define the description of data and the processes or transformations available to be applied to them.
 
 Programs manipulate expressions that have values, these values can be expressed by primitive types.
