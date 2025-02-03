@@ -1,6 +1,6 @@
 The interface between containers and algorithms is the iterator.
 
-The simplest example of an iterator is a pointer. Given a pointer to the first element in an
+In C++, the simplest example of an iterator is a pointer. Given a pointer to the first element in an
 array, you can increment it and point to the next element or, in many cases, manipulate
 the element at that location.
 Iterators in STL are template classes that in some ways are a generalization of pointers.
