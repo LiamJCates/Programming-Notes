@@ -40,21 +40,24 @@ public:
         vector<int> ans;
         // A mapping from container value to index
         map<int, int> d;
-        // For each container element
+        // For each container index
         for (int i = 0; i < nums.size(); i++) {
-            // determine the number needed to sum to the target
+            // subtract that index value from the desired target
             int t = target - nums[i];
-            // check for that element value existence in the map
+            // check for that value's existence in the map
             if (d.find(t) != d.end()) {
-                // If it exists add that elements index, as it was iterated through previously
+                // If it exists add that element's index, 
+                //    as it was iterated through previously
                 ans.push_back(d[t]);
+                // and the current index
                 ans.push_back(i);
+                // break from the loop as we have found our desired answer
                 break;
             }
             // add the current element value and index to the map
-            d[nums[i]] = i;
+            else d[nums[i]] = i;
         }
-        //return ans as it is a constraint that there is an answer
+        //return ans as it is a problem constraint that there is an answer
         return ans;
     }
 };

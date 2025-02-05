@@ -8,7 +8,25 @@ where
 	n0 = 0
 
 
-It is trivial to write a recursive solution directly derived from the mathematical formulation. Here we provide an implementation where Fibonacci is computed at compile time leveraging the power of templates.
+It is trivial to write a recursive solution directly derived from the mathematical formulation. 
+
+
+iterative algorithm
+
+unsigned long long fibonacci(unsigned int n)
+{
+    unsigned long long a = 0, b = 1;
+    for(; n > 0; --n)
+    {
+        b += a;
+        a = b-a;
+    }
+    return a;
+}
+
+
+
+Here we provide an implementation where Fibonacci is computed at compile time leveraging the power of templates.
 
 ```cpp
 #include <iostream>
@@ -144,3 +162,95 @@ In this case, our most costly operation is assignment. Firstly, our assignments 
 Therefore, our iterative algorithm has a time complexity of O(n) + O(1) + O(1) = O(n).
 
 This is a marked improvement from our recursive algorithm!
+
+
+
+
+
+
+
+
+
+
+
+
+To accurately calculate Fibonacci numbers using Binet's formula, you need an accurate interpretation of √5. Since √5 is irrational, it cannot be accurately represented using double or float, hence Binet's formula doesn't work with these types (however, the rounding in the computation leads to exact results for some small inputs). Since the Fibonacci numbers are integers, you can get exact results from Binet's formula using double or float for more arguments by rounding afterwards,
+
+double binet(unsigned int n)
+{
+    static const double phi = (1 + sqrt(5))*0.5;
+    double fib = (pow(phi,n) - pow(1-phi,n))/sqrt(5);
+    return round(fib);
+}
+
+That will return the correct result for almost all n small enough that the result can be exactly represented as a double. These aren't many, however. A double typically has only 53 bits of precision, so only Fibonacci numbers smaller than 2^53 can be exactly represented as a double (plus a few larger ones divisible by sufficiently high powers of 2). The last Fibonacci number smaller than 2^53 is F(77), but F(78) is divisible by 8, so also exactly representable as a double with 53 bits of precision. However, the above produces correct results only for n <= 70 here, from 71 on, the rounding error is too large (incidentally, the result of Binet's formula using doubles is always too large here, so using floor instead of round would produce the correct result also for F(71), but no further).
+
+With the standard datatypes, not many Fibonacci numbers are exactly representable, the last to fit in an (unsigned) 64 bit type is F(93); for 128 bits, the last is F(186). 
+
+For so small indices, there is practically nothing to be gained over the straightforward iterative algorithm
+
+
+
+unless you use a lookup table
+
+static const unsigned long long fibs[94] = { 0, 1, 1, 2, ... , 12200160415121876738ull };
+
+
+// Fibonacci number calculation using recursion
+long long recursive_fib(int n)
+{
+    if (n <= 1)
+    {
+        return n;
+    }
+    else
+    {
+        return recursive_fib(n - 1) + recursive_fib(n - 2);
+    }
+}
+
+
+
+
+
+For accurate results, one must treat √5 (and/or φ) as a symbolic constant and evaluate the formula using that. This amounts to evaluating the formula in the ring
+
+ℤ[φ] = { a + b*φ : a, b ∈ ℤ }
+
+of algebraic integers in ℚ(√5), using the fact that φ² = 1 + φ. Equivalent to Binet's formula is
+
+φ^n = F(n-1) + φ*F(n)
+
+which can be used to efficiently calculate Fibonacci numbers by repeated squaring in O(log n) steps (but note that F(n) has Θ(n) bits, so the number of bit operations can't be lower than O(n)). A slightly more efficient version than the vanilla repeated squaring uses
+
+φ^(2n) = (φ^n)² = (F(n-1) + φ*F(n))² = F(n-1)² + φ*2*F(n-1)*F(n) + φ²*F(n)²
+       = (F(n-1)² + F(n)²) + φ*(2*F(n-1)*F(n) + F(n)²)
+
+finding F(2n) = 2*F(n)*F(n-1) + F(n)² = 2*F(n)*F(n+1) - F(n)² = F(n)*(F(n+1) + F(n-1)) and F(2n+1) = F(n)² + F(n+1)², using φ² = 1 + φ. These formulae allow calculating F(2n), F(2n+1) and F(2n+2) from F(n) and F(n+1) with at most two multiplications and two additions/subtractions per number, which gives an algorithm to calculate the pair (F(n),F(n+1)) in O(log n) steps with only two numbers as state (vanilla repeated squaring uses four numbers as state and needs a few more multiplications).
+
+An iterative left-to-right algorithm is
+
+unsigned long long fib(unsigned int n){
+    if (n == 0) return 0;
+    unsigned int h = n/2, mask = 1;
+    // find highest set bit in n, can be done better
+    while(mask <= h) mask <<= 1;
+    mask >>= 1;
+    unsigned long long a = 1, b = 1, c; // a = F(k), b = F(k+1), k = 1 initially
+    while(mask)
+    {
+        c = a*a+b*b;        // F(2k+1)
+        if (n&mask)
+        {
+            b = b*(b+2*a);  // F(2k+2)
+            a = c;          // F(2k+1)
+        } else {
+            a = a*(2*b-a);  // F(2k)
+            b = c;          // F(2k+1)
+        }
+        mask >>= 1;
+    }
+    return a;
+}
+
+With an arbitrary precision type instead of unsigned long long, that allows the fast calculation of large Fibonacci numbers. But of course arbitrary precision libraries often come with their own optimized Fibonacci functions, so it's kind of moot to implement it yourself.
