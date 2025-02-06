@@ -37,3 +37,24 @@ Unguided Mediums
 The choice of transmission medium impacts the speed, reliability, and range of data communication.
 
 https://en.wikipedia.org/wiki/Transmission_medium
+
+
+
+
+
+
+Fiber Optic cables provide high bandwidth and speed necessary for undersea computer cables.
+carry data at the speed of light ~300,000 km/s
+7.5 times around the earth a second at and average circumference of 40,075 km
+
+
+
+How does wireless internet work?
+
+In its early years, internet access was carried over physical cables. But more recently, wireless internet access has become increasingly common.
+
+There are two basic types of wireless internet access: wifi and cellular. Wifi networks are relatively simple. Anyone can purchase wifi networking equipment in order to provide internet access in a home or business. Wifi networks use unlicensed spectrum: electromagnetic frequencies that are available for anyone to use without charge. To prevent neighbors’ networks from interfering with each other, there are strict limits on the power (and therefore the range) of wifi networks.
+
+Cellular networks are more centralized. They work by breaking up the service territory into cells. In the densest areas, cells can be as small as a single city block; in rural areas a cell can be miles across. Each cell has a tower at its center providing services to devices there. When a device moves from one cell to another, the network automatically hands off the device from one tower to another, allowing the user to continue communicating without interruption.
+
+Cells are too large to use the unlicensed, low-power spectrum used by wifi networks. Instead, cellular networks use spectrum licensed for their exclusive use. Because this spectrum is scarce, it is usually awarded by auction. Wireless auctions have generated tens of billions of dollars in revenue for the US treasury since the first one was held in 1994.
