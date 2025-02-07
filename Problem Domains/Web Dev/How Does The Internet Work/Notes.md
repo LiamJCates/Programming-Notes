@@ -14,6 +14,8 @@ Though the various technologies that support the Internet have evolved over time
     Switch: A device that directs data between physically connected devices on the same network
     Access Point: A device that directs data between wirelessly connected devices on the same network
     Router: A device that directs data between different networks.
+    Modem: connects local networks to the internet by translating digital signals into analog signals to be transmitted to an ISP
+    ISP: a company that provides internet access to consumers and businesses
     Host: A computing device connected to, or "on", a network.
     Topology: physical and logical arrangement of network connections on a network
     Server: A Host that provides information or services on a network
@@ -30,10 +32,11 @@ At its most basic, the Internet is the largest computer network ever.
 A computer network is a system that links two or more computing devices.
 Networks enable information transfer or communication through the transmission of data between devices.
 
-Transmission media refer to the pathways through which data is shared from one device to another, within a network. 
-All transmission media harnesses some form of signal propagation.
+#### Transmission Media
 
+Transmission media refer to the pathways through which data is shared from one device to another, within a network. 
 Transmission media are either physical or wireless.
+All transmission media harnesses some form of signal propagation.
 Physical transmission media generally propagate signal energy over some type of cable.
 Wireless transmission media generally consists of a transmitter sending and receiver responding to an electromagnetic wave.
 
@@ -43,8 +46,8 @@ When two computers communicate, at minimum, they must be linked via some transmi
 
 [Website Development\WebBasics\internet-schema-1.png]
 
-Such a basic network is not limited to two computers. You can connect as many computers as you wish. 
-However things get complicated quickly.
+Such a basic network is not limited to two computers. 
+You can connect as many computers as you wish, however things get complicated quickly.
 To connect ten computers, you need 45 cables, with nine plugs per computer!
 
 [Website Development\WebBasics\internet-schema-2.png]
@@ -67,14 +70,14 @@ As technology has evolved and wireless connection became possible, another piece
 Computers are connected physically to a switch via copper cables.
 Computers are connected wirelessly to an access point via radio waves.
 
-However, anywhere two or more network intersect there's a router.
+However, anywhere two or more networks intersect there's a router.
 Every time you visit a website upwards of ten to fifteen routers may help data find its way to and from your computer.
 
 [Website Development\WebBasics\internet-schema-4.png]
 
-Such a network comes very close to what we call the Internet, but we're missing something. There are other networks out there: your friends, your neighbors, anyone can have their own network of computers. But it's not really possible to set cables up between your house and the rest of the world, so how can you handle this? Well, there are already cables linked to your house. Hardware is again borrowed from the telephone industry, telecom infrastructure already connects your house with anyone in the world. To connect our network to the telephone infrastructure, we need a special piece of equipment called a modem. This modem turns the information from our network into information manageable by the telephone infrastructure and vice versa.
+Such a network comes very close to what we call the Internet, but we're missing something. It's not really possible to set cables up between your house and the rest of the world, so how can you handle this? Hardware is again borrowed from the telephone industry, telecom infrastructure already connects your house with anyone in the world. To connect our network to the telephone infrastructure, we need a special piece of equipment called a modem. This modem turns the information from our network into information manageable by the telephone infrastructure and vice versa.
 
-!(Website Development\WebBasics\internet-schema-5.png)
+![](Website Development\WebBasics\internet-schema-5.png)
 
 So we are connected to the telephone infrastructure. The next step is to send the messages from our network to the network we want to reach. To do that, we will connect our network to an Internet Service Provider (ISP). An ISP is a company that manages some special routers that are all linked together and can also access other ISPs' routers. So the message from our network is carried through the network of ISP networks to the destination network. The Internet consists of this whole infrastructure of networks.
 
@@ -160,15 +163,13 @@ The shared technical standards that make the internet work are managed by an org
 
 ### What are Protocols
 
-Connecting two computers, both of which may use different hardware and run different software, is one of the main challenges that the creators of the Internet had to solve. It requires the use of communications techniques that are understandable by all connected computers, just as two people who grew up in different parts of the world may need to speak a common language to understand each other.
+Connecting two computers, both of which may use different hardware and run different software, is one of the main challenges that the creators of the Internet had to solve. It requires the use of communications techniques that are understandable by all connected computers, just as two people, who may have little in common otherwise, can speak a common language to understand each other.
 
-This problem is solved with standardized protocols. 
-
-A protocol is a well-known set of rules and standards that, if all parties agree to use it, will allow them to communicate without trouble. 
-
-One of the key benefits of using standardized protocols is that they allow devices and systems from different manufacturers and vendors to communicate with each other seamlessly, as long as all parties adhere to a standardized protocol.
+This problem is solved with protocols. 
 
 In networking, a protocol is a standardized way of formatting and transmitting data so that any connected devices are able to communicate with and understand each other.
+
+One of the key benefits of using standardized protocols is that they allow devices and systems from different manufacturers and vendors to communicate with each other seamlessly.
 
 To ensure that data is sent and received correctly, the internet uses a variety of protocols.
 Because all Internet-connected computers and other devices can interpret and understand these protocols, the Internet works no matter who or what connects to it.
@@ -181,22 +182,24 @@ How an individual segment of the internet is physically structured is less impor
 
 ###  Internet Protocol (IP)
 
-### Packets
+To communicate between devices on a network, we specify what to transfer between them and which computers to transfer between.
 
-To communicate between devices on a network, we specify which devices and what to transfer between them.
+#### Packets
 
 A network packet is the unit of data carried by a packet-switched network.
 
 Instead of transferring files as single, uninterrupted data blocks, sending it in smaller packets enables computers to share connections.
 
-Each packet is treated as an independent entity, and packets from simultaneous connections are interspersed, to support concurrent connections.
+Each packet is treated as an independent entity, unaffected by the other packets it is transmitted alongside.
 
-If there is a problem with the transmission of one or more packets, only those packets are requested to be retransmitted, rather than the entirety of a larger file.
+Packets from simultaneous connections are interspersed, to support concurrent connections.
+
+If there is a problem with the transmission of one or more packets, only those packets are retransmitted, rather than the entirety of a larger file.
 
 #### Packet Structure
 
 A packet has two parts, header and payload.
-The Packet header contains information, known as metadata, that helps the packet get to its destination.
+The packet header contains information, known as metadata, that helps the packet get to its destination.
 The payload is the actual data being transmitted. 
 The payload is encapsulated within the packet and follows the header.
 This can be any type of data, such as part of an email, a web page, a video stream, or any other type of digital information. 
@@ -219,11 +222,11 @@ Each packet keeps track of it's source IP and destination IP in their header.
 
 ### Dynamic Host Configuration Protocol (DHCP)
 
-If you are connected to the Internet, your computer has a unique IP address.
+If connected to the Internet, a host has a unique IP address.
 
 If you connect to the Internet through an Internet Service Provider (ISP), you are usually assigned a temporary IP address for the duration of your session. 
 
-dynamic IPs are obtained from a DHCP (Dynamic Host Configuration Protocol) server.
+Dynamic IPs are obtained from a DHCP (Dynamic Host Configuration Protocol) server.
 
 DHCP is a network management protocol used to automate the process of configuring devices on IP networks. 
 
@@ -247,14 +250,9 @@ ARP helps ensure that data is routed to the correct device on a network.
 Without ARP, devices on the same network would not be able to communicate with each other.
 
 
-
-
-
-
-
 ### DNS 
 
-We usually use a name to reach a website. 
+To reach a website, we usually remember its name. 
 
 While each server has a unique IP address, since 72.14.205.100 doesn't roll off the tongue, we give them Domain Names like google.com.
 That is, we alias an IP address with a human readable domain name.
@@ -286,19 +284,19 @@ like a phonebook associates names to phone numbers.
 
  Ports: Ports are used to identify the application or service running on a device. 
  Sockets: A socket is a combination of an IP address and a port number, representing a specific endpoint for communication. Sockets are used to establish connections between devices and transfer data between applications.
- Connections: A connection is established between two sockets when two devices want to communicate with each other. During the connection establishment process, the devices negotiate various parameters such as the maximum segment size and window size, which determine how data will be transmitted over the connection.
+ Connections: A connection is established between two sockets when two devices want to communicate with each other. 
 
 
 #### What is TCP 
 
-TCP/IP (Transmission Control Protocol/Internet Protocol) is the underlying communication protocol used by most internet-based applications and services. It provides a reliable, ordered, and error-checked delivery of data between applications running on different devices.
+TCP/IP (Transmission Control Protocol/Internet Protocol) is the underlying communication protocol used by most internet-based applications and services. TCP provides a reliable, ordered, and error-checked delivery of data between applications running on different devices.
 
 IP is the primary way in which network connections are made, and it establishes the basis of the Internet. IP does not handle packet ordering or error checking. Such functionality requires another protocol, often the Transmission Control Protocol (TCP).
 
 IP is a connectionless protocol, which means that each unit of data is individually addressed and routed from the source device to the target device, and the target does not send an acknowledgement back to the source. 
 
 That's where the TCP protocol comes in. 
-TCP is used in conjunction with IP in order to maintain a connection between the sender and the target and to ensure packet order.
+TCP is used in conjunction with IP in order to maintain a connection between the sender and the target and to ensure packet order and integrity.
 
 TCP is a connection-oriented protocol that establishes a connection between two hosts before transmitting any data. All data sent over a TCP connection is checked for accuracy and retransmitted until the data is received correctly. This reliability makes TCP well-suited for applications that require a high degree of error-checking and for large data transfers. 
 
@@ -421,9 +419,58 @@ There are some other protocols also notable, and there are,
 
 
 
+### Internet Control Message Protocol (ICMP)
 
-UDP 
+#### Overview
+- **Description**: ICMP is a network layer protocol used for error reporting and diagnostic functions in IP networks. It is an integral part of the Internet Protocol suite and is primarily used by network devices, like routers, to send error messages and operational information.
+- **Function**: ICMP helps manage and control the flow of data in a network by providing feedback about issues in the communication environment. It is used for network diagnostics and troubleshooting.
 
+#### Key Components of ICMP
+
+1. **ICMP Messages**
+   - **Description**: ICMP messages are encapsulated within IP packets and consist of various types and codes that indicate the nature of the message.
+   - **Types and Codes**: Each ICMP message has a type and code that specify the purpose of the message. Some common types and codes include:
+     - **Type 0**: Echo Reply (used in ping responses)
+     - **Type 3**: Destination Unreachable (various codes indicate specific reasons, such as network unreachable, host unreachable, etc.)
+     - **Type 4**: Source Quench (request to reduce sending rate)
+     - **Type 5**: Redirect (used to inform a host of a better route)
+     - **Type 8**: Echo Request (used in ping requests)
+     - **Type 11**: Time Exceeded (indicates that the TTL of a packet has expired)
+
+2. **ICMP Header**
+   - **Description**: The ICMP header contains information about the ICMP message, including the type, code, checksum, and other fields specific to the message type.
+   - **Fields**:
+     - **Type**: Indicates the type of ICMP message.
+     - **Code**: Provides additional information about the type.
+     - **Checksum**: Used for error-checking the ICMP header and data.
+     - **Rest of Header**: Varies based on the type and code of the message. It may include fields like identifier, sequence number, and data.
+
+3. **Common ICMP Messages**
+   - **Echo Request and Echo Reply**:
+     - **Description**: Used by the `ping` utility to test connectivity between devices.
+     - **Function**: The Echo Request message is sent to a target device, which responds with an Echo Reply message if it is reachable.
+   - **Destination Unreachable**:
+     - **Description**: Indicates that a packet could not reach its destination.
+     - **Function**: Various codes specify the reason, such as network unreachable, host unreachable, protocol unreachable, or port unreachable.
+   - **Time Exceeded**:
+     - **Description**: Indicates that the Time to Live (TTL) of a packet has expired.
+     - **Function**: Commonly used by the `traceroute` utility to identify the path packets take to reach a destination.
+   - **Redirect**:
+     - **Description**: Informs a host of a better route to a destination.
+     - **Function**: Helps optimize routing by directing traffic through a more efficient path.
+
+#### Use Cases
+- **Network Diagnostics**: ICMP is widely used for network diagnostics and troubleshooting tools like `ping` and `traceroute`.
+- **Error Reporting**: ICMP messages provide feedback about issues in the network, such as unreachable destinations or expired TTLs.
+- **Routing Optimization**: ICMP Redirect messages help optimize routing by informing hosts of better routes.
+
+#### Security Considerations
+- **ICMP Flooding**: Attackers can use ICMP to flood a target with Echo Request messages, overwhelming the target and causing a denial of service (DoS).
+- **ICMP Redirect Attacks**: Malicious actors can use ICMP Redirect messages to alter routing tables and redirect traffic through a compromised device.
+- **Mitigation**: Network administrators can implement rate limiting, filtering, and monitoring to mitigate ICMP-based attacks.
+
+### Summary
+ICMP is a crucial protocol for managing and diagnosing network issues. It provides feedback about the status of the network and helps ensure efficient data flow. Understanding ICMP and its various message types is essential for network administrators and engineers to maintain and troubleshoot IP networks effectively.
 
 
 
@@ -712,7 +759,47 @@ Network Interface Layer (Link Layer)
 The TCP/IP model is a more simplified and practical framework compared to the OSI model, and it is the foundation of the modern Internet.
 
 
+### Internet Protocol Suite
 
+The Internet Protocol Suite, commonly known as TCP/IP, is a set of communication protocols used for the Internet and similar networks. It is organized into four abstraction layers, each with specific functions and protocols. Here is a detailed explanation of all parts of the Internet Protocol Suite:
+
+#### 1. Application Layer
+- **Description**: This layer provides network services directly to applications. It is the closest layer to the end user and facilitates communication between software applications and lower layers.
+- **Function**: It handles high-level protocols, data representation, encoding, and dialog control.
+- **Protocols**:
+  - **HTTP (Hypertext Transfer Protocol)**: Used for transferring web pages.
+  - **HTTPS (HTTP Secure)**: An encrypted version of HTTP for secure communication.
+  - **FTP (File Transfer Protocol)**: Used for transferring files.
+  - **SMTP (Simple Mail Transfer Protocol)**: Used for sending emails.
+  - **DNS (Domain Name System)**: Translates domain names into IP addresses.
+  - **Telnet**: Provides remote login capabilities.
+  - **SSH (Secure Shell)**: Provides secure remote login and other secure network services.
+
+#### 2. Transport Layer
+- **Description**: This layer provides end-to-end communication services for applications. It ensures complete data transfer and error recovery.
+- **Function**: It handles data segmentation, flow control, error detection and correction, and retransmission of lost data.
+- **Protocols**:
+  - **TCP (Transmission Control Protocol)**: Provides reliable, ordered, and error-checked delivery of data.
+  - **UDP (User Datagram Protocol)**: Provides a connectionless, lightweight protocol for fast, efficient transmission of data without guaranteed delivery.
+
+#### 3. Internet Layer
+- **Description**: This layer is responsible for logical addressing and routing of data packets across the network. It ensures that data packets are sent from the source to the destination across multiple networks.
+- **Function**: It handles packet forwarding, addressing, and routing.
+- **Protocols**:
+  - **IP (Internet Protocol)**: Provides logical addressing and routing of packets.
+  - **ICMP (Internet Control Message Protocol)**: Used for error reporting and diagnostic functions.
+  - **IGMP (Internet Group Management Protocol)**: Manages multicast group memberships.
+
+#### 4. Network Interface Layer (Link Layer)
+- **Description**: This layer is responsible for the physical transmission of data over a network. It includes the hardware and software technologies that connect devices to the network.
+- **Function**: It handles physical addressing, data framing, and error detection.
+- **Protocols**:
+  - **Ethernet**: A widely used LAN technology.
+  - **Wi-Fi**: A wireless LAN technology.
+  - **ARP (Address Resolution Protocol)**: Maps IP addresses to MAC addresses.
+
+### Summary
+The Internet Protocol Suite, or TCP/IP, is a comprehensive set of protocols that enable communication over the Internet and similar networks. It is organized into four layers, each with specific functions and protocols that work together to ensure reliable and efficient data transmission. Understanding these layers and their associated protocols is essential for network administrators, engineers, and anyone involved in network communication.
 
 
 

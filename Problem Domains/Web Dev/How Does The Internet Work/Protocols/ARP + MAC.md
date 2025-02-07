@@ -2,9 +2,10 @@
 
 
 Address Resolution Protocol (ARP) is a network communication protocol that matches IP addresses to MAC addresses. This allows devices on the same network to communicate with each other. 
+
 How does ARP work?
 
-    When a device connects to the internet, it's assigned an IP address. 
+When a device connects to the internet, it's assigned an IP address. 
 
 ARP translates the IP address into a MAC address, which is the physical address of the device's networking card. 
 This translation is necessary because IP addresses change frequently, while MAC addresses are permanent. 
@@ -59,9 +60,9 @@ ARP is a crucial protocol for enabling communication within a local network by m
 
 ### MAC Address
 
-#### Overview
-- **Description**: A MAC (Media Access Control) address is a unique identifier assigned to a network interface card (NIC) or network adapter. It is used for communication within a local network segment.
-- **Function**: MAC addresses are used to identify devices on a local area network (LAN) and facilitate communication between them.
+A MAC (Media Access Control) address is a unique identifier assigned to a network interface card (NIC) or network adapter. It is used for communication.
+
+MAC addresses are used to identify devices on a local area network (LAN) and facilitate communication within a local network segment.
 
 #### Structure
 - **Format**: A MAC address is a 48-bit number, typically represented as six pairs of hexadecimal digits separated by colons or hyphens (e.g., `00:1A:2B:3C:4D:5E` or `00-1A-2B-3C-4D-5E`).
