@@ -3,22 +3,30 @@ Let's start by writing some code. Let's say we have this code in a file called c
 function add(a, b)
   return a + b
 
-Save this file in an empty folder. We can now use the GIT software to create a repository. This means that we can start to version control the files within this folder. From the command line, we can do this by writing the following code:
+Save this file in an empty folder and cd into the folder. 
+We can now use the GIT software to create a repository. This means that we can start to version control the files within this folder. 
+
+From the command line, we can do this by writing the following code:
 
   git init
 
-At this point, nothing is version controlled yet. We will need to tell GIT what files we want to add to version control. We can do that with the following command:
+At this point, nothing is version controlled yet. We will need to tell GIT what files we want to add to version control. 
+
+We can do that with the following command:
 
   git add calc.code
 
-Our file is now staged. This means that its changes will be tracked, but we will need to do one more thing to record the changes that have been made to our file. What we'll do is called a commit. A commit will record our changes and store them in our repository. Let's do that with the following command:
+Our file is now staged. This means that its changes will be tracked, but we will need to do one more thing to record the changes that have been made to our file. What we'll do is called a commit. A commit will record our changes and store them in our repository. 
+
+Let's do that with the following command:
 
   git commit -m "Initial Commit"
 
--m tells git that we will provide a commit message, and the message is what comes within the quotes. The messages will help us see what is changed in a commit, so we should take some time to come up with descriptive messages.
-The changes we have made are now stored on what is called the master branch.
+-m tells git that we will provide a commit message, and the message is what comes within the quotes. The messages will help us see what is changed in a commit, so we should take some time to come up with descriptive messages. The changes we have made are now stored on what is called the master branch.
 
-We would now like to continue to work on our program and add more code to this file. To make life a little bit safer, we can create a new branch and make our changes in this branch. We will soon see why this might be a good idea. To create a new branch called subtract, we can use the following command:
+We would now like to continue to work on our program and add more code to this file. To make life a little bit safer, we can create a new branch and make our changes in this branch. We will soon see why this might be a good idea. 
+
+To create a new branch called subtract, we can use the following command:
 
   git branch subtract
 
@@ -50,18 +58,18 @@ If we open our file now, we will see the following content:
 function add(a, b)
   return a + b
 
-The changes we made are not here. This is because these changes are not in the master branch. Keeping the file open in our editor, we can now switch back to the subtract branch by using the following command:
+The changes we made are not here. This is because these changes are not in the master branch. 
+
+Keeping the file open in our editor, we can now switch back to the subtract branch by using the following command:
 
   git checkout subtract
 
 Like magic, the changes we made to the file are back, and the subtract function is as we left it:
 
-```
 function add(a, b)
 return a + b
 function subtract(a, b)
 return a - b
-```
 
 This illustrates that if we, for some reason, decide that the changes we made were no good, we can always go back to our master branch, and everything will be like it was before we started. However, if we, on the other hand, are happy with the changes, we can now bring the two branches together. In GIT, this is called a merge. The first thing we should do before merging the two branches is make sure that the branch we want to merge is active.
 
@@ -148,7 +156,7 @@ Let's go back to Bob, who has finished his function. He commits his changes to h
 
 2. This time, things will not go so well. He gets a message that there has been a merge conflict. What's that? He opens the code file, and he now sees this:
 
-```
+```txt
 function add(a, b)
 return a + b
 function subtract(a, b)
