@@ -96,3 +96,25 @@ Python IDE
 https://www.jetbrains.com/pycharm/data-science/
 
 https://www.jetbrains.com/help/pycharm/quick-start-guide.html
+
+
+
+Executable Python programs
+
+Using a Source File
+
+#!/usr/bin/python
+# Filename : helloworld.py
+print 'Hello World'
+
+
+We give executable permission using the chmod command then run the source program.
+
+$ chmod a+x helloworld.py
+$ ./helloworld.py
+Hello World
+
+
+The chmod command is used here to change the mode of the file by giving execute permission to all
+users of the system. Then, we execute the program directly by specifying the location of the source file.
+We use the ./ to indicate that the program is located in the current directory.

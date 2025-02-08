@@ -4,6 +4,8 @@ The Internet is a global network of computers which communicate through a standa
 
 Though the various technologies that support the Internet have evolved over time, the way it works hasn't changed much: Internet is a way to connect computers and ensure that, whatever happens, they find a way to stay connected.
 
+The internet isn't owned by a single entity or organization, but is a network of networks that exchange traffic with each other based on voluntary interconnection agreements.
+
 ## Intro to Internet Infrastructure
 
 ### Keyterms
@@ -11,11 +13,13 @@ Though the various technologies that support the Internet have evolved over time
     Internet: the technical infrastructure composing the largest computer network in the world
     Network: a group of devices that are connected and share data
     Transmission media: a communication channel, wired or wireless, that carries data across a network
-    Switch: A device that directs data between physically connected devices on the same network
-    Access Point: A device that directs data between wirelessly connected devices on the same network
+    Local Area Network (LAN): a network composed of devices that are physically close together within a limited geographic area
+    Switch: A device that directs data between physically connected devices on a local area network
+    Access Point: A device that directs data between wirelessly connected devices on a local area network
     Router: A device that directs data between different networks.
-    Modem: connects local networks to the internet by translating digital signals into analog signals to be transmitted to an ISP
-    ISP: a company that provides internet access to consumers and businesses
+    Modem: A device that connects local networks to the internet by translating digital signals into analog signals 
+    ISP: a company that manages telecom infrastructure to provide internet access to consumers and businesses
+    Wide Area Network (WAN) span a large geographical area, connecting devices at different locations 
     Host: A computing device connected to, or "on", a network.
     Topology: physical and logical arrangement of network connections on a network
     Server: A Host that provides information or services on a network
@@ -37,8 +41,12 @@ Networks enable information transfer or communication through the transmission o
 Transmission media refer to the pathways through which data is shared from one device to another, within a network. 
 Transmission media are either physical or wireless.
 All transmission media harnesses some form of signal propagation.
-Physical transmission media generally propagate signal energy over some type of cable.
-Wireless transmission media generally consists of a transmitter sending and receiver responding to an electromagnetic wave.
+
+Physical transmission media generally propagate signal energy over some type of cable, or wire.
+An example of physical transmission media are ethernet cables used to connect PCs to other devices.
+
+Wireless transmission media generally propagate signal energy using a transmitter broadcasting and receiver detecting electromagnetic waves.
+An example of Wireless transmission media are the wifi signals used to connect mobile devices.
 
 ### How The Internet Is Organized
 
@@ -62,15 +70,15 @@ A single router cannot scale to connect billions of computers.
 But a router is a computer like any other, so we can connect routers together.
 By connecting computers to routers, then routers to routers, we are able to scale.
 
-Borrowing hardware from the telephone industry, connections within the same geographical location are often managed by switches.
+Borrowing hardware from the telephone industry, connections within the same geographical location, like a home or office building, are often managed by switches.
 Person computers may be connected directly to a router or may be connected to a network switch that is then connected to a router.
 A network switch connects devices within a local area and forwards data to and from those devices and the router.
 
 As technology has evolved and wireless connection became possible, another piece of hardware, the access point was developed.
-Computers are connected physically to a switch via copper cables.
+Computers are connected physically to a switch via some type of physical wire.
 Computers are connected wirelessly to an access point via radio waves.
 
-However, anywhere two or more networks intersect there's a router.
+The router is required to connect smaller networks utilizing switches to the internet, and anywhere two or more networks intersect there's a router.
 Every time you visit a website upwards of ten to fifteen routers may help data find its way to and from your computer.
 
 [Website Development\WebBasics\internet-schema-4.png]
@@ -87,45 +95,35 @@ The Internet is a vast, sprawling network of networks, an incredibly large numbe
 In fact, the word "Internet" could be said to come from this concept: interconnected networks.
 
 
-### Hosts
-
-A network host, or simply a host, is a device connected to a computer network, assigned at least one network address.
-A computer participating in networks that use the Internet Protocol suite may be referred to as an IP host. 
-Specifically, computers participating in the Internet are called Internet hosts.
-
-Network hosts can be further divided into specialized categories based on their role on the network
-
-#### Server 
-
-A server is a computer connected directly to the Internet
-Servers provide data, services, or applications to other hosts on the network. 
-For example, web pages are files on server hard drives.
-This data can be sent out to whichever hosts the server happens to be serving.
-
-#### Client
-
-A client is a host indirectly connected to the internet via an ISP.
-A client is responsible for interacting with end users. 
-
-Once a connection is established, data can be transferred between the applications running on each device.
-Clients send requests to a server, which processes these requests, performs necessary tasks to generate a response, and returns the response to the client. The client receives the server's response, displays the results to the user, and awaits the users next request.
-
-
 ### Where is the internet?
 
 The internet has three basic parts:
 
-#### The last mile
-the part of the internet that connects homes and small businesses to the internet. Currently, about 60 percent of residential internet connections in the United States are provided by cable TV companies such as Comcast and Time Warner. Of the remaining 40 percent, a growing fraction use new fiber optic cables, most of which are part of Verizon's FiOS program or AT&T's U-Verse. Finally, a significant but shrinking number use outdated DSL service provided over telephone cables.
+#### The last mile, the LANs
+
+the part of the internet that connects homes and businesses to the internet. Currently, about 60 percent of residential internet connections in the United States are provided by cable TV companies such as Comcast and Time Warner. Of the remaining 40 percent, a growing fraction use new fiber optic cables, most of which are part of Verizon's FiOS program or AT&T's U-Verse. Finally, a significant but shrinking number use outdated DSL service provided over telephone cables.
 The last mile also includes the towers that allow people to access the internet with their cell phones. Wireless internet service accounts for a large and growing share of all internet usage.
+The last mile is primarily composed of Local Area Networks (LAN) 
+A LAN is composed of devices that are physically close together within a limited geographic area.
+LANs are small networks, those found in homes or office buildings, that compose the edges of the broader internet.
+LANs utilize switches to connect constituent devices, and typically require a single router to connect those devices to the broader Internet.
 
 #### Data centers
+
 rooms full of servers that store user data and host online apps and content. Some are owned by large companies such as Google and Facebook. Others are commercial facilities that provide service to many smaller websites. Data centers have very fast internet connections, allowing them to serve many users simultaneously. Data centers can be located anywhere in the world, but they are often located in remote areas where land and electricity are cheap. For example, Google, Facebook, and Microsoft have all constructed vast data centers in Iowa.
 
-#### The backbone 
-consists of long-distance networks — mostly on fiber optic cables — that carry data between data centers and consumers. The backbone market is highly competitive. Backbone providers frequently connect their networks together at Internet Exchange Points, usually located in major cities. Establishing a presence at IEPs makes it much easier for backbone providers to improve their connections to others.
+#### The backbone and WANs
 
+The Internet backbone consists of high-capacity, long-distance networks that utilized large fiber-optic cables that carry data between major data centers, ISPs, and other network hubs. It forms the core infrastructure of the Internet, and facilitates communication between data centers and consumers, enabling global data transmission.
 
+The backbone market is highly competitive. Backbone providers frequently connect their networks together at Internet Exchange Points (IXPs), usually located in major cities. Establishing a presence at IEPs makes it much easier for backbone providers to improve their connections to others.
+
+Wide Area Network (WAN) span a large geographical area, connecting devices at different locations like multiple office branches of a company across cities or countries, allowing them to communicate with each other over the internet.
+
+A WAN will encompass multiple LANs and thus include multiple routers and switches.
+A WAN will typically utilize the services of an ISP to connect geographically separate locations.
+While WANs cover large geographical areas, and may utilize the internet backbone to connect it's various segments, WANs are owned and managed by specific organizations or entities while the internet backbone is owned and managed by major telecommunications companies, ISPs, and backbone providers.
+ 
 ### Who runs the internet?
 
 No one runs the internet. It's organized as a decentralized network of networks. Thousands of companies, universities, governments, and other entities operate their own networks and exchange traffic with each other based on voluntary interconnection agreements.
@@ -145,6 +143,9 @@ The shared technical standards that make the internet work are managed by an org
 
 
 
+
+
+
 ## Intro to Network Protocols
 
 ### Keyterms
@@ -155,7 +156,7 @@ The shared technical standards that make the internet work are managed by an org
   IP Address: A unique identifier assigned to each device on a network.
   DHCP: Network management protocol used to automate the process of configuring devices on IP networks.
   MAC address: permanent, unique identifier assigned to a network interface card (NIC) or network adapter a device uses to connect to a LAN.
-  LAN: A local network segment where connected devices communicate with each other without needing to pass through a router.
+  Local Network Segment: classification of networked devices that communicate without needing to pass through a intermediary router.
   ARP: Network communication protocol that matches IP addresses to MAC addresses.
   Domain Name: A human-readable name that is used to identify a website, such as google.com.
   DNS: The Domain Name System is responsible for translating domain names into IP addresses.
@@ -209,45 +210,45 @@ This can be any type of data, such as part of an email, a web page, a video stre
 Every network host has a unique address that identifies it, called an "IP address".
 similar to a unique postal address used by the postal service.
 
-IP addresses have a uniform format.
+IP addresses have a uniform format, composed of numeral groups in an ordered hierarchy. 
+Generally, earlier numbers usually identify the country and regional network of the device, while later numbers identify the subnetwork, and finally the address of the specific device.
 
-These numbers are arranged in a hierarchy 
-The earlier numbers usually identify the country and regional network of the device. 
-Then come the subnetwork, and finally the address of the specific device.
-
-The source IP address determines where data originates from.
-The destination IP address determines where the data is intended to travel.
+The source IP address identifies which device data originates from.
+The destination IP address identifies which device data travels to.
 Each packet keeps track of it's source IP and destination IP in their header.
-
 
 ### Dynamic Host Configuration Protocol (DHCP)
 
-If connected to the Internet, a host has a unique IP address.
+If connected to a network, a host has a unique IP address.
 
-If you connect to the Internet through an Internet Service Provider (ISP), you are usually assigned a temporary IP address for the duration of your session. 
+If you connect to the Internet through an ISP, you are usually assigned a temporary IP address for the duration of your session. 
 
 Dynamic IPs are obtained from a DHCP (Dynamic Host Configuration Protocol) server.
+
+By using DHCP, both your computer and router can automatically obtain the necessary IP addresses and network configuration parameters, ensuring seamless connectivity within the local network and to the Internet.y
 
 DHCP is a network management protocol used to automate the process of configuring devices on IP networks. 
 
 
 ### Address Resolution Protocol (ARP)
 
-Address Resolution Protocol (ARP) is a network communication protocol that matches IP addresses to MAC addresses.
+Address Resolution Protocol (ARP) is a network communication protocol that translates IP addresses to MAC addresses.
 
-A MAC (Media Access Control) address is a unique identifier assigned to a network interface card (NIC) or network adapter. 
-MAC addresses identify devices within a local network segment.
-
-A local network segment is a portion of a local area network (LAN) where devices are directly connected and can communicate with each other without needing to pass through a router.
-
-ARP allows devices on a local network segment to communicate with each other. 
-
-ARP translates the IP address into a MAC Address
 This translation is necessary because IP addresses change frequently, while MAC addresses are permanent.
 
-ARP helps ensure that data is routed to the correct device on a network. 
+A MAC (Media Access Control) address is a unique identifier assigned to a network interface card (NIC) the hardware component individual computers utilize to connect to a network.
 
-Without ARP, devices on the same network would not be able to communicate with each other.
+Thus, MAC addresses identify devices within a local network segment.
+
+A network of devices compose a local network segment when they can communicate with each other without needing to pass through a router.
+
+local network segments utilize a switch to share data between computers.
+
+There are several types of routers, but most routers pass data between LANs (local area networks) and WANs (wide area networks). 
+
+ARP is the protocol by which devices on a local network segment are aware of and can communicate with each other, and ensures data is routed to the correct device.
+
+Without ARP, devices on LANs would not be able to communicate with the switch they are connected by or the router connecting them to the internet.
 
 
 ### DNS 
@@ -255,23 +256,13 @@ Without ARP, devices on the same network would not be able to communicate with e
 To reach a website, we usually remember its name. 
 
 While each server has a unique IP address, since 72.14.205.100 doesn't roll off the tongue, we give them Domain Names like google.com.
-That is, we alias an IP address with a human readable domain name.
+That is, we alias a computer-friendly IP address with a human readable domain name.
 
 A domain or domain name is a unique, symbolic name or term for a specific area or sever on the internet. 
 This name is entered by the end-user to access a specific website.
 
-The Domain Name System (DNS) associates domain name with the corresponding IP addresses
+The Domain Name System (DNS) associates a domain name with the corresponding IP addresses through a process called DNS Resolution.
 like a phonebook associates names to phone numbers.
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -287,190 +278,28 @@ like a phonebook associates names to phone numbers.
  Connections: A connection is established between two sockets when two devices want to communicate with each other. 
 
 
-#### What is TCP 
 
-TCP/IP (Transmission Control Protocol/Internet Protocol) is the underlying communication protocol used by most internet-based applications and services. TCP provides a reliable, ordered, and error-checked delivery of data between applications running on different devices.
 
-IP is the primary way in which network connections are made, and it establishes the basis of the Internet. IP does not handle packet ordering or error checking. Such functionality requires another protocol, often the Transmission Control Protocol (TCP).
 
-IP is a connectionless protocol, which means that each unit of data is individually addressed and routed from the source device to the target device, and the target does not send an acknowledgement back to the source. 
 
-That's where the TCP protocol comes in. 
-TCP is used in conjunction with IP in order to maintain a connection between the sender and the target and to ensure packet order and integrity.
+### SSL/TLS
 
-TCP is a connection-oriented protocol that establishes a connection between two hosts before transmitting any data. All data sent over a TCP connection is checked for accuracy and retransmitted until the data is received correctly. This reliability makes TCP well-suited for applications that require a high degree of error-checking and for large data transfers. 
+SSL/TLS is a protocol used to encrypt data being transmitted over the internet. It is commonly used to provide secure connections for applications such as web browsers, email clients, and file transfer programs.
 
-TCP can be thought of as the puzzle assembler on the other side who puts the pieces together in the right order, asks for missing pieces to be resent, and lets the sender know the puzzle has been received. TCP maintains the connection with the sender from before the first puzzle piece is sent to after the final piece is sent.
+When using SSL/TLS to secure internet communication, there are a few key concepts to understand:
 
-Think of it like a guaranteed mail service. 
-When you request data on your device, servers send many packets. 
-When your packets arrive, TCP does a full inventory and sends back acknowledgments of each packet received. 
-If all packets are there, TCP signs for your delivery and you're done.
-If TCP finds some packets are missing, it requests each missing or incomplete packet again. 
-This continues until TCP verifies the delivery of all packets.
+ Certificates: SSL/TLS certificates are used to establish trust between the client and server. They contain information about the identity of the server and are signed by a trusted third party (a Certificate Authority) to verify their authenticity.
 
-The email message is broken into packets before each packet is sent out into the Internet. 
-Upon arriving at the target device, the group of packets are reassembled by TCP into the original contents of the email.
+ Handshake: During the SSL/TLS handshake process, the client and server exchange information to negotiate the encryption algorithm and other parameters for the secure connection.
 
-#### ports, sockets, and connections:
+ Encryption: Once the secure connection is established, data is encrypted using the agreed-upon algorithm and can be transmitted securely between the client and server.
 
-##### Ports
-- **Description**: Ports are numerical identifiers used to distinguish different services or applications running on a device. They range from 0 to 65535.
-- **Function**: Ports help direct incoming data to the correct application. For example:
-  - **HTTP**: Typically uses port 80.
-  - **HTTPS**: Typically uses port 443.
-  - **FTP**: Typically uses ports 20 and 21.
-- **Types**:
-  - **Well-Known Ports**: Range from 0 to 1023 and are assigned to common protocols and services (e.g., HTTP, FTP).
-  - **Registered Ports**: Range from 1024 to 49151 and are assigned to user processes or applications.
-  - **Dynamic/Private Ports**: Range from 49152 to 65535 and are used for temporary or private purposes.
-
-##### Sockets
-- **Description**: A socket is a combination of an IP address and a port number, representing a specific endpoint for communication.
-- **Function**: Sockets are used to establish connections between devices and transfer data between applications. They uniquely identify a connection endpoint.
-- **Example**: `192.168.1.1:80` (IP address `192.168.1.1` and port `80`).
-
-##### Connections
-- **Description**: A connection is established between two sockets when two devices want to communicate with each other.
-- **Function**: During the connection establishment process, the devices negotiate various parameters such as the maximum segment size and window size, which determine how data will be transmitted over the connection. This ensures reliable and ordered data transfer.
-- **Process**:
-  - **Three-Way Handshake**: 
-    1. **SYN**: The client sends a SYN (synchronize) packet to the server to initiate a connection.
-    2. **SYN-ACK**: The server responds with a SYN-ACK (synchronize-acknowledge) packet to acknowledge the request.
-    3. **ACK**: The client sends an ACK (acknowledge) packet to confirm the connection is established.
-  - **Data Transfer**: Once the connection is established, data can be transferred between the client and server. TCP ensures that data is delivered accurately and in the correct order.
-  - **Connection Termination**: When the data transfer is complete, the connection is terminated using a four-step process (FIN, FIN-ACK, ACK, and FIN-ACK).
-
-##### Example
-- **Port**: `192.168.1.1:80` (IP address `192.168.1.1` and port `80`).
-- **Socket**: `192.168.1.1:80` (local socket) communicating with `203.0.113.5:12345` (remote socket).
-- **Connection**: The established link between `192.168.1.1:80` and `203.0.113.5:12345` allowing data exchange.
-
-##### Additional Details
-- **Reliability**: TCP ensures reliable data transfer by using acknowledgments and retransmissions. If a packet is lost or corrupted, TCP will retransmit it.
-- **Flow Control**: TCP uses flow control mechanisms to prevent overwhelming the receiver with too much data at once.
-- **Congestion Control**: TCP adjusts the rate of data transmission based on network congestion to avoid packet loss and ensure efficient use of network resources.
+When building internet-based applications and services, it's important to understand how SSL/TLS works and to ensure that your application is designed to use SSL/TLS when transmitting sensitive data such as login credentials, payment information, and other personal data. You'll also need to ensure that you obtain and maintain valid SSL/TLS certificates for your servers, and that you follow best practices for configuring and securing your SSL/TLS connections. By doing so, you can help protect your users' data and ensure the integrity and confidentiality of your application's communication over the internet.
 
 
 
 
 
-
-
-
-
-There are four main protocols used in TCP/IP: the Transmission Control Protocol (TCP), the User Datagram Protocol (UDP), the Internet Protocol (IP), and the Internet Control Message Protocol (ICMP).
-
-    TCP ensures that data is delivered reliably and in order. 
-    UDP is used for applications where data doesn't need to be delivered reliably or needs to be delivered quickly without the overhead of TCP.
-    IP is the protocol that routes data from one computer to another. 
-    ICMP is used for error-checking and for managing traffic congestion.
-
-
-
-Transmission Control Protocol (TCP) and User Datagram Protocol (UDP) are both ways to send data over the internet.
-TCP is more reliable, while UDP is faster and more efficient
-
-### User Datagram Protocol (UDP)
-
-
-
-#### Overview
-- **Description**: UDP is a connectionless, lightweight transport layer protocol in the TCP/IP suite. It is used for applications that require fast, efficient transmission of data without the need for guaranteed delivery, order, or error-checking.
-- **Function**: UDP allows applications to send messages, called datagrams, to other hosts on an IP network without establishing a connection.
-
-#### Characteristics
-- **Connectionless**: Unlike TCP, UDP does not establish a connection before sending data. Each datagram is sent independently.
-- **Unreliable**: UDP does not guarantee delivery, order, or error-checking of datagrams. If a datagram is lost or arrives out of order, it is not retransmitted.
-- **Low Overhead**: UDP has minimal protocol overhead, making it faster and more efficient for applications that can tolerate some data loss.
-
-#### Structure
-- **Header**: The UDP header is simple and consists of four fields (8 bytes total):
-  - **Source Port** (2 bytes): The port number of the sending application.
-  - **Destination Port** (2 bytes): The port number of the receiving application.
-  - **Length** (2 bytes): The length of the UDP header and data.
-  - **Checksum** (2 bytes): Used for error-checking of the header and data (optional).
-
-#### Use Cases
-- **Real-Time Applications**: UDP is ideal for real-time applications where speed is critical and some data loss is acceptable, such as:
-  - **Streaming Media**: Audio and video streaming (e.g., live broadcasts, VoIP).
-  - **Online Gaming**: Fast-paced games where low latency is more important than reliability.
-  - **DNS Queries**: Domain Name System (DNS) queries, where quick responses are needed.
-  - **Broadcast and Multicast**: Sending data to multiple recipients simultaneously.
-
-#### Example
-- **DNS Query**: When a client needs to resolve a domain name to an IP address, it sends a UDP datagram to a DNS server. The server responds with a UDP datagram containing the IP address.
-
-### Comparison with TCP
-- **Reliability**: TCP provides reliable, ordered delivery of data, while UDP does not.
-- **Connection**: TCP establishes a connection before data transfer, while UDP is connectionless.
-- **Overhead**: TCP has higher overhead due to connection management and error-checking, while UDP has minimal overhead.
-- **Speed**: UDP is faster and more efficient for applications that can tolerate some data loss.
-
-### Summary
-UDP is a simple, fast, and efficient protocol suitable for applications that prioritize speed and can tolerate some data loss. It is widely used in real-time applications, streaming, online gaming, and other scenarios where low latency is crucial.
-
-There are some other protocols also notable, and there are,
-
-    Address Resolution Protocol (ARP)
-    File Transfer Protocol (FTP)
-    Hypertext Transfer Protocol (HTTP)
-    Simple Mail Transfer Protocol (SMTP)
-
-
-
-### Internet Control Message Protocol (ICMP)
-
-#### Overview
-- **Description**: ICMP is a network layer protocol used for error reporting and diagnostic functions in IP networks. It is an integral part of the Internet Protocol suite and is primarily used by network devices, like routers, to send error messages and operational information.
-- **Function**: ICMP helps manage and control the flow of data in a network by providing feedback about issues in the communication environment. It is used for network diagnostics and troubleshooting.
-
-#### Key Components of ICMP
-
-1. **ICMP Messages**
-   - **Description**: ICMP messages are encapsulated within IP packets and consist of various types and codes that indicate the nature of the message.
-   - **Types and Codes**: Each ICMP message has a type and code that specify the purpose of the message. Some common types and codes include:
-     - **Type 0**: Echo Reply (used in ping responses)
-     - **Type 3**: Destination Unreachable (various codes indicate specific reasons, such as network unreachable, host unreachable, etc.)
-     - **Type 4**: Source Quench (request to reduce sending rate)
-     - **Type 5**: Redirect (used to inform a host of a better route)
-     - **Type 8**: Echo Request (used in ping requests)
-     - **Type 11**: Time Exceeded (indicates that the TTL of a packet has expired)
-
-2. **ICMP Header**
-   - **Description**: The ICMP header contains information about the ICMP message, including the type, code, checksum, and other fields specific to the message type.
-   - **Fields**:
-     - **Type**: Indicates the type of ICMP message.
-     - **Code**: Provides additional information about the type.
-     - **Checksum**: Used for error-checking the ICMP header and data.
-     - **Rest of Header**: Varies based on the type and code of the message. It may include fields like identifier, sequence number, and data.
-
-3. **Common ICMP Messages**
-   - **Echo Request and Echo Reply**:
-     - **Description**: Used by the `ping` utility to test connectivity between devices.
-     - **Function**: The Echo Request message is sent to a target device, which responds with an Echo Reply message if it is reachable.
-   - **Destination Unreachable**:
-     - **Description**: Indicates that a packet could not reach its destination.
-     - **Function**: Various codes specify the reason, such as network unreachable, host unreachable, protocol unreachable, or port unreachable.
-   - **Time Exceeded**:
-     - **Description**: Indicates that the Time to Live (TTL) of a packet has expired.
-     - **Function**: Commonly used by the `traceroute` utility to identify the path packets take to reach a destination.
-   - **Redirect**:
-     - **Description**: Informs a host of a better route to a destination.
-     - **Function**: Helps optimize routing by directing traffic through a more efficient path.
-
-#### Use Cases
-- **Network Diagnostics**: ICMP is widely used for network diagnostics and troubleshooting tools like `ping` and `traceroute`.
-- **Error Reporting**: ICMP messages provide feedback about issues in the network, such as unreachable destinations or expired TTLs.
-- **Routing Optimization**: ICMP Redirect messages help optimize routing by informing hosts of better routes.
-
-#### Security Considerations
-- **ICMP Flooding**: Attackers can use ICMP to flood a target with Echo Request messages, overwhelming the target and causing a denial of service (DoS).
-- **ICMP Redirect Attacks**: Malicious actors can use ICMP Redirect messages to alter routing tables and redirect traffic through a compromised device.
-- **Mitigation**: Network administrators can implement rate limiting, filtering, and monitoring to mitigate ICMP-based attacks.
-
-### Summary
-ICMP is a crucial protocol for managing and diagnosing network issues. It provides feedback about the status of the network and helps ensure efficient data flow. Understanding ICMP and its various message types is essential for network administrators and engineers to maintain and troubleshoot IP networks effectively.
 
 
 
@@ -509,20 +338,18 @@ When you visit a website that uses HTTPS, your web browser will display a padloc
 
 
 
-### SSL/TLS
 
-SSL/TLS is a protocol used to encrypt data being transmitted over the internet. It is commonly used to provide secure connections for applications such as web browsers, email clients, and file transfer programs.
+### Summary
 
-When using SSL/TLS to secure internet communication, there are a few key concepts to understand:
+Consider this article. In order for you to see it, it was sent over the Internet and utilized several protocols to ensure successful communication and data transfer:
 
- Certificates: SSL/TLS certificates are used to establish trust between the client and server. They contain information about the identity of the server and are signed by a trusted third party (a Certificate Authority) to verify their authenticity.
-
- Handshake: During the SSL/TLS handshake process, the client and server exchange information to negotiate the encryption algorithm and other parameters for the secure connection.
-
- Encryption: Once the secure connection is established, data is encrypted using the agreed-upon algorithm and can be transmitted securely between the client and server.
-
-When building internet-based applications and services, it's important to understand how SSL/TLS works and to ensure that your application is designed to use SSL/TLS when transmitting sensitive data such as login credentials, payment information, and other personal data. You'll also need to ensure that you obtain and maintain valid SSL/TLS certificates for your servers, and that you follow best practices for configuring and securing your SSL/TLS connections. By doing so, you can help protect your users' data and ensure the integrity and confidentiality of your application's communication over the internet.
-
+IP: Provides logical addressing and routing of data packets across the network.
+ARP: Resolves the NICs MAC address to an IP address connecting the local network segment's router to the broader internet.
+DHCP: Automatically assigns an IP address and other network configuration parameters to the computer and router connecting to an ISP 
+DNS: Translates the webpage domain name into an IP address that the computer can use to locate the web server.
+TCP: Establishes a reliable connection between the computer and the web server, ensuring ordered and error-checked delivery of data.
+TLS: Provides encryption and secure communication between the computer and the web server (if HTTPS is used).
+HTTP(S): Transfers web page data between the computer and the web server.
 
 
 
@@ -533,38 +360,38 @@ When building internet-based applications and services, it's important to unders
 
 
 
-Consider this article. In order for you to see it, it was sent over the Internet piece by piece in the form of several thousand data packets.
-
-The specific steps involved in this process are:
-
-    DNS query: When your browser started to load this webpage, it likely first made a DNS query to find out the Cloudflare website's IP address.
-    TCP handshake: Your browser opened a connection with that IP address.
-    TLS handshake: Your browser also set up encryption between a Cloudflare web server and your device so that attackers cannot read the data packets that travel between those two endpoints.
-    HTTP request: Your browser requested the content that appears on this webpage.
-    HTTP response: Cloudflare's server transmitted the content in the form of HTML, CSS, and JavaScript code, broken up into a series of data packets. Once your device received the packets and verified it had received all of them, your browser interpreted the HTML, CSS, and JavaScript code contained in the packets to render this article about how the Internet works. The whole process took only a second or two.
 
 
 
 
 
-Hosts use various protocols to communicate, including TCP and User Datagram Protocol (UDP).
-
-
-
-File Transfer Protocol (FTP): A reliable protocol for sending and receiving files 
-User Datagram Protocol (UDP): A connectionless protocol that prioritizes speed over reliability, making it ideal for real-time applications like video streaming 
-Simple Network Management Protocol (SNMP): A protocol that allows network administrators to monitor and manage network devices 
-Simple Mail Transfer Protocol (SMTP): A protocol for sending emails between computers 
-Internet Control Message Protocol (ICMP): A protocol that diagnoses communication issues between devices 
-Dynamic Host Configuration Protocol (DHCP): A protocol that assigns IP addresses to devices on a network 
-Application layer protocols: Protocols that allow programs to send information to each other, often used for web communication 
-
-
-
+### The World Wide Web
 
 
 As described above, the Internet is a technical infrastructure which allows billions of computers to be connected. Among those computers, some computers (called Web servers) can send messages intelligible to web browsers. The Internet is an infrastructure, whereas the Web is a service built on top of the infrastructure.
 
+### Hosts
+
+A network host, or simply a host, is a device connected to a computer network, assigned at least one network address.
+A computer participating in networks that use the Internet Protocol suite may be referred to as an IP host. 
+Specifically, computers participating in the Internet are called Internet hosts.
+
+Network hosts can be further divided into specialized categories based on their role on the network
+
+#### Server 
+
+A server is a computer connected directly to the Internet
+Servers provide data, services, or applications to other hosts on the network. 
+For example, web pages are files on server hard drives.
+This data can be sent out to whichever hosts the server happens to be serving.
+
+#### Client
+
+A client is a host indirectly connected to the internet via an ISP.
+A client is responsible for interacting with end users. 
+
+Once a connection is established, data can be transferred between the applications running on each device.
+Clients send requests to a server, which processes these requests, performs necessary tasks to generate a response, and returns the response to the client. The client receives the server's response, displays the results to the user, and awaits the users next request.
 
 Servers can be web servers, cloud servers, virtual hosts, providing services to computers over the internet or part of a mainframe computer environment, providing services to attached workstations.
 
@@ -765,7 +592,7 @@ The Internet Protocol Suite, commonly known as TCP/IP, is a set of communication
 
 #### 1. Application Layer
 - **Description**: This layer provides network services directly to applications. It is the closest layer to the end user and facilitates communication between software applications and lower layers.
-- **Function**: It handles high-level protocols, data representation, encoding, and dialog control.
+  It handles high-level protocols, data representation, encoding, and dialog control.
 - **Protocols**:
   - **HTTP (Hypertext Transfer Protocol)**: Used for transferring web pages.
   - **HTTPS (HTTP Secure)**: An encrypted version of HTTP for secure communication.

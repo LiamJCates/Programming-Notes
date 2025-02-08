@@ -862,3 +862,23 @@ print(np.sum(arr, axis=0))  # Output: [5, 7, 9]
 
 # Sum along rows
 print(np.sum(arr, axis=1))  # Output: [6, 15]
+
+
+
+
+
+
+Literal Constants
+
+
+An example of a literal constant is a number like 5, 1.23, 9.25e-3 or a string like 'This is a
+string' or "It's a string!". It is called a literal because it is literal - you use its value liter-
+ally. The number 2 always represents itself and nothing else - it is a constant because its value cannot be
+changed. Hence, literal constants.
+
+Numbers
+Numbers in Python are of four types - integers, long integers, floating point and complex numbers.
+• Examples of integers are 2 which are just whole numbers.
+• Long integers are just bigger whole numbers.
+• Examples of floating point numbers (or floats for short) are 3.23 and 52.3E-4.
+• Examples of complex numbers are (-5+4j) and (2.3 - 4.6j)

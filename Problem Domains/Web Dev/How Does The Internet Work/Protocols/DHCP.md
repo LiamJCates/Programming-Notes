@@ -8,9 +8,15 @@ ISPs assign these temporary IP addresses, known as a dynamic IP addresses, from 
 The limited supply of IPv4 addresses led to the introduction of dynamically assigning IP addresses, which is still a very common practice. Most devices connected to the Internet are assigned temporary IP addresses.
 This is more cost-effective for the ISP than assigning each user a permanent, or static, IP address.
 
-Some ISP customers, such as large enterprises, will pay to maintain a static IP address (for example, Cloudflare’s 1.1.1.1). However, for most users, having a dynamic IP address is sufficient. When hosting a web server, such as a self-hosted website, API, or gaming server, a dynamic IP address can create problems. A change in IP address can cause their DNS queries to fail, effectively taking the resource offline. Luckily, this issue can easily be corrected with Cloudflare’s dynamic DNS.
+Some ISP customers, such as large enterprises, will pay to maintain a static IP address (for example, Cloudflare’s 1.1.1.1). However, for most users, having a dynamic IP address is sufficient. When hosting a web server, such as a self-hosted website, API, or gaming server, a dynamic IP address can create problems. A change in IP address can cause their DNS queries to fail, effectively taking the resource offline.
 
 dynamic IPs are obtained from a DHCP (Dynamic Host Configuration Protocol) server.
+
+#### IP Assignment
+By using DHCP, both your computer and router can automatically obtain the necessary IP addresses and network configuration parameters, ensuring seamless connectivity within the local network and to the Internet.
+
+- **Computer**: Receives a private IP address from the local DHCP server (usually the router) for communication within the local network.
+- **Router**: Receives a public IP address from the ISP's DHCP server for communication with the Internet.
 
 DHCP is a network management protocol used to automate the process of configuring devices on IP networks. 
 

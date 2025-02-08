@@ -1,7 +1,5 @@
 Network topology describes the layout of interconnections between devices and network segments. 
 
-
-
 At the data link layer and physical layer, a wide variety of LAN topologies have been used, including ring, bus, mesh and star. The star topology is the most common in contemporary times. Wireless LAN (WLAN) also has its topologies: independent basic service set (IBSS, an ad-hoc network) where each node connects directly to each other (this is also standardized as Wi-Fi Direct), or basic service set (BSS, an infrastructure network that uses an wireless access point)
 
 

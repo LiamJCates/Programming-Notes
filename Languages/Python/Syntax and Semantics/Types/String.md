@@ -1,10 +1,10 @@
 String
 
-Strings are created with single or double quotes:
+Strings are created with single, double, or triple quotes
 
 '''Python
 message = "what do you like?"
-response = 'spam
+response = 'spam'
 '''
 
 To quote a quote, we need to “escape” it, by preceding it with \. Alternatively, we can use the other type of quotation marks:
@@ -59,13 +59,9 @@ String literals can span multiple lines. One way is using triple-quotes: """..."
 
 '''Python
 print("""\
-
 Usage: thingy [OPTIONS]
-
      -h                        Display this usage message
-
      -H hostname               Hostname to connect to
-
 """)
 
 # Output
