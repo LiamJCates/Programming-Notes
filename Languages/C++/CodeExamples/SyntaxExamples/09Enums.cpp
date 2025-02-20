@@ -1,5 +1,9 @@
+#include <iostream>
+/*
 Enums
+
 Enums restrict a variable to have one of the few predefined values.
+*/
 
 enum class BulbSize
 {
@@ -24,14 +28,19 @@ public:
   {
     size = s;
   }
-  //Other bulb class fields and methods.
+  //Other bulb class fields and methods...
 };
 
 int main()
 {
   Bulb b;
   b.setBulbSize(BulbSize::MEDIUM);
-  std::cout << "Bulb Size :" << (int)b.getBulfSize() << std::endl;
+
+  std::cout << "Bulb Size :" << (int)b.getBulbSize() << std::endl;
 }
 
-Analysis: In the above code, we made some change to Bulb class. It has one more field size and size is of type enum BulbSize. And the allowed values of the size are SMALL, MEDIUM and LARGE.
+/*
+Analysis:
+We added a field to the Bulb class, size, and size is of type enum BulbSize. 
+The allowed values of the size are SMALL, MEDIUM and LARGE.
+*/

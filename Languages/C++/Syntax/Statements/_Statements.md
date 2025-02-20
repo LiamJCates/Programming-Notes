@@ -12,8 +12,9 @@ The next statement can start immediately after the semicolon, but for convenienc
 
 
 Statement Types:
-  Compound Statements
   Expressions
   Declarations
   Control Structures
+
+  Whitespace
   Comments

@@ -1,8 +1,6 @@
 Handle classes
-Access control in C++ allows you to separate interface from
-implementation, but the implementation hiding is only partial. The
-compiler must still see the declarations for all parts of an object in
-order to create and manipulate it properly. You could imagine a
+
+Access control in C++ allows you to separate interface from implementation, but the implementation hiding is only partial. The compiler must still see the declarations for all parts of an object in order to create and manipulate it properly. You could imagine a
 programming language that requires only the public interface of an
 object and allows the private implementation to be hidden, but C++
 performs type checking statically (at compile time) as much as

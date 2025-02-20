@@ -21,3 +21,8 @@ A high-level programming language is a programming language with strong abstract
 
 
 
+a high-level programming language is a programming language with a high level of abstraction from the details of the computer. In contrast to low-level programming languages, it may use natural (human) language elements, be easier to use, or may automate (or even hide entirely) significant areas of computing systems, making the process of developing a program simpler and more understandable than when using a lower-level language. 
+
+The amount of abstraction provided defines how "high-level" a programming language is.
+
+A low-level programming language is a programming language that provides little or no abstraction from a computer's instruction set architecture; commands or functions in the language are structurally similar to a processor's instructions. Generally, this refers to either machine code or assembly language. Because of the low (hence the word) abstraction between the language and machine language, low-level languages are sometimes described as being "close to the hardware". Programs written in low-level languages tend to be relatively non-portable, due to being optimized for a certain type of system architecture.

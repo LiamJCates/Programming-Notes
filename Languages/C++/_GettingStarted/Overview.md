@@ -1,28 +1,33 @@
 C++ is a programming language developed by Bjarne Stroustrup originating in 1979 at Bell Labs.
 
-Initially, C++ was designed to be an object-oriented successor to C. Due to this, C++ is a superset of C, and that virtually any legal C program is a legal C++ program.
+Initially, C++ was designed to be an object-oriented successor to C, most C code is valid in C++.
+However, in the strict mathematical sense, C isn't a subset of C++. There are programs that are valid C but not valid C++ and even a few ways of writing code that has a different meaning in C and C++.
+
+Examples:
+http://david.tribble.com/text/cdiffs.htm
 
 
-Why Learn C++
-    Learning C++ is valuable because it provides a strong foundation in programming concepts, is widely used in performance-critical applications due to its high speed and efficiency, offers low-level hardware control, and thus opens doors to a variety of career paths in software development, particularly in areas like game development, system programming, and embedded systems
+### Why Learn C++
 
-    C++ programming gives you a clear understanding about Object Oriented Programming. You will understand low level implementation of polymorphism when you will implement virtual tables and virtual table pointers, or dynamic type identification.
+Learning C++ is valuable because it provides a strong foundation in programming concepts, is widely used in performance-critical applications due to its high speed and efficiency, offers low-level hardware control, and thus opens doors to a variety of career paths in software development, particularly in areas like game development, system programming, and embedded systems
 
-    C++ is very popular
+C++ programming gives you a clear understanding about Object Oriented Programming. You will understand low level implementation of polymorphism when you will implement virtual tables and virtual table pointers, or dynamic type identification.
 
-    C++ is a widely used programming languages in application and system programming. So you can choose your area of interest of software development.
+C++ is very popular
 
-    C++ really teaches you the difference between compiler, linker and loader, different data types, storage classes, variable types their scopes etc.
+C++ is a widely used programming languages in application and system programming. So you can choose your area of interest of software development.
+
+C++ really teaches you the difference between compiler, linker and loader, different data types, storage classes, variable types their scopes etc.
 
 
 
-C and C++’s philosophy
+### C and C++’s philosophy
 
 The underlying design philosophy of C and C++ can be summed up as “trust the programmer” -- which is powerful and dangerous.
 
 C++ is designed to allow the programmer a high degree of freedom to do what they want. However, this also means the language often won’t stop you from doing things that don’t make sense, because it will assume you’re doing so with reason. There are quite a few pitfalls for new programmers, knowing what you shouldn’t do in C/C++ is almost as important as knowing what you should do.
 
-C++ Characteristics
+### C++ Characteristics
 
 C++ is a mid-level, statically typed, compiled, general-purpose, case-sensitive, free-form programming language that supports procedural, object-oriented, and generic programming.
 
@@ -61,8 +66,9 @@ Generic programming is a style of computer programming in which algorithms are w
 
 
 
-Syntax and semantics
-While there is no single organization the controls all of C++, individual vendors and communities implement the ISO standard which determines the syntax and semantics of the C++ language
+### C++ Standards
+
+While there is no single organization that controls all of C++, individual vendors and communities implement the International Organization for Standardization (ISO) standard which determines the syntax and semantics of the C++ language
 
 C++ was standardized in 1998 by the ISO committee (this means the ISO committee ratified a document describing the C++ language, to help ensure all compilers adhered to the same set of standards).
 

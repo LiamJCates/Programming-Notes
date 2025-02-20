@@ -48,3 +48,18 @@ The previous program, while a complete program, will produce no obvious effect, 
 
 A note on file type extensions
 Several different file-name extensions are popular for C++ programs. I like to use .cpp, where the p means “plus.” Other common extensions are .cxx and .cc. Some compilers recognize .C (uppercase C) as a C++ file extension, but I don’t recommend using it, because it is too easy to confuse with .c (lowercase c), the default extension for C programs. Many desktop environments do not distinguish between uppercase and lowercase file names, further compounding the problem. Pick your favorite and stick with it.
+
+
+### Compilation
+
+C++ is a compiled language, this means, for a program to run, it's source code file has to be processed by a compiler.
+
+A compiler is software that converts a program written in a compiled language into instructions which the computer can execute.
+
+How you compile a program depends on your operating system and compiler. For details on how your particular compiler works, check the reference manual ir ask a knowledgeable colleague.
+
+For example, C++ source text files are processed by a compiler, producing object files, which are combined by a linker yielding an executable program. 
+
+The computer is then able to execute each of these instructions to produce the desired results. 
+
+An executable program is created for a specific hardware/system combination; it is not portable, say, from a Mac to a Windows PC. When we talk about portability of C++ programs, we usually mean portability of source code; that is, the source code can be successfully compiled and run on a variety of systems.
