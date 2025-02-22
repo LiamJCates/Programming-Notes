@@ -1,4 +1,8 @@
 ### Tokens
+
+https://learn.microsoft.com/en-us/cpp/cpp/character-sets?view=msvc-170
+
+
 A C++ token is the smallest element of a program that is meaningful to the compiler.
 
 The C++ parser recognizes these kinds of tokens:
@@ -12,9 +16,6 @@ The C++ parser recognizes these kinds of tokens:
     Special Characters
       Operators
       Punctuators
-
-
-Comments, while composed of 
 
 
 ### Special Symbols
