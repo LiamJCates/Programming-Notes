@@ -1,6 +1,8 @@
 Column Design
 
-A column represents a characteristic of the subject of the table to which it belongs. If you give the
+A column represents a characteristic of the subject of the table to which it belongs. 
+
+If you give the
 column an appropriate name, you should be able to identify the characteristic it’s supposed to represent. A name that is ambiguous, vague,
 or unclear is a sure sign of trouble and suggests that the purpose of the
 column has not been carefully thought out. Use the following checklist

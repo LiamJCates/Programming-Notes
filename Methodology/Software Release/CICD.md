@@ -3,11 +3,12 @@ https://www.infoworld.com/article/3271126/what-is-cicd-continuous-integration-an
 Continuous integration (CI) and continuous delivery (CD) embody a culture, set of operating principles, and collection of practices that enable application development teams to deliver code changes more frequently and reliably, known as the CI/CD pipeline.
 
 CI/CD is one of the best practices for devops teams to implement. It is also an agile methodology best practice, as it enables software development teams to focus on meeting business requirements, code quality, and security because deployment steps are automated.
+
 CI/CD defined
 
 Continuous integration is a coding philosophy and set of practices that drive development teams to implement small changes and check in code to version control repositories frequently. Because most modern applications require developing code in different platforms and tools, the team needs a mechanism to integrate and validate its changes.
 
-[ Also on InfoWorld: Get started with CI/CD: Automating your application delivery with CI/CD pipelines ]
+
 
 The technical goal of CI is to establish a consistent and automated way to build, package, and test applications. With consistency in the integration process in place, teams are more likely to commit code changes more frequently, which leads to better collaboration and software quality.
 
@@ -17,10 +18,10 @@ CI/CD tools help store the environment-specific parameters that must be packaged
 
 Continuous integration and continuous delivery require continuous testing because the objective is to deliver quality applications and code to users. Continuous testing is often implemented as a set of automated regression, performance, and other tests that are executed in the CI/CD pipeline.
 
-[ Learn Java from beginning concepts to advanced design patterns in this comprehensive 12-part course! ]
 
 A mature CI/CD devops practice has the option of implementing continuous deployment where application changes run through the CI/CD pipeline and passing builds are deployed directly to production environments. Teams practicing continuous delivery elect to deploy to production on a daily or even hourly schedule, though continuous delivery isn’t always optimal for every business application.  
-Related video: How to deliver code faster with CI/CD
+
+
 How continuous integration improves collaboration and quality
 
 Continuous integration is a development philosophy backed by process mechanics and some automation. When practicing CI, developers commit their code into the version control repository frequently and most teams have a minimal standard of committing code at least daily. The rationale behind this is that it’s easier to identify defects and other software quality issues on smaller code differentials rather than larger ones developed over extensive period of times. In addition, when developers work on shorter commit cycles, it is less likely for multiple developers to be editing the same code and requiring a merge when committing.
