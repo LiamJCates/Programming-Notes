@@ -1,8 +1,11 @@
 Feature Driven Development (FDD) Software Design Methodology
 
-Feature Driven Development (FDD) is an agile software development methodology that emphasizes the delivery of features in a systematic, client-focused manner. FDD was introduced by Jeff De Luca and Peter Coad in the late 1990s at United Overseas Bank (UOB) in Singapore, during a large-scale software project. It is particularly well-suited for large-scale, complex systems where the focus is on delivering tangible, working features on a regular basis.
+Feature Driven Development (FDD) is an agile software development methodology that emphasizes the delivery of features in a systematic, client-focused manner. 
+
+FDD was introduced by Jeff De Luca and Peter Coad in the late 1990s at United Overseas Bank (UOB) in Singapore, during a large-scale software project. It is particularly well-suited for large-scale, complex systems where the focus is on delivering tangible, working features on a regular basis.
 
 FDD follows an iterative, incremental approach, but differs from other agile methodologies in that it places significant focus on features — small, client-valued functions — as the primary unit of work. The goal of FDD is to provide rapid, incremental releases of software that offer real business value to the customer.
+
 Core Concepts of Feature Driven Development
 
 FDD focuses on delivering software through the development of features, ensuring that every feature is aligned with client needs. This methodology combines best practices from both agile and traditional development approaches to produce a scalable, structured, and predictable model for software development.

@@ -1,14 +1,15 @@
 Software Development Methodologies
 
 
-When pursuing software development as a career, the approach used to bring a product to market can be just as important as the methods used to implement that product. 
+When pursuing software development as a career, the approach used to bring a product to market can be just as important as the methods used to implement that product. In any project, the problems that a software solution is developed to solve, might change.
 
 Software development can be challenging to manage due to 
 
-    changing business need and stakeholder requirements
+    changing business needs and stakeholder requirements
     technology upgrades
     Legal and regulatory updates
     cross-functional collaboration
+    developer team turn-over
     competing software solution release
 
 Certainly, the software industry is very dynamic and requires constant updating. The common thinking is that it’s better to have an approach in mind than to have none at all. A development model or methodology is just a fancy word for the approach an organization uses to structure software creation. 
@@ -31,17 +32,17 @@ A mature methodology, known as a Software Development Life Cycle (SDLC), is a st
 The goal of a given methodology is to ensure software development is
     cost-effective
     time-effective
-    meets stakeholder expectations
+    meets expectations
 
-The SDLC provides a systematic management framework which outlines a series of steps that divide the software development process into tasks to assign, complete, and measure with specific deliverables at every stage of the software development process.
+The SDLC provides a systematic management framework which outlines a series of steps that divide the software development process into tasks to assign, complete, and measure, often with specific deliverables at every stage of the software development process.
 
 Through clear documentation, stakeholders can collectively understand the direction and progress of a project.
 
 Some benefits of SDLC:
 
-    Increased visibility of the development process for all stakeholders involved
+    Increased visibility of the development process
     Efficient estimation, planning, and scheduling
-    Improved risk management and cost estimation
+    Improved risk management and cost benefit analysis
     Systematic software delivery and better customer satisfaction
 
 
@@ -56,7 +57,7 @@ Key factors driving SDLC model evolution
     Frequent updates to complex infrastructure without disruptions (No-downtime)
     Increase automation
     Personnel/Developer/Skill shortage
-    Rapid evolution of technologies: hybrid clouds, containers, Low code development platforms, 5G, IoT, AI, Big Data
+    Rapid evolution of related technologies: hybrid clouds, containers, Low code development platforms, 5G, IoT, AI, Big Data
 
 
 
@@ -81,10 +82,10 @@ The software development lifecycle (SDLC) is typically characterized by the spec
 
 
 Plan: understand the client's requirements and project objectives. 
-Design: determine how the system will work, its architecture, and how it will meet the requirements.
-Implement: Write system code based on the design and ensure the software meets requirements.
-Deploy: Release the software to clients and support it's adoption
-Maintain: Ensure that the software continues to work properly and make necessary updates over time.
+Design: determine system functionality, architecture, and how to meet requirements.
+Implement: code up the design, ensuring requirements are met.
+Deploy: Release the software to clients, support it's adoption.
+Maintain: Ensure software continues to work, update as necessary.
 
 
 There are many approaches to software project management. Not every project will require that these phases be sequentially executed. However, the phases are interdependent. Depending upon the size and complexity of the project, phases may be combined or may overlap.
@@ -222,10 +223,9 @@ This timeline highlights the progression of software development methodologies, 
 
 1. Early Days (Pre-1950s)
 
-    Ad-hoc development (Pre-1950s): Early software development was done without formal methodologies. Developers wrote machine code directly or used assembly languages. There were no established practices, and code was often written in a one-off manner for specific tasks. Though no practices are outlined,
+    Ad-hoc development (Pre-1950s): Early software development was done without formal methodologies. Developers wrote machine code directly or used assembly languages. There were no established practices, and code was often written in a one-off manner for specific tasks. Design philosophies of the time are often called "Big Bang" — because the software "explodes" into existence without much forethought or incremental development.
 
 2. Structured Programming (Late 1950s-1970s)
-
 
         Control Structures: Emphasis on using structured control flow (e.g., loops, conditionals) to improve readability and maintainability.
         
@@ -301,6 +301,10 @@ This timeline highlights the progression of software development methodologies, 
 
         Sprint Review & Retrospective: At the end of each sprint, a review meeting with stakeholders is held to showcase the work done, followed by a retrospective meeting to reflect on process improvements.
 
+
+Dynamic Systems Development Method (1994-2014)
+
+
 10. Extreme Programming (XP) (1999-Present)
 
 
@@ -327,6 +331,10 @@ This timeline highlights the progression of software development methodologies, 
         Modeling: A clear model of the system is developed and maintained to guide feature development.
         
         Design and Build by Feature: Features are developed based on their design and implementation needs, ensuring alignment with business goals.
+
+
+
+
 
 12. Lean Software Development (2003-Present)
 
@@ -368,6 +376,12 @@ This timeline highlights the progression of software development methodologies, 
 
 
 
+15. DevSecOps (2017-Present)
+
+
+
+
+
 
 
 
@@ -380,7 +394,7 @@ This timeline highlights the progression of software development methodologies, 
 
 Phases
 
-The system development life cycle framework provides a sequence of activities for system designers and developers to follow. It consists of a set of steps or phases in which each phase of the SDLC uses the results of the previous one.
+The system development life cycle framework provides a sequence of activities for system designers and developers to follow. It consists of a set of steps or phases in which each phase of the SDLC uses the results of the previous one. While 
 
 
 
@@ -448,7 +462,7 @@ code is written.
 4. Integration and testing:
 All the modules are brought together into a special testing environment, then checked for errors, bugs, and interoperability.
 
-6. Acceptance, installation, deployment:
+6. Deployment:
 This is the final stage of initial development, where the software is put into production and runs actual business.
 
     When teams develop software, they code and test on a different copy of the software than the one that the users have access to. The software that customers use is called production, while other copies are said to be in the build environment, or testing environment.
@@ -480,45 +494,124 @@ Plans are developed for discontinuing the use of system information, hardware, a
 
 
 
+### The Modern Approach
 
 
-Modern approaches work in periodic development cycles called incremental iterations.
+#### Incremental Iteration
 
-We start an iteration with a vision or an idea. We determine the fundamental parts with the greatest utility to the stakeholders that can be completed in a single development cycle, aka an iteration. At the end of the iteration, we have code that works that we can release to our users. We then begin the next iteration, implementing more features that are released as soon as this iteration is complete. Changes to the increment, typically redirection based on stakeholder feedback or evolving market situations, are collected at the end of every iteration and implemented in subsequent iterations.
+The basis for many modern approaches work in periodic development cycles called incremental iterations.
 
-The basic idea behind the modern approach is to develop a system through repeated cycles (iterative) and in smaller portions at a time (incremental), allowing software developers to take advantage of what was learned during development of earlier parts or versions of the system. Learning comes from both the development and use of the system, where possible key steps in the process start with a simple implementation of a subset of the software requirements and iteratively enhance the evolving versions until the full system is implemented. At each iteration, design modifications are made and new functional capabilities are added
+Work is done in iterations, teams determine the fundamental parts with the greatest utility to the stakeholders that can be completed in a single development cycle. At the end of the iteration, we have code with incremental improvements that works that we can release to our users. 
 
+Changes to the increment, typically redirection based on stakeholder feedback or evolving market situations, are collected at the end of every iteration and implemented in subsequent iterations.
 
+We then begin the next iteration, implementing more features that are released as soon as this iteration is complete.
 
-Deployment is the process of making sure the software is installed in the right location, that it is secured to prevent any hacker attacks, and making sure that privileges are given to the software so that it can read and write files as needed. When the code is deployed, we usually want to test it again to make sure that everything is still working the way it is intended. Deploying the code is usually done in several steps. Developers will typically have a server that's used during the development process. This is called the development server, and during development, the code can be executed and tested on this server. It will often come with a development database that, if the application we develop uses a database, is used to simulate the real data the application handles. Still, it can be modified any way the developer wants as it is detached from the real data the users see and work with.
-
-Before the code is moved to the production server, that is, the server the application users will use to run the application, the code is usually moved to an intermediate server, often referred to as a staging server. The role of this server is to be as much like the production server as possible so that the new code can be tested alongside the code that was already released. The idea is to make sure that everything runs smoothly and that no bugs appear when the new code hits the live production server. The staging server also has a database. The data in this database is often copied from the production database to make sure that everything is a mirror of the real server. Finally, when the team is confident that everything works correctly, the code is moved to the production server. Apart from moving the code, other adjustments might be needed, such as adding things to the production database that the new software version will need, adding other applications and code libraries that are used by the new code, and so on.
-
-We must also have a strategy for how we can undo this deployment if needed. No matter how thorough our test has been, when the code hits production and users start to use it, things that we never imagined begin surfacing. Users might behave in unpredicted ways, and there might be differences in the production environment compared to the staging environment that we overlooked. We always hope for the best, but we will need a plan for what we will do if things backfire. What we want is a way to undo all the changes and go back to what we had before the deployment as quickly as possible. This is called a rollback strategy. We can accomplish such a rollback in several ways. One of them would be to take a backup of the production database before the deployment occurs. This way, we can ensure that we have a snapshot of how all the data in the application was, before the release of the new code.
-
-The actual code is usually deployed to the server with the help of a VCS, so rolling back the actual code to a previous version is rather simple. The steps involved in deploying code to the production environment are often automated, meaning that different tools and applications take care of all the steps.
-
-Deployment Automation
-It is often a good idea to automate as many of the deployment steps as possible. The reason is that there are usually many steps involved that need to be done in the correct order, a job ideally suited for automation. Depending on the complexity of the system, we can use several tools that will help us accomplish automated deployment. Automating deployment will ensure that we have high-quality code since the automation process typically runs tests and lets the code through to the production server that passes the tests. When the code is deployed, the work with it is not over. Deployed code must be maintained.
-
-
-Code maintenance
-A typical software developer will spend more time maintaining existing code than writing new exciting features. This is not very strange if we think about it.
-
-First, the lifespan of an application is typically much longer than the time it took to develop it. This means that there are more and more software out there that are running and performing their tasks. Programs that are used will always need maintenance as users will find bugs that we must fix, new features will be added to the application as demands from users change, and old features must be updated and improved.
-
-This means that developers spend most of their time in old code, fixing and updating it. This can be code written decades ago by someone who has left the company a long time ago, or it can be written by you just the other week.
-
-If you think ahead to what your life as a programmer will look like, you will most likely imagine yourself writing new, exciting software that uses the latest tools and features that are out there. Still, the fact is that it is much more likely that you will be poking around in code written a long time ago, in a version of the language that was released when you were in preschool.
-
-At times, you will have the chance to write that brand-new, cool, and shiny piece of software, but remember, if you do a good job, that code will live on and will need to be maintained by others (or yourself) in the future. That is the life of a software developer. This means that we need to ensure that the code we write is as maintainable as possible.
-
-A skilled software developer is someone who writes highly maintainable code. This means that the code is clear, easy to understand, and easy to change, without the risk of people introducing some unwanted side effects in the application.
-
-There is a simple rule we can follow to help us create maintainable code: the boy scout rule. The legend of the boy scout rule says: Leave the campground cleaner than you found it.
-
-In the book Clean Code, the author, Robert C. Martin, also known as Uncle Bob, transformed this rule so that it could be applied to code. He states that if we apply this rule when we maintain our code, we should always leave our code a little cleaner and better each time we maintain it so that its quality will increase over time. We can rephrase the boy scout rule in relation to software development so that it says, Always leave the code you're editing a little better than you found it. The changes do not have to be huge. You will not have to rewrite large sections of code. If you change a variable name to something that better describes the value it is holding, or adding documentation to a piece of code where it was missing previously will increase the code's quality slightly.
+The basic idea is to develop a system through repeated cycles (iterative) and in smaller portions at a time (incremental), allowing software developers to take advantage of what was learned during development of earlier parts or versions of the system. Learning comes from both the development and use of the system, where possible key steps in the process start with a simple implementation of a subset of the software requirements and iteratively enhance the evolving versions until the full system is implemented. At each iteration, design modifications are made and new functional capabilities are added
 
 
 
-Another focus in many programming methodologies is the idea of trying to catch issues such as security vulnerabilities and bugs as early as possible (shift-left testing) to reduce the cost of tracking and fixing them.
+
+
+Agile
+
+The agile model arranges the SDLC phases into several development cycles. The team iterates through the phases rapidly, delivering only small, incremental software changes in each cycle. They continuously evaluate requirements, plans, and results so that they can respond quickly to change. The agile model is both iterative and incremental, making it more efficient than other process models.
+Pros and cons
+
+Rapid development cycles help teams identify and address issues in complex projects early on and before they become significant problems. They can also engage customers and stakeholders to obtain feedback throughout the project lifecycle. However, overreliance on customer feedback could lead to excessive scope changes or end the project midway.
+
+
+How does SDLC address security?
+
+In traditional software development, security testing was a separate process from the software development lifecycle (SDLC). The security team discovered security flaws only after they had built the software. This led to a high number of bugs that remained hidden as well as increased security risks.
+
+Today, most teams recognize that security is an integral part of the software development lifecycle. You can address security in SDLC following DevSecOps practices and conducting security assessments during the entire SDLC process.
+
+DevSecOps
+
+DevSecOps is the practice of integrating security testing at every stage of the software development process. It includes tools and processes that encourage collaboration between developers, security specialists, and operation teams to build software that can withstand modern threats. In addition, it ensures that security assurance activities such as code review, architecture analysis, and penetration testing are integral to development efforts.
+
+
+
+
+
+
+
+
+
+
+
+
+How does SDLC compare with other lifecycle management methodologies?
+
+The term software development lifecycle (SDLC) is frequently used in technology to refer to the entire process of technology innovation and support. We give other similar terms below.
+
+### Systems development lifecycle
+
+The abbreviation SDLC can sometimes refer to the systems development lifecycle, the process for planning and creating an IT system. The system typically consists of several hardware and software components that work together to perform complex functions.
+
+Software development lifecycle compared to systems development lifecycle
+
+The software development lifecycle addresses only the development and testing of software components. On the other hand, system development is a broader superset involving the setup and management of the software, hardware, people, and processes that can make up a system. It can include tasks like organizational training and change management policies that don’t fall under the software development umbrella.
+
+
+### Application lifecycle management
+
+Application lifecycle management (ALM) is the creation and maintenance of software applications until they are no longer required. It involves multiple processes, tools, and people working together to manage every lifecycle aspect, such as ideation, design and development, testing, production, support, and eventual redundancy.
+
+SDLC compared to ALM
+
+SDLC describes the application development phase in greater detail. It is a part of ALM. ALM includes the entire lifecycle of the application and continues beyond SDLC. ALM can have multiple SDLCs during an application's lifecycle.
+
+
+System investigation
+
+First the IT system proposal is investigated. During this step, consider all current priorities that would be affected and how they should be handled. Before any system planning is done, a feasibility study should be conducted to determine if creating a new or improved system is a viable solution. This will help to determine the costs, benefits, resource requirements, and specific user needs required for completion. The development process can only continue once management approves of the recommendations from the feasibility study.
+
+The following represent different components of the feasibility study:
+
+    Operational feasibility
+    Financial feasibility
+    Technical feasibility
+    Human factors feasibility
+    Legal/Political feasibility
+
+Analysis
+
+The goal of analysis is to determine where the problem is, in an attempt to fix the system. This step involves breaking down the system in different pieces to analyze the situation, analyzing project goals, breaking down what needs to be created, and attempting to engage users so that definite requirements can be defined.
+
+Design
+
+where we describe how different responsibilities will be divided between different parts of the application.
+
+In systems design, the design functions and operations are described in detail, including screen layouts, business rules, process diagrams, and other documentation. The output of this stage will describe the new system as a collection of modules or subsystems.
+
+
+
+The design stage takes as its initial input the requirements identified in the approved requirements document. For each requirement, a set of one or more design elements will be produced as a result of interviews, workshops, and/or prototype efforts.
+
+Design elements describe the desired system features in detail, and they generally include functional hierarchy diagrams, screen layout diagrams, tables of business rules, business process diagrams, pseudo-code, and a complete entity-relationship diagram with a full data dictionary. These design elements are intended to describe the system in sufficient detail, such that skilled developers and engineers may develop and deliver the system with minimal additional input design.
+
+Environments
+Environments are controlled areas where systems developers can build, distribute, install, configure, test, and execute systems that move through the SDLC. Each environment is aligned with different areas of the SDLC and is intended to have specific purposes. Examples of such environments include the:
+
+    development environment, where developers can work independently of each other before trying to merge their work with the work of others;
+    common build environment, where merged work can be built, together, as a combined system;
+    systems integration testing environment, where basic testing of a system's integration points to other upstream or downstream systems can be tested;
+    user acceptance testing environment, where business stakeholders can test against their original business requirements; and
+    production environment, where systems finally get deployed for final use by their intended end users.
+
+
+
+
+Training and transition
+
+Once a system has been stabilized through adequate testing, the SDLC ensures that proper training on the system is performed or documented before transitioning the system to its support staff and end users. Training usually covers operational training for those people who will be responsible for supporting the system as well as training for those end users who will be using the system after its delivery to a production operating environment.
+
+After training has been successfully completed, systems engineers and developers transition the system to its final production environment, where it is intended to be used by its end users and supported by its support and operations staff.
+
+Operations and maintenance
+The deployment of the system includes changes and enhancements before the decommissioning or sunset of the system. Maintaining the system is an important aspect of SDLC. As key personnel change positions in the organization, new changes will be implemented. There are two approaches to system development: the traditional approach (structured) and object oriented. Information engineering includes the traditional system approach, which is also called the structured analysis and design technique. The object oriented approach views information system as a collection of objects that are integrated with each other to make a full and complete information system.
+
+Evaluation
+The final phase of the SDLC is to measure the effectiveness of the system and evaluate potential enhancements.
