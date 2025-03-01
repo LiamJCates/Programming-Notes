@@ -134,6 +134,8 @@ The **Waterfall Model** is a **highly structured and documentation-driven** appr
 
 
 
+
+
 The waterfall development model is notorious, many newer methodologies have been developed as a reaction to it's rigid structure and lack of ability to adapt as requirements change.
 
 The waterfall model arranges all the phases sequentially so that each new phase depends on the outcome of the previous phase. Conceptually, the design flows from one phase down to the next, like that of a waterfall.

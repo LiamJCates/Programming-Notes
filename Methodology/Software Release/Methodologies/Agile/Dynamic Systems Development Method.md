@@ -281,5 +281,3 @@ Dynamic Systems Development Method (DSDM) shares several Agile principles with m
 🔹 **Strong Business Alignment:** Unlike Kanban, DSDM ensures **business users are active team members**.  
 🔹 **Scope Control with Timeboxing:** Unlike Scrum sprints, DSDM enforces **fixed time and flexible scope** to guarantee delivery.  
 🔹 **Prototyping & Integrated Testing:** Unlike traditional Agile methods, DSDM **requires** evolutionary prototyping and continuous testing.  
-
-🚀 **Would you like a real-world case study of DSDM in action?**

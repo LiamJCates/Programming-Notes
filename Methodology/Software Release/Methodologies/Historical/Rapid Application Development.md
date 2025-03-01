@@ -154,6 +154,19 @@ Unlike traditional SDLC models, RAD follows a **four-phase process**:
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 Rapid Application Development (RAD) Methodology
 
 Rapid Application Development (RAD) is a software development methodology that emphasizes rapid prototyping, iterative development, and user feedback to quickly build applications. The key focus of RAD is to reduce the time it takes to develop software by using fast and efficient methods, which typically involve minimal planning, reliance on reusable software components, and close collaboration with users throughout the process.

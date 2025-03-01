@@ -290,6 +290,10 @@ This timeline highlights the progression of software development methodologies, 
 
         Cross-Functional Teams: Teams are composed of members with all necessary skills (developers, testers, designers) to handle a feature or iteration.
 
+
+Dynamic Systems Development Method (1994-2014)
+
+
 9. Scrum (1995-Present)
 
         Sprint Cycles: Development is organized into short, fixed-length iterations called sprints (usually 2-4 weeks).
@@ -302,7 +306,6 @@ This timeline highlights the progression of software development methodologies, 
         Sprint Review & Retrospective: At the end of each sprint, a review meeting with stakeholders is held to showcase the work done, followed by a retrospective meeting to reflect on process improvements.
 
 
-Dynamic Systems Development Method (1994-2014)
 
 
 10. Extreme Programming (XP) (1999-Present)
@@ -371,7 +374,7 @@ Dynamic Systems Development Method (1994-2014)
 
 
 
-
+Disciplined Agile Delivery (DAD) (2015-Present)
 
 
 

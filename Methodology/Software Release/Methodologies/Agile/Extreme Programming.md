@@ -363,7 +363,6 @@ Extreme Programming (XP) is one of the most disciplined Agile methodologies, foc
 
 
 
-
 Extreme Programming (XP)
 
 https://en.wikipedia.org/wiki/Extreme_programming

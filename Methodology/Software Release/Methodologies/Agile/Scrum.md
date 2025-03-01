@@ -135,6 +135,157 @@ Scrum is a lightweight, flexible framework that provides structure for managing 
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Scrum introduced and formalized several **specific practices** that distinguish it from other Agile and traditional methodologies. These practices are designed to promote **empirical process control, collaboration, and iterative delivery**. Here are the **key practices that Scrum formalized** that set it apart:  
+
+---
+
+## **1️⃣ Scrum Roles (Unique Team Structure)**
+Scrum **redefines team roles** to optimize collaboration and accountability. Unlike traditional project management, which has **project managers**, Scrum relies on **self-organizing teams** with the following key roles:  
+
+| **Scrum Role** | **Description** | **How It’s Different** |
+|--------------|---------------|----------------|
+| **Scrum Master** | Facilitates Scrum processes, removes obstacles, and ensures Agile best practices are followed. | Replaces traditional **project managers** with a **servant-leadership role** that coaches rather than commands. |
+| **Product Owner** | Defines the product vision, manages the backlog, and prioritizes user stories. | Unlike traditional business analysts, the **Product Owner has authority over priorities and business value**. |
+| **Development Team** | A cross-functional group that designs, develops, and tests the product in iterations. | Self-organizing, with **no hierarchy**, unlike traditional **development teams that follow top-down direction**. |
+
+---
+
+## **2️⃣ Time-Boxed Iterations (Sprints)**
+- **Scrum formalized fixed-length iterations** called **Sprints**, usually **1-4 weeks** long.  
+- Each Sprint delivers a **potentially shippable product increment**.  
+- Unlike **Kanban (continuous flow)** or **Waterfall (long project phases)**, Scrum uses **strictly time-boxed iterations** to enforce rapid delivery.  
+
+---
+
+## **3️⃣ Sprint Planning (Structured Planning)**
+- A **dedicated event** at the start of each Sprint where the team commits to work.  
+- The team **pulls prioritized items** from the **Product Backlog** into the **Sprint Backlog**.  
+- Unlike **Extreme Programming (XP), which allows flexible mid-iteration changes**, Scrum **locks Sprint scope after planning**.  
+
+---
+
+## **4️⃣ Daily Scrum (Daily Stand-Up)**
+- A **15-minute daily meeting** where the team discusses:  
+  1. **What they did yesterday**  
+  2. **What they will do today**  
+  3. **Any blockers**  
+- Unlike **traditional daily status meetings**, the Scrum Master **does NOT lead**—the team self-organizes.  
+- Unlike **Kanban, which focuses on continuous flow**, Scrum ensures daily alignment through this structured ritual.  
+
+---
+
+## **5️⃣ Sprint Review (Demo & Feedback)**
+- Held at the **end of each Sprint** to demonstrate the **completed work** to stakeholders.  
+- Focuses on **user feedback and business value**, unlike traditional methodologies that delay feedback until after full development.  
+- Unlike **Waterfall**, where reviews happen at the project end, Scrum ensures **frequent feedback loops**.  
+
+---
+
+## **6️⃣ Sprint Retrospective (Continuous Improvement)**
+- A **dedicated improvement session** after each Sprint where the team reflects on:  
+  - **What went well?**  
+  - **What didn’t?**  
+  - **How to improve next Sprint?**  
+- Unlike **XP (which focuses mainly on technical improvements)**, Scrum retrospectives cover **team dynamics, processes, and collaboration**.  
+
+---
+
+## **7️⃣ Product Backlog (Evolving Prioritized Work Queue)**
+- A **living document** of all product requirements, maintained by the **Product Owner**.  
+- **Reprioritized continuously** based on business needs.  
+- Unlike **Waterfall (fixed requirements at the start)**, Scrum allows backlog changes **before every Sprint**.  
+- Unlike **Kanban (which lacks structured backlog management)**, Scrum uses clear backlog **refinement sessions**.  
+
+---
+
+## **8️⃣ Definition of Done (DoD)**
+- A **formalized team agreement** on when a backlog item is considered “done.”  
+- Ensures quality control and prevents incomplete work from being released.  
+- Unlike XP, which focuses on **unit testing and code completion**, Scrum requires a **potentially shippable state** (fully tested, integrated, and documented).  
+
+---
+
+## **9️⃣ Self-Organizing, Cross-Functional Teams**
+- Teams **decide how to do the work**—no **manager assigning tasks**.  
+- Unlike **Waterfall, where developers and testers are separate**, Scrum teams are **cross-functional** (developers, testers, designers work together).  
+- Unlike **SAFe (which enforces hierarchical Agile roles)**, Scrum keeps **teams flat and autonomous**.  
+
+---
+
+## **🔟 No Mid-Sprint Changes (Sprint Commitment)**
+- Once a Sprint starts, **the work is locked**—no changes are introduced.  
+- This prevents **scope creep**, unlike **Kanban, which allows continuous backlog adjustments**.  
+- Unlike **Extreme Programming (XP), where customers can request changes mid-iteration**, Scrum enforces **Sprint focus**.  
+
+---
+
+## **Comparison: Scrum vs Other Agile Methodologies**
+| **Practice** | **Scrum** | **Kanban** | **XP (Extreme Programming)** | **SAFe (Scaled Agile)** |
+|-------------|---------|---------|----------------|----------------|
+| **Iterations** | **Sprints (1-4 weeks)** | Continuous flow | Iterations (1-2 weeks) | Program Increments (8-12 weeks) |
+| **Work in Progress (WIP) Limits** | No strict WIP limits | **Yes** (Explicit WIP limits per column) | No WIP limits | No strict WIP limits |
+| **Role of Scrum Master** | **Yes** (Facilitator, not manager) | No specific role | No specific role | Yes (Scaled version of Scrum Master) |
+| **Mid-Iteration Changes** | ❌ **Not allowed** | ✅ Allowed | ✅ Allowed | ❌ Not allowed |
+| **Daily Meeting** | **Yes** (Daily Scrum) | Optional | **Yes** (Stand-up) | **Yes** (Scrum of Scrums) |
+| **Engineering Practices** | Not explicitly defined | Not explicitly defined | **Yes** (TDD, Pair Programming, CI/CD) | Not explicitly defined |
+| **Planning** | **Sprint Planning** | Continuous | Continuous | **Program Increment Planning** |
+
+---
+
+## **Conclusion**
+Scrum **formalized a set of structured Agile practices** that ensure **predictability, collaboration, and continuous improvement**. While it shares similarities with other Agile methods, its **time-boxed iterations, self-organizing roles, commitment to Sprint goals, and structured ceremonies** set it apart.  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
  Scrum Phases
 
 Scrum is an Agile framework that defines a set structure for iterations called Sprints. These phases occur within each sprint (usually lasting 2-4 weeks):

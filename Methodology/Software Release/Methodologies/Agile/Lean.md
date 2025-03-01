@@ -286,6 +286,8 @@ Lean software development (LSD) originates from **Lean Manufacturing** (Toyota P
 
 
 
+
+
 Lean software development
 
 
