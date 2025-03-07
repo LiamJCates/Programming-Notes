@@ -1,3 +1,5 @@
+One can easily forget that all the text processed by a computer is ultimately stored as binary and that what you see on the screen is an interpretation of those binary numbers according to some kind of encoding scheme.
+
 The representation of a character within the computer memory, in storage, and in data transmission, is dependent on a particular character encoding scheme, called the character set.
 
 The choice of character set is one of the first to be made in designing a language syntax. There are several widely used character sets, such as the ASCll set, each containing a different set of special characters in addition to the basic letters and digits. The choice of character set is important in determining the type of input-output (I/O) equipment that can be used in implementing the language.

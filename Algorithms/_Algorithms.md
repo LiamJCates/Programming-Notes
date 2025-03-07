@@ -1,0 +1,148 @@
+What is an Algorithm?
+
+The general purpose of any application is 
+1. efficiently manage input data
+2. efficiently process the input
+3. provide correct output data
+
+An Algorithm is a well-defined, step-by-step procedure defined by a set of instructions to be interpreted and executed, transforming some input, to produce some output.
+An algorithm defines a computational input/output relation.
+
+
+
+While this description may sound restrictive, what defines a given algorithmic process, or may be achieved by one, is hypothetically limitless...
+
+
+
+Informal Examples
+
+Anything, from how an individual person might use a pencil and paper to perform arithmetic addition, to the circumstances we experience as reality, could be described algorithmically. In the first case, a step-by-step process used to calculate a summation might be translated into a mathematics lesson, interpretable and executed by a pupil assuming the role of the processing unit. In the later case, the phenomena of reality are understood to arise from the principles characterized by scientific law, processed by the fabric of spacetime. Indeed scientists have derived many computational models to do much the same in experimental simulations.
+
+
+
+Recognizing an Algorithm
+
+While no formal definition of "algorithm" is agreed to exist, typical components include:
+  a statement of the problem solved
+  steps of the procedure to reach a solution
+  accepted configuration of input data
+  accepted configuration of output data
+
+
+
+Modern Algorithms
+
+The concept of an algorithmic process has existed since antiquity. In recent history, the term algorithm most commonly references a set of programming language instructions interpreted and executed by a microprocessor. In the course of its execution, the computational unit the algorithm manipulates transforms input data to arrive at a desired output result, such that each algorithm is said to create an input/output relationship which solves the problem the algorithm is stated to address.
+
+
+
+
+
+Not all procedures can be considered an algorithm.
+
+Donald Knuth designated five properties widely accepted as requirements for an algorithm:
+  Finiteness: "An algorithm must always terminate after a finite number of steps ... a very finite number, a reasonable number"
+
+  Definiteness: "Each step of an algorithm must be precisely defined; the actions to be carried out must be rigorously and unambiguously specified for each case"
+
+  Input: "...quantities which are given to it initially before the algorithm begins. These inputs are taken from specified sets of objects"
+
+  Output: "...quantities which have a specified relation to the inputs"
+
+  Effectiveness: "... operations to be performed in the algorithm must be sufficiently basic that they can in principle be done exactly and in a finite length of time... using paper and pencil"
+
+Knuth offers, as an example, the Euclidean algorithm (the procedure) for determining a natural number (the output) that is the greatest common divisor (problem solved) of two natural numbers (the input).
+
+
+
+Five requirements for algorithms identified by Donald Kunth are Finiteness, Definiteness, Input, Output, Effectiveness
+
+Finiteness: Algorithm terminates after a finite number of steps
+
+Definiteness:  Each step is precisely defined, for each case
+
+Input: Specifies initial qualities of the related object set
+
+Output: Specifies terminal qualities of the related object set
+
+Effectiveness: Each step is done in a finite amount of time
+
+
+
+
+
+
+
+Theoretical Computer Science algorithmic properties:
+
+Completeness, Mechanistic, Deterministic are the
+
+Complete: Every instance must terminate with a solution
+
+Mechanistic: Finite simplistic sequence of instructions
+
+Deterministic: A unique instance invariably produces unique output
+
+
+
+
+
+A unique problem input is called a problem instance.
+Every problem instance must satisfy the constraints imposed in a problem statement
+
+Proving correctness is a necessary step in algorithm design.
+An algorithm is said to be correct if, for every input (instance), execution halts with correct output:
+  The correct algorithm will solve the given computational problem.
+  An incorrect algorithm, might never halt, or halt with an incorrect answer
+
+
+
+
+
+
+
+
+
+
+
+
+
+The right choice of algorithm to access and manipulate data is necessary for the optimal behavior of the application.
+
+Total system performance depends on choosing efficient algorithms as much as on choosing fast hardware.
+
+Just as rapid advances are being made in other computer technologies, they are being made in algorithms as well.
+
+
+two characteristics common to algorithmic problems
+many candidate solutions,
+practical applications
+
+
+Suppose computers had infinite memory space and speed, would we still study algorithms?
+Yes, to ensure algorithm completeness
+
+
+
+Computing time and memory space are bounded resources.
+Algorithms that are efficient in terms of time or space will help you use bounded resources wisely
+
+
+
+
+
+
+Input Size
+constant factors typically have far less of an impact on the running time than the input size n.
+
+Example:
+Insertion sort, takes time roughly equal to c1*n2 to sort n items, where c1 is
+a constant that does not depend on n.
+
+Merge Sort, takes time roughly equal to c2n lg n, where lg n stands for log2 n and c2 is another constant that also does not depend on n.
+
+Insertion sort usually runs faster than merge sort for sufficiently _____ input sizes
+small
+
+Sufficiently large input size n for Merge Sort’s lg(n) vs Insertion Sort's (n)
+compensate for the difference in constant factors.

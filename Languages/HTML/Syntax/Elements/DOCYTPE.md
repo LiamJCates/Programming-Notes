@@ -3,7 +3,7 @@
 The first element in any standard HTML document is the DOCTYPE element.
 
 ```html
-<!DOCTYPE html\>
+<!DOCTYPE html>
 ```
 
 <!DOCTYPE html> is known as a document type declaration (DTD). 
@@ -12,7 +12,17 @@ It's not an HTML tag in the traditional sense; rather, it's an instruction to th
 
 DTDs are strictly not an element that is part of the HTML standard, but it does tell the browser that this is an HTML document and tells it which version of HTML it is written in.
 
-In the early days of the web, different versions of HTML and various extensions were used, leading to inconsistencies in how browsers interpreted pages. The DOCTYPE declaration was introduced to help browsers render the page correctly according to the standards.
+When HTML was young (1991-1992), doctypes were meant to act as links to a set of rules that the HTML page had to follow to be considered good HTML.
+
+In the early days, different versions of HTML and various extensions were used, leading to inconsistencies in how browsers interpreted pages. The DOCTYPE declaration was introduced to help browsers render the page correctly according to the standards.
+
+Doctypes used to look something like this:
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+More recently, the doctype is a historical artifact that needs to be included for everything else to work right. 
+
 
 
 ### Why it Matters

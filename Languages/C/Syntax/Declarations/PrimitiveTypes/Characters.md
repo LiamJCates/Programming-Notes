@@ -1,6 +1,6 @@
 A char is 1 byte i.e. 8 bits or CHAR_BIT bits. So its signed version i.e. 2’s complement where half the range is negative and half is positive will have value from -128 to 127. Well that is not exactly opposite because we have only one zero for positive and negative numbers. If it would have been 1’s complement then range would have been from -127 to 127 but since computers follow 2’s complement the specification clearly mentions that range should be from −27 to 27−1
 
-. Note that chars are fundamentally integral types and ASCII symbols are first 128 numbers or in other words they are 7-bit numbers.
+Note that chars are fundamentally integral types and ASCII symbols are first 128 numbers or in other words they are 7-bit numbers.
 
 So a character ‘0’ is internally 48 in decimal which is its integral or internally it is handled as a sequence of binary numbers representing 0x30 in hexadecimal. These integral values for characters are known as ASCII value. A full table of ASCII values is given in the appendix A.
 

@@ -18,8 +18,7 @@ HTML first introduced for research with the ability to
 ### What Is HTML?
 
 
-The things that you see in websites and web applications are rendered by the web browser from HTML documents.
-These are documents with the HTM or HTML extension.
+The things that you see in websites and web applications are rendered by the web browser from HTML documents, documents with the HTM or HTML extension.
 
 
 HTML stands for Hyper Text Markup Language
