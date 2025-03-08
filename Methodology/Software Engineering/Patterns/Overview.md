@@ -54,7 +54,7 @@ Polymorphism is closely related to inheritance
 when one class inherits from another, polymorphism allows a subclass to stand in for the superclass.
 
 You can write code that works on the superclass and also on any of its subclasses, making your code more flexible because if you need new functionality, you could grab a new subclass, and the actual object type is decided at runtime. For example, in addition to creating objects using just the base class EngineChecker, we can create objects of the subclass V6EngineChecker using a reference of type Engine, and thanks to polymorphism, the right method will be called at runtime.
-<br/><br/><br/>
+
 
 
 

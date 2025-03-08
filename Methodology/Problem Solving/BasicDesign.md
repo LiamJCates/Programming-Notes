@@ -141,15 +141,7 @@ Implementation step 1: Outlining your main function
 
 Now we’re ready to start implementation. The above sequences can be used to outline your main program. Don’t worry about inputs and outputs for the time being.
 
-1
-2
-3
-4
-5
-6
-7
-8
-9
+
 
 int main()
 {
@@ -163,25 +155,6 @@ int main()
 
 Or in the case of the calculator:
 
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
 
 int main()
 {
@@ -217,38 +190,6 @@ If your functions are granular enough, each function should be fairly simple and
 
 Let’s do the first function from the calculator example:
 
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
 
 #include <iostream>
 
