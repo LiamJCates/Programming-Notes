@@ -1,0 +1,19 @@
+Data: a collection of discrete or continuous values that convey information that may be further interpreted formally. 
+
+A datum is an individual value in a collection of data.
+
+https://en.wikipedia.org/wiki/Data
+
+Data may be used as variables in a computational process. Data may represent abstract ideas or concrete measurements.[3] Data are commonly used in scientific research, economics, and virtually every other form of human organizational activity. Examples of data sets include price indices (such as the consumer price index), unemployment rates, literacy rates, and census data. In this context, data represent the raw facts and figures from which useful information can be extracted.
+
+Data are collected using techniques such as measurement, observation, query, or analysis, and are typically represented as numbers or characters that may be further processed. Field data are data that are collected in an uncontrolled, in-situ environment. Experimental data are data that are generated in the course of a controlled scientific experiment. Data are analyzed using techniques such as calculation, reasoning, discussion, presentation, visualization, or other forms of post-analysis. Prior to analysis, raw data (or unprocessed data) is typically cleaned: Outliers are removed, and obvious instrument or data entry errors are corrected.
+
+Data can be seen as the smallest units of factual information that can be used as a basis for calculation, reasoning, or discussion. Data can range from abstract ideas to concrete measurements, including, but not limited to, statistics. Thematically connected data presented in some relevant context can be viewed as information. Contextually connected pieces of information can then be described as data insights or intelligence. The stock of insights and intelligence that accumulate over time resulting from the synthesis of data into information, can then be described as knowledge. Data has been described as "the new oil of the digital economy". Data, as a general concept, refers to the fact that some existing information or knowledge is represented or coded in some form suitable for better usage or processing. 
+
+https://en.wikipedia.org/wiki/DIKW_pyramid
+
+Data, information, knowledge, and wisdom are closely related concepts, but each has its role concerning the other, and each term has its meaning. According to a common view, data is collected and analyzed; data only becomes information suitable for making decisions once it has been analyzed in some fashion. One can say that the extent to which a set of data is informative to someone depends on the extent to which it is unexpected by that person. The amount of information contained in a data stream may be characterized by its Shannon entropy.
+
+Knowledge is the awareness of its environment that some entity possesses, whereas data merely communicates that knowledge. For example, the entry in a database specifying the height of Mount Everest is a datum that communicates a precisely measured value. This measurement may be included in a book along with other data on Mount Everest to describe the mountain in a manner useful for those who wish to decide on the best method to climb it. Awareness of the characteristics represented by this data is knowledge.
+
+Data are often assumed to be the least abstract concept, information the next least, and knowledge the most abstract.[9] In this view, data becomes information by interpretation; e.g., the height of Mount Everest is generally considered "data", a book on Mount Everest geological characteristics may be considered "information", and a climber's guidebook containing practical information on the best way to reach Mount Everest's peak may be considered "knowledge".
