@@ -1,5 +1,10 @@
-Structured Query Language (SQL): Is a domain-specific programming language used to manage data, especially in a relational database management system (RDBMS). It is particularly useful in handling structured data, i.e., data incorporating relations among entities and variables. 
+Structured Query Language (SQL): Is a domain-specific programming language used to manage data, especially in a relational database management system (RDBMS). 
 
+Given this relationship, relational databases are also referred to as “SQL databases”.
+
+SQL is particularly useful in handling structured data, i.e., data incorporating relations among entities and variables. 
+
+Originally known as SEQUEL, it was simplified to SQL due to a trademark issue.
 
 The American National Standards Institute (ANSI) and International Organization for Standardization (ISO), which set standards for products and technologies, provide standards for the language and shepherd revisions to it. A database implementation must encompass the functionality set forth by these standards. Many database system implementations include additional features, and SQL comes in several variants, which are generally tied to specific database systems. The good news is that the variants don’t stray far from the standard, so once you learn the SQL conventions for one database, you can transfer that knowledge to other systems.
 

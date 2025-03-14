@@ -1,89 +1,6 @@
-NoSQL is a term used to describe non-relational database systems
-
-NoSQL stands for ‘Not Only SQL’, it evolved due to some restrictions & challenges with traditional relational databases with which SQL is synonymous. 
-
-While relational databases work exceptionally well for structured data and complex transactions, scaling them — especially horizontally across distributed systems — proved challenging. As applications and data volumes grew (particularly with the advent of the internet), the need for more flexible, scalable solutions became apparent.
-
-Instead of the relational model, NoSQL databases implement a number of alternate models for data management, such as key-value pairs, document storage, etc...
-
-NoSQL databases are widely recognized for their ease of development, functionality, and performance at scale.
-
-NoSQL capabilities support a flexible data model,
-which means you can store unstructured or semi structured data more easily.
-
-Some NoSQL databases provide native, built in horizontal and
-vertical scaling capabilities.
-
-Developers can work faster and more productively with data structures that match the application's needs for reads and writes.
-
-NoSQL databases work in distributed environments and
-provide high availability and fault tolerance.
-Businesses often use a mix of NoSQL databases for their needs.
-
-
-NoSQL databases are purpose built for specific data models and have flexible schemas for building modern applications.
-
-These types of databases are optimized specifically for applications that require:
-- large data volume,
-- low latency
-- flexible data models,
-
-which are generally achieved by relaxing some of the data consistency restrictions of relational models.
 
 
 
-is a general consensus that they fit into four types:
-Key-Value, Document, Column-based and Graph style NoSQL databases.
-
-There is some overlap among these types, so the definition isn’t always clear. 
-
-
-Businesses often use a mix of NoSQL databases for their needs.
-
-Let's take the example of social media platforms.
-Social media platforms use 
-- document databases to manage user profiles
-- Column databases store user activity feed information,
-- Key-Value databases help organizations manage user sessions and speed user access to frequently access data.
-- graph databases do the essential work of keeping people connected by storing information about friends and relationships. 
-
-
-
-
-
-Consider the example of modeling the schema for a simple book database:
-
-In a relational database, a book record is often dissembled (or “normalized”) and stored in separate tables, and relationships are defined by primary and foreign key constraints.
-
-		In this example,
-		the Books table has columns for ISBN, Book Title, and Edition Number,
-		the Authors table has columns for AuthorID and Author Name
-		the Author-ISBN table has columns for AuthorID and ISBN.
-
-		The relational model is designed to enable the database to enforce referential integrity between tables in the database, normalized to reduce the redundancy, and generally optimized for storage.
-
-In a NoSQL database, a book record is usually stored as a JSON document.
-
-	For each book, the item, ISBN, Book Title, Edition Number, Author Name, and AuthorID are stored as attributes in a single document.
-
-In this model, data is optimized for intuitive development and horizontal scalability.
-
-
-
-
-
-
-Why should you use a NoSQL database?
-
-NoSQL databases are a great fit for many modern applications that require flexible, scalable, high-performance, and highly functional databases.
-
-	Flexibility: NoSQL databases generally provide flexible schemas that enable faster and more iterative development. The flexible data model makes NoSQL databases ideal for semi-structured and unstructured data.
-
-	Scalability: NoSQL databases are generally designed to scale out by using distributed clusters of hardware instead of scaling up by adding expensive and robust servers. Some cloud providers handle these operations behind-the-scenes as a fully managed service.
-
-	High-performance: NoSQL database are optimized for specific data models and access patterns that enable higher performance than trying to accomplish similar functionality with relational databases.
-
-	Highly functional: NoSQL databases provide highly functional APIs and data types that are purpose built for each of their respective data models.
 
 
 
@@ -92,10 +9,10 @@ NoSQL databases are a great fit for many modern applications that require flexib
 
  SQL (relational) vs. NoSQL (nonrelational) databases
 
-For decades, the predominant data model that was used for application development was the relational data model used by relational databases such as Oracle, DB2, SQL Server, MySQL, and PostgreSQL. It wasn’t until the mid to late 2000s that other data models began to gain significant adoption and usage. To differentiate and categorize these new classes of databases and data models, the term “NoSQL” was coined. Often the term “NoSQL” is used interchangeably with “nonrelational.”
+
 
 Though there are many types of NoSQL databases with varying features, the following table shows some of the differences between SQL and NoSQL databases.
-Getting Started with NoSQL
+
 NoSQL databases
 
 Optimal workloads
@@ -154,14 +71,7 @@ Consistency in CAP is different than that of ACID. Consistency in CAP means havi
 
 ACID properties 	
 
-Relational databases provide atomicity, consistency, isolation, and durability (ACID) properties:
-    Atomicity requires a transaction to execute completely or not at all.
 
-		Consistency requires that when a transaction has been committed, the data must conform to the database schema.
-
-		Isolation requires that concurrent transactions execute separately from each other.
-
-		Durability requires the ability to recover from an unexpected system failure or power outage to the last known state.
 
 
 NoSQL databases often make tradeoffs by relaxing some of the ACID properties of relational databases for a more flexible data model that can scale horizontally. This makes NoSQL databases an excellent choice for high throughput, low-latency use cases that need to scale horizontally beyond the limitations of a single instance.
@@ -190,21 +100,6 @@ NoSQL databases implement an Object-based APIs which allow app developers to eas
 
 
 
-SQL vs. NoSQL Terminology
-
-The following table compares terminology used by select NoSQL databases with terminology used by SQL databases.
-
-
-| SQL | MongoDB | DynamoDB | Cassandra  | Couchbase |
-|-----|---------|----------|------------|-----------|
-| Table | Collection | Table | Table | Data bucket |
-| Row | Document | Item | Row | Document |
-| Column | Field | Attribute | Column | Field |
-| Primary key | ObjectId | Primary key | Primary key | Document ID |
-| Index | Index | Secondary index | Index | Index |
-| View | View | Global secondary index | Materialized view | View |
-| Nested table or object | Embedded document | Map | Map | Map |
-| Array | Array | List | List | List |
 
 
 

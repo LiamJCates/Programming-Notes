@@ -6,7 +6,7 @@ You can find a detailed component API reference here:
 [https://reactjs.org/docs/react-component.html]
 
 Conceptually, components are like JavaScript functions:
-	They accept arbitrary inputs (called “props”)
+	They accept arbitrary inputs (called “props” which stands for properties)
 	return React elements describing what should appear on the screen.
 
 
@@ -22,7 +22,7 @@ function Welcome(props) {
 }
 ```
 
-This function is a valid React component because it accepts a single “props” (which stands for properties) object argument with data and returns a React element. We call such components “function components” because they are literally JavaScript functions.
+This function is a valid React component because it accepts a single “props” object argument with data and returns a React element. We call such components “function components” because they are literally JavaScript functions.
 
 #### Class Component
 You can also use an ES6 class to define a component:
