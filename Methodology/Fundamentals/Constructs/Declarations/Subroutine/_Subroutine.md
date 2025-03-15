@@ -1,35 +1,47 @@
 In general, a computer programming subroutine is a group of statements, given a name, which can be called from some point in the program to be executed to accomplish some task.
 
-Formally, computer programming subroutine is a code block that can take inputs, execute instructions, and return a result. Functions allow a programmer to structure programs in segments of code to perform individual tasks.
+Effective use of subroutines allow a programmer to structure programs in segments of code responsible for performing individual tasks.
+Subroutines enable you to divide the content of your application into logical units that can be invoked in a sequence of your choosing.
 
 In different programming languages, a subroutine may be called a routine, subprogram, function, method, or procedure. Technically, these terms all have different definitions. The generic, umbrella term "callable unit" is sometimes used.
 
-Functions enable you to divide the content of your application into functional units that can be invoked in a sequence of your choosing.
 
-In the following discussion we shall refer to the more general concept of subroutine using the word function.
+In software development, the terms **subroutine** and **function** both refer to reusable blocks of code designed to perform specific tasks. However, there are distinctions between them:
+
+- **Subroutine**: A sequence of program instructions that performs a specific task, packaged as a unit. This unit can be invoked from various points in a program to execute its task, after which control returns to the calling location. Subroutines may or may not return a value to the caller.
+
+- **Function**: Similar to a subroutine, but with the explicit characteristic of returning a value after execution. Functions take input parameters, process them, and provide an output, where there is some obvious relationship between the input and the output
+
+The primary difference lies in the return value: functions are designed to return a value, whereas subroutines might not. This distinction can vary based on the programming language in use. For instance, in languages like C and C++, all callable units are termed "functions," regardless of whether they return a value. In contrast, languages like Visual Basic differentiate between "Sub Procedures" (subroutines) that do not return a value and "Functions" that do.
+
+Understanding these distinctions is crucial for writing clear and maintainable code, as it aligns with the conventions and expectations of the programming language being used. 
+
+
+
 
 
 ### Benefits
-Functions provide a number of benefits that make them extremely useful in programs of non-trivial length or complexity.
+
+Subroutine provide a number of benefits that make them extremely useful in programs of non-trivial length or complexity.
 
 #### Organization
 As programs grow in complexity, having all the code live inside the main() function becomes increasingly complicated. A function is almost like a mini-program that we can write separately from the main program, without having to think about the rest of the program while we write it. This allows us to reduce a complicated program into smaller, more manageable chunks, which reduces the overall complexity of our program.
 
 #### Reusability
-Once a function is written, it can be called multiple times from within the program. This avoids duplicated code (“Don’t Repeat Yourself”) and minimizes the probability of copy/paste errors. Functions can also be shared with other programs, reducing the amount of code that has to be written from scratch (and retested) each time.
+Once a function is written, it can be called multiple times from within the program. This avoids duplicated code (“Don’t Repeat Yourself”) and minimizes the probability of copy/paste errors. Subroutine can also be shared with other programs, reducing the amount of code that has to be written from scratch (and retested) each time.
 
 #### Testing
-Because functions reduce code redundancy, there’s less code to test in the first place. Also because functions are self-contained, once we’ve tested a function to ensure it works, we don’t need to test it again unless we change it. This reduces the amount of code we have to test at one time, making it much easier to find bugs (or avoid them in the first place).
+Because Subroutine reduce code redundancy, there’s less code to test in the first place. Also because Subroutine are self-contained, once we’ve tested a function to ensure it works, we don’t need to test it again unless we change it. This reduces the amount of code we have to test at one time, making it much easier to find bugs (or avoid them in the first place).
 
 #### Extensibility
-When we need to extend our program to handle a case it didn’t handle before, functions allow us to make the change in one place and have that change take effect every time the function is called.
+When we need to extend our program to handle a case it didn’t handle before, Subroutine allow us to make the change in one place and have that change take effect every time the function is called.
 
 #### Abstraction
 In order to use a function, you only need to know its name, inputs, outputs, and where it lives. You don’t need to know how it works, or what other code it’s dependent upon to use it. This lowers the amount of knowledge required to use a segment of code.
 
 
 
-### Implementing Functions
+### Implementing Subroutine
 
 {return type} function_name([parameter list])
   //function body
@@ -41,7 +53,7 @@ The basic components of a function:
   Parameter List [optional]
 
 #### Function Name
-A function has a name that is used to reference its content elsewhere in our source code. The conventions used by a language for naming functions usually follow those of other identifiers:
+A function has a name that is used to reference its content elsewhere in our source code. The conventions used by a language for naming Subroutine usually follow those of other identifiers:
 [Programming Methods\Fundamentals\Constructs\Declarations\Identifiers.md]
 
 Referencing a function in another portion of code is known as calling the function.
@@ -76,7 +88,7 @@ For those languages that require a return type it is specified proceeding the fu
 
 
 ### Execution
-Functions are a method of managing a program's control flow
+Subroutine are a method of managing a program's control flow
 
 By convention, and required by many languages, a function is specified before it is called. Though the code for the function is above the rest of the function, it will not execute until we call the function.
 
@@ -154,7 +166,7 @@ On the last line, the content of that variable is printed.
 
 
 ### Function Input
-Often, we want our functions to be somewhat flexible, so they don't do exactly the same thing every time we call them.
+Often, we want our subroutines to be somewhat flexible, so they don't do exactly the same thing every time we call them.
 
 Consider the following two functions:
 add_2_and_3()

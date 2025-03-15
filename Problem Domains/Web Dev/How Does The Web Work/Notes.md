@@ -1,43 +1,5 @@
 
-### Web Standards
 
-Web standards are the technologies we use to build websites. These standards exist as long technical documents called specifications, which detail exactly how the technology should work. These documents are not very useful for learning how to use the technologies they describe. Instead, they are intended to be used by software engineers to implement these technologies (usually in web browsers).
-
-Web standards are created by standards bodies — institutions that invite groups of people from different technology companies to come together and agree on how the technologies should work in the best way to fulfill all of their use cases.
-
-The W3C is the best known web standards body, but there are others. For example:
-
-    WHATWG maintains the HTML Living Standard, which describes exactly how HTML (all the HTML elements, and their associated APIs, and other surrounding technologies) should be implemented.
-    TC39 and ECMA specify and publish the standard for ECMAScript, which modern JavaScript is based on.
-    Khronos publish technologies for 3D graphics, such as WebGL.
-
-
-The key principles of the web, which make the web a unique and exciting industry to get involved in, are as follows:
-
-    Open to contribute and use, and therefore not patent-encumbered or controlled by a single private entity.
-    Accessible and interoperable.
-    They don't break the web.
-
-
-"Open" standards
-
-One of the key aspects of web standards, which TimBL and the W3C agreed on from the start, is that the web (and web technologies) should be open. This means they are free to both contribute to and use, and not encumbered by patents/licensing. Open standards enable the web to remain a freely-available public resource, where anyone can write the code to build a website for free, and anyone can contribute to the standards creation process.
-
-Accessible and interoperable
-
-The web and web browsers are fundamentally designed so that web content is accessible to people with disabilities. It was originally envisaged as a great leveller, enabling people to access information regardless of circumstance. This means that, for example:
-
-    People who are unable to use a mouse or pointing device can use the keyboard to navigate the web.
-    People who are visually impaired can magnify content, or use a program called a screen reader to read content out to them and describe controls in a way that makes sense.
-
-In addition, web technologies are intended to be interoperable. Because web technologies are implemented according to published standards, browsers should provide the same rendered output for a given input (for example, HTML, CSS, or JS code) — in other words, a website should work consistently across multiple browsers.
-
-
-Don't break the web
-
-Another phrase you'll hear around open web standards is "don't break the web". The idea behind this is that any new web technology should be backwards compatible with what went before it, so existing websites will continue to work in the same way as they did before.
-
-Web browser vendors should be able to implement new web technologies without causing a difference in rendering or functionality that would cause their users to think a website is broken and try another browser as a result.
 
 
 
@@ -105,48 +67,6 @@ Presenting a document to a user means converting it into a form usable by your a
 
 
 
-### Web best practices
-
-We have briefly talked about the technologies that you'll use to build websites. Now let's discuss the best practices that web developers generally employ to ensure that their websites are usable by as many people as possible.
-
-When doing web development, the main cause of uncertainty comes from the fact that you don't know what combination of technology each user will use to view your website:
-
-    User 1 might be looking at it on an iPhone, with a small, narrow screen.
-    User 2 might be looking at it on a Windows laptop with a widescreen monitor attached to it.
-    User 3 might be visually impaired, and using a screen reader to read and interact with the web page.
-    User 4 might be using a really old desktop machine that can't run modern browsers.
-
-Because you don't know exactly what your users will use, you need to design defensively — make your website as flexible as possible, so that all of the above users can make use of it, even if they might not all get the same experience.
-
-You'll come across the below concepts at some point in your studies, which represent best practices your websites should ideally adhere to. Don't worry about these too much for now. Throughout most of the course we try to teach these implicitly, meaning that when we teach you HTML, CSS, and JavaScript, our examples will follow the best practices where possible. Later on in your learning journey you will likely explore explicit teachings in these areas.
-
-#### Progressive enhancement
-
-    Creating a minimal experience that provides the essential functionality to all users, and layering on a better experience and other enhancements in browsers that can support them. Progressive enhancement is often seen as unimportant, because browsers tend to support new features more consistently these days, and people tend to have faster internet connections with higher limits on data usage. However, consider examples like cutting down on decoration to make a mobile experience smoother and save on data or providing a lighter, low-bandwidth experience for users who pay by the megabyte or have metered connections.
-
-#### Cross-browser compatibility
-
-    Trying to make sure your webpage works across as many devices as possible. This includes using technologies that all the browsers support, delivering better experiences to browsers that can handle them (progressive enhancement), and/or writing code so that it falls back to a simpler but still usable experience in older browsers (termed graceful degradation). It also requires testing to see if anything fails in certain browsers, and then more work to fix those failures.
-
-#### Separating the layers
-
-    Putting your content (HTML), styling (CSS), and behavior (JavaScript) in different code files, rather than lumping them all together in the same place. This is a good idea for many reasons, including code management and comprehension and teamwork/separation of roles. In reality, the separation is not always clear. It is an ideal to aim for where possible, rather than an absolute.
-
-#### Responsive web design
-
-    Making your functionality and layouts flexible so they can automatically adapt to different browsers. An obvious example is a website that is laid out one way in a widescreen browser on the desktop, but displays as a more compact, single-column layout on mobile phone browsers. Try adjusting the width of your browser window now, and see what happens to the site layout.
-
-#### Performance
-
-    Getting websites to load as quickly as possible, but also making them intuitive and easy to use so that users don't get frustrated and go somewhere else.
-
-#### Internationalization
-
-    Making websites usable by people from different cultures, who speak different languages to your own. There are technical considerations here (such as altering your layout so that it still works OK for right-to-left or top-to-bottom languages), and human ones (such as using simple, non-slang language so that diverse cultures are more likely to understand your text).
-
-#### Privacy & Security
-
-    These two concepts are related but different. Privacy refers to allowing people to go about their business privately and not spying on them or collecting more of their data than you absolutely need to. Security refers to constructing your website in a secure way so that malicious users cannot steal information contained on it from you or your users.
 
 
 
@@ -156,24 +76,14 @@ You'll come across the below concepts at some point in your studies, which repre
 
 Common web-related concepts: web pages, websites, web servers, and search engines.
 
-Web page
-
-    A document that can be displayed in a web browser.
-Website
-
-    A collection of web pages grouped together into a single resource, with links connecting them together. Often called a "site".
-
-Web server
-
-    A computer that hosts a website on the Internet.
-
+Web page: A document that can be displayed in a web browser.
+Website: A collection of web pages grouped together into a single resource, with links connecting them together. Often called a "site".
+Web server: A computer that hosts a website on the Internet.
 Web service
 
     A software that responds to requests over the Internet to perform a function or provide data. A web service is typically backed by a web server, and may provide web pages for users to interact with. Many websites are also web services, though some websites comprise of static content only. Examples of web services would be something that resizes images, provides a weather report, or handles user login.
 
-Search engine
-
-    A web service that helps you find other web pages, such as Google, Bing, Yahoo, or DuckDuckGo. Search engines are normally accessed through a web browser (for example, you can perform search engine searches directly in the address bar of Firefox, Chrome, etc.) or through a web page (for example, bing.com or duckduckgo.com).
+Search engine: A web service that helps you find other web pages, accessed through a web browser address bar or designated web page.
 
 Let's look at an analogy — a public library. This is what you would generally do when visiting a library:
 
@@ -192,7 +102,10 @@ Let's now take the time to look at each term in a little bit more detail.
 
 Web page
 
-A web page, often called just "page", is a simple document displayable by a browser. Such documents are written in the HTML language. A web page can embed a variety of different types of resources such as:
+A web page, often called just "page", is a simple document displayable by a browser. 
+Such documents are written in the HTML language. 
+
+A web page can embed a variety of different types of resources such as:
 
     Style information — controlling a page's look-and-feel.
     Scripts — which add interactivity to the page.
@@ -203,9 +116,9 @@ All web pages can each be found at a unique location (web address, also called a
 
 Website
 
-A website is a collection of linked web pages (plus their associated resources) that share a unique domain name. Each web page of a given website provides explicit links—most of the time in the form of clickable portions of text—that allow the user to move from one page of the website to another.
+A website is a collection of linked web pages (plus their associated resources) that share a unique domain name. Each web page of a given website provides explicit links, typically in the form of clickable portions of text, that allow the user to move from one page of the website to another.
 
-When you load your favorite website in a browser, it tends to first display the website's main web page, or homepage (casually referred to as "home").
+When you load a website in a browser, it tends to first display the website's main web page, or homepage (casually referred to as "home").
 
 It is also possible to have a single-page app: a website that consists of a single web page that is dynamically updated with new content when needed.
 
