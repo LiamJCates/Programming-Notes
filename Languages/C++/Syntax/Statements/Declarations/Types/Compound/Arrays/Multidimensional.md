@@ -609,14 +609,18 @@ x[2][0] x[2][1] x[2][2]
 There are two ways in which a Two-Dimensional array can be initialized.
 
 #### Linear Method:
-```
+```cpp
 int x[3][4] = {0, 1 ,2 ,3 ,4 , 5 , 6 , 7 , 8 , 9 , 10 , 11}
 ```
 The above array have 3 rows and 4 columns. The elements in the braces from left to right are stored in the table also from left to right. The elements will be filled in the array in the order, first 4 elements from the left in first row, next 4 elements in second row and so on.
 
 #### Explicit Method:
-```
-int x[3][4] = {{0,1,2,3}, {4,5,6,7}, {8,9,10,11}};
+```cpp
+int x[3][4] = {
+  {0,1,2,3}, 
+  {4,5,6,7}, 
+  {8,9,10,11}
+};
 ```
 This type of initialization make use of nested braces. Each set of inner braces represents one row. In the above example there are total three rows so there are three sets of inner braces.
 

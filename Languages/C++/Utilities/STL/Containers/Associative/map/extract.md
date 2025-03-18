@@ -11,7 +11,11 @@
  
 int main()
 {
-    std::map<int, char> cont{{1, 'a'}, {2, 'b'}, {3, 'c'}};
+    std::map<int, char> cont{
+        {1, 'a'}, 
+        {2, 'b'}, 
+        {3, 'c'}
+    };
  
     auto print = [](std::pair<const int, char>& n) { 
         std::cout << " " << n.first << '(' << n.second << ')'; 

@@ -892,13 +892,13 @@ Styling React Components
 
 Before we get into working with data, let me tell you a bit about an alternative way to style your React components without using a global CSS style sheet. Let me actually scratch the global CSS sheet and lose all the styling for what we have so far. Now with this alternatively to style React components, you don't really need to have a className in here, so you can actually get rid of all these classNames if you want to. Instead, you pass a style property.
 ```js
-<div className="github-profile" style={{ }}>
+<div className="github-profile" style={ { } }>
 ```
 Now, this is a special React property. It is not like the HTML style property that's usually frowned upon. Just like events, instead of passing a string, we pass this special React property, a JavaScript object. So we use curly braces for a dynamic value, and then we use another set of curly braces to start an object literal. This is not a special double curly brace syntax. This is just an object literal inside the normal JSX dynamic expression syntax that we do with curly braces.
 
 Inside the style object we can specify any styles we want this element to have using the JavaScript API for styles. For example, if I want to give this GitHub profile card some margin, I can use margin and put the value in here in a string. So this would be 1rem, for example.
 ```js
-<div className="github-profile" style={{ margin: '1rem' }}>
+<div className="github-profile" style={ { margin: '1rem' } }>
 ```
 
 Similarly, here is an example style to give the info class a display of inline‑block and a marginLeft of 10 pixels. Let's also give the name here a bigger fontSize and test all that.
@@ -906,10 +906,10 @@ Similarly, here is an example style to give the info class a display of inline�
 class Card extends React.Component {
 	render() {
   	return (
-    	<div className="github-profile" style={{ margin: '1rem' }}>
+    	<div className="github-profile" style={ { margin: '1rem' } }>
     		<img src="https://placehold.it/75" />
-        <div className="info" style={{ display: 'inline-block' marginLeft: 10 }}>
-          <div className="name" style={{ fontSize: '125%' }}>Name here...</div>
+        <div className="info" style={ { display: 'inline-block' marginLeft: 10 } }>
+          <div className="name" style={ { fontSize: '125%' } }>Name here...</div>
           <div className="company">Company here...</div>
         </div>
     	</div>
@@ -929,7 +929,7 @@ Here is a non‑related example about that specific use case. This component wil
 class ConditionalStyle extends React.Component {
 	render() {
   	return (
-    	<div style={{ color: Math.random() < 0.5 ? 'green': 'red' }}>
+    	<div style={ { color: Math.random() < 0.5 ? 'green': 'red' } }>
     	  Conditional Style
     	</div>
     );

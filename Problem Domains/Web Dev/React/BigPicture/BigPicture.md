@@ -125,7 +125,7 @@ Vue
 
 Ember
 
-{{ #each user in users}}
+{ { #each user in users} }
 
 React went the exact opposite route. Instead of trying to make HTML more powerful, React just handles HTML with JavaScript. You don't need to learn new framework‑specific keywords, rules, and syntax for conditionals, looping, and so on. You just use JavaScript. JavaScript already has a built‑in function for iterating over an array called map,
 

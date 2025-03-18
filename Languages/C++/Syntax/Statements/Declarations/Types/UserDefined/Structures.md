@@ -276,7 +276,9 @@ You can use nested initializer lists for nested structs:
     int numberOfEmployees;
   };
 
-  Company myCompany{{ 1, 42, 60000.0 }, 5 };
+  Company myCompany{
+    { 1, 42, 60000.0 }, 5 
+  };
 
 
 ### Assignment
