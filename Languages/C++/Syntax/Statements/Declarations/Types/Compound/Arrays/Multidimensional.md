@@ -31,7 +31,10 @@ where indexExp1, indexExp2, . . ., and indexExpn are expressions yielding nonneg
 ```cpp
 //arrayType arrayName [rows] [columns];
 
-int solarPanels [2][3] = {{0, 1, 2}, {3, 4, 5}};
+int solarPanels [2][3] = {
+  {0, 1, 2}, 
+  {3, 4, 5}
+};
 ```
 
 Even though C++ enables us to model multidimensional arrays, the memory where the array is contained is one-dimensional. So, the compiler maps the multidimensional array into the memory space, which expands only in one direction.
