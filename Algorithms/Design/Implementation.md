@@ -1,10 +1,9 @@
-Introduction
+## Introduction
+
 Know the theoretical knowledge of the algorithm is essential, but it is not sufficient. You need to have a systematic approach to solve a problem.
 
 We will follow a systematic five-step approach to reach to our solution.
 
-Master this approach and you will be better than most of the candidates in
-interviews.
 Five steps for solving algorithm design questions are:
 1. Constraints
 2. Ideas Generation
@@ -12,32 +11,33 @@ Five steps for solving algorithm design questions are:
 4. Coding
 5. Testing
 
-Constraints
-Solving a technical question is not just about knowing the algorithms and designing a good software system. The interviewer wants to know you approach towards any given problem. Many people make mistakes, as they do not ask clarifying questions about a given problem. They assume many
-things and begin working with that. There are a lot of data that is missing
-that you need to collect from your interviewer before beginning to solve a
-problem.
-In this step, you will capture all the constraints about the problem. We
-should never try to solve a problem that is not completely defined.
-Interview questions are not like exam paper where all the details about a
-problem are well defined. In the interview, the interviewer actually expects
-you to ask questions and clarify the problem.
-For example: When the problem statement says that write an algorithm to
-sort numbers.
-The first information you need to capture is what king of data. Let us
-suppose interviewer respond with the answer Integer.
-The second information that you need to know what is the size of data. Your
-algorithm differs if the input data size if 100 integers or 1 billion integers.
+### Constraints
+
+Solving a technical question requires clarifying questions about a given problem.
+
+In this step, you will capture all the constraints about the problem. We should never try to solve a problem that is not completely defined.
+
+For example: 
+When the problem statement says that write an algorithm to sort numbers.
+
+The first information you need to capture is what kind of data. 
+Let us suppose interviewer respond with the answer Integer.
+
+The second information that you need to know what is the size of data. 
+
+Your algorithm differs if the input data size if 100 integers or 1 billion integers.
+
 Basic guideline for the Constraints for an array of numbers:
 1. How many numbers of elements in the array?
-2. What is the range of value in each element? What is the min and max
-value?
-3. What is the kind of data in each element is it an integer or a floating
-point?
+2. What is the range of value in each element? What is the min and max value?
+3. What is the kind of data in each element is it an integer or a floating point?
 4. Does the array contain unique data or not?
+
 Basic guideline for the Constraints for an array of string:
-1. How many numbers of elements in the array?2. What is the length of each string? What is the min and max length?
+1. How many numbers of elements in the array?
+2. What is the length of each string? What is the min and max length?
 3. Does the array contain unique data or not?
+
 Basic guideline for the Constraints for a Graph
 1. How many nodes are there in the graph?
 2. How many edges are there in the graph?
@@ -46,9 +46,11 @@ Basic guideline for the Constraints for a Graph
 5. Is there is a loop in the graph?
 6. Is there negative sum loop in the graph?
 7. Does the graph have self-loops?
-We have already seen this in graph chapter that depending upon the
-constraints the algorithm applied changes and so is the complexity of the
-solution.Idea Generation
+
+We have already seen this in graph chapter that depending upon the constraints the algorithm applied changes and so is the complexity of the solution.
+
+### Idea Generation
+
 We have covered a lot of theoretical knowledge in this book. It is
 impossible to cover all the questions as new ones are created every day.
 Therefore, we should know how to handle new problems. Even if you know
@@ -106,7 +108,9 @@ need to find the point of intersection. However, in place of the end of both
 the linked list to be a null pointer there is a loop.You know how to find intersection point of two intersecting linked list, you
 know how to find if a linked list have a loop (three-pointer solution).
 Therefore, you can apply both of these solutions to find the solution of the
-problem in hand.Complexities
+problem in hand.
+
+### Complexities
 Solving a problem is not just finding a correct solution. The solution should
 be fast and should have reasonable memory requirement. You have already
 read about Big-O notation in the previous chapters. You should be able to
@@ -120,7 +124,9 @@ should find the complexity associated with it from this you would be able to
 choose the best solutions. In some problems there is some trade-offs
 between space and Time Complexity, so you should know these trade-offs.
 Sometime taking some bit more space saves a lot of time and make your
-algorithm much faster.Coding
+algorithm much faster.
+
+### Coding
 At this point, you have already captured all the constraints of the problem,
 proposed few solutions, evaluated the complexities of the various solutions
 and picked the one solution to do final coding. Never ever, jump into
@@ -133,7 +139,9 @@ You should think before coding because there is no back button in sheet of
 paper. Always try to write modular code. Small functions need to be created
 so that the code is clean and managed. If there is a swap function so just use
 this function and tell the interviewer that you will write it later. Everybody
-knows that you can write swap code.Testing
+knows that you can write swap code.
+
+### Testing
 Once the code is written, you are not done. It is most important that you test
 your code with several small test cases. It shows that you understand the
 importance of testing. It also gives confidence to your interviewer that you
@@ -157,9 +165,11 @@ need to be added to the code to take care of the condition.
 Load testing: In this kind of test, your code will be tested with a huge data.
 This will allow us to test if your code is slow or too much memory
 intensive.
-Always follow these five steps never jump to coding before doing
-constraint analysis, idea generation, and Complexity Analysis: At least
-never, miss the testing phase.Example
+
+Always follow these five steps never jump to coding before doing constraint analysis, idea generation, and Complexity Analysis: At least
+never, miss the testing phase.
+
+Example
 Let us suppose the interviewer ask you to give a best sorting algorithm.
 Some interviewee will directly jump to Quick-Sort O(nlogn). Oops,
 mistake you need to ask many questions before beginning to solve this
@@ -178,13 +188,15 @@ Answer: No, you cannot modify the data structure provided
 Ok from the first answer, we will deduce that the data is integer. The data is
 not so big it just contains a few thousand entries. The third answer is
 interesting from this we deduce that the range of data is 1-150. Data is
-provided in an array. From fifths answer we deduce that we have to create
+provided in an array. From fifth answer we deduce that we have to create
 our own data structure and we cannot modify the array provided. So finally,
 we conclude, we can just use bucket sort to sort the data. The range is just
 1-150 so we need just 151-capacity integral array. Data is under thousands
 so we do not have to worry about data overflow and we get the solution in
 linear time O(N).
-Note: We will read sorting in the coming chapters.Summary
+Note: We will read sorting in the coming chapters.
+
+Summary
 At this point, you know the process of handling new problems very well. In
 the coming chapter we will be looking into a lot of various data structure
 and the problems they solve. A huge number of problems are solved in this
