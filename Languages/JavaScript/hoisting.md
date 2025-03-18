@@ -18,11 +18,12 @@ In JavaScript, **hoisting** refers to the interpreter's behavior of moving decla
 
   In this example, the declaration of `message` is hoisted, but its assignment occurs at the original line. Therefore, the first `console.log` outputs `undefined`.
 
+Because of hoisting, all var statements in a function should be placed as near to the top of the function as possible. This best practice increases the clarity of the code.
+
+
 - **`let` and `const` Declarations:**
 
   Variables declared with `let` and `const` are also hoisted to the top of their block scope. However, unlike `var`, they are not initialized during hoisting. Accessing them before their declaration results in a `ReferenceError` due to the "temporal dead zone," which is the period between entering the scope and the actual declaration where the variable cannot be accessed.
-
-  *Example:*
 
   
 ```javascript
@@ -38,8 +39,6 @@ In JavaScript, **hoisting** refers to the interpreter's behavior of moving decla
 - **Function Declarations:**
 
   Function declarations are hoisted entirely, meaning both the function's name and its implementation are moved to the top of their scope. This allows functions to be invoked before they appear in the code.
-
-  *Example:*
 
   
 ```javascript

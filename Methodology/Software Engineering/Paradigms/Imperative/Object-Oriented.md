@@ -1,5 +1,6 @@
 Object-oriented programming (OOP) is a programming paradigm based on the concept of "objects" that interact with each other.
-### **Object-Oriented Programming (OOP) Explained**
+
+### **Object-Oriented Programming (OOP)**
 **Object-Oriented Programming (OOP)** is a programming paradigm that is based on the concept of **objects**. Objects are instances of **classes** that encapsulate both **data (attributes)** and **behavior (methods)**. OOP promotes code **modularity, reusability, and scalability** by organizing software into objects that interact with each other.
 
 ---
@@ -25,6 +26,7 @@ Object-oriented programming (OOP) is a programming paradigm based on the concept
 ---
 
 ## **🔹 Core OOP Concepts**
+
 ### **🔹 Classes & Objects**
 - **Class** = Blueprint for creating objects (defines attributes & methods).  
 - **Object** = An instance of a class.  

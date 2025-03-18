@@ -1,0 +1,65 @@
+In software development, programming languages are generally categorized based on how they are executed: compiled or interpreted. This classification influences various aspects of development, including performance, portability, and flexibility.
+
+**Compiled Languages**
+
+Compiled languages are transformed directly into machine code that the computer's processor can execute. This transformation is performed by a compiler, which translates the entire source code into executable code before the program runs. Examples of compiled languages include C, C++, and Rust.
+
+*Advantages:*
+
+- **Performance:** Since the code is translated into machine language ahead of time, compiled programs often run faster and more efficiently. citeturn0search2
+
+- **Optimization:** Compilers can optimize code during the compilation process, improving performance and resource management.
+
+*Disadvantages:*
+
+- **Platform Dependency:** Compiled code is specific to the target machine's architecture, which can limit portability across different systems.
+
+- **Development Cycle:** Every change in the source code requires recompilation, which can slow down the development process.
+
+**Interpreted Languages**
+
+Interpreted languages are executed line-by-line by an interpreter at runtime, without prior compilation into machine-language instructions. Languages such as Python, JavaScript, and Ruby are typically interpreted.
+
+*Advantages:*
+
+- **Portability:** Interpreted code is generally platform-independent, as the interpreter handles the machine-specific details.
+
+- **Flexibility:** Developers can test and modify code quickly without the need for recompilation, facilitating rapid development and debugging.
+
+*Disadvantages:*
+
+- **Performance:** Interpreted programs may run slower than compiled ones due to the overhead of interpreting code at runtime. citeturn0search2
+
+- **Runtime Errors:** Errors in the code may only become apparent during execution, potentially leading to runtime exceptions.
+
+**Blurring the Lines**
+
+The distinction between compiled and interpreted languages is not always clear-cut. Some languages utilize both compilation and interpretation to balance performance and flexibility. For instance, Java is compiled into bytecode, which is then interpreted or further compiled by the Java Virtual Machine (JVM). Similarly, modern JavaScript engines often employ Just-In-Time (JIT) compilation to enhance performance. citeturn0search12
+
+**Key Differences**
+
+| Aspect               | Compiled Languages                                                                 | Interpreted Languages                                                                 |
+|----------------------|------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------|
+| **Execution**        | Translated into machine code before execution.                                     | Executed line-by-line by an interpreter at runtime.                                   |
+| **Performance**      | Generally faster due to direct execution of machine code.                          | Typically slower due to real-time interpretation overhead.                            |
+| **Portability**      | Platform-dependent; requires recompilation for different architectures.            | Platform-independent; the same code can run on any system with the appropriate interpreter. |
+| **Development Cycle**| Requires recompilation after code modifications, potentially slowing development.  | Allows for rapid testing and iteration without recompilation.                         |
+
+Understanding these differences is crucial for developers when choosing the appropriate language and execution model for their projects, as it impacts development speed, performance, and scalability. 
+
+
+
+
+How you compile a program
+depends on your operating system and compiler. For details on how your particu-
+lar compiler works, check the reference manual or ask a knowledgeable colleague.
+Many PC-based compilers are run from an integrated development environ-
+ment (IDE) that bundles the compiler with build and analysis tools. These envi-
+ronments can be a great asset in developing large programs but require a fair bit
+of time to learn how to use effectively. Learning how to use such environments is
+well beyond the scope of this book.
+Most compilers, including those that come with an IDE, provide a command-
+line interface. Unless you already know the IDE, you may find it easier to start
+with the command-line interface. Doing so will let you concentrate on learning
+C++ first. Moreover, once you understand the language, the IDE is likely to be
+easier to learn.

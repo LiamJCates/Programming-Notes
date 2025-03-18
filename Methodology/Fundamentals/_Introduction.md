@@ -28,7 +28,7 @@ Most source code, or simply code, is typically written using a human-readable la
 ### Compiled vs Interpreted
 
 
-Source code needs another computer program to execute because computers can only execute their native machine instructions. All computer languages must be translated from something that tends to be easy for a human to understand into something that is executed by the computer hardware, machine instructions.
+Source code needs another computer program to execute because computers can only execute their native machine instructions. All computer languages must be translated from something that tends to be easy for a human to understand, typically called source code, into something that is executed by the computer hardware, called machine instructions.
 
 
 There are two primary methods by which such translation occurs:
