@@ -1,5 +1,5 @@
 # `<map>`
-[map](map.md)
+[map](map.md)  
 [begin](begin.md)  
 [cbegin](cbegin.md)  
 [cend](cend.md)  
@@ -23,9 +23,3 @@
 [swap](swap.md)  
 [upper_bound](upper_bound.md)  
 [equal_range](equal_range.md)  
-:x: extract  
-:x: insert_or_assign  
-:x: key_comp  
-:x: merge  
-:x: try_emplace  
-:x: value_comp  
