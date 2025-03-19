@@ -51,25 +51,18 @@ We have already seen this in graph chapter that depending upon the constraints t
 
 ### Idea Generation
 
-We have covered a lot of theoretical knowledge in this book. It is
-impossible to cover all the questions as new ones are created every day.
-Therefore, we should know how to handle new problems. Even if you know
-the solution of a problem asked by the interviewer then also you need to
-have a discussion with the interviewer and reach to the solution. You need
-to analyze the problem also because the interviewer may modify a question
-a little bit and the approach to solve it will vary.
-Well, how to solve a new problem? The solution to this problem is that you
-need to do a lot of practice and the more you practice the more you will be
-able to solve any new question, which come in front of you. When you have
-solved enough problems, you will be able to see a pattern in the questions
-and able to solve new problems easily.
-Following is the strategy that you need to follow to solve an unknown
-problem:
+
+Well, how to solve a new problem? 
+
+Following is the strategy that you need to follow to solve an unknown problem:
+
 1. Try to simplify the task in hand.
 2. Try a few examples
 3. Think of a suitable data-structure.
 4. Think about similar problems you have already solved.
+
 Try to simplify the task in hand
+
 Let us look into the following problem: Husbands and their wives are
 standing in random in a line. They have been numbered for husbands H1,
 H2, H3 and so on. And their corresponding wives have number W1, W2,

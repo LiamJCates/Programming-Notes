@@ -1,4 +1,4 @@
-What is an Algorithm?
+### What is an Algorithm?
 
 The general purpose of any application is 
 1. efficiently manage input data
@@ -8,19 +8,13 @@ The general purpose of any application is
 An Algorithm is a well-defined, step-by-step procedure defined by a set of instructions to be interpreted and executed, transforming some input, to produce some output.
 An algorithm defines a computational input/output relation.
 
-
-
 While this description may sound restrictive, what defines a given algorithmic process, or may be achieved by one, is hypothetically limitless...
 
+### Informal Examples
 
+Anything, from how an individual person might use a pencil and paper to perform arithmetic addition, to the circumstances we experience as reality, could be described algorithmically. (Though this is up for philosophical debate) In the first case, a step-by-step process used to calculate a summation might be translated into a mathematics lesson, interpretable and executed by a pupil assuming the role of the processing unit. In the later case, the phenomena of reality are understood to arise from the principles characterized by scientific law, processed by the fabric of spacetime. Indeed scientists have derived many computational models to do much the same in experimental simulations.
 
-Informal Examples
-
-Anything, from how an individual person might use a pencil and paper to perform arithmetic addition, to the circumstances we experience as reality, could be described algorithmically. In the first case, a step-by-step process used to calculate a summation might be translated into a mathematics lesson, interpretable and executed by a pupil assuming the role of the processing unit. In the later case, the phenomena of reality are understood to arise from the principles characterized by scientific law, processed by the fabric of spacetime. Indeed scientists have derived many computational models to do much the same in experimental simulations.
-
-
-
-Recognizing an Algorithm
+### Recognizing an Algorithm
 
 While no formal definition of "algorithm" is agreed to exist, typical components include:
   a statement of the problem solved
@@ -32,7 +26,11 @@ While no formal definition of "algorithm" is agreed to exist, typical components
 
 Modern Algorithms
 
-The concept of an algorithmic process has existed since antiquity. In recent history, the term algorithm most commonly references a set of programming language instructions interpreted and executed by a microprocessor. In the course of its execution, the computational unit the algorithm manipulates transforms input data to arrive at a desired output result, such that each algorithm is said to create an input/output relationship which solves the problem the algorithm is stated to address.
+The concept of an algorithmic process has existed since antiquity. 
+
+See [History](Algorithms\History.md)
+
+In recent history, the term algorithm most commonly references a set of programming language instructions interpreted and executed by a microprocessor. In the course of its execution, the computational unit a given algorithm manipulates, transforms input data to arrive at a desired output result, such that each algorithm is said to create an input/output relationship which solves the problem the algorithm is stated to address.
 
 
 

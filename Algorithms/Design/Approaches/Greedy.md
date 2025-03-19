@@ -1,4 +1,5 @@
 Greedy Algorithms
+
 A greedy approach begins by evaluating one possible outcome from the set of possible outcomes, and then searches locally for an improvement on that outcome. When a local improvement is found, it will repeat the process and again search locally for additional improvements near this local optimum. A greedy technique is generally simple to implement, and these series of decisions can be used to find local optimums depending on where the search began. However, greedy techniques may not identify the global optimum across the entire set of possible outcomes.
 
 
@@ -13,8 +14,12 @@ This problem is to count to a desired value by choosing the least possible coins
 Though, it seems to be working fine, for this count we need to pick only 4 coins. But if we slightly change the problem then the same approach may not be able to produce the same optimum result.
 For the currency system, where we have coins of 1, 7, 10 value, counting coins for value 18 will be absolutely optimum but for count like 15, it may use more coins than necessary. For example, the greedy approach will use 10 + 1 + 1 + 1 + 1 + 1, total 6 coins. Whereas the same problem could be solved by using only 3 coins (7 + 7 + 1)
 Hence, we may conclude that the greedy approach picks an immediate optimized solution and may fail where global optimization is a major concern.
+
 Examples
-Most networking algorithms use the greedy approach. Here is a list of few of them −
+
+Most networking algorithms use the greedy approach. 
+
+Here is a list of few of them −
 Travelling Salesman Problem
 Prim's Minimal Spanning Tree Algorithm
 Kruskal's Minimal Spanning Tree Algorithm
@@ -23,4 +28,5 @@ Graph - Map Coloring
 Graph - Vertex Cover
 Knapsack Problem
 Job Scheduling Problem
+
 There are lots of similar problems that uses the greedy approach to find an optimum solution.
