@@ -156,3 +156,8 @@ When you access the web, quite a lot happens between your first interaction (for
 -  When all of the resources have been requested, the web browser parses and renders them as required, before displaying the result to the user.
 
 
+
+
+
+
+When you load a web page in your browser, you are running your code (the HTML, CSS, and JavaScript) inside an execution environment (the browser tab)
