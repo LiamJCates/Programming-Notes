@@ -141,22 +141,3 @@ Links a web app manifest file for PWA functionality.
 | RSS Feed | `alternate` | `<link rel="alternate" type="application/rss+xml" href="feed.xml">` |
 | Web App Manifest | `manifest` | `<link rel="manifest" href="site.webmanifest">` |
 
-
-
-
-
-Applying CSS and JavaScript to HTML
-
-Just about all websites you'll use in the modern day will employ CSS to make them look cool, and JavaScript to power interactive functionality, such as video players, maps, games, and more. These are most commonly applied to a web page using the \<link> element and the \<script> element, respectively.
-
-The <link> element should always go inside the head of your document. This takes two attributes, rel="stylesheet", which indicates that it is the document's stylesheet, and href, which contains the path to the stylesheet file:
-
-```html
-<link rel="stylesheet" href="my-css-file.css" />
-```
-
-The \<script> element should also go into the head, and should include a src attribute containing the path to the JavaScript you want to load, and defer, which basically instructs the browser to load the JavaScript after the page has finished parsing the HTML. This is useful as it makes sure that the HTML is all loaded before the JavaScript runs, so that you don't get errors resulting from JavaScript trying to access an HTML element that doesn't exist on the page yet. There are actually a number of ways to handle loading JavaScript on your page, but this is the most reliable one to use for modern browsers (for others, read Script loading strategies).
-
-```html
-<script src="my-js-file.js" defer></script>
-```

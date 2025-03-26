@@ -62,6 +62,8 @@ Let's add a script element, a JavaScript function, alert.
 \</script\>
 And when the browser sees this script element it's going to run that script.
 
+
+
 Point Out:
 DOCTYPE starts with ! an exclamation point.
 That indicates that this is a processing instruction. It's not part of the document itself necessarily, but it's something that is specifically called out to the browser that's rendering this document as an instruction that we want it to do something.

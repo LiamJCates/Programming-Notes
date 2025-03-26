@@ -13,7 +13,7 @@ The latest ECMAScript standard defines eight data types:
         String. A sequence of characters that represent a text value. For example: "Howdy".
         Symbol. A data type whose instances are unique and immutable.
 
-    and Object
+    Object
     Array
 
 

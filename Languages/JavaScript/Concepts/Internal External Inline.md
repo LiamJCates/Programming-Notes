@@ -46,9 +46,17 @@ Note that the code in your web documents is generally loaded and executed in the
    - **Pros:**
      - Promotes code reuse across multiple HTML documents, reducing redundancy.
      - Enhances maintainability by separating content (HTML) from behavior (JavaScript).
-     - Browsers can cache external JavaScript files, improving page load performance. citeturn0search8
+     - Browsers can cache external JavaScript files, improving page load performance.
    - **Cons:**
      - Introduces additional HTTP requests to fetch the external file, which may impact load times if not managed properly.
      - Potential exposure of the script file's URL, allowing users to view and download the JavaScript code.
 
 When choosing between these methods, consider factors such as code maintainability, reusability, performance, and security. For larger projects or when the same scripts are used across multiple pages, external JavaScript is generally preferred. Inline and internal scripts may be suitable for smaller, page-specific functionalities.
+
+As a rule, only the simplest scripts are put into HTML. More complex ones reside in separate files.
+
+The benefit of a separate file is that the browser will download it and store it in its cache.
+
+Other pages that reference the same script will take it from the cache instead of downloading it, so the file is actually downloaded only once.
+
+That reduces traffic and makes pages faster.

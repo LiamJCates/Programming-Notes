@@ -71,7 +71,7 @@ Alternatively, you can break the closing sequence of the inner comment to avoid 
 */
 ```
 
-In the example above, the sequence *\/ is interpreted as part of the comment text, preventing the premature end of the outer comment.
+In the example above, the sequence *\\/ is interpreted as part of the comment text, preventing the premature end of the outer comment.
 
 
 Block comments that contain at least one line terminator behave like line terminators in automatic semicolon insertion.
