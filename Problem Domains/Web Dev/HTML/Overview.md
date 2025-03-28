@@ -1,6 +1,8 @@
 ## HTML Fundamentals
 
-HTML's a core technology behind the trillions of web pages that exist today
+HTML's a core technology behind the trillions of web pages that exist today.
+
+HTML (HyperText Markup Language) defines the structure and content of webpages. We use HTML elements to create all of the paragraphs, headings, lists, images, and links that make up a typical webpage. Almost all elements on an HTML page are just pieces of content wrapped in opening and closing HTML tags.
 
 You can implement Websites which don't use any HTML, technically. 
 
@@ -18,7 +20,7 @@ HTML first introduced for research with the ability to
 ### What Is HTML?
 
 
-The things that you see in websites and web applications are rendered by the web browser from HTML documents, documents with the HTM or HTML extension.
+The things that you see in websites and web applications are rendered by the web browser from HTML documents, which are files with the HTM or HTML file extension.
 
 
 HTML stands for Hyper Text Markup Language

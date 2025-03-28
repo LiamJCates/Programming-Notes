@@ -317,3 +317,27 @@ This tells the browser you want to open this in a new window or tab.
 You could use target="_self", but that's the default. It just opens it right inside the same window that you're currently in. And you can use thing such as _top, which would open it in the top-level window, which again in this case would give us the same exact result. So blank is the most commonly-used target because the goal is to break the user out into a new window to visit a different site.
 
 
+
+```html
+<a href="https://www.theodinproject.com/about" target="_blank" rel="noopener noreferrer">About The Odin Project</a>
+```
+
+You may have noticed that we snuck in the rel attribute above. This attribute is used to describe the relation between the current page and the linked document.
+
+noopener: The noopener attribute ensures that a link opened in a new tab or window cannot interact with or access the original page. Without it, the new page can use JavaScript to manipulate the original page, which poses a security risk.
+
+
+In this code: target=”_blank”: opens the link in a new tab. rel=”noopener”: prevents the new tab from accessing the original page, ensuring security.
+
+Without noopener, the new tab could use JavaScript to interact with the original page, which is unsafe.
+
+noreferrer: The noreferrer attribute provides both privacy and security. It prevents the new page from knowing where the user came from (hiding the referrer) and also includes the behavior of noopener, preventing the new page from accessing the original page.
+
+
+In this example: target=”_blank”: opens the link in a new tab. rel=”noreferrer”: ensures the new page cannot see the referring page’s address (privacy) and prevents it from accessing the original page (security).
+
+By using rel=”noreferrer”, you automatically get the benefits of both privacy and security.
+
+Why do we need this added behaviour for opening links in new tabs? Security reasons. The prevention of access that is caused by noopener prevents phishing attacks where the opened link may change the original webpage to a different one to trick users. This is referred to as tabnabbing. Adding the noreferrer value can be done if you wish to not let the opened link know that your webpage links to it.
+
+Note that you may be fine if you forget to add rel="noopener noreferrer" since more recent versions of browsers provide security if only target="_blank" is present. Nevertheless, in line with good coding practices and to err on the side of caution, it is recommended to always pair a target="_blank" with a rel="noopener noreferrer".

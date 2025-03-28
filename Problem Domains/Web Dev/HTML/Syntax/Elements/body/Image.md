@@ -32,3 +32,8 @@ Defining Alternate Images
 srcset         attribute which allows us to provide different sources, different files with the image in them, that will have different sizes. So one may be a much larger file both in terms of the actual image and the file size, and you may have one that's smaller for smaller devices or screens.
 
 sizes    tells the browser when you render this I want you to make it relative to the viewport, that viewable area of the browser window.
+
+
+
+Read about the four main image formats that can be used on the web:
+https://internetingishard.netlify.app/html-and-css/links-and-images/#image-formats

@@ -1,7 +1,7 @@
 The Head Element
 
 
-The head of an HTML document is the part that is not displayed in the web browser when the page is loaded. 
+The head of an HTML document is the part that is not displayed in the web browser when the page is loaded, also known as meta-information about our webpage.
 
 The HTML head is the contents of the <head> element. The head contains metadata information such as the page <title>, links to CSS (if you choose to style your HTML content with CSS), links to custom favicons, and other metadata (data about the HTML, such as the author, and important keywords that describe the document).
 

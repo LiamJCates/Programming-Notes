@@ -1,4 +1,4 @@
-### **How the `<meta>` Element is Used in the HTML `<head>` Section**  
+### **The `<meta>` Element**  
 
 Metadata is data that describes data, and HTML has an "official" way of adding metadata to a document — the <meta> element.
 
@@ -24,6 +24,9 @@ Defines the character set of the document (UTF-8 is standard).
 ```
 ✅ Ensures proper rendering of special characters.
 
+NOTE: We should always have the <meta> tag with the charset encoding of the webpage in the <head> element.
+
+Setting the encoding is very important because it ensures that the webpage will display special symbols and characters from different languages correctly in the browser.
 ---
 
 ### **🔹 2. Viewport Settings for Responsive Design**

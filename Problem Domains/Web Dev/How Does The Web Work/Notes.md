@@ -1,8 +1,3 @@
-
-
-
-
-
 ## Overview of modern web technologies
 
 
@@ -161,3 +156,133 @@ When you access the web, quite a lot happens between your first interaction (for
 
 
 When you load a web page in your browser, you are running your code (the HTML, CSS, and JavaScript) inside an execution environment (the browser tab)
+
+
+
+
+
+
+
+### The World Wide Web
+
+
+As described above, the Internet is a technical infrastructure which allows billions of computers to be connected, the Web is a service built on top of that infrastructure.
+
+
+
+
+
+web page
+A document which can be displayed in a web browser such as Firefox, Google Chrome, Opera, Microsoft Internet Explorer or Edge, or Apple's Safari. These are also often called just "pages."
+
+website
+A collection of web pages which are grouped together and usually connected together in various ways. Often called a "web site" or simply a "site."
+
+web server
+A computer that hosts a website on the Internet. 
+
+web service
+A software that responds to requests over the Internet to perform a function or provide data. A web service is typically backed by a web server, and may provide web pages for users to interact with. Many websites are also web services, though some websites (such as MDN) comprise of static content only. Examples of web services would be something that resizes images, provides a weather report, or handles user login.
+
+search engine
+A web service that helps you find other web pages, such as Google, Bing, Yahoo, or DuckDuckGo. Search engines are normally accessed through a web browser (e.g. you can perform search engine searches directly in the address bar of Firefox, Chrome, etc.) or through a web page.
+
+https://developer.mozilla.org/en-US/docs/Learn/Common_questions/What_is_a_web_server
+
+
+
+
+
+
+The web works by displaying HTML, styling it with CSS, and adding interaction with JavaScript.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+### Web Server 
+The term web server can refer to hardware or software, or both of them working together.
+
+    On the hardware side, a web server is a computer that stores web server software and a website's component files. A web server connects to the Internet and supports physical data interchange with other devices connected to the web.
+
+    On the software side, a web server includes several parts that control how web users access hosted files. At a minimum, this is an HTTP server. An HTTP server is software that understands URLs (web addresses) and HTTP. An HTTP server can be accessed through the domain names of the websites it stores, and it delivers the content of these hosted websites to a client device.
+
+At the most basic level, whenever a browser needs a file that is hosted on a web server, the browser requests the file via HTTP. When the request reaches the correct (hardware) web server, the (software) HTTP server accepts the request, finds the requested document, and sends it back to the browser, also through HTTP. (If the server doesn't find the requested document, it returns a 404 response instead.)
+
+Basic representation of a client/server connection through HTTP
+
+![](./img/web-server.svg)
+
+
+To publish a website, you need either a static or a dynamic web server.
+
+A static web server, or stack, consists of a computer (hardware) with an HTTP server (software). We call it "static" because the server sends its hosted files as-is to your browser.
+
+A dynamic web server consists of a static web server plus extra software, most commonly an application server and a database. We call it "dynamic" because the application server updates the hosted files before sending content to your browser via the HTTP server.
+
+For example, to produce the final webpages you see in the browser, the application server might fill an HTML template with content from a database. Sites like MDN or Wikipedia have thousands of webpages. Typically, these kinds of sites are composed of only a few HTML templates and a giant database, rather than thousands of static HTML documents. This setup makes it easier to maintain and deliver the content.
+Deeper dive
+
+To review: to fetch a webpage, your browser sends a request to the web server, which searches for the requested file in its own storage space. Upon finding the file, the server reads it, processes it as needed, and sends it to the browser. Let's look at those steps in more detail.
+
+
+Hosting files
+
+First, a web server has to store the website's files, namely all HTML documents and their related assets, including images, CSS stylesheets, JavaScript files, fonts, and video.
+
+Technically, you could host all those files on your own computer, but it's far more convenient to store files all on a dedicated web server because:
+
+    A dedicated web server is typically more available (up and running).
+    Excluding downtime and system troubles, a dedicated web server is always connected to the Internet.
+    A dedicated web server can have the same IP address all the time. This is known as a dedicated IP address. (Not all ISPs provide a fixed IP address for home lines.)
+    A dedicated web server is typically maintained by a third party.
+
+For all these reasons, finding a good hosting provider is a key part of building your website. Examine the various services companies offer. Choose one that fits your needs and budget. (Services range from free to thousands of dollars per month.) You can find more details in this article.
+
+Once you have web hosting service, you must upload your files to your web server.
+Communicating through HTTP
+
+Second, a web server provides support for HTTP (Hypertext Transfer Protocol). As its name implies, HTTP specifies how to transfer hypertext (linked web documents) between two computers.
+
+A Protocol is a set of rules for communication between two computers. HTTP is a textual, stateless protocol.
+
+Textual
+
+    All commands are plain-text and human-readable.
+Stateless
+
+    Neither the server nor the client remember previous communications. For example, relying on HTTP alone, a server can't remember a password you typed or remember your progress on an incomplete transaction. You need an application server for tasks like that. (We'll cover that sort of technology in other articles.)
+
+HTTP provides clear rules for how a client and server communicate. If you want to learn more, you can read the HTTP documentation. For now, there are a few things to keep in mind:
+
+    Clients make HTTP requests to servers. Servers respond to a client's HTTP request.
+    When requesting a file via HTTP, clients must provide the file's URL.
+    The web server must answer every HTTP request, at least with an error message.
+
+On a web server, the HTTP server is responsible for processing and answering incoming requests.
+
+    Upon receiving a request, an HTTP server checks if the requested URL matches an existing file.
+    If so, the web server sends the file content back to the browser. If not, the server will check if it should generate a file dynamically for the request (see Static vs. dynamic content).
+    If neither of these options are possible, the web server returns an error message to the browser, most commonly 404 Not Found. The 404 error is so common that some web designers devote considerable time and effort to designing 404 error pages. The MDN 404 page as an example of such error page
+
+Static vs. dynamic content
+
+Roughly speaking, a server can serve either static or dynamic content. Remember that the term static means "served as-is". Static websites are the easiest to set up, so we suggest you make your first site a static site.
+
+The term dynamic means that the server processes the content or even generates it on the fly from a database. This approach provides more flexibility, but the technical stack is more complex, making it dramatically more challenging to build a website.
+
+It is impossible to suggest a single off-the-shelf application server that will be the right solution for every possible use case. Some application servers are designed to host and manage blogs, wikis, or e-commerce solutions, while others are more generic. If you're building a dynamic website, take the time to research your requirements and find the technology that best fits your needs.
+
+Most website developers won't need to create an application server from scratch, because there are so many off-the-shelf solutions, many of which are highly configurable. But if you do need to create your own server, then you will probably want to use a server framework, leveraging its existing code and libraries, and extending just the parts that you need in order to meet your use case. Only a relatively small number of developers should need to develop a server completely from scratch: for example, in order to meet tight resource constraints on an embedded system. If you'd like to experiment with building a server, take a look through the resources in the Server-side website programming learning pathway.

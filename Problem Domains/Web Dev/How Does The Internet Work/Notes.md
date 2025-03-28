@@ -36,6 +36,8 @@ At its most basic, the Internet is the largest computer network ever.
 A computer network is a system that links two or more computing devices.
 Networks enable information transfer or communication through the transmission of data between devices.
 
+
+
 #### Transmission Media
 
 Transmission media refer to the pathways through which data is shared from one device to another, within a network. 
@@ -46,25 +48,25 @@ Physical transmission media generally propagate signal energy over some type of 
 An example of physical transmission media are ethernet cables used to connect PCs to other devices.
 
 Wireless transmission media generally propagate signal energy using a transmitter broadcasting and receiver detecting electromagnetic waves.
-An example of Wireless transmission media are the wifi signals used to connect mobile devices.
+An example of Wireless transmission media are wifi signals used to connect mobile devices.
 
 ### How The Internet Is Organized
 
 When two computers communicate, at minimum, they must be linked via some transmission media.
 
-[Website Development\WebBasics\internet-schema-1.png]
+![](./img/internet-schema-1.png)
 
 Such a basic network is not limited to two computers. 
 You can connect as many computers as you wish, however things get complicated quickly.
 To connect ten computers, you need 45 cables, with nine plugs per computer!
 
-[Website Development\WebBasics\internet-schema-2.png]
+![](./img/internet-schema-2.png)
 
 To solve this problem, each computer on a network is connected to a computer called a router. This router has only one job: like a signaler at a railway station, it makes sure that a message sent from a given computer arrives at the right destination computer. To send a message to computer B, computer A must send the message to the router, which in turn forwards the message to computer B and makes sure the message is not delivered to computer C.
 
 Once we add a router to the system, our network of 10 computers only requires 10 cables: a single plug for each computer and a router with 10 plugs.
 
-[Website Development\WebBasics\internet-schema-3.png]
+![](./img/internet-schema-3.png)
 
 A single router cannot scale to connect billions of computers.
 But a router is a computer like any other, so we can connect routers together.
@@ -81,15 +83,15 @@ Computers are connected wirelessly to an access point via radio waves.
 The router is required to connect smaller networks utilizing switches to the internet, and anywhere two or more networks intersect there's a router.
 Every time you visit a website upwards of ten to fifteen routers may help data find its way to and from your computer.
 
-[Website Development\WebBasics\internet-schema-4.png]
+![](./img/internet-schema-4.png)
 
 Such a network comes very close to what we call the Internet, but we're missing something. It's not really possible to set cables up between your house and the rest of the world, so how can you handle this? Hardware is again borrowed from the telephone industry, telecom infrastructure already connects your house with anyone in the world. To connect our network to the telephone infrastructure, we need a special piece of equipment called a modem. This modem turns the information from our network into information manageable by the telephone infrastructure and vice versa.
 
-![](Website Development\WebBasics\internet-schema-5.png)
+![](./img/internet-schema-5.png)
 
 So we are connected to the telephone infrastructure. The next step is to send the messages from our network to the network we want to reach. To do that, we will connect our network to an Internet Service Provider (ISP). An ISP is a company that manages some special routers that are all linked together and can also access other ISPs' routers. So the message from our network is carried through the network of ISP networks to the destination network. The Internet consists of this whole infrastructure of networks.
 
-[Website Development\WebBasics\internet-schema-6.png]
+![](./img/internet-schema-6.png)
 
 The Internet is a vast, sprawling network of networks, an incredibly large number of independently operated segments. 
 In fact, the word "Internet" could be said to come from this concept: interconnected networks.
@@ -143,6 +145,40 @@ The shared technical standards that make the internet work are managed by an org
 
 
 
+### Intranets and Extranets
+
+Intranets are private networks that are restricted to members of a particular organization. They are commonly used to provide a portal for members to securely access shared resources, collaborate and communicate. For example, an organization's intranet might host web pages for sharing department or team information, shared drives for managing key documents and files, portals for performing business administration tasks, and collaboration tools like wikis, discussion boards, and messaging systems.
+
+Extranets are very similar to Intranets, except they open all or part of a private network to allow sharing and collaboration with other organizations. They are typically used to safely and securely share information with clients and stakeholders who work closely with a business. Often their functions are similar to those provided by an intranet: information and file sharing, collaboration tools, discussion boards, etc.
+
+Both intranets and extranets run on the same kind of infrastructure as the Internet, and use the same protocols. They can therefore be accessed by authorized members from different physical locations.
+
+
+![](./img/internet-schema-8.png)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -187,7 +223,9 @@ To communicate between devices on a network, we specify what to transfer between
 
 #### Packets
 
-A network packet is the unit of data carried by a packet-switched network.
+A network packet is the unit of data carried by a "packet-switched" network.
+
+Packet switching: the technique for dividing information into message blocks that each get routed separately, and assembled on the other side. The distributed nature and error correction allowed by packet switching make communication across the internet possible.
 
 Instead of transferring files as single, uninterrupted data blocks, sending it in smaller packets enables computers to share connections.
 
@@ -196,6 +234,7 @@ Each packet is treated as an independent entity, unaffected by the other packets
 Packets from simultaneous connections are interspersed, to support concurrent connections.
 
 If there is a problem with the transmission of one or more packets, only those packets are retransmitted, rather than the entirety of a larger file.
+
 
 #### Packet Structure
 
@@ -217,6 +256,44 @@ The source IP address identifies which device data originates from.
 The destination IP address identifies which device data travels to.
 Each packet keeps track of it's source IP and destination IP in their header.
 
+
+
+#### Hosts
+
+A network host, or simply a host, is a device connected to a computer network, assigned at least one network address.
+A computer participating in networks that use the Internet Protocol suite may be referred to as an IP host. 
+Specifically, computers participating in the Internet are called Internet hosts.
+
+Network hosts can be further divided into specialized categories based on their role on the network
+
+A simplified diagram of how internet hosts interact:
+![](./img/simple-client-server.png)
+
+Once a connection is established, data can be transferred between the applications running on each device.
+Clients send requests to a server, which processes these requests, performs necessary tasks to generate a response, and return the response to the client. The client receives the server's response, displays the results to the user, and awaits the users next request.
+
+    Clients are the typical web user's internet-connected devices (for example, your computer connected to your Wi-Fi, or your phone connected to your mobile network) and web-accessing software available on those devices (usually a web browser like Firefox or Chrome).
+
+    Servers are computers that store webpages, sites, or apps as files on server hard drives. When a client wants to access a webpage, they make a request to a server for a copy of the documents and assets that comprise the webpage, downloading them from the server onto the client machine to be rendered by the browser and displayed to the user.
+
+#### Server 
+
+Typically, a server is a computer connected directly to the Internet
+Servers provide data, services, or applications to other hosts on the network. 
+This data can be sent out to whichever hosts the server happens to be serving.
+
+Servers can be web servers, cloud servers, virtual hosts... any thing providing services to computers over the internet 
+or even part of a mainframe computer environment, providing services to attached workstations.
+
+#### Client
+
+A client is a host indirectly connected to the internet via an ISP.
+A client is responsible for interacting with end users. 
+
+
+
+
+
 ### Dynamic Host Configuration Protocol (DHCP)
 
 If connected to a network, a host has a unique IP address.
@@ -225,7 +302,7 @@ If you connect to the Internet through an ISP, you are usually assigned a tempor
 
 Dynamic IPs are obtained from a DHCP (Dynamic Host Configuration Protocol) server.
 
-By using DHCP, both your computer and router can automatically obtain the necessary IP addresses and network configuration parameters, ensuring seamless connectivity within the local network and to the Internet.y
+By using DHCP, both your computer and router can automatically obtain the necessary IP addresses and network configuration parameters, ensuring seamless connectivity within the local network and to the Internet.
 
 DHCP is a network management protocol used to automate the process of configuring devices on IP networks. 
 
@@ -265,6 +342,35 @@ The Domain Name System (DNS) associates a domain name with the corresponding IP 
 like a phonebook associates names to phone numbers.
 
 
+![](./img/dns-ip.png)
+
+
+### URL
+
+Unique Resource Locators: (URLs) are the unique, human-friendly, addresses to web resources so that your browser can access them
+
+Technically, web addresses that you type into the browser address bar form part of Uniform Resource Locators (URLs). URLs define the locations of unique resources on the internet.
+
+A URL is a web address plus a protocol: for example, if you open a new tab in your browser, type in developer.mozilla.org into the address bar, and press Enter/Return, you will be redirected to a URL like the following one:
+
+https://developer.mozilla.org/en-US/
+
+The main parts of the URL are:
+
+https
+
+    The protocol being used to send the request. In this case, we are using HTTPS, which is a secure version of HTTP that stops bad people from reading your data while it is being transported. On the modern web, pretty much every server uses HTTPS, so if you don't include it explicitly, the browser assumes that is what you are using and adds it for you.
+developer.mozilla.org
+
+    The domain name of the URL, which represents the top-level location of the server you are connecting to. In this case, the web address you typed in is equal to the domain name, but this is not always the case — you could choose to type in a more complicated web address. Note that the developer part is a subdomain (distinct content area) of Mozilla's mozilla.org domain. There are other subdomains on Mozilla's site that host distinct content — see support.mozilla.org and bugzilla.mozilla.org, for example.
+/en-US/
+
+    The path to the resource on the server that you are accessing. MDN keeps all its US English content in a folder called en-US, which is what this URL is pointing to.
+
+    If you have your browser set up to prefer English content by default, then this is the URL you will be redirected to when you type in developer.mozilla.org. If you have your browser set up to prefer a different language that MDN supports, such as French, you will be redirected to a different URL, such as https://developer.mozilla.org/fr/ instead. This isn't available to every website by default; the MDN developers have set MDN up like this to allow people to easily access the language they prefer.
+
+ 
+
 
 
  
@@ -283,6 +389,8 @@ like a phonebook associates names to phone numbers.
 
 
 ### SSL/TLS
+
+SSL/TLS: The Secure Sockets Layer and Transport Layer Security protocols are used to provide secure communication over the internet.
 
 SSL/TLS is a protocol used to encrypt data being transmitted over the internet. It is commonly used to provide secure connections for applications such as web browsers, email clients, and file transfer programs.
 
@@ -307,18 +415,14 @@ When building internet-based applications and services, it's important to unders
 
 
 
-HTTP
-
-
- HTTP: The Hypertext Transfer Protocol is used to transfer data between a client (such as a web browser) and a server (such as a website).
- HTTPS: An encrypted version of HTTP that is used to provide secure communication between a client and server.
- SSL/TLS: The Secure Sockets Layer and Transport Layer Security protocols are used to provide secure communication over the internet.
-
-
+### HTTP
 
 HTTP (Hypertext Transfer Protocol) and HTTPS (HTTP Secure) are two of the most commonly used protocols in internet-based applications and services.
 
-HTTP is the protocol used to transfer data between a client (such as a web browser) and a server (such as a website).
+  HTTP: The Hypertext Transfer Protocol is used to transfer data between a client (such as a web browser) and a server (such as a website).
+  HTTPS: An encrypted version of HTTP that is used to provide secure communication between a client and server.
+
+The HTTP protocol takes care of the information communication between the web browser and the web server to deliver documents so that the web browser can render it on the screen.
 
 Clients and servers communicate by exchanging individual messages (as opposed to a stream of data). The messages sent by the client are called requests and the messages sent by the server as an answer are called responses.
 
@@ -326,11 +430,69 @@ When you visit a website, your web browser sends an HTTP request to the server, 
 
 HTTP is a protocol for fetching resources such as HTML documents. It is the foundation of any data exchange on the Web and it is a client-server protocol, which means requests are initiated by the recipient, usually the Web browser. A complete document is typically constructed from resources such as text content, layout instructions, images, videos, scripts, and more.
 
-A single Web document composed from multiple resources from different servers.
 
 
 
-HTTPS
+A single Web document can be composed from multiple resources from different servers.
+
+
+HTTP uses a simple language of verbs to perform actions such as making requests (see HTTP request methods). The HTTP GET method is the one normally used to make HTTP requests of the type described above. For example, a request for the MDN home page might look like this:
+http
+
+GET /en-US/ HTTP/2
+
+Host: developer.mozilla.org
+
+The response sent by the server might looks something like this:
+http
+
+HTTP/2 200
+
+date: Tue, 11 Feb 2025 11:13:30 GMT
+expires: Tue, 11 Feb 2025 11:40:01 GMT
+server: Google frontend
+last-modified: Tue, 11 Feb 2025 00:49:32 GMT
+etag: "65f26b7f6463e2347f4e5a7a2adcee54"
+content-length: 45227
+content-type: text/html
+
+<!doctype html> ... (the 45227 bytes of the requested web page HTML)
+
+The full response is more complex than this, but we have omitted most of it for brevity. The main parts are as follows:
+
+HTTP/2 200
+
+    The version of HTTP that the server is using to send the response, in this case HTTP/2, followed by a status code indicating whether the request was successful. 200 indicates success.
+date, expires, etc.
+
+    HTTP headers containing additional information about the response (note that requests can have headers too), which provide extra information and/or modify its behavior.
+<!doctype html>, etc.
+
+    The response body, which in this case contains the MDN homepage's HTML document.
+
+
+#### Other status codes
+
+Above, we met the 200 status code, which indicates that the HTTP request was successful. There are many HTTP status codes with specific meanings and uses, but you will only commonly see a few:
+
+301
+
+    The requested resource has been permanently moved to a new location, which is provided in the response. This is used for redirecting content when it's moved.
+400
+
+    The server can't process the request. This usually happens when the request isn't in a format the server understands, or has errors in it.
+403
+
+    The server will not give the client access to the requested resource. This usually happens when the server knows who the client is, but they don't have permission to access the requested page.
+404
+
+    The server cannot find the requested resource. This status is commonly returned if the URL is wrong or if content is deleted without putting a redirect in place.
+503
+
+    The request cannot be handled due to a problem with the server. This is common when servers are offline for maintenance, and it's expected to be temporary.
+
+
+#### HTTPS
 
 HTTPS is a more secure version of HTTP, which encrypts the data being transmitted between the client and server using SSL/TLS (Secure Sockets Layer/Transport Layer Security) encryption. This provides an additional layer of security, helping to protect sensitive information such as login credentials, payment information, and other personal data.
 
@@ -340,6 +502,28 @@ When you visit a website that uses HTTPS, your web browser will display a padloc
 
 
 ### Summary
+
+In order for data to get back and forth between clients and servers, we need the following things:
+
+    Your internet connection: Allows you to send and receive data on the internet.
+
+    TCP/IP: Transmission Control Protocol and Internet Protocol (TCP/IP) are communication protocols that define how data should travel across the internet.
+
+    DNS: The Domain Name System (DNS) is like an address book for websites. When you type a web address in your browser, the browser looks at the DNS to find the website's IP address — the actual address the server is located at — before it can retrieve the website. The browser needs to find out which server the website lives on, so it can send HTTP messages to the right place.
+
+    HTTP: Hypertext Transfer Protocol (HTTP) is an application protocol that defines a language for clients and servers to speak to each other.
+
+    Files: A website is made up of many different files. These files come in two main types:
+        Code: Websites are built primarily from HTML, CSS, and JavaScript — the different programming languages websites are written in, which the browser interprets and assembles into a web page to display to a user.
+        Assets: This is a collective term for all the other items that appear on a website — such as images, music, video, Word documents, and PDFs — that aren't code that the browser interprets.
+
+When you type a web address into your browser address bar, the following steps occur:
+
+  1. The browser goes to the DNS server and finds the IP address of the server that the website lives on.
+  2. The browser sends an HTTP request message to the server, asking it to send a copy of the website to the client. This message, and all other data sent between the client and the server, is sent across your internet connection using TCP/IP.
+  3. If the server approves the client's request, the server sends the client a "200 OK" message, which means "Of course you can look at that website! Here it is", and then starts sending the website's files to the browser as a series of small chunks called data packets.
+  4. The browser assembles the small chunks into a complete web page and displays it to you.
+
 
 Consider this article. In order for you to see it, it was sent over the Internet and utilized several protocols to ensure successful communication and data transfer:
 
@@ -360,102 +544,6 @@ HTTP(S): Transfers web page data between the computer and the web server.
 
 
 
-
-
-
-
-
-### The World Wide Web
-
-
-As described above, the Internet is a technical infrastructure which allows billions of computers to be connected. Among those computers, some computers (called Web servers) can send messages intelligible to web browsers. The Internet is an infrastructure, whereas the Web is a service built on top of the infrastructure.
-
-### Hosts
-
-A network host, or simply a host, is a device connected to a computer network, assigned at least one network address.
-A computer participating in networks that use the Internet Protocol suite may be referred to as an IP host. 
-Specifically, computers participating in the Internet are called Internet hosts.
-
-Network hosts can be further divided into specialized categories based on their role on the network
-
-#### Server 
-
-A server is a computer connected directly to the Internet
-Servers provide data, services, or applications to other hosts on the network. 
-For example, web pages are files on server hard drives.
-This data can be sent out to whichever hosts the server happens to be serving.
-
-#### Client
-
-A client is a host indirectly connected to the internet via an ISP.
-A client is responsible for interacting with end users. 
-
-Once a connection is established, data can be transferred between the applications running on each device.
-Clients send requests to a server, which processes these requests, performs necessary tasks to generate a response, and returns the response to the client. The client receives the server's response, displays the results to the user, and awaits the users next request.
-
-Servers can be web servers, cloud servers, virtual hosts, providing services to computers over the internet or part of a mainframe computer environment, providing services to attached workstations.
-
-A web service is a software application that allows different computer systems to communicate with each other over the internet using standardized protocols, enabling them to exchange data and perform functions regardless of the programming language or platform they are built on
-
-web server
-A computer that hosts a website on the Internet. 
-
-web page
-A document which can be displayed in a web browser such as Firefox, Google Chrome, Opera, Microsoft Internet Explorer or Edge, or Apple's Safari. These are also often called just "pages."
-
-website
-A collection of web pages which are grouped together and usually connected together in various ways. Often called a "web site" or simply a "site."
-
-
-
-search engine
-A web service that helps you find other web pages, such as Google, Bing, Yahoo, or DuckDuckGo. Search engines are normally accessed through a web browser (e.g. you can perform search engine searches directly in the address bar of Firefox, Chrome, etc.) or through a web page.
-
-https://developer.mozilla.org/en-US/docs/Learn/Common_questions/What_is_a_web_server
-
-
-
-
-
-
-The web works by displaying HTML, styling it with CSS, and adding interaction with JavaScript.
-
-
-World Wide Web: an open information system populated with resources reached through URLs.
-
-Unique Resource Locators: (URLs) provide unique addresses to those resources so that your browser can access them
-
-Packet switching: the technique for dividing information into message blocks that each get routed separately, and assembled on the other side. The distributed nature and error correction allowed by packet switching make communication across the internet possible.
-
-
-The HTTP protocol takes care of the information communication between the web browser and the web server to deliver documents so that the web browser can render it on the screen.
-
-
-
-Big Idea:
-The World Wide Web is an information space where documents and other web resources are identified by Unique Resource Locators, or URLs, interlinked by hypertext links and can be accessed by the internet.
-
-web basic ingredients:
- resources, like HTML documents, images, or other files. This is the content that we want to use, websites that we want to browse, images to look at, files that we want to share.
- URLs uniquely identify the resources so that your web browser can ultimately show them to you or download them. Every resource on the web has a unique URL.
- Hypertext Transfer Protocol, or HTTP. This is the communication protocol that defines how documents are transferred between networked devices.
-
-How it works:
- Documents, like HTML documents and other resources like images, are hosted by web servers.
- Web servers are computers that run special software to serve up documents and other resources.
- The web server will have a unique address on the internet, a URL.
- Example: server.com
- All resources hosted by a given server will have unique names related to that server
- Example: server.com/document1.html.
- You can use these resources from a client computer that has a web browser installed on it, like Internet Explorer or Google Chrome.
- Nowadays, there are many types of client PCs that have web browsers, desktop computers, mobile phones or even virtual reality headsets.
-
-
-Web browsers use the HTTP GET operation to ask the internet to serve up a specific document that lives at the address of a given URL.
-Whilst rendering an HTML document on the screen, a web browser uses CSS and JavaScript to style the document and give it functionality.
-A web browser doesn't only get documents from a server, sometimes it sends documents back to the server for processing using an HTTP POST operation.
-
-Now this is a very simplified view of how the web works. There is much more going on, like domain name server calls and TCP/IP protocol handshakes, but that is beyond the scope of this document
 
 
 

@@ -1,8 +1,12 @@
 ## HTML Tags
 
 HTML documents are composed of HTML elements. 
-HTML elements inform a web browser how to display content.
+
 The HTML specification defines elements understood by all web browsers.
+
+Using the correct tags can have a big impact on two aspects of your sites: how they are ranked in search engines; and how accessible they are to users who rely on assistive technologies, like screen readers, to use the internet.
+
+Using the correct elements for content is called semantic HTML.
 
 
 ### Tag Syntax
@@ -23,7 +27,8 @@ An HTML tag is the opening or closing entity of a given HTML element.
 the only difference being them being the forward slash "/" in the closing tag 
 
 
-The content part can either be some text or they can also contain other tags. 
+The content part can either be some text or contain other tags, called nesting.
+
 
 
 ### Nested HTML Elements
@@ -86,6 +91,7 @@ html
 <p>My cat is <strong>very grumpy.</p></strong>
 
 The tags have to open and close in a way that they are inside or outside one another. With the kind of overlap in the example above, the browser has to guess at your intent. This kind of guessing can result in unexpected results.
+
 
 
 
@@ -152,6 +158,7 @@ However, not all tags have an open and a closing tag, some are defined by just a
 
 The tags that do not contain content or closing tags are known as void tags.
 
+These elements just have a single tag, like: <br> or <img>. They are known as void elements because they are void of any content, there is nothing inside of them. No closing tag means they can’t wrap content like other tags do.
 
 Syntax:
 
@@ -165,7 +172,7 @@ Example
 For example, the <p> has text between its opening and closing tags (<p>Lorum ipsum dolor</p>). For an <img>, you don't have a closing tag (</img>), and its behavior is defined entirely by its attributes (width, height, src, etc).
 
 
-
+You might also see these referred to as self-closing tags. But those are just void elements with a forward slash(/) at the end like: <br /> or <img />. You’re likely to see self-closing tags used often for historical reasons. Browsers will be able to render them just fine, but the latest version of the HTML specification discourages their use and considers them invalid.
 
 
 
