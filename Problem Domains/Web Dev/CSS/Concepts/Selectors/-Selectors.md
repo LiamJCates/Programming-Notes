@@ -18,6 +18,10 @@ Here are the tables from [W3Schools' CSS Selectors Reference](https://www.w3scho
 | `.class`  | `.intro`    | Selects all elements with `class="intro"`|
 | `element.class` | `p.intro` | Selects all `<p>` elements with `class="intro"` |
 
+**CSS Grouping Selector**
+| Selector | Example  | Description                                                                 |
+|----------|----------|-----------------------------------------------------------------------------|
+| `,` | `h1, h2, p`  | Selects all `<h1>` `<h2>` `<p>` elements |
 
 **CSS Combinator Selectors**
 

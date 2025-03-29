@@ -1,19 +1,39 @@
-The CSS ID selector matches an element based on the value of the element's id attribute. In order for the element to be selected, its id attribute must match exactly the value given in the selector.
-css
+The **CSS ID selector** is used to apply styles to a single, unique element on a webpage. Unlike classes, which can be used on multiple elements, an ID should be assigned to only one element per page.
 
-/* The element with id="demo" */
-#demo {
-  border: red 2px solid;
+### **Syntax**
+```css
+#idname {
+    property: value;
 }
+```
+- The **ID name** is prefixed with a **hash (`#`)**.
+- Each **ID should be unique** within an HTML document.
 
-Syntax
-css
+### **Example**
+#### **CSS:**
+```css
+#main-title {
+    color: blue;
+    font-size: 24px;
+    text-align: center;
+}
+```
+#### **HTML:**
+```html
+<h1 id="main-title">Welcome to My Website</h1>
+```
+Here, the `<h1>` element with the **id="main-title"** will be styled with **blue color, a font size of 24px, and centered text**.
 
-#id_value { style properties }
+### **Key Features of ID Selectors**
+1. **Uniqueness** – An ID should be used only once per page.
+2. **Higher Specificity** – IDs have higher specificity than class and element selectors, meaning they override conflicting class styles.
+3. **Best for Targeting Specific Elements** – Useful for unique page sections like navigation bars, headers, or footers.
 
-Note that syntactically (but not specificity-wise), this is equivalent to the following attribute selector:
-css
+### **ID vs. Class: When to Use What?**
+| Feature       | ID Selector (`#id`) | Class Selector (`.class`) |
+|--------------|------------------|------------------|
+| **Usage**    | Unique element only | Multiple elements |
+| **Specificity** | Higher | Lower |
+| **Reusability** | Not reusable | Reusable |
 
-[id=id_value] { style properties }
-
-The id_value value must be a valid CSS identifier. HTML id attributes which are not valid CSS identifiers must be escaped before they can be used in ID selectors.
+Would you like an example that combines ID and class selectors?
