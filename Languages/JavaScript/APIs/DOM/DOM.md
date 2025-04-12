@@ -1,4 +1,4 @@
- yn# Introduction to the DOM
+# Introduction to the DOM
 
 The Document Object Model (DOM) is a programming interface for web documents. It represents the page so that programs can change the document structure, style, and content. Although the DOM is not a programming language, it is most commonly used with JavaScript to build interactive web applications.
 
