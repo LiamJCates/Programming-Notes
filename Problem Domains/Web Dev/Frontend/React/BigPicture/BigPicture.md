@@ -1,17 +1,3 @@
-Course Overview
-
-In this course, we're going to answer three questions.
-
-Why should I choose React?
-What tradeoffs are inherent in React's design, ecosystem, and philosophy?
-Why shouldn't I choose React?
-
-
-
-
-
-
-
 Why React?
 
 Why should I choose React over the long list of alternatives?
@@ -36,7 +22,7 @@ However, as React has grown in popularity, its ecosystem has grown to cover a va
 	generate static sites with React using popular tools like Gatsby and Phenomic.
 	build truly native mobile applications using React Native.
 	Electron, allows creation of installable desktop apps that run on Mac and Windows using web technologies like React.
-	supports server rendering out of the box, and popular frameworks like Next.js make it really easy to set up.
+	supports server rendering, and popular frameworks like Next.js make for easy set up.
 	use React to create virtual reality websites and 360 experiences with React VR.
 
 In summary, learn React once, and you can write applications just about everywhere.

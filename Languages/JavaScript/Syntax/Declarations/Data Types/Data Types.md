@@ -4,7 +4,7 @@ Data types are categorized into two main types, Primitive and Non-Primitive.
 
 The latest ECMAScript standard defines eight data types:
 
-    Seven data types that are primitives:
+    Primitives:
         Boolean. true and false.
         null. A special keyword denoting a null value. (Because JavaScript is case-sensitive, null is not the same as Null, NULL, or any other variant.)
         undefined. A top-level property whose value is not defined.
@@ -13,8 +13,8 @@ The latest ECMAScript standard defines eight data types:
         String. A sequence of characters that represent a text value. For example: "Howdy".
         Symbol. A data type whose instances are unique and immutable.
 
-    Object
-    Array
+    Non-primitives
+        Object. A keyed collection of one or more values.
 
 
 
@@ -24,12 +24,11 @@ JavaScript is a dynamically typed language. This means you don't have to specify
 
 So, for example, you could define a variable as follows:
 js
-
 let answer = 42;
 
 And later, you could assign the same variable a string value, for example:
-js
 
+js
 answer = "Thanks for all the fish!";
 
 Because JavaScript is dynamically typed, this assignment does not cause an error message.

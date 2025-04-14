@@ -1,8 +1,12 @@
 ## JavaScript Object Prototypes
 
-JavaScript is a prototype-based language. Instead of classical inheritance (as in some other languages), JavaScript objects inherit properties and methods directly from other objects via what is called the **prototype chain**. Understanding prototypes is essential for mastering JavaScript’s object system, optimizing performance, and debugging advanced code.
+https://medium.com/javascript-scene/3-different-kinds-of-prototypal-inheritance-es6-edition-32d777fa16c9
 
-What Is a Prototype?
+
+JavaScript is a prototype-based language. Instead of classical inheritance (as in some other languages), JavaScript objects inherit properties and methods directly from other objects via what is called the **prototype chain**.
+
+
+## 1. What Is a Prototype?
 
 - **Prototype Definition:**  
   Every JavaScript object has a hidden property called `[[Prototype]]` (commonly accessed via `__proto__` or by using `Object.getPrototypeOf()`). This prototype is simply another object from which the first object inherits properties and methods.
@@ -427,6 +431,9 @@ console.log(myCar.honk());     // "Toyota goes beep beep!"
 By studying and experimenting with these examples, you’ll gain a deeper understanding of how prototypes work in JavaScript, how to use them effectively for inheritance, and how to debug prototype-related issues. Happy coding!
 
 ---
+
+
+
 
 
 function Person(name) {
