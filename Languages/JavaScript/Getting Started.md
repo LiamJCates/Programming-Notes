@@ -1,6 +1,7 @@
 ## Getting started with JavaScript
 
 To get started with JavaScript, all you need is a modern web browser. 
+
 Recent versions of Firefox, Chrome, Microsoft Edge, and Safari all support the features discussed in this guide.
 
 A very useful tool for exploring JavaScript is the JavaScript Console (sometimes called the Web Console, or just the console): this is a tool which enables you to enter JavaScript and run it in the current page.
@@ -12,9 +13,6 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Introduction#openi
 
 
 The console appears at the bottom of the browser window. Along the bottom of the console is an input line that you can use to enter JavaScript, the output of which appears in the panel above
-
-
-
 
 To get started with writing JavaScript, open the console, copy the following code, and paste it in at the prompt:
 

@@ -1,13 +1,32 @@
-JavaScript, often abbreviated JS, is a programming language that is one of the core technologies of the World Wide Web, alongside HTML and CSS. It lets us add interactivity to pages e.g. you might have seen sliders, alerts, click interactions, popups, etc on different websites — all of that is built using JavaScript. Apart from being used in the browser, it is also used in other non-browser environments as well such as Node.js for writing server-side code in JavaScript, Electron for writing desktop applications, React Native for mobile applications, and so on.
+JavaScript, often abbreviated JS, is a programming language that is one of the core technologies of the World Wide Web, alongside HTML and CSS. 
 
-JavaScript was initially created to “make web pages alive”. The programs in this language are called scripts. They can be written right in a web page’s HTML and run automatically as the page loads. Today, JavaScript can execute not only in the browser, but also on the server, or actually on any device that has a special program called the JavaScript engine, sometimes called a “JavaScript virtual machine”.
+JavaScript enables interactive webpages e.g. you might have seen sliders, alerts, click interactions, popups, etc on different websites — all of that is built using JavaScript. 
+
+Today, JavaScript can execute not only in the browser, but also on the server, or actually on any device that has a special program called the JavaScript engine, sometimes called a “JavaScript virtual machine”.
+
+Non-browser environments include:
+    Node.js for writing server-side code in JavaScript, 
+    Electron for writing desktop applications, 
+    React Native for mobile applications, 
+    and so on.
+
+
+
+
+JavaScript is a prototype-based, multi-paradigm, single-threaded, dynamic language, supporting object-oriented, imperative, and declarative (e.g. functional programming) styles.
 
 
 JavaScript is a lightweight interpreted (or just-in-time compiled) cross-platform scripting language with first-class functions. 
 
+The programs in this language are called scripts. They can be written right in a web page’s HTML and run automatically as the page loads. 
+
+
+
+
+
 From a technical standpoint, most modern JavaScript interpreters actually use a technique called just-in-time compiling to improve performance; the JavaScript source code gets compiled into a faster, binary format while the script is being used, so that it can be run as quickly as possible. However, JavaScript is still considered an interpreted language, since the compilation is handled at run time, rather than ahead of time.
 
-JavaScript is a prototype-based, multi-paradigm, single-threaded, dynamic language, supporting object-oriented, imperative, and declarative (e.g. functional programming) styles.
+
 
 
 
@@ -44,9 +63,6 @@ That said, JavaScript can be used to create servers, mobile applications, etc.
 
 
 JavaScript borrows most of its syntax from Java, C, and C++, but it has also been influenced by Awk, Perl, and Python.
-
-
-
 
 
 

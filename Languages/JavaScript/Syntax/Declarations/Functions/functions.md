@@ -219,3 +219,4 @@ const add = (a, b) => a + b;
 add(2, 3); // Returns 5
 ```
 
+NOTE: Because arrow functions use curly brackets, {} you cannot implicitly return an object. To return an object using an arrow function, you must either use the return keyword or wrap the curly brackets in round brackets.

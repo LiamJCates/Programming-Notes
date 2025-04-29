@@ -1,5 +1,13 @@
 {
     "cSpell.words": [
         "Traceroute"
-    ]
+    ],
+    "editor.quickSuggestions": {
+        "other": "on",
+        "comments": "off",
+        "strings": "on"
+      },
+      "editor.suggestOnTriggerCharacters": true,
+      "editor.wordBasedSuggestions": "matchingDocuments",
+      "editor.acceptSuggestionOnEnter": "off",
 }

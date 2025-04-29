@@ -1,16 +1,21 @@
-Declarations
+## Declarations
 
 JavaScript has three kinds of variable declarations.
 
 var
 
     Declares a variable, optionally initializing it to a value.
+
 let
 
-    Declares a block-scoped, local variable, optionally initializing it to a value.
+Declares a **block-scoped**, local variable, optionally initializing it to a value.
+
 const
 
-    Declares a block-scoped, read-only named constant. A constant cannot change value through assignment or be re-declared while the script is running. It must be initialized to a value.
+Declares a **block-scoped**, **read-only named** constant. 
+
+
+A constant cannot change value through assignment or be re-declared while the script is running. It must be initialized to a value.
 
 
 
@@ -56,21 +61,24 @@ In addition, variables declared with let or const can belong to an additional sc
 When you declare a variable outside of any function, it is called a global variable, because it is available to any other code in the current document. When you declare a variable within a function, it is called a local variable, because it is available only within that function.
 
 let and const declarations can also be scoped to the block statement that they are declared in.
-js
 
+```js
 if (Math.random() > 0.5) {
   const y = 5;
 }
+
 console.log(y); // ReferenceError: y is not defined
+```
 
 However, variables created with var are not block-scoped, but only local to the function (or global scope) that the block resides within.
 
 For example, the following code will log 5, because the scope of x is the global context (or the function context if the code is part of a function). The scope of x is not limited to the immediate if statement block.
-js
 
+```js
 if (true) {
   var x = 5;
 }
-console.log(x); // x is 5
 
+console.log(x); // x is 5
+```
 

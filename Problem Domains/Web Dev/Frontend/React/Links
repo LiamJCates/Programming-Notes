@@ -1,0 +1,16 @@
+docs
+https://react.dev/learn
+
+history
+https://blog.risingstack.com/the-history-of-react-js-on-a-timeline/
+https://www.youtube.com/watch?v=8pDqJVdNa44
+
+
+
+misc
+https://www.freecodecamp.org/news/the-difference-between-a-framework-and-a-library-bd133054023f/
+
+
+Package Management ([NPM](https://www.npmjs.com/), Yarn)
+Module bundling ( [Webpack](https://webpack.js.org/) , [Parcel](https://parceljs.org/))
+Compilation ( [Babel](https://babeljs.io/) ) 
