@@ -1,9 +1,39 @@
 Basic Relational Database Concepts
 
+### Database
+A database is an organized collection of data used to model some type of organization or organizational process.
+
+It really doesn’t matter whether you’re using paper or an application program to collect and store the data. You have a database as long as
+you’re collecting and storing data in some organized manner for a specific purpose.
 
 
+### Relational database management system (RDBMS)
+Any database management system (DBMS) that is based on the relational model as introduced by E. F. Codd.
 
-Schema
+A relational database management system (RDBMS) is a software application program you use to create, maintain, modify, and manipulate a
+relational database.
+
+
+### Relational Database Model
+
+SQL is an implementation of the `relational data model` which has a mathematical definition and notation independent of SQL.
+
+This model organizes data into one or more `tables` (or "relations") of `columns` and `rows`
+an application of tuple `relational calculus`
+
+
+#### Relational Calculus
+https://www.geeksforgeeks.org/tuple-relational-calculus-trc-in-dbms/
+
+#### Relational Algebra
+Mathematical description of tables and SQL operations
+
+https://www.geeksforgeeks.org/difference-between-relational-algebra-and-relational-calculus/
+
+---
+
+### Schema
+
 Information that describes the database table layout, data properties, and the relationships between data entities.
 
 A Schema contains information that describes a given database including
@@ -15,76 +45,54 @@ how individual pieces of information are named,
 and much more.
 
 
-
-Relational database management system (RDBMS)
-Any database management system (DBMS) that is based on the relational model as introduced by E. F. Codd.
-A relational database management system (RDBMS) is a software application program you use to create, maintain, modify, and manipulate a
-relational database.
+#### Table
+Each RDBMS consists of one or more `tables`, also called `relations`.
+Tables are containers within a database, they are objects that store the actual data.
 
 
-Relational Database Model
-This model organizes data into one or more tables (or "relations") of columns and rows
-an application of tuple relational calculus
-
-SQL is an implementation of the relational data model which has a mathematical definition and notation independent of SQL.
-
-Relational Algebra
-Mathematical description of tables and SQL operations
-
-
-
-Table
-Tables are subcontainers within a database.
-Table are database objects that store the actual data.
-Each RDBMS consists of one or more tables.
 Each table is a collection, in the form of a structured list, of specific, related data.
-Generally, the data represented by a given table is of one specific subject or related "entity type"
+Generally, the data represented by a given table is of one specific subject or related `entity type`
 The information of each instance of the table's entity type is held in a table format within a database partitioned into rows that have attributes described by columns.
 The logical order of rows and columns within a table is of absolutely no importance.
 Table data is stored and organized into indivisible unit values known as cells.
 
 
+A widely held misconception is that the relational model derives its name from the fact that tables within a relational database can be related to one another. However, the term relation in the model is used to describe what most relational database systems call a table.
 
-Row
-Each row represents a unique instance of the tables entity type, abstractly called a data record.
+Although, in practice, a database table is allowed to represent a multiset (bag) of rows where as a mathematically defined relation is a set and does not allow duplicates.
+As a set, the relation doesn't care about tuple order
+Two relations (tables) with the same set of tuples (rows), containing the same attributes (columns) are viewed as the same regardless of any order.
 
-The number of rows in the table is the number of records in it.
+
+
+
+#### Row
+A relation is abstractly described as a set of tuples (rows).
+
+Each `row` represents a unique instance of the tables entity type, also called a data `record` or `tuple`. 
+
 Each row is composed of the entire set of columns in a table, regardless of whether or not the columns contain any values.
 
 
-The terms Tuples/Records/Rows are used interchangeably, but row is technically the correct term.
+#### Columns
+Tables are composed of one or more `columns`, also called a table `attribute` or `field`.
 
+Each column represents some characteristic of the table's entity type.
+The number of columns determines the number of cells in each row.
 
+Each column has an associated data type that constrains the range of data it can contain.
 
+Every column in a properly designed database contains one and only one value, and its name identifies the significance of that value. This makes entering data into a column very intuitive. When you break up data into columns the level of granularity is up to you and your specific requirements, think ahead to which data might be used to sort, filter or as a search index
 
+#### Datatypes
 
-
-Columns
-Tables are composed of one or more columns
-Columns are also called attributes or fields
-Each column represents a characteristic of the subject of the table to which it belongs.
-Columns hold similar data for each column cell.
-The number of columns determines the number of cells in each row
-Each column has an associated data type that constrains the range of data that can be contained by its fields
-The columns representing values attributed to a given instance of the table entity
-When you break up data into columns the level of granularity is up to you and your specific requirements, think ahead to which data might be used to sort , filter or as a search index
-each value being the mathematical equivalent of what a programmer would term an elemental type.
-Every column in a properly designed database contains one and only
-one value, and its name identifies the type of value it holds. This makes
-entering data into a column very intuitive.
-
-
-Datatypes
-A database is an organized collection of data used to model some type of organization or organizational process.
 Datatypes help sort data correctly and plays an important role in optimizing disk usage.
-It really doesn’t matter whether you’re using paper or an application program to collect and store the data. You have a database as long as
-you’re collecting and storing data in some organized manner for a specific
-purpose.
 Datatypes and their names are one of the primary sources of SQL incompatibility.
-While most basic datatypes are supported consistently, many more advanced datatypes are not.
+While most basic datatypes are supported consistently, many advanced datatypes are not.
 
 
-Table Metadata
+
+#### Table Metadata
 Besides the actual data rows, tables generally have associated with them some metadata, such as constraints on the table or on the values within particular columns.
 
 Each table has a unique name
@@ -93,28 +101,28 @@ Each table column has a unique name
 A database column imposes restriction on the data it can hold
     size, type, format, null or not
 
+---
 
 
 
 
 
-Relation
-"Table" is another term for "relation";
-A relation (table) is abstractly described as a set of tuples (rows).
-Although there is the difference in that a table is usually a multiset (bag) of rows where a relation is a set and does not allow duplicates.
-As a set, the relation doesn't care about tuple order
-Two relations (tables) with the same set of tuples (row content), containing the same attributes are viewed as the same regardless of any order.
 
 
-A widely held misconception is that the relational model derives its name from the fact that tables within a relational database can be related to one another. However, the term relation in the model is used to describe what most relational database systems call a table.
 
-data in a relational database is stored in relations, which are perceived by the user as tables. Each relation is composed of tuples (records or rows) and attributes (fields or columns).
+
+
+
+
+
+
 
 
 Relations As Subsets of Cartesian Products
 The Cartesian product of two or more sets is the set of all tuples that can be formed by taking one element from each of the sets. sets A, B, and C, would be written AxBxC.
 
-How many elements are in the Cartesian product A x B x C of sets A, B, C, if each set has 10 elements? 103
+How many elements are in the Cartesian product A x B x C of sets A, B, C, if each set has 10 elements? 
+10^3
 
 We can view any relation on attributes A, B, C as a subset of the cartesian product A x B x C.
 
@@ -129,7 +137,7 @@ A special lookup table that the database search engine uses to speed up data ret
 
 
 
-Keys
+### Keys
 Relational Database tables use specialized columns, called keys, to form relationships within and between tables.
 
 Keys are a column or set of columns that play very specific roles within a table. A key that consists of a set of columns is called a compound key or composite key.
@@ -138,18 +146,7 @@ The type of key determines its purpose within the table. Although a table
 might contain several types of keys, an elementary discussion consists of the two most important ones: the primary key and the foreign key.
 
 
-
-
-
-
-
-
-
-
-
-
-
-Primary Key (PK)
+#### Primary Key (PK)
 A single or multi-column key used to uniquely identify a row for searching within a given table. Every table row must have a unique primary key that identifies it. When implemented efficiently, primary keys are the fastest way to find a row. The uniqueness of primary key columns is enforced.
 
 A primary key's value must be unique for each row, each row must have values for all columns in the key set, each column must be necessary for uniqueness (don't use more rows than you must to achieve uniqueness)
@@ -179,7 +176,7 @@ Primary keys also enforce table-level integrity and help establish relationships
 
 
 
-Foreign Key
+#### Foreign Key
 Primary keys are used as the target of foreign keys from other tables.
 
 

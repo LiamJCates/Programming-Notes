@@ -12,13 +12,14 @@ https://react.dev/learn/choosing-the-state-structure
 https://react.dev/learn/sharing-state-between-components
 
 
+
 ## What is state in React?
-State is a component’s memory, and is the data that a component manages to be used during it's execution, similar to function parameters.
 
 If we want components to undergo visual changes as a result of interactions, the component needs to “remember” things about itself.
 
+State is a specifically declared object that  functions as a component’s memory, and is internally managed by a component, to be used during it's execution, similar to function variables.
 
-The view, what is visually presented as the UI, is a function of the state of your components
+The view, what is visually presented as the UI, is dependent on the state of your components
 
 When react components are rendered, which is the act of running the function component function to produce the JSX necessary to make the UI
 
@@ -26,6 +27,9 @@ a component will only be rerendered if either the
   props it is recieving change in the parent component
   state it manages changes
 
+
+
+### Non-state Variables
 
 Changing a non-state variable will not cause the component in which it resides to rerender. 
 
@@ -45,19 +49,32 @@ export default function App() {
     )
 }
 ```
-Even though the event handler changes this variable's value, we would not see this reflected in the UI.
+Even though the event handler changes this variable's value, we do not see this reflected in the UI.
 
+NOTE:
 While variable values are generally considered to be part of the program state in a more general context, a React component's state consist of specifically declared data members.
 
-We will need to use a mechanisms called "hooks" to manage these state values.
 
+
+
+
+### React State
 
 An app that changes its background color based on the clicked button, don't worry about all the new syntax, this will be explained as we go.
 
+```css
+.App {
+  width: 300px;
+  height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+```
+
 ```jsx
 //App.jsx
-import React, { useState } from "react";
-import "./App.css";
+import { useState } from "react";
 
 const COLORS = ["pink", "green", "blue", "yellow", "purple"];
 
@@ -111,46 +128,49 @@ On button click, an event handler that calls the setBackgroundColor function wit
 
 
 
-
-
-
 ### useState
 
-A React component undergoes three different phases in its lifecycle, including mounting, updating, and unmounting. Each phase has specific methods responsible for a particular stage in a component's lifecycle. These methods are technically particular to class-based components and not intended for functional components. However, since the concept of Hooks was released in React, you can now use abstracted versions of these lifecycle methods when you’re working with functional component state. 
+useState is a React feature that allows you to define a state object in a functional component. 
 
-Simply put, React Hooks are functions that allow you to “hook into” a React state and the lifecycle features within function components.
+useState takes an initial value as a parameter and returns a two element array containing:
+  
+    The current state value  
+    A function to update the state value, which internally the `setState` method of the internal React state object  
+  
+useState definition:
 
-The useState hook is a built-in hook in React that allows you to define state in a functional component. It takes an initial value as a parameter and returns an array with two elements that we can destructure to get:
-
-    The current state value
-    A function to update the state value
-
-State definition with useState commonly follows this pattern:
+```jsx
+import {useState} from "react"
 
 const [stateValue, setStateValue] = useState(initialValue);
+```
 
+NOTE: It is common to destructure the array returned by useState, and name the function referencing the internal state objects setState method in accordance with the identifier provided to the stateValue variable in the context of a given component 
+
+NOTE: The remainder of this document uses the setState method name when referencing the function returned by the useState, as is stated above, the function returned will have a name relative to the context in which it is used, determined by the identifier used to reference the current state.
 
 
 ## How does state work in React?
 
-In React, when a component’s state or props change, the component is destroyed and recreated from scratch.
+In React, when a component’s state or props change, the component is destroyed, including variables, functions, and child nodes, and the entire component is reinitialized and the latest state value will be returned from useState. This process, called `Rerendering`, is a key feature of React that enables it to efficiently update the user interface in response to changes in the underlying data.
 
+The process of rerendering generates a new `virtual DOM` (Document Object Model) tree, a lightweight representation of the actual DOM that React uses to keep track of the current state of the UI. React then compares the new virtual DOM tree to the previous one and calculates the minimal set of changes needed to update the actual DOM. This behavior is managed by the `reconciliation algorithm`.
 
-This includes the variables, functions, and React nodes. The entire component is recreated but this time the latest state value will be returned from useState. This process is called rerendering. Rerendering is a key feature of React that enables it to efficiently update the user interface in response to changes in the underlying data.
-
-The process of rerendering generates a new virtual DOM (Document Object Model) tree. The virtual DOM is a lightweight representation of the actual DOM that React uses to keep track of the current state of the UI. React then compares the new virtual DOM tree to the previous one and calculates the minimal set of changes needed to update the actual DOM. This behavior is managed by the reconciliation algorithm.
-
-In the example above, whenever setBackgroundColor is called, our App component is rerendered. The onButtonClick function and our div and buttons are recreated. You might wonder, shouldn’t the backgroundColor state be recreated as well? Well, React takes the responsibility of keeping track of the latest state and providing it to the component. The initial state value is only used for the component’s first render and is ignored on subsequent renders.
-
+In the example above, whenever setBackgroundColor is called, our App component is rerendered. The onButtonClick function and our div and buttons are recreated. You might wonder, shouldn’t the backgroundColor state be recreated? Well, React takes the responsibility of keeping track of the latest state and providing it to the component. The initial state value is only used for the component’s first render and is ignored on subsequent renders.
 
 
 ## Hooks
 
-Hooks are functions that let you use React features. All hooks are recognizable by the use prefix. For example, useState is a hook.
+Simply put, React Hooks are functions that allow you to “hook into” an internal React state object.
+
+All hooks are recognizable by the `use-` prefix.
 
 NOTE:
   Originally (before hooks), functional components were stateless and used only for rendering UI based on props.
   With hooks, functional components can manage state and side effects, making them just as powerful as class components.
+
+
+### Hook Rules
 
 For now, remember that hooks have rules that we need to abide by:
 
@@ -161,16 +181,16 @@ For now, remember that hooks have rules that we need to abide by:
 
 ## How to structure state
 
-Managing and structuring state effectively is by far one of the most crucial parts of building your application. If not done correctly, it can become a source of bugs and headaches.
+Managing and structuring state effectively is by far one of the most crucial parts of building your application. It can become a source of bugs and headaches.
 
-as a general rule of thumb: don’t put values in state that can be calculated using existing values, state, and/or props.
+As a rule of thumb: don’t put values in state that can be calculated using existing values, state, and/or props.
 
 
 ### State should not be mutated
 
 Mutating state is a no-go area in React as it leads to unpredictable results. Primitives are already immutable, but if you are using reference-type values, i.e., arrays and objects, never mutate them. According to the React documentation, we should treat state as if it was immutable. 
 
-To change state, we should always use the setState function
+To change state, we should always use the setter function returned by useState
 
 ```js
 function Person() {
@@ -188,7 +208,7 @@ function Person() {
   // GOOD - Do this!
   const handleIncreaseAge = () => {
     // copy the existing person object into a new object
-    // while updating the age property
+    // while updating the age property of that new object
     const newPerson = { ...person, age: person.age + 1 };
     setPerson(newPerson);
   };
@@ -203,7 +223,9 @@ function Person() {
 }
 ```
 
-notice how we create a new object and then copy the existing state values into the new object while providing a new value for age. That is because if we don’t provide a new object to setState it is not guaranteed to re-render the page. Therefore, we should always provide a new Object for setState to trigger a re-render. setState uses Object.is() to determine if the previous state is the same.
+Notice, we create a new object and then copy the existing state values into the new object while providing a new value for age. That is because if we don’t provide a new object to setState it is not guaranteed to re-render the page. Therefore, we should always provide a new Object for setState to trigger a re-render. 
+
+During a re-render, React uses Object.is() to determine if the previous state is the same.
 
 As for nested objects and arrays, state can get tricky fast since you will have to copy the nested items as well. Be careful when using them.
 
@@ -241,9 +263,9 @@ function Person() {
 }
 ```
 
-![person state](../img/state.png)
+![person state](../../img/state.png)
 
-Uh-oh, what is happening? Let’s break it down (ignore the double console.logs for the render case; this is covered in the upcoming lessons).
+Uh-oh, what is happening? Let’s break it down (ignore the double console.logs for the render case).
 
 1. The component renders for the first time. The person state variable is initialized to { name: 'John', age: 100 }. The “during render” console.log prints the state variable.
 2. The button is clicked invoking handleIncreaseAge. Interestingly, the console.log before and after the setPerson call prints the same value.
@@ -271,7 +293,8 @@ but, as stated above, calling setState re-renders the entire component instead o
 so the Component is rerendered and setState is called again.
 
 
-### State updater functions
+
+### React batches state updates
 
 Let’s look at another implementation of handleIncreaseAge; what do you think it does?
 
@@ -285,16 +308,25 @@ Surely, it will increase the age by 2? Nope. The above code is saying to React:
 
     Hey, replace the current render’s person with an increase in age by 1. Then, replace the current render’s person with an increase in age by 1.
 
+There are two setPerson calls in the above example, and setState call triggers a component re-render. So, the component should re-render twice, right?
+However, wherever possible, React batches the state updates. Here, the component only re-renders once.
+
+
 Notice the word “replace”. When you pass in the value to the setState function, React will replace the current state with the value you passed in. You might be wondering, what if I want to update the state multiple times using the latest state? This is where the state updater function comes in.
+
+
+
+### State updater functions
+
+When a callback is passed to the setState function, it ensures that the latest state is passed in as an argument to the callback.
+
 ```js
 const handleIncreaseAge = () => {
   setPerson((prevPerson) => ({ ...prevPerson, age: prevPerson.age + 1 }));
   setPerson((prevPerson) => ({ ...prevPerson, age: prevPerson.age + 1 }));
 };
 ```
-When a callback is passed to the setState function, it ensures that the latest state is passed in as an argument to the callback.
-
-Using an updater is not always necessary. If you want to change the state using your previous state and you prefer consistency over verbosity, then you might consider using an updater.
+Using an updater is not always necessary.
 
 ```jsx
 import React from "react"
@@ -312,11 +344,11 @@ export default function App() {
      * value of state.
      */
     function add() {
-        setCount(prevCount=> prevCount + 1)
+        setCount(prevCount=> prevCount + 1) // We could have just as well used the method below
     }
 
     function subtract() {
-        setCount(count - 1)
+        setCount(count - 1) // We could have just as well used the method above
     }
 
     return (
@@ -332,6 +364,7 @@ export default function App() {
 }
 ```
 
+If you want to change the state using your previous state and you prefer consistency over verbosity, then you might consider using an updater.
 
 Use a callback function to add items to an array as we need the previous value of the state to maintain the current array items. 
 Rather than using the Array.push operation, we create a new array using the spread operator to reference all previous values, and include the new value. 
@@ -348,7 +381,7 @@ export default function App() {
   const thingsElements = myFavoriteThings.map(thing => <p key={thing}>{thing}</p>)
 
   function addFavoriteThing() {
-    setMyFavoriteThings(prevFavThings => [...prevFavThings, "Test"])
+    setMyFavoriteThings(prevFavThings => [...prevFavThings, allFavoriteThings[prevFavThings.length]])
   }
   
   return (
@@ -362,10 +395,6 @@ export default function App() {
 }
 ```
 
-### React batches state updates
-
-There are two setPerson calls in the above example, and setState call triggers a component re-render. So, the component should re-render twice, right?
-However, wherever possible, React batches the state updates. Here, the component only re-renders once.
 
 
 
@@ -427,9 +456,9 @@ export default function App() {
 ```
 
 
+### Review
 
-1. You have 2 options for what you can pass in to a
-   state setter function (e.g. `setCount`). What are they?
+1. You have 2 options for what you can pass in to a state setter function (e.g. `setCount`). What are they?
    1. Pass the new state value
    2. Pass a callback function, with a single parameter that is the old state value and returns the new state value.
 
@@ -503,10 +532,9 @@ return (
 
 
 
-In order to have one handler function manage multiple members of a state object,
-ensure the object member name, and the name attribute of the html element are the same.
+In order to have one handler function manage multiple members of a state object, ensure the object member name, and the name attribute of the html element are the same.
 
-We can then extract the 
+We can then extract the name attribute from the event and use that as the member name we will update
 
 ```jsx
 import { useState } from "react"
@@ -559,3 +587,4 @@ export default function Main() {
     )
 }
 ```
+

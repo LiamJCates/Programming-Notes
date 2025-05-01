@@ -364,7 +364,7 @@ Received `false` for a non-boolean attribute `className`. If you want to write i
 
 
 
-JSX Represents Objects
+### JSX Represents Objects
 
 Babel compiles JSX down to React.createElement() calls.
 

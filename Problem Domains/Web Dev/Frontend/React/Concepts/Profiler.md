@@ -1,0 +1,1 @@
+https://legacy.reactjs.org/blog/2018/09/10/introducing-the-react-profiler.html

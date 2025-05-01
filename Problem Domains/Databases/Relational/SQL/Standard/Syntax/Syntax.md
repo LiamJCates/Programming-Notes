@@ -1,7 +1,12 @@
 SQL Syntax
 
+
 ## Language Elements
-The SQL language is subdivided into several language elements, including:
+The SQL language is subdivided into several language elements, including
+
+Although SQL is an ANSI/ISO standard, there are different versions of the SQL language.
+
+However, to be compliant with the ANSI standard, they all support at least the major commands (such as SELECT, UPDATE, DELETE, INSERT, WHERE) in a similar manner.
 
 ### Statements
 A SQL Statement is a valid SQL instruction that tells a database what you want it to do
@@ -11,7 +16,6 @@ retrieve data based on specific criteria.
 
 #### Clauses
 constituent components of statements and queries.
-
 
 #### Expressions
 a combination of one or more values, operators and SQL functions that evaluate to produce either scalar values, or tables consisting of columns and rows of data
@@ -43,12 +47,4 @@ Most SQL developers find that breaking up statements over multiple lines makes t
 
 
 
-### Case Sensitivity
-SQL statements are case-insensitive
-By convention
-keywords are typically specified using capital letters,
-identifiers are expressed in lower case with dashes for spaces
 
-Many SQL developers find that using uppercase for all SQL keywords and lowercase for column and table names makes code easier to read and debug.
-
-while the SQL language is case-insensitive, the names of tables, columns, and values may not be (that depends on your DBMS and how it is configured).

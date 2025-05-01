@@ -1,8 +1,8 @@
 # Components
 
-https://www.geeksforgeeks.org/reactjs-functional-components/
+As the Web became more interactive, logic increasingly determined content. JavaScript was in charge of the HTML! This is why in React, rendering logic and markup live together in the same place — components. React embraces the fact that rendering logic is inherently coupled with other UI logic: how events are handled, how the state changes over time, and how data is prepared for display. Instead of artificially separating technologies by putting markup and logic in separate files, React separates concerns with loosely coupled units called “components” that contain both. Keeping a button’s rendering logic and markup together ensures that they stay in sync with each other on every edit. Conversely, details that are unrelated, such as the button’s markup and a sidebar’s markup, are isolated from each other, making it safer to change either of them on their own.
 
-As the Web became more interactive, logic increasingly determined content. JavaScript was in charge of the HTML! This is why in React, rendering logic and markup live together in the same place — components. React embraces the fact that rendering logic is inherently coupled with other UI logic: how events are handled, how the state changes over time, and how the data is prepared for display. Instead of artificially separating technologies by putting markup and logic in separate files, React separates concerns with loosely coupled units called “components” that contain both. Keeping a button’s rendering logic and markup together ensures that they stay in sync with each other on every edit. Conversely, details that are unrelated, such as the button’s markup and a sidebar’s markup, are isolated from each other, making it safer to change either of them on their own.
+---
 
 ## Elements
 
@@ -11,16 +11,18 @@ React allows you to break a UI (User Interface) down into independent reusable c
 Elements are the smallest building blocks of React apps.
 
 An element describes what you want to see on the screen:
+
 ```js
 const element = <h1>Hello, world</h1>;
 ```
+
 Unlike browser DOM elements, React elements are plain javascript objects, and are cheap to create. React DOM takes care of updating the DOM to match the React elements.
 
 React elements are specified using an html like syntax you see above, called JSX.
 
-more on JSX [here](../Concepts/JSX/JSX.md)
+more on JSX [here](JSX.md)
 
-
+---
 
 ### Rendering an Element into the DOM
 
@@ -46,9 +48,6 @@ ReactDOM.render(element, document.getElementById('root'));
 
 The use of a \<div> and id of "root" is just convention, any HTML element type and can be used, and any method of selecting an element to be used is valid.
 
-
-
-
 Another way of doing this without importing the whole of ReactDOM
 
 ```jsx
@@ -56,32 +55,14 @@ import { createElement } from "react"
 import { createRoot } from "react-dom/client"
 
 const root = createRoot(document.getElementById("root"))
-root.render(
-    createElement("h1", null, "Hello, world")
-)
-```
-
-```jsx
-import { createElement } from "react"
-import { createRoot } from "react-dom/client"
-
-const root = createRoot(document.getElementById("root"))
-const reactElement = createElement("h1", null, "Hello from createElement!")
+const reactElement = createElement("h1", null, "Hello World!")
 
 root.render(
     reactElement
 )
 ```
 
-```jsx
-import { createElement } from "react"
-import { createRoot } from "react-dom/client"
-
-createRoot(document.getElementById("root")).render(
-    const reactElement = createElement("h1", null, "Hello from createElement!")
-)
-```
-
+---
 
 ### Updating the Rendered Element
 
@@ -108,18 +89,16 @@ setInterval(tick, 1000);
 It calls ReactDOM.render() every second from a setInterval() callback.
 
 Note:
-
 In practice, most React apps only call ReactDOM.render() once. We will eventually learn how such code gets encapsulated into stateful components.
 
 
-### React Only Updates What’s Necessary
+#### React Only Updates What’s Necessary
 
 React DOM compares the element and its children to the previous one, and only applies necessary DOM updates.
 
-Even though we create an element describing the whole UI tree on every tick, only the text node whose contents have changed gets updated by React DOM.
+In the previous example, even though we create an element describing the whole UI tree on every tick, only the text node whose contents have changed gets updated by React DOM.
 
-
-
+---
 
 ## Components
 
@@ -128,14 +107,17 @@ You can find a detailed component API reference [here](https://reactjs.org/docs/
 One might confuse elements with a more widely known concept of “components”. Elements are what components are “made of”.
 
 Conceptually, components are like JavaScript functions:
-	They (optionally) accept arbitrary inputs (called “props” which stands for properties)
+	(optionally) accept an arbitrary input parameter (called “props” which stands for properties)
 	return React elements describing what should appear on the screen.
 
+The first thing to understand is that everything on screen in a React app is part of a component. Essentially, a React app is just components within components within components. So developers don’t build pages in React; they build components.
 
+A React component can be one of two types. It can be either a function component or a class component. Both types can be stateful and have side effects, or they can be purely presentational. You should learn them both, but prefer to use function components over class components because they're recommended by the [React documentation](https://react.dev/reference/react/Component#alternatives).
 
-A React component can be one of two types. It can be either a function component or a class component. Both types can be stateful and have side effects, or they can be purely presentational. You should learn them both, but prefer to use function components over class components because they're really much simpler. Class components, however, are a bit more powerful.
+---
 
-#### Function Component
+### Function Component
+
 ```js
 const MyComponent = () => {
 	return(
@@ -144,7 +126,10 @@ const MyComponent = () => {
 }
 ```
 
-#### Class Component
+---
+
+### Class Component
+
 ```jsx
 class MyComponent extends React.Component {
 	render () {
@@ -155,24 +140,37 @@ class MyComponent extends React.Component {
 }
 ```
 
+The remainder of this page will focus on function components.
+
 Class components are detailed [here](./Class%20Components.md)
 
+---
 
-
-## Function Component
+## Function Components
 
 The simplest way to define a component is to write a JavaScript function.
 We call such components “function components” because they are literally JavaScript functions. 
 
 ```js
+import { createElement } from "react"
+import { createRoot } from "react-dom/client"
+
 function Welcome() {
   return <h1>Hello, World!</h1>;
 }
+
+const root = createRoot(document.getElementById("root"))
+
+root.render(
+    <\Welcome>
+)
 ```
-This function is a valid React component because it returns a React element.
+
+The Welcome function is a valid React component because it returns a React element.
 
     NOTE: React components must be capitalized or they will not function as expected. React uses the capitalization to tell the difference between an HTML tag and an instance of a React component. For example, \<div /> represents an HTML div tag, but \<Welcome /> represents a component and requires Welcome to be in scope.
 
+---
 
 ### Why use Functional Components
 
@@ -183,70 +181,9 @@ ReactJS functional components offer several benefits over class components, incl
     Testability: easier to test because they are stateless and don’t rely on lifecycle methods.
     Reusability: be reused across multiple projects, making them a great choice for building component libraries.
 
-When to Use ReactJS Functional Components
-
 Functional components should be used whenever possible because they are simpler, easier to test, and more performant than class components. 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-### Responding to events
-
-You can respond to events by declaring event handler functions inside your components:
-
-```js
-function MyButton() {
-  function handleClick() {
-    alert('You clicked me!');
-  }
-
-  return (
-    <button onClick={handleClick}>
-      Click me
-    </button>
-  );
-}
-```
-Notice how onClick={handleClick} has no parentheses at the end! Using parentheses would call the event handler function, you only need to pass the reference down. 
-React will call your event handler when the user clicks the button.
-
-
-
-
-
-
-
-
-
-
-
-
+---
 
 ### Rendering a Component
 
@@ -265,7 +202,8 @@ const element = <Welcome name="Sara"/>;
 When React sees an element representing a user-defined component, it passes JSX attributes and children to this component as a single object. We call this object “props”.
 
 ```js
-function Welcome(props) {  return <h1>Hello, {props.name}</h1>;
+function Welcome(props) {  
+  return <h1>Hello, {props.name}</h1>;
 }
 
 const element = <Welcome name="Sara" />;
@@ -285,8 +223,7 @@ Let’s recap what happens in this example:
 
 More information on props [here](./Props.md)
 
-
-
+---
 
 ### Composing Components
 
@@ -318,7 +255,7 @@ ReactDOM.render(
 
 By convention, React apps have a single \<App/> component that is the ancestor of (includes) all other components. However, if you integrate React into an existing app, you might start bottom-up with a small component like Button and gradually work your way to the top of the view hierarchy.
 
-
+---
 
 ### Extracting Components
 
@@ -404,18 +341,7 @@ function Comment(props) {
 
 Extracting components might seem like grunt work at first, but having a palette of reusable components pays off in larger apps. A good rule of thumb is that if a part of your UI is used several times (Button, Panel, Avatar), or is complex enough on its own (App, FeedStory, Comment), it is a good candidate to be extracted to a separate component.
 
-
-
-
-
-
-
-
-
-
-
-
-
+---
 
 ### Exporting Components
 
@@ -434,9 +360,8 @@ export default Greeting;
 
 The import should look something like this:
 
-
 ```js
-//import React from 'react'; no longer necessary
+//import React from 'react'; no longer necessary (See NOTE below)
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import Greeting from "./Greeting.jsx";
@@ -450,98 +375,3 @@ createRoot(document.getElementById("root")).render(
 ```
 
 NOTE: Previous to React v17.0, it was necessary to import React in your JavaScript files that used React components
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-```js
-//src/App.jsx
-
-import { useState } from 'react';
-
-function App() {
-  const [message, setMessage] = useState("Hello World!");
-
-  const changeMessage = () => {
-    setMessage("Welcome to React!");
-  };
-
-  return (
-    <div style={{ textAlign: "center", marginTop: "50px" }}>
-      <h1>{message}</h1>  {/* Display the dynamic message */}
-      <button 
-        onClick={changeMessage} 
-        style={{
-          padding: "10px 20px", 
-          fontSize: "16px", 
-          backgroundColor: "#4CAF50", 
-          color: "white", 
-          border: "none", 
-          borderRadius: "5px", 
-          cursor: "pointer"
-        }}
-      >
-        Click Me!
-      </button>
-    </div>
-  );
-}
-
-export default App;
-```
-  
-
-```js
-//src/index.jsx
-import ReactDOM from 'react-dom/client';
-
-import { App } from './App.jsx'
-
-ReactDOM.createRoot( 
-  document.querySelector('#root')
-).render(<App />)
-```
-
-```html
-<!-- index.html -->
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="src/style.css">
-  </head>
-  <body>
-    <div id="root"></div>
-
-    <script src="src/index.jsx"></script>
-  </body>
-</html>
-```

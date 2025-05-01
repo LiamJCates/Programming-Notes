@@ -2,8 +2,8 @@ SELECT Statement
 
 The SQL SELECT statement is used to retrieve records from one or more tables in your SQL database. The records retrieved are known as a result set.
 
-SELECT expressions
-FROM tables
+SELECT <list>
+FROM <table>
 [WHERE conditions]
 [ORDER BY expression [ ASC | DESC ]];
 
@@ -18,41 +18,43 @@ from where to select it, specified by the FROM clause
 ### SELECT clause
 A SELECT clause is composed of the SELECT keyword and a SELECT LIST
 
-SELECT LIST
-consists of at least one column
-multiple columns are comma delimited
-can utilize a wildcard * to pull all columns from a table
+```sql
+SELECT list --...
+```
 
-SELECT [column1, column2, …, columnN]
+A select list consists of at least one column, multiple columns are comma delimited
+
+```sql
+SELECT column1, column2, …, columnN --...
+```
+
+a wildcard * pulls all columns from a table
 
 column names used in a SELECT LIST require a FROM clause to be used to specify the table from which the columns originate
-
-
-
-
 
 
 ### FROM clause
 
 The SQL FROM clause is used to list the tables and any joins required for the SQL statement.
 
-FROM [table]
-
+```sql
+FROM table
+```
+```sql
 FROM table1
 [ { INNER JOIN
   | LEFT [OUTER] JOIN
   | RIGHT [OUTER] JOIN
   | FULL [OUTER] JOIN } table2
 ON table1.column1 = table2.column1 ]
-
-For more information regarding joins, see:
-[Databases\SQL\Standard\Syntax\Statements\DataQuery\JOIN.md]
+```
+Furthre information regarding joins [here](Joining/JOIN.md)
 
 
 
 
 #### Wildcard
-When a wildcard (*) is specified after the SELECT all the columns in the table are returned.
+When a wildcard (*) is specified after the SELECT, all the columns in the table are returned.
 Though wildcards may save you the effort needed to list the desired columns explicitly, retrieving unnecessary columns slows down performance
 There is one big advantage to using wildcards. As you do not explicitly specify column names it is possible to retrieve columns of which the names are unknown.
 
@@ -60,7 +62,7 @@ There is one big advantage to using wildcards. As you do not explicitly specify 
 
 
 
-SELECT Clause Ordering
+### SELECT Clause Ordering
 SELECT > FROM > WHERE > GROUP BY > HAVING > ORDER BY
 
 SELECT Clauses and Their Sequence

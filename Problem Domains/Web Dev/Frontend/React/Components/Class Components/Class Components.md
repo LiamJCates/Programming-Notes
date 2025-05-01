@@ -1,7 +1,13 @@
 
-## Class Component
+# Class Component
 
-Use an ES6 class to define a component:
+NOTE: React documentation recommends defining function components instead of classes, so, while information related to class components is still part of the standard, it is becoming less and less relevant.
+
+https://react.dev/reference/react/Component#alternatives
+
+
+
+Class components use an ES6 class to define a component:
 
 ```js
 class Welcome extends React.Component {
