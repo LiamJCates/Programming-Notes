@@ -1,19 +1,10 @@
-Below is a comprehensive introduction to RESTful APIs in the context of databases using Python, including key concepts, design principles, and a full working example using Flask and SQLAlchemy.
+# REST for Databases
 
----
+## 1. What is REST
 
-## 1. What Is a RESTful API?
-
-**REST (Representational State Transfer)** is an architectural style for designing networked applications. A RESTful API is an API that follows REST principles, meaning that it:
-  
-- Uses standard HTTP methods (GET, POST, PUT, DELETE) to perform operations.
-- Is stateless—each request from the client contains all the information needed.
-- Uses resource-based URLs to identify entities.
-- Often returns data in a standardized format like JSON.
+See the general introduction to REST [here](../../Web%20Dev/Concepts/REST.md)
 
 **In the context of databases**, RESTful APIs act as an interface between client applications and the underlying database. They allow you to perform CRUD (Create, Read, Update, Delete) operations by exposing endpoints that map to database operations.
-
----
 
 ## 2. Why Use RESTful APIs for Databases?
 

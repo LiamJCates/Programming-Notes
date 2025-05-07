@@ -165,6 +165,150 @@ Joining strings together like this is called concatenation.
 
 
 
+
+Tagged template literals allow you to customize how template literals are processed by prepending a “tag” function to the template. The tag function receives two kinds of arguments—an array of literal string segments and, separately, the interpolated expression values—and can return any value, not just a string. This mechanism makes it possible to implement domain-specific mini-languages (e.g., SQL sanitization), custom formatting (e.g., HTML escaping), or localization routines. Below is a concise guide to their syntax, behavior, common use cases, and built-in support.
+
+## 1. Syntax and Basics
+
+A tagged template literal consists of a function name immediately followed by a template literal:
+
+```js
+function tag(strings, ...values) {
+  console.log("strings", strings);  //strings [ 'What is ', ' plus ', '?' ]
+  console.log("values", values);    //values [ 1, 2 ]
+  let result;
+  switch (strings[1]) {
+    case " plus ":
+    result = values[0] + values[1];
+    break;
+    case " minus ":
+    result = values[0] - values[1];
+    break;
+  }
+  return `${values[0]}${strings[1]}${values[1]} is ${result}`;
+}
+let a = 1;
+let b = 2;
+let output = tag`What is ${a} plus ${b}?`;
+console.log(output);            // 1 plus 2 is 3
+```
+
+* **Tag invocation**: The JavaScript engine translates this into `tag(strings, ...values)` calls, where `strings` is an array of the literal segments and `values` are the evaluated expressions ([MDN Web Docs][1]).
+* **Return value**: Unlike normal templates, a tag function can return any type—string, object, or even a React element ([Zach Snoek][2]).
+
+## 2. Function Arguments
+
+Inside the tag function, you typically declare parameters as:
+
+```js
+function tag(strings, ...values) { /* … */ }
+```
+
+* **`strings`**: An array of the literal parts (`[ 'What is ', ' plus ', '?' ]`) ([MDN Web Docs][1])
+* **`values`**: The evaluated expressions (`[ 1, 2 ]`) ([MDN Web Docs][1])
+* **`raw` property**: `strings.raw` provides the raw text (e.g., with backslashes unprocessed) for cases like preserving escape sequences ([MDN Web Docs][3]).
+
+## 3. Basic Example
+
+```js
+function highlight(strings, ...values) {
+  return strings.reduce((result, str, i) => 
+    result + str + (values[i] ? `<b>${values[i]}</b>` : ""), ""
+  );
+}
+
+const user = "Alice", score = 42;
+console.log(highlight`User ${user} scored ${score} points.`);
+// → "User <b>Alice</b> scored <b>42</b> points."
+```
+
+Here, `highlight` wraps each interpolated value in `<b>…</b>` tags ([Wes Bos][4]).
+
+## 4. Common Use Cases
+
+### 4.1 Safe SQL Queries
+
+```js
+function sql(strings, ...values) {
+  return strings
+    .map((str, i) =>
+      i < values.length
+        ? str + "'" + String(values[i]).replace(/'/g, "''") + "'"
+        : str
+    )
+    .join("");
+}
+
+const table = "users", id = 17;
+console.log(sql`SELECT * FROM ${table} WHERE id = ${id};`);
+// → "SELECT * FROM 'users' WHERE id = '17';"
+```
+
+Prevents injection by escaping quotes ([Stack Overflow][5]).
+
+### 4.2 Internationalization (i18n)
+
+```js
+function i18n(strings, ...values) {
+  // Pseudo-lookup: translate each literal and interleave values
+  return translate(strings).map((s, i) => s + (values[i] || "")).join("");
+}
+```
+
+Allows translation systems to handle placeholders separately ([Medium][6]).
+
+### 4.3 Custom Formatting
+
+Tagged templates can format dates, currencies, or numbers in-line:
+
+```js
+function money(strings, ...values) {
+  return strings.reduce((acc, str, i) =>
+    acc + str + (values[i] != null 
+      ? new Intl.NumberFormat('en-US', {style:'currency', currency:'USD'}).format(values[i]) 
+      : ""), ""
+  );
+}
+console.log(money`Total: ${1234.5}`); // "Total: $1,234.50"
+```
+
+## 5. Built-in Tag: `String.raw`
+
+The only native tag function is `String.raw`, which returns the raw template string without processing escape sequences:
+
+```js
+console.log(String.raw`Line1\nLine2`);
+// → "Line1\\nLine2"
+```
+
+Useful for regular expressions, file paths, or generating code ([MDN Web Docs][3]).
+
+## 6. Caveats and Best Practices
+
+* **Performance**: Tagged templates incur a function call per literal; avoid over-tagging in hot paths.
+* **Safety**: Always sanitize or validate interpolations when generating HTML or SQL.
+* **Readability**: Keep tag functions focused; complex logic can obscure template readability.
+
+---
+
+**Sources**
+
+* MDN Web Docs: Template literals — Tagged templates ([https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template\_literals](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals))
+* MDN Web Docs: String.raw() ([https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global\_Objects/String/raw](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/raw))
+* Wes Bos: Tagged Template Literals ([https://wesbos.com/tagged-template-literals](https://wesbos.com/tagged-template-literals))
+* Stack Overflow: ES6 tagged templates practical usability ([https://stackoverflow.com/questions/31590975/es6-tagged-templates-practical-usability](https://stackoverflow.com/questions/31590975/es6-tagged-templates-practical-usability))
+* Medium: Tagged Template String in JS ([https://medium.com/@avicsebooks/tagged-template-string-in-js-b4b4681c761](https://medium.com/@avicsebooks/tagged-template-string-in-js-b4b4681c761))
+
+[1]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals?utm_source=chatgpt.com "Template literals (Template strings) - JavaScript - MDN Web Docs"
+[2]: https://www.zachsnoek.com/blog/understanding-tagged-template-literals-in-javascript?utm_source=chatgpt.com "Understanding tagged template literals in JavaScript - Zach Snoek"
+[3]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/raw?utm_source=chatgpt.com "String.raw() - JavaScript - MDN Web Docs"
+[4]: https://wesbos.com/tagged-template-literals?utm_source=chatgpt.com "Tagged Template Literals - Wes Bos"
+[5]: https://stackoverflow.com/questions/31590975/es6-tagged-templates-practical-usability?utm_source=chatgpt.com "ES6 tagged templates practical usability - javascript - Stack Overflow"
+[6]: https://medium.com/%40avicsebooks/tagged-template-string-in-js-b4b4681c761?utm_source=chatgpt.com "Tagged Template String in JS - Medium"
+
+
+
+
 ### String interpolation
 
 Without template literals, when you want to combine output from expressions with strings, you'd concatenate them using the addition operator +:

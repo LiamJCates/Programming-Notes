@@ -1,4 +1,5 @@
 
+
 components can be compared to regular functions when it comes to their contract. They use a set of props and state as their input, and they output what looks like HTML, but is really a special JavaScript syntax called JSX.
 
 The props input is an explicit one. It is similar to the list of attributes an HTML element can have.
@@ -12,39 +13,8 @@ Components can only change their internal state, not their properties.
 
 
 
-```js
-class Hello extends React.Component {
-	render () {
-		return (
-			<div className ="container">
-				<h1> Getting Started<h1>
-			</div>
-		);
-	}
-}
 
-ReactDOM.render(<Hello />, mountNode);
-```
 
-This is a simple React class component without any input, so no props or state, and with a simple h1 in a div output.
-
-```js
-class Hello extends React.Component {
-	render () {
-		return (
-			React.createElement("div", {className: "container"},
-				React.createElement("h1", null, "Getting Started")
-			)
-		);
-	}
-}
-
-ReactDOM.render(React.createElement(Hello, null), mountNode);
-```
-
-This component is written in the special JSX syntax. Remember how I said we don't write HTML at all in React, and instead we use the React API to generate our views? This JSX syntax is the compromise to that rule. It makes our task of using the React API as close as possible to writing HTML, but it is not HTML. This gets compiled to the pure JavaScript calls in the previous codeblock.
-
-These React.createElement calls are what we ship to browsers. They are the JavaScript representation of this component's DOM, and they are what React can efficiently translate into actual DOM operations to be performed by the browser.
 
 
 ## Your First React Component
@@ -164,6 +134,10 @@ This example intentionally renders a button component and the button element in 
 
 
 This rendered button here is not interactive yet. To make it so, we'll need to introduce some state to this component.
+
+
+
+
 
 Your First React Hook
 
@@ -464,82 +438,7 @@ Look at the Display component too. From its point of view, the message value is 
 
 
 
-Components Reusability
 
-One of the selling points about components is reusability, making a component generic enough so that we can reuse it in different cases.
-
-Let's make the Button component more generic.
-```js
-function Button(props) {
-  return (
-    <button onClick={props.onClickFunction}>
-      +1
-    </button>
-  );
-}
-```
-Let's assume that we can pass in an increment value, and the Button component will use that value instead of the hard coded one.
-```js
-function Button(props) {
-  return (
-    <button onClick={props.onClickFunction}>
-      +{props.increment}
-    </button>
-  );
-}
-```
-We upgraded the +1 to something dynamic, a property of the component, the amount to increment, passed down from the parent. We named this new attribute increment, and the value we need to pass here is a number. Since the value here is not a string, we'll need to use a set of curly braces here as well.
-```js
-<Button onClickFunction = {handleClick} increment={5}/>
-```
-So, for example, we can pass in 5. One quick note about this syntax here. We could pass the number like this increment="5", but the Button component in this case will see and work with that value as a string. So don't do that. Keep it this way, increment={5}, so the Button component receives it as a numeric value, not a string. To use this new increment prop, we access it here as props.increment. There we go. We've got a +5. So let me go ahead and add a few more buttons here and use increment values of 1, 5, 10, and 100.
-```js
-function App () {
-  const[counter, setCounter] = useState(0);
-  const handleClick = () => setCounter(counter+1);
-  return (
-  <div>
-    <Button onClickFunction = {handleClick} increment={1}/>
-    <Button onClickFunction = {handleClick} increment={5}/>
-    <Button onClickFunction = {handleClick} increment={10}/>
-    <Button onClickFunction = {handleClick} increment={100}/>
-    <Display message={counter}/>
-  </div>
-  );
-}
-```
-
-The UI rendered four buttons now with different labels, but they're not going to work yet. In fact, all of them would still increment with a +1 at this point because we did not change their handlers. So the challenge now is to make each button increment the globally displayed counter by its increment value, not just 1.
-
-This incrementCounter function here will now need to receive an increment value, and we can use its argument to do that.
-```js
-const incrementCounter = (incrementValue) => setCounter(counter+incrementValue);
-```
-So receive incrementValue in here, and instead of using +1 we'll use the new incrementValue. Now we can invoke the incrementCounter function with different values. The incrementCounter function is aliased as onClickFunction for the button. So the Button component needs to invoke the onClick function with an argument now, which is its own increment value, and that can be accessed using props.increment. But we can't just pass the argument to onClickFunction like this onClickFunction(props.increment) because remember, we need a function reference for the onClickEvent handler, and what this is not a reference. It's an invocation of a function.
-
-But we can simply wrap this invocation in an inline function to make it into a reference, and through the magic of JavaScript closures, this will work just fine.
-```js
-<button onClick={() => props.onClickFunction(props.increment)}>
-```
-But again, it's a bit cleaner to do this logic inside the handleClick local function here. So let me go back to handleClick and put this new logic inside handleClick:
-
-```js
-function Button(props) {
-  const handleClick = () => props.onClickFunction(props.increment);
-  return (
-    <button onClick={handleClick}>
-      +{props.increment}
-    </button>
-  );
-}
-```
-Make sure this is still working, and all is good.
-
-This is the final code of this example:
-https://jscomplete.com/playground/rgs1.6
-
-
-Through this example, we've touched on the many basic React concepts, but this is still a relatively simple example. Let's build something a bit more useful next. But first, I need you to absolutely understand the value you're getting from using React's tree reconciliation under the hood That's the next video.
 
 
 

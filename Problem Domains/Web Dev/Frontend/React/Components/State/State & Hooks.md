@@ -17,14 +17,14 @@ https://react.dev/learn/sharing-state-between-components
 
 If we want components to undergo visual changes as a result of interactions, the component needs to “remember” things about itself.
 
-State is a specifically declared object that  functions as a component’s memory, and is internally managed by a component, to be used during it's execution, similar to function variables.
+State is a specifically declared object that functions as a component’s memory, and is internally managed by a component, to be used during it's execution, similar to a functions local variables.
 
 The view, what is visually presented as the UI, is dependent on the state of your components
 
-When react components are rendered, which is the act of running the function component function to produce the JSX necessary to make the UI
+React components are `rendered` to the browser window, this is the act of running the functional component function to produce the JSX necessary to produce the UI in the browser window
 
 a component will only be rerendered if either the
-  props it is recieving change in the parent component
+  props it is receiving change in the parent component
   state it manages changes
 
 
@@ -52,81 +52,9 @@ export default function App() {
 Even though the event handler changes this variable's value, we do not see this reflected in the UI.
 
 NOTE:
-While variable values are generally considered to be part of the program state in a more general context, a React component's state consist of specifically declared data members.
+While variable values are generally considered to be part of the program state in a more general context, a React component's state consist of specifically declared state objects.
 
-
-
-
-
-### React State
-
-An app that changes its background color based on the clicked button, don't worry about all the new syntax, this will be explained as we go.
-
-```css
-.App {
-  width: 300px;
-  height: 300px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-```
-
-```jsx
-//App.jsx
-import { useState } from "react";
-
-const COLORS = ["pink", "green", "blue", "yellow", "purple"];
-
-function App() {
-  const [backgroundColor, setBackgroundColor] = useState(COLORS[0]);
-
-  const onButtonClick = (color) => () => {
-    setBackgroundColor(color);
-  };
-
-  return (
-    <div
-      className="App"
-      style={{backgroundColor}}
-    >
-      {COLORS.map((color) => (
-        <button
-          type="button"
-          key={color}
-          onClick={onButtonClick(color)}
-          className={backgroundColor === color ? "selected" : ""}
-        >
-          {color}
-        </button>
-      ))}
-    </div>
-  );
-}
-
-export default App;
-```
-
-```jsx
-//main.jsx
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-
-import App from './App'; 
-
-ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-);
-```
-
-
-The backgroundColor state is defined with the `useState` hook. 
-
-On button click, an event handler that calls the setBackgroundColor function with the corresponding value.
-
-
+---
 
 ### useState
 
@@ -150,14 +78,167 @@ NOTE: It is common to destructure the array returned by useState, and name the f
 NOTE: The remainder of this document uses the setState method name when referencing the function returned by the useState, as is stated above, the function returned will have a name relative to the context in which it is used, determined by the identifier used to reference the current state.
 
 
+
+You can use state to store and increment the number of times a user has clicked the "Like" button. In fact, the React hook used to manage state is called: useState()
+
+Add useState() to your project. It returns an array, and you can access and use those array values inside your component using array destructuring:
+
+```jsx
+function HomePage() {
+  // ...
+  const [] = React.useState();
+ 
+  // ...
+}
+```
+The first item in the array is the state value, which you can name anything. It's recommended to name it something descriptive:
+
+```jsx
+function HomePage() {
+  // ...
+  const [likes] = React.useState();
+ 
+  // ...
+}
+```
+
+The second item in the array is a function to update the value. You can name the update function anything, but it's common to prefix it with set followed by the name of the state variable you're updating:
+
+```jsx
+function HomePage() {
+  // ...
+  const [likes, setLikes] = React.useState();
+ 
+  // ...
+}
+```
+
+You can also take the opportunity to add the initial value of your likes state to 0:
+
+```jsx
+function HomePage() {
+  // ...
+  const [likes, setLikes] = React.useState(0);
+}
+```
+
+Then, you can check the initial state is working by using the state variable inside your component.
+
+```jsx
+function HomePage() {
+  // ...
+  const [likes, setLikes] = React.useState(0);
+  // ...
+ 
+  return (
+    // ...
+    <button onClick={handleClick}>Like({likes})</button>
+  );
+}
+```
+Finally, you can call your state updater function, setLikes in your HomePage component, let's add it inside the handleClick() function you previously defined:
+
+```jsx
+function HomePage() {
+  // ...
+  const [likes, setLikes] = React.useState(0);
+ 
+  function handleClick() {
+    setLikes(likes + 1);
+  }
+ 
+  return (
+    <div>
+      {/* ... */}
+      <button onClick={handleClick}>Likes ({likes})</button>
+    </div>
+  );
+}
+```
+
+Clicking the button will now call the handleClick function, which calls the setLikes state updater function with a single argument of the current number of likes + 1.
+
+
 ## How does state work in React?
 
 In React, when a component’s state or props change, the component is destroyed, including variables, functions, and child nodes, and the entire component is reinitialized and the latest state value will be returned from useState. This process, called `Rerendering`, is a key feature of React that enables it to efficiently update the user interface in response to changes in the underlying data.
 
 The process of rerendering generates a new `virtual DOM` (Document Object Model) tree, a lightweight representation of the actual DOM that React uses to keep track of the current state of the UI. React then compares the new virtual DOM tree to the previous one and calculates the minimal set of changes needed to update the actual DOM. This behavior is managed by the `reconciliation algorithm`.
 
+An app that changes its background color based on the clicked button
+
+```jsx
+//App.jsx
+import { useState } from "react";
+
+const COLORS = ["pink", "green", "blue", "yellow", "purple"];
+
+export function App() {
+  const [backgroundColor, setBackgroundColor] = useState(COLORS[0]);
+
+  const onButtonClick = (color) => () => {
+    setBackgroundColor(color);
+  };
+
+  return (
+    <div
+      className="App"
+      style={{
+        width: '300px',
+        height: '300px',
+        backgroundColor: backgroundColor,
+      }}
+    >
+      {COLORS.map((color) => (
+        <button
+          type="button"
+          key={color}
+          onClick={onButtonClick(color)}
+          className={backgroundColor === color ? "selected" : ""}
+        >
+          {color}
+        </button>
+      ))}
+    </div>
+  );
+}
+```
+
+```jsx
+//index.jsx
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+
+import { App } from './App.jsx'
+
+ReactDOM.createRoot( 
+  document.getElementById('root')
+).render(<App />)
+```
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="src/style.css">
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script src="src/index.jsx"></script>
+  </body>
+</html>
+```
+
+The backgroundColor state is defined with the `useState` hook. 
+
+On button click, an event handler that calls the setBackgroundColor function with the corresponding value.
+
 In the example above, whenever setBackgroundColor is called, our App component is rerendered. The onButtonClick function and our div and buttons are recreated. You might wonder, shouldn’t the backgroundColor state be recreated? Well, React takes the responsibility of keeping track of the latest state and providing it to the component. The initial state value is only used for the component’s first render and is ignored on subsequent renders.
 
+Note: Unlike props which are passed to components as the first function parameter, the state is initiated and stored within a component. You can pass the state information to children components as props, but the logic for updating the state should be kept within the component where state was initially created.
 
 ## Hooks
 
@@ -188,7 +269,11 @@ As a rule of thumb: don’t put values in state that can be calculated using exi
 
 ### State should not be mutated
 
-Mutating state is a no-go area in React as it leads to unpredictable results. Primitives are already immutable, but if you are using reference-type values, i.e., arrays and objects, never mutate them. According to the React documentation, we should treat state as if it was immutable. 
+State can hold any kind of JavaScript value, including objects.
+
+Mutating state is a no-go area in React as it leads to unpredictable results. Primitives are already immutable, but if you are using reference-type values, i.e., arrays and objects, never mutate them. According to the React documentation, we should treat state as if it was immutable, you shouldn’t change objects and arrays that you hold in the React state directly. Instead, when you want to update an object and array, you need to create a new one (or make a copy of an existing one), and then update the state to use that copy.
+
+Usually, you will use the ... spread syntax to copy objects and arrays that you don't want to change, and then provide all the changed values for the new object or array. 
 
 To change state, we should always use the setter function returned by useState
 
@@ -223,7 +308,7 @@ function Person() {
 }
 ```
 
-Notice, we create a new object and then copy the existing state values into the new object while providing a new value for age. That is because if we don’t provide a new object to setState it is not guaranteed to re-render the page. Therefore, we should always provide a new Object for setState to trigger a re-render. 
+Notice, we create a new object and then copy the existing state values into the new object using the spread syntax, while providing a new value for age. That is because if we don’t provide a new object to setState it is not guaranteed to re-render the page. Therefore, we should always provide a new Object for setState to trigger a re-render. 
 
 During a re-render, React uses Object.is() to determine if the previous state is the same.
 

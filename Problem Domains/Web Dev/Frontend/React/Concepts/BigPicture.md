@@ -22,6 +22,11 @@ Generally speaking, a JavaScript library is a collection of pre-written code tha
 
 React provides powerful primitives (built-in functions/modules) that allow us to build user interfaces of varying complexities. 
 
+React is built upon the Node.js ecosystem,
+and as one of the most commonly used web
+frameworks, it currently forms the basis of more than
+40 percent of the most visited websites.
+
 ### User Interface
 
 A user interface is anything we put in front of users to have them interact with a machine. If the device we're trying to interface can understand JavaScript, we can use React to describe a user interface for it. Since web browsers understand JavaScript, we can use React to describe web user interfaces. I like to use the word describe here because that is what we basically do with React. We just tell React what we want, and it will build the actual user interfaces on our behalf in the web browser. Without React or similar libraries, we would need to manually build user interfaces with native web APIs in JavaScript, and that is not as easy. When you hear the statement that React is declarative, this is exactly what it means. We describe user interfaces with React and tell it what we want, not how to do it. React will take care of the how and translate our declarative descriptions, which we write in the React language to actual user interfaces in the browser. Of course, HTML itself is a declarative language, but with React, we get to be declarative for HTML interfaces that represent dynamic data, not just static content.
@@ -55,13 +60,46 @@ However, you don't really invoke a React component. You just use it in your HTML
 
 
 #### Reactive Updates
-React's name is a simple explanation for this concept. When the state of a React component, the input, changes, the user interface it represents, the output, changes as well. This change in the description of the user interface has to be reflected in the device we are working with. In a browser, we need to regenerate the HTML views in the DOM tree. With React, we don't need to worry about how to reflect these changes or even manage when to take changes to the browser. React will simply react to the changes in a component's state and automatically update the parts of the DOM that need to be updated.
+
+React's name is a simple explanation for this concept.
+
+components are reactive. This means two things: one, that they handle their own isolated states, and two, that each component updates the page’s HTML as soon as its state changes.
+
+When the state of a React component, the input, changes, the user interface it represents, the output, changes as well. This change in the description of the user interface has to be reflected in the device we are working with. In a browser, we need to regenerate the HTML views in the DOM tree. 
+
+Changes to the React code instantly affect a browser’s document object model
+(DOM), which represents a website as a tree in which each HTML element is
+a node. The DOM also provides an API for each node and for the website in
+general, enabling scripts to modify a website or a specific node.
+
+With React, we don't need to worry about how to reflect these changes or even manage when to take changes to the browser. React will simply react to the changes in a component's state and automatically update the parts of the DOM that need to be updated.
 
 
 #### Virtual views in memory
-To build HTML web applications with React, we don't write HTML at all. We use JavaScript to generate HTML. When your web application receives just the data from the server in the background with AJAX, you need something more than HTML to work with that data, and you have two options. You can use an enhanced HTML template that has loops and conditionals, or you can rely on the power of JavaScript itself to generate the HTML from the data. Both approaches have advantages and disadvantages. React embraces the latter one and eliminates the extra step needed to parse and enhance the HTML template. One big advantage for this HTML in JavaScript approach is how it enables React to keep and use a virtual representation of HTML views in memory, which is commonly known as the virtual DOM, or the tree reconciliation algorithm. React uses the virtual DOM to compare versions of the UI in memory before it acts on them. I'll show you the practical value of that once we're comfortable with the basic syntax of React.
+To build HTML web applications with React, we don't write HTML at all. We use JavaScript to generate HTML. When your web application receives just the data from the server in the background with AJAX, you need something more than HTML to work with that data, and you have two options. You can use an enhanced HTML template that has loops and conditionals, or you can rely on the power of JavaScript itself to generate the HTML from the data. Both approaches have advantages and disadvantages. React embraces the latter one and eliminates the extra step needed to parse and enhance the HTML template. One big advantage for this HTML in JavaScript approach is how it enables React to keep and use a virtual representation of HTML views in memory, which is commonly known as the virtual DOM, or the tree reconciliation algorithm. React uses the virtual DOM to compare versions of the UI in memory before it acts on them. 
+
+DOM operations, such as re-rendering a component, are expensive. To
+update the DOM, React uses a virtual DOM, which is an in-memory clone
+of the actual browser DOM that it later syncs with the real thing. This vir-
+tual DOM allows for incremental updates that reduce the number of costly
+operations on the browser. The virtual DOM is a crucial principle of React.
+React calculates the difference between the virtual DOM and the real DOM
+with every call to one of its render functions and then decides what to update
+
+Usually, React performs batch updates to lower the performance
+impact further. This process of reconciliation lets React deliver fast and
+responsive user interfaces.
 
 ### Imperative vs. declarative programming
+
+React uses a declarative programming paradigm, through which you
+create a user interface by describing the desired results instead of explic-
+itly listing all the steps necessary to create it, as is done in imperative pro-
+gramming. A classic example of the declarative paradigm is HTML. Using
+HTML, you describe a web page’s elements, and the browser then renders
+the page. By contrast, you could use JavaScript to write an imperative pro-
+gram that creates each HTML element. In doing so, you would explicitly list
+the steps to build the website.
 
 Open your code editor and create a new index.html file. Inside the HTML file, add the following code which includes:
 - `<html>` `<body>` tags to render a UI

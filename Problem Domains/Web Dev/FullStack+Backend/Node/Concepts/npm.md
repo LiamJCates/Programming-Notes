@@ -203,8 +203,7 @@ dependencies list in package.json.
 
 
 Say you want to create a new Express.js-based server. You’ll need to
-install the Express.js package from https://npmjs.com. Here we install a par-
-ticular version, but to install the latest version, omit the version number and
+install the Express.js package from https://npmjs.com. Here we install a particular version, but to install the latest version, omit the version number and
 use npm install express instead:
 
 ```bash

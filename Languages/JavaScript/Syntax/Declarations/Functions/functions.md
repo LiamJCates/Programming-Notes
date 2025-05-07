@@ -213,6 +213,8 @@ sum(1, 2, 3); // Returns 6
 
 Arrow functions provide a shorter syntax for writing functions and do not have their own `this`, `arguments`, `super`, or `new.target` bindings. They are best suited for non-method functions.
 
+This syntax, also called the fat arrow, reduces noise and results in more compact code.
+
 ```javascript
 const add = (a, b) => a + b;
 
@@ -220,3 +222,40 @@ add(2, 3); // Returns 5
 ```
 
 NOTE: Because arrow functions use curly brackets, {} you cannot implicitly return an object. To return an object using an arrow function, you must either use the return keyword or wrap the curly brackets in round brackets.
+
+### Understanding Lexical Scope
+
+Unlike regular functions, arrow functions do not bind their scope to the
+object that calls the function. Instead, they use a lexical scope, in which the
+surrounding scope determines the value of the this keyword. Therefore,
+the scope to which this refers in an arrow function always represents the
+object defining the arrow function instead of the object calling the function.
+
+```js
+this.scope = "lexical scope"; //1
+const scopeOf = {
+  scope: "defining scope", //2
+  traditional: function () {
+    return this.scope; //3
+  },
+  arrow: () => {
+    return this.scope;
+  },
+};
+console.log(scopeOf.traditional()); //defining scope
+console.log(scopeOf.arrow());       // lexical scope
+```
+
+We first declare the scope property on the lexical scope 1; this is the
+defining object. Then we create an object with a property of the same name
+inside the defining scope 2. Next, we define two functions, both of which
+use this to return the value of this.scope 3.
+Upon calling them, you can see the difference between the two references.
+Whereas this.scope in the arrow function refers to the property defined in the
+lexical scope, the traditional function’s this refers to the second property we
+defined. Consequently, the scopeOf.traditional function outputs defining scope,
+whereas the scopeOf.arrow function outputs lexical scope.
+
+
+
+

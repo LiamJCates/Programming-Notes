@@ -321,6 +321,17 @@ console.log(matrix[0][1]); // 2 (first row, second element)
   let combined = [...arr1, ...arr2]; // [1,2,3,4,5]
   ```
 
+Technically, the spread operator copies its content to variables that allocate their own memory. 
+
+Using the spread operator to clone an array or object is useful because
+JavaScript treats arrays as references to its values. When you `assign` an array
+or object to a new variable or constant, this merely `copies` the reference to
+the original; it does not clone the array or object by allocating memory.
+
+Therefore, changing the copy also changes the original. Using spread
+instead of the equals operator (=) allocates memory and keeps no reference
+to the original value. 
+
 - **Rest Parameter (`...`):** In function arguments, collects all remaining arguments into an array.
 
   ```javascript

@@ -104,7 +104,7 @@ In the previous example, even though we create an element describing the whole U
 
 You can find a detailed component API reference [here](https://reactjs.org/docs/react-component.html)
 
-One might confuse elements with a more widely known concept of “components”. Elements are what components are “made of”.
+Elements are what components are “made of”.
 
 Conceptually, components are like JavaScript functions:
 	(optionally) accept an arbitrary input parameter (called “props” which stands for properties)
